@@ -1,0 +1,18 @@
+# default.custom.yaml
+# save it to: 
+#   ~/.config/ibus/rime  (linux)
+#   ~/Library/Rime       (macos)
+#   %APPDATA%\Rime       (windows)
+
+patch:
+  schema_list:
+    - schema: flypy_zrmfast
+    - schema: double_pinyin_flypy  # 小鶴雙拼
+    - schema: easy_en
+    - schema: luna_pinyin          # 朙月拼音
+    - schema: emoji         # emoji表情
+    - schema: stroke
+
+  menu:
+    page_size: 4
+
