@@ -17,8 +17,9 @@
 ## 文件说明
 * 将这些文件放入 Rime 的用户目录下，重新部署即可。
 * `flypy_zrmfast.schema.yaml` 和 `flypy_zrmfast.dict.yaml` 为本方案的主要文件。其余文件均用于附加功能。
-* `default.custom.yaml` 仅用于声明本方案的依赖方案。如果用户已经有这一文件，并且其中设置了 `schema_list` 选项，可以直接将本项目同名文件的内容添加到该选项下，而不必使用项目提供的这一文件。
-* `emoji.schema.yaml` 和 `emoji.dict.yaml` 提供给没有这个方案的用户。如果用户已经有这两个文件，可以不使用本项目提供的版本，不过 emoji 输入时的输入法行为可能有所不同。
+* `default.custom.yaml` 仅用于声明本方案的依赖方案。如果用户已经有同名的文件，并且其中设置了 `schema_list` 选项，可以直接将本项目同名文件的内容添加到该选项下，而不必使用项目提供的这一文件。
+* `rime.lua` 文件用于涉及 Lua 的相关功能。如果用户已经有同名的文件，可以将本项目文件的内容复制添加到原有文件之中，但是可能需要自行确认其中的变量名、函数名与原有的那些没有冲突。
+* 鉴于部分用户使用的 Rime 版本没有自带 emoji 输入方案，本项目提供了 `emoji.schema.yaml` 和 `emoji.dict.yaml` 文件。如果用户已经有这两个文件，可以不使用本项目提供的版本，不过不排除 emoji 输入时的输入法行为会有所不同。
 * `easy_en.schema.yaml` 和 `easy_en.dict.yaml` 为作者基于 [easy-en](https://github.com/BlindingDark/rime-easy-en) 项目的英文输入方案修改得到的版本。如果用户已经有这两个文件，可以不使用本项目提供的版本，但英文单词输入的行为应该会有不同。
 
 ## 附加功能
