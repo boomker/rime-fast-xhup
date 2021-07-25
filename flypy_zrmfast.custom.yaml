@@ -1,0 +1,25 @@
+## 一些常用的设置项。找到需要进行的设置所在的行，
+## 取消注释（删除行开头的单个 # 符号）即可启用该设置项。
+patch:
+  #engine/translators/@last: '' ## 禁用英文单词输入功能
+  #punctuator/half_shape: {} ## 恢复默认引号
+
+  ## tab引导辅助码
+  #key_binder/bindings/@next: { when: composing, accept: Tab, send: '[' }
+
+  ## 直接引导辅助码
+  ## 如果希望同时允许 [ 引导，将 xform 改成 derive
+  #speller/algebra/@next: xform/[[]//
+
+  ## 临时全拼模式下使用扩展词典；用户可以改成自己使用的其他字典。
+  ## 例如，如果要使用有更多古诗词的字典，除了取消下面那一行的注释之外，
+  ## 还要（之前已经完成的可以跳过）：
+  ## 1. 在 https://github.com/wongdean/rime-settings 下载
+  ## luna_pinyin.extended.dict.yaml，luna_pinyin.poetry.dict.yaml
+  ## 两个文件放入用户目录下；其他文件也可以根据个人需要下载。
+  ## 2. 在其他方案（例如明月拼音，或者小鹤双拼）中使用一次同样的字典文件，
+  ## 例如在 luna_pinyin.custom.yaml 中添加如下的行（若已有类似的行则直接修改）
+  ## translator/dictionary: luna_pinyin.extended
+  ## 并部署一次，之后 Rime 才会认识这个字典。完成后，这一步添加的行可以取消。
+  #quanpin/dictionary: luna_pinyin.extended
+
