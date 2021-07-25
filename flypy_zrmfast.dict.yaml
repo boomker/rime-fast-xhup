@@ -3,11 +3,11 @@
 # adapted from: [蓝天双拼＋自然快手](http://bbs.unispim.com/forum.php?mod=viewthread&tid=28002&highlight=%D7%D4%C8%BB%BF%EC%CA%D6)
 # 小鹤双拼加自然快手辅助码
 # 繁体字码表
---- 
+---
 name: flypy_zrmfast
-version: "2011.04.27"
+version: "2020.02.08"
 sort: by_weight
-use_preset_vocabulary:  true
+use_preset_vocabulary: true
 ...
 
 〇	lk[vv
@@ -8204,7 +8204,7 @@ use_preset_vocabulary:  true
 削	xn[xd	72.30%
 削	xt[xd	27.70%
 剋	ke[ge
-剋	kw[ge	1%
+剋	kw[ge
 剌	la[hd
 前	qm[bo
 剎	ia[id	7.58%
@@ -8788,8 +8788,8 @@ use_preset_vocabulary:  true
 吁	xu[ke	90.45%
 吁	yu[ke	4.55%
 吂	mh[wk
-吃	ii[kr	100%
-吃	ji[kr	0%
+吃	ii[kr
+吃	ji[kr
 各	ge[wk
 吅	lb[kk
 吅	ss[kk
@@ -9079,9 +9079,7 @@ use_preset_vocabulary:  true
 哉	zd[tk
 哊	yu[[
 哋	di[kt
-哌	gu[kp
-哌	gx[kp
-哌	wa[kp
+哌	pd[kp
 响	xl[kp
 哎	ai[kc
 哏	gf[kg
@@ -14931,6 +14929,7 @@ use_preset_vocabulary:  true
 暟	kd[[
 暟	qi[[
 暠	gc[[
+暠	hc[[
 暡	wg[[
 暢	ih[ov
 暣	qi[[
@@ -15488,7 +15487,8 @@ use_preset_vocabulary:  true
 桤	qi[au
 桥	qn[ap
 桦	hx[ar
-桧	gv[ar	59.62%
+桧	gv[ar
+桧	hv[ar
 桨	jl[da
 桩	vl[ag
 桪	xy[[
@@ -16150,6 +16150,7 @@ use_preset_vocabulary:  true
 檛	go[ak
 檛	vx[ak
 檜	gv[ar
+檜	hv[ar
 檜	kk[ar
 檝	ji[[
 檞	jp[[
@@ -19112,7 +19113,8 @@ use_preset_vocabulary:  true
 班	bj[wd
 珮	pw[wj
 珰	dh[wx
-珲	hy[wg	13.79%
+珲	hv[wg
+珲	hy[wg
 珳	wf[[
 珴	ee[[
 珵	ig[[
@@ -19201,6 +19203,7 @@ use_preset_vocabulary:  true
 琼	qs[ww
 琽	du[[
 琾	jp[[
+琿	hv[wg
 琿	hy[wg
 瑀	yu[[
 瑁	mc[wo
@@ -21427,6 +21430,7 @@ use_preset_vocabulary:  true
 筞	ce[[
 筟	fu[[
 筠	yy[vt
+筠	jy[vt
 筡	tu[[
 筢	pa[vf
 筣	li[[
@@ -24148,7 +24152,7 @@ use_preset_vocabulary:  true
 萏	xm[cd
 萐	jp[[
 萐	ua[[
-萑	hr[cv
+萑	vv[cv
 萒	yj[[
 萓	yi[[
 萔	tn[[
@@ -30006,6 +30010,7 @@ use_preset_vocabulary:  true
 隗	ww[eg
 隘	ai[eb
 隘	ee[eb
+隘	ga[eb	0%
 隙	qi[ex	0%
 隙	xi[ex
 隚	th[[
@@ -31659,6 +31664,7 @@ use_preset_vocabulary:  true
 鰀	wj[[
 鰁	qr[[
 鰂	ze[[
+鰂	zw[[
 鰃	ww[[
 鰄	ww[[
 鰅	yu[[
@@ -31824,6 +31830,7 @@ use_preset_vocabulary:  true
 鲕	er[ye
 鲖	ts[[
 鲗	zw[[
+鲗	ze[[
 鲘	hz[[
 鲙	kk[[
 鲚	ji[yw
@@ -48889,7 +48896,6 @@ use_preset_vocabulary:  true
 俧	vi[[
 
 #以下爲詞組	#[sr[hb[dl[yv[sq
-補給	bu[yb ji[sr
 㓦劃	bo[[ hx[gd
 㔩葉	ee[[ ye[ku
 㕷啦	pa[[ la[kf
@@ -49255,7 +49261,6 @@ use_preset_vocabulary:  true
 不忘溝壑	bu[eu wh[wx gz[db he[bt
 不忘溝壑	bu[eu wh[wx gz[db ho[bt
 不快樂	bu[eu kk[xv le[px
-不怯氣	bu[eu qt[xt qi[rh
 不恁麼	bu[eu nf[rx me[ps
 不恁麼	bu[eu rf[rx me[ps
 不愆	bu[eu qm[rx
@@ -49454,7 +49459,6 @@ use_preset_vocabulary:  true
 中覺	vs[ku jn[xj
 中調	vs[ku dn[yk
 中資銀行	vs[ku zi[db yb[jg hh[rh
-中途曝光	vs[ku tu[rz pu[oo gl[xe
 中部地區	vs[ku bu[le di[ty qu[ki
 中部地方	vs[ku bu[le di[ty fh[dw
 中都	vs[ku du[te
@@ -49546,7 +49550,7 @@ use_preset_vocabulary:  true
 乞留玎琅	qi[rv lq[pt dk[wd lh[wl
 乞降	qi[rv xl[ew
 也不攬那磁器傢伙	ye[vu bu[eu lj[fu na[ve ci[eb qi[kq jx[gu ho[rh
-也得蒸熟吃	ye[vu dw[ro vg[cl uz[wd ii[kr
+也得蒸熟喫	ye[vu dw[ro vg[cl uz[wd ii[kr
 也曾	ye[vu cg[bo
 也行	ye[vu xk[rh
 也麼哥	ye[vu mo[ps ge[kk
@@ -49791,7 +49795,7 @@ use_preset_vocabulary:  true
 二重性	er[hh is[ph xk[xp
 二陸	er[hh lu[ef
 二面角	er[hh mm[ew jn[do
-二韃子吃螺螄	er[hh da[gd zi[lh ii[kr lo[it si[iu
+二韃子喫螺螄	er[hh da[gd zi[lh ii[kr lo[it si[iu
 于嗟	xu[eu jp[ky
 于思	yu[eu sd[tx
 于闐	yu[eu tm[mu
@@ -51362,7 +51366,6 @@ use_preset_vocabulary:  true
 加里波的	jx[lk li[ot bo[dp di[bb
 加重	jx[lk vs[ph
 加長	jx[lk ih[ph
-劣怯	lp[xl qt[xt
 劣行	lp[xl xk[rh
 劣角	lp[xl jn[do
 劣跡昭著	lp[xl ji[yz vc[od vu[ct
@@ -51427,7 +51430,6 @@ use_preset_vocabulary:  true
 勞什子	lc[cl ui[ru zi[lh
 勞什骨子	lc[cl ui[ru gu[ko zi[lh
 勞尊重	lc[cl zy[bc vs[ph
-勞怯	lc[cl qt[xt
 勞臺重	lc[cl td[sk vs[ph
 勢傾朝野	ui[fl qk[rb ic[uo ye[oy
 勢力並行	ui[fl li[vp bk[bk xk[rh
@@ -51555,7 +51557,6 @@ use_preset_vocabulary:  true
 半生半熟	bj[bf ug[pf bj[bf uu[wd
 半角	bj[bf jn[do
 半酣	bj[bf hj[yg
-卑怯	bw[bu qt[xt
 卑薄	bw[bu bo[cd
 卒中	cu[wr vs[ku
 卒乍	cu[wr va[ru
@@ -51927,21 +51928,8 @@ use_preset_vocabulary:  true
 吁嗟	xu[ke jp[ky
 吁噓	xu[ke xu[kh
 吁氣	xu[ke qi[rh
-吃不了	ii[kr bu[eu ln[vu
-吃不了兜着走	ii[kr bu[eu ln[vu dz[pe ve[ym zz[tv
-吃乾醋	ii[kr gj[hu cu[yg
-吃什麼	ii[kr uf[ru me[ps
-吃勁	ii[kr jb[sl
 吃口令	ji[kr kz[uv lk[rd
-吃喝玩樂	ii[kr he[ko wj[we le[px
-吃地面	ii[kr di[ty mm[ew
 吃子	ji[kr zi[lh
-吃幾碗乾飯	ii[kr ji[pv wj[eg gj[hu fj[up
-吃得了	ii[kr de[ro ln[vu
-吃虧就是占便宜	ii[kr kv[hk jq[wy ui[op vj[bk pm[rh yi[gq
-吃裏扒外	ii[kr li[ot pa[fb wd[xb
-吃角子老虎	ii[kr jn[do zi[lh lc[tb hu[hj
-吃重	ii[kr vs[ph
 各地	ge[wk di[ty
 各展其長	ge[wk vj[ug qi[cb ih[ph
 各抱一角	ge[wk bc[fb yi[hh jn[do
@@ -52151,9 +52139,12 @@ use_preset_vocabulary:  true
 呫呫	ie[[ ie[[
 呫嚅	ie[[ ru[ky
 呫囁	ie[[ ve[ke
+呱呱	gu[kp gu[kp
 呱呱	gx[kp gx[kp
 呱呱	wa[kp wa[kp
+呱呱墜地	gu[kp gu[kp vv[et di[ty
 呱呱墜地	wa[kp wa[kp vv[et di[ty
+呱呱墮地	gu[kp gu[kp do[et di[ty
 呱呱墮地	wa[kp wa[kp do[et di[ty
 呲牙	ci[kv ya[hv
 呲牙裂嘴	ci[kv ya[hv lp[hy zv[kv
@@ -52532,10 +52523,24 @@ use_preset_vocabulary:  true
 喧囂	xr[kg xn[ky
 喧闐	xr[kg tm[mu
 喪榜	sh[ty bh[al
+喫不了	ii[kr bu[eu ln[vu
+喫不了兜着走	ii[kr bu[eu ln[vu dz[pe ve[ym zz[tv
+喫乾醋	ii[kr gj[hu cu[yg
+喫什麼	ii[kr uf[ru me[ps
+喫勁	ii[kr jb[sl
+喫喝玩樂	ii[kr he[ko wj[we le[px
+喫地面	ii[kr di[ty mm[ew
+喫幾碗乾飯	ii[kr ji[pv wj[eg gj[hu fj[up
+喫得了	ii[kr de[ro ln[vu
 喫着不盡	ii[kr vo[ym bu[eu jb[ud
+喫虧就是占便宜	ii[kr kv[hk jq[wy ui[op vj[bk pm[rh yi[gq
+喫裏扒外	ii[kr li[ot pa[fb wd[xb
+喫角子老虎	ii[kr jn[do zi[lh lc[tb hu[hj
+喫重	ii[kr vs[ph
 喬志	jn[pp vi[ux
 喬志	qn[pp vi[ux
 喬怯	jn[pp qp[xt
+喬怯	qn[pp qp[xt
 喬怯	qn[pp qt[xt
 喬模喬樣	qn[pp mu[ac qn[pp yh[ay
 喬詰	qn[pp jp[yu
@@ -53489,7 +53494,6 @@ use_preset_vocabulary:  true
 夙願以償	su[jh yr[ix yi[sr ih[rx
 多了	do[xx le[vu
 多了	do[xx ln[vu
-多次曝光	do[xx ci[dd pu[oo gl[xe
 多氯聯苯	do[xx lv[qx lm[eb bf[ca
 多藏厚亡	do[xx ch[cw hz[io wh[wv
 多行不義必自斃	do[xx xk[rh bu[eu yi[di bi[xp zi[pm bi[bh
@@ -53540,14 +53544,13 @@ use_preset_vocabulary:  true
 大剛來	dd[hr gh[kd ld[hm
 大剛喒	dd[hr gh[kd zj[[
 大功率	da[hr gs[gl lv[wu
-大勇若怯	da[hr ys[sl ro[cu qt[xt
 大古	dd[hr gu[uk
 大古裏彩	dd[hr gu[uk li[ot cd[ap
-大吃大嚼	da[hr ii[kr da[hr jn[ka
 大品般若	da[hr pb[kk bo[vj re[cu
 大唐三藏取經詩話	da[hr th[gx sj[hh zh[cw qu[ey jk[ss ui[yt hx[yq
 大啖一番	da[hr dj[kh yi[hh fj[pt
 大喏	da[hr re[kc
+大喫大嚼	da[hr ii[kr da[hr jn[ka
 大單于	da[hr ij[bo yu[eu
 大回朝	da[hr hv[wk ic[uo
 大圈仔	da[hr qr[wb zi[rz
@@ -53567,7 +53570,7 @@ use_preset_vocabulary:  true
 大姊頭	da[hr jp[np tz[dd
 大姦似忠	da[hr jm[ng si[rs vs[vx
 大學	da[hr xt[xz
-大學	td[hr xt[xz
+大學	td[hr xt[xz	0%
 大學校長	da[hr xt[xz xn[al vh[ph
 大學院校	da[hr xt[xz yr[eg xn[al
 大安地列斯羣島	da[hr an[gn di[ty lp[hd si[qj qy[xy dc[nu
@@ -54127,8 +54130,6 @@ use_preset_vocabulary:  true
 嬌娜	jn[np no[nv
 嬌嫩	jn[np nf[nh
 嬌嬈	jn[np rc[nq
-嬌怯	jn[np qt[xt
-嬌怯怯	jn[np qt[xt qt[xt
 嬌皮嫩肉	jn[np pi[vp nf[nh rz[kr
 嬛佞	xr[ns nk[re
 嬛嬛	qs[ns qs[ns
@@ -54280,6 +54281,7 @@ use_preset_vocabulary:  true
 安地卡及巴布達	an[gn di[ty ka[ub ji[pv ba[ku bu[uj da[dz
 安地斯山脈	an[gn di[ty si[qj uj[uk md[od
 安堵樂業	an[gn du[tt le[px ye[ub
+安娜·卡列尼娜	an[gn na[nv ka[ub lp[hd ni[ub na[nv
 安宅	an[gn ve[gp
 安宅正路	an[gn ve[gp vg[hv lu[zw
 安家樂業	an[gn jx[gu le[px ye[ub
@@ -54471,7 +54473,6 @@ use_preset_vocabulary:  true
 富彊	fu[gh ql[gh
 富貴草頭露	fu[gh gv[vb cc[co tz[dd lu[yz
 寒地訓練	hj[gd di[ty xy[yi lm[sq
-寒怯	hj[gd qt[xt
 寒燠	hj[gd ao[hp
 寒畯	hj[gd jy[[
 寒痹	hj[gd bi[bt
@@ -54606,7 +54607,6 @@ use_preset_vocabulary:  true
 小年朝	xn[ub nm[rn vc[uo
 小底	xn[ub de[gu
 小弁	xn[ub pj[sc
-小怯大勇	xn[ub qt[xt da[hr ys[sl
 小憩	xn[ub qi[qx
 小扒頭	xn[ub pa[fb tz[dd
 小時了了	xn[ub ui[oc ln[vu ln[vu
@@ -54629,7 +54629,7 @@ use_preset_vocabulary:  true
 少不了	uc[xp bu[eu ln[vu
 少不更事	uc[xp bu[eu gg[ho ui[hk
 少不更事	uc[xp bu[eu jk[ho ui[hk
-少吃無着	uc[xp ii[kr wu[ee vo[ym
+少喫無着	uc[xp ii[kr wu[ee vo[ym
 少女嫩婦	uc[xp nv[vp nf[nh fu[nx
 少差	uc[xp id[yg
 少憩	uc[xp qi[qx
@@ -54670,7 +54670,7 @@ use_preset_vocabulary:  true
 局局長	ju[uv ju[uv vh[ph
 局部地區	ju[uv bu[le di[ty qu[ki
 局長	ju[uv vh[ph
-屁股裏吃人參	pi[ub gu[oj li[ot ii[kr rf[pd uf[sd
+屁股裏喫人參	pi[ub gu[oj li[ot ii[kr rf[pd uf[sd
 屁鳥人	pi[ub dn[nh rf[pd
 居不重席	ju[ug bu[eu is[ph xi[gn
 居不重茵	ju[ug bu[eu is[ph yb[cw
@@ -55245,7 +55245,6 @@ use_preset_vocabulary:  true
 弩箭離絃	nu[ng jm[vb li[wk xm[gw
 弭棹	mi[ge vc[ab
 弭節徘徊	mi[ge jp[ce pd[rf hk[rw
-弱怯怯	ro[gg qt[xt qt[xt
 張僧繇	vh[gi sg[rb yz[ap
 張家長李家短	vh[gi jx[gu ih[ph li[az jx[gu dr[ud
 張弓挾矢	vh[gi gs[kv xp[fj ui[rd
@@ -55569,7 +55568,6 @@ use_preset_vocabulary:  true
 心廣體胖	xb[dv gl[di ti[ra pj[ob
 心弦	xb[dv xm[gw
 心律調節器	xb[dv lv[ry tn[yk jp[ce qi[kq
-心怯	xb[dv qt[xt
 心懸兩地	xb[dv xr[qx ll[hk di[ty
 心旌搖曳	xb[dv jk[fr yc[fa ye[ov
 心旌搖曳	xb[dv jk[fr yc[fa yi[ov
@@ -55704,34 +55702,12 @@ use_preset_vocabulary:  true
 怫然變色	fu[xf rj[xd bm[yy se[db
 怫異	bw[xf yi[kc
 怫鬱	fu[xf yu[ue
-怯上	qt[xt uh[bh
-怯口	qt[xt kz[uv
-怯場	qt[xt ih[tv
-怯夫	qt[xt fu[er
-怯弱	qt[xt ro[gg
-怯怯	qt[xt qt[xt
-怯怯喬喬	qt[xt qt[xt qn[pp qn[pp
-怯怯的	qp[xt qp[xt de[bb
-怯怯羞羞	qt[xt qt[xt xq[yi xq[yi
-怯憐戶	qt[xt lm[xr hu[du
-怯懦	qt[xt no[xy
-怯死	qt[xt si[hx
-怯牀	qt[xt il[ga
-怯生	qt[xt ug[pf
-怯生生	qt[xt ug[pf ug[pf
-怯症	qt[xt vg[bh
-怯禮	qt[xt li[uv
-怯聲怯氣	qt[xt ug[um qt[xt qi[rh
-怯話	qt[xt hx[yq
-怯陣	qt[xt vf[ei
-怯頭怯惱	qt[xt tz[dd qt[xt nc[xw
 恁地	nf[rx de[ty
 恁地	rf[rx de[ty
 恁的	nf[rx de[bb
 恁的	rf[rx de[bb
 恁麼	nf[rx me[ps
 恁麼	rf[rx me[ps
-恇怯	kl[[ qt[xt
 恐嚇	ks[gx he[kx
 恐嚇信	ks[gx he[kx xb[ry
 恐嚇性	ks[gx he[kx xk[xp
@@ -55824,7 +55800,6 @@ use_preset_vocabulary:  true
 悽愴	qi[dh il[xr
 惄如調饑	ni[[ ru[nk tn[yk ji[uj
 情仇	qk[xf iz[rj
-情怯	qk[xf qt[xt
 情感天地	qk[xf gj[wx tm[hd di[ty
 情投意洽	qk[xf tz[fj yi[lx qx[dr
 情投意洽	qk[xf tz[fj yi[lx xx[dr
@@ -56055,7 +56030,6 @@ use_preset_vocabulary:  true
 懸車致仕	xr[qx ie[qu vi[hw ui[ru
 懸車致仕	xr[qx ju[qu vi[hw ui[ru
 懸針垂露	xr[qx vf[ju iv[ph lz[yz
-懼怯	ju[xj qt[xt
 懽喜	hr[[ xi[uk
 懽悰	hr[[ cs[xg
 懾人	ve[xe rf[pd
@@ -56197,7 +56171,7 @@ use_preset_vocabulary:  true
 手足重繭	uz[su zu[kv is[ph jm[ci
 手長的	uz[su ih[ph de[bb
 手長衣袖短	uz[su ih[ph yi[wy xq[yy dr[ud
-手面賺吃	uz[su mm[ew vr[bb ii[kr
+手面賺喫	uz[su mm[ew vr[bb ii[kr
 才疏德薄	cd[hu uu[pw de[ru bo[cd
 才行	cd[hu xk[rh
 才調	cd[hu dn[yk
@@ -56532,7 +56506,7 @@ use_preset_vocabulary:  true
 抹了	mo[fh le[vu
 抹去	mo[fh qu[ts
 抹嘴	mo[fh zv[kv
-抹嘴吃	mo[fh zv[kv ii[kr
+抹嘴喫	mo[fh zv[kv ii[kr
 抹土搽灰	mo[fh tu[uh ia[fc hv[uh
 抹媚	mo[fh mw[nm
 抹子	mo[fh zi[lh
@@ -56700,7 +56674,7 @@ use_preset_vocabulary:  true
 拚命	pj[fs mk[rh
 拚捨	pj[fs ue[rg
 拚棄	pj[fs qi[wc
-拚死吃河豚	pj[fs si[hx ii[kr he[dk ty[ou
+拚死喫河豚	pj[fs si[hx ii[kr he[dk ty[ou
 拚生盡死	pj[fs ug[pf jb[ud si[hx
 拚絕	pj[fs jt[sd
 拚老命	pj[fs lc[tb mk[rh
@@ -57308,7 +57282,7 @@ use_preset_vocabulary:  true
 撦鼓奪旗	ie[[ gu[uu do[dc qi[fr
 撩東劄西	ln[fd ds[qx va[[ xi[hk
 撩東撾西	ln[fd ds[qx vx[fc xi[hk
-撩蜂吃螫	ln[fd fg[iw ii[kr ve[ti
+撩蜂喫螫	ln[fd fg[iw ii[kr ve[ti
 撫尸慟哭	fu[fe ui[kp ts[xe ku[kq
 撫膺大慟	fu[fe yk[go da[hr ts[xe
 撫髀	fu[fe bi[gb
@@ -57552,7 +57526,7 @@ use_preset_vocabulary:  true
 效率	xn[lw lv[wu
 效率高	xn[lw lv[wu gc[wk
 敏給	mb[rw ji[sr
-救之就要吃人肉	jq[hw vi[dv jq[wy yc[xn ii[kr rf[pd rz[kr
+救之就要喫人肉	jq[hw vi[dv jq[wy yc[xn ii[kr rf[pd rz[kr
 救火揚沸	jq[hw ho[dp yh[fv fw[df
 敕賜	ii[hw ci[bo
 敕賜	ii[hw si[bo
@@ -57987,8 +57961,6 @@ use_preset_vocabulary:  true
 曉伏夜行	xn[oq fu[rq ye[wr xk[rh
 曉行夜宿	xn[oq xk[rh ye[wr su[gr
 曛黑	xy[op he[sd
-曝光	pu[oo gl[xe
-曝光表	pu[oo gl[xe bn[fy
 曝出	bc[oo iu[ck
 曝晒	pu[oo ud[ox
 曝書	pu[oo uu[vv
@@ -58766,7 +58738,6 @@ use_preset_vocabulary:  true
 桮杓	bw[[ uc[ab
 梁山伯	ll[da uj[uk bo[rb
 梁山伯祝英臺	ll[da uj[uk bo[rb vu[uk yk[ck td[sk
-梁山泊	ll[da uj[uk bo[db
 梁朝偉	ll[da ic[uo ww[rw
 梅酢	mw[ar cu[yv
 梏亡	gu[an wh[wv
@@ -59151,7 +59122,9 @@ use_preset_vocabulary:  true
 檄糴	xi[ab di[pm
 檉柏	ig[ay bo[ab
 檉柳	ig[ay lq[ap
+檜木	gv[ar mu[ub
 檜木	kk[ar mu[ub
+檜柏	gv[ar bd[ab
 檜柏	kk[ar bo[ab
 檠天架海	qk[ca tm[hd jx[la hd[dr
 檢察長	jm[ar ia[gx vh[ph
@@ -59328,7 +59301,7 @@ use_preset_vocabulary:  true
 死亡給付	si[hx wh[wv ji[sr fu[rc
 死亦瞑目	si[hx yi[wy mk[mg mu[we
 死傷相藉	si[hx uh[rr xl[am jp[cl
-死吃死嚼	si[hx ii[kr si[hx jn[ka
+死喫死嚼	si[hx ii[kr si[hx jn[ka
 死地	si[hx di[ty
 死地求生	si[hx di[ty qq[hu ug[pf
 死心倒地	si[hx xb[dv dc[rh di[ty
@@ -61119,7 +61092,7 @@ use_preset_vocabulary:  true
 狗仔隊	gz[qb zd[rz dv[er
 狗屠角牴	gz[qb tu[ut jn[do di[nu
 狗心狗行	gz[qb xb[dv gz[qb xk[rh
-狗改不了吃屎	gz[qb gd[kw bu[eu ln[vu ii[kr ui[um
+狗改不了喫屎	gz[qb gd[kw bu[eu ln[vu ii[kr ui[um
 狗血噴臉	gz[qb xp[pm pf[ku lm[or
 狗血噴臉	gz[qb xt[pm pf[ku lm[or
 狗血噴頭	gz[qb xp[pm pf[ku tz[dd
@@ -61142,8 +61115,8 @@ use_preset_vocabulary:  true
 狹長	xx[qj ih[ph
 狹隘	xx[qj ai[eb
 狺狺	yb[qy yb[qy
-狼吃幞頭	lh[ql ii[kr pu[jy tz[dd
 狼吞虎咽	lh[ql ty[tk hu[hj yj[kw
+狼喫幞頭	lh[ql ii[kr pu[jy tz[dd
 狼嗥	lh[ql hc[kb
 狼嗥鬼叫	lh[ql hc[kb gv[be jn[kv
 狼心狗行	lh[ql xb[dv gz[qb xk[rh
@@ -61205,7 +61178,7 @@ use_preset_vocabulary:  true
 獏猺	mu[[ yc[[
 獑胡	ij[[ hu[go
 獝狂	xu[[ kl[qw
-獨吃自痾	du[qi ii[kr zi[pm ee[bk
+獨喫自痾	du[qi ii[kr zi[pm ee[bk
 獨宿	du[qi su[gr
 獨弦哀歌	du[qi xm[gw ai[wk ge[kd
 獨斷專行	du[qi dr[mj vr[ev xk[rh
@@ -61382,6 +61355,10 @@ use_preset_vocabulary:  true
 琺瑯	fa[wt lh[wl
 琺瑯彩	fa[wt lh[wl cd[ap
 琺瑯質	fa[wt lh[wl vi[pu
+琿春	hy[wg iy[so
+琿春市	hy[wg iy[so ui[wj
+琿春河	hy[wg iy[so he[dk
+琿春縣	hy[wg iy[so xm[qs
 瑕玷	xx[wk dm[wb
 瑕瑜互見	xx[wk yu[wr hu[hv xm[ke
 瑕謫	xx[wk ve[yl
@@ -61537,7 +61514,6 @@ use_preset_vocabulary:  true
 町畽	tk[td tr[[
 畋獵	tm[tw lp[qg
 畏影惡跡	ww[th yk[op wu[hx ji[yz
-畏怯	ww[th qt[xt
 畏葸	ww[th xi[ct
 畏葸不前	ww[th xi[ct bu[eu qm[bo
 留宿	lq[pt su[gr
@@ -61754,7 +61730,6 @@ use_preset_vocabulary:  true
 瘢痆	bj[bv np[[
 瘦削	uz[bj xt[xd
 瘦小枯乾	uz[bj xn[ub ku[ag gj[hu
-瘦怯怯	uz[bj qp[xt qp[xt
 瘦括括	uz[bj gx[fq gx[fq
 瘦長	uz[bj ih[ph
 瘧原蟲	nt[bk yr[ib is[ks
@@ -61767,7 +61742,7 @@ use_preset_vocabulary:  true
 癆瘵	lc[bc vd[bx
 癉瘧	dj[bb nt[bk
 癩蝦蟆	ld[bh ha[ix ma[ic
-癩蝦蟆想吃天鵝肉	ld[bh ha[ix ma[ic xl[ax ii[kr tm[hd ee[pn rz[kr
+癩蝦蟆想喫天鵝肉	ld[bh ha[ix ma[ic xl[ax ii[kr tm[hd ee[pn rz[kr
 癬疥	xm[by jp[br
 癰疽	ys[bo ju[bq
 登山驀嶺	dg[dd uj[uk mo[cm lk[ur
@@ -62821,7 +62796,7 @@ use_preset_vocabulary:  true
 窺覬	kv[xe ji[uj
 竈下婢	zc[ht xx[hb bi[nb
 竈地	zc[ht di[ty
-立吃地陷	li[lh ii[kr di[ty xm[ed
+立喫地陷	li[lh ii[kr di[ty xm[ed
 立地	li[lh di[ty
 立地成佛	li[lh di[ty ig[wv fo[rf
 立地書廚	li[lh di[ty uu[vv iu[id
@@ -63051,10 +63026,12 @@ use_preset_vocabulary:  true
 紃屨	xy[[ ju[ur
 約從	yt[sb zs[rr
 約旦哈什米王國	yt[sb dj[oh ha[kr ue[ru mi[ba wh[su go[ww
+約翰·克利斯多夫	yt[sb hj[ur ke[ge li[hd si[qj do[xx fu[er
 紅地毯	hs[sg di[ty tj[mh
 紅女	gs[sg nv[vp
 紅尾伯勞	hs[sg ww[um bo[rb lc[cl
 紅榜	hs[sg bh[al
+紅檜	hs[sg gv[ar
 紅檜	hs[sg kk[ar
 紅毛番	hs[sg mc[sv fj[pt
 紅線傳	hs[sg xm[sj vr[re
@@ -63586,8 +63563,6 @@ use_preset_vocabulary:  true
 美酒佳肴	mw[bw jq[dy jx[rt yc[iu
 美饌佳餚	mw[bw vr[uk jx[rt yc[iu
 羚羊掛角	lk[yr yh[bs gx[ft jn[do
-羞怯	xq[yi qt[xt
-羞怯怯	xq[yi qt[xt qt[xt
 羞惡	xq[yi wu[hx
 羞惡之心	xq[yi wu[hx vi[dv xb[dv
 羞與噲伍	xq[yi yu[hv kk[kr wu[rw
@@ -64060,7 +64035,6 @@ use_preset_vocabulary:  true
 膴仕	wu[[ ui[ru
 膴膴	wu[[ wu[[
 膻中	dj[ow vs[ku
-膽怯	dj[oo qt[xt
 膽懾	dj[oo ve[xe
 膽顫心寒	dj[oo vj[wy xb[dv hj[gd
 膽顫心驚	dj[oo vj[wy xb[dv jk[xw
@@ -64086,7 +64060,6 @@ use_preset_vocabulary:  true
 臨了	lb[uv ln[vu
 臨危自省	lb[uv ww[de zi[pm xk[xm
 臨朝	lb[uv ic[uo
-臨死不怯	lb[uv si[hx bu[eu qt[xt
 臨江折軸	lb[uv jl[dg ve[fj vu[iy
 臨深履薄	lb[uv uf[dg lv[ur bo[cd
 臨淵履薄	lb[uv yr[dp lv[ur bo[cd
@@ -64797,7 +64770,9 @@ use_preset_vocabulary:  true
 薄弱	bo[cd ro[gg
 薄弱環節	bo[cd ro[gg hr[wb jp[ce
 薄待	bo[cd dd[rt
+薄怯	bo[cd qp[xt
 薄怯	bo[cd qt[xt
+薄怯怯	bo[cd qp[xt qp[xt
 薄怯怯	bo[cd qt[xt qt[xt
 薄情	bo[cd qk[xf
 薄情無義	bo[cd qk[xf wu[ee yi[di
@@ -64850,6 +64825,7 @@ use_preset_vocabulary:  true
 薄荷腦	bo[cd he[cr nc[ow
 薄落	bo[cd lo[cd
 薄薄	bo[cd bo[cd
+薄薄怯怯	bo[cd bo[cd qp[xt qp[xt
 薄薄怯怯	bo[cd bo[cd qt[xt qt[xt
 薄薄的	bc[cd bc[cd de[bb
 薄藍	bo[cd lj[cu
@@ -65039,7 +65015,6 @@ use_preset_vocabulary:  true
 處處長	iu[wb iu[wb vh[ph
 處長	iu[wb vh[ph
 虛囂	xu[hy xn[ky
-虛怯	xu[hy qt[xt
 虛憍恃氣	xu[hy jn[[ ui[xt qi[rh
 虛給	xu[hy ji[sr
 虛聲恫嚇	xu[hy ug[um ds[xk he[kx
@@ -66610,7 +66585,7 @@ use_preset_vocabulary:  true
 豪釐千里	hc[wu li[io qm[pu li[ot
 豫西山地	yu[yd xi[hk uj[uk di[ty
 豬仔	vu[qt zd[rz
-豬八戒吃人參果	vu[qt ba[pd jp[gc ii[kr rf[pd uf[sd go[oa
+豬八戒喫人參果	vu[qt ba[pd jp[gc ii[kr rf[pd uf[sd go[oa
 豬圈	vu[qt jr[wb
 豬肉乾	vu[qt rz[kr gj[hu
 豺狼塞路	id[pc lh[ql se[gt lu[zw
@@ -67191,7 +67166,6 @@ use_preset_vocabulary:  true
 軒裳	xr[ig ih[xy
 軒騫	xr[ig qm[gm
 軟和	rr[id ho[hk
-軟怯怯	rr[id qt[xt qt[xt
 軟木塞	rr[id mu[ub sd[gt
 軟熟	rr[id uu[wd
 軟瞇𥉐	rr[id mi[[ xi[[
@@ -67377,7 +67351,6 @@ use_preset_vocabulary:  true
 近在咫尺	jb[jz zd[ut vi[uk ii[ud
 近火先燋	jb[jz ho[dp xm[ne jn[[
 近畿	jb[jz ji[yt
-近鄉情怯	jb[jz xl[sp qk[xf qt[xt
 返哺	fj[pz bu[kf
 返景	fj[pz yk[ow
 返本還原	fj[pz bf[ah hr[bz yr[ib
@@ -67408,8 +67381,6 @@ use_preset_vocabulary:  true
 追蹤躡跡	vv[pz zs[zg np[ze ji[yz
 追風躡影	vv[pz fg[ji np[ze yk[op
 退佃	tv[gz dm[rt
-退怯怯	tv[gz qp[xt qp[xt
-退怯怯	tv[gz qt[xt qt[xt
 退省	tv[gz xk[xm
 退耕還林	tv[gz gg[le hr[bz lb[aa
 退藏於密	tv[gz ch[cw yu[eu mi[gu
@@ -69498,6 +69469,7 @@ use_preset_vocabulary:  true
 露布	lu[yz bu[uj
 露底	lz[yz di[gu
 露形	lz[yz xk[kp
+露怯	lz[yz qp[xt
 露怯	lz[yz qt[xt
 露才揚己	lu[yz cd[hu yh[fv ji[kv
 露板	lu[yz bj[ap
@@ -69939,7 +69911,6 @@ use_preset_vocabulary:  true
 餐風宿露	cj[br fg[ji su[gr lu[yz
 餐風露宿	cj[br fg[ji lu[yz su[gr
 餐風飲露	cj[br fg[ji yb[ud lu[yz
-餒怯	nw[ua qt[xt
 餓殍枕藉	ee[up pn[ha vf[ag jp[cl
 餓莩	ee[up pn[ca
 餓莩載道	ee[up pn[ca zd[ti dc[bz
