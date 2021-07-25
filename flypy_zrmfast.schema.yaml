@@ -56,9 +56,9 @@ engine:
     - script_translator@quanpin
     - table_translator@emojis
     - table_translator@soft_capslock
-    - table_translator@easy_en_simp ## 添加注释后：停用单词输入
     - lua_translator@tex_translator
     - lua_translator@func_translator
+    - table_translator@easy_en_simp ## 添加注释后：停用单词输入
   filters:
     - simplifier
     - uniquifier
@@ -67,12 +67,12 @@ speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba[
   initials: zyxwvutsrqponmlkjihgfedcba
   delimiter: " '"
+  ## speller 未允许 aj 表示 an
   algebra:
     - derive/^(..).+$/$1/
     - derive/^(..[[].).+$/$1/
     - derive/^([jqxy])u/$1v/
-    # - xform/[[]// ## 取消注释后：直接引导辅助码
-      ## speller 未允许 aj 表示 an
+    #- xform/[[]// ## 取消注释后：直接引导辅助码
 
 translator:
   dictionary: flypy_zrmfast
@@ -140,11 +140,18 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    # - { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
+    #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu, accept: semicolon, send: 2 }
     - { when: has_menu, accept: slash, send: 3 }
+    - { when: composing, accept: Control+i, send: Shift+Right }
+    - { when: composing, accept: Control+o, send: Shift+Left }
+    ## 对以下4行添加注释后：禁用光标回退补充辅助码功能
+    - { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
+    - { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
+    - { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
+    - { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
 
 recognizer:
   # import_preset: default
@@ -163,8 +170,8 @@ recognizer:
 
 quanpin:
   tag: quanpin
-  dictionary: luna_pinyin # luna_pinyin2 
-  # prism: luna_pinyin ## when dictionary does not have a schema with same name
+  dictionary: luna_pinyin ## 可改为扩展后的词典
+  prism: luna_pinyin
   enable_completion: true
   prefix: "ap"
   suffix: "'"
