@@ -51,6 +51,7 @@ speller:
     - xform/^u/;/
     - derive/[aeiou]//
     - xlit/!@,:;/aeiou/
+    - erase/^.$/
 
 translator:
   dictionary: easy_en
