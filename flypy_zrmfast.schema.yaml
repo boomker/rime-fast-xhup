@@ -120,15 +120,13 @@ custom_phrase:
   initial_quality: 1
 
 reverse_lookup:
-  dictionary: stroke
+  dictionary: chaizi_flypy # stroke
   enable_completion: true
   prefix: "ab"
   suffix: "'"
-  tips: 〔筆畫〕
+  tips: 〔部件组字〕 # 〔筆畫〕
   preedit_format:
-    - xlit/hspnz/一丨丿丶乙/
-  # comment_format:
-  #   - xform/([nl])v/$1ü/
+    # - xlit/hspnz/一丨丿丶乙/
 
 punctuator:
   import_preset: symbols
@@ -170,7 +168,7 @@ recognizer:
 
 quanpin:
   tag: quanpin
-  dictionary: luna_pinyin ## 可改为扩展后的词典
+  dictionary: luna_pinyin ## 用户可自行改为扩展后的词典
   prism: luna_pinyin
   enable_completion: true
   prefix: "ap"
