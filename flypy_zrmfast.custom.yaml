@@ -1,25 +1,32 @@
-## 一些常用的设置项。找到需要进行的设置所在的行，
-## 取消注释（删除行开头的单个 # 符号）即可启用该设置项。
+##  一些常用的设置项。找到需要进行的设置所在的行，
+##  取消注释（删除行开头的单个 # 符号）即可启用该设置项。
 patch:
   #engine/translators/@last: '' ## 禁用英文单词输入功能
   #punctuator/half_shape: {} ## 恢复默认引号
+  key_binder/bindings/+:
+    #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
+    #- { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
 
-  ## tab引导辅助码
-  #key_binder/bindings/@next: { when: composing, accept: Tab, send: '[' }
-
-  ## 直接引导辅助码
-  ## 如果希望同时允许 [ 引导，将 xform 改成 derive
+  ##  直接引导辅助码
+  ##  如果希望同时允许 [ 引导，将 xform 改成 derive
   #speller/algebra/@next: xform/[[]//
 
-  ## 临时全拼模式下使用扩展词典；用户可以改成自己使用的其他字典。
-  ## 例如，如果要使用有更多古诗词的字典，除了取消下面那一行的注释之外，
-  ## 还要（之前已经完成的可以跳过）：
-  ## 1. 在 https://github.com/wongdean/rime-settings 下载
-  ## luna_pinyin.extended.dict.yaml，luna_pinyin.poetry.dict.yaml
-  ## 两个文件放入用户目录下；其他文件也可以根据个人需要下载。
-  ## 2. 在其他方案（例如明月拼音，或者小鹤双拼）中使用一次同样的字典文件，
-  ## 例如在 luna_pinyin.custom.yaml 中添加如下的行（若已有类似的行则直接修改）
-  ## translator/dictionary: luna_pinyin.extended
-  ## 并部署一次，之后 Rime 才会认识这个字典。完成后，这一步添加的行可以取消。
+  ##  ab前缀改用五笔画输入；默认为部件组字
+  #reverse_lookup/dictionary: stroke
+  #reverse_lookup/tips: 〔筆畫〕
+
+  ##  临时全拼模式下使用扩展词典；用户可以改成自己使用的其他字典。
+  ##  例如，如果要使用有更多古诗词的字典，需要：
+  ##  1. 在 https://github.com/wongdean/rime-settings 下载（已下载的用户可跳过）
+  ##  luna_pinyin.extended.dict.yaml，luna_pinyin.poetry.dict.yaml
+  ##  两个文件放入用户目录下；其他文件也可以根据个人需要下载。
+  ##  2. 取消下面这一行的注释，并部署：
   #quanpin/dictionary: luna_pinyin.extended
+  ##  3. 如果发现全拼模式无法输入任何词组，可能是因为 Rime 还不认识这个字典，
+  ##  需要使用同样的字典文件作为某个方案的主字典部署一次。具体地，将下面这一行
+  #translator/dictionary: luna_pinyin.extended
+  ##  放入 luna_pinyin.custom.yaml 或 double_pinyin_flypy.custom.yaml
+  ##  （放入时取消注释；如果已经有类似的行，则将其暂时替换掉），并重新部署。
+  ##  如果这两个文件都没有，可以仿照本文件格式自行新建其中一个并添加内容，
+  ##  新文件第一行为 patch: （开头无空格），第二行为上面所说的行（开头两空格）。
 
