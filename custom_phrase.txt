@@ -58,6 +58,7 @@ LaTeX	pyl	1
 Linux	pyl	1
 Android	pya	1
 Windows	pyw	1
+iOS	pyi	1
 Rime	pyr	1
 Vim	pyv	1
 NeoVim	pyn	1
