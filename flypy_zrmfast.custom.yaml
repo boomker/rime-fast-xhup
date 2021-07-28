@@ -14,12 +14,14 @@ patch:
   ##  ab前缀改用五笔画输入；默认为部件组字
   #reverse_lookup/dictionary: stroke
   #reverse_lookup/tips: 〔筆畫〕
+  ##  此外可能需要删除 stroke.custom.yaml 文件。
 
   ##  临时全拼模式下使用扩展词典；用户可以改成自己使用的其他字典。
   ##  例如，如果要使用有更多古诗词的字典，需要：
   ##  1. 在 https://github.com/wongdean/rime-settings 下载（已下载的用户可跳过）
   ##  luna_pinyin.extended.dict.yaml，luna_pinyin.poetry.dict.yaml
   ##  两个文件放入用户目录下；其他文件也可以根据个人需要下载。
+  ##  有能力的用户也可以自行补充词典文件，例如从搜狗等其他输入法的词库转化。
   ##  2. 取消下面这一行的注释，并部署：
   #quanpin/dictionary: luna_pinyin.extended
   ##  3. 如果发现全拼模式无法输入任何词组，可能是因为 Rime 还不认识这个字典，
