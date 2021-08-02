@@ -134,6 +134,10 @@ punctuator:
     '>' : [》, 〉, '> ', », › ]
     '"' : { pair: [ '‘', '’' ] } ## 添加注释后：恢复默认引号
     '''' : { pair: [ '“', '”' ] } ## 添加注释后：恢复默认引号
+  symbols:
+    '/er': [ 二, 貳, ₂, ², Ⅱ, ⅱ, ②, ➁, ❷, ➋, ⓶, ⑵, ⒉, ２, ㊁, ㈡, 弍, 弐, 貮, 㒃, 㒳, 兩, 倆, ㆓]
+    '/san': [ 三, 叄, ₃, ³, Ⅲ, ⅲ, ③, ➂, ❸, ➌, ⓷, ⑶, ⒊, ３, ㊂, ㈢, 參, 参, 叁, 弎, 仨, ㆔]
+    '/si': [ 四, 肆, ₄, ⁴, Ⅳ, ⅳ, ④, ➃, ❹, ➍, ⓸, ⑷, ⒋, ４, ㊃, ㈣, 亖]
 
 key_binder:
   import_preset: default
@@ -155,7 +159,7 @@ recognizer:
   # import_preset: default
   patterns:
     uppercase: "^[A-Z].*$"
-    punct: '^/[015-9A-Za-z]+$' ## use Vim digraph instead of "/2"
+    punct: '^/[015-9A-Za-z]+$' ## use "/er" instead of "/2"
     ## associate schemes: 
     reverse_lookup: "^ab[a-z]*'?$" # "[[]b[a-z]*'?$"
     quanpin: "^ap[a-z]*'?$"
@@ -199,6 +203,7 @@ easy_en_simp:
   tag: easy_en_simp
   dictionary: easy_en
   enable_completion: true
+  enable_sentence: false
   prefix: "aw"
   # suffix: "'"
   tips: "英文单词（可去元音）"

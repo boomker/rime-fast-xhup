@@ -71,7 +71,6 @@ Unicode	pyu	1
 WiFi	pyw	1
 Syncthing	pys	1
 
-## （如果嫌下面这些排序太乱，可以考虑 Vim :sort 命令）
 Schrodinger	jas	1
 Maxwell	jam	1
 Lagrange	jal	1
