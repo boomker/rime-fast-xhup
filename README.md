@@ -63,21 +63,20 @@ Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案。使�
 	* `Control+w` 可以替代 `Control+退格`，为删一个字的码。例如，敲 `buk` 或者 `buke[dk` 之后，按这个键得到的都是 `bu`，可以继续敲后面的字。如果在词组输入时发现敲错了，可以用这个方式删掉最后的字。
 	> Rime 自带的 Emacs 键位包括 `Control+[` 替代 `Esc`，取消当前输入；以及 `Control+h` 替代退格。另外，作者喜欢用 `Control` 键是因为在系统里配置了大写锁定和左 `Control` 交换，这样按起来很舒服。由于这是系统的配置而不是 Rime 的，本文件中没有说明其设置方式。
 * 用于追加辅助码的 `Control+1/2/3/4` 快捷键。输入长词组时，如果敲了多个字的双拼部分之后发现需要补充辅助码，此时按 `Control+1` 可以移动光标到第一个音节之后追加辅助码，`Control+2` 可为第二个追加，依此类推。
-	* 技术层面而言，该功能依赖于较新的 librime。对该功能感兴趣的用户请尽量将 Rime 升级至最新版本，但即使官方最新版也未必支持这一功能。这种情况下若坚持要使用，可以尝试第三方维护的 Rime 前端，例如 Windows 下的 PRIME，或者自行编译。
+	* 技术层面而言，该功能依赖 librime 1.6.0 或以上版本；librime 版本在用户目录的 `installation.yaml` 文件中可以看到。若对该功能感兴趣，MacOS 用户将鼠须管升级至最新版本即可，而 Windows 小狼毫和 Android 同文的最新版似乎仍不支持。这种情况下若坚持要使用，可以手动从 [librime 项目](https://github.com/rime/librime/releases) 安装/自行编译。另外，不排除第三方维护的 Rime 前端能支持（未确认），例如 Windows 下的 [PIME](https://github.com/EasyIME/PIME)。
 	* 例如，希望输入“适时”一词，敲 `uiui` 发现候选太多，补上最后一个字的形码后 `uiui[oc` 还是没有看到这个词。此时按 `Control+1`，输入框成为 `ui[ 光标 ui[oc`。补充敲下第一个字的形码部分 `q`，然后按 `Control+e`（或者 `End`）把光标移动到最后，即可看到想要的“适时”一词出现在候选中。
 	* 禁用这些快捷键的设置稍显复杂，需要在 `flypy_zrmfast.schema.yaml` 里搜索找到 `禁用光标回退补充辅助码快捷键`，按指示注释掉下方 4 行（行首添加 `#` 符号）。
 	* 如果希望这些快捷键不要自动补充 `[`，可以找到这 4 行，这次不是注释掉，而是把每行中出现的的 `[` 符号删除。（不过，如果是不小心重复按某个快捷键导致了 `[` 重复，可以使用 `Control+d` 或者 `Delete` 键删除光标后的一个字符）
 	* 对于更长的输入码，可以利用 `Control+i`，`Control+o` 移动光标。如果希望自行定义 `Control+5/6/7` 这样的快捷键，也可以找到上面所说的 4 行，在下面照葫芦画瓢追加几行即可。
 
 ### 关于 Lua 支持
-* 小狼毫（Windows）和鼠须管（MacOS）的最新版本应该都有 Lua 支持。
+* 小狼毫（Windows）和鼠须管（MacOS）的最新版本应该都支持 Lua 。
 * Trime（Android）要在 [GitHub 页面](https://github.com/osfans/trime) 下载最新测试版（注意不是稳定版）。
-* 中州韵（Linux）上的 Lua 支持作者自己也头疼，如果有哪位知道解决方案的可以告诉作者……
-	* 据说 Arch Linux 源提供的 fcitx5-rime 可以在插件设置里开启 Lua 支持，由于发行版不同而放弃。
-	* [有人编译的一个 ibus 版本的 AppImage](https://github.com/hchunhui/build) 能支持 Lua，但是在作者这里无法记录用户词组，遂弃用。
+* 对于中州韵（Linux），据说 Arch Linux 源提供的 fcitx5-rime 可以在插件设置里开启 Lua 支持。
+	* 其他发行版的用户可以考虑这个 [ibus-rime AppImage](https://github.com/hchunhui/build)。遇到调频失效等问题可以试着删除各 userdb、build、sync 文件夹重新部署/同步。如果这一问题反复出现，或者重启/部署/同步之后经常忘掉之前输入的词，可以尝试在 `flypy_zrmfast.custom.yaml` 里开启“用户词典记录为文本格式”，或者看这个 AppImage 有没有发布新版本。
 * iRime（iOS）没用过，谁试了或许可以告诉作者（据说这个启用配置文件夹要花钱，而这对使用本项目的配置是必需的）。
 
-## 推荐的文档
-作者当时学习 Rime 的配置方案主要用的是这几个文档，推荐给各位：
+## 给进阶用户
+这一 Rime 输入方案的制作主要利用了这些文档，希望对 Rime 进行更深入的个性化配置的用户可以参考：
 [GitHub-UserGuide](https://github.com/rime/home/wiki/UserGuide#%E5%88%AA%E9%99%A4%E8%AA%A4%E4%B8%8A%E5%B1%8F%E7%9A%84%E9%8C%AF%E8%A9%9E)（访问 GitHub 不稳定的可以用 [Gitee 版本](https://gitee.com/lotem/rime-home/wikis/UserGuide?sort_id=3538292)），以及 [设定项详解](https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md)。
 
