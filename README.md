@@ -48,6 +48,7 @@ Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案。使�
 	* 功能基于 [这篇文章](http://gerry.lamost.org/blog/?p=296003)。一些部件的读音可以参考 [搜狗U模式说明](https://pinyin.sogou.com/help.php?list=3&q=8)（记得要按小鹤双拼输入），此外还有“丶”要敲 `vu`，“廾”要敲 `gs` 等。
 	* 如果用户觉得只用笔画比用部件方便，可以在 `flypy_zrmfast.custom.yaml` 中设置“ab前缀改用五笔画输入”（即朙月拼音等输入方案下 `` ` `` 前缀对应的模式），用横竖撇捺折（hspnz，点按捺处理）输入汉字。例如：设置后敲 `abhspn` 空格，即可输入“木”，并看到它的编码是 `mu[ub`。
 	* 用户也可以在部件组字模式下同时启用五笔画输入，在 `chaizi_flypy.dict.yaml` 中搜索找到“部件组字模式下启用五笔画”，按要求取消注释即可。不需要修改 `flypy_zrmfast.custom.yaml`。
+		* 设置后使用的一个小 tips：一些部件的读音可以用五笔画现查，例如想输入“羿”，先用五笔画敲 `abhps` 查到“廾”的读音为 `gong`（其实查到的是双拼加形方案下的输入码 `gs[hp`、`nm[hp`，读音只看双拼部分，多个读音通常取第一个，也可以都试一遍），于是用部件组字敲 `abyugs` 即可输入“羿”。
 * `/` 前缀：符号模式，具体见 Rime 的系统目录自带的 `symbols.yaml` 文件。例如：敲 `/jt` 按 3，即可输入箭头“←”。此外，为避免与候选项选择混淆，用于输入数字相关符号的 `/2`,`/3`,`/4` 分别用 `/er`,`/san`,`/si` 代替。
 * `al` 前缀：简易 LaTeX 公式。例如：敲 `al<<f,ff>>ooc0` 空格，即可输入 `$\langle f,\phi\rangle\propto 0$`。
 	* 这个功能需要 Lua 支持（下方有简单说明），功能的实现在 `rime.lua` 文件，可以在里面看具体的简写设定，以及试着自己修改（语法应该不难理解）。
@@ -78,5 +79,8 @@ Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案。使�
 
 ## 给进阶用户
 这一 Rime 输入方案的制作主要利用了这些文档，希望对 Rime 进行更深入的个性化配置的用户可以参考：
-[GitHub-UserGuide](https://github.com/rime/home/wiki/UserGuide#%E5%88%AA%E9%99%A4%E8%AA%A4%E4%B8%8A%E5%B1%8F%E7%9A%84%E9%8C%AF%E8%A9%9E)（访问 GitHub 不稳定的可以用 [Gitee 版本](https://gitee.com/lotem/rime-home/wikis/UserGuide?sort_id=3538292)），以及 [设定项详解](https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md)。
+* [GitHub-UserGuide](https://github.com/rime/home/wiki/UserGuide)（访问 GitHub 不稳定的可以用 [Gitee 版 UserGuide](https://gitee.com/lotem/rime-home/wikis/UserGuide)）。其中介绍的 Rime 基本用法适合新手查看，而最开始的“專題”一节还给出了若干有用的链接，供用户在个性化配置时查阅。
+	* 其实 UserGuide 只是该项目 wiki 中的一个文件，在网页查看的时候，侧栏里可以看到 wiki 的其他文件，它们也有参考价值。
+	* 例如，如果部署后发现没有达到预期的效果，可以考虑从侧栏里点进 `RimeWithSchemata`，按照其中“關於調試”一节下的说明，在日志文件里查找是否有部署出错的提示。
+* [设定项详解](https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md)。这一文档主要解释了方案文件中各个选项的含义，并且提供了一些配置的例子。
 
