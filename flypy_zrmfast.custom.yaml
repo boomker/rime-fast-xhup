@@ -11,6 +11,13 @@ patch:
   ##  如果希望同时允许 [ 引导，将 xform 改成 derive
   #speller/algebra/@next: xform/[[]//
 
+  ##  使用小鹤原版辅助码
+  ##  注意，由于用户的输入历史记录与使用的辅助码版本有关，为避免混乱，
+  ##  修改这一选项的同时，还需要将 Rime 用户目录下的 flypy_zrmfast.userdb
+  ##  文件夹或者 flypy_zrmfast.txt 文件删除（重命名、移动到其他位置也可；
+  ##  如果都不存在，则无需操作）。
+  #translator/dictionary: flypy_flypy
+
   ##  ab前缀改用五笔画输入；默认为部件组字
   #reverse_lookup/dictionary: stroke
   #reverse_lookup/tips: 〔筆畫〕
