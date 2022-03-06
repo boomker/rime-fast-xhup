@@ -61,7 +61,7 @@ snip_map={['`']=' ',
    ["'"]='\\text{',
    ['/']='\\frac '}
 
---- consider "ar`row" to avoid "rr"
+--- consider "ar`row" to avoid "rr", or check no pattern '=.*[ovj]{2}'
 snip_map2 = {['jjj']='\\downarrow ',
    ['jjJ']='\\Downarrow ',
    ['jjk']='\\uparrow ',
@@ -70,12 +70,6 @@ snip_map2 = {['jjj']='\\downarrow ',
    ['jjH']='\\Leftarrow ',
    ['jjl']='\\rightarrow ',
    ['jjL']='\\Rightarrow ',
-   ['vve']='\\varepsilon ',
-   ['vvf']='\\varphi ',
-   ['vvk']='\\varkappa ',
-   ['vvq']='\\vartheta ',
-   ['vvr']='\\varrho ',
-   ['vvp']='\\varpi ',
    ['jj;']='\\mapsto ',
    ['jjw']='\\leadsto ',
    ['jj-']='\\leftrightarrow ',
@@ -85,7 +79,7 @@ snip_map2 = {['jjj']='\\downarrow ',
    ['oox']='\\otimes ',
    ['vvx']='\\bigotimes ',
    ['oo.']='\\odot ',
-   ['vv.']='\\bigodot ',
+   -- ['vv.']='\\bigodot ',
    ['ooc']='\\propto ',
    ['ooo']='\\circ ',
    ['vvo']='\\bigcirc ',
@@ -96,11 +90,27 @@ snip_map2 = {['jjj']='\\downarrow ',
    ['oo[']='\\subseteq ',
    ['oo]']='\\supseteq ',
    ['oo(']='\\subset ',
-   ['oo)']='\\supset '}
+   ['oo)']='\\supset ',
+   ['vve']='\\varepsilon ',
+   ['vvf']='\\varphi ',
+   ['vvk']='\\varkappa ',
+   ['vvq']='\\vartheta ',
+   ['vvr']='\\varrho ',
+   ['vvp']='\\varpi ',
+   ['vvl']='\\ell ',
+   ['vv=']='\\approx ',
+   ['vv:']='\\coloneqq ',
+   ['vv,']=',\\dots,',
+   ['vv.']='\\ddot ',
+   ['vvE']='\\mathbb{E}'}
 
 function tex_translator(input, seg)
    if (string.sub(input, 1, 2) == "al") then
       expr = string.sub(input, 3)
+      expr = expr:gsub('ooa(.)', '^{%1+1}')
+      expr = expr:gsub('oos(.)', '^{%1-1}')
+      expr = expr:gsub('ood(.)', '_{%1+1}')
+      expr = expr:gsub('oof(.)', '_{%1-1}')
       expr = expr:gsub('([^jvo])%1', snip_map)
       expr = expr:gsub('(([jvo])%2.)', snip_map2)
       expr = expr:gsub('(.)`%1', '%1%1')
