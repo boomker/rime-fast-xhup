@@ -44,6 +44,7 @@ engine:
     - affix_segmentor@emojis
     - affix_segmentor@verbatim ## not as the last of this list
     - affix_segmentor@soft_capslock
+    - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
     # - affix_segmentor@tex_translator
     - fallback_segmentor
@@ -56,6 +57,7 @@ engine:
     - script_translator@quanpin
     - table_translator@emojis
     - table_translator@soft_capslock
+    - table_translator@dbpy_flypy_help
     - lua_translator@tex_translator
     - lua_translator@func_translator
     - table_translator@easy_en_simp ## 添加注释后：停用单词输入
@@ -167,6 +169,7 @@ recognizer:
     emojis: "^ae[a-z]*'?$" # "^ae.*$" 
     verbatim: "^as.*$"
     soft_capslock: "^au.*$"
+    dbpy_flypy_help: "^ac.*$"
     easy_en_simp: "^aw[a-z]*"
     tex_translator: "^al.*$"
     func_translator: "^af.*$"
@@ -199,6 +202,16 @@ soft_capslock:
   db_class: stabledb
   enable_completion: false
   enable_sentence: true
+  initial_quality: 1
+dbpy_flypy_help:
+  dictionary: ""
+  user_dict: dbpy_flypy_help
+  tag: dbpy_flypy_help
+  prefix: "ac"
+  tips: "小鹤双拼查键"
+  db_class: stabledb
+  enable_completion: true
+  enable_sentence: false
   initial_quality: 1
 easy_en_simp:
   tag: easy_en_simp

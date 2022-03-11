@@ -1,10 +1,12 @@
 ##  一些常用的设置项。找到需要进行的设置所在的行，
 ##  取消注释（删除行开头的单个 # 符号）即可启用该设置项。
+##  注意不要删除前面的空格，YAML 文件的缩进比较严格，缩进不对容易报错。
 patch:
   #engine/translators/@last: '' ## 禁用英文单词输入功能
   #punctuator/half_shape: {} ## 恢复默认引号
   key_binder/bindings/+:
     #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
+    #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
     #- { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
 
   ##  直接引导辅助码
