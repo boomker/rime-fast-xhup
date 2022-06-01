@@ -2,8 +2,9 @@
 <!-- # 这是一个 Rime 配置文件示例 -->
 Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案（也可设置为用小鹤形码）。使用后打字几乎不需要翻页，且学习成本明显低于五笔等输入方案。
 * 如果你还不了解双拼输入方案，或者不熟悉 Rime 输入法软件，可以先查看
-<!-- [双拼与 Rime 输入法入门](https://gitee.com/functoreality/rime-flypy-zrmfast/blob/master/intro.md) -->
-[[双拼与 Rime 输入法入门|intro]]
+[双拼与 Rime 输入法入门（Gitee）](https://gitee.com/functoreality/rime-flypy-zrmfast/blob/master/intro.md)
+或 [GitHub 版](https://github.com/functoreality/rime-flypy-zrmfast/blob/master/intro.md)
+<!-- [[双拼与 Rime 输入法入门|intro]] -->
 。当然，在那之前，你也可以先往下翻，看看本项目能提供什么样的功能。
 
 ## 方案说明
