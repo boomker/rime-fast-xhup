@@ -4,7 +4,6 @@ Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案（也�
 * 如果你还不了解双拼输入方案，或者不熟悉 Rime 输入法软件，可以先查看
 [双拼与 Rime 输入法入门（Gitee）](https://gitee.com/functoreality/rime-flypy-zrmfast/blob/master/intro.md)
 或 [GitHub 版](https://github.com/functoreality/rime-flypy-zrmfast/blob/master/intro.md)
-<!-- [[双拼与 Rime 输入法入门|intro]] -->
 。当然，在那之前，你也可以先往下翻，看看本项目能提供什么样的功能。
 
 ## 方案说明
@@ -67,6 +66,7 @@ Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案（也�
 	* 使用 `` ` `` 避免重复字符触发，例如敲 `,,bb` 得到 `\math\beta` 不是我们想要的，敲 ``,,b`b`` 则可以得到 `\mathbb`。
 	* 如果 `` ` `` 两侧的字符不一样，则变成空格。例如，敲 ``\to`0`` 得到“`\to 0`”
 	* 连续的两个 `` ` `` 始终按照一个空格处理。
+	* 在 `rime.lua` 里可以设置“启用特殊符号替换”，默认的替换规则是 `{}` 与 `[]` 互换，`^_` 与 `'.` 互换，这使常用符号输入更方便。可以自行修改替换规则
 * 敲 `afd` 可以输入当天的日期。需要 Lua 支持。
 
 ### 额外的键位
