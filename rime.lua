@@ -4,7 +4,7 @@ snip_map={['`']=' ',
    ['=']='\\equiv ',
    ['\\']='\\setminus ',
    ['.']='\\cdot ',
-   ['_']='\\cdot ', --- for special char remap
+   --['_']='\\cdot ', --- for special char remap
    ['*']='\\times ',
    ['<']='\\langle ',
    ['>']='\\rangle ',
@@ -60,7 +60,7 @@ snip_map={['`']=' ',
    [',']='\\math',
    ['"']='\\operatorname{',
    ["'"]='\\text{',
-   ["^"]='\\text{', --- for special char remap
+   --["^"]='\\text{', --- for special char remap
    ['/']='\\frac '}
 
 --- consider "ar`row" to avoid "rr", or check no pattern '=.*[ovj]{2}'
@@ -81,7 +81,7 @@ snip_map2 = {['jjj']='\\downarrow ',
    ['oox']='\\otimes ',
    ['vvx']='\\bigotimes ',
    ['oo.']='\\odot ',
-   ['oo_']='\\odot ', --- for special char remap
+   --['oo_']='\\odot ', --- for special char remap
    -- ['vv.']='\\bigodot ',
    ['ooc']='\\propto ',
    ['ooo']='\\circ ',
@@ -105,7 +105,7 @@ snip_map2 = {['jjj']='\\downarrow ',
    ['vv:']='\\coloneqq ',
    ['vv,']=',\\dots,',
    ['vv.']='\\ddot ',
-   ['vv_']='\\ddot ', --- for special char remap
+   --['vv_']='\\ddot ', --- for special char remap
    ['vvE']='\\mathbb{E}'}
 
 --- 特殊符号替换规则
@@ -113,8 +113,12 @@ snip_charmap = {['[']='{',
    ['{']='[',
    [']']='}',
    ['}']=']',
-   ['^']="'",
-   ["'"]='^',
+   [';']='(',
+   ['(']=';',
+   ["'"]=')',
+   [')']="'",
+   ['/']='^',
+   ['^']='/',
    ['_']='.',
    ['.']='_'}
 
