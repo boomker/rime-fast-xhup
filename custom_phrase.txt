@@ -73,7 +73,7 @@ Unicode	pyu	1
 WiFi	pyw	1
 Syncthing	pys	1
 
-Schrodinger	jas	1
+Schrödinger	jas	1
 Maxwell	jam	1
 Lagrange	jal	1
 Gauss	jag	1

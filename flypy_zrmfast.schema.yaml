@@ -171,8 +171,8 @@ recognizer:
     soft_capslock: "^au.*$"
     dbpy_flypy_help: "^ac.*$"
     easy_en_simp: "^aw[a-z]*"
-    tex_translator: "^al.*$"
-    func_translator: "^af.*$"
+    tex_translator: "^al(.*)$"
+    func_translator: "^af(.*)$"
 
 quanpin:
   tag: quanpin
