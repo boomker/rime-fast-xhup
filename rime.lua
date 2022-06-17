@@ -54,9 +54,11 @@ snip_map={['`']=' ',
    ['7']='\\nabla ',
    ['~']='\\tilde ',
    ['-']='\\bar ',
+   ['N']='\\ne ',
    ['V']='^\\vee ',
-   ['C']='\\mathbb{C}',
    ['T']='^\\mathrm{T}',
+   ['C']='\\mathbb{C}',
+   ['B']='\\mathbb{',
    [',']='\\math',
    ['"']='\\operatorname{',
    ["'"]='\\text{',
@@ -124,10 +126,8 @@ snip_charmap = {['[']='{',
 
 function tex_translator(input, seg, env)
    local trigger = env.engine.schema.config:get_string('recognizer/patterns/tex_translator') or '^al(.*)$'
-   local expr, n = input:gsub(trigger, '%1')
-   -- if (string.sub(input, 1, 2) == "al") then
+   local expr, n = env.engine.context.input:gsub(trigger, '%1')
    if (n ~= 0) then
-      -- expr = string.sub(input, 3)
       --expr = expr:gsub('%W', snip_charmap) --- 启用特殊符号替换 
       expr = expr:gsub('ooa(.)', '^{%1+1}')
       expr = expr:gsub('oos(.)', '^{%1-1}')
@@ -139,7 +139,6 @@ function tex_translator(input, seg, env)
       expr = expr:gsub('`', ' ')
       expr = '$'..expr..'$'
       expr = string.gsub(expr, ' (%W)', '%1')
-      --- equivalent Lua expression; "%W" includes "_"
       --- Candidate(type, start, end, text, comment)
       yield(Candidate("math", seg.start, seg._end, expr, " "))
    end
@@ -147,13 +146,11 @@ end
 
 function func_translator(input, seg, env)
    local trigger = env.engine.schema.config:get_string('recognizer/patterns/func_translator') or '^af(.*)$'
-   local expr, n = input:gsub(trigger, '%1')
-   -- if (input:sub(1,2) ~= "af") then
+   local expr, n = env.engine.context.input:gsub(trigger, '%1')
    if (n == 0) then
       return
    end
    -- 如果输入串为 `afd` 则翻译
-   -- if (input:sub(3,3) == "d") then
    if (expr == "d") then
       --[[ 用 `yield` 产生一个候选项
            候选项的构造函数是 `Candidate`，它有五个参数：
