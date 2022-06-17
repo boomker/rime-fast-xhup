@@ -36,6 +36,7 @@ engine:
   translators:
     - table_translator
     - punct_translator
+    - lua_translator@tex_translator
   filters:
     - uniquifier
     # - lua_filter@append_blank_filter
@@ -69,3 +70,5 @@ recognizer:
   import_preset: default
   patterns:
     uppercase: ''
+    tex_translator: "^L(.*)$"
+
