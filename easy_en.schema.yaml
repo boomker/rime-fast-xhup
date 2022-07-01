@@ -70,5 +70,5 @@ recognizer:
   import_preset: default
   patterns:
     uppercase: ''
-    tex_translator: "^L(.*)$"
+    tex_translator: "^xl(.*)$"
 
