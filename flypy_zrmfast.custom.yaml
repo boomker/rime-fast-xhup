@@ -9,11 +9,14 @@ patch:
     #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
     #- { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
 
-  ##  直接引导辅助码
+  ##  直接引导辅助码（改用自然码等其他双拼方案的用户请勿在此设置）
   ##  如果希望同时允许 [ 引导，将 xform 改成 derive
   #speller/algebra/@next: xform/[[]//
 
   #translator/dictionary: flypy_flypy ## 使用小鹤原版辅助码
+
+  ##  改用自然码双拼；相关设置见 pinyin_switch.yaml，例如直接引导辅助码
+  #__include: pinyin_switch:/flypy2zrm
 
   ##  ab前缀改用五笔画输入；默认为部件组字
   #reverse_lookup/dictionary: stroke

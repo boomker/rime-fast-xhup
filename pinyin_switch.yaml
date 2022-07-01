@@ -58,4 +58,25 @@ flypy2quanpin:
       - derive/^(\w+[[].).+$/$1/
 
 ##  改用自然码双拼方案请关注这里：
+flypy2zrm:
+  translator/prism: zrm_zrmfast
+  speller/algebra:
+    - xform/^(\w)x/$1W/
+    - xform/^(\w)k/$1Y/
+    - xform/^(\w)y/$1P/
+    - xform/^(\w)l/$1D/
+    - xform/^(\w)c/$1K/
+    - xform/^(\w)d/$1L/
+    - xform/^(\w)w/$1Z/
+    - xform/^(\w)p/$1X/
+    - xform/^(\w)n/$1C/
+    - xform/^(\w)z/$1B/
+    - xform/^(\w)b/$1N/
+    - xlit/WYPDKLZXCBN/wypdklzxcbn/
+
+    - derive/^(..).+$/$1/
+    - derive/^(..[[].).+$/$1/
+    - derive/^([jqxy])u/$1v/
+    #- xform/[[]// ## 直接引导辅助码
+    ##  如果希望同时允许 [ 引导，将 xform 改成 derive
 
