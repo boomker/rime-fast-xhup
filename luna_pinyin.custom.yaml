@@ -13,11 +13,19 @@ patch:
     - { when: has_menu, accept: semicolon, send: 2 } ## 分号;用于第2候选
     #- { when: has_menu, accept: slash, send: 3 } ## 斜线/用于第3候选
     #- { when: has_menu, accept: apostrophe, send: 3 } ## 单引号'用于第3候选
+    #- { when: composing, accept: Tab, send: '[' } ## 开启辅助码后，允许tab引导
+  ##  启用辅助码；相关设置见 pinyin_switch.yaml，例如改用小鹤形码等
+  ##  注意，设置后用户词频会独立记录，与原生朙月拼音的记录不互通
+  #__include: pinyin_switch:/flypy2quanpin
+
+  ##  flypy_zrmfast.custom.yaml 所提到的“临时全拼模式下使用扩展词典”的步骤 3
+  ##  （注意，设置该项时不要同时在上面启用辅助码）：
+  #translator/dictionary: luna_pinyin.extended
+
   ##  用户词典记录为文本格式（默认为二进制）。如果发现重启/部署/同步之后经常
   ##  忘掉之前输入的词（例如 Linux ibus-rime.appimage 的用户），可以尝试开启。
   #translator/db_class: tabledb
-  ##  flypy_zrmfast.custom.yaml 所提到的“临时全拼模式下使用扩展词典”的步骤 3：
-  #translator/dictionary: luna_pinyin.extended
+
   punctuator/half_shape/+:
     '/er': [ 二, 貳, ₂, ², Ⅱ, ⅱ, ②, ➁, ❷, ➋, ⓶, ⑵, ⒉, ２, ㊁, ㈡, 弍, 弐, 貮, 㒃, 㒳, 兩, 倆, ㆓]
     '/san': [ 三, 叄, ₃, ³, Ⅲ, ⅲ, ③, ➂, ❸, ➌, ⓷, ⑶, ⒊, ３, ㊂, ㈢, 參, 参, 叁, 弎, 仨, ㆔]

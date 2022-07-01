@@ -1,0 +1,61 @@
+##  全拼加辅助码方案请关注这里：
+flypy2quanpin:
+  translator:
+    dictionary: flypy_zrmfast ## 若希望用小鹤形码，则注释掉这一行
+    #dictionary: flypy_flypy ## 若希望用小鹤形码，则取消这一行的注释
+    prism: lunapy_zrmfast
+  speller:
+    alphabet: zyxwvutsrqponmlkjihgfedcba[
+    initials: zyxwvutsrqponmlkjihgfedcba
+    delimiter: " '"
+    algebra:
+      - xform/^([bpmfdtnljqx])n/$1iao/
+      - xform/^(\w)g/$1eng/
+      - xform/^(\w)q/$1iu/
+      - xform/^(\w)w/$1ei/
+      - xform/^([dtnlgkhjqxyvuirzcs])r/$1uan/
+      - xform/^(\w)t/$1ve/
+      - xform/^(\w)y/$1un/
+      - xform/^([dtnlgkhvuirzcs])o/$1uo/
+      - xform/^(\w)p/$1ie/
+      - xform/^([jqx])s/$1iong/
+      - xform/^(\w)s/$1ong/
+      - xform/^(\w)d/$1ai/
+      - xform/^(\w)f/$1en/
+      - xform/^(\w)h/$1ang/
+      - xform/^(\w)j/$1an/
+      - xform/^([gkhvuirzcs])k/$1uai/
+      - xform/^(\w)k/$1ing/
+      - xform/^([jqxnl])l/$1iang/
+      - xform/^(\w)l/$1uang/
+      - xform/^(\w)z/$1ou/
+      - xform/^([gkhvuirzcs])x/$1ua/
+      - xform/^(\w)x/$1ia/
+      - xform/^(\w)c/$1ao/
+      - xform/^([dtgkhvuirzcs])v/$1ui/
+      - xform/^(\w)b/$1in/
+      - xform/^(\w)m/$1ian/
+      - xform/^([aoe])\1(\w)/$1$2/
+      - xform/^v/zh/
+      - xform/^i/ch/
+      - xform/^u/sh/
+      - xform/^([jqxy])v/$1u/
+
+      - abbrev/^([a-z])\w+([[].+)/$1$2/
+      - abbrev/^([zcs]h)\w+([[].+)/$1$2/
+      - derive/^([nl])ve([[].+)/$1ue$2/
+      - derive/^([jqxy])u/$1v/
+      - derive/un([[].+)/uen$2/
+      - derive/ui([[].+)/uei$2/
+      - derive/iu([[].+)/iou$2/
+      - derive/([aeiou])ng([[].+)/$1gn$2/
+      - derive/([dtngkhrzcs])o(u|ng)([[].+)/$1o$2/
+      - derive/ong([[].+)/on$2/
+      - derive/ao([[].+)/oa$2/
+      - derive/([iu])a(o|ng?)([[].+)/a$1$2$3/
+
+      - derive/^(\w+)[[].+$/$1/
+      - derive/^(\w+[[].).+$/$1/
+
+##  改用自然码双拼方案请关注这里：
+
