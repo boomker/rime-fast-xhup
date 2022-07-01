@@ -59,6 +59,21 @@ flypy2quanpin:
 
 ##  改用自然码双拼方案请关注这里：
 flypy2zrm:
+  key_binder/bindings:
+    #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
+    #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
+    #- { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
+    - { when: composing, accept: Control+m, send: Return }
+    - { when: composing, accept: Control+w, send: Control+BackSpace }
+    - { when: has_menu, accept: semicolon, send: 2 }
+    - { when: has_menu, accept: slash, send: 3 }
+    - { when: composing, accept: Control+i, send: Shift+Right }
+    - { when: composing, accept: Control+o, send: Shift+Left }
+    ## 对以下4行添加注释后：禁用光标回退补充辅助码功能
+    - { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
+    - { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
+    - { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
+    - { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
   translator/prism: zrm_zrmfast
   speller/algebra:
     - xform/^(\w)x/$1W/
