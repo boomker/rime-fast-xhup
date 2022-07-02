@@ -53,7 +53,6 @@ engine:
     - table_translator@custom_phrase
     - reverse_lookup_translator
     - script_translator
-    # - table_translator
     - script_translator@quanpin
     - table_translator@emojis
     - table_translator@soft_capslock
@@ -174,6 +173,9 @@ recognizer:
     easy_en_simp: "^aw[a-z]*"
     tex_translator: "^al(.*)$"
     func_translator: "^af(.*)$"
+
+menu:
+  page_size: 4
 
 quanpin:
   tag: quanpin

@@ -56,6 +56,39 @@ flypy2quanpin:
 
       - derive/^(\w+)[[].+$/$1/
       - derive/^(\w+[[].).+$/$1/
+  reverse_lookup/comment_format:
+    - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
+    - "xform/((^|[ '])\\w)g/$1eng/"
+    - "xform/((^|[ '])\\w)q/$1iu/"
+    - "xform/((^|[ '])\\w)w/$1ei/"
+    - "xform/((^|[ '])[dtnlgkhjqxyvuirzcs])r/$1uan/"
+    - "xform/((^|[ '])\\w)t/$1ve/"
+    - "xform/((^|[ '])\\w)y/$1un/"
+    - "xform/((^|[ '])[dtnlgkhvuirzcs])o/$1uo/"
+    - "xform/((^|[ '])\\w)p/$1ie/"
+    - "xform/((^|[ '])[jqx])s/$1iong/"
+    - "xform/((^|[ '])\\w)s/$1ong/"
+    - "xform/((^|[ '])\\w)d/$1ai/"
+    - "xform/((^|[ '])\\w)f/$1en/"
+    - "xform/((^|[ '])\\w)h/$1ang/"
+    - "xform/((^|[ '])\\w)j/$1an/"
+    - "xform/((^|[ '])[gkhvuirzcs])k/$1uai/"
+    - "xform/((^|[ '])\\w)k/$1ing/"
+    - "xform/((^|[ '])[jqxnl])l/$1iang/"
+    - "xform/((^|[ '])\\w)l/$1uang/"
+    - "xform/((^|[ '])\\w)z/$1ou/"
+    - "xform/((^|[ '])[gkhvuirzcs])x/$1ua/"
+    - "xform/((^|[ '])\\w)x/$1ia/"
+    - "xform/((^|[ '])\\w)c/$1ao/"
+    - "xform/((^|[ '])[dtgkhvuirzcs])v/$1ui/"
+    - "xform/((^|[ '])\\w)b/$1in/"
+    - "xform/((^|[ '])\\w)m/$1ian/"
+    - "xform/(^|[ '])([aoe])\\2(\\w)/$1$2$3/"
+    - "xform/(^|[ '])v/$1zh/"
+    - "xform/(^|[ '])i/$1ch/"
+    - "xform/(^|[ '])u/$1sh/"
+    - "xform/((^|[ '])[jqxy])v/$1u/"
+    - "xform/((^|[ '])[nl])v/$1ü/"
 
 ##  改用自然码双拼方案请关注这里：
 flypy2zrm:
@@ -74,6 +107,21 @@ flypy2zrm:
     - { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
     - { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
     - { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
+  reverse_lookup/comment_format:
+    - xform/^/ /
+    - xform/( \w)x/$1W/
+    - xform/( \w)k/$1Y/
+    - xform/( \w)y/$1P/
+    - xform/( \w)l/$1D/
+    - xform/( \w)c/$1K/
+    - xform/( \w)d/$1L/
+    - xform/( \w)w/$1Z/
+    - xform/( \w)p/$1X/
+    - xform/( \w)n/$1C/
+    - xform/( \w)z/$1B/
+    - xform/( \w)b/$1N/
+    - xlit/WYPDKLZXCBN/wypdklzxcbn/
+    - xform/^ //
   translator/prism: zrm_zrmfast
   speller/algebra:
     - xform/^(\w)x/$1W/
