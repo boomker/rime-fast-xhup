@@ -4,6 +4,7 @@
 patch:
   #engine/translators/@last: '' ## 禁用英文单词输入功能
   #punctuator/half_shape: {} ## 恢复默认引号
+  #menu/page_size: 5 ## 自定义候选项个数
   key_binder/bindings/+: ## 自然码等其他双拼用户请在 pinyin_switch.yaml 中设置
     #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
     #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端

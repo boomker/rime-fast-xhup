@@ -13,6 +13,3 @@ patch:
     - schema: emoji         # emoji表情
     - schema: stroke
 
-  menu:
-    page_size: 4
-
