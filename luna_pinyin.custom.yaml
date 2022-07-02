@@ -7,6 +7,7 @@ patch:
   'punctuator/half_shape/"' : { pair: [ '‘', '’' ] } ## 添加注释后：恢复默认引号
   "punctuator/half_shape/'" : { pair: [ '“', '”' ] } ## 添加注释后：恢复默认引号
   "punctuator/half_shape/>": [》, 〉, '> ', », › ]
+  #menu/page_size: 4 ## 自定义候选项个数
   key_binder/bindings/+:
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
@@ -41,7 +42,6 @@ patch:
     - table_translator@easy_en_simp
     - lua_translator@tex_translator
     - lua_translator@func_translator
-    - table_translator
   engine/segmentors:
     - ascii_segmentor
     - matcher
