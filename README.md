@@ -26,9 +26,10 @@ Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案（也�
 * 将这些文件放入 Rime 的用户目录下，重新部署（右键点击任务栏的 Rime 图标可见）即可。
 	* 默认的用户目录：`%APPDATA%\Rime`（Windows），`~/Library/Rime`（MacOS)，`~/.config/ibus/rime`（Linux；根据前端类型，可能需要将 ibus 改成 fcitx 或 fcitx5），`/sdcard/rime`（Android）。
 	* 如果某些同名文件已经存在，本节的后续部分可能有参考价值。否则，可以直接跳过这些文件内容说明，去看下一节“附加功能”。
+	* 如果 Rime 老用户之前已有较多配置文件，希望在不混淆各类配置的同时试用本项目的完整功能（毕竟本项目文件较多），也可以考虑备份/重命名原来的用户目录，将本项目单独放在新建的用户目录下部署。
 * 一些设置项需要通过修改文件内容实现。Windows（尤其是 7 及以下的版本）自带的记事本可能无法胜任 YAML 文件的编辑任务，推荐使用 Notepad++，VS Code，Sublime Text 等通用代码编辑器。其他桌面系统的默认文本编辑器原则上都可用。
 	* 没有也不想安装代码编辑器的用户可以考虑使用 [在线 YAML 编辑器](https://codebeautify.org/yaml-editor-online)。
-	* 此外，所有配置文件都应以 UTF-8 编码保存，YAML 文件还需要保持严格的缩进（只能用空格）。
+	* 此外，所有配置文件都应以 UTF-8 编码保存，YAML 文件还需要保持严格的缩进（只能用空格，不能用 Tab 符号）。
 * `flypy_zrmfast.schema.yaml` 和 `flypy_zrmfast.dict.yaml` 为本方案的主要文件。`flypy_zrmfast.custom.yaml` 提供了一些常用设置项。其余文件均用于附加功能。
 * `luna_pinyin.custom.yaml` 为只使用全拼的用户提供，已经掌握双拼的用户无需保留该文件。
 * `default.custom.yaml` 仅用于声明本方案的依赖方案。如果用户已经有同名的文件，并且其中设置了 `schema_list` 选项，可以直接将本项目同名文件的内容添加到该选项下，而不必使用项目提供的这一文件。
