@@ -5,13 +5,16 @@ patch:
   #engine/translators/@last: '' ## 禁用英文单词输入功能
   #punctuator/half_shape: {} ## 恢复默认引号
   #menu/page_size: 5 ## 自定义候选项个数
-  key_binder/bindings/+: ## 自然码等其他双拼用户请在 pinyin_switch.yaml 中设置
+  key_binder/bindings/+:
     #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
     #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
     #- { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
+    - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
+      ## `键（grave，Tab 上面那个）为词组逐字追加辅助码。
+      ## 可将 grave 改成 Tab，Control+Tab，bracketright（] 键）。
 
-  ##  直接引导辅助码（改用自然码等其他双拼方案的用户请勿在此设置）
-  ##  如果希望同时允许 [ 引导，将 xform 改成 derive
+  ##  直接引导辅助码（改用自然码等其他双拼方案的用户请在 pinyin_switch.yaml 中设置）
+  ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
   #speller/algebra/@next: xform/[[]//
 
   #translator/dictionary: flypy_flypy ## 使用小鹤原版辅助码
