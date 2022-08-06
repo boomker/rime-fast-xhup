@@ -93,20 +93,17 @@ flypy2quanpin:
 ##  改用自然码双拼方案请关注这里：
 flypy2zrm:
   key_binder/bindings:
-    #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
-    #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
-    #- { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu, accept: semicolon, send: 2 }
     - { when: has_menu, accept: slash, send: 3 }
     - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
-    ## 对以下4行添加注释后：禁用光标回退补充辅助码功能
-    - { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
-    - { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
-    - { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
-    - { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
+    ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
+    #- { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
+    #- { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
+    #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
+    #- { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
   reverse_lookup/comment_format:
     - xform/^/ /
     - xform/( \w)x/$1W/
@@ -141,5 +138,5 @@ flypy2zrm:
     - derive/^(..[[].).+$/$1/
     - derive/^([jqxy])u/$1v/
     #- xform/[[]// ## 直接引导辅助码
-    ##  如果希望同时允许 [ 引导，将 xform 改成 derive
+    ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
 
