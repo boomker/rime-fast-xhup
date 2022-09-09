@@ -82,9 +82,15 @@ Rime 输入法配置文件，小鹤双拼+自然快手形码辅助方案（也�
 	> Rime 自带的 Emacs 键位包括 `Control+[` 替代 `Esc`，取消当前输入；以及 `Control+h` 替代退格。另外，作者喜欢用 `Control` 键是因为在系统里配置了大写锁定和左 `Control` 交换，这样按起来很舒服。由于这是系统的配置而不是 Rime 的，本文件中没有说明其设置方式。
 * 词组的双拼部分输入完成后，可用 `` ` `` 键（Tab 上面那个）逐字追加辅助码。例如，想输入“林纳斯”（默认词库没这个词，但一开始并不知道），可以敲 ``lbnasi`a`sk`q``，这与直接敲 `lb[a na[sk si[q` 是等价的。
 	* 这也能用于重码太多的词库已有词。例如，希望输入“适时”一词，敲 `uiui` 发现候选太多，补上最后一个字的形码后 `uiui[oc` 还是没在第一页看到它。此时按 `` ` ``，输入框成为 `ui[ 光标 ui[oc`。补充敲下第一个字的形码部分 `q`，然后按 `Control+e`（或者 `End`）把光标移动到最后，即可看到想要的“适时”一词出现在候选中。
-	* 可以在 `flypy_zrmfast.custom.yaml` 中将 `` ` `` 改成 Tab，Control+Tab 或 `]` 等键。
+	* 可以在 `flypy_zrmfast.custom.yaml` 中将 `` ` `` 改成 `Tab`，`Control+Tab` 或 `]` 等键。
 	* 如果不希望自动补充 `[` 符号，其实可以直接改按 `Control+i` 或 `Shift+Right` 移动光标，不必使用 `` ` `` 键。
-	* 技术层面而言，该功能依赖 librime 1.6.0 或以上版本；librime 版本在用户目录的 `installation.yaml` 文件中可以看到。若对该功能感兴趣，MacOS 用户将鼠须管升级至最新版本即可，而 Windows 小狼毫和 Android 同文的最新版似乎仍不支持。这种情况下若坚持要使用，可以手动从 [librime 项目](https://github.com/rime/librime/releases) 安装/自行编译。另外，不排除第三方维护的 Rime 前端能支持（未确认），例如 Windows 下的 [PIME](https://github.com/EasyIME/PIME)。
+	* 对于安卓 Trime 用户来说，可能还需要在 `trime.custom.yaml` 里加上这一句（放在 `patch:` 下，注意缩进）：
+		```yaml
+		style/horizontal: false
+		```
+		←→ 方向键在 Trime 默认用来移动候选项，这一设定将它改成移动光标（和电脑版的默认行为一致），从而这个补充辅助码的快捷键才能正常工作。
+		* 另外，如果用户不嫌麻烦的话，也可以在第一次按 `` ` `` 键前先按 `Home` 或 `Control+a`（Trime 默认的虚拟键盘中长按 `a` 也行）把光标移动到开头。这样就无需改动 Trime 方向键的功能。
+	* 技术层面而言，该功能可能需要 librime 1.6.0 或以上版本才能生效（可以检查一下用户目录下 `installation.yaml` 文件中 `rime_version` 项是多少；一部分 1.5.3 版本也能支持）。如果用户所用系统能获取的最新版 Rime 不满足条件，而自己又有相应能力，可以考虑手动从 [librime 项目](https://github.com/rime/librime/releases) 安装或自行编译。
 
 ### 关于 Lua 支持
 * 小狼毫（Windows）和鼠须管（MacOS）的最新版本应该都支持 Lua 。
