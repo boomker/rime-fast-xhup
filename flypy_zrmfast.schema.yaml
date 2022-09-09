@@ -46,7 +46,7 @@ engine:
     - affix_segmentor@soft_capslock
     - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
-    # - affix_segmentor@tex_translator
+    - affix_segmentor@tex_translator
     - fallback_segmentor
   translators:
     - punct_translator
@@ -227,3 +227,8 @@ easy_en_simp:
   spelling_hints: 9
   comment_format:
     - xform/^.+$//
+tex_translator:
+  tag: tex_translator
+  prefix: "al"
+  tips: " TeX 公式"
+
