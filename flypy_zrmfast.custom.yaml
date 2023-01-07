@@ -18,6 +18,9 @@ patch:
   #speller/algebra/@next: xform/[[]//
 
   #translator/dictionary: flypy_flypy ## 使用小鹤原版辅助码
+  #translator/spelling_hints: 0 ## 关闭单字编码提示
+  translator/comment_format:
+    #- xform/^[^[]+[[]// ## 单字编码提示只显示辅助码部分
 
   ##  改用自然码双拼；相关设置见 pinyin_switch.yaml，例如直接引导辅助码
   #__include: pinyin_switch:/flypy2zrm
