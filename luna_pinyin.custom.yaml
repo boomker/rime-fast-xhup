@@ -19,6 +19,13 @@ patch:
   ##  注意，设置后用户词频会独立记录，与原生朙月拼音的记录不互通
   #__include: pinyin_switch:/flypy2quanpin
 
+  ##  ib前缀改用部件组字输入；默认为五笔画
+  ##  另外需同时在 chaizi.custom.yaml 里设置“部件组字使用全拼”
+  #reverse_lookup/dictionary: chaizi_flypy
+  #reverse_lookup/prism: chaizi_fp2qp
+  #reverse_lookup/tips: 〔部件组字〕
+  #reverse_lookup/preedit_format:
+
   ##  flypy_zrmfast.custom.yaml 所提到的“临时全拼模式下使用扩展词典”的步骤 3
   ##  （注意，设置该项时不要同时在上面启用辅助码）：
   #translator/dictionary: luna_pinyin.extended
