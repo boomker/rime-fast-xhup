@@ -1,5 +1,0 @@
-# Rime schema
-# encoding: utf-8
-patch:
-  translator/dictionary: chaizi_flypy ## 用于激活字典文件，部署一次后可取消
-
