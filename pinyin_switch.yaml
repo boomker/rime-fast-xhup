@@ -3,6 +3,7 @@ flypy2quanpin:
   translator:
     dictionary: flypy_zrmfast ## 若希望用小鹤形码，则注释掉这一行
     #dictionary: flypy_flypy ## 若希望用小鹤形码，则取消这一行的注释
+    spelling_hints: 1
     prism: lunapy_zrmfast
   speller:
     alphabet: zyxwvutsrqponmlkjihgfedcba[
@@ -57,7 +58,6 @@ flypy2quanpin:
 
       - derive/^(\w+)[[].+$/$1/
       - derive/^(\w+[[].).+$/$1/
-  # reverse_lookup/prism: chaizi_fp2qp
   reverse_lookup/comment_format:
     - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
     - "xform/((^|[ '])\\w)g/$1eng/"
