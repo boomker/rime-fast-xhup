@@ -11,5 +11,6 @@ patch:
     - schema: easy_en
     - schema: luna_pinyin          # 朙月拼音
     - schema: emoji         # emoji表情
-    - schema: stroke
+    # - schema: stroke
+    - schema: chaizi
 

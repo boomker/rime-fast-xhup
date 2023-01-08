@@ -24,6 +24,7 @@ patch:
 
   ##  改用自然码双拼；相关设置见 pinyin_switch.yaml，例如直接引导辅助码
   #__include: pinyin_switch:/flypy2zrm
+  ##  另外需同时在 chaizi.custom.yaml 里设置“部件组字使用自然码双拼”
 
   ##  ab前缀改用五笔画输入；默认为部件组字
   #reverse_lookup/dictionary: stroke
