@@ -35,7 +35,8 @@ flypy2quanpin:
       - xform/^([dtgkhvuirzcs])v/$1ui/
       - xform/^(\w)b/$1in/
       - xform/^(\w)m/$1ian/
-      - xform/^([aoe])\1(\w)/$1$2/
+      # - xform/^([aoe])\1(\w)/$1$2/
+      - xform/^([aoe])\1/$1/
       - xform/^v/zh/
       - xform/^i/ch/
       - xform/^u/sh/
@@ -56,6 +57,7 @@ flypy2quanpin:
 
       - derive/^(\w+)[[].+$/$1/
       - derive/^(\w+[[].).+$/$1/
+  # reverse_lookup/prism: chaizi_fp2qp
   reverse_lookup/comment_format:
     - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
     - "xform/((^|[ '])\\w)g/$1eng/"
@@ -119,6 +121,7 @@ flypy2zrm:
     - xform/( \w)b/$1N/
     - xlit/WYPDKLZXCBN/wypdklzxcbn/
     - xform/^ //
+  reverse_lookup/prism: chaizi_fp2zrm
   translator/prism: zrm_zrmfast
   speller/algebra:
     - xform/^(\w)x/$1W/
@@ -139,4 +142,7 @@ flypy2zrm:
     - derive/^([jqxy])u/$1v/
     #- xform/[[]// ## 直接引导辅助码
     ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
+    ##  模糊音设置，以 in=ing 为例：
+    # - derive/^([^gkhvuirzcs])y/$1n/
+    # - derive/^(.)n/$1y/
 
