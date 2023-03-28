@@ -24,6 +24,12 @@ switches:
     states: [ 漢字, 汉字 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
+  - options: ["utf8", "gbk", "gb2312"] # (※2)字符集选单
+    reset: 0 # 默认 UTF8
+    states:
+      - UTF-8
+      - GBK
+      - GB2312
 
 engine:
   processors:
@@ -41,6 +47,7 @@ engine:
     - abc_segmentor
     - punct_segmentor
     - affix_segmentor@quanpin
+    - affix_segmentor@xhup
     - affix_segmentor@emojis
     - affix_segmentor@verbatim ## not as the last of this list
     - affix_segmentor@soft_capslock
@@ -51,14 +58,17 @@ engine:
   translators:
     - punct_translator
     - table_translator@custom_phrase
+    - table_translator@custom_words
     - reverse_lookup_translator
     - script_translator
     - script_translator@quanpin
+    - script_translator@xhup
     - table_translator@emojis
     - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
     - lua_translator@tex_translator
-    - lua_translator@func_translator
+    - lua_translator@date_translator
+    - lua_translator@time_translator
     - table_translator@easy_en_simp ## 添加注释后：停用单词输入
   filters:
     - simplifier
@@ -70,10 +80,24 @@ speller:
   delimiter: " '"
   ## speller 未允许 aj 表示 an
   algebra:
+    - erase/^xx$/
     - derive/^(..).+$/$1/
     - derive/^(..[[].).+$/$1/
     - derive/^([jqxy])u/$1v/
     #- xform/[[]// ## 取消注释后：直接引导辅助码
+    - derive/^l/n/                  # n -> l
+    - derive/^n/l/                  # l -> n
+    - derive/^([qtypdjlxbnm])k/$1b/ # ing 可以通过 in 打出
+    - derive/^(.)b/$1k/             # in 可以通过 ing 打出
+    - derive/^(v)(.)/z$2/           # zh => z
+    - derive/^(i)(.)/c$2/           # ch => c
+    - derive/^(u)(.)/s$2/           # sh => s
+    - derive/^(z)([^h])/v$2/        # z => zh
+    - derive/^(c)([^h])/i$2/        # c => ch
+    - derive/^(s)([^h])/u$2/        # s => sh
+    - derive/^([zcsviu])f/$1g/      # [zcs][h]en 可以通过 [zcs][h]eng 打出
+    - derive/^([zcsviu])g/$1f/      # [zcs][h]eng 可以通过 [zcs][h]en 打出
+
 
 translator:
   dictionary: flypy_zrmfast
@@ -121,10 +145,18 @@ custom_phrase:
   enable_sentence: false
   initial_quality: 1
 
+custom_words:
+  dictionary: ""
+  user_dict: custom_words
+  db_class: stabledb
+  enable_completion: false
+  enable_sentence: false
+  initial_quality: -1
+
 reverse_lookup:
   dictionary: chaizi_flypy # stroke
   enable_completion: true
-  prefix: "ab"
+  prefix: "oc"
   suffix: "'"
   tips: 〔部件组字〕 # 〔筆畫〕
   preedit_format:
@@ -165,43 +197,52 @@ recognizer:
     uppercase: "^[A-Z].*$"
     punct: '^/[015-9A-Za-z]+$' ## use "/er" instead of "/2"
     ## associate schemes: 
-    reverse_lookup: "^ab[a-z]*'?$" # "[[]b[a-z]*'?$"
-    quanpin: "^ap[a-z]*'?$"
-    emojis: "^ae[a-z]*'?$" # "^ae.*$" 
-    verbatim: "^as.*$"
-    soft_capslock: "^au.*$"
-    dbpy_flypy_help: "^ac.*$"
-    easy_en_simp: "^aw[a-z]*"
+    reverse_lookup: "^oc[a-z]*'?$" # "[[]b[a-z]*'?$"
+    quanpin: "^of[a-z]*'?$"
+    xhup: "^os[a-z]*'?$"
+    emojis: "^oe[a-z]*'?$" # "^oe.*$" 
+    verbatim: "^ox.*$"
+    soft_capslock: "^od.*$"
+    dbpy_flypy_help: "^or.*$"
+    easy_en_simp: "^ow[a-z]*"
     tex_translator: "^al(.*)$"
-    func_translator: "^af(.*)$"
+    # func_translator: "^af(.*)$"
 
 menu:
   page_size: 4
 
 quanpin:
   tag: quanpin
-  dictionary: luna_pinyin ## 用户可自行改为扩展后的词典
-  prism: luna_pinyin
+  dictionary: rime_ice ## 用户可自行改为扩展后的词典
+  prism: rime_ice
   enable_completion: true
-  prefix: "ap"
+  prefix: "of"
   suffix: "'"
   tips: "全拼"
+xhup:
+  tag: xhup
+  dictionary: rime_ice ## 用户可自行改为扩展后的词典
+  prism: double_pinyin_flypy
+  enable_completion: true
+  prefix: "os"
+  suffix: "'"
+  tips: "双拼"
 emojis:
   tag: emojis
   dictionary: emoji
   enable_completion: true
-  prefix: "ae"
+  prefix: "oe"
   suffix: "'"
   tips: " Emoji"
 verbatim:
   tag: verbatim ## english; ascii
-  prefix: "as"
-  tips: "cii"
+  prefix: "ox"
+  tips: "临时小写"
 soft_capslock:
   dictionary: ""
   user_dict: uppercase
   tag: soft_capslock
-  prefix: "au"
+  prefix: "od"
   tips: "临时大写"
   db_class: stabledb
   enable_completion: false
@@ -211,7 +252,7 @@ dbpy_flypy_help:
   dictionary: ""
   user_dict: dbpy_flypy_help
   tag: dbpy_flypy_help
-  prefix: "ac"
+  prefix: "or"
   tips: "小鹤双拼查键"
   db_class: stabledb
   enable_completion: true
@@ -222,7 +263,7 @@ easy_en_simp:
   dictionary: easy_en
   enable_completion: true
   enable_sentence: false
-  prefix: "aw"
+  prefix: "ow"
   # suffix: "'"
   tips: "英文单词（可去元音）"
   spelling_hints: 9

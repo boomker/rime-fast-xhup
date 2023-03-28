@@ -7,10 +7,11 @@
 patch:
   schema_list:
     - schema: flypy_zrmfast
-    #- schema: double_pinyin_flypy  # 小鶴雙拼
+    - schema: double_pinyin_flypy # 小鹤双拼
+    - schema: rime_ice            # 雾凇拼音
     - schema: easy_en
-    - schema: luna_pinyin          # 朙月拼音
-    - schema: emoji         # emoji表情
+    # - schema: luna_pinyin       # 朙月拼音
+    - schema: emoji               # emoji表情
     # - schema: stroke
     - schema: chaizi
 

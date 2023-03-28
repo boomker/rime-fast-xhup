@@ -6,19 +6,24 @@
 時	u	3
 使	ui	2
 試	ui	1
-所	s	1
+是	s	1
 去	q	1
 我	w	2
+我	wo	2
 爲	w	1
 有	y	2
+有	yz	2
 又	y	1
 哦	o	1
 的	d	3
 地	d	2
+的	de	3
 得	de	1
 大	da	1
 個	g	1
+个	ge	1
 和	h	1
+和	he	1
 就	j	1
 可	k	1
 了	l	1
@@ -35,15 +40,21 @@
 只	v	1
 涉及	uej	2
 設計	uej	1
+等	df	1
+等待	dfd	2
+等等	dfd	1
+手机号	sjh	1
+18939740924	sjh	2
+
 
 ## 常用个人信息
 ## 注意最后的数字控制优先级，希望排在前面的要设置得大一些
-姓名（在custom_phrase.txt里设置）	jf	64
-xxx（学号/工号）	jf	60
-12300001234（手机）	jf	56
-xx学院/部门	jf	48
-xx學校/單位	jf	44
-foo@xx.com（邮箱）	jf	40
+##姓名（在custom_phrase.txt里设置）	jf	64
+##xxx（学号/工号）	jf	60
+##xx学院/部门	jf	48
+##xx學校/單位	jf	44
+18939740924（手机）	jf	56
+gmboomker@gmail.com（邮箱）	jf	40
 
 ## 常用短语
 Python	py	2
@@ -78,4 +89,3 @@ Maxwell	jam	1
 Lagrange	jal	1
 Gauss	jag	1
 Monte Carlo	jam	1
-
