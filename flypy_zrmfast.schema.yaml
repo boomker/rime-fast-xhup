@@ -92,9 +92,9 @@ speller:
     - derive/^(v)(.)/z$2/           # zh => z
     - derive/^(i)(.)/c$2/           # ch => c
     - derive/^(u)(.)/s$2/           # sh => s
-    - derive/^(z)([^h])/v$2/        # z => zh
-    - derive/^(c)([^h])/i$2/        # c => ch
-    - derive/^(s)([^h])/u$2/        # s => sh
+    - derive/^(z)(.)/v$2/           # z => zh
+    - derive/^(c)(.)/i$2/           # c => ch
+    - derive/^(s)(.)/u$2/           # s => sh
     - derive/^([zcsviu])f/$1g/      # [zcs][h]en 可以通过 [zcs][h]eng 打出
     - derive/^([zcsviu])g/$1f/      # [zcs][h]eng 可以通过 [zcs][h]en 打出
 
