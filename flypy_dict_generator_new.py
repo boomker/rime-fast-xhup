@@ -4,21 +4,7 @@ import sys
 from pathlib import PosixPath as pp
 
 # from pypinyin import lazy_pinyin
-
-dict_head = """
-# Rime dictionary
-# encoding: utf-8
-## Based on http://gerry.lamost.org/blog/?p=296003
-
----
-name: base_flypy
-version: "2023.3.27"
-sort: by_weight
-use_preset_vocabulary: true  # 導入八股文字頻
-max_phrase_length: 1         # 不生成詞彙
-...
-"""
-
+# from datetime import date
 
 def pinyin_to_flypy(pinyin: list[str]):
     def to_flypy(pinyin: str):
@@ -104,9 +90,25 @@ def quanpin_to_flypy(line_content, *args):
 
 
 def write_date_to_file(data, outfile):
+    from datetime import date
+    outfile_name = outfile.split('.')[0]
+    dict_header = f"""
+    # Rime dictionary
+    # encoding: utf-8
+    ## Based on http://gerry.lamost.org/blog/?p=296003
+
+    ---
+    name: {outfile_name}
+    version: {date.today()}
+    sort: by_weight
+    use_preset_vocabulary: true  # 導入八股文字頻
+    max_phrase_length: 1         # 不生成詞彙
+    ...
+    """
+
     if outfile not in globals().keys():
         with open(outfile, "w") as odf:
-            odf.write(dict_head)
+            odf.write(dict_header)
             odf.write("\n")
     else:
         with open(outfile, "a") as odf:
@@ -141,6 +143,8 @@ def main():
     infile_names = [f for f in pp_objs if f.is_file()]
     outfile_names = [f"flypy_{f.name.split('.')[0]}.dict.yaml" for f in infile_names]
     print(infile_names, outfile_names, option)
+    print("""当你只看到上的回显提示,脚本就结束了, 那么说明命令行参数出问题了.
+          当词典文件没有附带拼音, 那么`option`需要设非空值""")
     input_datas = [ open_dict_and_send_line(infile) for infile in infile_names ]
 
     for outfile, indata in zip(outfile_names, input_datas):

@@ -1,0 +1,13505 @@
+# Rime dictionary
+# encoding: utf-8
+# 小鹤双拼加辅助码
+# 繁体字码表
+---
+name: flypy_flypy
+version: "2020.02.08"
+sort: by_weight
+use_preset_vocabulary: true
+min_phrase_weight: 100
+
+...
+
+〇	lk[vv
+㑇	vz[re
+㑊	yi[rd
+㑳	vz[re
+㕮	fu[kx
+㘎	hj[kw
+㘚	hj[kw
+㙍	do[ty
+㙘	yc[tn
+㙦	xp[rt
+㛃	jp[fn
+㛚	ts[ny
+㛚	ys[ny
+㛹	pm[ng
+㞎	ba[ub
+㞎	pa[ub
+㞞	ss[ur
+㟃	si[ek
+㠇	jq[ey
+㠓	mg[eu
+㤘	vz[xe
+㥄	lk[xw
+㥮	ic[xe
+㧐	ss[fy
+㧑	hv[fw
+㧟	kk[fk
+㩳	ss[fy
+㫰	lh[ol
+㬊	hr[oy
+㬎	xm[oh
+㬚	ie[ow
+㭎	gh[mx
+㭕	qu[ms
+㮾	lh[dm
+㰀	li[mu
+㳇	fu[dx
+㳘	is[de
+㳚	xu[du
+㴔	se[dx
+㴔	xi[dx
+㴔	yi[dx
+㵐	jt[dr
+㶲	ys[hy
+㸌	ho[hf
+㺄	yu[qd
+㻬	tu[wk
+㽏	gj[dg
+㿠	hl[bw
+䁖	lz[on
+䂮	lt[fu
+䃅	di[ul
+䃎	va[ux
+䃮	da[uz
+䅟	cj[hp
+䌹	js[sk
+䎃	rj[rx
+䎖	zg[bx
+䏝	vr[ov
+䏡	ui[ox
+䏲	dp[op
+䐃	jy[oh
+䐃	vy[oh
+䓖	qs[cl
+䓛	qu[ci
+䓨	yk[cf
+䓫	qi[ck
+䗖	di[ij
+䗛	xq[io
+䗪	ve[gi
+䗴	tk[iz
+䜣	xb[yj
+䝙	iu[vx
+䡵	sv[iz
+䢺	iu[ie
+䢼	gs[ce
+䣘	th[xe
+䥑	wj[jw
+䥽	po[jd
+䦃	vo[jo
+䮄	xr[my
+䰾	ba[ab
+䲁	ww[ac
+䲘	gr[ak
+䲟	yb[ae
+䲠	iy[ao
+䲢	tg[oa
+䴉	xr[sn
+䴓	ui[an
+䴔	jn[wn
+䴕	lp[dn
+䴖	jk[fn
+䴗	ju[on
+䴘	ti[pn
+䴙	pi[un
+䶮	yj[lt
+一	yi[aa
+丁	dk[al	99.93%
+丁	vg[al	0.07%
+七	qi[av
+万	mo[ap	0.02%
+万	wj[ap	99.98%
+丈	vh[an
+三	sa[ae	0%
+三	sj[ae	100%
+上	uh[la
+下	xx[ab
+不	bu[ad	100%
+不	fz[ad	0%
+不	fu[ad	0%
+与	yu[aa
+丏	gd[av
+丏	mm[av
+丐	gd[av
+丑	iz[va
+专	vr[ad
+且	ju[la	0%
+且	qp[la	100%
+且	qu[la	0%
+丕	pw[ba
+丕	pi[ba
+世	ui[av
+丘	qq[pa
+丙	bk[an
+业	qq[la
+业	ye[la	0%
+丛	cs[ra
+东	ds[ad
+丝	si[va
+丞	ig[la
+丟	dq[ps
+丢	dq[ps
+两	ll[ad
+严	yj[yp
+並	bk[bk
+丧	sh[un
+个	ge[rl
+丫	ya[bl
+中	vs[ll
+丰	fg[al
+串	ir[ll
+临	lb[la
+丸	wj[pd
+丹	dj[pa
+为	ww[dd
+主	vu[dw
+丽	li[ad
+举	ju[xl
+乂	ai[pn
+乂	yi[pn
+乃	ai[vp	0%
+乃	nd[vp	100%
+久	jq[pn
+么	ma[ps	0.04%
+么	me[ps	1%
+么	yc[ps	98.93%
+义	ia[dx	99%
+义	yi[dx	1%
+之	vi[dn
+乌	wu[pa
+乍	va[pa
+乎	hu[pl
+乏	fa[pv
+乐	le[pd	95%
+乐	yt[pd	5%
+乒	pk[qp
+乓	ph[qd
+乔	jn[yl	0%
+乔	qn[yl	100%
+乖	gk[qb
+乘	ig[qn	99.46%
+乘	ug[qn	0.54%
+乙	yi[vv	100%
+乙	ve[vv	0%
+乜	mp[vv	96.35%
+乜	np[vv	3.65%
+九	jq[pv
+乞	qi[pv
+也	ye[vv
+习	xi[vd
+乡	xl[vp	0%
+乡	yr[vp
+书	uu[vd
+乩	ji[lv
+买	md[vd
+乱	lj[qv	0%
+乱	lr[qv	100%
+乳	ru[pv
+乸	na[ym
+乾	gj[au	21.58%
+乾	qm[uq	78.42%
+亂	lj[qv	0%
+亂	lr[qv	100%
+了	le[vl	98.90%
+了	ln[vl	1.10%
+予	yu[sl
+争	vg[dl
+事	ui[al
+二	er[aa
+亍	iu[el	100%
+亍	yu[el	0%
+于	xu[al	0%
+于	yu[al	100%
+亏	kv[ev	0%
+亏	xu[ev
+亏	yu[ev
+云	yy[es
+互	hu[aa
+亓	qi[el
+五	wu[aa
+井	jk[al
+亘	gf[ad
+亘	gg[ad
+亘	hr[ad
+亘	xr[ad
+亙	gf[ad
+亙	gg[ad
+亚	ya[ay
+些	so[ve	0%
+些	xp[ve	100%
+亞	ya[ay
+亟	ji[la	95.11%
+亟	qi[la	4.89%
+亡	wh[wv	99.46%
+亡	wu[wv	0.54%
+亢	gh[wj	0%
+亢	kh[wj	100%
+交	jn[wx
+亥	hd[wr
+亦	yi[wd
+产	ij[lp
+亨	hg[wl	100%
+亨	pg[wl	0%
+亩	mu[wt
+享	xl[wz
+京	jk[wx	100%
+京	yr[wx	0%
+亭	tk[wd
+亮	ll[wj
+亲	qb[lm	0%
+亲	qk[lm	0%
+亲	xb[lm	10%
+亲	vf[lm	90%
+亳	bo[wq
+亵	xp[wy
+亶	dj[wd
+亸	do[wl
+亹	mf[wq
+亹	ww[wq
+人	rf[pn
+亿	yi[rv
+什	ue[ru	0%
+什	uf[ru	84.20%
+什	ui[ru	15.80%
+仁	rf[re
+仂	le[rl
+仂	li[rl
+仃	dk[rd
+仄	ze[ir
+仅	fu[ry	100%
+仅	jb[ry	0%
+仆	fu[rb
+仆	pu[rb
+仇	iz[rj	83.84%
+仇	qq[rj	16.16%
+仉	vh[rj
+今	jb[rv
+介	ga[rl	0%
+介	jp[rl	100%
+仍	rg[rn
+从	cs[rr	100%
+从	zs[rr	0%
+仑	ly[rb
+仓	ch[rv
+仔	zd[rz	55.40%
+仔	zi[rz	44.60%
+仕	ui[ru
+他	ta[ry	100%
+他	to[ry	0%
+仗	vh[rv
+付	fu[rc
+仙	xm[re
+仝	ts[rg
+仞	rf[rr
+仟	qm[rq
+仡	ge[rq
+仡	qi[rq
+仡	yi[rq
+代	dd[ry
+令	lk[rs
+以	yi[vr
+仨	sa[rs	100%
+仨	sj[rs	0%
+仪	yi[ry
+仫	mu[rm
+们	mf[rm
+仰	yh[re
+仲	vs[rv
+仳	bi[rb
+仳	pi[rb
+仵	wu[rw
+件	jm[rn
+价	jx[rl	0.02%
+价	jp[rl	99.98%
+任	rf[rr
+份	bb[rd	0%
+份	ff[rd	100%
+仿	fh[rf
+企	qi[rv
+伈	xb[rx
+伉	kh[rj
+伊	yi[ry
+伋	ji[rj
+伍	wu[rw
+伎	ji[ry
+伏	fu[rq
+伐	fa[rg
+休	xq[rm	100%
+休	xu[rm	0%
+众	vs[rr
+优	yz[ry
+伙	ho[rh
+会	gv[rs	0%
+会	hv[rs	99.98%
+会	kk[rs	0.02%
+伛	kz[rx
+伛	yu[rx
+伞	sj[ru
+伟	ww[rw
+传	ir[rv	97.93%
+传	vr[rv	2.07%
+伢	ya[ry
+伣	xm[re
+伤	uh[rl
+伥	ih[ri
+伦	ly[rb
+伧	ch[rv	50%
+伪	ww[rw
+伫	vu[ra
+伭	xm[ry
+伭	xr[ry
+伯	ba[rb	0.02%
+伯	bd[rb	9%
+伯	bo[rb	91.98%
+估	gu[rk
+伲	ni[rb
+伴	bj[rb
+伶	lk[rs
+伸	uf[ru
+伺	ci[rk	15.38%
+伺	si[rk	84.62%
+似	ui[rr	15%
+似	si[rr	85%
+伽	ga[rk	80%
+伽	jx[rk	10%
+伽	qp[rk	10%
+伾	pi[rp
+佁	ai[rk
+佁	yi[rk
+佃	dm[rt	92.31%
+佃	tm[rt	7.69%
+但	dj[rd
+佇	vu[ra
+佈	bu[uj
+位	ww[rl
+低	di[rd
+住	vu[rv
+佐	zo[rg
+佑	yz[rk
+体	bf[rb
+体	ti[rb
+佔	vj[lk
+何	he[rk
+佖	bi[rb
+佗	ta[rb
+佗	to[rb
+佘	ue[rx	100%
+佘	yu[rx	0%
+余	tu[rh	0%
+余	xu[rh	0%
+余	yu[rh	100%
+佚	yi[ru
+佛	bi[rf	0%
+佛	fo[rf	97.74%
+佛	fu[rf	2.26%
+作	zo[rv
+佝	gz[rk
+佝	ju[rk
+佝	kz[rk
+佞	nk[rn
+佟	ts[rd
+你	ni[rx
+佢	ju[rj
+佢	qu[rj
+佣	ys[ry
+佤	wa[rw
+佥	qm[ra
+佩	pw[rj
+佬	lc[rb	100%
+佬	ln[rb	0%
+佯	yh[ry
+佰	bd[rb	100%
+佰	bo[rb	0%
+佰	mo[rb	0%
+佳	jx[rt
+佴	er[re
+併	bk[bk
+佶	ji[rk
+佸	gx[rk
+佸	ho[rk
+佺	qr[rw
+佻	tn[rd
+佼	jn[rx
+佽	ci[rr
+佾	yi[ro
+使	ui[rl
+侁	uf[re
+侁	xm[re
+侂	to[rq
+侃	kj[rv
+侄	vi[rt
+來	ld[an
+侈	ii[rx
+侉	kx[rk
+例	li[rd
+侍	ui[rc
+侏	vu[rv
+侑	yz[ro
+侔	mz[rn
+侖	ly[rb
+侗	ds[rk	59.46%
+侗	ts[rk	40.54%
+侘	ia[rq
+供	gs[rb
+依	yi[ry
+侠	jx[rj	0%
+侠	xx[rj	100%
+侣	lv[rk
+侥	jn[rw	56.90%
+侦	vf[rr
+侧	ce[rd	99.69%
+侧	vd[rd	0.18%
+侨	qn[rl
+侩	kk[rs
+侪	id[rl
+侬	ns[rn
+侮	wu[rm
+侯	hz[ru
+侴	hc[rd
+侵	qb[ry
+侶	lv[rk
+侷	ju[uk
+侹	tk[rz
+便	bm[rg	96.98%
+便	pm[rg	3.02%
+俁	yu[rt
+係	xi[px
+促	cu[rr
+俄	ee[rw
+俅	qq[rq
+俊	jy[rw	100%
+俊	zy[rw	0%
+俍	lh[rl
+俍	ll[rl
+俎	zu[rq
+俏	qn[ro
+俐	li[rd
+俑	ys[ry
+俔	jm[re
+俔	qm[re
+俔	xm[re
+俗	su[rk
+俘	fu[rz
+俙	xi[rj
+俚	li[rl
+俜	pk[rv
+保	bc[rm
+俞	uu[rd	0%
+俞	yu[rd	100%
+俟	qi[ru	7.04%
+俟	si[ru	92.96%
+俠	jx[rj	0%
+俠	xx[rj	100%
+信	uf[rk	0%
+信	xb[rk	100%
+俣	yu[rt
+俤	di[rp
+俦	iz[rc
+俨	yj[ry
+俩	lx[rl	90.53%
+俩	ll[rl	9.46%
+俪	li[rl
+俫	ld[rl
+俬	si[hs
+俭	jm[ra
+修	xq[rp
+俯	fu[rc
+俱	ju[rb
+俳	pd[rf
+俵	bn[ry
+俶	iu[ry
+俶	jn[ry
+俶	ti[ry
+俸	fg[rl
+俺	an[rd	100%
+俺	yj[rd	0%
+俾	bw[ru
+俾	bi[ru
+俾	pi[ru
+倀	ih[ri
+倆	lx[rl	90.53%
+倆	ll[rl	9.47%
+倈	ld[rl
+倉	ch[rv
+個	ge[rl
+倌	gr[rk
+倍	bw[rk
+倏	uu[rq
+們	mf[rm
+倒	dc[rd
+倓	tj[rh
+倔	jt[ri
+倕	iv[ri
+倖	xk[tg
+倘	th[rk
+候	hz[ru
+倚	yi[rk
+倜	ti[rk
+倜	vz[rk
+倞	jk[rx
+倞	ll[rx
+借	jp[ro
+倡	ih[ro
+倥	ks[rg
+倦	jr[rv
+倧	zs[rx
+倨	ju[rk
+倩	qm[ro
+倪	ni[re
+倫	ly[rb
+倬	vo[ru
+倭	ww[rn	0%
+倭	wo[rn	100%
+倮	lo[rg
+倴	bf[rc
+债	vd[rr
+倻	ye[re
+值	vi[rq
+倾	qk[rr
+偁	ig[rr
+偃	yj[rn
+假	jx[ry
+偈	ji[rv	77.78%
+偈	jp[rv	22.22%
+偈	xp[rv	0%
+偉	ww[rw
+偌	no[rk
+偌	ro[rk
+偎	ww[rn
+偏	pm[rc
+偓	wo[rt
+偕	jp[rb	0%
+偕	xp[rb	100%
+做	zo[rw
+停	tk[rd
+偡	uf[rv
+偡	vj[rv
+健	jm[rz
+偬	zs[rx
+偭	mm[rm
+偰	qi[rd
+偰	xp[rd
+偲	cd[rx
+偲	sd[rx
+偲	si[rx
+側	ce[rd	99.69%
+側	vd[rd	0.18%
+偵	vf[rr
+偶	ou[ry
+偷	tz[rd
+偻	lz[rn	63.64%
+偻	lv[rn	36.36%
+偽	ww[rw
+偾	ff[rr
+偿	ih[rs
+傀	gv[rg
+傀	kv[rg
+傃	su[rx
+傅	fu[rc
+傈	li[rm
+傉	ru[rc
+傍	bh[rf	100%
+傍	ph[rf	0%
+傑	jp[mh
+傒	xi[rd
+傕	jt[rf
+傕	qt[rf
+傖	ch[rv
+傖	ig[rv
+傘	sj[ru
+備	bw[wt
+傢	jx[bu
+傣	dd[ru
+傥	th[re
+傧	bb[rb
+储	iu[ro
+傩	no[rf
+催	cv[rf
+傭	ys[ry
+傯	zs[rx
+傲	ao[rw
+傳	ir[rv	97.93%
+傳	vr[rv	2.07%
+傴	kz[rx
+傴	yu[rx
+債	vd[rr
+傷	uh[rl
+傺	ii[rx
+傻	ua[rw
+傾	kg[rr	0%
+傾	qk[rr	100%
+僂	lz[rn	63.64%
+僂	lv[rn	36.36%
+僅	jb[ry
+僇	lu[rp
+僉	jm[ra
+僉	qm[ra
+僎	vr[rb
+像	xl[rn
+僑	qn[rl
+僔	zy[rc
+僕	pu[rb
+僖	xi[rk
+僚	ln[rx
+僞	ww[rw
+僥	jn[rw	56.90%
+僥	yc[rw	44.10%
+僦	jq[ry
+僧	sg[ro	100%
+僧	zg[ro	0%
+僨	ff[rr
+僬	jn[rh
+僭	jm[ro
+僭	qm[ro
+僮	ts[rl	60.71%
+僮	vl[rl	39.29%
+僰	bo[ar
+僱	gu[hf
+僳	su[rm
+僵	jl[ra
+價	ga[rl	0%
+價	jx[rl	99.98%
+價	jp[rl	0.02%
+價	uu[rl	0%
+僻	bw[ru	0%
+僻	pi[ru	100%
+儀	yi[ry
+儁	jy[rw
+儁	zy[rw
+儂	ns[rn
+億	yi[rv
+儆	jk[rw
+儇	hr[ry
+儇	xr[ry
+儈	kk[rs
+儉	jm[ra
+儋	dj[rk
+儐	bb[rb
+儒	ru[re
+儔	iz[rc
+儕	id[rl
+儕	ji[rl
+儕	qi[rl
+儘	jb[id
+償	ih[rs
+償	uh[rs
+儡	lw[rt
+儦	bn[rh
+優	yz[ry
+儲	iu[ro
+儳	ij[rd
+儴	rh[ry
+儷	li[rl
+儺	no[rf
+儻	dh[re
+儻	th[re
+儼	yj[ry
+儿	er[pv	0%
+儿	rf[pv	100%
+兀	wu[ae
+允	yy[se
+元	yr[ee
+兄	xs[ke
+充	is[we
+兆	vc[ed
+兇	xs[xk
+先	xm[ne
+光	gl[xw
+克	ke[ue
+兌	dv[be	100%
+兌	yt[be	0%
+免	mm[dv	100%
+免	wf[dv	0%
+兑	dv[be	100%
+兑	yt[be	0%
+兒	er[pv	100%
+兒	ni[pv	0%
+兔	tu[dd
+兕	si[ae
+兖	yj[we
+兗	yj[we
+党	dh[xe
+兜	dz[pe
+兢	jk[ue
+入	ri[pn	0%
+入	ru[pn	100%
+內	na[ld	0%
+內	nw[ld	100%
+全	qr[rw
+兩	ll[ad
+八	ba[pn
+公	gs[bs
+六	lq[wb	99.90%
+六	lu[wb	0.10%
+兮	xi[bv
+兰	lj[bs
+共	gs[cb
+关	gr[bt	0%
+关	xn[bt
+兴	xk[xb
+兵	bk[qb
+其	ji[qb	0.05%
+其	qi[qb	99.95%
+具	ju[qb
+典	dm[lb
+兹	zi[by	93.26%
+养	yh[yl
+兼	jm[bn
+兽	uz[bk
+冀	ji[lb
+冁	ij[bn
+内	na[ld	0%
+内	nw[ld	100%
+冇	mc[uk
+冇	mz[uk
+冈	gh[kx	0%
+冈	wh[kx
+冉	rj[la
+冊	ce[pa	100%
+冊	id[pa	0%
+册	ce[pa	100%
+册	id[pa	0%
+再	zd[ar
+冏	js[kk
+冑	vz[yo
+冒	mc[ko	99.79%
+冒	mo[ko	0.21%
+冔	xu[ky
+冕	mm[kv
+冗	rs[bj
+写	xp[by
+冚	kj[be
+军	jy[bi
+农	ns[dn
+冠	gr[bc
+冢	vs[bn
+冤	yr[bd
+冥	mk[bb
+冧	lb[bm
+冪	mi[bj	100%
+冪	mu[bj	0%
+冬	ds[wd
+冮	gh[dg
+冯	fg[dm	100%
+冯	pk[dm	0%
+冰	bk[du	100%
+冰	nk[du	0%
+冱	hu[dh
+冲	is[dv
+决	jt[dg
+况	kl[de
+冶	ye[dk
+冷	lg[ds
+冻	ds[dd
+冼	ug[de	0%
+冼	xm[de	100%
+冽	lp[dd
+净	jk[dl
+凄	qi[dn
+准	vy[df
+凇	ss[ds
+凈	ig[dl
+凈	jk[dl
+凈	vg[dl
+凉	ll[dx
+凋	dn[dk
+凌	lk[dw
+凍	ds[dd
+减	jm[dk
+凑	cz[dt
+凓	li[dm
+凘	si[dj
+凛	lb[dx
+凜	lb[dx
+凝	nk[dr
+几	ji[pv
+凡	fj[jd
+凤	fg[jy
+凫	fu[pj
+凭	pk[rj
+凯	kd[ej
+凰	hl[jw
+凱	kd[ej
+凳	dg[vj
+凶	xs[xk
+凸	dp[la	0%
+凸	gu[la	1%
+凸	tu[la	99%
+凹	ao[la	90%
+凹	wa[la	10%
+凹	yc[la	0%
+出	iu[vk
+击	ji[ak
+凼	dh[uk
+函	hj[lk
+凿	zc[yk	89.37%
+凿	zo[yk	10.63%
+刀	dc[vp
+刁	dn[va
+刃	rf[dd
+分	ff[bd
+切	qp[qd
+刈	yi[xd
+刊	kj[gd
+刍	iu[de
+刎	wf[wd
+刑	xk[kd
+划	hx[gd
+刖	yt[od
+列	lp[dd
+刘	lq[wd
+则	ze[kd
+刚	gh[kd
+创	il[rd
+初	iu[pd
+删	uj[cd
+判	pj[bd
+別	bp[kd
+刨	bc[bd	4.64%
+刨	pc[bd	95.36%
+利	li[hd
+刪	uj[cd
+别	bp[kd
+刬	ij[jd
+刭	jk[vd
+刮	gx[qd	100%
+刮	ka[qd	0%
+到	dc[ad
+刳	ku[dd
+刳	kx[dd
+制	vi[pd
+刷	ux[ud
+券	qr[jd
+刹	ia[xd	7.58%
+刹	ua[xd	92.42%
+刺	ci[ad
+刻	ke[wd
+刽	il[rd
+刽	gv[rd
+刿	gv[ed
+剀	kd[ed
+剁	do[jd
+剂	ji[wd
+剃	ti[bd
+剄	jk[vd
+剅	dz[ad
+剅	lz[ad
+則	ze[kd
+削	xn[xd	72.30%
+削	xt[xd	27.70%
+剋	ke[ue
+剋	kw[ue
+剌	la[ud
+前	qm[bd
+剎	ia[xd	7.58%
+剎	ua[xd	92.42%
+剐	gx[kd
+剑	jm[rd
+剔	ti[od
+剕	fw[fd
+剖	pc[ld	100%
+剖	po[ld	0%
+剖	pz[ld	100%
+剗	ij[jd
+剛	gh[kd
+剜	wj[bd
+剝	bc[ed	2.33%
+剝	bo[ed	97.67%
+剞	ji[dd
+剞	qi[dd
+剟	do[yd
+剡	uj[hd	50%
+剡	yj[hd	50%
+剥	bc[ed	2.33%
+剥	bo[ed	97.67%
+剧	ji[ud	0%
+剧	ju[ud	100%
+剩	ug[qd
+剪	jm[bd
+剮	gx[kd
+剮	go[kd
+副	fu[ad	100%
+副	pi[ad	0%
+割	ge[bd
+剴	kd[ed
+創	il[rd
+剷	ij[ji
+剽	pn[xd
+剿	ic[vd	6.56%
+剿	jn[vd	93.44%
+劁	jn[rd
+劁	qn[rd
+劂	jt[id
+劃	hx[gd	99.94%
+劄	da[vd
+劄	va[vd
+劇	ji[ud	0%
+劇	ju[ud	100%
+劈	pi[ud
+劉	lq[wd
+劊	gv[rd
+劊	kk[rd
+劌	gv[ed
+劌	sv[ed
+劍	jm[rd
+劐	hx[cd
+劐	ho[cd
+劑	ji[wd
+劓	yi[zd
+力	li[vp
+劝	qr[yl
+办	bj[ld
+功	gs[gl
+加	jx[lk
+务	wu[wl
+劢	md[wl
+劣	lp[ul
+动	ds[el
+助	vu[ql
+努	nu[nl
+劫	jp[tl
+劬	qu[bl
+劭	uc[dl
+励	li[il
+劲	jb[vl	78.80%
+劲	jk[vl	21.20%
+劳	lc[cl
+劼	jp[ul
+劾	hd[wl
+劾	he[wl
+势	ui[fl
+勁	jb[vl	78.80%
+勁	jk[vl	21.20%
+勃	bo[ul
+勇	ys[sl
+勉	mm[dl
+勋	xy[kl
+勍	jp[wl
+勍	qk[wl
+勐	mg[zl
+勒	le[gl	96.20%
+勒	lw[gl	3.80%
+勔	mm[ml
+動	ds[el
+勖	xu[kl
+勘	kj[ql
+務	wu[wl
+勚	yi[ul
+勛	xy[kl
+勝	ug[ou
+勞	lc[cl
+募	mu[cl
+勠	lu[xl
+勢	ui[fl
+勣	ji[fl
+勣	xy[fl
+勤	qb[nl
+勩	yi[ul
+勰	xp[lx
+勱	md[wl
+勳	xs[kl	0%
+勳	xy[kl	100%
+勵	li[il
+勸	qr[yl
+勺	uc[bd
+勺	uo[bd
+勻	yy[bd
+勾	gz[bs
+勿	wu[bp
+匀	yy[bd
+包	bc[bs
+匆	cs[bd
+匈	xs[bk
+匍	pu[bf
+匏	bc[ds
+匏	pc[ds
+匐	fu[bt
+匕	bi[pv
+化	hx[rb
+北	bw[lb	100%
+北	bo[lb	0%
+匙	ii[ob	22.84%
+匙	ui[ob	77.16%
+匜	yi[ky
+匝	za[kj
+匠	jl[kj
+匡	kl[kw
+匣	he[kj	0%
+匣	xx[kj	100%
+匦	gv[kj
+匪	fw[kf
+匭	gv[kj
+匮	gv[kr	1%
+匮	kv[kr	99%
+匯	hv[dk
+匱	gv[kr	1%
+匱	kv[kr	99%
+匹	pi[ke
+区	gz[kx	0%
+区	ou[kx	0.09%
+区	qu[kx	99.91%
+医	yi[ku
+匼	an[kk
+匾	bm[kc	100%
+匾	pm[kc	0%
+匿	ni[kk
+區	gz[kx	0%
+區	ou[kx	0.09%
+區	qu[kx	99.91%
+十	ui[al
+千	qm[pu
+卅	sa[al
+升	ug[pc
+午	ho[pg	0%
+午	wu[pg	100%
+卉	bf[uc	0%
+卉	hv[uc	100%
+半	bj[dl
+卌	xi[al
+华	hx[ru
+协	xp[ub
+卑	bw[pu
+卒	cu[wu	1.88%
+卒	zu[wu	98.12%
+卓	vo[lu
+協	xp[ub
+单	ij[bl	0.10%
+单	dj[bl	99.52%
+单	uj[bl	0.38%
+卖	md[ud
+南	na[ug	0%
+南	nj[ug	100%
+博	bo[uc
+卜	bo[ld	0%
+卜	bu[ld	100%
+卞	bm[dx
+卟	bu[kb
+卟	ji[kb
+占	vj[lk
+卡	ka[ub	95%
+卡	qx[ub	5%
+卢	lu[lu
+卣	yz[la
+卤	lu[lx	100%
+卤	xi[lx	0%
+卦	gx[tb
+卧	wo[ib
+卫	ww[va
+卬	ah[pe
+卬	yh[pe
+卮	vi[pv
+卯	mc[pe
+印	yb[pe
+危	ww[dv
+即	ji[ge
+却	qt[te
+卵	lj[pd	0%
+卵	lr[pd	100%
+卵	lo[pd	0%
+卵	rr[pd	0%
+卷	jr[jv	100%
+卷	qr[jv	0%
+卸	xp[we	100%
+卸	yu[we	0%
+卹	xu[xx
+卺	ig[lv
+卺	jb[lv
+卻	qt[te
+卽	ji[ge
+卿	qk[pe
+厂	an[ap	0.05%
+厂	ih[ap	0.05%
+厂	hj[ap	99.95%
+厂	yj[ap	0.05%
+厄	ee[iv
+厅	tk[id
+历	li[il
+厉	ld[iw	0%
+厉	li[iw	100%
+压	ya[id
+厌	yj[iq
+厍	ue[ii
+厕	ce[id
+厖	mh[id
+厖	ph[id
+厘	ij[il	0%
+厘	li[il	100%
+厙	ku[ii
+厙	ue[ii
+厚	hz[iz
+厝	cu[io
+厝	co[io
+原	yr[ix
+厠	ce[id
+厠	ci[id
+厠	si[id
+厢	xl[io
+厣	yj[ij
+厤	li[il
+厥	jt[ir
+厦	ua[iw	41.78%
+厦	xx[iw	58.22%
+厨	iu[ic
+厩	ji[iv
+厩	jq[iv
+厭	yj[iq
+厮	si[ij
+厲	ld[iw	0%
+厲	li[iw	100%
+厴	yj[ij
+去	qu[ts
+厾	dq[vs
+厾	du[vs
+县	xm[qs	99.88%
+叁	cj[ss	0%
+叁	cf[ss	0%
+叁	sj[ss	100%
+叁	uf[ss	0%
+参	cj[sp	90.45%
+参	cf[sp	0.01%
+参	sj[sp	0.01%
+参	uf[sp	8.49%
+參	cj[sp	90.45%
+參	cf[sp	0.01%
+參	sj[sp	0.01%
+參	uf[sp	8.49%
+叄	sj[ss
+叆	ai[ey
+叇	dd[ez
+又	yz[vn
+叉	ia[yd
+及	ji[pn
+友	yz[uy
+双	ul[yy
+反	fj[py
+发	fa[vd
+叒	re[yy
+叒	ro[yy
+叔	uu[uy
+叕	vo[yy
+取	qu[ey
+受	uz[py
+变	bm[wy
+叙	xu[ry
+叚	jx[vy
+叚	xx[vy
+叛	pj[by
+叟	sz[py
+叠	da[yq	1%
+叠	dp[yq	99%
+叢	cs[ra
+口	kz[la
+古	gu[uk
+句	gz[bk	0%
+句	ju[bk	100%
+另	lk[kl
+叨	dc[kd	98.85%
+叨	tc[kd	1.15%
+叩	kz[ke
+只	vi[kb
+叫	jn[kl
+召	uc[dk	1.96%
+召	vc[dk	98.04%
+叭	ba[kb
+叮	dk[kd
+可	ke[dk
+台	si[sk	1%
+台	td[sk	60%
+台	yi[sk	39%
+叱	ii[kb
+史	ui[ln
+右	yz[uk
+叵	ju[kk	0%
+叵	po[kk	100%
+叵	pz[kk	0%
+叶	xp[ku	100%
+叶	ye[ku	0%
+号	hc[kv
+司	si[vk
+叹	tj[ky
+叹	yz[ky
+叻	le[kl
+叻	li[kl
+叼	dn[kd
+叽	ji[kj	100%
+叽	jn[kj	0%
+吁	aa[ky	5%
+吁	xu[ky	90.45%
+吁	yu[ky	4.55%
+吃	ii[kq
+吃	ji[kq
+各	ge[wk
+吆	yc[ky
+合	ge[rk	0.02%
+合	he[rk	99.98%
+吉	ji[uk
+吊	dn[kj
+同	ts[kk
+名	mk[xk
+后	hz[pk
+吏	li[an
+吐	tu[kt
+向	xl[pk
+吒	ii[kq
+吒	va[kq
+吓	he[kx	0.22%
+吓	xx[kx	99.78%
+吔	ye[ky
+吕	lv[kk
+吖	aa[ky
+吗	ma[km
+君	jy[yk
+吝	lb[wk
+吞	ty[tk
+吟	yb[kv
+吠	fw[kq
+吡	bi[kb
+吡	bp[kb
+吣	qb[kx
+否	fz[bk	100%
+否	pi[bk	0%
+吧	ba[kb
+吨	dy[kt	50%
+吨	ty[kt	50%
+吩	ff[kd
+含	hj[rk	100%
+含	hf[rk	0%
+听	tk[kj	1%
+听	yi[kj	1%
+听	yb[kj	98%
+吭	hh[kj	27.07%
+吭	kh[kj	0%
+吭	kg[kj	72.93%
+吮	uy[ke
+吮	yy[ke
+启	qi[hk
+吱	vi[ky	70.91%
+吱	zi[ky	29.09%
+吲	uf[ky
+吲	yb[ky
+吳	wu[kt
+吴	wu[kt
+吵	ic[ku
+吶	na[kn	90.82%
+吶	ne[kn	9.18%
+吸	xi[kj
+吹	iv[kr
+吻	wf[kw
+吼	hz[kv	100%
+吼	ks[kv	0%
+吽	hs[kn
+吽	hz[kn
+吽	ou[kn
+吾	wu[wk	100%
+吾	yu[wk	0%
+呀	xx[ky	0%
+呀	ya[ky	100%
+呂	lv[kk
+呃	ee[kv
+呆	ai[km	0.02%
+呆	dd[km	99.98%
+呇	qi[uk
+呇	ta[uk
+呈	ig[kw
+告	gc[nk	100%
+告	gu[nk	0%
+呋	dp[kf
+呋	fu[kf
+呐	na[kn	90.82%
+呐	ne[kn	9.18%
+呒	fu[kw
+呓	yi[kv
+呔	dd[kt
+呔	td[kt
+呕	ou[kx
+呖	li[kl
+呗	bd[kr	3.71%
+呗	bw[kr	96.29%
+员	yr[kr	100%
+呙	go[kn
+呛	ql[kv
+呜	wu[kw
+呢	ne[kb	98.97%
+呢	ni[kb	1.03%
+呣	mz[km
+呣	mu[km
+呤	lk[ks
+呦	yz[kl
+周	vz[kk
+呯	pk[kp
+呱	gu[kg	5%
+呱	gx[kg	100%
+呱	wa[kg	0%
+呲	ci[kb
+呲	yi[kb
+呲	zi[kb
+味	ww[kw
+呵	aa[kk	8.96%
+呵	he[kk	91.04%
+呵	oo[kk	0%
+呶	nc[ky
+呶	nu[ky
+呷	xx[kj
+呸	pw[kp
+呻	uf[ku
+呼	hu[kh
+命	mk[re
+咀	ju[kq	94%
+咀	zv[kq	6%
+咁	gj[kg
+咁	qm[kg
+咂	za[kj
+咄	do[ki
+咆	pc[ks
+咇	bi[kb
+咇	bp[kb
+咉	yh[ky
+咋	za[kv	98.76%
+咋	ze[kv	0.15%
+咋	va[kv	1.09%
+和	hj[hk	0%
+和	he[hk	99.97%
+和	hu[hk	0%
+和	ho[hk	0.02%
+咍	hd[kk
+咎	gc[wk	0%
+咎	jq[wk	100%
+咏	ys[ky
+咐	fu[kc
+咒	vz[kj
+咔	ka[kb	100%
+咔	ls[kb	0%
+咕	gu[kk
+咖	ga[kk	50%
+咖	jx[kk	35.09%
+咖	ka[kk	14.91%
+咗	zo[kg
+咙	ls[kl
+咚	ds[kd
+咛	nk[kd
+咝	si[ks
+咡	er[ke
+咣	gs[kw
+咣	gl[kw
+咤	ii[kq
+咤	va[kq
+咥	dp[kt	50%
+咥	xi[kt	50%
+咥	vi[kt
+咦	yi[ky
+咧	lp[kd
+咨	zi[dk
+咩	mp[ky
+咪	mi[km
+咫	ii[ib
+咫	vi[ib
+咬	jn[kx	0%
+咬	yc[kx	100%
+咯	ge[kk	2.04%
+咯	ka[kk	0%
+咯	lo[kk	94.72%
+咯	lo[kk	3.22%
+咱	za[kz	1%
+咱	zj[kz	99%
+咳	hd[kr	78.98%
+咳	ka[kr	0%
+咳	kd[kr	0%
+咳	ke[kr	21.02%
+咴	hv[kh
+咸	xm[xk
+咺	xr[kg
+咻	xq[km
+咻	xu[km
+咼	go[kn
+咼	kx[kn
+咼	kk[kn
+咽	yj[kd	88.56%
+咽	ye[kd	11.44%
+咿	yi[ky
+哀	ai[wy
+品	pb[kk
+哂	uf[kx
+哃	ts[kk
+哄	hs[kb
+哆	ie[kx
+哆	do[kx
+哇	wa[kt
+哈	ha[kk	100%
+哈	ka[kk	0%
+哉	zd[uk
+哋	di[ky
+哌	pd[kn
+响	xl[kk
+哎	ai[kx
+哏	gf[kg
+哏	hf[kg
+哐	kl[kw
+哑	ya[ky
+哒	da[kz
+哓	xn[kw
+哔	bi[ku
+哕	hv[kx
+哗	hx[ku
+哙	kk[ks
+哚	do[km
+哝	ns[kn
+哞	mz[kn
+哟	yo[ku
+員	yr[kr	100%
+員	yy[kr	0%
+哢	ls[kc
+哥	ge[dk
+哦	ee[kw	25.51%
+哦	oo[kw	74.49%
+哧	ii[kd
+哨	uc[ko
+哩	li[kl
+哪	na[ke	98.99%
+哪	ne[ke	0.88%
+哪	nw[ke	0.13%
+哭	kc[kq	0%
+哭	ku[kq	100%
+哮	xn[kz
+哱	bw[kz
+哱	bo[kz
+哱	po[kz
+哲	ve[fk
+哳	va[kj
+哺	bu[kf
+哺	fu[kf
+哺	pu[kf
+哼	hg[kl
+哽	gg[kg
+哿	ge[lk
+哿	ke[lk
+唁	yj[kk
+唄	bd[kr	3.71%
+唄	bw[kr	96.29%
+唆	so[kw
+唇	iy[ik	10%
+唇	vf[ik	90%
+唉	ai[ku
+唏	xi[kj
+唐	th[gk
+唑	ui[kt	0%
+唑	zo[kt	100%
+唔	mu[kk	26.76%
+唔	wu[kk	73.24%
+唚	qb[kx
+唛	ma[kw
+唝	gs[kr
+唞	dz[ku
+唠	lc[kl
+唢	so[kr
+唣	zc[kq
+唤	hr[kd
+唧	ji[ke
+唪	fg[kl
+唬	hu[kj
+售	uz[rk
+唯	ww[kf
+唰	ux[kd
+唱	ih[ko
+唳	lw[kq
+唳	li[kq
+唳	lp[kq
+唵	an[kd
+唷	yo[ko
+唸	dm[rx	1%
+唸	nm[rx	99%
+唼	qp[kn
+唼	ua[kn
+唼	za[kn
+唾	tu[ki
+唾	to[ki
+唿	hu[kx
+唿	qu[kx
+啁	ic[kk
+啁	vz[kk
+啁	zz[kk
+啃	kf[ko
+啄	vo[kn
+商	uh[wk
+啉	lj[km
+啉	lb[km
+啊	aa[kk	100%
+啊	oo[kk	0%
+問	wf[mk
+啐	cv[ku
+啓	qi[hk
+啕	tc[kf
+啖	dj[kh
+啜	io[ky
+啞	ee[ky	0%
+啞	ya[ky	100%
+啟	qi[hk
+啡	fw[kf
+啤	pi[ku
+啥	ua[kk
+啦	la[kl
+啧	ze[kr
+啩	gx[kb
+啪	pa[kb	100%
+啪	pd[kb	0%
+啪	px[kb	10%
+啫	ve[ko
+啬	se[uk
+啭	vr[kv
+啮	np[kk
+啰	lo[kx
+啲	di[ku
+啴	ij[kl
+啵	bo[ky
+啶	dk[kr
+啷	lh[ke
+啸	xn[ks
+啻	ii[wk	100%
+啻	di[wk	0%
+啻	ti[wk	0%
+啼	ti[kj
+啾	jq[kh
+啾	qq[kh
+喀	ka[kk
+喀	ke[kk
+喁	ys[ky
+喁	yu[ky
+喂	ww[kn
+喃	nj[kg
+善	uj[yk
+喆	ve[uk
+喇	la[kd
+喈	gd[kb
+喈	jp[kb
+喈	kd[kb
+喉	hz[ku
+喊	hj[kk
+喋	dp[km
+喏	no[kk	96.02%
+喏	re[kk	3.98%
+喑	yb[ko
+喔	oo[kt	35.47%
+喔	wo[kt	64.53%
+喔	wu[kt	0%
+喘	ir[ke
+喙	hv[ku	100%
+喙	yr[ku	0%
+喚	hr[kd
+喜	xi[uk
+喝	he[kv	98%
+喝	ye[kv	2%
+喟	kv[ko
+喤	hl[kw
+喧	xr[kg
+喪	sh[un
+喫	ii[kq
+喬	jn[yl	0%
+喬	qn[yl	100%
+單	ij[bl	0.10%
+單	dj[bl	99.52%
+單	uj[bl	0.38%
+喱	li[kl
+喲	yc[ku	0%
+喲	yo[ku	100%
+喲	yz[ku	0%
+喳	ia[kd	3.49%
+喳	va[kd	96.51%
+喵	mn[kt
+喷	pf[kr
+喹	kv[kt
+喺	xi[kx
+喻	yu[kd
+喽	lz[kn
+喾	ku[xk
+嗄	aa[kw	100%
+嗄	ua[kw	0%
+嗅	xq[kq
+嗆	ql[kv
+嗇	se[uk
+嗉	su[kx
+嗊	gs[kr
+嗊	hs[kr
+嗌	ai[km
+嗌	yi[km
+嗍	uo[ko
+嗎	ma[km
+嗐	hd[kk
+嗐	xx[kk
+嗑	he[km	0%
+嗑	ke[km	100%
+嗒	da[kk	99%
+嗒	ta[kk	1%
+嗓	sh[km
+嗔	if[kb
+嗖	sz[ky
+嗚	wu[kw
+嗜	ui[ko
+嗝	ge[kl
+嗞	zi[ky
+嗟	jp[kg
+嗟	jt[kg
+嗡	wg[kx
+嗣	si[kk
+嗤	ii[ki
+嗥	gc[ku
+嗥	hc[ku
+嗦	so[kx
+嗨	hd[km
+嗩	so[kr
+嗪	qb[kh
+嗫	np[ky
+嗬	he[kk
+嗮	sd[kx
+嗯	en[kx
+嗯	eg[kx
+嗱	na[ku
+嗲	dx[kx	100%
+嗲	dp[kx	0%
+嗳	ai[ky
+嗵	ts[kz
+嗶	bi[ku
+嗷	ao[kw
+嗻	ve[kh
+嗻	vu[kh
+嗽	uu[kr
+嗽	sz[kr
+嗾	sz[ku
+嗾	so[ku
+嗾	zu[ku
+嘀	di[kk
+嘁	qi[kx
+嘁	za[kx
+嘅	ge[kv	100%
+嘅	kd[kv	0%
+嘅	xi[kv	0%
+嘆	tj[ky
+嘈	cc[ko
+嘉	jx[uk
+嘌	bn[kx
+嘌	pn[kx
+嘍	lz[kn
+嘎	ga[kg
+嘏	gu[uy	50%
+嘏	jx[uy	50%
+嘔	ou[kx	100%
+嘔	xu[kx	0%
+嘖	ze[kr
+嘗	ih[xs
+嘘	xu[ky
+嘚	dd[kc
+嘚	de[kc
+嘛	ma[km
+嘜	ma[kw
+嘜	mo[kw
+嘞	le[kl	70%
+嘞	lw[kl	30%
+嘞	ln[kl	0%
+嘟	du[ke
+嘡	th[kt
+嘢	ye[kl
+嘣	bg[ko
+嘤	yk[kn
+嘥	sd[kr
+嘧	mi[ke
+嘩	hx[ku
+嘬	ik[ky	1.47%
+嘬	zv[ky	0%
+嘬	zo[ky	98.53%
+嘭	pg[kp
+嘮	lc[kl
+嘯	xn[ks
+嘰	ji[kj
+嘱	vu[ky
+嘲	ic[ko	99.30%
+嘲	vc[ko	0.70%
+嘴	zv[ky
+嘵	xn[kw
+嘵	yc[kw
+嘶	si[kj
+嘸	fu[kw
+嘸	mu[kw
+嘸	wu[kw
+嘹	ln[kx
+嘻	xi[kk
+嘽	ij[kl
+嘽	dj[kl
+嘽	tj[kl
+嘿	hw[kh	100%
+嘿	mo[kh	0%
+噀	sy[kb
+噀	xy[kb
+噁	ee[yx	100%
+噁	wu[yx	0%
+噂	zy[kc
+噃	fj[kt
+噇	il[kl
+噌	cg[ko
+噌	ig[ko
+噌	zg[ko
+噍	jn[kh
+噍	jq[kh
+噍	qq[kh
+噎	ye[ka
+噓	xu[ky
+噔	dg[ka
+噗	pu[kn
+噘	jt[kr
+噙	hf[kd
+噙	qb[kd
+噜	lu[ko
+噝	si[ks
+噠	da[kz
+噢	oo[kd	99%
+噢	ou[kd	1%
+噢	yu[kd	0%
+噤	jb[kx
+噥	ns[kn
+噦	hv[kx
+噦	yt[kx
+器	qi[kk
+噩	ee[wk
+噪	zc[km
+噫	yi[kx
+噬	ui[kr
+噯	ai[ky
+噱	ju[ku	10%
+噱	jt[ku	10%
+噱	xt[ku	80%
+噲	hv[ks
+噲	kk[ks
+噴	ff[kr	0%
+噴	pf[kr	100%
+噶	ga[kv
+噶	ge[kv
+噸	dy[kt
+噹	dh[xe
+噻	sd[kt
+噼	pi[ku
+嚀	nk[kd
+嚄	ho[ky	50%
+嚄	oo[ky	50%
+嚅	ru[ke
+嚆	gc[kk
+嚆	hc[kk
+嚇	he[kx	0.22%
+嚇	xx[kx	99.78%
+嚎	hc[ku
+嚏	ti[kr
+嚐	ih[xs
+嚓	ca[kx	21.88%
+嚓	ia[kx	78.13%
+嚕	lu[ko
+嚙	np[kk
+嚚	yb[kk
+嚟	li[ku
+嚣	xn[kk
+嚥	yj[kd
+嚦	li[kl
+嚨	ls[kl
+嚭	pi[uk
+嚮	xl[pk
+嚯	ho[kf
+嚯	xt[kf
+嚲	do[wl
+嚳	ku[xk
+嚴	yj[yp
+嚶	yk[kn
+嚷	rh[ky
+嚼	jn[kc	82.38%
+嚼	jt[kc	17.62%
+囀	vr[kv
+囁	np[ky
+囁	ve[ky
+囂	qi[kk
+囂	xn[kk
+囅	ij[bn
+囈	yi[kv
+囉	lo[kx
+囊	nh[ay
+囌	su[cb
+囑	vu[ky
+囔	nh[ky
+囚	qq[kr
+四	si[ke
+囝	jm[kz
+囝	yt[kz
+回	hv[kk
+囟	xb[px
+因	yb[kd
+囡	nj[kn
+团	qq[kc
+团	tr[kc
+囤	dy[kt	18.18%
+囤	ty[kt	81.82%
+囧	js[kv
+囪	il[pw	0%
+囪	cs[pw	100%
+囫	hu[kw
+园	yr[ke
+困	ky[km
+囱	il[pw	0%
+囱	cs[pw	100%
+围	ww[kw
+囵	ly[kb
+囷	jy[kh
+囹	lk[ks
+固	gu[kk
+国	go[ky
+图	tu[kd
+囿	yz[ko
+圃	pu[kf
+圄	wu[kk
+圄	yu[kk
+圆	yr[kr
+圇	ly[kb
+圈	jr[kv	2.17%
+圈	qr[kv	97.83%
+圉	yu[kg
+圊	qk[ko
+國	go[ky
+圌	ir[ke
+圌	iv[ke
+圍	ww[kw
+圐	ku[kf
+園	yr[ke
+圓	yr[kr
+圖	tu[kd
+團	tr[kc
+圙	lt[km
+圜	hr[ky	39.13%
+圜	yr[ky	60.87%
+土	tu[ua
+圢	tk[td
+圣	gk[yt	0%
+圣	ku[yt	100%
+圣	ug[yt	0%
+在	zd[ut
+圩	ww[ty
+圩	yu[ty
+圪	ge[tq
+圪	yi[tq
+圫	ao[tq
+圬	wu[tk
+圭	gv[tt
+圮	pi[tj
+圮	si[tj
+圮	yi[tj
+圯	yi[ts
+地	de[ty	25.60%
+地	di[ty	74.40%
+圲	qm[tq
+圳	iz[ti	0%
+圳	vf[ti	100%
+圳	zy[ti
+圹	kl[tg
+场	ih[tp
+圻	qi[tj
+圻	yi[tj
+圾	ji[tj
+圾	se[tj
+址	vi[tv
+坂	bj[ty
+均	jy[td	100%
+均	yy[td	0%
+坉	dy[tt
+坉	ty[tt
+坊	fh[tf
+坋	ff[td
+坌	bf[bt
+坍	tj[td
+坎	kj[tr
+坏	bw[tb	0%
+坏	hk[tb	0%
+坏	pw[tb	100%
+坏	pi[tb	5%
+坐	zo[rt
+坑	kg[tj
+坒	bi[bt
+块	kk[tg
+坚	jm[lt
+坛	tj[ts
+坜	li[tl
+坝	ba[tr
+坞	wu[tw
+坟	ff[tw
+坠	vv[et
+坡	po[ty
+坤	ky[tu
+坥	ju[tq
+坦	tj[td
+坨	to[tb
+坩	gj[tg
+坪	pk[tp
+坫	dm[tk
+坬	gx[tg
+坭	ni[tb
+坯	pw[tp
+坯	pi[tp
+坰	js[tk
+坳	ao[tl
+坷	ke[tk
+坻	ii[td	50%
+坻	di[td	50%
+坼	ie[ti
+坽	lk[ts
+垂	iv[pa
+垃	la[tl
+垃	le[tl
+垄	ls[lt
+垆	lu[tu
+垈	dd[rt
+型	xk[kt
+垌	ts[tk
+垍	ji[tz
+垎	he[tk
+垏	lu[ty
+垒	lw[st
+垓	gd[tr
+垓	hd[tr
+垕	hz[pt
+垙	gl[tw
+垚	yc[tt
+垛	do[tm
+垞	ia[tq
+垞	vd[tq
+垟	yh[ty
+垠	yb[tg
+垡	fa[rt
+垢	gz[tk
+垣	hr[tg	0%
+垣	yr[tg	100%
+垤	dp[tt
+垤	vi[tt
+垦	kf[gt	0%
+垦	yb[gt	100%
+垧	js[tk
+垧	uh[tk
+垩	ee[yt
+垩	ug[yt
+垫	dm[ft
+垭	ya[ty
+垮	kx[tk
+垯	da[tz
+垱	dh[te
+垲	kd[tj
+垴	nc[tk
+垵	an[td
+垸	hr[te
+垸	wj[te	0%
+垸	yr[te
+垺	fu[tz
+垺	pw[tz
+垾	an[tg
+垾	hj[tg
+垿	xu[tl
+埂	gg[tg
+埃	ai[tu
+埆	jt[ty
+埆	qt[ty
+埇	ys[ty
+埋	md[tl	99.80%
+埋	mj[tl	0.20%
+埌	lh[tl
+城	ig[ti
+埏	uj[tz	50%
+埏	yj[tz	50%
+埒	le[tc
+埒	lw[tc
+埔	bu[tf	7.27%
+埔	pu[tf	92.73%
+埕	ig[tw
+埗	bu[tp
+埘	ui[tc
+埙	xy[tr
+埚	go[tn
+埝	dm[tx
+埝	nm[tx
+埝	np[tx
+域	yu[ta
+埠	bu[tu
+埡	wu[ty
+埡	ya[ty
+埤	bw[tu
+埤	bi[tu
+埤	pi[tu
+埪	ks[tg
+埫	is[tk
+埭	dd[tn
+埯	an[td
+埯	yj[td
+埰	cd[pm
+埴	vi[tq
+埵	do[ti
+執	vi[fw
+埸	yi[tw
+培	pw[tk	100%
+培	pz[tk	0%
+基	ji[qt
+埼	qi[tk
+埽	sc[tj
+堂	th[xt
+堃	ky[ft
+堅	jm[lt
+堆	dv[tf
+堇	jb[na
+堉	yu[to
+堊	ee[yt
+堋	bg[to
+堋	pg[to
+堌	gu[tk
+堍	tu[td
+堎	lk[tw
+堐	ai[tt
+堐	ya[tt
+堑	qm[it
+堕	do[et
+堖	nc[tk
+堙	yb[tt
+堝	go[tn
+堞	dp[tm
+堠	hz[tu
+堡	bc[rt	95.72%
+堡	pu[rt	2.96%
+堤	di[tr	100%
+堤	ti[tr	0%
+堧	rr[td
+堨	ai[tv
+堨	ee[tv
+堨	he[tv
+堨	xp[tv
+堪	kj[tv
+堯	yc[aw
+堰	yj[tn
+報	bc[fy
+堲	ji[gt
+場	ih[tp
+堵	du[to
+堼	fg[tt
+堽	gh[tv
+堾	ir[to
+堾	iy[to
+塄	lg[tf
+塅	dr[ty
+塆	wj[tg
+塊	kk[tg
+塋	yk[ct
+塌	ta[tx
+塍	ig[ot
+塏	kd[tj
+塑	su[bt
+塑	so[bt
+塒	ui[tc
+塔	ta[tk
+塗	tu[dh
+塘	th[tk
+塚	vs[bn
+塝	bh[tf
+塞	sd[bt	88.67%
+塞	se[bt	11.33%
+塞	sw[bt	0%
+塢	wu[tw
+塤	sy[tr
+塤	xr[tr
+塤	xy[tr
+塤	yy[tr
+塥	ge[tl
+填	tm[tb
+塬	yr[tx
+塱	lh[dt
+塵	if[xt
+塹	qm[it
+塾	uu[wt
+塿	lz[tn
+墀	ii[tn
+墀	xi[tn
+墁	mj[ty
+境	jk[te
+墅	uu[lt
+墈	kj[tl
+墉	ys[tl
+墊	dm[ft
+墐	jb[ta
+墒	uh[tk
+墓	mu[ct
+墕	yj[th
+墘	gj[tq
+墘	qm[tq
+墙	ql[tk
+墚	ll[tm
+墜	vv[et
+增	zg[to
+墟	xu[ty
+墡	uj[tk
+墣	pu[tn
+墦	fj[tt
+墨	mo[ht
+墩	dy[tw
+墮	do[et	100%
+墮	hv[et	0%
+墰	tj[ts
+墳	ff[tw
+墻	ql[tk
+墼	ji[it
+墾	kf[gt
+壁	bi[ut
+壅	ys[wt
+壇	tj[ts
+壋	dh[te
+壎	xr[tr
+壎	xy[tr
+壑	he[lt	100%
+壑	ho[lt	0%
+壑	rv[lt	0%
+壓	ya[id
+壕	hc[tu
+壘	lw[st	100%
+壘	lv[st	0%
+壙	kl[tg
+壚	lu[tu
+壜	tj[ts
+壞	gk[tb	0%
+壞	hk[tb	100%
+壟	ls[lt
+壢	li[tl
+壤	rh[ty
+壩	ba[tr
+壪	wj[tg
+士	ui[ua
+壬	rf[qa
+壮	vl[du
+壯	vl[du
+声	ug[up
+壳	ke[uj	97.56%
+壳	qn[uj	2.44%
+壳	qt[uj
+壶	hu[uy
+壸	ky[uy
+壹	yi[ua
+壺	hu[uy
+壼	ky[uy
+壽	uz[fc
+处	iu[wb
+备	bw[wt	0%
+备	yr[wt	100%
+复	fz[pw	0%
+复	fu[pw	100%
+夏	jx[aw	0%
+夏	xx[aw	100%
+夐	xs[dw
+夐	xr[dw
+夔	kv[bw
+夕	xi[pd
+外	wd[xb
+夙	su[jd
+多	do[xx
+夜	ye[wn
+够	gz[bx
+夠	gz[bx
+夢	mg[mx
+夤	yb[xb
+夥	ho[rh
+大	da[un	99.85%
+大	dd[un	0.15%
+大	td[un	0%
+大	xn[un	0%
+天	tm[ad
+太	td[dd	100%
+太	tv[dd	0%
+夫	fu[an
+夬	gk[vn
+夬	jt[vn
+夭	ao[pd	0%
+夭	yc[pd	100%
+央	yh[lg
+夯	bf[dl	2.88%
+夯	hh[dl	97.12%
+夯	li[dl	0%
+夯	nu[dl	0%
+失	ui[pf
+头	tz[dd
+夷	yi[an
+夸	kx[dk
+夹	jx[an	99.70%
+夺	do[dc
+夼	ir[di
+夼	kl[di
+夾	jx[an
+奀	mh[bd
+奁	lm[dx
+奂	hr[dd
+奄	yj[dd
+奇	ji[dk	0.88%
+奇	qi[dk	99.12%
+奈	nd[dx
+奉	fg[fl
+奋	bf[dt	2.5%
+奋	ff[dt	0.5%
+奋	gh[dt	97%
+奎	kv[dt
+奏	zz[ft
+奐	hr[dd
+契	qi[fd	93.95%
+契	qp[fd	0.30%
+契	xp[fd	0.30%
+奓	ii[dx
+奓	ue[dx
+奓	va[dx
+奔	bf[dc
+奕	yi[wd
+奖	jl[dd
+套	tc[ds
+奘	zh[pd	54.55%
+奘	vl[pd	45.45%
+奚	xi[pd
+奠	dm[bd
+奡	ao[al
+奢	ue[do
+奥	ao[pd	100%
+奥	yu[pd	0%
+奧	ao[pd	100%
+奧	yu[pd	0%
+奩	lm[dx
+奪	do[dc
+奬	jl[dd
+奭	ui[db
+奮	ff[dt
+女	nv[va	100%
+女	ru[va	0%
+奴	nu[ny
+奶	nd[nn
+奸	jm[ng
+她	ta[ny	100%
+她	yi[ny	0%
+奼	ia[nq
+好	hc[nz
+妁	uo[nu
+如	ru[nk
+妃	fw[nj	100%
+妃	pw[nj	0%
+妄	wh[wn
+妆	vl[dn
+妇	fu[ne
+妈	ma[nm
+妊	rf[nr
+妍	yj[nk
+妒	du[nh
+妓	ji[ny
+妖	yc[ny
+妗	jb[nv
+妘	yy[ns
+妙	mn[nu
+妝	vl[dn
+妞	nq[ni
+妣	bi[nb
+妤	yu[nl
+妥	to[pn
+妧	wj[ne
+妧	yr[ne
+妨	fh[nf
+妩	wu[nw
+妪	yu[nx
+妫	gv[nw
+妭	bo[nd
+妮	ni[nb
+妯	vz[ny
+妯	vu[ny
+妲	da[nd
+妲	dj[nd
+妹	mw[nw
+妻	qi[an
+妾	qp[ln
+姆	mu[nm
+姈	lk[ns
+姊	jp[np
+姊	zi[np
+始	ui[nk
+姍	uj[nc	100%
+姍	xm[nc	0%
+姐	jp[nq
+姑	gu[nk
+姒	si[nr
+姓	xk[nu
+委	ww[hn
+姗	uj[nc	100%
+姗	xm[nc	0%
+姘	pb[nk
+姚	yc[nd
+姜	jl[yn
+姝	uu[nv
+姝	vu[nv
+姞	ji[nk
+姣	jn[nx
+姤	gz[nk
+姤	hz[nk
+姥	lc[nb	100%
+姥	mu[nb	0%
+姦	jm[ng
+姨	yi[ny
+姬	ji[nl
+姮	hg[ng
+姮	yr[ng
+姱	kx[nk
+姶	ee[nk
+姶	yj[nk
+姹	ia[nq
+姻	yb[nd
+姽	gv[nv
+姽	ww[nv
+姿	zi[dn
+娀	rs[nu
+娀	ss[nu
+威	ww[xn
+娃	wa[nt
+娄	lz[mn
+娄	lv[mn
+娅	ya[ny
+娆	rc[nw
+娇	jn[nl
+娈	lr[wn
+娉	pk[nv
+娌	li[nl
+娑	so[dn
+娓	ww[nm
+娘	nx[nl	0%
+娘	nl[nl	100%
+娛	yu[nt
+娜	na[ne	99.85%
+娜	no[ne	0.15%
+娟	jr[no
+娠	if[nn
+娠	uf[nn
+娠	vf[nn
+娣	di[np	100%
+娣	ti[np	0%
+娥	ee[nw
+娩	mm[nv
+娩	wj[nv
+娱	yu[nt
+娲	wa[nn
+娴	xm[nm
+娵	ju[ny
+娵	qu[ny
+娵	zz[ny
+娶	qu[en
+娼	ih[no
+婀	ee[nk
+婁	lz[mn
+婁	lv[mn
+婆	po[dn
+婉	wj[nv
+婊	bn[ny
+婌	uu[ny
+婍	qi[nk
+婕	jp[nr
+婘	jr[nv
+婘	qr[nv
+婚	hy[no
+婞	xk[ng
+婠	gr[nk
+婠	wj[nk
+婢	bw[nu
+婢	bi[nu
+婤	iz[nk
+婤	vz[nk
+婦	fu[ne
+婧	jk[no	100%
+婧	qm[no	0%
+婪	lj[mn
+婫	hy[nb
+婫	ky[nb
+婭	ya[ny
+婳	hx[nk
+婴	yk[kn
+婵	ij[nl
+婶	uf[nu
+婷	tk[nd
+婺	wu[sn
+婻	nj[ng
+婼	io[nk
+婼	er[nk
+婼	ro[nk
+婿	xu[no
+媂	di[nj
+媄	mw[nd
+媆	rr[nd
+媒	mw[nm
+媓	hl[nw
+媖	yk[ny
+媚	mw[no
+媛	yr[ny
+媞	ui[nr
+媞	ti[nr
+媧	wa[nn
+媧	wo[nn
+媪	ao[nm
+媪	wf[nm
+媭	xu[pn
+媯	gv[nw
+媯	ww[nw
+媱	yc[nf
+媲	bi[nb
+媲	pi[nb
+媳	xi[nx
+媵	yk[on
+媸	ii[ni
+媼	ao[nm
+媼	wf[nm
+媽	ma[nm
+媾	gz[nr
+嫁	jx[nu
+嫂	sc[ny
+嫄	yr[nx
+嫉	ji[nu
+嫋	nn[py
+嫌	xm[nn
+嫐	nc[nn
+嫒	ai[ny
+嫔	pb[nb
+嫕	yi[nx
+嫖	pn[nx
+嫗	yu[nx
+嫘	lw[nx
+嫚	mj[ny
+嫜	vh[nu
+嫠	li[wn
+嫡	di[nk
+嫣	yj[nh
+嫦	ih[nj
+嫩	nf[nw
+嫩	ny[nw
+嫪	lc[np
+嫫	mo[nd
+嫭	hu[nh
+嫱	ql[nk
+嫵	fu[nw
+嫵	wu[nw
+嫺	xm[nm
+嫻	xm[nm
+嫽	ln[nx
+嫿	hx[nk
+嬀	gv[nw
+嬀	ww[nw
+嬃	xu[pn
+嬈	rc[nw
+嬈	yc[nw
+嬉	xi[nk
+嬋	ij[nl
+嬌	jn[nl
+嬖	bi[un
+嬗	uj[nd
+嬙	ql[nk
+嬛	hr[ny
+嬛	qs[ny
+嬛	xr[ny
+嬡	ai[ny
+嬤	ma[nm
+嬤	mo[nm
+嬥	tn[nf
+嬥	vo[nf
+嬪	bb[nb	0%
+嬪	pb[nb	100%
+嬬	ru[ne
+嬬	xu[ne
+嬰	yk[kn
+嬲	nn[tl
+嬴	yk[wf
+嬷	ma[nm
+嬷	mo[nm
+嬸	uf[nu
+嬿	yj[nh
+孀	ul[no
+孃	nx[nl
+孃	nl[nl
+孅	qm[nj
+孅	xm[nj
+孌	lr[wn
+孌	lr[wn
+子	zi[va
+孑	jp[va
+孓	jt[vn
+孔	ks[zv
+孕	yy[nz
+孖	zi[zz
+字	zi[bz
+存	cy[uz
+孙	sy[zx
+孚	fu[pz
+孛	bw[uz	75.68%
+孛	bo[uz	24.32%
+孜	zi[zw
+孝	xn[lz
+孟	mg[zm
+孢	bc[zs
+季	ji[hz
+孤	gu[zg
+孥	nu[nz
+学	xn[xz
+学	xt[xz
+孩	hd[zr
+孪	lr[wz
+孪	lr[wz
+孫	sy[zx	100%
+孫	xy[zx	0%
+孬	hk[bz	0%
+孬	nc[bz	100%
+孰	uu[ww
+孱	cj[uz	50%
+孱	ij[uz	50%
+孳	zi[bz
+孵	fu[lz
+學	xn[xz	0%
+學	xt[xz	100%
+孺	ru[ze
+孽	np[cz
+孿	lr[wz
+孿	lr[wz
+宁	nk[bd	0%
+宁	vu[bd	100%
+它	ta[bb	100%
+它	to[bb	0%
+宄	gv[bj
+宄	jq[bj
+宅	vd[bq	100%
+宅	ve[bq	0%
+宇	yu[by
+守	uz[bc
+安	an[bn
+宋	ss[bm
+完	wj[be
+宏	hs[bs
+宓	fu[bb
+宓	mi[bb
+宕	dh[bu	100%
+宕	yj[bu	0%
+宗	zs[bx
+官	gr[bk
+宙	vz[by
+定	dk[br
+宛	wj[bv	99%
+宛	yr[bv	1%
+宜	yi[bq
+宝	bc[by
+实	ui[bd
+宠	is[bl
+审	uf[bu
+客	ke[bk
+宣	xr[bg
+室	ui[bt
+宥	yz[bo
+宦	hr[bi
+宧	yi[bl
+宪	hy[be	33%
+宪	mc[be	33%
+宪	xm[be	0%
+宪	xs[be	34%
+宫	gs[bk
+宬	ig[bi
+宮	gs[bk
+宰	zd[bu
+害	hd[bk	100%
+害	he[bk	0%
+宴	yj[bn
+宵	xn[bo
+家	gu[bu	0.01%
+家	jx[bu	99.99%
+宸	if[bn
+容	rs[bk
+宽	kr[be
+宾	bb[bb
+宿	su[bb	84.69%
+宿	xq[bb	15.31%
+寀	cd[pm
+寁	zj[br
+寂	ji[by
+寄	ji[bk
+寅	yb[bb
+密	mi[be
+寇	kz[by
+富	fu[bt
+寐	mw[bw
+寒	hj[bd
+寓	yu[by
+寝	qb[by
+寞	mo[bd
+察	ia[bx
+寡	gx[bd
+寢	qb[by
+寤	wu[bk
+寥	ln[bp
+實	ui[bd
+寧	nk[bd
+寨	vd[bm
+審	uf[bu
+寫	xp[by
+寬	kr[be
+寮	ln[bx
+寰	hr[by
+寵	is[bl
+寶	bc[by
+寸	cy[ad
+对	dv[yc
+寺	si[tc
+寻	xy[ec	99.96%
+导	dc[sc
+寿	uz[fc
+封	fg[tc
+射	ue[uc	100%
+射	ui[uc	0%
+射	ye[uc	0%
+射	yi[uc	0%
+将	jl[dc	100%
+将	ql[dc	0%
+將	jl[dc	100%
+將	ql[dc	0%
+專	vr[ad
+尉	ww[uc	96.39%
+尉	yu[uc	3.61%
+尊	zy[bc
+尋	xb[ec	0.04%
+尋	xt[ec	0%
+尋	xy[ec	99.96%
+對	dv[yc
+導	dc[sc
+小	xn[ld
+少	uc[xp
+尔	er[dx
+尕	ga[nx
+尕	nd[nx
+尖	jm[xd
+尘	if[xt
+尚	uh[xk
+尜	ga[xx
+尝	ih[xs
+尢	wh[uv
+尤	yz[yd
+尥	ln[yu
+尧	yc[aw
+尨	mh[ud
+尨	mg[ud
+尨	ph[ud
+尪	wh[yw
+尬	ga[yl
+尬	jp[yl
+就	jq[wy
+尴	gj[ym
+尷	gj[ym
+尷	jm[ym
+尸	ui[vp
+尹	yb[vp
+尺	ie[un	0.52%
+尺	ii[un	99.48%
+尻	kc[uj
+尼	ni[ub
+尽	jb[id
+尾	ww[um	99%
+尾	yi[um	1%
+尿	nn[uu	99.61%
+尿	sv[uu	0.39%
+局	ju[uk
+屁	pi[ub
+层	cg[us
+屃	xi[ur
+屄	bi[ub
+居	ji[uk	0%
+居	ju[uk	100%
+屆	jp[uy	100%
+屆	qu[uy	0%
+屈	jt[ui	0%
+屈	qu[ui	100%
+屉	ti[uu
+届	jp[uy	100%
+届	qu[uy	0%
+屋	wu[ut
+屌	dn[uj
+屍	ui[vp
+屎	ui[um	100%
+屎	xi[um	0%
+屏	bk[uk	0.76%
+屏	pk[uk	99.24%
+屐	ji[uy
+屑	xn[uo	0%
+屑	xp[uo
+屑	xt[uo
+屓	xi[ur
+展	vj[un
+屙	ee[uk
+屜	ti[uu
+屜	xp[uu
+属	uu[uy	99.93%
+属	vu[uy	0.07%
+屠	iu[uo	0%
+屠	tu[uo	100%
+屡	lv[un
+屢	lv[un
+屣	xi[ur
+層	cg[us
+履	li[uw	0%
+履	lv[uw	100%
+屦	ju[un
+屨	ju[un
+屬	uu[uy	99.93%
+屬	vu[uy	0.07%
+屯	iy[av	0%
+屯	ty[av	99.71%
+屯	vy[av	0.29%
+山	uj[lk
+屹	qi[eq
+屹	yi[eq
+屺	qi[ej
+屼	wu[ew
+屾	uj[ee
+屾	uf[ee
+屾	xm[ee
+屿	yu[ey
+岁	sv[ex
+岂	kd[ej
+岂	qi[ej
+岈	xx[ey
+岈	ya[ey
+岊	ba[be
+岊	jp[be
+岌	ji[ej
+岍	qm[ek
+岍	yj[ek
+岐	qi[ey
+岑	cf[ev
+岔	ia[be
+岖	qu[ex
+岗	gh[ex
+岘	xm[ee
+岙	ao[ye
+岚	lj[ex
+岛	dc[pe
+岜	ba[eb
+岞	ze[ev
+岞	zo[ev
+岡	gh[kx
+岢	ke[ek
+岣	gz[ek
+岨	cu[eq
+岨	ju[eq
+岨	qu[eq
+岨	zu[eq
+岩	yj[eu
+岫	di[ey
+岫	xq[ey
+岫	yz[ey
+岫	vz[ey
+岬	jx[ej
+岭	lk[es
+岱	dd[re
+岳	yt[qe
+岵	gu[ek
+岵	hu[ek
+岷	mb[em
+岸	an[eg
+岽	ds[ed
+岿	kv[ee
+峁	mc[ee
+峂	ts[ed
+峃	xt[xe
+峄	yi[el
+峋	xy[eo
+峒	ds[ek	72.22%
+峒	ts[ek	27.78%
+峗	ww[ev
+峘	hu[eg
+峘	hr[eg
+峘	yr[eg
+峙	vi[ec
+峡	xx[ej
+峣	yc[ew
+峤	jn[el	26.19%
+峥	ig[el
+峥	vg[el
+峦	lr[we
+峧	jn[ex
+峨	ee[ew
+峪	yu[ek
+峭	qn[eo
+峯	fg[ef
+峰	fg[ef
+峱	nc[qe
+峴	jm[ee
+峴	xm[ee
+島	dc[pe
+峻	jy[ew
+峽	xx[ej
+峿	wu[ek
+崀	lh[el
+崁	kj[er
+崂	lc[el
+崃	ld[el
+崄	xm[ea
+崆	ks[eg
+崇	is[ex
+崌	ju[ek
+崍	ld[el
+崎	qi[ek
+崑	ky[ob
+崒	cv[eu
+崒	zu[eu
+崔	cv[ef
+崖	ai[et	0%
+崖	ya[et
+崖	yd[et
+崗	gh[ex
+崙	ly[rb
+崚	lg[ew
+崛	jt[ei
+崛	qu[ei
+崞	go[ez
+崟	yb[ej
+崡	hj[ek
+崢	ig[el
+崢	vg[el
+崤	yc[eo
+崦	yj[ed
+崧	ss[es
+崩	bg[eo
+崬	ds[ed
+崭	vj[ej
+崮	gu[ek
+崴	wd[en
+崴	ww[en
+崶	fg[ec
+崽	zd[ex
+崾	yc[en
+崿	ee[ek
+嵁	kj[ev
+嵅	gj[ek
+嵅	xm[ek
+嵇	ji[he
+嵊	ug[en
+嵋	mw[eo
+嵌	kj[er	2.45%
+嵌	qm[er	97.55%
+嵎	yu[ey
+嵐	lj[ex
+嵖	co[ed
+嵗	sv[ex
+嵘	rs[em
+嵚	qb[er
+嵛	yu[ed
+嵝	lz[en
+嵩	ss[ek
+嵫	zi[ey
+嵬	ww[eg
+嵯	co[eg
+嵲	np[em
+嵴	ji[eo
+嶁	lz[en
+嶂	vh[eu
+嶄	ij[ej
+嶄	vj[ej
+嶅	ao[fe
+嶇	qu[ex
+嶍	xi[eb
+嶒	cg[eo
+嶓	bo[et
+嶔	qb[er
+嶗	lc[el
+嶙	lb[el
+嶝	dg[ea
+嶟	zy[ec
+嶠	jn[el
+嶠	qn[el
+嶢	yc[ew
+嶦	uj[ek
+嶦	vj[ek
+嶧	yi[el
+嶨	xt[xe
+嶮	xm[ea
+嶲	sv[ev
+嶲	xi[ev
+嶴	ao[ye
+嶷	ni[er
+嶷	yi[er
+嶸	hs[em
+嶸	rs[em
+嶺	lk[es
+嶼	yu[ey
+嶽	yt[qe
+巅	dm[er
+巇	xi[eg
+巉	ij[ed
+巋	kv[ee
+巍	ww[eg
+巒	lr[we
+巔	dm[er
+巖	yj[eu
+巘	xm[eq
+巘	yj[eq
+川	ir[pl
+州	vz[dl
+巡	xy[zv
+巢	ic[vg
+工	gs[aa
+左	zo[ug
+巧	qn[gv
+巨	ju[ka
+巩	gs[gf
+巫	wu[gr
+差	ia[yg	98.10%
+差	id[yg	1.63%
+差	ci[yg	0.27%
+差	co[yg	0%
+巯	qq[vv
+巰	lq[vv
+巰	qq[vv
+己	ji[vv
+已	yi[vv
+巳	si[vv
+巴	ba[sl
+巷	hh[cs	3.38%
+巷	xl[cs	96.62%
+巹	ig[lv
+巹	jb[lv
+巽	sy[sb
+巽	xy[sb
+巾	jb[ll
+币	bi[pj
+币	yb[pj
+市	ui[wj
+布	bu[uj
+帅	uk[lj
+帆	fj[jf
+师	ui[lj
+希	xi[xj
+帏	ww[jw
+帐	vh[ji
+帑	nu[nj	30%
+帑	th[nj	70%
+帔	pw[jy
+帔	pi[jy
+帕	pa[jb
+帖	tp[jk
+帘	lm[bj
+帙	vi[ju
+帚	vz[ej
+帛	bo[bj
+帜	vi[jb
+帝	di[wj
+帡	pk[jk
+帥	uk[lj	100%
+帥	uo[lj	0%
+带	dd[fj
+帧	vg[jr
+帨	uv[je
+師	ui[lj
+席	xi[gj
+帮	bh[fj
+帱	iz[jc	50%
+帱	dc[jc	50%
+帳	vh[ji
+帶	dd[fj
+帷	ww[jf
+常	ih[xj
+帻	ze[jr
+帼	go[jy
+帽	mc[jo
+幀	vf[jr
+幀	vg[jr
+幂	mi[bj
+幂	mu[bj
+幃	ww[jw
+幄	wo[jt
+幅	fu[jt
+幌	hl[jw
+幔	mj[jy
+幕	mo[cj	0%
+幕	mu[cj	100%
+幖	bn[jx
+幗	go[jy
+幘	ze[jr
+幛	vh[ju
+幞	fu[jn
+幞	pu[jn
+幟	ii[jb	0%
+幟	vi[jb	100%
+幡	fj[jt
+幡	po[jt
+幢	il[jl	2.33%
+幢	vl[jl	97.67%
+幣	bi[pj
+幪	mg[ju
+幫	bh[fj
+幬	iz[jc	50%
+幬	dc[jc	50%
+干	gj[au
+平	pk[au
+年	nm[pl
+并	bk[bk
+幸	xk[tg
+幹	gj[au	100%
+幹	hj[au	0%
+幺	yc[vs
+幻	hr[yv
+幼	yz[yl
+幽	yz[ey
+幾	ji[pv
+广	gl[wp	0%
+广	yj[wp	100%
+庄	pg[gt	98%
+庄	vl[gt	2%
+庆	qk[gd
+庇	bi[gb
+床	il[gm
+庋	gv[gy
+庋	ji[gy
+庋	vi[gy
+序	xu[gl
+庐	lu[gh
+庑	wu[gw
+库	ku[gi
+应	yk[ga
+底	de[gd	1.38%
+底	di[gd	98.62%
+庖	pc[gs
+店	dm[gk
+庙	mn[gy
+庚	gg[gn
+府	fu[gc
+庞	ph[gl
+废	fw[gd
+庠	xl[gy
+庤	vi[gc
+庥	xq[gm
+度	du[gy	99.97%
+度	do[gy	0.03%
+座	zo[gt
+庫	ku[gi	100%
+庫	ue[gi	0%
+庭	tk[gz
+庱	ig[gw
+庳	bw[gu
+庳	bi[gu
+庵	an[gd
+庶	uu[gh
+康	kh[gn
+庸	ys[gl
+庹	to[gi
+庼	qk[gr
+庾	yu[gy
+廁	ce[id	100%
+廁	ci[id	0%
+廁	si[id	0%
+廂	xl[io
+廄	ji[iv
+廄	jq[iv
+廆	gv[gg
+廆	hv[gg
+廈	ua[iw	41.78%
+廈	xx[iw	58.22%
+廉	lm[gn
+廊	lh[ge
+廋	sz[gy
+廎	qk[gr
+廑	jb[ga
+廒	ao[gw
+廓	ko[ge
+廕	yb[co
+廖	ln[gp
+廙	yi[gb
+廚	iu[ic
+廛	ij[gt
+廝	si[ij
+廟	mn[gy
+廠	ih[ap
+廡	wu[gw
+廢	fw[gd
+廣	gl[wp
+廨	jp[gn
+廨	xp[gn
+廩	lb[gx
+廪	lb[gx
+廬	lu[gh
+廳	tk[id
+延	yj[zv
+廷	tk[zr
+建	jm[zy
+廿	nm[ca
+开	jm[ac	95%
+开	kd[ac	0%
+开	qm[ac	5%
+弁	bm[sc
+弁	pj[sc
+异	yi[sc
+弃	qi[wc
+弄	ls[wc	3.66%
+弄	ng[wc	0%
+弄	ns[wc	96.34%
+弄	nz[wc	0%
+弆	ju[tc
+弇	yj[rc
+弈	yi[wc
+弊	bi[dc
+弋	yi[ad
+式	ui[yg
+弑	ui[xg
+弒	ui[xg
+弓	gs[vv
+弔	dn[kj
+引	yb[gl
+弘	hs[gs
+弛	ii[gy
+弛	ui[gy
+弟	di[bp	100%
+弟	ti[bp	0%
+张	vh[gi
+弢	tc[gy
+弥	mi[gx
+弦	xm[gy
+弦	xr[gy
+弧	hu[gg
+弨	ic[gk
+弨	vc[gk
+弩	nu[ng
+弭	mi[ge
+弯	wj[wg
+弱	ro[gd
+張	vh[gi
+弶	jl[gx
+弶	lt[gx
+強	jl[gi	0.01%
+強	ql[gi	99.99%
+弸	bg[go
+弹	dj[gl	22.28%
+弹	tj[gl	77.72%
+强	jl[gi	0.01%
+强	ql[gi	99.99%
+弼	bi[gg
+彀	gz[uy
+彆	bp[kd
+彈	dj[gl	22.28%
+彈	tj[gl	77.72%
+彌	mi[gx
+彎	wj[wg
+归	gv[le
+归	kv[le
+当	dh[xe
+彔	lu[eu
+录	lu[eu
+彖	hv[vu
+彖	tr[vu
+彗	hv[fe
+彘	vi[vb
+彙	hv[dk
+彝	yi[vc
+彞	yi[vc
+彟	ho[ey
+彠	ho[ey
+形	xk[kp
+彤	ts[dp
+彥	yj[ip
+彦	yj[ip
+彧	yu[ad
+彩	cd[pp
+彪	bn[hp
+彫	dn[kf
+彬	bb[mp
+彭	pg[up
+彰	vh[lp
+影	yk[op
+彳	ii[pr
+彷	fh[if	37.93%
+彷	ph[if	62.07%
+役	yi[iy
+彻	ie[id
+彼	bi[iy
+彿	fu[rf
+往	wh[iv
+征	vg[iv
+徂	cu[iq
+径	jk[ig
+待	dd[ic
+徇	xy[io
+很	hf[ig
+徉	yh[iy
+徊	hk[ik	88.24%
+徊	hv[ik	11.76%
+律	lv[iy
+後	hz[pk
+徐	xu[ih
+徑	jk[ig
+徒	tu[ir
+徕	ld[il
+得	dd[ic	0%
+得	de[ic	97%
+得	dw[ic	3%
+得	di[ic	0%
+徘	pd[if
+徙	tu[ir	0%
+徙	xi[ir	100%
+徛	ji[ik
+徛	qi[ik
+徜	ih[ik
+徜	th[ik
+從	cs[rr	100%
+從	zs[rr	0%
+徠	ld[il
+御	ya[ie	0%
+御	yu[ie	100%
+徨	hl[iw
+復	fz[pw	0%
+復	fu[pw	100%
+循	xy[io
+徭	yc[if
+微	ww[iw
+徵	vg[iv	95%
+徵	vi[iv	5%
+德	de[ix
+徹	ie[id
+徼	jn[iw
+徼	yc[iw
+徽	hv[iw
+心	xb[dd
+必	bi[dd
+忆	yi[xv
+忉	dc[xd
+忌	ji[jx
+忍	rf[rx
+忏	ij[xq	1%
+忏	qm[xq	99%
+忐	tj[ux
+忑	te[xx
+忒	te[yx	23.24%
+忒	tw[yx	56.44%
+忖	cy[xc
+志	vi[ux
+忘	wh[wx
+忙	mh[xw
+忝	tm[tx
+忞	mb[wx
+忞	wf[wx
+忠	vs[vx
+忡	is[xv
+忤	wu[xw
+忧	yz[xy
+忪	ss[xs	100%
+忪	vs[xs	0%
+快	kk[xg
+忭	bm[xb
+忮	vi[xy
+忱	if[xv
+忳	ty[xt
+念	nm[rx
+忸	nq[xi
+忸	nv[xi
+忺	qm[xr
+忺	xm[xr
+忻	xb[xj
+忽	hu[wx
+忾	kd[xq
+忾	xi[xq
+忿	ff[bx
+怀	fu[xb	100%
+怀	hk[xb	0%
+态	td[tx
+怂	ss[rx
+怃	wu[xw
+怄	ou[xx
+怅	ih[xi
+怆	il[xv
+怊	ic[xk
+怊	vc[xk
+怍	zo[xv
+怎	ze[vx	1%
+怎	zf[vx	99%
+怏	yh[xy
+怒	nu[nx
+怔	lg[xv	0%
+怔	vg[xv	100%
+怕	pa[xb
+怖	bu[xj
+怙	gu[xk
+怙	hu[xk
+怛	da[xd
+怛	dj[xd
+怛	tj[xd
+怜	lm[xs	0%
+怜	lk[xs
+思	sd[tx	0%
+思	si[tx	100%
+怠	dd[sx
+怡	yi[xk
+急	ji[dx
+怦	pg[xp
+性	xk[xu
+怨	yr[xx
+怩	ni[xb
+怪	gk[xt
+怫	fw[xf	50%
+怫	fu[xf	50%
+怯	qp[xs
+怯	qt[xs
+怵	iu[xu
+总	zs[bx
+怼	dv[yx
+怿	yi[xl
+恂	xy[xo
+恃	ui[xc
+恆	hg[xg
+恋	lm[wx
+恍	hl[xw
+恐	ks[gx
+恒	hg[xg
+恓	xi[xx
+恔	jn[xx
+恔	xn[xx
+恕	uu[nx
+恙	yh[yx
+恚	hv[tx
+恝	jx[fx
+恝	qi[fx
+恢	hv[xh
+恣	ci[dx
+恣	zi[dx
+恤	xu[xx
+恥	ii[ev
+恧	er[ex
+恧	nv[ex
+恨	hf[xg
+恩	en[kx
+恪	ke[xk	100%
+恪	qt[xk	0%
+恫	ds[xk
+恫	ts[xk
+恬	tm[xk
+恭	gs[cx
+息	xi[zx
+恰	qx[xk	100%
+恰	xx[xk	0%
+恳	kf[gx
+恶	ee[yx	99.99%
+恶	wu[yx	0.01%
+恸	ts[xl
+恹	yj[xq
+恺	kd[xj
+恻	ce[xd
+恼	nc[xk
+恽	yy[xi
+恿	ys[sx
+悃	ky[xm
+悄	qn[xo
+悅	yt[xe
+悆	uu[rx
+悆	yu[rx
+悈	jp[xc
+悉	xi[px
+悌	di[xp
+悌	ti[xp
+悍	hj[xg
+悒	yi[xb
+悔	hv[xm
+悖	bw[xz	100%
+悖	bo[xz	0%
+悚	ss[xu
+悛	jr[xw
+悛	qr[xw
+悝	kv[xl
+悝	li[xl
+悟	wu[xk
+悠	yz[rx
+悢	lh[xl
+悢	ll[xl
+患	hr[ix
+悦	yt[xe
+您	nb[rx
+悫	qt[ux
+悬	xr[qx
+悭	qm[xt
+悯	mb[xw
+悰	cs[xx
+悱	fw[xf
+悲	bw[fx
+悴	cv[xu
+悵	ih[xi
+悵	vh[xi
+悶	mf[mx
+悸	ji[xz
+悻	xk[xg
+悼	dc[xu	100%
+悼	dn[xu	0%
+悽	qi[dn
+情	qk[xo
+惆	iz[xk
+惇	dy[xz
+惊	jk[xx	0%
+惊	ll[xx
+惋	wj[xv
+惎	ji[qx
+惎	qi[qx
+惑	ho[gx
+惔	tj[xh
+惔	yj[xh
+惕	ti[xw
+惗	np[xx
+惘	wh[xw
+惙	io[xy
+惚	hu[xx
+惛	hy[xo
+惜	xi[xo
+惝	ih[xk	50%
+惝	th[xk	50%
+惟	ww[xf
+惠	hv[ax
+惡	ee[yx	95%
+惡	wu[yx	5%
+惦	dm[xk
+惧	ju[xb
+惨	cj[xp
+惩	ig[ix
+惫	bw[wx
+惬	qp[xj
+惭	cj[xj
+惮	dj[xl
+惯	gr[xr
+惰	do[xo
+惱	nc[xk
+惲	yy[xi
+想	xl[mx
+惴	vv[xe
+惶	hl[xw
+惹	re[cx
+惺	xk[xu
+惻	ce[xd
+愀	jq[xh
+愀	qn[xh
+愀	qq[xh
+愁	iz[hx
+愃	xr[xg
+愆	qm[ix
+愆	yj[ix
+愈	yu[rx
+愉	yu[xd
+愍	mb[mx
+愎	bi[xw
+愎	fu[xw
+意	yi[lx
+愐	mm[xm
+愔	yb[xo
+愕	ee[xk
+愚	yu[yx
+愛	ai[py
+愜	qp[xj
+愜	xx[xj
+感	gj[xx	100%
+感	hj[xx	0%
+愠	yy[xm
+愣	lg[xf
+愤	ff[xr
+愦	kv[xr
+愧	kv[xg
+愨	qt[ux
+愫	su[xx
+愭	qi[xo
+愴	ch[xv
+愴	il[xv
+愷	kd[xj
+愾	kd[xq
+愾	xi[xq
+愿	yr[ix
+慄	li[xm
+慆	tc[xj
+慈	ci[bx
+慊	jm[xn
+慊	qm[xn	72.73%
+慊	qp[xn	27.27%
+態	td[tx
+慌	hg[xv	0%
+慌	hl[xv	100%
+慍	yy[xm
+慎	uf[xb
+慑	ue[xy
+慕	mu[cx
+慘	cj[xp
+慚	cj[xj
+慝	ni[kx
+慝	te[kx
+慟	ds[xl
+慟	ts[xl
+慢	mj[xy
+慣	gr[xr
+慤	qt[ux
+慥	cc[xz
+慥	zc[xz
+慧	hv[fx
+慨	kd[xv
+慪	ou[xx
+慫	ss[rx
+慬	jb[xa
+慬	qb[xa
+慭	yb[lx
+慮	lv[hx
+慰	ww[ux
+慳	jm[xt
+慳	kg[xt
+慳	qm[xt
+慵	ys[xl
+慶	qk[gd
+慷	kh[xn
+慼	qi[wx
+慾	yu[br
+憂	yz[xy
+憊	bw[wx
+憋	bp[dx
+憎	zg[xo
+憐	lm[xs
+憑	pk[rj
+憒	kv[xr
+憔	jn[xh
+憔	qn[xh
+憕	ig[xa
+憕	dg[xa
+憕	vg[xa
+憖	yb[lx
+憙	xi[ux
+憚	dj[xl
+憤	ff[xr
+憧	is[xl
+憨	gj[vx	0%
+憨	hj[vx	100%
+憩	qi[qx
+憩	xi[qx
+憫	mb[xw
+憬	jk[xx
+憭	ln[xx
+憮	wu[xw
+憲	xm[be
+憶	yi[xv
+憷	iu[xr
+憺	dj[xk
+憾	hj[xx
+懂	ds[xv
+懇	kf[gx
+懈	xp[xn
+應	yk[ga
+懊	ao[xd
+懋	mc[mx
+懋	mz[mx
+懌	yi[xl
+懍	lb[xx
+懑	mf[dx
+懒	lj[xr
+懔	lb[xx
+懞	mg[cu
+懟	dv[yx
+懣	mj[dx
+懣	mf[dx
+懦	no[xe
+懦	ru[xe
+懨	yj[xq
+懲	ig[ix
+懵	mg[xo
+懶	lj[xr
+懷	hk[xb
+懸	xr[qx
+懺	ij[xq
+懼	ju[xb
+懾	np[xy
+懾	ue[xy
+懾	ve[xy
+懿	yi[ux
+戀	lm[wx
+戆	gh[lx	100%
+戆	vl[lx	0%
+戇	gh[lx	100%
+戇	vl[lx	0%
+戈	ge[ad
+戊	wu[gp
+戋	jm[ad
+戌	xu[wa
+戍	uu[wd
+戎	rs[gu
+戏	hu[yg	0%
+戏	hv[yg	0%
+戏	xi[yg	100%
+成	ig[wv
+我	ee[pd	0%
+我	wo[pd	100%
+戒	jp[gc
+戔	jm[ad
+戕	ji[pg
+戕	ql[pg
+或	ho[ga
+戗	ql[rg
+战	vj[lg
+戚	cu[wx	0%
+戚	qi[wx	100%
+戛	ga[ag
+戛	jx[ag
+戟	ji[ug
+戡	kj[qg
+戢	ji[kd
+戢	vi[kd
+戣	kv[vg
+戤	gd[ng
+戥	dg[og
+戧	il[rg
+戧	ql[rg
+戩	jm[yg
+戩	jb[yg
+截	jp[uf
+戬	jm[yg
+戬	jb[yg
+戭	yj[bg
+戭	yb[bg
+戮	lu[xg
+戰	vj[lg
+戲	hu[yg	0%
+戲	hv[yg	0%
+戲	xi[yg	100%
+戳	io[xg
+戴	dd[ub
+戶	hu[du
+户	hu[du
+戽	hu[hu
+戾	lw[hq
+戾	li[hq
+戾	lp[hq
+房	fh[hf	100%
+房	ph[hf	0%
+所	so[pj
+扁	bm[hc	99.37%
+扁	pm[hc	0.63%
+扂	dm[hk
+扃	js[hk
+扃	ju[hk
+扅	yi[hx
+扆	yi[hy
+扇	uj[hx
+扈	hu[hb
+扉	fw[hf
+扊	yj[hh
+手	uz[pl
+才	cd[ap
+扎	za[fv	6.72%
+扎	va[fv	93.28%
+扑	pi[fb	0.1%
+扑	po[fb	1%
+扑	pz[fb	0.9%
+扑	pu[fb	98%
+扒	ba[fb	72.04%
+扒	pa[fb	27.96%
+打	da[fd
+扔	rg[fn
+托	to[fq
+扛	gh[fg	1%
+扛	kh[fg	99%
+扞	gj[fg
+扞	hj[fg
+扣	kz[fk
+扦	qm[fq
+执	vi[fw
+扩	ko[fg
+扪	mf[fm
+扫	sc[fe
+扬	yh[fp
+扭	nq[fi
+扮	bj[fd
+扯	ie[fv
+扰	rc[fy	0%
+扰	yz[fy	100%
+扳	bj[fy	100%
+扳	pj[fy	0%
+扶	fu[ff
+批	pi[fb
+扺	di[fu
+扺	vi[fu
+扼	ee[fv
+扽	dy[ft
+找	vc[fg
+承	ig[vn
+技	ji[fy
+抃	bm[fb
+抄	ic[fu
+抉	jt[fg
+把	ba[fb	100%
+把	bd[fb	0%
+抑	yi[fe
+抒	uu[fl
+抓	ix[fv	0%
+抓	vc[fv	0%
+抓	vx[fv	100%
+抔	pz[fb
+投	tz[fy
+抖	dz[fu
+抗	kh[fj
+折	ue[fj	0.86%
+折	ve[fj	99.14%
+抚	fu[fw
+抚	wu[fw
+抛	pc[fl
+抟	tr[fv
+抠	kz[fx
+抡	ly[fb
+抢	ql[fv
+护	hu[fh
+报	bc[fy
+抨	pg[fp
+抨	pk[fp
+披	pw[fy
+披	pi[fy
+抬	td[fk
+抱	bc[fs
+抵	di[fd	100%
+抵	vi[fd	0%
+抹	ma[fm	7.13%
+抹	mo[fm	92.87%
+抻	if[fu
+抻	uf[fu
+押	ya[fj
+抽	iz[fy
+抿	mb[fm
+拂	bi[ff	0%
+拂	fu[ff	100%
+拃	va[fv
+拃	vj[fv
+拄	vu[fv
+担	dj[fd
+拆	id[fi	97.23%
+拆	ie[fi	2.77%
+拇	mu[fm
+拈	nm[fk
+拉	la[fl
+拊	fu[fc
+拋	pc[fl
+拌	bj[fb	100%
+拌	pj[fb	0%
+拍	pd[fb	100%
+拍	po[fb	0%
+拎	lb[fs
+拎	lk[fs
+拐	gk[fl
+拒	ju[fj
+拓	ta[fu	1.19%
+拓	to[fu	98.81%
+拓	vi[fu	0%
+拔	ba[fd
+拖	to[fy
+拗	ao[fl	60.12%
+拗	nq[fl	39.88%
+拗	yc[fl	0%
+拗	yu[fl	0%
+拘	ju[fk
+拙	vo[fi
+拜	bd[uf
+拟	ni[fr
+拢	ls[fl
+拣	jm[fd
+拤	ka[fb
+拥	ys[fy
+拦	lj[fs
+拧	nk[fd
+拨	bo[fd
+择	ze[fl	98.75%
+择	vd[fl	1.25%
+括	gx[fk	0.51%
+括	ko[fk	99.49%
+拭	ui[fg
+拮	jp[fk
+拯	vg[fa
+拱	gs[fb
+拳	qr[ju
+拴	ur[fw
+拶	za[fx	78.95%
+拶	zj[fx	21.05%
+拷	kc[fv
+拼	pb[fk
+拽	ye[fy	0.18%
+拽	vk[fy	99.82%
+拾	ue[fk	0.10%
+拾	ui[fk	99.90%
+拿	na[ru
+持	ii[fc
+挂	gx[ft
+指	vi[fo
+挈	qp[fu
+按	an[fn
+挎	ku[fk	0%
+挎	kx[fk	100%
+挑	tc[fd	0%
+挑	tn[fd	100%
+挓	va[fq
+挓	vd[fq
+挓	ve[fq
+挖	wa[fv
+挚	vi[fu
+挛	lm[wu
+挛	lr[wu
+挛	lr[wu
+挝	vx[fz	74.70%
+挞	ta[fz
+挟	jx[fj
+挟	xx[fj
+挟	xp[fj
+挠	nc[fw
+挡	dh[fe
+挣	vg[fl
+挤	ji[fl
+挥	hv[fi
+挦	xm[fc
+挨	ai[fu
+挪	no[fe
+挫	co[ft
+振	vf[fn
+挱	sa[du
+挱	ua[du
+挱	so[du
+挲	sa[du	12.50%
+挲	ua[du	12.50%
+挲	so[du	87.50%
+挹	yi[fb
+挺	tk[fz
+挽	wj[fv
+挾	jx[fj
+挾	xx[fj
+挾	xp[fj
+捂	wu[fk
+捃	jy[fk
+捅	ts[fy
+捆	ky[fm
+捉	vo[fr
+捋	le[fc	0%
+捋	lo[fc	6.67%
+捋	lv[fc	93.33%
+捌	ba[fd
+捍	hj[fg
+捎	uc[fo
+捏	np[ft
+捐	jr[fo
+捕	bu[ff
+捞	lc[fl
+损	sy[fr
+捡	jm[fa
+换	hr[fd
+捣	dc[fe
+捧	pg[fl
+捨	ue[rk
+捩	lw[fq
+捩	li[fq
+捩	lp[fq
+捫	mf[fm
+捭	bd[fu
+捭	bi[fu	1%
+捭	bo[fu
+据	ju[fk
+捯	dc[fd
+捱	ai[fu
+捲	jr[jv
+捶	iv[fi
+捷	jp[fr
+捺	na[fx
+捻	nm[fx
+捻	np[fx
+捽	zu[fu
+捽	zo[fu
+掀	xm[fr	100%
+掀	xb[fr	0%
+掂	dm[fk
+掃	sc[fe
+掄	ly[fb
+掇	do[fy
+掇	vv[fy
+授	uz[fy
+掉	dn[fu
+掊	pz[fk
+掌	vh[xu
+掎	ji[fk
+掏	tc[ff
+掐	qx[fj
+排	pd[ff
+掖	ye[fn
+掖	yi[fn
+掘	jt[fi
+掙	vg[fl
+掛	gx[ft
+掞	uj[fh
+掞	yj[fh
+掟	dk[fr
+掟	vg[fr
+掠	lt[fx
+採	cd[pm
+探	tj[fm
+掣	ie[pu
+掣	vi[pu
+接	jp[fn
+控	ks[fg
+推	tv[ff
+掩	yj[fd
+措	co[fo
+掬	ju[fm
+掭	tm[fx
+掮	jm[fo
+掮	qm[fo
+掰	bd[uu
+掳	lu[fl
+掴	go[fy	97.33%
+掷	vi[fe
+掸	dj[fl	50%
+掺	cj[fp
+掺	ij[fp
+掺	uj[fp
+掼	gr[fr
+掾	yr[fu
+揀	jm[fd
+揄	yc[fd
+揄	yz[fd
+揄	yu[fd
+揆	kv[ft
+揉	rz[fm
+揍	zz[ft
+描	mn[ft
+提	di[fr	0.05%
+提	ui[fr	0%
+提	ti[fr	99.95%
+插	ia[fj
+揕	vf[fv
+揖	ji[fe	0%
+揖	yi[fe	100%
+揚	yh[fp
+換	hr[fd
+揠	ya[fn
+握	wo[ft
+揣	ik[fe	100%
+揣	ir[fe	0%
+揩	ka[fb
+揩	kd[fb
+揪	jq[fh	100%
+揪	qq[fh	0%
+揭	jp[fv
+揭	qi[fv
+揮	hv[fi
+揳	qi[fd
+揳	xp[fd
+援	yr[fy
+揶	ye[fe
+揸	va[fd
+揽	lj[fe
+揾	wf[fm
+揿	qb[fr
+搀	ij[fd
+搁	ge[fk
+搂	lz[fn
+搅	jn[fe
+搋	ii[fj
+搋	ik[fj
+搋	di[fj
+搌	vj[fn
+損	sy[fr
+搏	bo[fc
+搐	iz[ft
+搐	iu[ft
+搐	xu[ft
+搒	bh[ff	50%
+搒	pg[ff	50%
+搓	co[fg
+搔	sc[fi
+搖	yc[ff
+搗	dc[fe
+搛	jm[fn
+搜	sz[fy
+搞	gc[fk
+搠	uo[fo
+搡	sh[fm
+搣	mp[fh
+搦	ni[fd
+搦	no[fd
+搦	ro[fd
+搪	th[fk
+搬	bj[fy
+搭	da[fk
+搴	qm[bu
+搵	wf[fm
+搶	il[fv	0%
+搶	ql[fv	100%
+携	xi[fn
+携	xp[fn
+搽	ca[fm	0%
+搽	ia[fm	100%
+摁	en[fx
+摄	ue[fy	99.72%
+摅	uu[fx
+摆	bd[fs
+摇	yc[ff
+摈	bb[fb
+摊	tj[ff
+摏	is[fj
+摑	go[fy
+摒	bk[fk
+摒	pk[fk
+摔	uk[fu
+摘	vd[fk	100%
+摘	ve[fk	0%
+摛	ii[fd
+摜	gr[fr
+摞	lo[fx
+摟	lz[fn
+摧	cv[ff
+摩	ma[gu	0.10%
+摩	mo[gu	99.90%
+摭	uu[fh
+摭	vi[fh
+摯	vi[fu
+摳	kz[fx	100%
+摳	qu[fx	0%
+摴	uu[fk
+摶	bo[fv
+摶	tr[fv
+摸	mc[fd	0%
+摸	mo[fd	100%
+摹	mo[cu
+摺	ve[fj
+摻	cj[fp	0%
+摻	ij[fp	100%
+摻	uj[fp	0%
+摽	bn[fx
+摽	pn[fx
+撂	ln[fk
+撂	lt[fk
+撄	yk[fn
+撅	jt[fr
+撇	pp[fw
+撈	lc[fl
+撏	xm[fc
+撏	xy[fc
+撐	ig[fu
+撑	ig[fu
+撒	sa[fw
+撓	nc[fw	100%
+撓	rc[fw	0%
+撕	si[fj	100%
+撕	xi[fj	0%
+撖	gj[fw
+撖	qm[fw
+撙	zy[fc
+撚	nm[fh
+撝	hv[fw
+撝	ww[fw
+撞	il[fl
+撞	vl[fl
+撣	dj[fl	95%
+撣	uj[fl	5%
+撤	ie[fw
+撥	bo[fd
+撩	ln[fx
+撫	fu[fw	100%
+撫	wu[fw	0%
+撬	qn[fm
+播	bo[ft
+撮	co[fy	99.90%
+撮	zv[fy	0%
+撮	zo[fy	0.10%
+撰	vr[fb
+撲	pu[fb
+撳	qb[fr
+撵	nm[fi
+撷	xp[fr
+撸	lu[fo
+撺	cr[fi
+撻	da[fz
+撻	ta[fz
+撼	hj[fx
+撾	go[fz
+撾	vx[fz
+撿	jm[fa
+擀	gj[fg
+擁	ys[fy
+擂	lw[ft
+擄	lu[fl
+擄	lo[fl
+擅	uj[fd
+擇	ze[fl	98.75%
+擇	vd[fl	1.25%
+擊	ji[ak
+擋	dh[fe
+操	cc[fm
+擎	jk[cu	0%
+擎	qk[cu	100%
+擐	hr[fy
+擒	qb[fd
+擓	kk[fk
+擔	dj[fd
+擘	bi[uu	17.65%
+擘	bo[uu	82.35%
+據	ju[fk
+擞	sz[fw
+擠	ji[fl
+擡	td[fk
+擢	vo[ff
+擣	dc[fe
+擤	xk[fl
+擦	ca[fx
+擬	ni[fr
+擯	bb[fb
+擰	nk[fd
+擱	ge[fk
+擲	vi[fe
+擴	ko[fg
+擷	ji[fr
+擷	jp[fr
+擷	xp[fr
+擺	bd[fs
+擻	sz[fw
+擼	lu[fo
+擾	rc[fy
+擿	ui[fz
+擿	ti[fz
+擿	vi[fz
+攀	pj[mu
+攄	uu[fx
+攆	nm[fi
+攉	ho[ff
+攏	ls[fl
+攒	cr[fr	10%
+攒	zj[fr	90%
+攔	lj[fs
+攖	yk[fn
+攘	rh[fy
+攙	ij[fd
+攛	cr[fi
+攜	xi[fn
+攜	xp[fn
+攝	np[fy	0.28%
+攝	ue[fy	99.72%
+攞	lo[ff
+攢	cr[fr	10%
+攢	zj[fr	90%
+攣	lm[wu
+攣	lr[wu
+攣	lr[wu
+攤	tj[ff
+攥	cr[fx
+攥	zr[fx
+攪	gc[fe
+攪	jn[fe
+攫	jt[fy
+攬	lj[fe
+攮	nj[fy
+攮	nh[fy
+支	vi[uy
+攰	gv[ul
+收	uz[vw
+攸	yz[rw
+改	gd[jw
+攻	gs[gw
+攽	bj[bw
+攽	bb[bw
+放	fh[fw
+政	vg[vw
+故	gu[uw
+效	xn[ww
+敉	mi[mw
+敌	di[qw	0%
+敌	hx[qw
+敎	jn[lw
+敏	mb[pw
+救	jq[qw
+敔	yu[ww
+敕	ii[uw
+敖	ao[fw
+敗	bd[kw
+敘	xu[ry
+教	jn[lw
+敛	lm[rw
+敝	bi[dw
+敞	ih[xw
+敢	gj[vw
+散	sj[cw
+敦	dv[ww	4.53%
+敦	dy[ww	96.47%
+敩	xn[xw
+敩	xt[xw
+敫	jn[bw
+敫	yc[bw
+敬	jk[cw
+数	cu[mw	0%
+数	uu[mw	99.50%
+数	uo[mw	0.50%
+数	su[mw	0%
+敲	qn[wy
+整	vg[uv
+敵	di[qw
+敷	fu[fw
+數	cu[mw	0%
+數	uu[mw	99.50%
+數	uo[mw	0.50%
+數	su[mw	0%
+斂	lm[rw
+斃	bi[bb
+斆	xn[xw
+斆	xt[xw
+文	wf[wx
+斋	vd[we
+斌	bb[wv
+斐	fw[fw
+斐	pw[fw
+斑	bj[ww
+斓	lj[wj
+斕	lj[wj
+斗	dz[du
+料	ln[mu
+斛	hu[du
+斜	xx[ru	0%
+斜	xp[ru	100%
+斜	ye[ru	0%
+斝	jx[ku
+斟	vf[qu
+斠	gz[au
+斠	jn[au
+斡	gr[uu
+斡	wo[uu
+斤	jb[pl
+斥	ii[pd
+斧	fu[bj
+斩	vj[ij
+斫	vo[uj
+斬	vj[ij
+断	dr[mj
+斯	si[qj
+新	xb[lj
+斶	iu[ji
+斷	dr[mj
+方	fh[dw
+於	wu[al	0%
+於	yu[al	100%
+施	ui[fy	100%
+施	yi[fy	0%
+旁	bh[wf	0.24%
+旁	ph[wf	99.76%
+旂	qi[fb
+旃	dj[fd
+旃	vj[fd
+旄	mc[fm
+旅	lv[fn
+旆	pw[fl
+旋	xr[fr
+旌	jk[fu	100%
+旌	lk[fu	0%
+旎	ni[fb
+族	zu[fu
+旐	vc[fd
+旒	lq[fv
+旖	yi[fk
+旗	qi[fb
+旞	sv[fz
+无	mo[ay
+无	wu[ay
+既	ji[gv
+旣	ji[gv
+日	mi[ka	0%
+日	ri[ka	100%
+旦	dj[oa
+旧	jq[lo
+旨	vi[bo
+早	zc[ou
+旬	xy[bo
+旭	xu[jo
+旮	ga[jo
+旮	xu[jo
+旯	la[oj
+旰	gj[og
+旱	hj[og
+旴	xu[oy
+旵	ij[oe
+时	ui[oc
+旷	kl[og
+旸	yh[op
+旺	wh[ow
+旻	mb[ow
+旿	wu[ow
+昀	yy[od
+昂	ah[oe
+昃	ze[or
+昄	bj[oy
+昆	ky[ob
+昇	ug[pc
+昈	hu[oh
+昉	fh[of
+昊	hc[ot
+昌	ih[oo
+明	mk[oo
+昏	hy[uo
+昒	hu[ow
+昒	wf[ow
+昒	wu[ow
+易	yi[ow
+昔	co[co	0%
+昔	xi[co	100%
+昕	xb[oj
+昙	tj[os
+昝	zj[wo
+星	xk[ou
+映	yk[oy
+昡	xm[oy
+昡	xr[oy
+昣	vf[op
+昤	lk[os
+春	iy[fo
+昧	mw[ow
+昨	zo[ov
+昪	bm[oc
+昫	xu[ok
+昭	vc[ok
+是	ui[or
+昱	yu[ol
+昳	dp[ou
+昳	yi[ou
+昴	mc[oe
+昵	ni[ob
+昶	ih[yo
+昺	bk[ob
+昼	vz[id
+昽	ls[ol
+显	xm[oy
+晁	ic[od	100%
+晁	vc[od	0%
+時	ui[oc
+晃	hl[ow
+晅	xr[og
+晅	yr[og
+晉	jb[yo
+晊	vi[ot
+晋	jb[yo
+晌	uh[ok
+晌	xl[ok
+晏	yj[on
+晐	gd[or
+晒	ud[ox
+晓	xn[ow
+晔	ye[ou
+晕	yy[oi
+晖	hv[oi
+晗	hj[ok
+晙	jy[ow
+晙	zy[ow
+晚	wj[ov
+晝	vz[id
+晞	xi[oj
+晟	ig[oi
+晟	ug[oi
+晡	bu[of
+晢	ve[fo
+晤	wu[ok
+晦	hv[om
+晨	if[on
+晪	tm[ob
+晫	vo[ou
+普	pu[bo
+景	jk[ox	100%
+景	yk[ox	0%
+晰	xi[oj
+晱	uj[oh
+晴	qk[oo
+晶	jk[oo
+晷	gv[ok
+晷	jq[ok
+智	vi[uo
+晾	ll[ox
+暂	zj[io
+暄	xr[og
+暅	xr[og
+暅	yr[og
+暇	xx[oy
+暈	yb[oi	0%
+暈	yy[oi	100%
+暉	hv[oi
+暌	kv[ot
+暑	uu[oo
+暕	jm[oj
+暖	nr[oy	100%
+暖	xr[oy	0%
+暗	an[oo
+暘	yh[op
+暝	mk[ob
+暢	ih[up
+暧	ai[oy
+暨	ji[gd
+暫	zj[io
+暫	vj[io	0%
+暮	mu[co
+暲	vh[ou
+暴	bc[ou	99.78%
+暴	pu[ou	0.22%
+暵	hj[on
+暶	xr[or
+暹	xm[zf
+暾	ty[ow
+暿	xi[ok
+曄	ye[ou
+曆	li[il
+曇	tj[os
+曈	ts[ol
+曉	xn[ow
+曌	ks[og
+曌	vc[og
+曏	xl[pk
+曖	ai[oy
+曙	uu[oo
+曛	xy[oh
+曜	yc[of	100%
+曜	yt[of	0%
+曝	bc[ou	80.43%
+曝	pu[ou	19.57%
+曠	kl[og
+曦	xi[od
+曨	ls[ol
+曩	nh[oy
+曩	xl[oy
+曬	ud[ox
+曰	yt[ka
+曲	qu[la
+曳	ye[lp
+曳	yi[lp
+更	gg[an	99.90%
+更	jk[an	0.10%
+曷	he[ov
+書	uu[vd
+曹	cc[ao
+曼	mj[oy	100%
+曼	wj[oy	0%
+曾	cg[bo	59.66%
+曾	zg[bo	40.34%
+替	ti[fo
+最	zv[oy
+會	gv[rs	0%
+會	hv[rs	99.98%
+會	kk[rs	0.02%
+月	rz[ka	0%
+月	yt[ka	100%
+有	yz[uo
+朋	pg[oo
+服	fu[oy
+朏	fw[oi
+朏	pw[oi
+朐	ju[ok
+朐	qu[ok
+朓	tn[od
+朔	uo[bo
+朕	vf[ot
+朗	lh[do
+望	wh[ww
+朝	ic[uo	75.25%
+朝	vc[uo	24.75%
+期	ji[qo	0.01%
+期	qi[qo	99.99%
+朦	mg[ou
+朧	ls[ol
+木	mu[un
+未	ww[an
+末	mo[an
+本	bf[aa
+札	va[mv
+朮	uu[md	20%
+朮	vu[md	80%
+术	uu[md	20%
+术	vu[md	80%
+朱	uu[pw	0%
+朱	vu[pw	100%
+朳	ba[mb
+朴	pn[mb	50%
+朴	po[mb	0.63%
+朴	pu[mb	55.16%
+朵	do[jm
+朸	li[ml
+机	ji[mj	90%
+机	ww[mj	10%
+朽	xq[mv
+杀	ua[xm
+杂	do[jm	100%
+杂	za[jm	0%
+权	qr[my	0%
+权	uu[my	100%
+杄	qm[mq
+杆	gj[mg
+杈	ia[mi
+杉	ua[mp	0.59%
+杉	uj[mp	99.41%
+杌	wu[mw
+李	li[mz
+杏	xk[mk
+材	cd[mc
+村	cy[mc
+杓	bn[mu	50%
+杓	uc[mu	50%
+杕	di[md
+杖	vh[mv
+杙	yi[my
+杜	du[mt
+杞	qi[mj
+束	uu[an
+杠	gh[mg
+条	di[wm
+条	tn[wm
+来	ld[an
+杧	mh[mw
+杨	yh[mp
+杩	ma[mm
+杪	mn[mu
+杪	uc[mu
+杭	hh[mj
+杯	bw[mb
+杰	jp[mh
+東	ds[ad
+杲	gc[om
+杲	go[om
+杳	mn[mo	0%
+杳	yc[mo	100%
+杴	qm[jr
+杴	xm[jr
+杵	iu[mw
+杷	ba[mb
+杷	pa[mb
+杻	iz[mi	50%
+杻	nq[mi	50%
+杼	vu[ml
+松	ss[ms
+板	bj[my	100%
+板	pj[my	0%
+极	ji[mj
+构	gz[ms
+枅	ji[mk
+枇	pi[mb
+枉	wh[mw
+枋	fh[mf
+枍	yi[mv
+析	xi[mj
+枕	vf[mv
+林	lb[mm
+枘	nf[mn	0%
+枘	rv[mn
+枚	mw[mw
+果	go[ln
+枝	qi[my	0%
+枝	vi[my	100%
+枞	cs[mr
+枞	zs[mr
+枢	qu[mx
+枢	uu[mx
+枣	zc[ad
+枥	li[ml
+枧	jm[me
+枨	ig[mi
+枪	ql[mv
+枫	fg[mx
+枭	xn[pm
+枯	gu[mk	0%
+枯	ku[mk	100%
+枰	pk[mp
+枲	xi[sm
+枳	ji[mb
+枳	vi[mb
+枴	gk[fl
+枵	xn[mv
+枵	xq[mv
+架	jx[lm
+枷	jx[mk
+枸	gz[mk	72.22%
+枸	ju[mk	27.78%
+枹	bc[ms
+枹	fu[ms
+柁	do[mb
+柁	to[mb
+柃	lk[ms
+柄	bk[mb
+柈	pj[mb
+柊	vs[md
+柏	bd[mb	67.63%
+柏	bo[mb	32.37%
+某	mz[gm
+柑	gj[mg
+柑	qm[mg
+柒	qi[dm
+染	rj[dm
+柔	rz[sm
+柖	uc[mk
+柘	to[mu
+柘	ve[mu
+柙	jx[mj
+柙	xx[mj
+柚	yz[my	100%
+柚	vu[my	0%
+柜	gv[mj	99.30%
+柜	ju[mj	0.70%
+柝	ii[mi
+柝	to[mi
+柞	ze[mv
+柞	zo[mv
+柠	iu[md
+柠	nk[md	0%
+柢	di[md
+查	ia[md	99.82%
+查	va[md	0.18%
+柩	jq[mj
+柬	jm[an
+柯	ke[mk
+柰	nd[mx
+柱	vu[mv
+柳	lq[me
+柴	id[vm	100%
+柴	vd[vm	0%
+柵	uj[mc
+柵	va[mc
+柷	vu[me
+柺	gk[fl
+査	ia[md
+査	va[md
+柽	ig[mt	0%
+柽	jt[mt	100%
+柿	ui[mj
+栀	vi[mv
+栅	uj[mc
+栅	va[mc
+标	bn[mx
+栈	vj[mj
+栉	vi[me
+栊	ls[ml
+栋	ds[md
+栌	lu[mu
+栎	li[ml	18.92%
+栏	lj[ms
+栐	ys[my
+树	uu[mc
+栒	xy[mo
+栓	ur[mw
+栖	qi[mx	64.80%
+栖	xi[mx	35.20%
+栗	li[xm
+栝	gx[mk
+栟	bk[mk
+栟	pk[mk
+校	jn[mx	25%
+校	xn[mx	100%
+栩	xu[mx
+株	vu[mv
+栲	kc[mv
+栳	lc[mb
+栴	dj[md
+栴	vj[md
+样	yh[my
+核	he[mr	99.92%
+核	hu[mr	0.08%
+根	gf[mg
+栻	ii[mg
+栻	ui[mg
+格	ge[mk
+栽	zd[um
+栾	lr[wm
+桀	jp[xm
+桁	hh[mi
+桁	hg[mi
+桂	gv[mt
+桃	tc[md
+桄	gl[mw
+桅	ww[mv
+框	kl[mw
+案	an[bm
+桉	an[mn
+桊	jr[jm
+桌	vo[lm
+桎	vi[mt
+桐	ts[mk
+桑	sh[ym
+桓	hr[mg
+桔	jp[mk	14.68%
+桔	ju[mk	85.32%
+桕	gc[mj
+桕	jq[mj
+桠	ya[my
+桡	rc[mw
+桢	vf[mr
+档	dh[me
+桤	qi[mj
+桥	qn[ml
+桦	hx[mu
+桧	gv[ms
+桧	hv[ms
+桨	jl[dm
+桩	vl[mt
+桫	ua[mu
+桫	so[mu
+桯	tk[mw
+桲	bo[mz
+桴	fu[mz
+桶	ts[my
+桷	jn[my
+桷	jt[my
+桹	lh[ml
+桿	gj[mg
+梁	ll[dm
+梃	tk[mz
+梅	mw[mm
+梆	bh[me
+梌	tu[mh
+梏	gc[mk
+梏	gu[mk
+梓	zi[mu
+梔	vi[mv
+梗	gg[mg
+梘	jm[me
+條	di[wm	0%
+條	tn[wm	100%
+梟	xn[pm
+梠	lv[mk
+梢	uc[mo
+梣	cf[mv
+梣	if[mv
+梦	mg[mx
+梧	wu[mk
+梨	li[hm
+梭	so[mw
+梯	ti[mp
+械	jp[mc
+械	xp[mc
+梲	vo[me
+梳	uu[mv
+梴	ij[mz
+梵	fj[mf
+梼	tc[mc
+梽	vi[mx
+梾	ld[ml
+梿	lm[mz
+检	jm[ma
+棁	vz[me
+棁	vo[me
+棂	lk[mh
+棄	qi[wc
+棉	mm[mj
+棊	ji[mb
+棊	qi[mb
+棋	ji[mb	0%
+棋	qi[mb	100%
+棍	gy[mb
+棐	fw[fm
+棒	bh[ml
+棓	bh[mk
+棓	pz[mk
+棕	zs[mx
+棖	ig[mi
+棗	zc[ad
+棘	ji[an	100%
+棘	la[an	0%
+棚	pg[mo
+棟	ds[md
+棠	th[xm
+棡	gh[mx
+棣	di[mn
+棣	li[mn
+棣	ti[mn
+棤	co[mo
+棤	xi[mo
+棧	vj[mj
+棨	qi[hm
+棪	yj[mh
+棫	yu[ma
+棬	qr[mv
+森	sf[mm
+棰	iv[mi
+棱	lg[mw
+棲	qi[mx	64.80%
+棲	xi[mx	35.20%
+棵	ke[mg
+棶	ld[ml
+棹	vc[mu
+棹	vo[mu
+棺	gr[mk
+棻	ff[cm
+棼	ff[md
+棽	if[mv
+棽	uf[mv
+椀	wj[mv
+椁	go[mz
+椅	yi[mk
+椆	iz[mk
+椋	ll[mx
+植	vi[mq
+椎	iv[mf	2.37%
+椎	vv[mf	97.63%
+椏	ya[my
+椐	ju[mk
+椑	bw[mu
+椑	pi[mu
+椒	jn[my	100%
+椒	uu[my	0%
+椓	vo[mn
+椟	du[md
+椠	qm[im
+椤	lo[mx
+椪	pg[my
+椭	to[mo
+椰	ye[me
+椴	dr[my
+椸	yi[my
+椹	uf[mv
+椹	vf[mv
+椽	ir[mu
+椽	yr[mu
+椿	iy[mo
+楂	ia[md	50%
+楂	va[md	50%
+楊	yh[mp
+楒	si[mx
+楓	fg[mx
+楔	xp[md
+楗	jm[mz
+楗	jr[mz
+楙	mc[mm
+楙	mz[mm
+楚	iu[mr
+楝	lm[mj
+楞	lg[mf
+楠	nj[mg
+楣	mw[mo
+楦	xr[mg
+楨	vf[mr
+楩	pm[mg
+楪	dp[mm
+楪	ye[mm
+楫	ji[me
+業	np[la	0%
+業	ye[la	100%
+楮	iu[mo
+楯	dy[mo
+楯	uy[mo
+極	ji[mj
+楷	jp[mb	0.44%
+楷	kd[mb	99.56%
+楸	qq[mh
+楹	yk[mm
+楼	lz[mn
+概	gd[mv	100%
+概	kd[mv	0%
+榃	lb[mt
+榃	tj[mt
+榄	lj[me
+榅	wu[mm
+榆	yu[md
+榇	if[mm
+榈	lv[mk
+榉	ju[ml
+榍	xn[mo
+榍	xp[mo
+榑	fu[mc
+榔	lh[me
+榕	rs[mk
+榖	gu[uy
+榘	ju[uj
+榛	vf[mh
+榜	bh[mf	50%
+榜	pg[mf	50%
+榦	gj[au
+榦	hj[au
+榧	fw[mf
+榨	va[mv
+榪	ma[mm
+榫	sy[mu
+榭	xp[mc
+榮	rs[cm
+榰	qi[mo
+榰	vi[mo
+榱	cv[my
+榱	uk[my
+榲	wu[mm
+榴	lq[mt
+榷	qt[mf
+榻	ta[mx
+榿	qi[mj
+槁	gc[mk
+槃	pj[vm
+槊	uo[bm
+構	gz[ms
+槌	iv[mz
+槍	ig[mv	0%
+槍	ql[mv	100%
+槎	ia[mg
+槐	hk[mg
+槑	mw[km
+槓	gh[mg
+槔	gc[mu
+槚	jx[mr
+槛	jm[mm	27.27%
+槛	kj[mm	72.73%
+槜	zv[mn
+槟	bk[mb	34.21%
+槠	vu[mo
+槤	lm[mz
+槧	qm[im
+槧	vj[im
+槨	go[mz
+槭	cu[mx
+槭	qi[mx
+槱	yz[mh
+槲	hu[mu
+槳	jl[dm
+槽	cc[mo
+槿	jb[ma
+樁	vl[mt
+樂	lc[pd	0%
+樂	le[pd	95%
+樂	yc[pd	0%
+樂	yt[pd	5%
+樅	cs[mr
+樊	fj[md	100%
+樊	pj[md	0%
+樑	ll[dm
+樓	lz[mn
+樗	iu[mk
+樗	uu[mk
+樘	ig[mt
+樘	th[mt
+標	bn[mx
+樞	qu[mx
+樞	uu[mx
+樟	vh[mu
+模	mo[md	98.71%
+模	mu[md	1.29%
+樣	xl[my	0%
+樣	yh[my	100%
+樨	xi[mn
+樨	xu[mn
+横	hg[mb
+樯	ql[mk
+樱	yk[mn
+樵	qn[mh
+樸	pu[mb
+樹	uu[mc
+樺	hx[mu
+樽	zy[mc
+樾	yt[mv
+橄	gj[mw
+橇	qn[mm
+橈	nc[mw
+橈	rc[mw
+橋	qn[ml
+橐	to[am
+橑	lc[mx
+橘	ju[mk
+橙	if[ma	0%
+橙	ig[ma	100%
+橛	jt[mr
+橞	hv[mx
+機	ji[mj
+橡	xl[mn
+橢	to[mo
+橥	vu[qm
+橦	il[ml
+橦	ts[ml
+橫	hg[mb
+橱	iu[mc
+橹	lu[mo
+橼	yr[mu
+檀	tj[md
+檁	lb[mx
+檄	jn[mw
+檄	xi[mw
+檉	ig[mt
+檉	ug[mt
+檎	qb[md
+檐	yj[mk
+檑	lw[mt
+檔	dh[me
+檗	bo[um
+檜	gv[ms
+檜	hv[ms
+檜	kk[ms
+檞	jp[mn
+檞	xp[mn
+檟	jx[mr
+檠	jk[cm
+檠	qk[cm
+檢	jm[ma
+檣	ql[mk
+檩	lb[mx
+檫	ia[mx
+檬	mg[mu
+檮	tc[mc
+檯	td[sk
+檳	bb[mb	65.79%
+檳	bk[mb	34.21%
+檸	nk[md
+檻	jm[mm	27.27%
+檻	kj[mm	72.73%
+櫃	gv[mj
+櫆	kv[mu
+櫓	lu[mo
+櫚	lv[mk
+櫛	jp[me	0%
+櫛	vi[me
+櫝	du[md
+櫞	yr[mu
+櫟	li[ml
+櫥	iu[mc
+櫧	vu[mo
+櫨	lu[mu
+櫪	li[ml
+櫫	vu[qm
+櫬	if[mm
+櫱	np[cm
+櫳	ls[ml
+櫸	ju[ml
+櫺	lk[mh
+櫻	yk[mn
+欂	bo[mc
+欄	lj[ms
+欅	ju[ml
+權	qr[my
+欏	lo[mx
+欒	lr[wm
+欓	dh[me
+欖	lj[me
+欞	lk[mh
+欠	qm[dr
+次	ci[dr	100%
+次	zi[dr	0%
+欢	hr[yr
+欣	xb[jr
+欤	yu[yr
+欧	ou[kr
+欲	yu[br
+欸	ai[sr	50%
+欸	ei[sr
+欹	yi[dr
+欺	qi[qr
+欻	ix[hr
+欻	dj[hr
+欻	hu[hr
+欻	xu[hr
+欻	yj[hr
+欽	qb[jr
+款	kr[ur
+歃	ua[qr
+歅	yj[xr
+歅	yb[xr
+歆	xb[lr
+歇	xp[or
+歉	qm[br
+歌	ge[dr
+歎	tj[ky
+歐	ou[kr
+歙	ue[rr	78.26%
+歙	xi[rr	21.74%
+歟	yu[yr
+歡	hr[yr
+止	vi[la
+正	vg[av
+此	ci[vb
+步	bu[vp
+武	wu[av
+歧	qi[vy
+歪	wd[bv
+歲	sv[ex
+歷	li[il
+歸	gv[le	100%
+歸	kv[le	0%
+歹	dd[ax	100%
+歹	ee[ax	0%
+死	si[db
+歼	jm[dq
+歿	mo[dy
+殁	mo[dy
+殂	cu[dq
+殃	yh[dy
+殄	tm[dp
+殄	vf[dp
+殆	dd[dk
+殆	td[dk
+殇	uh[dp
+殉	xy[do
+殊	uu[dv
+残	cj[dj
+殍	pn[dz
+殒	yy[dr
+殓	lm[da
+殖	ui[dq	14.94%
+殖	vi[dq	85.06%
+殘	cj[dj
+殚	dj[dl
+殛	ji[da
+殞	yy[dr
+殡	bb[db
+殣	jb[da
+殤	uh[dp
+殪	yi[da
+殫	dj[dl
+殭	jl[ra
+殮	lm[da
+殯	bb[db
+殲	jm[dq
+殲	qm[dq
+殳	uu[jy
+殴	ou[ky
+殴	qu[ky
+段	dr[py
+殷	yj[py	30%
+殷	yb[py
+殺	ua[xm	100%
+殺	ud[xm	0%
+殻	ke[uj
+殻	qn[uj
+殻	qt[uj
+殼	ke[uj	97.56%
+殼	qn[uj	2.44%
+殼	qt[uj	2.44%
+殿	dm[uy
+毀	hv[jy
+毁	hv[jy
+毂	gu[uy
+毅	yi[ly
+毆	ou[ky	100%
+毆	qu[ky	0%
+毋	wu[va
+毌	gr[va
+母	mu[vd
+每	mw[pm
+毐	ai[uw
+毒	du[fm
+毓	yu[pv
+比	bi[bb	100%
+比	pi[bb	0%
+毕	bi[bu
+毖	bi[bb
+毗	bi[tb
+毗	pi[tb
+毙	bi[bb
+毛	mc[pv
+毡	tj[mk
+毡	vj[mk
+毪	mu[mn
+毫	hc[wm
+毯	tj[mh
+毳	cv[mm
+毵	sj[sm
+毹	uu[rm
+毹	yu[rm
+毽	jm[mz
+毿	cj[sm
+毿	sj[sm
+氂	li[nm
+氂	mc[nm
+氅	ih[xm
+氆	pu[mo
+氇	lu[mo
+氈	tj[mk	0%
+氈	vj[mk	100%
+氌	lu[mo
+氍	qu[om
+氍	tj[om
+氏	ui[pv	99.88%
+氏	vi[pv	0.12%
+氐	di[ud
+氐	vi[ud
+民	mb[vv
+氓	mh[wm	93.15%
+氓	mg[wm	6.85%
+气	qi[pv
+氕	pp[qp
+氖	nd[qn
+氘	dc[ql
+氙	xm[qe
+氚	ir[qi
+氛	ff[qd
+氟	fu[qf
+氡	ds[qd
+氢	qk[qg
+氣	qi[pv
+氤	yb[qd
+氦	hd[qr
+氧	yh[qy
+氨	an[qn
+氩	ya[qy
+氪	ke[qe
+氫	qk[qg
+氬	ya[qy
+氮	dj[qh
+氯	lu[qu
+氯	lv[qu
+氰	qk[qo
+氲	yy[qm
+氳	yy[qm
+水	uv[ln
+永	ys[dn
+氾	fj[df
+氿	iz[dj
+氿	gv[dj
+汀	dk[dd
+汀	tk[dd
+汁	vi[du
+求	qq[ad
+汆	cr[ru
+汆	ty[ru
+汇	hv[dk
+汈	dn[dd
+汉	hj[dy	0%
+汉	nv[dy	100%
+汊	ia[di
+汋	vo[du
+汎	fj[df
+汐	xi[dx
+汔	qi[dq
+汕	uj[de
+汗	hj[dg
+汙	wa[dk
+汙	wu[dk
+汙	yu[dk
+汛	fj[du	0%
+汛	xy[du	100%
+汜	si[ds
+汝	ru[dn
+汞	gs[gu	100%
+汞	hs[gu	0%
+江	jl[dg
+池	ii[dy
+污	wu[dk	100%
+污	yu[dk	0%
+汤	uh[dp	0.06%
+汤	th[dp	99.94%
+汧	qm[dk
+汧	yj[dk
+汨	mi[do
+汩	gu[do
+汩	yu[do
+汪	wh[dw
+汫	jk[dj
+汫	qk[dj
+汭	na[dn
+汭	nw[dn
+汭	rv[dn
+汰	td[dt
+汲	ji[dj
+汴	bm[db
+汶	mf[dw	0%
+汶	wf[dw	100%
+汹	xs[dk
+決	jt[dg
+汽	qi[dq
+汾	ff[dd
+沁	qb[dx	100%
+沁	uf[dx	0%
+沂	jb[dj	0%
+沂	qi[dj	0%
+沂	yi[dj	100%
+沂	yb[dj	0%
+沃	wo[dy	100%
+沃	wu[dy	0%
+沄	yy[ds
+沅	yr[de
+沆	hh[dj
+沆	kh[dj
+沇	yj[de
+沇	yy[de
+沈	if[dv	0.01%
+沈	uf[dv	99.99%
+沉	if[dj
+沌	dy[dt
+沏	qi[dd	100%
+沏	qp[dd	0%
+沏	qu[dd	0%
+沐	mu[dm
+沒	mw[dy	99.89%
+沒	mo[dy	0.11%
+沓	mn[uo	23.44%
+沓	ta[uo	76.56%
+沔	mm[dm
+沖	is[dv
+沘	bi[db
+沘	pi[db
+沙	ua[du
+沚	vi[dv
+沛	pw[dl
+沟	gz[ds
+没	mw[dy	99.89%
+没	mo[dy	0.11%
+沣	fg[df
+沤	ou[dx
+沥	li[dl
+沦	ly[db
+沧	ch[dv
+沨	fg[dx
+沩	gv[dw
+沪	hu[dh
+沫	mo[dm
+沭	uu[du
+沮	ju[dq
+沮	zu[dq
+沱	to[db
+河	he[dk
+沸	fw[df
+沸	fu[df
+油	yz[dy
+沺	tm[dt
+治	ii[dk	0%
+治	vi[dk	100%
+沼	vc[dk
+沽	gu[dk
+沾	vj[dk
+沿	yj[dk
+況	kl[de
+泂	js[dk
+泃	gz[dk
+泃	ju[dk
+泄	xp[du
+泄	yi[du
+泅	qq[dr
+泇	jx[dk
+泉	qr[bu
+泊	bo[db	87.40%
+泊	po[db	12.60%
+泌	bi[db	0%
+泌	mi[db	100%
+泐	le[dl
+泓	hs[ds
+泔	gj[dg
+法	fa[ds
+泖	mc[de
+泗	si[de
+泙	pg[dp
+泙	pk[dp
+泚	ci[db
+泛	fj[df	100%
+泛	fg[df	0%
+泜	ii[dd
+泜	vi[dd
+泝	su[do
+泞	iu[dd
+泞	nk[dd	0%
+泞	vu[dd
+泠	lg[ds
+泠	lk[ds
+泡	pc[ds
+波	bo[dy	99%
+波	po[dy	1%
+泣	qi[dl
+泥	ni[db
+注	vu[dv
+泪	lw[do
+泫	xm[dy
+泫	xr[dy
+泮	pj[db
+泯	mb[dm
+泰	td[fu
+泱	yh[dy
+泳	ys[dy
+泵	bh[uu
+泵	bg[uu
+泷	ls[dl	87.27%
+泷	ul[dl	12.73%
+泸	lu[du
+泺	lo[dl	50%
+泻	xp[dy
+泼	po[dd
+泽	ze[dl
+泾	jk[dg
+洁	ji[dk
+洁	jp[dk	0%
+洄	hv[dk
+洇	yj[dd
+洇	yb[dd
+洈	ww[dv
+洋	yh[dy
+洌	lp[dd
+洎	bo[dz
+洎	ji[dz
+洑	fu[dq
+洒	cv[dx
+洒	sa[dx
+洒	xi[dx
+洒	xm[dx
+洓	qi[dn
+洗	xi[de	99.94%
+洗	xm[de	0.06%
+洘	kc[dv
+洙	uu[dv
+洙	vu[dv
+洚	jl[dl
+洛	lo[dk
+洞	ds[dk	100%
+洞	ts[dk	0%
+洢	yi[dy
+洣	mi[dm
+津	jb[dy
+洧	ww[do
+洨	jn[dx
+洨	xn[dx
+洩	xp[du
+洩	yi[du
+洪	hs[db
+洫	xu[dx
+洭	kl[dw
+洮	tc[dd
+洮	yc[dd
+洱	er[de
+洲	vz[dv
+洳	ru[dk
+洴	bg[dk
+洴	pk[dk
+洵	xy[do
+洶	xs[dk
+洸	gl[dw
+洸	hl[dw
+洹	hr[dg
+洹	yr[dg
+洺	mk[dk
+活	ho[dk
+洼	gv[dt
+洼	wa[dt
+洽	qx[dk	100%
+洽	xx[dk	0%
+派	pd[dn
+洿	wu[dk
+流	lq[dv
+浃	jx[dj
+浅	jm[dj	0.24%
+浅	qm[dj	99.76%
+浆	jl[du
+浇	jn[dw
+浈	vf[dr
+浉	ui[dj
+浊	vo[di
+测	ce[dd
+浍	kk[ds
+济	ji[dl
+浏	lq[dd
+浐	ij[di
+浑	hy[di
+浒	hu[dw	80%
+浓	ns[dn
+浔	xy[dc
+浕	jb[dd
+浙	ve[dj
+浚	jy[dw	80%
+浚	xy[dw	20%
+浛	hj[dk
+浜	bh[db
+浜	bb[db
+浜	pb[db
+浞	vo[dr
+浟	yz[dw
+浠	xi[dj
+浡	bo[dz
+浣	hr[de
+浣	wj[de
+浥	yi[db
+浦	pu[df
+浩	hc[dk
+浪	lh[dl
+浬	li[dl
+浭	gg[dg
+浮	fz[dz	0%
+浮	fu[dz	100%
+浯	wu[dk
+浰	li[dd
+浲	bg[df
+浲	fg[df
+浲	pg[df
+浴	yu[dk
+海	hd[dm
+浸	jb[dy
+浹	jx[dj
+浼	mw[dv
+浼	mm[dv
+涂	tu[dh
+涄	pb[dv
+涅	np[dt
+涇	jk[dg
+消	xn[do
+涉	ue[dp
+涌	is[dy	0%
+涌	ys[dy
+涍	xn[dz
+涎	xm[dz
+涎	yj[dz
+涐	ee[dw
+涑	su[du
+涓	jr[do
+涔	cf[dv
+涕	ti[dp
+涘	si[du
+涛	tc[dc
+涝	lc[dl
+涞	ld[dl
+涟	lm[dz
+涠	ww[dw
+涡	go[dn	5.26%
+涡	wo[dn	94.74%
+涢	yy[dr
+涣	hr[dd
+涤	di[dm
+润	ry[dw
+涧	jm[do
+涨	vh[di
+涩	se[dv
+涪	fu[dk
+涫	gr[dk
+涮	ux[dd
+涮	ur[dd
+涯	ya[dt
+液	ye[dn
+液	yi[dn
+涴	wj[dv
+涴	wo[dv
+涵	hj[dk
+涸	gu[dk
+涸	hc[dk
+涸	he[dk
+涼	ll[dx
+涿	vo[dn
+淀	dm[dr
+淄	zi[dt
+淅	xi[dj
+淆	xn[do
+淆	yc[do	5%
+淇	qi[db
+淋	lb[dm
+淌	th[dk
+淏	hc[dt
+淑	uu[dy
+淒	qi[dn
+淖	dn[du
+淖	nc[du
+淖	vc[du
+淘	tc[df
+淙	cs[dx
+淙	zs[dx
+淚	lw[do
+淜	pg[do
+淝	fw[db
+淞	ss[ds
+淟	tm[db
+淠	pw[dl
+淠	pi[dl
+淡	dj[dh
+淤	yu[dd
+淥	lu[du
+淦	gj[dj
+淨	jk[dl
+淩	lk[dw
+淪	ly[db
+淫	yb[dr
+淬	cv[du
+淮	hk[df
+淯	yu[do
+深	uf[dm
+淳	iy[dz
+淴	hu[dx
+淵	yr[dl
+淶	ld[dl
+混	gy[db	0%
+混	hy[db	100%
+混	ky[db	0%
+淹	yj[dd
+淺	jm[dj	0.24%
+淺	qm[dj	99.76%
+添	tm[dx
+淼	mn[uu
+清	qk[do
+渊	yr[dl
+渌	lu[du
+渍	zi[dr
+渎	du[dd
+渐	jm[dj
+渑	ug[dd	50%
+渔	yu[da
+渗	uf[dp
+渙	hr[dd
+渚	vu[do
+減	jm[dk
+渝	yu[dd
+渟	tk[dd
+渠	ju[dm	0%
+渠	qu[dm	100%
+渡	du[dy
+渢	fg[dx
+渣	va[dd
+渤	bo[dl
+渥	wo[dt
+渦	go[dn	5.26%
+渦	wo[dn	94.74%
+温	wf[dm
+渫	dp[dm
+渫	xp[dm
+測	ce[dd
+渭	ww[do
+港	gh[ds
+渰	yj[dc
+渲	xr[dg
+渴	he[dv	0%
+渴	jp[dv	0%
+渴	ke[dv	100%
+游	yz[dz
+渺	mn[du
+渼	mw[dd
+渾	gy[di	0%
+渾	hy[di	100%
+湃	bd[df
+湃	pd[df
+湄	mw[do
+湉	tm[dk
+湊	cz[dt
+湋	ww[dw
+湍	tr[de
+湎	mm[dm
+湑	xu[do
+湓	pf[dm
+湔	jm[dd
+湔	qm[dd
+湖	hu[do
+湘	xl[do
+湛	dj[dv	0%
+湛	vj[dv	100%
+湜	ui[dr
+湝	gd[db
+湝	jp[db
+湝	kd[db
+湞	ig[dr
+湞	vf[dr
+湟	hl[dw
+湣	mb[do
+湧	ys[dy
+湫	jn[dh
+湫	jq[dh
+湮	yj[dt	83.78%
+湮	yb[dt	16.22%
+湯	uh[dp	0.06%
+湯	th[dp	99.94%
+湲	yr[dy
+湴	bj[dy
+湾	wj[dg
+湿	ui[dy
+溁	yk[dm
+溃	kv[dr	94.21%
+溅	jm[dj
+溆	xu[dy
+溇	lz[dn
+溈	gv[dw
+溈	ww[dw
+溉	gd[dv
+溍	jb[do
+溏	th[dk
+源	yr[dx
+準	vy[df
+溘	ke[dm
+溚	da[dk
+溚	ta[dk
+溜	lq[dt
+溝	gz[ds
+溞	sc[di
+溞	zc[di
+溟	mk[db
+溠	ia[dg
+溠	va[dg
+溢	yi[dm
+溥	pu[dc
+溦	ww[dw
+溧	li[dm
+溪	qi[dd	0%
+溪	xi[dd	100%
+溫	wf[dm
+溮	ui[dj
+溯	uo[do
+溯	su[do
+溯	so[do
+溱	vf[dh
+溲	sz[dy
+溳	yy[dr
+溴	iz[dq
+溴	xq[dq
+溵	yb[dy
+溶	rs[dk
+溷	hy[du
+溹	su[dx
+溺	ni[dd	95%
+溺	nn[dd	5%
+溻	ta[dx
+溼	ui[dy
+溽	ru[dc
+滁	iu[dh
+滂	ph[df
+滃	wg[dx
+滄	ch[dv
+滅	mp[ah
+滆	ge[dl
+滆	he[dl
+滇	dm[db
+滇	tm[db
+滉	hl[dw
+滋	zi[dy
+滌	di[dm	100%
+滌	tn[dm	0%
+滍	vi[di
+滎	xk[cu	46.15%
+滎	yk[cu	53.85%
+滏	fu[da
+滑	gu[dg	0%
+滑	hx[dg	100%
+滓	zd[du
+滓	zi[du
+滔	tc[dj
+滕	tg[ou
+滗	bi[dm
+滘	jn[dk
+滙	hv[dk
+滚	gy[dy
+滞	vi[dj
+滟	yj[db
+滠	ue[dy
+满	mj[dl
+滢	yk[dy
+滤	lv[dx
+滥	lj[dm
+滦	lr[dm
+滨	bb[db
+滨	pb[db
+滩	tj[df
+滪	yu[dr
+滫	xq[do
+滬	hu[dh
+滯	vi[dj
+滲	uf[dp
+滴	di[dk
+滷	lu[lx
+滸	hu[dw	80%
+滸	xu[dw	20%
+滹	hu[dh
+滻	ij[di
+滾	gy[dy
+滿	mj[dl
+漁	yu[da
+漂	pn[dx
+漆	qi[du	99%
+漆	qu[du	1%
+漈	ji[dx
+漉	lu[db
+漊	lz[dn
+漊	lv[dn
+漋	ls[du
+漏	lz[dy
+漓	li[dd
+演	yj[db
+漕	cc[do	100%
+漕	zc[do	0%
+漖	jn[dw
+漚	ou[dx
+漠	mo[dd
+漢	hj[dy
+漣	lm[dz
+漤	lj[dn
+漦	ii[wu
+漦	li[wu
+漩	xr[dr
+漪	yi[dk
+漫	mj[dy
+漬	zi[dr
+漭	mh[dc
+漯	lw[dx
+漯	lo[dx
+漯	ta[dx
+漱	uu[dr
+漱	sz[dr
+漲	vh[di
+漳	vh[du
+漴	is[dx
+漴	il[dx
+漴	vl[dx
+漵	xu[dy
+漶	hr[dx
+漷	go[de
+漷	ko[de
+漸	jm[dj
+漹	yj[dh
+漻	ln[dp
+漼	cv[df
+漾	yh[dy
+漿	jl[du
+潁	yk[br
+潆	yk[dx
+潇	xn[ds
+潋	lm[dw
+潍	ww[df
+潏	ju[dk
+潏	jt[dk
+潑	po[dd
+潔	jp[dk
+潕	wu[dw
+潖	pa[db
+潘	pj[dt
+潙	gv[dw
+潙	ww[dw
+潛	qm[do
+潜	qm[do
+潞	lu[dk
+潟	xi[dh
+潟	xp[dh
+潢	hl[db
+潤	ry[dw
+潦	lc[dx	12.50%
+潦	ln[dx	87.50%
+潩	yi[db
+潭	tj[du
+潮	ic[do
+潯	xy[dc
+潰	hv[dr	5.79%
+潰	kv[dr	94.21%
+潲	uc[do
+潴	vu[do
+潵	sj[dw
+潷	bi[dm
+潸	uj[do
+潺	ij[dz
+潼	ts[dl
+潽	pu[do
+潾	lb[dl
+潿	ww[dw
+澀	se[dv
+澂	ig[dw
+澂	vg[dw
+澄	ig[da	94.06%
+澄	dg[da	5.94%
+澆	jn[dw
+澇	lc[dl
+澈	ie[dw
+澉	gj[dw
+澌	si[dj
+澍	uu[dc
+澎	pg[dp
+澐	yy[ds
+澗	jm[do
+澛	lu[do
+澜	lj[dj
+澠	mm[dd
+澠	ug[dd
+澡	zc[dm
+澤	ze[dl
+澥	xp[dn
+澦	yu[dr
+澧	li[da
+澪	lk[ds
+澭	ys[df
+澮	hv[ds
+澮	kk[ds
+澱	dm[dr
+澳	ao[dd	100%
+澳	yu[dd	0%
+澴	hr[dy
+澶	cj[dd
+澶	ij[dd
+澶	dj[dd
+澹	dj[dk	50%
+澹	tj[dk	50%
+澼	pi[du
+澽	ju[du
+激	ji[dw
+濁	vo[di
+濂	lm[dn
+濃	ns[dn
+濆	ff[dr
+濆	pf[dr
+濉	sv[df
+濋	iu[dr
+濑	ld[dr
+濒	bb[dr
+濕	ui[dy	100%
+濕	xi[dy	0%
+濘	ng[dd
+濘	nk[dd
+濚	rs[dm
+濚	yk[dm
+濛	mg[cu
+濜	jb[dd
+濞	bi[dl
+濞	pi[dl
+濟	ji[dl
+濠	hc[du
+濡	ru[de
+濤	tc[dc
+濩	ho[dy
+濫	lj[dm
+濮	pu[dn
+濯	di[df
+濯	vc[df
+濯	vo[df
+濰	ww[df
+濱	bb[db	100%
+濱	pb[db	0%
+濺	jm[dj
+濼	bo[dl
+濼	lo[dl
+濼	po[dl
+濾	lv[dx
+瀂	lu[do
+瀅	yk[dy
+瀆	du[dd
+瀉	xp[dy
+瀋	uf[dv
+瀌	bn[dh
+瀍	ij[dt
+瀏	lq[dd
+瀑	bc[du	2.02%
+瀑	pu[du	97.98%
+瀔	gu[dy
+瀕	bb[dr
+瀕	pb[dr
+瀘	lu[du
+瀚	hj[dx
+瀛	yk[df
+瀝	li[dl
+瀟	xn[ds
+瀠	yk[dx
+瀣	xp[dj
+瀦	vu[do
+瀧	ls[dl	87.27%
+瀧	ul[dl	12.73%
+瀨	ld[dr
+瀰	mi[gx
+瀱	ji[dd
+瀲	lm[dw
+瀵	ff[db
+瀹	yc[dc
+瀹	yt[dc
+瀼	rh[dy
+瀾	lj[dj
+灃	fg[df
+灄	ue[dy
+灈	qu[df
+灌	gr[df
+灏	hc[dr
+灑	sa[dx
+灕	li[dd
+灘	tj[df
+灝	hc[dr
+灞	ba[do
+灣	wj[dg
+灤	lr[dm
+灧	yj[db
+灩	yj[db
+火	ho[dr
+灭	mp[ah
+灯	dg[hd	1%
+灯	dk[hd	99%
+灰	hv[uh
+灵	lk[eh
+灶	zc[ht
+灸	jq[jh	100%
+灸	vi[jh	0%
+灼	vo[hu
+災	zd[bh
+灾	zd[bh
+灿	cj[he
+炀	yh[hp
+炅	gv[oh	50%
+炅	js[oh	50%
+炆	wf[hw
+炉	lu[hh
+炊	iv[hr
+炌	gd[hl
+炌	kd[hl
+炎	yj[hh
+炒	ic[hu
+炔	gv[hg
+炔	jt[hg
+炔	kk[hg
+炔	qt[hg
+炕	kh[hj
+炖	dy[ht
+炖	ty[ht
+炖	vy[ht
+炘	xb[hj
+炙	jq[ph	0%
+炙	vi[ph	100%
+炜	ww[hw
+炝	ql[hv
+炟	da[hd
+炣	ke[hk
+炫	xm[hy	0%
+炫	xr[hy	100%
+炬	ju[hj
+炭	tj[eh
+炮	bc[hs	0.08%
+炮	pc[hs	99.92%
+炯	js[hk
+炱	dd[sh
+炱	td[sh
+炳	bk[hb
+炷	vu[hv
+炸	va[hv
+点	dm[lh
+為	ww[dd
+炻	ui[hu
+炼	lm[hd
+炽	ii[hb
+烀	hu[hh
+烁	uo[hl
+烂	lj[hs
+烃	tk[hg
+烈	lp[dh
+烊	yh[hy
+烏	wu[pa
+烔	ts[hk
+烘	hs[hb
+烙	lc[hk
+烙	lo[hk
+烛	is[hi
+烛	vu[hi
+烜	hr[hg
+烜	xr[hg
+烝	vg[lh
+烟	yj[hd
+烠	hv[ho
+烤	kc[hv
+烦	fj[hr
+烧	uc[hw
+烨	ye[hu
+烩	hv[hs
+烫	th[dh
+烬	jb[hd
+热	re[fh
+烯	xi[hj
+烴	jk[hg
+烴	qk[hg
+烴	tk[hg
+烶	tk[hz
+烷	wj[he
+烹	pg[wh
+烺	lh[hl
+烻	uj[hz
+烻	yj[hz
+烽	fg[hf
+焆	jr[ho
+焆	jt[ho
+焉	yj[vh
+焊	hj[hg
+焌	jy[hw	50%
+焌	qu[hw	50%
+焌	zy[hw
+焐	wu[hk
+焓	hj[hk
+焕	hr[hd
+焖	mf[hx
+焗	ju[hk
+焘	dc[fh	6.25%
+焙	bw[hk	100%
+焙	pw[hk	0%
+焚	ff[mh
+焜	ky[hb
+焞	iy[hz
+焞	ty[hz
+無	mo[ay	0%
+無	wu[ay	100%
+焦	jn[rh
+焯	ic[hu
+焯	io[hu
+焯	vo[hu
+焰	yj[hj
+焱	yj[hh
+然	rj[ph
+煁	if[hv
+煁	uf[hv
+煃	gv[ht
+煃	kv[ht
+煅	dr[hy
+煉	lm[hd
+煊	nr[hg
+煊	xr[hg
+煋	xk[hu
+煌	hl[hw
+煎	jm[bh
+煒	ww[hw
+煓	tr[he
+煙	yj[hd
+煜	yu[hl
+煞	ua[dh
+煟	ww[ho
+煟	wu[ho
+煢	qs[cu
+煤	mw[hm
+煥	hr[hd
+煦	xu[oh
+照	vc[oh
+煨	ww[hn
+煩	fj[hr
+煬	yh[hp
+煮	vu[lh
+煲	bc[rh
+煳	hu[ho
+煴	yy[hm
+煸	bm[hc
+煺	tv[hz
+煽	uj[hx
+熄	xi[hx
+熅	yy[hm
+熇	he[hk
+熇	hu[hk
+熇	kc[hk
+熊	xs[sh
+熏	xy[ph
+熒	yk[ch
+熔	rs[hk
+熗	ql[hv
+熘	lq[ht
+熙	xi[kh	100%
+熙	yi[kh	0%
+熛	bn[hx
+熜	cs[hx
+熜	zs[hx
+熟	uz[wh	12.20%
+熟	uu[wh	87.80%
+熠	yi[hb
+熥	ts[hz
+熨	yu[uh	50%
+熨	yy[uh	50%
+熬	ao[fh
+熱	re[fh
+熲	js[br
+熲	yk[br
+熵	di[hk	0%
+熵	uh[hk	100%
+熹	xi[uh
+熻	xi[hx
+熾	ii[hb	100%
+熾	vi[hb	0%
+燁	ye[hu
+燃	rj[hh
+燈	dg[hd
+燉	dy[ht
+燊	uf[hm
+燋	jn[hh
+燋	qn[hh
+燎	ln[hx
+燏	yu[hk
+燒	uc[hw
+燔	fj[ht
+燕	yj[nh
+燙	th[dh
+燚	yj[hh
+燚	yi[hh
+燜	mf[hx
+營	yk[ck
+燠	ao[hd
+燠	yu[hd
+燥	zc[hm
+燦	cj[he
+燧	sv[hz
+燬	hv[jy
+燭	vu[hi
+燮	xp[hy
+燴	hv[hs
+燹	xm[uh
+燻	xy[ph
+燼	jb[hd
+燾	dc[fh
+燾	uz[fh
+燾	tc[fh
+爆	bc[hu	100%
+爆	bo[hu	0%
+爍	uo[hl
+爐	lu[hh
+爔	xi[hd
+爚	yc[hc
+爚	yt[hc
+爛	lj[hs
+爝	jt[hc
+爟	gr[hf
+爨	cr[ph
+爪	vc[pn	3.68%
+爪	vx[pn	96.32%
+爬	pa[vb
+爭	vg[dl
+爰	yr[py
+爱	ai[py
+爲	ww[dd
+爵	jt[pc	100%
+爵	qt[pc	0%
+父	fu[bx
+爷	ye[be
+爸	ba[bb	100%
+爸	bw[bb	0%
+爹	dp[bx
+爺	ye[be
+爻	xn[xx
+爻	yc[xx
+爽	ul[dx
+爾	er[dx
+爿	bj[vp
+爿	pj[vp
+爿	ql[vp
+牀	il[gm
+牁	ge[pk
+牂	zh[py
+牆	ql[tk
+片	pm[pv
+版	bj[py
+牌	pd[pu
+牍	du[pd
+牒	dp[pm
+牖	yz[pf
+牘	du[pd
+牙	ya[ap
+牚	ig[xy
+牛	nq[pl
+牝	pb[nb
+牟	mz[sn	74.56%
+牟	mu[sn	25.44%
+牡	mz[nt	0%
+牡	mu[nt	100%
+牢	lc[bn
+牤	mh[nw
+牥	fh[nf
+牦	mc[nm
+牧	mu[nw
+物	wu[nw	100%
+物	vi[nw	0%
+牮	jm[rn
+牯	gu[nk
+牲	ug[nu
+牵	qm[dn
+特	te[nc
+牺	xi[nx
+牻	mh[nd
+牽	qm[dn
+牾	wu[nk
+牿	gc[nk
+牿	gu[nk
+犀	xi[un
+犁	li[hn
+犄	ji[nk
+犇	bf[nn
+犊	du[nd
+犋	ju[nb
+犍	jm[nz
+犏	pm[nc
+犒	kc[nk
+犖	lc[cn
+犖	lo[cn
+犖	yk[cn
+犛	li[nm
+犛	mc[nm
+犟	jl[gn
+犢	du[nd
+犧	xi[nx
+犨	iz[rn
+犬	qr[dd
+犯	fj[qv
+犰	iz[qj
+犰	qq[qj
+犴	an[qg
+犴	gj[qg
+犴	hj[qg
+犴	jm[qg
+状	vl[dq
+犷	gl[qg
+犸	ma[qm
+犹	yz[qy
+狀	vl[dq
+狁	yy[qe
+狂	kl[qw
+狃	nq[qi
+狄	di[qh
+狈	bw[qr
+狉	pi[qp
+狍	pc[qs
+狎	jx[qj
+狎	xx[qj
+狐	hu[qg
+狒	fw[qf
+狒	fu[qf
+狗	gz[qk
+狙	ju[qq
+狙	zu[qq
+狝	mi[qx
+狝	xm[qx
+狞	nk[qd
+狠	hf[qg
+狡	jn[qx
+狨	rs[qu
+狩	uz[qc
+独	du[qi
+狭	xx[qj
+狮	ui[qj
+狯	kk[qs
+狰	vg[ql
+狱	yu[qq
+狲	sy[qx
+狳	yu[qh
+狴	bi[qt
+狷	jr[qo
+狸	li[ql
+狹	xx[qj
+狺	yj[qk
+狺	yb[qk
+狻	sr[qw
+狼	lh[ql
+狽	bw[qr
+猁	li[qd
+猃	xm[qa
+猄	jk[qx
+猇	xn[qj
+猇	yc[qj
+猊	ni[qe
+猎	ji[qo	30%
+猎	lp[qo	0%
+猎	qt[qo	35%
+猎	xi[qo	35%
+猕	mi[qx
+猖	ih[qo
+猗	ee[qk
+猗	yi[qk
+猙	vg[ql
+猛	mg[qm
+猜	cd[qo
+猝	cu[qu
+猞	ue[qk
+猡	lo[qx
+猢	hu[qo
+猥	ww[qn
+猩	xk[qu
+猪	vu[qo
+猫	mc[qt
+猬	ww[qo
+献	xm[uq
+猯	tr[qe
+猰	jx[qd
+猰	ya[qd
+猱	nc[qm
+猴	hz[qu
+猶	yz[qy
+猷	qq[bq
+猷	yz[bq
+猹	ia[qd
+猺	yc[qf
+猻	sy[qx
+猾	hx[qg
+猿	yr[qy
+獁	ma[qm
+獃	ai[km
+獃	dd[km
+獄	yu[qq
+獅	ui[qj
+獍	jk[qe
+獎	jl[dd
+獐	vh[qu
+獒	ao[fq
+獗	jt[qr
+獠	ln[qx
+獨	du[qi
+獪	hv[qs
+獪	kk[qs
+獫	xm[qa
+獬	xp[qn
+獭	ta[qr
+獮	mi[qx
+獮	xm[qx
+獯	xy[qh
+獰	nk[qd
+獲	hk[cq	0%
+獲	ho[cq	100%
+獴	mg[qu
+獵	lp[qo
+獷	gl[qg
+獸	uz[bk
+獺	ld[qr
+獺	ta[qr
+獻	xm[uq
+獼	mi[qx
+獾	hr[qf
+玀	lo[qx
+玃	jt[qy
+玄	xm[wy	0%
+玄	xr[wy	100%
+率	lv[wu	94.01%
+率	uk[wu	5.99%
+率	uo[wu	0%
+玉	yu[wd
+王	wh[at	100%
+王	yu[at	0%
+玎	dk[wd
+玎	vg[wd
+玑	ji[wj
+玒	gh[wg
+玒	gs[wg
+玒	hs[wg
+玓	di[wu
+玕	gj[wg
+玖	jq[wj
+玘	qi[wj
+玙	yu[wy
+玚	ih[wp
+玛	ma[wm
+玞	fu[wf
+玟	mb[ww	24.68%
+玟	wf[ww	75.32%
+玠	jp[wl
+玡	ya[wy
+玢	bb[wd
+玢	ff[wd
+玤	bh[wf
+玤	bg[wf
+玥	yt[wo
+玦	jt[wg
+玩	wj[we
+玫	mw[ww
+玭	pi[wb
+玭	pb[wb
+玮	ww[ww
+环	hr[wb
+现	xm[we
+玱	ql[wv
+玲	lk[ws
+玳	dd[wy
+玶	pk[wp
+玷	dm[wk
+玷	vj[wk
+玹	xm[wy
+玹	xr[wy
+玺	xi[dy
+玻	bo[wy
+玼	ci[wb
+玿	uc[wk
+珀	po[wb
+珂	ke[wk
+珅	uf[wu
+珇	zu[wq
+珈	jx[wk
+珉	mb[wm
+珉	wf[wm
+珊	uj[wc
+珋	lq[we
+珌	bi[wb
+珍	vf[wp
+珏	jt[wy	100%
+珏	yu[wy	0%
+珐	fa[ws
+珑	ls[wl
+珒	jb[wy
+珒	lv[wy
+珕	li[wl
+珖	gl[ww
+珙	gs[wb
+珛	hv[wo
+珛	xq[wo
+珛	yz[wo
+珝	xu[wx
+珝	yu[wx
+珞	lo[wk
+珠	vu[wv
+珢	gf[wg
+珢	yb[wg
+珣	xy[wo
+珥	er[we
+珦	xl[wk
+珧	yc[wd
+珩	hg[wi
+珪	gv[wt
+珫	is[we
+班	bj[ww
+珰	dh[we
+珲	hv[wi
+珲	hy[wi
+珵	ig[ww
+珷	wu[wv
+珸	wu[wk
+珹	ig[wi
+珺	jy[wk
+珽	tk[wz
+現	xm[we
+琀	hj[wk
+球	qq[wq
+琄	jr[wo
+琄	qr[wo
+琄	xr[wo
+琅	lh[wl
+理	li[wl
+琇	xq[wn
+琈	fu[wz
+琉	lq[wv
+琊	ya[we
+琊	ye[we
+琎	jb[wz
+琏	lm[wz
+琐	so[wr
+琔	dm[wr
+琚	ju[wk
+琛	if[wm
+琛	uf[wm
+琟	ww[wf
+琡	iu[wy
+琡	jn[wy
+琢	vo[wn
+琤	ig[wl
+琤	vg[wl
+琥	hu[wj
+琦	qi[wk
+琨	ky[wb
+琪	qi[wb
+琫	bg[wl
+琬	wj[wv
+琭	lu[wu
+琮	cs[wx
+琮	zs[wx
+琯	gr[wk
+琰	yj[wh
+琱	dn[kf
+琲	bw[wf
+琲	fw[wf
+琲	pw[wf
+琳	lb[wm
+琴	qb[wv
+琵	pi[wb
+琶	ba[wb
+琶	pa[wb
+琺	fa[ws
+琼	qs[wx
+琿	hv[wi
+琿	hy[wi
+瑀	yu[wy
+瑁	mc[wo
+瑁	mw[wo
+瑂	mw[wo
+瑃	vr[wo
+瑄	xr[wg
+瑅	ti[wr
+瑆	xk[wu
+瑋	ww[ww
+瑑	vr[wu
+瑒	ih[wp
+瑒	yh[wp
+瑓	lm[wj
+瑔	qr[wu
+瑕	jx[wy	0%
+瑕	xx[wy	100%
+瑖	dr[wy
+瑗	yr[wy
+瑙	nc[wx
+瑚	hu[wo
+瑛	yk[wy
+瑜	yu[wd
+瑝	hl[ww
+瑞	rv[we
+瑟	se[wb
+瑢	rs[wk
+瑣	so[wr
+瑤	yc[wf
+瑧	jb[wh
+瑧	qb[wh
+瑨	jb[wo
+瑩	yk[cy
+瑪	ma[wm
+瑬	lq[dy
+瑭	th[wk
+瑰	gv[wg
+瑱	tm[wb
+瑱	vf[wb
+瑲	ch[wv
+瑲	il[wv
+瑲	ql[wv
+瑳	co[wg
+瑶	yc[wf
+瑷	ai[wy
+瑾	jb[wa
+璀	cv[wf
+璁	cs[wx
+璃	li[wd
+璆	ln[wp
+璆	qq[wp
+璇	xr[wr
+璈	ao[ww
+璉	lm[wz
+璊	mj[wl
+璊	mf[wl
+璋	vh[wu
+璎	yk[wn
+璐	lu[wk
+璒	dg[wa
+璘	lb[wl
+璜	hl[wb
+璞	pu[wn
+璟	jk[wx
+璠	fj[wt
+璡	jb[wz
+璣	ji[wj
+璥	jk[ww
+璦	ai[wy
+璧	bi[uy
+璨	cj[wm
+璩	ju[wu
+璩	qu[wu
+璪	zc[wm
+璫	dh[we
+璬	jn[ww
+璮	tj[wd
+環	hr[wb
+璱	se[wb
+璲	sv[wz
+璵	yu[wy
+璺	wf[py
+璽	xi[dy
+瓀	ru[we
+瓀	rr[we
+瓊	qs[wx
+瓏	ls[wl
+瓒	zj[wr
+瓔	yk[wn
+瓖	xl[wy
+瓘	gr[wf
+瓚	zj[wr
+瓛	hr[wq
+瓛	xm[wq
+瓜	gx[pn
+瓞	dp[gu
+瓠	hu[dg
+瓢	pn[xg
+瓣	bj[lu
+瓤	rh[wg
+瓦	wa[ad
+瓮	wg[bw
+瓯	ou[kw
+瓴	lk[rw
+瓶	pk[bw
+瓷	ci[dw
+瓻	ii[xw
+瓻	wa[xw
+瓻	xi[xw
+瓿	pz[lw
+甄	vf[xw
+甌	ou[kw
+甍	mg[cw
+甏	bh[uw
+甏	pg[uw
+甑	zg[bw
+甓	pi[uw
+甕	wg[bw
+甗	xm[hw
+甗	yj[hw
+甘	gj[na
+甚	uf[qv
+甜	tm[qg
+生	ug[pf
+甡	uf[uu
+產	ij[lp
+産	ij[lp
+甥	ug[ul
+甦	su[cb
+用	ys[kl
+甩	uk[kv
+甪	lu[py
+甫	fu[ad
+甬	ys[sy
+甭	bg[by
+甯	nk[bd
+田	tm[ku
+由	yz[la
+甲	jx[ll
+申	uf[ll
+电	dm[lv
+男	nj[tl
+甸	dm[bt
+町	dk[td	89.87%
+町	tk[td	10.13%
+画	hx[ak
+甾	zd[vt
+甾	zi[vt
+畀	bi[tl
+畅	ih[up
+畈	fj[ty
+畋	tm[tw
+畋	wf[tw
+界	jp[tl
+畎	qr[tq
+畏	ww[tn
+畔	bj[tb	0%
+畔	pj[tb	100%
+畖	wa[tg
+留	da[pt	0%
+留	lq[pt	100%
+畚	bf[st
+畚	bo[st
+畛	vf[tp
+畜	iu[wt	81.28%
+畜	xu[wt	18.72%
+畝	mz[wt	0%
+畝	mu[wt	100%
+畢	bi[bu
+畤	ui[tc
+畤	vi[tc
+略	lt[tk
+畦	qi[tt
+畦	wa[tt
+畦	xi[tt
+番	fj[pt	89.71%
+番	pj[pt	10.29%
+番	po[pt	0%
+畫	hx[ak
+畬	ue[rt
+畬	yu[rt
+畯	jy[tw
+畯	zy[tw
+異	yi[sc
+畲	ue[rt
+畴	iz[tc
+畵	hx[ak
+當	dh[xe
+畸	ji[tk
+畸	qi[tk
+畹	wj[tv
+畿	ji[yt
+畿	qi[yt
+疁	lq[tp
+疃	tr[tl
+疃	ty[tl
+疆	jl[ga
+疇	iz[tc
+疊	da[yq	1%
+疊	dp[yq
+疍	dj[vd
+疏	uu[vv	100%
+疏	su[vv	0%
+疐	ti[ur
+疐	vi[ur
+疑	yi[br
+疔	dk[bd
+疖	jp[be
+疗	ln[bl
+疙	ge[bq
+疙	yi[bq
+疚	jq[bj
+疝	uj[be
+疟	nt[ba	92.31%
+疟	yc[ba	7.69%
+疠	li[bw
+疡	yh[bp
+疢	if[bh
+疣	yz[by
+疤	ba[bb
+疥	jp[bl
+疫	yi[by
+疬	li[bl
+疭	zs[br
+疮	il[bv
+疯	fg[bx
+疰	vu[bv
+疱	pc[bs
+疲	pi[by
+疳	gj[bg
+疴	ee[bk
+疴	ke[bk
+疵	ci[bb
+疸	da[bd
+疸	dj[bd
+疹	vf[bp
+疼	tg[bd	100%
+疼	ts[bd	0%
+疽	ju[bq
+疽	qu[bq
+疾	ji[bu
+痂	jx[bk
+痃	xm[by
+痄	ii[bv
+痄	va[bv
+病	bk[bb
+症	vg[bv
+痈	ys[by
+痉	jk[bg
+痊	qr[bw
+痍	yi[by
+痒	yh[by
+痓	ii[bt
+痔	vi[bc
+痕	hf[bg
+痘	dz[ba
+痙	jk[bg
+痛	ts[by
+痞	pi[bk
+痠	sr[yw
+痢	li[bd
+痣	vi[bx
+痤	co[bt
+痦	wu[bk
+痧	ua[bu
+痨	lc[bl
+痪	hr[bd
+痫	xm[bm
+痰	tj[bh
+痱	fw[bf
+痴	ii[bk
+痹	bi[bl
+痼	gu[bk
+痾	ee[bk
+痾	ke[bk
+痿	ww[bn
+瘀	yu[bd
+瘁	cv[bu
+瘃	vu[bn
+瘅	dj[bl
+瘆	uf[bp
+瘊	hz[bu
+瘋	fg[bx
+瘌	la[bd
+瘍	yh[bp
+瘐	sz[by
+瘐	yu[by
+瘓	hr[bd
+瘕	jx[by
+瘗	yi[bt
+瘘	lz[bn
+瘙	sc[bi
+瘙	zc[bi
+瘛	ii[bx
+瘞	yi[bt
+瘟	wf[bm
+瘠	ji[bo
+瘡	il[bv
+瘢	bj[by
+瘤	lq[bt
+瘥	id[bg	50%
+瘥	co[bg	50%
+瘦	uz[by
+瘧	nt[ba	92.31%
+瘧	yc[ba	7.69%
+瘩	da[bk
+瘪	bp[bb
+瘫	tj[bf
+瘭	bn[bx
+瘮	uf[bp
+瘰	lo[bx
+瘲	zs[br
+瘳	iz[bp
+瘳	ln[bp
+瘴	vh[bu
+瘵	ji[bx
+瘵	vd[bx
+瘸	qt[br
+瘺	lz[bn
+瘻	lz[bn
+瘼	mo[bd
+瘾	yb[bx
+瘿	yk[bn
+癀	hl[bb
+療	ln[bl
+癃	ls[bu
+癆	lc[bl
+癇	xm[bm
+癉	dj[bl
+癌	ai[be
+癌	yj[be
+癍	bj[bw
+癒	yu[rx
+癔	yi[bx
+癖	pi[bu
+癗	lw[bt
+癘	ji[bw
+癘	li[bw
+癜	dm[by
+癞	ld[br
+癟	bp[bb
+癡	ii[bk
+癢	yh[by
+癣	xr[by
+癤	jp[be
+癥	vg[bv
+癧	li[bl
+癩	ld[br
+癫	dm[br
+癬	xm[by
+癬	xr[by
+癭	yk[bn
+癮	yb[bx
+癯	qu[bf
+癰	ys[by
+癱	tj[bf
+癲	dm[br
+癸	gv[vt
+登	dg[va
+發	fa[vd
+白	bd[po	100%
+白	bo[po	0%
+百	bd[ab	100%
+百	bo[ab	0%
+癿	qp[bv
+癿	va[bv
+皁	zc[bq
+皂	zc[bq
+的	de[bu	99.97%
+的	di[bu	0.03%
+皆	jp[bb
+皇	hl[bw
+皈	fj[by
+皈	gv[by
+皋	gc[bu
+皎	jn[bx
+皑	ai[bj
+皓	hc[bk
+皕	bi[bb
+皖	hr[be	0%
+皖	wj[be	100%
+皙	xi[mb
+皙	ve[mb
+皚	ai[bj
+皛	jn[bb
+皛	js[bb
+皞	gc[bu
+皞	hc[bu
+皤	fj[bt
+皤	po[bt
+皦	jn[bw
+皭	jn[bc
+皭	jt[bc
+皮	pi[vy
+皰	bc[bs
+皰	pc[bs
+皱	vz[dy
+皲	jy[by
+皴	cy[sy
+皸	jy[by
+皺	vz[dy
+皿	mb[la
+皿	mk[la
+盂	yu[ym
+盃	bw[mb
+盅	vs[vm
+盆	pf[bm
+盈	yk[nm
+盉	he[hm
+益	yi[bm
+盍	gd[tm
+盍	he[tm
+盎	ah[ym
+盏	vj[jm
+盐	yj[tm
+监	jm[lm
+盒	he[rm
+盔	hv[um	0%
+盔	kv[um	100%
+盖	gd[ym	99.91%
+盖	ge[ym	0.09%
+盖	he[ym
+盗	dc[dm
+盘	pj[vm
+盛	ig[im	5.20%
+盛	ug[im	94.80%
+盜	dc[dm
+盞	vj[jm
+盟	mg[om	100%
+盟	mk[om	0%
+盡	jb[id
+監	jm[lm
+盤	pj[vm
+盥	gr[pm
+盦	an[rm
+盧	lu[lu
+盪	dh[cp	100%
+盪	th[cp	0%
+目	mu[ka
+盯	ig[od	0%
+盯	dk[od	100%
+盱	xu[oy
+盲	mh[wo
+直	vi[uq
+盷	tm[od
+盷	xr[od
+盷	yy[od
+相	xl[mo
+盹	dy[ot
+盼	pj[od
+盾	dy[po	100%
+盾	uy[po	0%
+省	ug[uo	99.88%
+省	xk[uo	0.12%
+眄	mm[om
+眇	mn[ou
+眈	dj[ov
+眉	mw[vo
+眊	mc[om
+看	kj[uo
+眍	kz[ox
+眙	ii[ok
+眙	yi[ok
+眚	ug[uo
+眞	vf[ub
+真	vf[ub
+眠	mm[om
+眢	wj[xo
+眢	yr[xo
+眥	zi[ob
+眦	zi[ob
+眨	fa[of	0%
+眨	va[of	100%
+眩	xm[oy	0%
+眩	xr[oy	100%
+眬	ls[ol
+眭	kv[ot
+眭	sv[ot
+眯	mi[om
+眵	ii[ox
+眶	kl[ow
+眷	jr[jo
+眸	mz[on
+眺	tn[od
+眼	yj[og
+眾	vs[rr
+着	vc[yo	4.25%
+着	ve[yo	93.74%
+着	vo[yo	2.02%
+睁	vg[ol
+睃	jy[ow
+睄	uc[oo
+睇	di[op
+睇	ti[op
+睍	jm[oe
+睍	xm[oe
+睎	xi[oj
+睏	ky[km
+睐	ld[ol
+睑	jm[oa
+睚	ya[ot
+睚	yd[ot
+睛	jk[oo
+睜	vg[ol
+睞	ld[ol
+睡	uv[oi
+睢	sv[of
+督	du[uo
+睥	bi[ou
+睦	mu[ot
+睨	ni[oe
+睪	gc[pg
+睪	yi[pg
+睫	jp[or
+睬	cd[om
+睹	du[oo
+睽	gv[ot
+睽	kv[ot
+睾	gc[pg
+睿	rv[lo
+瞀	mc[so
+瞀	mz[so
+瞄	mn[ot
+瞅	iz[oh
+瞅	qq[oh
+瞋	if[ob
+瞌	ke[om
+瞍	sz[oy
+瞎	xx[ok
+瞑	mm[ob
+瞑	mk[ob
+瞒	mj[ol
+瞓	xy[oi
+瞘	kz[ox
+瞘	ou[ox
+瞜	lz[on
+瞞	mj[ol
+瞟	pn[ox
+瞠	ig[ot
+瞠	th[ot
+瞢	mg[co
+瞥	pp[do
+瞧	qn[oh
+瞩	vu[oy
+瞪	dg[oa
+瞫	uf[ou
+瞫	tj[ou
+瞬	uy[ol
+瞭	ln[ox
+瞰	gj[ow
+瞰	kj[ow
+瞳	ts[ol
+瞵	lb[ol
+瞻	vj[ok
+瞼	jm[oa	100%
+瞼	lm[oa	0%
+瞽	gu[uo
+瞿	ju[of	0%
+瞿	qu[of	100%
+矇	mg[cu
+矍	jt[oy
+矓	ls[ol
+矗	iu[uq
+矚	vu[oy
+矛	mc[sp
+矜	gr[sv	0%
+矜	jb[sv	100%
+矞	jt[sk
+矞	yu[sk
+矢	ui[pt
+矣	yi[su
+知	vi[uk
+矧	uf[uy
+矩	ju[uj
+矫	jn[ul
+矬	co[ut
+短	dr[ua
+矮	ai[un
+矯	jn[ul
+矰	zg[uo
+石	dj[ak	0.14%
+石	ui[ak	99.86%
+矶	ji[uj
+矸	an[ug
+矸	gj[ug
+矻	ku[uq
+矻	wu[uq
+矼	gh[ug
+矼	jl[ug
+矼	ql[ug
+矾	fj[uf
+矿	kl[ug
+砀	dh[up
+码	ma[um
+砂	ua[uu
+砄	jt[ug
+砆	fu[uf
+砉	hx[fu	50%
+砉	ho[fu
+砉	xu[fu	50%
+砌	qi[ud	100%
+砌	qp[ud	0%
+砍	kj[ur
+砑	ya[uy
+砒	pi[ub
+研	yj[uk
+砖	vr[uv
+砗	ie[ui
+砘	dy[ut
+砚	yj[ue
+砜	fg[ux
+砝	fa[us
+砟	va[uv
+砠	ju[uq
+砠	qu[uq
+砠	zu[uq
+砣	to[ub
+砥	di[ud
+砥	vi[ud
+砧	vf[uk
+砫	vu[uv
+砬	la[ul
+砬	li[ul
+砭	bm[uf
+砮	nu[nu
+砰	pg[up	100%
+砰	pk[up	0%
+破	po[uy
+砵	bo[ub
+砷	uf[uu
+砸	za[uj
+砹	ai[ux
+砺	li[uw
+砻	ls[lu
+砼	ts[ug
+砾	li[ul
+础	iu[ui
+硁	kg[ug
+硃	vu[pw
+硅	gv[ut
+硇	nc[ux
+硊	kv[uv
+硊	ww[uv
+硌	ge[uk	100%
+硌	lo[uk	0%
+硍	hf[ug
+硍	kf[ug
+硍	xm[ug
+硎	xk[ud
+硐	ds[uk
+硐	ts[uk
+硒	xi[ux
+硔	hs[ub
+硕	uo[ur
+硖	xx[uj
+硗	qn[uw
+硙	ai[uj
+硚	qn[ul
+硜	jk[ug
+硜	kg[ug
+硝	xn[uo
+硤	jx[uj
+硤	xx[uj
+硨	ie[ui
+硪	ee[uw
+硫	lq[uv
+硬	yk[ug
+硭	mh[uw
+确	jn[uy	0%
+确	qt[uy	100%
+硯	yj[ue
+硼	pg[uo
+硿	ks[ug
+碃	qk[uo
+碇	dk[ur
+碈	mb[uo
+碈	wf[uo
+碉	dn[uk
+碌	lu[uu
+碍	ai[uc
+碎	cv[uu	0%
+碎	sv[uu	100%
+碏	cu[uo
+碏	co[uo
+碏	qt[uo
+碑	bw[uu
+碓	dv[uf
+碓	vv[uf
+碕	qi[tk
+碗	wj[uv
+碘	dm[ub
+碚	bw[uk
+碚	pw[uk
+碛	qi[ur
+碜	if[up
+碟	dp[um
+碡	du[um
+碣	jp[uv
+碣	xp[uv
+碥	bm[uc
+碧	bi[wu
+碨	ww[un
+碩	ui[ur	0%
+碩	uo[ur	100%
+碭	dh[up
+碰	pg[uy
+碱	jm[uk
+碲	di[uj
+碳	tj[uh
+碴	ia[ud
+碶	qi[ud
+碸	fg[ux
+碹	xr[ug
+確	qt[uy
+碼	ma[um
+碾	nm[un
+磁	ci[uy
+磅	bh[uf	97.96%
+磅	bg[uf	1%
+磅	ph[uf	1%
+磉	sh[um
+磊	lw[uu
+磋	co[ug
+磏	lm[un
+磐	pj[vu
+磑	ai[uj
+磑	kd[uj
+磑	ww[uj
+磑	yi[uj
+磔	jp[um
+磔	ve[um
+磕	ke[um
+磙	gy[uy
+磚	vr[uv
+磜	qi[ux
+磜	qp[ux
+磡	kj[ul
+磡	vf[ul
+磣	cj[up
+磣	if[up
+磧	qi[ur
+磧	ze[ur
+磧	zi[ur
+磨	mo[gu
+磬	qk[uu
+磯	ji[uj
+磲	qu[um
+磴	dg[ua
+磷	lb[ul	100%
+磷	lk[ul	0%
+磹	dm[uu
+磺	hl[ub
+磻	pj[ut
+磽	qn[uw
+磾	di[ul
+礁	jn[uh
+礄	jn[ul
+礄	qn[ul
+礅	dy[uw
+礌	lw[ut
+礎	iu[ui
+礓	jl[ua
+礙	ai[uc
+礞	mg[uu
+礦	gs[ug	0%
+礦	kl[ug	100%
+礪	li[uw
+礫	li[ul
+礬	fj[uf
+礱	ls[lu
+礴	bo[uc
+礵	ul[uo
+示	qi[ex	0%
+示	ui[ex	100%
+礼	li[pv
+社	ue[pt
+祀	si[ps
+祁	qi[pe
+祃	ma[pm
+祆	xm[pt
+祇	qi[pu	100%
+祇	vi[pu	0%
+祈	qi[pj
+祉	vi[pv
+祊	bg[pf
+祋	dv[py
+祋	uu[py
+祎	yi[pw
+祏	ui[pu
+祐	yz[pk
+祓	ba[pd
+祓	fu[pd
+祕	bi[hb
+祕	mi[hb
+祖	zu[pq
+祗	vi[pd
+祚	zo[pv
+祛	qu[ps	100%
+祛	qt[ps	0%
+祜	gu[pk
+祜	hu[pk
+祝	vu[pe
+神	uf[pu
+祟	sv[ix
+祠	ci[pk
+祢	mi[px
+祢	ni[px
+祥	xl[py
+祧	tn[pd
+票	pn[xx
+祭	ji[px	100%
+祭	vd[px	0%
+祯	vf[pr
+祲	jb[py
+祷	dc[pc
+祸	ho[pn
+祺	qi[pb
+祼	gr[pg
+祼	lo[pg
+祾	lg[pw
+祾	lk[pw
+祿	lu[pu
+禀	bb[wx
+禀	bk[wx
+禀	lb[wx
+禁	jb[mx
+禄	lu[pu
+禅	ij[pl	99.24%
+禅	uj[pl	0.76%
+禊	qi[pd
+禊	xi[pd
+禋	yj[pt
+禋	yb[pt
+禍	ho[pn
+禎	vf[pr
+福	fu[pt
+禒	xm[pu
+禒	yr[pu
+禔	ti[pr
+禕	yi[pw
+禘	di[pj
+禚	gc[ph
+禚	vo[ph
+禛	vf[pb
+禡	ma[pm
+禤	ta[px
+禤	xr[px
+禦	yu[ie
+禧	xi[pk
+禪	ij[pl	99.24%
+禪	uj[pl	0.76%
+禮	li[pv
+禰	mi[px
+禰	ni[px
+禱	dc[pc
+禳	rh[py
+禹	yu[pd
+禺	ou[ld
+禺	yu[ld
+离	ii[wd
+离	li[wd
+禽	qb[rd
+禾	he[qn
+禿	tu[hj
+秀	xq[hn
+私	si[hs
+秃	tu[hj
+秆	gj[hg
+秈	xm[me
+秉	bk[pn
+秋	qq[hh
+种	is[hv
+种	vs[hv	0.5%
+科	ke[hu
+秒	mn[hu
+秕	bi[hb
+秘	bi[hb	0.16%
+秘	mi[hb	99.84%
+租	zu[hq
+秣	mo[hm
+秤	ig[hp	100%
+秤	pk[hp	0%
+秦	qb[fh
+秧	yh[hy
+秩	vi[hu
+秫	uu[hu
+秬	ju[hj
+秭	zi[hp
+积	ji[hb	0%
+积	vi[hb
+称	if[hx	2.48%
+称	ig[hx	97.52%
+秸	ji[hk
+秸	jx[hk
+秸	jp[hk
+移	yi[hx
+秽	hv[hx
+秾	ns[hn
+稀	xi[hj
+稂	lh[hl
+稃	fu[hz
+稅	uv[he
+稆	lv[hk
+稈	gj[hg
+程	ig[hw
+稌	tu[hh
+稍	uc[ho
+税	uv[he
+稑	lu[ht
+稔	nm[hx
+稔	rf[hx
+稗	bd[hu
+稗	bi[hu
+稙	vi[hq
+稚	vi[hf
+稜	lg[mw	91.97%
+稜	lk[mw	8.03%
+稞	ke[hg
+稟	bb[wx
+稟	bk[wx
+稟	lb[wx
+稠	iz[hk
+稣	su[ah
+種	vs[hv
+稱	if[hx	2.48%
+稱	ig[hx	97.52%
+稳	wf[hx
+稷	ji[hw
+稷	lk[hw
+稷	su[hw
+稹	vf[hb
+稻	dc[hj
+稼	jx[hu
+稽	ji[ho	96.10%
+稽	qi[ho	3.90%
+稿	gc[hk
+穀	gu[bk
+穄	ji[hx
+穆	mu[hp
+穇	uj[hp
+穌	su[ah
+穌	ww[ah
+積	ji[hb
+穎	yk[br
+穑	se[hk
+穗	sv[hx
+穙	pu[hn
+穜	ts[hl
+穟	sv[hz
+穠	ns[hn
+穡	se[hk
+穢	hv[hx	100%
+穢	ww[hx	0%
+穩	wf[hx
+穫	hu[cq	0%
+穫	ho[cq	100%
+穰	rh[hy
+穴	xt[bb
+究	jq[bj
+穷	qs[bl
+穸	xi[bx
+穸	xt[bx
+穹	qs[bg
+空	ks[bg
+穿	ir[by
+窀	vy[bt
+突	tu[bq
+窃	qp[bd
+窄	ze[bv	0%
+窄	vd[bv	100%
+窅	yc[bo
+窈	yc[bl
+窊	wa[bg
+窍	qn[bv
+窎	dn[bn
+窑	yc[bf
+窒	vi[bt
+窕	tn[bd
+窖	gc[bk	0%
+窖	jn[bk	100%
+窗	il[bw
+窘	js[bk	100%
+窘	jy[bk	0%
+窜	cr[bi
+窝	wo[bn
+窟	jn[bi	0%
+窟	ku[bi	100%
+窠	ke[bg
+窣	su[bu
+窥	kv[be
+窦	dz[bd
+窨	xy[bo	50%
+窨	yb[bo	50%
+窩	wo[bn
+窪	wa[dt
+窬	yu[bd
+窭	ju[bn
+窮	qs[bl
+窯	yc[bf
+窳	yu[bg
+窵	dn[bn
+窶	ju[bn
+窶	lz[bn
+窸	xi[bx
+窺	kv[be
+窿	ls[bu
+竄	cr[bi
+竅	qn[bv
+竇	dz[bd
+竈	zc[ht
+竊	qp[bd
+立	li[wa
+竑	hs[ls
+竖	uu[ll
+竘	ju[lk
+站	vj[lk
+竞	jk[le
+竟	jk[le
+章	vh[lu
+竣	jy[lw
+童	ts[ll
+竦	ss[lu
+竪	uu[ll
+竫	jk[ll
+竭	jp[lv
+端	dr[le
+競	jk[le
+竹	vu[pl
+竺	du[ve	0%
+竺	vu[ve	100%
+竽	yu[vy
+竿	gj[vg
+笃	du[vm
+笄	ji[vk
+笆	ba[vb
+笈	ji[vj
+笊	vc[vv
+笋	sy[vy
+笏	hu[vw
+笏	ho[vw
+笑	xn[vy
+笔	bi[vm
+笕	jm[ve
+笙	ug[vu
+笛	di[vy
+笞	ii[vk
+笞	td[vk
+笠	li[vl
+笤	tn[vk
+笥	si[vk
+符	fu[vc
+笨	bf[vb
+笪	da[vd
+笫	yi[vp
+笫	zi[vp
+第	di[vp
+笮	ze[vv
+笮	va[vv
+笯	nu[vy
+笱	gz[vk
+笳	jx[vk
+笸	po[vk
+笺	jm[vj
+笼	ls[vl
+笾	bm[vz
+筀	gv[vt
+筅	xm[ve
+筆	bi[vm
+筇	qs[ve
+等	dg[vc
+筋	jb[vl
+筌	qr[vw
+筍	sy[vy
+筏	fa[vg
+筐	kl[vw
+筑	vu[vf
+筒	ts[vk
+答	da[vk
+策	ce[vn
+筘	kz[vk
+筚	bi[vu
+筛	ud[vj
+筜	dh[ve
+筝	vg[vl
+筠	yy[vd
+筠	jy[vd
+筢	pa[vb
+筤	lh[vl
+筥	ju[vk
+筥	lv[vk
+筦	gr[ve
+筦	wj[ve
+筧	jm[ve
+筮	ui[vr
+筱	xn[vw
+筱	yz[vw
+筲	uc[vo
+筵	yj[vz
+筶	gc[vk
+筷	kk[vg
+筹	iz[vc
+筻	gh[vg
+筼	yy[vr
+签	qm[va
+简	jm[vo
+箅	bi[vl
+箇	ge[rl
+箋	jm[vj
+箍	gu[vj	100%
+箍	ku[vj	0%
+箏	vg[vl
+箐	jk[vo
+箐	qm[vo
+箐	qk[vo
+箓	lu[vu
+箔	bc[vb
+箔	bo[vb
+箕	ji[vb
+箖	lb[vm
+算	sr[vc
+箜	ks[vg
+管	gr[vk
+箢	wj[vv
+箦	ze[vr
+箧	qp[vj
+箨	to[vl
+箩	lo[vx
+箪	dj[vl
+箫	xn[vs
+箬	ro[vk
+箭	jm[vd
+箱	xl[vo
+箴	hj[vk
+箴	xm[vk
+箴	vf[vk
+箸	vu[vo
+節	jp[ce
+篁	hl[vw
+範	fj[cv
+篆	vr[vu
+篇	pm[vc
+築	vu[vf
+篋	qp[vj
+篌	hz[vu
+篑	kv[vr
+篓	lz[vn
+篔	yy[vr
+篙	gc[vk
+篚	fw[vf
+篝	gz[vr
+篡	cr[vs
+篤	du[vm
+篥	li[vm
+篦	bi[vb
+篩	ud[vj
+篪	ii[vj
+篪	di[vj
+篪	hu[vj
+篮	lj[vm
+篯	jm[vj
+篱	li[vd
+篳	bi[vu
+篷	pg[vz
+篼	dz[ve
+篾	mp[vu
+簀	kv[vr
+簀	ze[vr
+簃	yi[vx
+簇	cu[vu
+簉	iz[vz
+簉	zc[vz
+簋	gv[vm
+簌	su[vr
+簍	lz[vn
+簏	lu[vb
+簑	so[cy
+簕	le[vl
+簖	dr[vj
+簝	ln[vx
+簞	dj[vl
+簟	dm[vu
+簠	fu[vm
+簡	jm[vo
+簣	kv[vr
+簧	hl[vb
+簪	zj[vo
+簫	xn[vs
+簰	pd[vu
+簸	bo[vy
+簹	dh[ve
+簽	qm[va
+簾	lm[bj
+簿	bo[vc
+簿	bu[vc
+籀	vz[vt
+籁	ld[vr
+籃	lj[vm
+籌	iz[vc
+籍	ji[vo
+籙	lu[vu
+籛	jm[vj
+籜	to[vl
+籟	ld[vr
+籠	ls[vl
+籤	qm[va
+籥	yt[vc
+籩	bm[vz
+籪	dr[vj
+籬	li[vd
+籮	lo[vx	100%
+籮	ui[vx	0%
+籲	yu[ky
+米	mi[dm
+籴	di[rm
+类	lw[md
+籼	xm[me
+籽	zi[mz
+粉	ff[md
+粑	ba[mb
+粒	li[ml
+粕	po[mb
+粗	cu[mq
+粘	nm[mk	63.35%
+粘	vj[mk	36.65%
+粜	tn[im
+粝	li[mw
+粞	xi[mx
+粟	su[xm
+粢	ci[dm
+粢	zi[dm
+粤	yt[pv
+粥	yu[gg	0%
+粥	vz[gg	100%
+粥	vu[gg	0%
+粦	lb[ml
+粪	ff[mb
+粮	ll[ml
+粱	ll[dm
+粲	cj[lm
+粳	gg[mg
+粳	jk[mg
+粵	yt[pv
+粹	cv[mu
+粼	lb[mv
+粽	vs[mx	0%
+粽	zs[mx	100%
+精	jk[mo
+粿	gv[mg
+粿	go[mg
+糁	sj[mp	42.11%
+糅	nq[mm
+糅	rz[mm
+糇	hz[mu
+糈	xu[mo
+糉	vs[mx
+糉	zs[mx
+糊	hu[mo
+糌	zj[mo
+糍	ci[my
+糒	bw[my
+糕	gc[mh
+糖	th[mk
+糗	iz[mq
+糗	qq[mq
+糙	cc[mz
+糙	zc[mz
+糜	mw[gm	4.51%
+糜	mi[gm	95.49%
+糝	sj[mp
+糞	ff[mb
+糟	zc[mo
+糠	kh[mn
+糧	ll[ml
+糨	jl[mi
+糨	ql[mi
+糯	no[me
+糰	tr[kc
+糲	li[mw
+糴	di[rm
+糵	np[cm
+糶	tn[im
+系	ji[px	0.30%
+系	xi[px	99.70%
+糾	jq[sl
+紀	ji[sj
+紂	vz[sc
+約	yc[su	0.02%
+約	yt[su	99.98%
+紅	gs[sg	0.02%
+紅	hs[sg	99.98%
+紆	yu[sy
+紇	ge[sq	50%
+紇	he[sq	50%
+紇	qi[sq
+紈	wj[sw
+紉	rf[sr
+紊	wf[wx
+紋	wf[sw
+納	na[sn
+紐	nq[si
+紓	uu[sl
+純	iy[st	100%
+純	vy[st	0%
+紕	pi[sb
+紖	kl[sy
+紖	yb[sy
+紖	vf[sy
+紗	ua[su
+紘	hs[ss
+紙	vi[su
+級	ji[sj
+紛	ff[sd
+紜	yy[ss
+紝	rf[sr
+素	su[fx
+紡	fh[sf
+索	so[ux
+紧	jb[lx
+紫	zi[vx
+紮	za[fv	6.72%
+紮	va[fv	93.28%
+累	lw[tx
+細	xi[st
+紱	fu[sd
+紲	ui[su
+紲	xp[su
+紳	uf[su
+紵	vu[sa
+紹	uc[sk
+紺	gj[sg
+紼	fu[sf
+紿	dd[sk
+絀	iu[si
+絀	vo[si
+終	vs[sd
+絃	xm[gy
+絃	xr[gy
+組	zu[sq
+絅	js[sk
+絆	bj[sb
+絎	hh[si
+絎	hg[si
+絎	xk[si
+結	jp[sk
+絕	jt[sb
+絛	di[sm
+絛	tc[sm
+絛	tn[sm
+絜	jp[fx
+絜	xp[fx
+絝	ku[sk
+絞	jn[sx
+絡	lc[sk	0.97%
+絡	lo[sk	99.03%
+絢	xr[so
+給	gw[sk	99.99%
+給	ji[sk	0.01%
+絨	rs[su
+絮	xu[nx
+絰	dp[st
+絰	vi[st
+統	ts[se
+絲	si[va
+絳	jl[sl
+絶	jt[sb
+絷	vi[fx
+絹	jr[so
+絺	ii[sj
+綁	bh[se
+綃	xn[so
+綆	gg[sg
+綈	ti[sp
+綉	xq[sn
+綌	xi[sk
+綌	yu[sk
+綏	sv[sn
+綑	ky[fm
+經	jk[sg
+綖	yj[sz
+綜	zg[sx	0%
+綜	zs[sx	100%
+綠	lu[su	0.74%
+綠	lv[su	99.26%
+綡	ll[sx
+綢	iz[sk
+綣	jr[sv
+綣	qr[sv
+綦	qi[qx
+綫	xm[sj
+綬	uz[sy
+維	ww[sf
+綮	qi[hx
+綮	qk[hx
+綯	tc[sf
+綰	gr[sk	0%
+綰	wj[sk	100%
+綱	gh[sx
+網	wh[kx
+綳	bg[so
+綴	io[sy	0%
+綴	vv[sy	100%
+綵	cd[pp
+綸	gr[sb	5.98%
+綸	ly[sb	94.02%
+綹	lq[sk
+綺	qi[sk
+綻	dk[sr	0%
+綻	vj[sr	100%
+綽	ic[su	5%
+綽	io[su	95%
+綾	lk[sw
+綿	mm[sj
+緄	gy[sb
+緄	ky[sb
+緇	zi[st
+緊	jb[lx
+緋	fw[sf
+緑	lu[su
+緑	lv[su
+緒	xu[so
+緔	uh[sk
+緗	xl[so
+緘	jm[sk
+緙	ge[sg
+緙	ke[sg
+線	xm[sj
+緝	ji[se	97.83%
+緝	qi[se	2.17%
+緞	dr[sy
+締	di[sj
+緡	mb[so
+緣	yr[su
+緦	si[sx
+編	bm[sc
+緩	hr[sy
+緬	mm[sm
+緯	ww[sw
+緱	gz[su
+緱	hz[su
+緲	mn[su
+練	lm[sd
+緹	ti[sr
+緻	vi[aw
+緼	yy[sm
+縈	yk[cx
+縉	jb[so
+縊	yi[sm
+縋	vv[sz
+縐	vz[se
+縑	jm[sn
+縑	qm[sn
+縕	yy[sm
+縗	cv[sy
+縗	uk[sy
+縛	fu[sc
+縝	vf[sb
+縞	gc[sk
+縟	ru[sc
+縠	gu[uy
+縠	hu[uy
+縢	tg[ox
+縣	xm[qs	99.88%
+縣	xr[qs	0.12%
+縧	tc[sm
+縧	tn[sm
+縫	fg[sz
+縭	li[sd
+縮	su[sb	0.62%
+縮	so[sb	99.38%
+縱	zs[sr
+縲	lw[sx
+縲	lo[sx
+縴	qm[sq
+縵	mj[sy
+縶	vi[fx
+縷	lv[sn
+縹	pn[sx
+縻	mi[gx
+總	zs[bx
+績	ji[sr
+繁	bo[px	0.14%
+繁	fj[px	99.86%
+繁	po[px	0.14%
+繃	bg[so
+繄	yi[kx
+繅	sc[sg
+繆	mn[sp	32.77%
+繆	mq[sp	60%
+繆	mz[sp	0.84%
+繆	mu[sp	0.84%
+繇	yc[px	51.72%
+繇	yz[px	24.14%
+繇	vz[px	24.14%
+繐	hv[hx
+繐	sv[hx
+繒	zg[so
+織	vi[sb
+繕	uj[sk
+繚	ln[sx
+繞	rc[sw
+繡	xq[sn
+繩	ug[sd
+繪	hv[ss
+繫	ji[px	0.30%
+繫	xi[px	99.70%
+繭	jm[ci
+繮	gh[sa
+繮	jl[sa
+繯	hr[sy
+繰	qn[sm	50%
+繰	sc[sm	50%
+繰	zc[sm	0
+繳	jn[sw	99.48%
+繳	vo[sw	0.52%
+繶	yi[sx
+繹	yi[sl
+繻	ru[se
+繻	xu[se
+繼	ji[sv
+繽	bb[sb
+繾	qm[sz
+纁	xy[sh
+纂	cr[vx	0%
+纂	zr[vx	100%
+纈	xp[sr
+纊	gl[sg
+纊	kl[sg
+續	xu[sd
+纍	lw[tx
+纏	ij[sl
+纓	yk[sn
+纔	cd[ap
+纖	xm[sq
+纘	zr[sr
+纛	dc[fx
+纛	du[fx
+纜	lj[se
+纠	jq[sl
+纡	yu[sy
+红	hs[sg	99.98%
+纣	vz[sc
+纤	qm[sq	53.05%
+纤	xm[sq	46.95%
+纥	ge[sq	50%
+纥	he[sq	50%
+约	yc[su	0.02%
+约	yt[su	99.98%
+级	ji[sj
+纨	wj[sw
+纩	kl[sg
+纪	ji[sj
+纫	rf[sr
+纬	ww[sw
+纭	yy[ss
+纮	hs[ss
+纯	iy[st
+纰	pi[sb
+纱	ua[su
+纲	gh[sx
+纳	na[sn
+纴	rf[sr
+纵	zs[sr
+纶	ly[sb	94.02%
+纷	ff[sd
+纸	vi[su
+纹	wf[sw
+纺	fh[sf
+纻	vu[sa
+纼	vf[sy
+纽	nq[si
+纾	uu[sl
+线	xm[sj
+绀	gj[sg
+绁	xp[su
+绂	fu[sd
+练	lm[sd
+组	zu[sq
+绅	uf[su
+细	xi[st
+织	vi[sb
+终	vs[sd
+绉	vz[se
+绊	bj[sb
+绋	fu[sf
+绌	iu[si
+绍	uc[sk
+绎	yi[sl
+经	jk[sg
+绐	dd[sk
+绑	bh[se
+绒	rs[su
+结	jp[sk
+绔	ku[sk
+绕	rc[sw
+绖	dp[st
+绗	hh[si
+绘	hv[ss
+给	gw[sk	99.99%
+给	ji[sk	0.01%
+绚	xr[so
+绛	jl[sl
+络	lc[sk	0.97%
+络	lo[sk	99.03%
+绝	jt[sb
+绞	jn[sx
+统	ts[se
+绠	gg[sg
+绡	xn[so
+绢	jr[so
+绣	xq[sn
+绤	xi[sk
+绥	sv[sn
+绦	di[sm
+绦	tc[sm
+继	ji[sv
+绨	ti[sp
+绩	ji[sr
+绪	xu[so
+绫	lk[sw
+续	xu[sd
+绮	qi[sk
+绯	fw[sf
+绰	ic[su	50%
+绰	io[su	50%
+绱	uh[sk
+绲	gy[sb
+绳	ug[sd
+维	ww[sf
+绵	mm[sj
+绶	uz[sy
+绷	bg[so
+绸	iz[sk
+绹	tc[sf
+绺	lq[sk
+绻	qr[sv
+综	zg[sx	50%
+综	zs[sx	50%
+绽	vj[sr
+绾	wj[sk
+绿	lv[su	99.26%
+缀	io[sy
+缀	vv[sy
+缁	zi[st
+缂	ke[sg
+缃	xl[so
+缄	jm[sk
+缅	mm[sm
+缆	lj[se
+缇	ti[sr
+缈	mn[su
+缉	ji[se	97.83%
+缉	qi[se	2.17%
+缊	yy[sm
+缌	si[sx
+缎	dr[sy
+缐	xm[su
+缑	gz[su
+缒	vv[sz
+缓	hr[sy
+缔	di[sj
+缕	lv[sn
+编	bm[sc
+缗	mb[so
+缘	yr[su
+缙	jb[so
+缚	fu[sc
+缛	ru[sc
+缜	vf[sb
+缝	fg[sz
+缞	cv[sy
+缟	gc[sk
+缠	ij[sl
+缡	li[sd
+缢	yi[sm
+缣	jm[sn
+缤	bb[sb
+缥	pn[sx
+缦	mj[sy
+缧	lw[sx
+缨	yk[sn
+缩	so[sb	99.38%
+缪	mn[sp	32.77%
+缪	mz[sp	0.84%
+缫	sc[sg
+缬	xp[sr
+缭	ln[sx
+缮	uj[sk
+缯	zg[so
+缰	jl[sa
+缱	qm[sz
+缲	qn[sm	50%
+缲	sc[sm	50%
+缳	hr[sy
+缴	jn[sw	99.48%
+缵	zr[sr
+缶	fz[wk
+缶	gh[wk
+缸	gh[fg
+缺	qt[fg
+缽	bo[jb
+罂	yk[kf
+罃	yk[cf
+罄	qk[uf
+罅	hu[fh
+罅	xx[fh
+罈	tj[ts
+罌	yk[kf
+罍	lw[tf
+罎	tj[ts
+罐	gr[ff
+网	wh[kx
+罔	wh[kw
+罕	hj[bg
+罗	lo[sx
+罘	fz[sb
+罘	fu[sb
+罚	fa[sd
+罟	gu[sk
+罡	gh[sv	100%
+罡	vg[sv	0%
+罢	ba[ss	100%
+罢	pi[ss	0%
+罨	yj[sd
+罩	vc[su
+罪	zv[sf
+置	vi[sq
+罰	fa[sd
+罱	nj[sg
+署	uu[so
+罴	pi[sh
+罵	ma[km
+罶	lq[st
+罷	ba[ss	100%
+罷	pi[ss	0%
+罹	li[sf
+罽	ji[sd
+罾	zg[so
+羁	ji[sm
+羅	lo[sx
+羆	pi[sh
+羈	ji[sm
+羊	xl[bl	0%
+羊	yh[bl	100%
+羋	mi[ll
+羋	mp[ll
+羌	ql[yv
+美	mw[yd
+羑	yz[yj
+羓	ba[yb
+羔	gc[yh
+羕	yh[yy
+羖	gu[yy
+羚	lk[ys
+羝	di[yd
+羞	xq[yi
+羟	ql[yg
+羡	xm[yr	1%
+羡	yi[yr	99%
+羣	qy[yy
+群	qy[yy
+羥	jk[yg
+羥	qm[yg
+羥	ql[yg
+羥	qk[yg
+羧	so[yw
+羧	zv[yw
+羨	xm[yr	99.9%
+羨	yj[yr	0.1%
+義	yi[dx
+羯	jp[yv
+羯	xp[yv
+羰	tj[yh
+羰	th[yh
+羱	yr[yx
+羲	xi[yd
+羶	uj[od
+羸	lw[wf
+羹	gg[yd	100%
+羹	lh[yd	0%
+羼	ij[uy
+羽	yu[xx
+羿	yi[xc
+翀	is[xv
+翁	wg[bx
+翂	ff[xd
+翃	hs[ux
+翅	ii[ux
+翈	xx[jx
+翊	yi[lx
+翌	yi[xl
+翎	lk[rx
+習	xi[vd
+翔	xl[yx
+翕	he[rx
+翕	xi[rx
+翘	qn[ax
+翙	hv[ex
+翚	hv[xi
+翛	uu[rx
+翛	xn[rx
+翟	di[xf	2.92%
+翟	vd[xf	97.08%
+翟	ve[xf	0%
+翠	cv[xu
+翡	fw[fx
+翥	vu[lx
+翦	jm[bx
+翩	pm[hx
+翬	hv[xi
+翮	ge[ax
+翮	he[ax
+翯	gc[xk
+翯	he[xk
+翰	hj[ux
+翱	ao[bx
+翳	yi[kx
+翷	lb[mx
+翹	qn[ax
+翻	fj[px
+翼	yi[xb
+翽	hv[ex
+翾	hr[sx
+翾	xr[sx
+耀	yc[xf	100%
+耀	yt[xf	0%
+老	lc[lb
+考	kc[lv
+耄	mc[lm
+者	ve[lo
+耆	qi[lo
+耇	gz[lk
+耇	ju[lk
+耋	dp[lt
+耋	lc[lt
+耋	vi[lt
+而	er[al
+耍	ux[en
+耏	er[ep
+耐	nd[ec
+耑	dr[ee
+耑	vr[ee
+耒	lw[fn
+耔	zi[lz
+耕	gg[lj	100%
+耕	jk[lj	0%
+耖	ic[lu
+耗	hc[lm
+耘	yy[ls
+耙	ba[lb	45.22%
+耙	pa[lb	54.78%
+耜	si[lk
+耠	he[lk
+耢	lc[ll
+耤	ji[lo
+耥	th[lk
+耦	ou[ly
+耧	lz[ln
+耨	nz[lc
+耨	ru[lc
+耩	gz[lr
+耩	jl[lr
+耪	ph[lf
+耬	lz[ln
+耮	lc[ll
+耰	yz[lw
+耱	mo[lu
+耳	er[aa
+耵	dk[ed
+耵	tk[ed
+耶	ye[ee
+耷	da[de
+耸	ss[re
+耻	ii[ev
+耽	dj[ev
+耿	gg[eh
+聂	np[ey
+聃	dj[er
+聃	rj[er
+聆	lk[es
+聊	ln[ee
+聋	ls[le
+职	vi[eb
+聍	nk[ed
+聒	gx[ek
+聒	go[ek
+联	lm[et
+聖	ug[yt
+聘	pb[ev
+聘	pk[ev
+聚	ju[en
+聞	wf[me
+聩	kv[er
+聪	cs[ex
+聯	lm[et
+聰	cs[ex
+聱	ao[fe
+聲	ug[up
+聳	ss[re
+聵	kv[er
+聶	np[ey	100%
+聶	ue[ey	0%
+職	vi[eb
+聹	nk[ed
+聽	tk[kj
+聾	ls[le
+聿	yu[vl
+肃	su[vd
+肄	yi[by
+肅	su[vd
+肆	si[ay
+肇	vc[hy
+肉	rz[nr	100%
+肉	ru[nr	0%
+肋	le[ol
+肋	lw[ol
+肌	ji[oj
+肏	cc[rr
+肓	hl[wo
+肓	mh[wo
+肖	xn[xo
+肘	vz[oc
+肚	du[ot
+肛	gh[og
+肝	gj[og
+肟	wo[ok
+肠	ih[op
+股	gu[oy
+肢	vi[oy
+肤	fu[of
+肥	fw[ob
+肩	jm[ho
+肪	fh[of
+肫	ty[ot
+肫	vy[ot
+肭	na[on
+肮	ah[oj
+肮	hh[oj
+肮	kh[oj
+肯	kf[vo	100%
+肯	kg[vo	0%
+肱	gs[os
+肱	hs[os
+育	yu[wo
+肴	xn[xo
+肴	yc[xo
+肷	qm[or
+肷	xu[or
+肸	xi[ou
+肺	fw[ol	100%
+肺	pw[ol	0%
+肼	jk[oj
+肽	td[ot
+肾	uf[lo
+肿	vs[ov
+胀	vh[oi
+胁	xp[ob
+胂	uf[ou
+胃	ww[to
+胄	vz[yo
+胆	da[od
+胆	dj[od
+胆	tj[od
+胈	ba[od
+背	bw[lo
+胍	gu[og
+胍	gx[og
+胍	hu[og
+胎	td[ok
+胖	pj[ob	0.65%
+胖	ph[ob	99.35%
+胗	vf[op
+胙	zo[ov
+胚	pw[op
+胚	pi[op
+胛	jx[oj
+胜	qk[ou
+胜	ug[ou
+胜	xk[ou
+胝	vi[od
+胞	bc[os
+胠	qu[os
+胠	qt[os
+胠	yu[os
+胡	hu[uo
+胣	ii[oy
+胣	yi[oy
+胤	yb[pv
+胥	xu[vo
+胧	ls[ol
+胨	ds[od
+胩	ka[ob
+胪	lu[ou
+胫	jk[og
+胬	nu[nr
+胬	nv[nr
+胭	yj[od
+胯	kx[ok
+胰	yi[oy
+胱	gl[ow
+胲	gd[or
+胲	hd[or
+胳	ge[ok
+胴	ds[ok
+胴	ts[ok
+胶	jn[ox
+胶	xn[ox
+胸	xs[ok
+胺	an[on
+胼	pm[ok
+能	ng[sb
+脂	vi[oo
+脅	xp[ob
+脆	cv[ov
+脈	md[oy	95.29%
+脈	mo[oy	4.71%
+脉	md[oy	95.29%
+脉	mo[oy	4.71%
+脍	kk[os
+脎	sa[om
+脏	zh[ot
+脐	qi[ol
+脑	nc[ok
+脒	mi[om
+脓	ns[on
+脔	lr[wr
+脔	lr[wr
+脖	bo[oz
+脘	gr[oe
+脘	wj[oe
+脚	jn[oe	99.91%
+脚	jt[oe	0.09%
+脛	jk[og
+脞	co[ot
+脟	lp[oc
+脣	iy[ik
+脩	xq[rp
+脫	to[oe
+脬	pc[oz
+脯	fu[of	50%
+脯	pu[of	50%
+脱	to[oe
+脲	nn[ou
+脶	lo[on
+脸	lm[oa
+脹	vh[oi
+脾	pi[ou
+脿	bn[oy
+腆	dm[ob
+腆	tm[ob
+腈	jk[oo
+腊	la[oo	0%
+腊	xi[oo	100%
+腋	ye[on
+腋	yi[on
+腌	aa[od	40%
+腌	ah[od	40%
+腌	yj[od	22.60%
+腎	uf[lo
+腐	fu[gr
+腑	fu[oc
+腒	ju[ok
+腓	fw[of
+腔	ql[og
+腕	wj[ov
+腖	ds[od
+腘	go[oy
+腙	zs[ox
+腚	dk[or
+腠	cz[ot
+腡	gx[on
+腡	lo[on
+腥	xk[ou
+腦	nc[ok
+腧	uu[od
+腧	yu[od
+腨	ir[oe
+腩	nj[og
+腫	vs[ov
+腭	ee[ok
+腮	sd[ox
+腯	tu[oo
+腰	yc[on
+腱	jm[oz
+腳	jn[oe	99.91%
+腳	jt[oe	0.09%
+腴	yu[oy
+腸	ih[op
+腹	fu[ow
+腺	xm[ou
+腻	ni[or
+腼	mm[om
+腽	wa[om
+腽	wf[om
+腾	tg[om
+腿	tv[oz
+膀	bh[of	81.25%
+膀	ph[of	18.75%
+膂	lv[fo
+膃	wa[om
+膃	wf[om
+膈	ge[ol
+膊	bo[oc
+膏	gc[wo
+膑	bb[ob
+膕	go[oy
+膘	bn[ox
+膙	jl[oi
+膙	ql[oi
+膚	fu[of
+膛	th[ot
+膜	mo[od
+膝	xi[ou
+膞	vr[ov
+膠	jn[ox
+膢	lv[on
+膦	lm[ol
+膦	lb[ol
+膨	pg[op
+膩	ni[or
+膳	uj[ok
+膺	yk[go
+膻	dj[od
+膻	uj[od
+膻	tj[od
+膽	dj[od
+膾	hv[os
+膾	kk[os
+膿	ng[on	0%
+膿	ns[on	100%
+臀	dm[uo	0%
+臀	ty[uo	100%
+臂	bw[uo	2.53%
+臂	bi[uo	97.47%
+臃	ys[of
+臆	yi[ox
+臉	lm[oa
+臊	sc[om
+臌	gu[oy
+臍	qi[ol
+臏	bb[ob
+臑	er[oe
+臑	nc[oe
+臑	ru[oe
+臘	la[oo
+臚	lu[ou
+臜	za[or
+臟	zh[ot
+臠	lr[wr
+臠	lr[wr
+臢	za[or
+臢	zj[or
+臢	zh[or
+臣	if[kl
+臥	wo[ib
+臧	zh[wi
+臨	lb[la
+自	zi[po
+臬	gc[zm
+臬	np[zm
+臭	iz[zq	99.96%
+臭	xq[zq	0.04%
+至	vi[at
+致	vi[aw
+臺	td[sk
+臻	vf[ah
+臼	jq[pa
+臾	ys[pn
+臾	yu[pn
+舀	kk[pj	0%
+舀	wd[pj	0%
+舀	yc[pj	100%
+舁	yu[jc
+舂	is[fj
+舄	xi[jh
+舄	xp[jh
+舅	jq[jl
+舆	yu[pb
+與	yu[aa
+興	xk[xb
+舉	ju[xl
+舊	jq[lo
+舌	ue[qk
+舍	ue[rk
+舐	ui[qu
+舒	uu[rl
+舔	tm[qx
+舘	gr[uk
+舛	ir[xl
+舛	jp[xl
+舜	uy[pl
+舞	wu[pl
+舟	vz[pd
+舠	dc[vd
+舢	uj[ve
+舣	yi[vy
+舥	ba[vb
+舥	pa[vb
+航	hh[vj
+舫	fh[vf
+般	bj[vy	100%
+般	bo[vy	0%
+般	pj[vy	0%
+舭	bi[vb
+舯	vs[vv
+舰	jm[ve
+舱	ch[vv
+舲	lk[vs
+舳	vz[vy
+舳	vu[vy
+舴	ze[vv
+舵	do[vb
+舶	bo[vb
+舷	xm[vy
+舷	xr[vy
+舸	ge[vk
+船	ir[vk
+舻	lu[vu
+舾	xi[vx
+艄	uc[vo
+艅	yu[vh
+艇	tk[vz
+艉	ww[vm
+艋	mg[vm
+艎	hl[vw
+艏	uz[vz
+艘	sc[vy	0%
+艘	sz[vy	100%
+艙	ch[vv
+艚	cc[vo
+艟	is[vl
+艟	ts[vl
+艤	yi[vy
+艦	jm[ve
+艨	mg[vu
+艫	lu[vu
+艮	gf[en
+良	ll[dg
+艰	jm[yg
+艱	jm[yg
+色	se[db	99.90%
+色	ud[db	0.09%
+色	ue[db	0.01%
+艳	yj[fb
+艴	fu[fb
+艷	yj[fb
+艺	yi[cv
+艽	jn[cj
+艽	qq[cj
+艾	ai[cx	99.04%
+艾	yi[cx	0.96%
+艿	nd[cn
+艿	rg[cn
+节	jp[ce
+芃	fj[cf
+芃	pg[cf
+芄	wj[cw
+芈	mi[ll
+芊	qm[cq
+芋	yu[cy
+芍	uc[cu
+芍	uo[cu
+芎	qs[cg
+芎	xs[cg
+芏	tu[ct
+芑	ji[cj
+芑	qi[cj
+芒	mh[cw
+芗	xl[cx
+芘	bi[cb
+芘	pi[cb
+芙	fu[cf
+芜	wu[cw
+芝	vi[cv
+芟	uj[cy
+芠	wf[cw
+芡	qm[cr
+芣	fz[cb
+芤	kz[cv
+芥	gd[cl	9.59%
+芥	jp[cl	90.41%
+芦	hu[ch	99%
+芦	lu[ch	1%
+芨	ji[cj
+芩	qb[cv
+芪	qi[cu
+芫	yj[ce	51.28%
+芫	yr[ce	48.72%
+芬	ff[cd
+芭	ba[cb
+芮	bk[cn	0%
+芮	rv[cn	100%
+芯	xb[cx
+芰	ji[cy
+芰	vi[cy
+花	hx[cb
+芳	fh[cf
+芴	hu[cw
+芴	wu[cw
+芷	vi[cv
+芸	yi[cs	0%
+芸	yy[cs	100%
+芹	qb[cj
+芻	iu[de
+芼	mc[cm
+芽	ya[cy
+芾	fw[cl	75%
+芾	fu[cl	25%
+苁	cs[cr
+苁	zs[cr
+苄	bm[cb
+苇	ww[cw
+苈	li[cl
+苉	pi[ce
+苊	ee[cv
+苋	xm[ce
+苌	ih[ci
+苍	ch[cv
+苎	vu[ca
+苏	su[cb
+苑	yu[cv	0%
+苑	yr[cv	100%
+苒	rj[cr
+苓	lk[cs
+苔	td[ck
+苕	uc[ck
+苕	tn[ck
+苗	mn[ct
+苘	qk[ck
+苛	he[ck	0%
+苛	ke[ck	100%
+苜	mo[co	0%
+苜	mu[co	100%
+苞	bc[cs
+苟	gz[ck
+苠	mb[cm
+苡	yi[cr
+苣	ju[cj
+苤	pi[cp
+苤	pp[cp
+若	re[ck	0.10%
+若	ro[ck	99.90%
+苦	ku[ck
+苧	vu[ca
+苫	uj[ck
+苯	bf[cb
+英	yk[cy
+苴	ju[cq
+苴	zu[cq
+苷	gj[cg
+苹	pk[cp
+苻	fu[cc
+苾	bi[cb
+茀	fu[cf
+茁	vo[ci
+茂	mc[cw	100%
+茂	mz[cw	0%
+范	fj[cv
+茄	jx[ck	53.97%
+茄	qp[ck	46.03%
+茅	mc[cp
+茆	mc[ce
+茈	id[cb
+茈	ci[cb	40%
+茈	zi[cb	60%
+茉	mo[cm
+茋	di[cd
+茌	ii[cu
+茌	ui[cu
+茎	jk[cg
+茏	ls[cl
+茑	nn[cn
+茓	xt[cb
+茔	yk[ct
+茕	qs[cu
+茗	mk[ck
+茚	yb[ce
+茛	gf[cg
+茜	qm[cx	80.71%
+茜	xi[cx	19.29%
+茝	id[cl
+茝	vi[cl
+茧	is[ci	100%
+茧	jm[ci	0%
+茨	ci[cr
+茫	mh[cw
+茬	ia[ct	100%
+茬	ii[ct	0%
+茬	zi[ct	0%
+茭	jn[cx
+茯	fu[cq
+茱	vu[cv
+茲	ci[by	0%
+茲	zi[by	100%
+茳	jl[cg
+茴	hv[ck
+茵	yb[cd
+茶	ia[cm
+茸	er[ce	0%
+茸	rs[ce	100%
+茹	ru[ck
+茺	is[ce
+茼	ts[ck
+茽	vs[cv
+荀	xy[co
+荁	hr[cg
+荃	qr[cw
+荄	gd[cr
+荆	jk[cd
+荇	xk[ci
+草	cc[cu
+荊	jk[cd
+荏	rf[cr
+荐	jm[cz
+荑	ti[cy	20%
+荑	yi[cy	80%
+荒	hl[cv
+荓	pk[ck
+荔	li[cl
+荖	lc[cb
+荖	pw[cb
+荙	da[cz
+荚	jx[cj
+荛	rc[cw
+荜	bi[cu
+荞	qn[cl
+荟	hv[cs
+荠	ji[cl	35%
+荠	qi[cl	65%
+荡	dh[cp
+荡	th[cp
+荣	ce[cm
+荣	rs[cm	0%
+荤	hy[ci
+荤	xy[ci
+荥	xk[cu	46.15%
+荦	lo[cn
+荧	yk[ch
+荨	xy[cc	17.65%
+荩	jb[cd
+荪	sy[cx
+荫	yb[co
+荬	md[cd
+荭	hs[cg
+荮	vz[cc
+药	yc[cu
+荷	he[ck
+荸	bi[cz
+荸	bo[cz
+荻	di[ch
+荼	uu[ch	0%
+荼	tu[ch	100%
+荽	sv[cn
+莅	li[cl
+莆	fu[cf
+莆	pu[cf
+莉	li[cd
+莊	vl[gt
+莎	ua[cu	99%
+莎	so[cu	1%
+莒	ju[ck
+莒	lv[ck
+莓	mw[cm
+莖	jk[cg
+莘	uf[cu	19.05%
+莘	xb[cu	80.95%
+莙	jy[ck
+莛	tk[cz
+莜	di[cw
+莜	dn[cw
+莜	yz[cw
+莝	co[ct
+莞	gr[ce	86.47%
+莞	wj[ce	13.53%
+莠	yz[cn
+莢	jx[cj
+莧	jm[ce
+莧	xm[ce
+莨	lh[cl
+莨	ll[cl
+莩	fu[cz	50%
+莩	pn[cz	50%
+莪	ee[cw
+莫	mo[cd	100%
+莫	mu[cd	0%
+莰	kj[cr
+莱	ld[cl
+莲	lm[cz
+莳	ui[cc
+莴	wo[cn
+莶	xm[ca
+获	hk[cq
+获	ho[cq
+莸	yz[cy
+莹	yk[cy
+莺	yk[cn
+莼	iy[ct
+莽	mh[cc
+莿	ci[cd
+菀	wj[cv
+菀	yu[cv
+菀	yr[cv
+菁	jk[co
+菁	qk[co
+菂	di[cu
+菅	gr[ck	0%
+菅	jm[ck	100%
+菇	gu[ck
+菉	lu[cu
+菉	lv[cu
+菊	ju[cm
+菌	jy[ch
+菍	nm[cx
+菍	rf[cx
+菏	ge[ck
+菏	he[ck
+菔	bo[cy
+菔	fu[cy
+菖	ih[co
+菘	ss[cs
+菜	cd[cm
+菝	ba[cd
+菝	bo[cd
+菟	tu[cd
+菠	bo[cy
+菡	hj[ck
+菥	xi[cj
+菩	pu[ck
+菪	dh[cu
+華	hx[ru
+菰	gu[cg
+菱	lk[cw
+菲	fw[cf
+菴	an[gd
+菸	yj[hd	88.89%
+菸	yu[hd	11.11%
+菹	ju[cq
+菹	zu[cq
+菼	tj[ch
+菽	uu[cy
+萁	qi[cb
+萃	cv[cu
+萄	tc[cf
+萆	bw[cu
+萆	bi[cu
+萇	ih[ci
+萊	ld[cl
+萋	qi[cn
+萋	xi[cn
+萌	mg[co	100%
+萌	mk[co	0%
+萍	pk[cp
+萎	ww[cn
+萏	dj[cj
+萏	xm[cj
+萑	vv[cf
+萘	nd[cx
+萚	to[cl
+萜	tp[ck
+萝	lo[cx
+萣	dk[cr
+萤	yk[ci
+营	yk[ck
+萦	yk[cx
+萧	xn[cs
+萨	sa[ci
+萩	qq[ch
+萬	wj[ap
+萱	xr[cg
+萳	nj[cg
+萵	wo[cn
+萸	yu[cy
+萹	bm[cc	99.37%
+萹	pm[cc	0.63%
+萼	ee[ck
+落	la[ck	1.06%
+落	lc[ck	0.44%
+落	le[ck	0%
+落	lo[ck	98.50%
+葆	bc[cm
+葉	ue[ku	1%
+葉	ye[ku	99%
+葎	lv[cy
+葑	fg[cc
+葒	hs[cg
+葖	tu[cq
+著	vc[co	4.25%
+著	ve[co	93.74%
+著	vu[co	90.38%
+著	vo[co	2.02%
+葙	xl[co
+葚	rf[cv	70%
+葚	uf[cv	30%
+葛	ge[cv
+葜	qx[cd
+葡	pu[cf
+董	ds[cv
+葤	vz[cc
+葦	ww[cw
+葩	ba[cb
+葩	pa[cb
+葫	hu[co
+葬	zh[cc
+葭	jx[cy
+葯	yc[cu
+葯	yt[cu
+葰	jy[cw
+葰	sv[cw
+葱	cs[cx
+葳	ww[cn
+葴	jm[ck
+葴	xm[ck
+葴	vf[ck
+葵	gv[ct	0%
+葵	kv[ct	100%
+葶	tk[cd
+葷	hy[ci	100%
+葷	xy[ci	0%
+葸	si[cx
+葸	xi[cx
+葺	qi[ce
+葺	rs[ce
+蒂	di[cj
+蒄	gr[cc
+蒇	ij[cr
+蒈	kd[cb
+蒉	kv[cr
+蒋	jl[cc
+蒌	lz[cn
+蒍	ww[cw
+蒎	pd[cn
+蒐	sz[fy
+蒓	iy[ct
+蒓	vr[ct
+蒔	ui[cc
+蒗	lh[cl
+蒙	mg[cu
+蒜	sr[cx
+蒞	li[cl
+蒟	ju[ck
+蒡	bh[cf
+蒡	ph[cf
+蒨	qm[co
+蒯	jk[cd
+蒯	kk[cd
+蒱	pu[cf
+蒲	pu[cf
+蒴	uo[co
+蒸	vg[ch
+蒹	jm[cn
+蒺	ji[cu
+蒻	ro[cd
+蒼	ch[cv
+蒽	en[cx
+蒿	gc[ck	0%
+蒿	hc[ck	100%
+蓀	sy[cx
+蓁	qb[ch
+蓁	vf[ch
+蓂	mk[cb
+蓄	xu[ct
+蓆	xi[gj
+蓇	gu[co
+蓉	rs[ck
+蓊	wg[cx
+蓋	gd[ym	99.91%
+蓋	ge[ym	0.09%
+蓋	he[ym	0.09%
+蓍	ui[co
+蓏	lo[cg
+蓐	ru[cc
+蓑	so[cy
+蓓	bw[ck
+蓓	pw[ck
+蓖	bi[cb
+蓝	lj[cm
+蓟	ji[cd
+蓠	li[cd
+蓢	lh[co
+蓣	yu[cr
+蓥	yk[cj
+蓦	mo[cm
+蓬	pg[cz
+蓮	lm[cz
+蓯	cs[cr
+蓰	xi[cr
+蓴	iy[ct
+蓴	vr[ct
+蓼	ln[cp
+蓼	lu[cp
+蓽	bi[cu
+蓿	su[cb
+蓿	xu[cb
+蔀	bu[ce
+蔃	jl[ci
+蔃	ql[ci
+蔈	bn[cx
+蔈	pn[cx
+蔊	hj[cg
+蔌	su[cr
+蔑	mp[cu
+蔓	mj[cy	50%
+蔓	wj[cy	50%
+蔔	bo[ld
+蔗	ve[ch
+蔘	uf[sp
+蔚	ww[cc	99.48%
+蔚	yu[cc	0.52%
+蔞	lz[cn
+蔟	cu[cu
+蔡	cd[cx	100%
+蔡	sa[cx	0%
+蔣	jl[cc
+蔥	cs[cx
+蔦	nn[cn
+蔫	nm[ch	100%
+蔫	yj[ch	0%
+蔬	uu[cv	100%
+蔬	su[cv	0%
+蔭	yb[co
+蔷	ql[ck
+蔸	dz[ce
+蔹	lm[cw
+蔺	lb[cf
+蔻	kz[cy
+蔼	ai[cv
+蔽	bi[cw
+蔿	ww[cw
+蕁	qm[cc
+蕁	tj[cc
+蕁	xy[cc
+蕃	bo[ct
+蕃	fj[ct
+蕆	ij[cr
+蕈	jy[cu
+蕈	xb[cu
+蕈	xy[cu
+蕉	jn[ch	100%
+蕉	qn[ch	0%
+蕊	rv[cx
+蕎	qn[cl
+蕒	md[cd
+蕓	yy[cs
+蕕	yz[cy
+蕖	qu[cm
+蕗	lu[ck
+蕘	rc[cw
+蕙	hv[cx
+蕞	co[cy
+蕞	zv[cy
+蕢	kv[cr
+蕤	rv[cu
+蕨	jt[cr
+蕩	dh[cp
+蕪	wu[cw
+蕭	xn[cs
+蕰	yy[cm
+蕲	qi[cj
+蕴	yy[cm	90.36%
+蕷	yu[cr
+蕹	wg[cf
+蕹	ys[cf
+蕺	ji[ca
+蕻	hs[cb
+蕾	lw[ct
+薀	yy[cm
+薁	yu[cd
+薄	bc[cc	43.39%
+薄	bo[cc	56.61%
+薅	hc[cc
+薇	ww[cw
+薈	hv[cs
+薈	ww[cs
+薊	ji[cd	100%
+薊	su[cd	0%
+薌	xl[cx
+薏	yi[cx
+薑	jl[yn
+薔	ql[ck
+薘	da[cz
+薛	xt[cu
+薜	bi[cu
+薜	bo[cu
+薟	lm[ca
+薟	xm[ca
+薢	jp[cn
+薢	xn[cn
+薢	xp[cn
+薤	jq[cj
+薤	xp[cj
+薦	jm[cz
+薨	hs[cb
+薨	yk[cb
+薩	sa[ci
+薪	xb[cj
+薮	sz[cw
+薯	uu[co
+薰	xy[ch
+薴	ng[cd
+薴	nk[cd
+薷	ru[ce
+薸	pn[cx
+薹	td[ck
+薺	ji[cl	35%
+薺	qi[cl	65%
+薿	ni[cr
+藁	gc[cm
+藉	ji[co	39.42%
+藉	jp[co	60.58%
+藍	la[cm	0%
+藍	lj[cm	100%
+藎	jb[cd
+藏	ch[ci	77.99%
+藏	zh[ci	22.01%
+藐	mn[ce
+藓	xm[cy
+藕	ou[cy
+藜	li[cu
+藝	yi[cv
+藟	lw[ct
+藠	xn[cb
+藤	tg[cu
+藥	yc[cu	100%
+藥	yt[cu	0%
+藦	mo[cu
+藨	bn[ch
+藩	fj[ct
+藪	sz[cw
+藭	qs[cl
+藴	wf[cm
+藴	yy[cm
+藶	li[cl
+藹	ai[cv
+藺	lb[cf
+藻	zc[cm
+藿	ho[cf
+蘀	to[cl
+蘄	qi[cj
+蘅	hg[ci
+蘆	lu[ch
+蘇	su[cb
+蘊	wf[cm	9.64%
+蘊	yy[cm	90.36%
+蘋	pb[cp	1%
+蘋	pk[cp	99%
+蘑	mo[cu
+蘖	np[cm
+蘘	rh[cy
+蘚	xm[cy
+蘞	lm[cw
+蘢	ls[cl
+蘧	qu[cz
+蘩	fj[cx
+蘭	lj[bs
+蘸	jn[ch	0%
+蘸	vj[ch	100%
+蘺	li[cd
+蘼	mi[cf
+蘿	lo[cx
+虎	hu[hj
+虏	lu[hl
+虐	nt[ha	100%
+虐	yc[ha	0%
+虑	bi[hx
+虑	lv[hx	0%
+虒	si[pj
+虓	hu[jj
+虓	xn[jj
+虔	qm[hw
+處	iu[wb
+虚	xu[hy
+虛	xu[hy
+虜	lu[hl	100%
+虜	lo[hl	0%
+虞	yu[ht
+號	hc[kv
+虢	go[pj
+虤	yj[hj
+虧	kv[ev
+虫	is[vd	100%
+虫	hv[vd	0%
+虬	jq[iv
+虬	qq[iv
+虮	ji[ij
+虯	jq[iv
+虯	qq[iv
+虱	ui[vi
+虷	gj[ig
+虷	hj[ig
+虸	zi[iz
+虹	gh[ig	0.19%
+虹	hs[ig	99.81%
+虹	jl[ig	0.19%
+虺	hv[wi
+虻	mg[iw
+虼	ge[iq
+虽	sv[ki
+虾	xx[ix	95.70%
+虿	id[wi
+蚀	ui[ui
+蚁	yi[iy
+蚂	ma[im
+蚄	bh[if
+蚄	fh[if
+蚆	ba[ib
+蚆	pa[ib
+蚊	wf[iw
+蚋	na[in
+蚋	rv[in
+蚌	bh[if	72.52%
+蚌	bg[if	27.48%
+蚍	bi[ib
+蚍	pi[ib
+蚓	yb[iy
+蚕	cj[ti	1%
+蚕	tm[ti	99%
+蚜	ya[iy
+蚝	ci[im
+蚝	hc[im
+蚣	gs[is
+蚤	zc[ii
+蚧	jp[il
+蚨	fu[if
+蚩	ii[vi
+蚪	dz[iu
+蚬	xm[ie
+蚯	qq[iq
+蚰	yz[iy
+蚱	va[iv
+蚲	pk[ip
+蚴	yz[il
+蚶	gj[ig
+蚶	hj[ig
+蚺	rj[ir
+蚺	tm[ir
+蛀	vu[iv
+蛃	bk[ib
+蛄	gu[ik
+蛆	ju[iq	0%
+蛆	qu[iq	100%
+蛇	ue[ib	99.95%
+蛇	yi[ib	0.05%
+蛉	lk[is
+蛊	is[im
+蛊	gu[im
+蛋	dj[vi
+蛎	li[iw
+蛏	ig[it
+蛐	qu[iq
+蛑	mz[in
+蛔	hv[ik
+蛘	yh[iy
+蛙	wa[it
+蛛	vu[iv
+蛞	gx[ik
+蛞	ko[ik
+蛟	jn[ix
+蛤	ge[ik	1.20%
+蛤	ha[ik	98.80%
+蛩	qs[gi
+蛭	vi[it
+蛮	mj[wi
+蛰	ve[fi
+蛱	jx[ij
+蛲	nc[iw
+蛳	si[ij
+蛴	qi[il
+蛸	uc[io	61.54%
+蛸	xn[io	38.46%
+蛹	ys[iy
+蛺	jx[ij
+蛻	uv[ie
+蛻	tv[ie
+蛾	ee[iw	100%
+蛾	yi[iw	0%
+蜀	uu[si
+蜂	fg[if
+蜃	if[ii	0%
+蜃	uf[ii	100%
+蜆	xm[ie
+蜇	ve[fi
+蜈	wu[it
+蜉	fu[iz
+蜊	li[id
+蜍	iu[ih
+蜍	yu[ih
+蜎	jr[io
+蜎	yr[io
+蜐	jp[il
+蜒	yj[iz
+蜓	tk[iz
+蜕	uv[ie
+蜕	tv[ie
+蜗	wo[in
+蜘	vi[ik
+蜚	fw[fi
+蜜	mi[bi
+蜞	qi[ib
+蜡	ia[io
+蜡	la[io	0%
+蜡	qu[io	50%
+蜡	va[io	50%
+蜢	mg[im
+蜣	ql[iv
+蜥	xi[ij
+蜩	dn[ik
+蜩	tn[ik
+蜮	yu[ia
+蜱	pi[iu
+蜴	yi[iw
+蜷	jr[iv
+蜷	qr[iv
+蜻	qk[io
+蜾	go[ig
+蜿	wj[iv
+蝇	yk[id
+蝈	go[iy
+蝉	ij[il
+蝌	ke[iu
+蝎	he[iv	99%
+蝎	xp[iv	1%
+蝓	yu[id
+蝕	ui[ui
+蝗	hl[iw
+蝘	yj[in
+蝙	bm[ic
+蝟	ww[qo
+蝠	fu[it
+蝣	yz[iz
+蝤	jq[iy
+蝤	qq[iy
+蝥	mc[si
+蝥	mz[si
+蝦	ha[ix	4.30%
+蝦	xx[ix	95.70%
+蝨	ui[vi
+蝮	fu[iw
+蝰	kv[it
+蝲	la[id
+蝴	hu[io
+蝶	dp[im
+蝸	gx[in
+蝸	go[in
+蝸	wo[in
+蝻	nj[ig
+蝼	lz[in
+蝽	ir[io
+蝽	iy[io
+蝾	rs[im
+螂	lh[ie
+螂	ll[ie
+螃	bh[if
+螃	ph[if
+螄	ui[ij
+螄	si[ij
+螅	xi[ix
+螈	yr[ix
+螋	sz[iy
+融	rs[ai
+螓	qb[ih
+螗	th[ik
+螞	ma[im
+螟	mk[ib
+螠	yi[im
+螢	yk[ci
+螣	te[oi
+螣	tg[oi
+螨	mj[il
+螫	ui[ti	36.84%
+螫	ve[ti	63.16%
+螬	cc[io
+螭	ii[id
+螭	li[id
+螮	di[ij
+螯	ao[fi
+螱	ww[ui
+螳	th[it
+螵	pn[ix
+螺	lo[ix
+螻	lz[in
+螽	vs[wi
+蟀	uk[iu
+蟀	uo[iu
+蟄	ve[fi
+蟄	vi[fi
+蟆	ma[id
+蟆	mo[id
+蟈	go[iy
+蟊	mc[si
+蟋	xi[ix
+蟎	mj[il
+蟏	xn[is
+蟑	vh[iu
+蟒	mh[ic
+蟛	pg[ip
+蟠	pj[it
+蟣	ji[ij
+蟥	hl[ib
+蟪	hv[ix
+蟫	tj[iu
+蟫	yb[iu
+蟬	ij[il
+蟮	ij[ik
+蟮	uj[ik
+蟯	nc[iw
+蟯	rc[iw
+蟲	is[vd
+蟶	ig[it
+蟶	ug[it
+蟹	xp[di
+蟻	yi[iy
+蟾	ij[ik
+蠃	lo[wf
+蠅	yk[id
+蠆	id[wi
+蠊	lm[in
+蠋	vu[ii
+蠍	xp[iv
+蠐	qi[il
+蠑	rs[im
+蠓	mg[iu
+蠔	hc[im
+蠕	ru[ie
+蠕	rr[ie
+蠖	ho[iy
+蠖	wo[iy
+蠟	la[io
+蠡	li[vi
+蠢	iy[fi
+蠣	li[iw
+蠨	xn[is
+蠱	is[im	0%
+蠱	gu[im	100%
+蠲	iu[bi
+蠲	jr[bi
+蠶	cj[ti
+蠹	du[ai
+蠻	mj[wi
+蠼	jt[iy
+蠼	qu[iy
+血	xp[pm	5.91%
+血	xt[pm	94.09%
+衃	pw[xb
+衄	nq[xi
+衄	nv[xi
+衅	xb[xb
+衆	vs[rr
+衊	mp[cu
+行	hh[ii	8.22%
+行	xk[ii	91.78%
+衍	yj[ii
+衎	kj[ii
+衒	xr[ii
+術	uu[md	100%
+術	sv[md	0%
+衔	xm[ii
+衕	ts[kk
+街	jp[ii
+衙	ya[ii	100%
+衙	yu[ii	0%
+衚	hu[uo
+衛	ww[va
+衝	is[dv
+衠	vy[ii
+衡	hg[ii
+衢	qu[ii
+衣	yi[wy
+补	bu[pb
+表	bn[fy
+衩	ia[pi
+衫	uj[pp
+衬	if[pc
+衮	gy[wy
+衰	cv[wy	0.59%
+衰	uk[wy	99.41%
+衲	na[pn
+衷	vs[wy
+衽	rf[pr
+衾	qb[ry
+衿	jb[pv
+袁	yr[ty
+袂	jt[pg	0%
+袂	mw[pg	100%
+袄	ao[py
+袅	nn[py
+袆	hv[pw
+袈	jx[ly
+袋	dd[ry
+袍	pc[ps
+袒	tj[pd
+袖	xq[py
+袗	vf[pp
+袜	mo[pm
+袜	wa[pm
+袞	gy[wy
+袢	fj[pb
+袢	pj[pb
+袤	mc[wy
+袤	mz[wy
+袪	qu[ps
+袪	qt[ps
+被	bw[py	100%
+被	pi[py	0%
+袭	xi[ly
+袯	bo[pd
+袱	fu[pq
+袷	he[pk
+袷	jx[pk
+袷	jp[pk
+袼	ge[pk
+袼	lo[pk
+裁	cd[uy
+裂	lp[dy
+装	vl[dy
+裆	dh[pe
+裈	ky[pi
+裉	kf[pg
+裉	tv[pg
+裊	nn[py
+裎	ig[pw
+裏	li[la
+裒	pz[wy
+裔	yi[wk
+裕	yu[pk
+裘	qq[qy
+裙	jy[pk	0%
+裙	qy[pk	100%
+裛	ye[wy
+裛	yi[wy
+補	bu[pb
+裝	vl[dy
+裟	ua[dy
+裡	li[la
+裢	lm[pz
+裣	lm[pa
+裤	ku[pi
+裥	jm[po
+裨	bw[pu
+裨	bi[pu	50%
+裨	pi[pu	50%
+裰	do[py
+裰	vv[py
+裱	bn[py
+裳	ih[xy	5.42%
+裳	uh[xy	94.58%
+裴	fw[fy
+裴	pw[fy
+裸	lo[pg
+裹	go[wy
+裼	ti[pw	33.33%
+裼	xi[pw	66.67%
+製	vi[pd
+裾	ju[pk
+褂	gx[pb
+複	fu[pw
+褊	bm[pc
+褊	pm[pc
+褌	hv[pi
+褌	ky[pi
+褐	ge[pv	0%
+褐	he[pv	100%
+褒	bc[wy
+褓	bc[pm
+褕	yu[pd
+褘	hv[pw
+褙	bw[po
+褚	iu[po	93.75%
+褚	vu[po	6.25%
+褛	lv[pn
+褟	da[px
+褟	ta[px
+褡	da[pk
+褥	ru[pc
+褪	tv[pz	98.05%
+褪	ty[pz	1.95%
+褫	ii[pj
+褫	di[pj
+褯	jp[pj
+褯	xi[pj
+褰	qm[by
+褲	ku[pi
+褳	lm[pz
+褴	lj[pm
+褶	dp[pb	0%
+褶	xi[pb	0%
+褶	ve[pb	100%
+褸	lv[pn
+褻	xp[wy
+襀	ji[pr
+襁	ql[pi
+襄	xl[wy
+襆	pu[jn
+襇	jm[po
+襉	jm[po
+襏	bo[pd
+襕	lj[pj
+襖	ao[py
+襚	sv[pz
+襜	ij[pk
+襜	vj[pk
+襝	lm[pa
+襞	bi[uy
+襟	jb[px
+襠	dh[pe
+襤	lj[pm
+襦	ru[pe
+襪	wa[pm
+襫	ui[pb
+襬	bd[fs
+襯	if[pc
+襲	xi[ly
+襴	lj[pj
+襻	pj[pu
+西	xi[aa
+要	yc[xn
+覃	qb[xu	80%
+覃	tj[xu	10%
+覃	xy[xu	10%
+覆	fu[xw
+覈	he[mr	99.92%
+覈	jn[mr	0.08%
+見	jm[ke	99.05%
+見	xm[ke	0.95%
+覎	yj[kz
+規	gv[fe
+覓	mi[pe
+視	ui[pe
+覘	ij[le
+覘	vj[le
+覡	wu[ge
+覡	xi[ge
+覦	yu[re
+親	qb[lm	99.82%
+親	qk[lm	0.18%
+覬	ji[ee
+覬	kd[ee
+覬	qi[ee
+覯	gz[je
+覲	jb[ne
+覲	qb[ne
+覷	qu[he	100%
+覷	xu[he	0%
+覺	jn[xe	21.83%
+覺	jt[xe	78.17%
+覽	lj[le
+覿	di[ue
+覿	du[ue
+觀	gr[ye
+见	jm[ke	99.05%
+见	xm[ke	0.95%
+观	gr[ye
+觃	yj[kz
+规	gv[fe
+觅	mi[pe
+视	ui[pe
+觇	vj[le
+览	lj[le
+觉	jn[xe	21.83%
+觉	jt[xe	78.17%
+觊	ji[ee
+觋	xi[ge
+觌	di[ue
+觎	yu[re
+觏	gz[je
+觐	jb[ne
+觑	qu[he
+角	jn[dy	80.82%
+角	jt[dy	19.18%
+角	lu[dy	0%
+觖	jt[dg
+觚	gu[dg
+觜	zi[vy	5.88%
+觜	zv[vy	94.12%
+觞	uh[dp
+觟	gv[dt
+觟	hx[dt
+解	jp[dn	99.68%
+解	xp[dn	0.32%
+觥	gs[dw
+触	iu[di	0%
+触	hs[di	100%
+觫	su[du
+觭	ji[dk
+觭	qi[dk
+觯	vi[dl
+觱	bi[xy
+觳	hu[uy
+觴	uh[dp
+觶	vi[dl
+觸	iu[di
+觿	jr[dk
+觿	xi[dk
+言	yj[wk	100%
+言	yb[wk	0%
+訂	dk[yd
+訃	bu[yb
+訃	fu[yb
+訄	kc[jk
+訄	qq[jk
+訄	xb[jk
+訇	hs[bk
+計	ji[yu
+訊	xy[yu
+訌	hs[yg
+討	tc[yc
+訐	gj[yg
+訐	jm[yg
+訐	jp[yg
+訒	rf[yr
+訓	xy[yi
+訕	uj[ye
+訖	qi[yq
+託	to[fq
+記	ji[yj
+訚	yb[mk
+訛	ee[yb
+訝	ya[yy
+訟	ss[ys
+訢	xi[yj
+訢	xb[yj
+訣	jt[yg
+訥	na[yn
+訥	ne[yn
+訩	xs[yk
+訪	fh[yf
+設	ue[yy
+許	hu[yw	0.01%
+許	xu[yw	99.99%
+訴	su[yi
+訶	ge[yk	0%
+訶	he[yk	100%
+診	vf[yp
+註	vu[dv
+証	vg[yv
+訾	zi[vk
+詁	gu[yk
+詆	di[yd
+詈	li[sk
+詎	ju[yj
+詐	va[yv
+詒	yi[yk
+詔	vc[yk
+評	pk[yp
+詖	bi[yy
+詗	xs[yk
+詘	iu[yi
+詘	qu[yi
+詘	vo[yi
+詛	zu[yq
+詞	ci[yk
+詟	ve[lk
+詠	ys[ky
+詡	xu[yx
+詢	xy[yo
+詣	yi[yo
+詣	vi[yo
+試	ui[yg
+詩	ui[yc
+詫	ia[yq
+詬	gz[yk
+詭	gv[yv
+詮	qr[yw
+詰	ji[yk	7.55%
+詰	jp[yk	92.45%
+話	hx[yk
+該	gd[yr
+詳	xl[yy
+詵	uf[ye
+詵	xm[ye
+詷	ds[yk
+詷	ts[yk
+詹	vj[dk
+詼	hv[yh
+詿	gx[yt
+誄	lw[yl
+誅	vu[yv
+誆	kl[yw
+誇	kx[dk
+誉	yu[xk
+誊	tg[jk
+誌	vi[ux
+認	rf[yr
+誑	kl[yw
+誒	eh[yu	50%
+誒	ei[yu	50%
+誒	xi[yu	0%
+誓	ui[fk
+誕	dj[yz
+誘	yz[yn
+誚	qn[yo
+語	yu[yk
+誠	ig[yi
+誡	jp[yc
+誣	wu[yr
+誤	wu[yt
+誥	gc[yk
+誦	ss[yy
+誨	hv[ym
+說	uv[ye	0.06%
+說	uo[ye	99.87%
+說	yt[ye	0%
+説	uv[ye
+説	uo[ye
+説	yt[ye
+誰	uw[yf
+誰	uv[yf
+課	ke[yg
+誶	sv[yu
+誹	fw[yf
+誼	yi[yq
+誾	yj[mk
+誾	yb[mk
+調	dn[yk	30.33%
+調	tn[yk	69.67%
+諂	ij[yj
+諄	vy[yz
+談	tj[yh
+諉	ww[yn
+請	jk[yo	0%
+請	qk[yo	100%
+諍	vg[yl
+諏	zz[yy
+諑	vo[yn
+諒	ll[yx
+論	ly[yb
+諗	nm[yx
+諗	uf[yx
+諛	yu[yy
+諜	dp[ym
+諝	xu[yo
+諞	pm[yc
+諡	ui[ym
+諢	hv[yi
+諢	hy[yi
+諤	ee[yk
+諦	di[yj
+諧	xp[yb
+諫	jm[yj
+諭	yu[yd
+諮	zi[dk
+諱	hv[yw	100%
+諱	ww[yw	0%
+諳	an[yo
+諴	xm[yk
+諶	if[yv
+諶	uf[yv
+諷	fg[yx
+諸	vu[yo
+諺	yj[yp
+諼	hr[yy
+諼	ur[yy
+諼	xr[yy
+諾	no[yk
+謀	mz[ym
+謁	ye[yv
+謂	ww[yo
+謄	tg[jk
+謅	vz[ye
+謅	zz[ye
+謇	jm[bk
+謇	qm[bk
+謊	hl[yv
+謎	mw[yz	0%
+謎	mi[yz	100%
+謏	sz[yy
+謏	xn[yy
+謐	bi[ym
+謐	mi[ym
+謔	nt[ya	0%
+謔	xt[ya	100%
+謖	ji[yw
+謖	su[yw
+謗	bh[yf
+謙	qm[yn
+謚	ui[ym	100%
+謚	yi[ym	0%
+講	jl[yj
+謝	xp[yc
+謠	yc[yf
+謡	yc[yf
+謨	mo[yd
+謫	di[yk
+謫	ve[yk
+謬	mn[yp
+謬	mq[yp
+謬	nq[yp
+謭	jm[yd
+謳	ou[yx
+謹	jb[ya
+謾	mj[yy
+譁	hx[ku
+證	vg[yv
+譎	ju[yk
+譎	jt[yk
+譏	ji[yj
+譖	zf[yo
+識	ui[yb	99.94%
+識	vi[yb	0.06%
+譙	qn[yh
+譚	tj[yu
+譜	pu[yo
+譞	xr[yy
+譟	zc[km
+警	jk[ck
+譫	vj[yk
+譬	pi[uk
+譭	hv[jy
+譯	yi[yl
+議	yi[yy
+譴	qm[yz
+護	hu[fh
+譽	yu[xk
+譾	jm[yd
+讀	dz[yd	0.01%
+讀	du[yd	99.99%
+變	bm[wy
+讋	ve[lk
+讎	iz[rf
+讒	ij[yd
+讓	rh[yu
+讕	lj[yj
+讖	ij[yj
+讖	if[yj
+讖	qm[yj
+讚	zj[nr
+讜	dh[ye
+讞	xm[yq
+讞	yj[yq
+计	ji[yu
+订	dk[yd
+讣	fu[yb
+认	rf[yr
+讥	ji[yj
+讦	jp[yg
+讧	hs[yg
+讨	tc[yc
+让	rh[yu
+讪	uj[ye
+讫	qi[yq
+训	xy[yi
+议	yi[yy
+讯	xy[yu
+记	ji[yj
+讱	rf[yr
+讲	jl[yj
+讳	hv[yw
+讴	ou[yx
+讵	ju[yj
+讶	ya[yy
+讷	ne[yn
+许	xu[yw	99.29%
+讹	ee[yb
+论	ly[yb
+讻	xs[yk
+讼	ss[ys
+讽	fg[yx
+设	ue[yy
+访	fh[yf
+诀	jt[yg
+证	vg[yv
+诂	gu[yk
+诃	he[yk
+评	pk[yp
+诅	zu[yq
+识	ui[yb	99.94%
+识	vi[yb	0.06%
+诇	xs[yk
+诈	va[yv
+诉	su[yi
+诊	vf[yp
+诋	di[yd
+诌	vz[ye
+词	ci[yk
+诎	qu[yi
+诏	vc[yk
+诐	bi[yy
+译	yi[yl
+诒	yi[yk
+诓	kl[yw
+诔	lw[yl
+试	ui[yg
+诖	gx[yt
+诗	ui[yc
+诘	jp[yk	92.45%
+诙	hv[yh
+诚	ig[yi
+诛	vu[yv
+诜	uf[ye
+话	hx[yk
+诞	dj[yz
+诟	gz[yk
+诠	qr[yw
+诡	gv[yv
+询	xy[yo
+诣	yi[yo
+诤	vg[yl
+该	gd[yr
+详	xl[yy
+诧	ia[yq
+诨	hy[yi
+诩	xu[yx
+诫	jp[yc
+诬	wu[yr
+语	yu[yk
+诮	qn[yo
+误	wu[yt
+诰	gc[yk
+诱	yz[yn
+诲	hv[ym
+诳	kl[yw
+说	uv[ye	0.06%
+说	uo[ye	99.87%
+诵	ss[yy
+诶	ei[yu	50%
+请	qk[yo
+诸	vu[yo
+诹	zz[yy
+诺	no[yk
+读	dz[yd	0.01%
+读	du[yd	99.99%
+诼	vo[yn
+诽	fw[yf
+课	ke[yg
+诿	ww[yn
+谀	yu[yy
+谁	uw[yf	22.31%
+谂	uf[yx
+调	dn[yk	30.33%
+调	tn[yk	69.67%
+谄	ij[yj
+谅	ll[yx
+谆	vy[yz
+谇	sv[yu
+谈	tj[yh
+谊	yi[yq
+谋	mz[ym
+谌	if[yv
+谍	dp[ym
+谎	hl[yv
+谏	jm[yj
+谐	xp[yb
+谑	xt[ya
+谒	ye[yv
+谓	ww[yo
+谔	ee[yk
+谕	yu[yd
+谖	xr[yy
+谗	ij[yd
+谙	an[yo
+谚	yj[yp
+谛	di[yj
+谜	mi[yz
+谝	pm[yc
+谞	xu[yo
+谟	mo[yd
+谠	dh[ye
+谡	su[yw
+谢	xp[yc
+谣	yc[yf
+谤	bh[yf
+谥	ui[ym
+谦	qm[yn
+谧	mi[ym
+谨	jb[ya
+谩	mj[yy
+谪	ve[yk
+谫	jm[yd
+谬	mq[yp
+谭	tj[yu
+谮	zf[yo
+谯	qn[yh
+谰	lj[yj
+谱	pu[yo
+谲	jt[yk
+谳	yj[yq
+谴	qm[yz
+谵	vj[yk
+谶	if[yj
+谷	gu[bk	99.93%
+谷	yu[bk	0.07%
+谼	hs[bb
+谿	qi[pk
+谿	xi[pk
+豁	he[bk	0%
+豁	hx[bk	0%
+豁	ho[bk	100%
+豆	dz[aa
+豇	gh[ag
+豇	jl[ag
+豈	kd[ej	0%
+豈	qi[ej	100%
+豉	ii[ay
+豉	ui[ay
+豌	wj[av
+豎	uu[ll
+豐	fg[al
+豔	yj[fb
+豕	ui[an
+豚	ty[ou
+象	xl[dn
+豢	hr[ju
+豢	qr[ju
+豨	xi[uj
+豪	hc[wu
+豫	yu[sn
+豬	vu[qo
+豮	ff[ur
+豳	bb[eu
+豶	ff[ur
+豸	vi[pp
+豹	bc[vu
+豺	id[vc
+貂	dn[vk
+貅	xq[vm
+貆	hr[vg
+貆	yr[vg
+貉	hc[vk	46.15%
+貉	he[vk	53.85%
+貉	lo[vk	0%
+貉	mo[vk	0%
+貊	bo[vb
+貊	mo[vb
+貌	mc[ve
+貓	mc[qt
+貔	bi[vb
+貔	pi[vb
+貘	mo[vd
+貙	iu[vx
+貙	qu[vx
+貝	bw[kr
+貞	vf[lr
+負	fu[dr
+財	cd[kc
+貢	gs[gr
+貧	pb[br
+貨	ho[rr
+販	fj[ky
+貪	tj[rr
+貫	gr[vr
+責	ze[fr	100%
+責	vd[fr	0%
+貯	iu[ka
+貯	vu[ka
+貰	ui[ur
+貲	zi[vr
+貳	er[yr
+貴	gv[vr
+貶	bm[kf
+買	md[vd
+貸	dd[rr	100%
+貸	te[rr	0%
+貺	kl[ke
+費	bi[fr	0%
+費	fw[fr	100%
+貼	tp[kk
+貽	yi[kk
+貿	mc[pr	100%
+貿	mz[pr	0%
+賀	he[lr
+賁	bf[ur	94.83%
+賁	bi[ur	5.17%
+賁	pf[ur
+賂	lu[kk
+賂	lo[kk
+賃	lb[rr
+賃	rf[rr
+賄	hv[ko
+賅	gd[kr
+賅	hd[kr
+資	zi[dr
+賈	gu[xr	0.27%
+賈	jx[xr	99.73%
+賊	ze[ku	0%
+賊	zw[ku	100%
+賑	vf[kn
+賒	ue[kx
+賓	bb[bb
+賕	qq[kq
+賙	vz[kk
+賚	ld[lr
+賜	ci[kw	100%
+賜	si[kw	0%
+賞	uh[xr
+賠	pw[kk
+賡	gg[gr
+賢	xm[lr
+賣	md[ud
+賤	jm[kj
+賦	fu[kv
+賧	dj[kh
+賧	tj[kh
+質	vi[pr
+賫	ji[ur
+賬	vh[ki
+賭	du[ko
+賴	ld[ur
+賵	fg[ko
+賺	vr[kn	94.68%
+賺	zr[kn	5.32%
+賻	fu[kc
+賻	pu[kc
+購	gz[ks
+賽	sd[br
+賾	ze[kr
+贄	vi[fr
+贅	vv[fr
+贇	yy[wr
+贈	zg[ko
+贊	zj[nr
+贋	yj[ir
+贋	yk[ir
+贍	uj[kk	100%
+贍	vj[kk	0%
+贏	yk[wf
+贐	jb[kd
+贓	zh[kt
+贔	bi[kr
+贖	uu[kd
+贗	yj[ir
+贗	yk[ir
+贛	gj[lr	100%
+贛	gs[lr	0%
+贜	zh[kt
+贝	bw[kr
+贞	vf[lr
+负	fu[dr
+贡	gs[gr
+财	cd[kc
+责	ze[fr
+贤	xm[lr
+败	bd[kw
+账	vh[ki
+货	ho[rr
+质	vi[pr
+贩	fj[ky
+贪	tj[rr
+贫	pb[br
+贬	bm[kf
+购	gz[ks
+贮	vu[ka
+贯	gr[vr
+贰	er[yr
+贱	jm[kj
+贲	bf[ur	94.83%
+贲	bi[ur	5.17%
+贳	ui[ur
+贴	tp[kk
+贵	gv[vr
+贶	kl[ke
+贷	dd[rr
+贸	mc[pr
+费	fw[fr
+贺	he[lr
+贻	yi[kk
+贼	zw[ku
+贽	vi[fr
+贾	gu[xr	0.27%
+贾	jx[xr	99.73%
+贿	hv[ko
+赀	zi[vr
+赁	lb[rr
+赂	lu[kk
+赃	zh[kt
+资	zi[dr
+赅	gd[kr
+赆	jb[kd
+赇	qq[kq
+赈	vf[kn
+赉	ld[lr
+赊	ue[kx
+赋	fu[kv
+赌	du[ko
+赍	ji[ur
+赎	uu[kd
+赏	uh[xr
+赐	ci[kw
+赑	bi[kr
+赒	vz[kk
+赓	gg[gr
+赔	pw[kk
+赕	dj[kh
+赖	ld[ur
+赗	fg[ko
+赘	vv[fr
+赙	fu[kc
+赚	vr[kn	94.68%
+赚	zr[kn	5.32%
+赛	sd[br
+赜	ze[kr
+赝	yj[ir
+赞	zj[nr
+赟	yy[wr
+赠	zg[ko
+赡	uj[kk
+赢	yk[wf
+赣	gj[lr
+赤	ii[td
+赦	ue[tw
+赧	nj[ty
+赪	ig[tr
+赫	ii[td	0%
+赫	he[td	100%
+赬	ig[tr
+赬	vf[tr
+赭	ve[to
+走	zz[tr
+赳	jq[tl
+赴	fu[tb
+赵	vc[tx
+赶	gj[tg
+赶	qm[tg
+起	qi[tj
+趁	if[tp
+趄	ju[tq
+趄	qp[tq
+趄	qu[tq
+超	ic[tk
+越	yt[tv
+趋	cu[te
+趋	qu[te
+趑	zi[tr
+趔	lp[td
+趕	gj[tg
+趙	vc[tx
+趟	th[tk
+趣	cu[ty	0%
+趣	qu[ty	100%
+趨	cu[te	0%
+趨	qu[te	100%
+趯	ti[tf
+趯	yt[tf
+趱	zj[tr
+趲	zj[tr
+足	ju[kr	0%
+足	zu[kr	100%
+趴	pa[zb
+趵	bc[zu
+趸	dy[wr
+趺	dp[zf
+趺	fu[zf
+趼	jm[zk
+趼	yj[zk
+趾	vi[zv
+趿	sa[zj
+趿	ta[zj
+跂	ji[zy
+跂	qi[zy
+跂	vi[zy
+跃	yt[zy
+跄	ql[zv
+跆	td[zk
+跋	ba[zd
+跌	dp[zu
+跎	to[zb
+跏	jx[zk
+跐	cd[zb
+跐	ci[zb
+跑	pc[zs
+跖	ve[zu
+跖	vi[zu
+跗	fu[zc
+跚	uj[zc
+跛	bi[zy
+跛	bo[zy
+距	ju[zj
+跞	li[zl	50%
+跟	gf[zg
+跡	ji[zd
+跣	xm[ze
+跤	jn[zx
+跨	kx[zk
+跪	gv[zv
+跬	kv[zt
+路	lu[zk
+跱	vi[zc
+跳	tn[zd
+践	jm[zj
+跶	da[zz
+跷	qn[zw
+跸	bi[zu
+跹	xm[zz
+跺	do[zm
+跻	ji[zl
+跽	ji[zx
+踅	ii[fr
+踅	xt[fr
+踉	lh[zl
+踉	ll[zl
+踊	ys[zy
+踌	iz[zc
+踏	ta[zo
+踐	jm[zj
+踒	ww[zn
+踒	wo[zn
+踔	io[zu
+踔	vo[zu
+踝	go[zg	0%
+踝	hx[zg	0%
+踝	hk[zg	100%
+踞	ju[zk
+踟	ii[zk
+踢	ti[zw
+踣	bo[zk
+踣	pw[zk
+踦	ji[zk
+踦	qi[zk
+踦	yi[zk
+踩	cd[zm
+踪	zs[zx
+踬	vi[zr
+踮	dm[zk
+踯	vi[ze
+踰	yu[zd
+踱	du[zy	0%
+踱	do[zy	100%
+踴	ys[zy
+踵	vs[zv
+踶	di[zr
+踹	ik[ze	100%
+踹	ir[ze	0%
+踹	ur[ze	0%
+踺	jm[zz
+踽	ju[zy
+踽	yu[zy
+蹀	dp[zm
+蹁	pm[zc
+蹂	rz[zm
+蹄	ti[zj
+蹅	ia[zd
+蹇	jm[br
+蹈	dc[zj
+蹉	co[zg
+蹊	qi[zd	56.25%
+蹊	xi[zd	43.75%
+蹋	ta[zx
+蹌	ch[zv
+蹌	ql[zv
+蹐	ji[zo
+蹑	np[zy
+蹑	ue[zy
+蹒	pj[zl
+蹕	bi[zu
+蹙	cu[wr
+蹚	th[zt
+蹜	su[zb
+蹜	so[zb
+蹟	ji[zd
+蹢	di[zk
+蹢	vi[zk
+蹣	mj[zl
+蹣	pj[zl
+蹤	zs[zx
+蹦	bg[zo
+蹩	bp[dr
+蹬	dg[za
+蹭	cg[zo
+蹯	fj[zt
+蹰	iu[zc
+蹲	cy[zc	0.15%
+蹲	dy[zc	99.85%
+蹴	cu[zy
+蹶	jt[zr
+蹺	qn[zw
+蹼	pu[zn
+蹽	ln[zx
+蹾	dy[zw
+蹿	cr[zi
+躁	zc[zm
+躂	da[zz
+躂	ta[zz
+躅	vu[zi
+躇	iu[zo
+躉	dy[wr
+躉	wj[wr
+躊	iz[zc
+躋	ji[zl
+躍	yc[zy
+躍	yt[zy
+躏	lb[zf
+躐	lp[zv
+躑	vi[ze
+躒	li[zl
+躒	lo[zl
+躓	vi[zr
+躔	ij[zt
+躕	iu[zc
+躚	qm[zz
+躚	xm[zz
+躜	zr[zr
+躞	xp[zy
+躡	np[zy
+躡	ue[zy
+躥	cr[zi
+躦	zr[zr
+躪	lb[zf
+身	jr[pp	0%
+身	uf[pp	100%
+躬	gs[ug
+躯	qu[ux
+躲	do[um
+躺	th[uk
+軀	qu[ux
+車	ie[al	99.99%
+車	ju[al	0.01%
+軋	ga[iv	22.32%
+軋	ya[iv	27.90%
+軋	va[iv	49.79%
+軌	gv[ij
+軍	jy[bi
+軏	wu[iw
+軏	yt[iw
+軑	dd[id
+軑	di[id
+軒	xr[ig
+軔	rf[ir
+軛	ee[iv
+軟	rr[ir
+軤	hu[ih
+軫	vf[ip
+軲	gu[ik
+軲	ku[ik
+軸	vz[iy
+軸	vu[iy
+軹	vi[ib
+軺	yc[ik
+軻	ke[ik
+軼	yi[iu
+軾	ui[ig
+較	jn[ix	100%
+較	jt[ix	0%
+輄	gl[iw
+輅	lu[ik
+輅	lo[ik
+輇	qr[iw
+輈	vz[iv
+載	zd[ui
+輊	vi[it
+輋	ju[ei
+輋	ue[ei
+輒	ve[iv
+輓	wj[fv
+輔	fu[if
+輕	qk[ig
+輗	ni[ie
+輛	ll[il
+輜	zi[it
+輝	hv[xi
+輞	wh[iw
+輟	io[iy
+輥	gy[ib
+輦	nm[fi
+輩	bw[fi
+輪	ly[ib
+輬	ll[ix
+輮	rz[im
+輯	ji[ie
+輳	cz[it
+輸	uu[id
+輻	fu[it
+輼	wf[im
+輾	nm[in	43.48%
+輾	vj[in	56.52%
+輿	yu[pb
+轀	wf[im
+轂	gu[uy
+轄	xx[ik
+轅	yr[iy
+轆	lu[ib
+轉	vr[iv
+轍	ie[iw	0%
+轍	ve[iw	100%
+轎	jn[il
+轔	lb[il
+轟	hs[iy
+轡	pw[sk
+轢	li[il
+轤	lu[iu
+车	ie[al	99.99%
+车	ju[al	0.01%
+轧	ga[iv	22.32%
+轧	ya[iv	27.90%
+轧	va[iv	49.79%
+轨	gv[ij
+轩	xr[ig
+轪	dd[id
+轫	rf[ir
+转	vr[iv
+轭	ee[iv
+轮	ly[ib
+软	rr[ir
+轰	hs[iy
+轱	gu[ik
+轲	ke[ik
+轳	lu[iu
+轴	vz[iy
+轵	vi[ib
+轶	yi[iu
+轷	hu[ih
+轸	vf[ip
+轹	li[il
+轺	yc[ik
+轻	qk[ig
+轼	ui[ig
+载	zd[ui
+轾	vi[it
+轿	jn[il
+辀	vz[iv
+辁	qr[iw
+辂	lu[ik
+较	jn[ix
+辄	ve[iv
+辅	fu[if
+辆	ll[il
+辇	nm[fi
+辈	bw[fi
+辉	hv[xi
+辊	gy[ib
+辋	wh[iw
+辌	ll[ix
+辍	io[iy
+辎	zi[it
+辏	cz[it
+辐	fu[it
+辑	ji[ie
+辒	wf[im
+输	uu[id
+辔	pw[sk
+辕	yr[iy
+辖	xx[ik
+辗	vj[in	56.52%
+辘	lu[ib
+辙	ie[iw
+辙	ve[iw
+辚	lb[il
+辛	xb[lu
+辜	gu[uu
+辞	ci[qu
+辟	bi[uu	50%
+辟	pi[uu	50%
+辣	la[lu
+辦	bj[ld
+辨	bm[lu
+辩	bm[lu
+辫	bm[lu
+辭	ci[qu
+辮	bm[lu
+辯	bm[lu
+辰	if[in
+辱	ru[ic
+農	ns[dn
+边	bm[zl
+辽	ln[zl
+达	da[zd
+达	ta[zd
+达	ti[zd
+辿	ij[ze
+迁	qm[zq
+迂	yu[zy
+迄	qi[zq
+迅	xy[zu
+过	go[zc
+迈	md[zw
+迎	yk[ze
+运	yy[zs
+近	jb[zj
+迓	ya[zy
+返	fj[zy
+迕	wu[zw
+还	hd[zb	98.01%
+还	hr[zb	1.99%
+还	xr[zb	0%
+这	ve[zw	98.59%
+这	vw[zw	1.41%
+进	jb[zj
+远	yr[ze
+违	ww[zw
+连	lm[zi
+迟	ii[zi
+迢	tn[zk
+迢	vc[zk
+迤	yi[zy
+迥	js[zk
+迦	jx[zk
+迨	dd[zk
+迩	er[zx
+迪	di[zy
+迫	pd[zb	1%
+迫	po[zb	99%
+迭	dp[zu
+迮	ze[zv
+迮	zo[zv
+述	uu[zu
+迳	jk[zg
+迴	hv[kk
+迷	mi[zm
+迸	bg[zk	100%
+迸	bk[zk	0%
+迹	ji[zd
+迺	nd[zx
+追	dv[zk	0%
+追	vv[zk	100%
+退	tv[zg
+送	ss[zt
+适	gx[zk
+适	ko[zk
+适	ui[zk	0%
+逃	tc[zd
+逄	ph[zl
+逅	gz[zk
+逅	hz[zk
+逆	ni[zp
+选	xr[ze
+逊	xy[zx
+逋	bu[zf
+逋	fu[zf
+逍	xn[zo
+透	tz[zn
+逐	vu[zu
+逑	qq[zq
+递	di[zp
+途	tu[zh
+逕	jk[zg
+逖	di[zh
+逖	ti[zh
+逗	dz[za
+這	ve[zw	98.59%
+這	vw[zw	1.41%
+通	ts[zy
+逛	gl[zw
+逝	ui[zj
+逞	ig[zw
+速	su[zu
+造	cc[zk	0%
+造	zc[zk	100%
+逡	jy[zw
+逡	qy[zw
+逢	fg[zf	100%
+逢	pg[zf	0%
+連	lm[zi
+逦	li[zl
+逭	gr[zk
+逭	hr[zk
+逮	dd[zn	100%
+逮	di[zn	0%
+逯	lu[zu
+週	vz[kk
+進	jb[zj
+逴	io[zu
+逵	kv[zt
+逶	ww[zn
+逸	yi[zd
+逻	lo[zx
+逼	bi[zt
+逾	yu[zd
+遁	dy[zo
+遂	sv[zu
+遄	ir[ze
+遄	tr[ze
+遆	ti[zj
+遇	yu[zy
+遊	yz[dz
+運	yy[zs
+遍	bm[zc	100%
+遍	pm[zc	0%
+過	go[zc
+遏	ee[zv
+遐	xx[zy
+遑	hl[zw
+遒	qq[zy
+遒	yz[zy
+道	dc[zz
+達	da[zd	100%
+達	ta[zd	0%
+違	ww[zw
+遗	yi[zr	98.44%
+遘	gz[zr
+遙	yc[zf
+遛	lq[zt
+遜	sy[zx
+遜	xy[zx
+遞	di[zp
+遠	yr[ze
+遡	su[do
+遡	so[do
+遢	ta[zx
+遣	qm[zk
+遥	yc[zf
+遨	ao[zw
+適	di[zk	0.12%
+適	ui[zk	99.88%
+遭	zc[zo
+遮	ve[zh
+遲	ii[zi	100%
+遲	vi[zi	0%
+遴	lb[zl
+遵	zy[zc
+遷	qm[zq
+選	xr[ze
+遹	yu[zk
+遺	ww[zr	1.56%
+遺	yi[zr	98.44%
+遼	ln[zl
+遽	ju[zu
+避	bw[zu	0%
+避	bi[zu	100%
+邀	yc[zw
+邁	md[zw
+邂	xp[zn
+邃	sv[zu
+還	hd[zb	98.01%
+還	hr[zb	1.99%
+還	xr[zb	0%
+邇	er[zx
+邈	mn[ze
+邊	bm[zl
+邋	la[zv
+邋	lp[zv
+邏	lo[zx
+邐	li[zl
+邑	yi[kb
+邓	dg[ye
+邓	uj[ye
+邕	ys[vb
+邗	hj[ge
+邘	yu[ye
+邙	mh[we
+邛	qs[ge
+邝	kl[ge
+邠	bb[be
+邠	ff[be
+邡	fh[fe
+邢	xk[ke
+那	na[ve	99.69%
+那	ne[ve	0%
+那	nw[ve	0.31%
+那	no[ve	0%
+邦	bh[fe
+邨	cy[te
+邪	xx[ye	0%
+邪	xp[ye	99.28%
+邪	xu[ye	0%
+邪	ye[ye	0.72%
+邪	yu[ye	0%
+邬	wu[we
+邮	di[ye
+邮	yz[ye	0%
+邯	hj[ge
+邰	td[se
+邱	qq[qe
+邲	bi[be
+邳	pw[pe
+邳	pi[pe
+邴	bk[be
+邵	uc[de
+邶	bw[le
+邸	di[de
+邹	zz[de
+邺	ye[ye
+邻	lb[re
+邽	gv[te
+邾	vu[ve
+邿	ui[te
+郁	yu[ue
+郃	ge[re
+郃	he[re
+郄	qp[xe
+郄	qt[xe
+郄	xi[xe
+郅	vi[ae
+郇	xy[be
+郈	hz[pe
+郊	jn[we
+郎	lh[de
+郏	jx[je
+郐	kk[re
+郑	vg[be
+郓	yy[be
+郗	ii[xe
+郚	wu[we
+郛	fu[pe
+郜	gc[ne
+郝	hc[te
+郝	he[te
+郟	jx[je
+郡	jy[ye
+郢	yk[ke
+郤	qt[be
+郤	xi[be
+郦	li[le
+郧	yy[ke
+部	bu[le
+郪	qi[ae
+郫	pi[pe
+郭	go[we
+郯	tj[he
+郯	yj[he
+郴	bb[me	0%
+郴	if[me	100%
+郵	yz[ye
+郸	dj[be
+都	dz[le	94.64%
+都	du[le	5.36%
+郾	yj[ke
+郿	mw[ve
+鄀	ro[ce
+鄂	ee[ke
+鄃	yu[re
+鄄	jr[xe
+鄄	vf[xe
+鄅	yu[ye
+鄆	yy[be
+鄉	xl[vp
+鄌	th[ge
+鄑	jb[ye
+鄑	zi[ye
+鄒	zz[de
+鄔	wu[we
+鄖	yy[ke
+鄗	gc[we
+鄗	hc[we
+鄗	qn[we
+鄘	ys[ge
+鄙	bi[ke
+鄚	mo[ce
+鄜	fu[ge
+鄞	yb[ne
+鄠	hu[ye
+鄠	yu[ye
+鄢	yj[ve
+鄣	vh[le
+鄧	dg[ye
+鄫	cg[be
+鄭	vg[be
+鄯	uj[ye
+鄰	lb[re
+鄱	bo[pe
+鄱	po[pe
+鄲	dj[be
+鄳	mg[ke
+鄴	ye[ye
+鄶	hv[re
+鄶	kk[re
+鄹	zz[ee
+鄺	gl[ge
+鄺	kl[ge
+酂	co[ne
+酃	lk[ye
+酅	xi[ee
+酆	fg[ee
+酇	zj[ne
+酈	li[le
+酉	yz[xa
+酊	dk[yd
+酋	qq[by
+酋	yz[by
+酌	vo[yu
+配	pw[yj
+酎	vz[yc
+酏	yi[yy
+酐	gj[yg
+酐	hj[yg
+酐	hh[yg
+酒	jq[dy
+酗	xs[yk
+酗	xu[yk
+酚	ff[yd
+酝	yy[ys
+酞	td[yt
+酡	to[yb
+酢	cu[yv	22.22%
+酢	va[yv	0%
+酢	zo[yv	77.78%
+酣	gj[yg
+酣	hj[yg
+酤	gu[yk
+酥	su[yh
+酦	po[yd
+酩	mk[yk
+酪	lc[yk
+酪	lo[yk
+酬	iz[yv
+酮	ts[yk
+酯	vi[yo
+酰	xm[ye
+酱	jl[dy
+酲	ig[yw
+酴	tu[yh
+酵	jn[yz
+酵	xn[yz
+酶	mw[ym
+酷	ku[yk
+酸	sr[yw
+酹	lw[yc
+酺	pu[yf
+酽	yj[yy
+酾	ui[yl	50%
+酿	nl[yl
+醃	yj[od
+醅	pw[yk
+醇	iy[yz
+醉	zv[yu
+醋	cu[yo	100%
+醋	zo[yo	0%
+醌	ky[yb
+醍	ui[yr
+醍	ti[yr
+醐	hu[yo
+醑	xu[yo
+醒	xk[yu
+醖	wf[ys
+醖	yy[ys
+醚	mi[yz
+醛	qr[yw
+醜	iz[va
+醞	wf[ys
+醞	yy[ys
+醢	hd[ym
+醣	th[mk
+醨	li[yd
+醪	lc[yp
+醪	ln[yp
+醫	yi[ku
+醬	jl[dy
+醭	bu[yn
+醭	pu[yn
+醮	jn[yh
+醯	hd[ym
+醯	xi[ym
+醱	po[yd
+醴	li[ya
+醵	ju[yu
+醺	xy[yh
+醾	mi[ym
+釀	nl[yl
+釁	xb[xb
+釃	li[yl	50%
+釃	ui[yl	50%
+釅	yj[yy
+采	cd[pm
+釉	yz[py
+释	ui[pl
+釋	ui[pl
+里	li[la
+重	is[pa	41.55%
+重	vs[pa	58.45%
+野	ye[ll
+量	ll[dl
+釐	li[il
+釐	xi[il
+金	jb[ra
+釓	ga[jv
+釓	jq[jv
+釔	yi[jv
+釕	ln[jl
+釗	vc[jd
+釘	dk[jd
+釙	po[jb
+釙	pu[jb
+釜	fu[ba
+針	vf[ju
+釣	dn[ju
+釤	uj[jp
+釦	kz[fk
+釧	ir[ji
+釩	fj[jf
+釵	id[ji
+釷	tu[jt
+釹	nv[jn
+釺	qm[jq
+鈀	ba[jb	90.38%
+鈀	pa[jb	9.62%
+鈁	fh[jf
+鈃	jm[jk
+鈃	xk[jk
+鈃	yj[jk
+鈄	tz[ju
+鈅	yt[jo
+鈇	fu[jf
+鈈	bu[jb
+鈈	pi[jb
+鈉	na[jn
+鈍	dy[jt
+鈎	gz[js
+鈐	jb[jv
+鈐	qm[jv
+鈐	qb[jv
+鈑	bj[jy
+鈔	ic[ju
+鈕	nq[ji
+鈞	jy[jd
+鈡	vs[jv
+鈣	gd[jg
+鈥	ho[jh
+鈦	td[jt
+鈧	kh[jj
+鈮	ni[jb
+鈰	ui[jj
+鈴	lk[js
+鈷	gu[jk
+鈸	ba[jd
+鈸	bo[jd
+鈹	pi[jy
+鈺	yu[jy
+鈾	yz[jy
+鈿	dm[jt	31.03%
+鈿	tm[jt	68.97%
+鉀	jx[jj
+鉅	ju[ka
+鉆	ij[jk
+鉆	vj[jk
+鉆	vf[jk
+鉈	ue[jb
+鉈	ta[jb	61.97%
+鉈	to[jb	38.03%
+鉉	xm[jy
+鉉	xr[jy
+鉍	bi[jb
+鉑	bo[jb
+鉕	po[jk
+鉗	qm[jg
+鉚	mc[je
+鉛	qm[jk	99.33%
+鉛	yj[jk	0.67%
+鉞	yt[jv
+鉢	bo[jb
+鉤	gz[js
+鉦	vg[jv
+鉬	mu[jo
+鉭	dj[jd
+鉭	tj[jd
+鉳	bw[jk
+鉴	jm[lj
+鉶	xk[jd
+鉷	hs[jb
+鉸	jn[jx
+鉺	er[je
+鉻	ge[jk
+鉿	ha[jk
+銀	yb[jg
+銃	is[je
+銅	ts[jk
+銈	gv[jt
+銈	ji[jt
+銍	vi[jt
+銎	qs[gj
+銑	xi[je	77.92%
+銑	xm[je	22.09%
+銓	qr[jw
+銖	vu[jv
+銘	mk[jk
+銚	dn[jd	50%
+銚	yc[jd	50%
+銚	vc[jd
+銜	xm[ii
+銠	lc[jb
+銣	ru[jk
+銥	yi[jy
+銦	yb[jd
+銨	an[jn
+銩	dq[js
+銪	yz[jo
+銫	se[jb
+銬	kc[jv
+銮	lr[wj
+銱	dn[jj
+銳	rv[je
+銶	qq[jq
+銷	xn[jo
+銹	xq[jn
+銻	ti[jp
+銼	co[jt
+鋁	lv[jk
+鋂	mw[jo
+鋃	lh[jl
+鋅	xb[ju
+鋆	yy[tj
+鋇	bw[jr
+鋈	wo[dj
+鋈	wu[dj
+鋌	dk[jz
+鋌	tk[jz
+鋏	jx[jj
+鋏	jp[jj
+鋒	fg[jf
+鋗	jr[jo
+鋗	xr[jo
+鋙	wu[jk
+鋝	lt[jc
+鋟	qm[jy
+鋟	qb[jy
+鋣	ye[je
+鋤	iu[jl
+鋥	vg[jw
+鋦	ju[jk
+鋨	ee[jw
+鋪	pu[jf
+鋭	rv[je
+鋮	ig[ji
+鋯	gc[jk
+鋰	li[jl
+鋱	te[jx
+鋶	lv[jv
+鋸	ju[jk
+鋼	gh[jx
+錀	ff[jb
+錀	ly[jb
+錁	go[jg
+錁	ke[jg
+錄	lu[eu
+錆	ql[jo
+錆	qk[jo
+錇	pw[jk
+錇	pz[jk
+錈	jr[jv
+錐	vv[jf
+錒	aa[jk
+錒	ee[jk
+錕	ky[jb
+錘	iv[ji
+錙	zi[jt
+錚	vg[jl
+錛	bf[jc
+錟	tj[jh
+錟	xm[jh
+錟	yj[jh
+錠	dk[jr
+錡	qi[jk
+錢	jm[jj	0%
+錢	qm[jj	100%
+錤	ji[jb
+錤	qi[jb
+錦	jb[jj
+錨	mc[jt	100%
+錨	mn[jt	0%
+錫	xi[jw
+錮	gu[jk
+錯	cu[jo	0%
+錯	co[jo	100%
+録	lu[eu
+錳	mg[jm
+錶	bn[fy
+錸	ld[jl
+錼	nd[ju
+錾	zj[ij
+鍀	de[jc
+鍁	xm[jr
+鍃	hu[jx
+鍅	fa[jf
+鍆	mf[jm
+鍇	kd[jb
+鍈	yh[jy
+鍊	lm[hd
+鍋	go[jn
+鍍	du[jy
+鍔	ee[jk
+鍘	ce[jd	0%
+鍘	ze[jd	0%
+鍘	va[jd	100%
+鍚	yh[jp
+鍛	dr[jy
+鍠	hl[jw
+鍤	ia[jj
+鍥	qp[jd
+鍩	no[jk
+鍩	tm[jk
+鍪	mz[sj
+鍬	qn[jh
+鍬	qq[jh
+鍰	hr[jy
+鍵	jm[jz
+鍶	si[jx
+鍺	ve[jo
+鍼	vf[ju
+鍾	vs[jv
+鎂	mw[jd
+鎄	ai[jy
+鎄	yi[jy
+鎇	mw[jo
+鎊	bh[jf
+鎌	lm[jn
+鎏	lq[dj
+鎔	rs[jk
+鎖	so[jr
+鎘	ge[jl
+鎘	li[jl
+鎚	iv[ji
+鎛	bo[jc
+鎝	da[jk
+鎝	sa[jk
+鎝	ta[jk
+鎡	zi[jy
+鎢	wu[jw
+鎣	yk[cj
+鎦	lq[jt
+鎧	kd[jj
+鎩	ua[jm
+鎩	ud[jm
+鎪	sz[jy
+鎬	gc[jk	69.31%
+鎬	hc[jk	30.69%
+鎭	vf[jb
+鎮	vf[jb
+鎰	yi[jm
+鎲	th[je
+鎳	np[jm
+鎵	jx[ju
+鎸	jr[jn
+鎿	na[ju
+鏃	cu[ju
+鏃	zu[ju
+鏈	lm[jz
+鏊	ao[fj
+鏌	mo[jd
+鏐	lq[jp
+鏑	di[jk
+鏑	ve[jk
+鏖	ao[gj
+鏗	jm[jt
+鏗	kg[jt
+鏘	jl[jc
+鏘	ql[jc
+鏚	qi[wx
+鏜	th[jt
+鏝	mj[jy
+鏞	ys[jl
+鏟	ij[ji
+鏡	jk[je
+鏢	bn[jx
+鏤	lz[jn
+鏤	lv[jn
+鏨	zj[ij
+鏰	bg[jo
+鏵	hx[ju
+鏷	pu[jn
+鏹	jl[ji
+鏹	ql[ji
+鏺	po[jd
+鏽	xq[jn
+鐃	nc[jw
+鐃	rc[jw
+鐄	hg[jb
+鐄	hl[jb
+鐇	fj[jt
+鐋	th[jp
+鐍	ju[jk
+鐍	jt[jk
+鐏	zy[jc
+鐐	ln[jx
+鐒	lc[jl
+鐓	dv[jw
+鐓	dy[jw
+鐔	tj[ju
+鐗	jm[jo
+鐘	vs[jv
+鐙	dg[ja
+鐝	jt[jr
+鐠	pu[jo
+鐦	kd[jk
+鐧	jm[jo
+鐨	fw[jr
+鐫	jr[jn
+鐮	lm[jn
+鐯	vo[jo
+鐲	vo[ji
+鐳	lw[jt
+鐵	tp[ju
+鐶	hr[jy
+鐸	do[jl
+鐺	ig[je	1.90%
+鐺	dh[je	98.10%
+鐽	bi[jz
+鐽	da[jz
+鐾	bi[uj
+鐿	yi[jx
+鑀	ai[jy
+鑄	vu[jc
+鑊	ho[jy
+鑌	bb[jb
+鑑	jm[lj
+鑒	jm[lj
+鑔	ia[jx
+鑕	vi[jr
+鑞	la[jv
+鑠	uo[jl
+鑣	bn[jh
+鑥	lu[jo
+鑪	lu[ju
+鑫	xb[jj
+鑭	lj[jj
+鑰	yc[jo	91.40%
+鑰	yt[jo	8.60%
+鑱	ij[jd
+鑲	xl[jy
+鑷	np[jy
+鑹	cr[ji
+鑼	lo[jx
+鑽	zr[jk
+鑾	lr[wj
+鑿	zc[yk	89.37%
+鑿	zo[yk	10.63%
+钁	jt[jr
+钂	th[je
+钆	ga[jv
+钇	yi[jv
+针	vf[ju
+钉	dk[jd
+钊	vc[jd
+钋	po[jb
+钌	ln[jl
+钍	tu[jt
+钎	qm[jq
+钏	ir[ji
+钐	uj[jp
+钒	fj[jf
+钓	dn[ju
+钔	mf[jm
+钕	nv[jn
+钖	yh[jp
+钗	id[ji
+钘	xk[jk
+钙	gd[jg
+钚	bu[jb
+钛	td[jt
+钜	ju[jj
+钝	dy[jt
+钞	ic[ju
+钟	vs[jv
+钠	na[jn
+钡	bw[jr
+钢	gh[jx
+钣	bj[jy
+钤	qm[jv
+钥	yc[jo	91.40%
+钥	yt[jo	8.60%
+钦	qb[jr
+钧	jy[jd
+钨	wu[jw
+钩	gz[js
+钪	kh[jj
+钫	fh[jf
+钬	ho[jh
+钭	tz[ju	48%
+钮	nq[ji
+钯	ba[jb	90.38%
+钯	pa[jb	9.62%
+钰	yu[jy
+钱	qm[jj
+钲	vg[jv
+钳	qm[jg
+钴	gu[jk
+钵	bo[jb
+钷	po[jk
+钹	bo[jd
+钺	yt[jv
+钻	zr[jk
+钼	mu[jo
+钽	tj[jd
+钾	jx[jj
+钿	dm[jt	31.03%
+钿	tm[jt	68.97%
+铀	yz[jy
+铁	tp[ju
+铂	bo[jb
+铃	lk[js
+铄	uo[jl
+铅	qm[jk	99.33%
+铆	mc[je
+铈	ui[jj
+铉	xr[jy
+铊	ta[jb	61.97%
+铋	bi[jb
+铌	ni[jb
+铍	pi[jy
+铎	do[jl
+铏	xk[jd
+铐	kc[jv
+铑	lc[jb
+铒	er[je
+铕	yz[jo
+铖	ig[ji
+铗	jx[jj
+铘	ye[je
+铙	nc[jw
+铚	vi[jt
+铛	ig[je	1.90%
+铛	dh[je	98.10%
+铜	ts[jk
+铝	lv[jk
+铞	dn[jj
+铟	yb[jd
+铠	kd[jj
+铡	va[jd
+铢	vu[jv
+铣	xi[je	77.92%
+铣	xm[je	22.09%
+铤	dk[jz
+铤	tk[jz
+铥	dq[js
+铧	hx[ju
+铨	qr[jw
+铩	ua[jm
+铪	ha[jk
+铫	dn[jd	50%
+铫	yc[jd	50%
+铬	ge[jk
+铭	mk[jk
+铮	vg[jl
+铯	se[jb
+铰	jn[jx
+铱	yi[jy
+铲	ij[ji
+铳	is[je
+铴	th[jp
+铵	an[jn
+银	yb[jg
+铷	ru[jk
+铸	vu[jc
+铹	lc[jl
+铺	pu[jf
+铻	wu[jk
+铼	ld[jl
+铽	te[jx
+链	lm[jz
+铿	kg[jt
+销	xn[jo
+锁	so[jr
+锂	li[jl
+锃	zg[jw
+锄	iu[jl
+锅	go[jn
+锆	gc[jk
+锇	ee[jw
+锈	xq[jn
+锉	co[jt
+锊	lt[jc
+锋	fg[jf
+锌	xb[ju
+锍	lq[jv
+锎	kd[jk
+锏	jm[jo
+锐	rv[je
+锑	ti[jp
+锒	lh[jl
+锓	qb[jy
+锔	ju[jk
+锕	aa[jk
+锖	ql[jo
+锗	ve[jo
+锘	no[jk
+错	co[jo
+锚	mc[jt
+锛	bf[jc
+锜	qi[jk
+锝	de[jc
+锞	ke[jg
+锟	ky[jb
+锡	xi[jw
+锢	gu[jk
+锣	lo[jx
+锤	iv[ji
+锥	vv[jf
+锦	jb[jj
+锧	vi[jr
+锨	xm[jr
+锩	jr[jv
+锪	ho[jx
+锫	pw[jk
+锬	tj[jh
+锭	dk[jr
+键	jm[jz
+锯	ju[jk
+锰	mg[jm
+锱	zi[jt
+锲	qp[jd
+锳	yk[jy
+锴	kd[jb
+锵	ql[jc
+锶	si[jx
+锷	ee[jk
+锸	ia[jj
+锹	qn[jh
+锺	vs[jv
+锻	dr[jy
+锼	sz[jy
+锽	hl[jw
+锾	hr[jy
+锿	ai[jy
+镀	du[jy
+镁	mw[jd
+镂	lz[jn
+镃	zi[jy
+镄	fw[jr
+镅	mw[jo
+镆	mo[jd
+镇	vf[jb
+镈	bo[jc
+镉	ge[jl
+镊	np[jy
+镋	th[je
+镌	jr[jn
+镍	np[jm
+镎	na[ju
+镏	lq[jt
+镐	gc[jk	69.31%
+镐	hc[jk	30.69%
+镑	bh[jf
+镒	yi[jm
+镓	jx[ju
+镔	bb[jb
+镕	rs[jk
+镖	bn[jx
+镗	th[jt
+镘	mj[jy
+镚	bg[jo
+镛	ys[jl
+镜	jk[je
+镝	di[jk
+镞	zu[ju
+镟	xr[fr
+镠	lq[jp
+镡	tj[ju
+镢	jt[jr
+镣	ln[jx
+镤	pu[jn
+镥	lu[jo
+镦	dy[jw	9.09%
+镧	lj[jj
+镨	pu[jo
+镩	cr[ji
+镪	ql[ji
+镫	dg[ja
+镬	ho[jy
+镭	lw[jt
+镮	hr[jy
+镯	vo[ji
+镰	lm[jn
+镱	yi[jx
+镲	ia[jx
+镳	bn[jh
+镴	la[jv
+镵	ij[jd
+镶	xl[jy
+長	ih[pn	60.26%
+長	vh[pn	39.74%
+长	ih[pn	60.26%
+长	vh[pn	39.74%
+門	mf[dv
+閂	ur[ma
+閃	uj[mr
+閆	yj[ms
+閉	bi[mc
+開	kd[ac
+閌	kh[mj
+閎	hs[ms
+閏	ry[mw
+閑	xm[mm
+閒	jm[mm	0%
+閒	xm[mm	100%
+間	jm[mo
+閔	mb[mw
+閘	va[mj
+閡	he[mr
+閣	gc[mk	0%
+閣	ge[mk	100%
+閤	ge[rk	0%
+閤	he[rk	100%
+閥	fa[mg
+閨	gv[mt
+閩	mb[mi
+閫	ky[mm
+閬	gf[ml
+閬	lh[ml
+閭	lv[mk
+閱	yt[me
+閲	yt[me
+閶	ih[mo
+閹	yj[md
+閻	yj[mj
+閼	ee[md
+閼	yj[md
+閼	yu[md
+閽	hy[mo
+閾	yu[ma
+閿	wf[my
+闃	qu[mq
+闆	bj[my
+闆	pj[my
+闇	an[oo
+闈	ww[mw
+闊	ko[mk
+闋	gv[mt
+闋	qt[mt
+闌	lj[mj
+闍	du[mo
+闍	ue[mo
+闐	dm[mb
+闐	tm[mb
+闑	np[mm
+闒	ta[mx
+闓	kd[mj
+闔	gd[mm	0%
+闔	he[mm
+闕	qt[mr
+闖	if[mm	0%
+闖	il[mm	100%
+關	gr[bt
+闞	hj[mw	2.27%
+闞	kj[mw	97.73%
+闡	ij[ml
+闢	pi[uu
+闥	ta[mz
+门	mf[dv
+闩	ur[ma
+闪	uj[mr
+闫	yj[ms
+闭	bi[mc
+问	wf[mk
+闯	il[mm
+闰	ry[mw
+闱	ww[mw
+闲	xm[mm
+闳	hs[ms
+间	jm[mo
+闵	mb[mw
+闶	kh[mj
+闷	mf[mx
+闸	va[mj
+闹	nc[mj
+闺	gv[mt
+闻	wf[me
+闼	ta[mz
+闽	mb[mi
+闾	lv[mk
+闿	kd[mj
+阀	fa[mg
+阁	ge[mk
+阂	he[mr	96.55%
+阃	ky[mm
+阄	jq[mv
+阅	yt[me
+阆	lh[ml
+阇	du[mo
+阇	ue[mo
+阈	yu[ma
+阉	yj[md
+阊	ih[mo
+阋	xi[me
+阌	wf[my
+阍	hy[mo
+阎	yj[mj
+阏	ee[md
+阐	ij[ml
+阑	lj[mj
+阒	qu[mq
+阔	ko[mk
+阕	qt[mt
+阖	he[mm
+阗	tm[mb
+阘	da[mx
+阙	qt[mr
+阚	kj[mw	97.73%
+阜	bu[pu
+阜	fu[pu
+队	dv[er
+阡	qm[eq
+阪	bj[ey
+阮	rr[ee
+阱	jk[ej
+防	fh[ef
+阳	yh[eo
+阴	an[eo
+阴	yb[eo
+阵	vf[ei
+阶	jp[el
+阻	zu[eq
+阼	zo[ev
+阽	dm[ek	50%
+阽	yj[ek	50%
+阿	aa[ek	99.89%
+阿	ee[ek	0.11%
+陀	to[eb
+陂	bw[ey
+陂	pi[ey
+陂	po[ey	5%
+附	fu[ec
+际	ji[ex
+陆	lq[ej	6.25%
+陆	lu[ej	93.75%
+陇	ls[el
+陈	if[ed
+陉	xk[eg
+陋	lz[ev
+陌	bd[eb	0%
+陌	mo[eb	100%
+降	jl[el	99.06%
+降	xl[el	0.94%
+陎	uu[ev
+限	xm[eg
+陑	er[ee
+陔	gd[er
+陔	hd[er
+陕	uj[ej
+陕	xx[ej
+陘	xk[eg
+陛	bi[et
+陝	uj[ej	100%
+陝	xx[ej	0%
+陞	ug[pc
+陟	bu[ep
+陟	vi[ep
+陡	dz[er	100%
+陡	tu[er	0%
+院	yr[ee
+陣	vf[ei
+除	iu[eh
+陧	np[et
+陨	yy[er
+险	xm[ea
+陪	pw[ek
+陬	zz[ey
+陰	an[eo	0%
+陰	yb[eo	100%
+陲	iv[ei
+陳	if[ed	100%
+陳	vf[ed	0%
+陴	pi[eu
+陵	lk[ew
+陶	tc[ef	99.94%
+陶	yc[ef	0.06%
+陷	xm[ej
+陷	xr[ej
+陸	lq[ej	6.25%
+陸	lu[ej	93.75%
+陽	yh[eo
+隃	yc[ed
+隃	yu[ed
+隅	ou[ey
+隅	yu[ey
+隆	ls[eu
+隈	ww[en
+隉	np[et
+隊	dv[er
+隋	sv[eo
+隍	hl[ew
+階	jp[el
+随	sv[ez
+隐	yb[ex
+隔	ge[el	100%
+隔	jp[el	0%
+隕	sy[er	0%
+隕	yr[er	0%
+隕	yy[er	100%
+隗	ww[eg
+隘	ai[em
+隘	ee[em
+隘	ga[em	0%
+隙	qi[ex	0%
+隙	xi[ex
+際	ji[ex
+障	vh[eu
+隧	sv[ez
+隨	sv[ez
+隩	ao[ed
+隩	yu[ed
+險	xm[ea
+隰	ui[eh
+隰	xi[eh
+隱	yb[ex
+隳	hv[ex
+隴	ls[el
+隶	dd[vn
+隶	li[vn	0%
+隸	li[vn
+隹	vv[rf
+隺	he[df
+隺	hu[df
+隺	qt[df
+隻	vi[kb
+隼	sy[ru	100%
+隼	vy[ru	0%
+隽	jr[rn	33.73%
+隽	jy[rn	66.27%
+难	nj[yf
+雀	qn[uf	0.21%
+雀	qt[uf	99.79%
+雁	yj[if
+雄	xs[uf
+雅	ya[yf
+集	ji[rm
+雇	gu[hf
+雉	vi[uf
+雊	gz[bf
+雋	jr[rn	33.73%
+雋	jy[rn	66.27%
+雌	ci[vf
+雍	ys[wf
+雎	ju[qf
+雎	sv[qf
+雏	iu[df
+雒	lo[wf
+雕	dn[kf
+雖	sv[ki
+雙	ul[yy
+雛	iu[df
+雜	za[jm
+雞	ji[yn
+雠	iz[rf
+離	li[wd
+難	nj[yf	100%
+難	no[yf	0%
+雨	yu[ad
+雩	yu[yk
+雪	xt[ye
+雯	wf[yw
+雱	ph[yf
+雲	yy[es
+雳	li[yl
+零	lm[ys	0%
+零	lk[ys	100%
+雷	lw[yt
+雹	bc[ys
+雹	bo[ys
+電	dm[lv
+雾	wu[yl
+需	no[ye	0%
+需	ru[ye	0%
+需	rr[ye	0%
+需	xu[ye	100%
+霁	ji[yl
+霄	xn[yo
+霅	va[yk
+霆	tk[yz
+震	vf[yn
+霈	pw[yl
+霉	mw[ym
+霍	ho[yf
+霎	ua[yn
+霏	fw[yf
+霓	ni[ye
+霖	lb[ym
+霜	ul[yo
+霞	xx[yy
+霧	wu[yl
+霨	ww[yc
+霪	yb[yr
+霭	ai[yv
+霰	sj[yw
+霰	xm[yw
+露	lz[yk	34.39%
+露	lu[yk	65.61%
+霸	ba[yo
+霹	pi[yu
+霽	ji[yl	100%
+霽	qi[yl	0%
+霽	vd[yl	0%
+霾	li[yl	0%
+霾	md[yl	100%
+靂	li[yl
+靄	ai[yv
+靆	dd[ez
+靈	lk[eh
+靉	ai[ey
+青	jk[fo	0%
+青	qk[fo	100%
+靓	jk[fe	0.85%
+靓	ll[fe	99.15%
+靖	jk[lo
+静	jk[fl
+靚	jk[fe	0.85%
+靚	ll[fe	99.15%
+靚	qm[fe	0%
+靛	dm[fr
+靛	dk[fr
+靜	jk[fl
+非	fw[la
+靠	kc[nf
+靡	mi[gf
+面	mm[aa
+靥	ye[im
+靦	mm[om
+靦	tm[om
+靨	yj[im
+靨	ye[im
+革	ge[nl	98.54%
+革	ji[nl	1.46%
+靬	gj[gg
+靬	jm[gg
+靰	wu[gw
+靳	jb[gj
+靴	xt[gb
+靶	ba[gb
+靸	sa[gj
+靸	ta[gj
+靺	mo[gm
+靼	da[gd
+靼	dj[gd
+靽	bj[gb
+靿	yc[gl
+靿	yz[gl
+鞀	tc[ey
+鞁	bw[gy
+鞁	to[gy
+鞅	yh[gy
+鞋	hd[gt	0%
+鞋	xp[gt	100%
+鞍	an[gn
+鞏	gs[gf
+鞑	da[gz
+鞒	qn[gl
+鞔	mj[gv
+鞔	wj[gv
+鞘	qn[go
+鞝	vh[sk
+鞠	ju[gm
+鞡	la[gl
+鞣	rz[gm
+鞦	qq[hh
+鞧	qq[gy
+鞧	yz[gy
+鞨	he[gv
+鞫	ju[gk
+鞬	jm[gz
+鞭	bm[gg
+鞮	di[gr
+鞯	jm[gz
+鞲	gz[gr
+鞲	jl[gr
+鞳	ta[gk
+鞴	fu[gy
+鞽	jt[gl
+韁	gh[sa
+韁	jl[sa
+韂	ij[gk
+韃	da[gz
+韆	qm[pu
+韉	jm[gz
+韋	ww[al
+韌	rf[wr
+韍	fu[wd
+韓	hj[uw
+韙	ww[ow
+韜	dc[wj
+韜	tc[wj
+韝	gz[gr
+韞	yy[wm
+韦	ww[al
+韧	rf[wr
+韨	fu[wd
+韩	hj[uw
+韪	ww[ow
+韫	yy[wm
+韬	tc[wj
+韭	jq[fa
+音	yb[lo
+韵	yy[ld
+韶	uc[lk
+韻	yy[ld
+響	xl[kk
+頁	xp[ar	0%
+頁	ye[ar	100%
+頂	dk[dr
+頃	qk[br
+項	xl[gr
+順	uy[ir
+頇	gj[gr
+頇	hj[gr
+須	xu[pr
+頊	xu[wr
+頌	rs[br	0%
+頌	ss[br	100%
+頍	kv[ur
+頎	qi[jr
+頏	hh[wr
+預	yu[sr
+頑	wj[er
+頒	bj[br
+頓	du[tr	1.36%
+頓	dy[tr	98.64%
+頗	po[vr
+領	lk[rr
+頜	ge[rr
+頜	hj[rr
+頜	he[rr	91.01%
+頡	jx[ur	0%
+頡	jp[ur	95.52%
+頡	xp[ur	4.48%
+頤	yi[kr
+頦	hd[wr
+頦	ke[wr
+頫	fu[er
+頫	tn[er
+頫	vc[er
+頭	tz[dd
+頰	jx[jr
+頲	tk[rr
+頵	jy[yr
+頷	hj[rr
+頸	gg[vr	2.66%
+頸	jk[vr	97.34%
+頹	tv[hr
+頻	pb[vr
+頽	tv[hr
+顆	ke[gr
+題	ti[or
+額	ee[br
+顎	ee[kr
+顏	yj[ir
+顒	ys[yr
+顒	yu[yr
+顓	vr[er
+顔	yj[ir
+顗	kd[er
+顗	yi[er
+願	yr[ix
+顙	sh[yr
+顛	dm[ur
+類	lw[md
+顢	mj[cr
+顢	pj[cr
+顥	hc[or
+顧	gu[ir
+顫	ij[wr	90.89%
+顫	vj[wr	9.11%
+顬	ru[yr
+顯	xm[oy
+顰	pb[vu
+顱	lu[lr
+顳	np[er
+顴	qr[cr
+页	ye[ar
+顶	dk[dr
+顷	qk[br
+顸	hj[gr
+项	xl[gr
+顺	uy[ir
+须	xu[pr
+顼	xu[wr
+顽	wj[er
+顾	gu[ir
+顿	dy[tr	98.64%
+颀	qi[jr
+颁	bj[br
+颂	ss[br
+颃	hh[wr
+预	yu[sr
+颅	lu[lr
+领	lk[rr
+颇	po[vr
+颈	jk[vr	97.34%
+颉	xp[ur	4.48%
+颊	jx[jr
+颋	tk[rr
+颌	he[rr	91.01%
+颍	yk[br
+颎	js[br
+颏	ke[wr
+颐	yi[kr
+频	pb[vr
+颓	tv[hr
+颔	hj[rr
+颖	yk[br
+颗	ke[gr
+题	ti[or
+颙	ys[yr
+颚	ee[kr
+颛	vr[er
+颜	yj[ir
+额	ee[br
+颞	np[er
+颟	mj[cr
+颠	dm[ur
+颡	sh[yr
+颢	hc[or
+颤	ij[wr	90.89%
+颥	ru[yr
+颦	pb[vu
+颧	qr[cr
+風	fg[jx
+颭	vj[jk
+颮	bn[js
+颮	pc[js
+颯	sa[lx
+颱	td[sk
+颳	gx[qd
+颶	ju[jb
+颸	si[jx
+颺	yh[jp
+颼	sz[jy
+飀	li[jt
+飀	lq[jt
+飀	ou[jt
+飄	pn[xx
+飆	bn[qx
+风	fg[jx
+飏	yh[jp
+飐	vj[jk
+飑	bn[js
+飒	sa[lx
+飓	ju[jb
+飔	si[jx
+飕	sz[jy
+飗	lq[jt
+飘	pn[xx
+飙	bn[qx
+飛	fw[vd
+飞	fw[vd
+食	ui[rl	96.65%
+食	si[rl	3.35%
+食	yi[rl	0%
+飢	ji[uj
+飧	sy[xl
+飨	xl[xl
+飩	dy[ut
+飩	ty[ut
+飪	rf[ur
+飫	yu[uy
+飭	ii[ul
+飯	fj[uy
+飱	sy[xl
+飲	yb[ur
+飴	yi[uk
+飼	si[uk
+飽	bc[us
+飾	ui[uj
+飿	do[ui
+餃	jn[ux
+餄	he[uk
+餄	jx[uk
+餅	bk[uk
+餉	xl[uk
+養	yh[yl
+餌	er[ue
+餍	yj[il
+餎	le[uk
+餏	xi[uy
+餐	cj[ll
+餑	bo[uz
+餒	nw[un
+餓	ee[uw
+餗	su[uu
+餘	yu[rh
+餚	xn[xo
+餚	yc[xo
+餛	hy[ub
+餜	bk[ug
+餜	go[ug
+餞	jm[uj
+餡	xm[uj
+館	gr[uk
+餬	hu[mo
+餮	tp[dl
+餮	vf[dl
+餱	hz[mu
+餳	th[up
+餳	xk[up
+餵	ww[kn
+餶	gu[uo
+餷	ia[ud
+餼	qi[uq
+餼	xi[uq
+餾	lq[ut
+餿	sz[uy
+饁	ye[um
+饃	mo[ud
+饅	mj[uy
+饈	xq[ui
+饉	jb[ua
+饊	sj[uw
+饋	kv[ur
+饌	vr[ub
+饑	ji[uj
+饒	rc[uw
+饔	ys[wl
+饕	hc[kl
+饕	tc[kl
+饗	xl[xl
+饘	tj[ud
+饘	vj[ud
+饜	yj[il
+饞	ij[ud
+饢	nh[uy
+饥	ji[uj
+饧	xk[up
+饨	ty[ut
+饩	xi[uq
+饪	rf[ur
+饫	yu[uy
+饬	ii[ul
+饭	fj[uy
+饮	yb[ur
+饯	jm[uj
+饰	ui[uj
+饱	bc[us
+饲	si[uk
+饳	do[ui
+饴	yi[uk
+饵	er[ue
+饶	rc[uw
+饷	xl[uk
+饸	he[uk
+饹	le[uk
+饺	jn[ux
+饻	xi[uy
+饼	bk[uk
+饽	bo[uz
+饿	ee[uw
+馁	nw[un
+馃	go[ug
+馄	hy[ub
+馅	xm[uj
+馆	gr[uk
+馇	ia[ud
+馈	kv[ur
+馉	gu[uo
+馊	sz[uy
+馋	ij[ud
+馌	ye[um
+馍	mo[ud
+馏	lq[ut
+馐	xq[ui
+馑	jb[ua
+馒	mj[uy
+馓	sj[uw
+馔	vr[ub
+馕	nh[uy
+首	uz[bz
+馗	kv[jz
+馘	go[ba
+馘	ho[ba
+馘	xu[ba
+香	xl[ho
+馝	bi[hb
+馞	bo[hz
+馥	fu[hw
+馧	wf[hm
+馨	xb[uo
+馨	xk[uo
+馬	ma[va
+馭	yu[my
+馮	fg[dm	100%
+馮	pk[dm	0%
+馱	do[md	3.27%
+馱	to[md	96.73%
+馳	ii[my
+馴	uy[mi	0%
+馴	xy[mi	100%
+馹	ri[mo
+馹	yi[mo
+馼	wf[mw
+駁	bo[mx
+駃	jt[mn
+駃	kk[mn
+駐	vu[mv
+駑	nu[nm
+駒	ju[mk
+駔	ch[mq
+駔	zh[mq
+駔	zu[mq
+駕	jx[lm
+駘	dd[mk
+駘	td[mk
+駙	fu[mc
+駛	ui[mu
+駝	to[mb
+駟	si[me
+駡	ma[km
+駢	pm[mk
+駭	hd[mr	100%
+駭	xp[mr	0%
+駰	yb[md
+駱	lo[mk
+駸	qb[my
+駿	jy[mw
+騁	ig[mv
+騁	pb[mv
+騂	xb[mu
+騂	xk[mu
+騄	lu[mu
+騅	vv[mf
+騊	tc[mf
+騍	ke[mg
+騎	ji[mk	0.82%
+騎	qi[mk	99.18%
+騏	qi[mb
+騖	wu[sm
+騙	pm[mc
+騠	ti[mr
+騤	kv[mt
+騫	jm[bm
+騫	qm[bm
+騭	vi[em
+騮	lq[mt
+騰	tg[om
+騱	xi[md
+騵	yr[mx
+騶	zz[me
+騷	sc[mi
+騸	uj[mx
+騾	lo[mx
+驀	mo[cm
+驀	mu[cm
+驁	ao[fm
+驂	cj[mp
+驃	pn[mx
+驄	cs[mx
+驅	qu[mx
+驊	hx[mu
+驌	su[ms
+驍	nc[mw
+驍	rc[mw
+驍	xn[mw
+驍	yc[mw
+驏	ij[mz
+驏	vj[mz
+驕	jn[ml
+驗	yj[ma
+驚	jk[xx
+驛	yi[ml
+驟	vz[mn
+驟	zz[mn
+驢	lv[mh
+驤	xl[my
+驥	ji[mb
+驦	ul[mo
+驪	li[ml
+驫	bn[mm
+马	ma[va
+驭	yu[my
+驮	do[md	3.27%
+驮	to[md	96.73%
+驯	xy[mi
+驰	ii[my
+驱	qu[mx
+驲	ri[mo
+驳	bo[mx
+驴	lv[mh
+驵	zh[mq
+驶	ui[mu
+驷	si[me
+驸	fu[mc
+驹	ju[mk
+驺	zz[me
+驻	vu[mv
+驼	to[mb
+驽	nu[nm
+驾	jx[lm
+驿	yi[ml
+骀	td[mk
+骁	xn[mw
+骂	ma[km
+骃	yb[md
+骄	jn[ml
+骅	hx[mu
+骆	lo[mk
+骇	hd[mr
+骈	pm[mk
+骉	bn[mm
+骊	li[ml
+骋	ig[mv
+验	yj[ma
+骍	xk[mu
+骎	qb[my
+骏	jy[mw
+骐	qi[mb
+骑	qi[mk	99.18%
+骒	ke[mg
+骓	vv[mf
+骕	su[ms
+骖	cj[mp
+骗	pm[mc
+骘	vi[em
+骙	kv[mt
+骚	sc[mi
+骛	wu[sm
+骜	ao[fm
+骝	lq[mt
+骞	qm[bm
+骟	uj[mx
+骠	pn[mx	15.56%
+骡	lo[mx
+骢	cs[mx
+骣	ij[mz
+骤	vz[mn
+骥	ji[mb
+骦	ul[mo
+骧	xl[my
+骨	gu[lo
+骯	ah[oj
+骯	kh[oj
+骰	gu[gy
+骰	ud[gy
+骰	tz[gy
+骱	jp[gl
+骱	xp[gl
+骶	di[gd
+骷	ku[gk
+骸	hd[gr
+骺	hz[gk
+骼	ge[gk
+髀	bi[gu
+髀	pi[gu
+髁	ke[gg
+髂	ka[gk
+髂	ke[gk
+髂	qx[gk
+髃	ou[gy
+髅	lz[gn
+髋	kr[ge
+髌	bb[gb
+髎	ln[gp
+髏	lz[gn
+髑	du[gi
+髒	zh[ot
+髓	sv[gz
+體	ti[rb
+髕	bb[gb
+髖	kr[ge
+高	gc[wk
+髡	ky[aw
+髢	ti[ay
+髦	mc[am
+髫	tn[ak
+髫	vc[ak
+髭	zi[ab
+髮	fa[vd
+髯	rj[ar
+髹	xq[am
+髻	ji[ak
+髽	vx[at
+鬃	zs[ax
+鬆	ss[ms
+鬈	jr[av
+鬈	qr[av
+鬍	hu[uo
+鬏	jq[ah
+鬒	vf[ab
+鬓	bb[ab
+鬘	mj[ay
+鬚	xu[pr
+鬟	hr[ay
+鬢	bb[ab
+鬣	lp[av
+鬥	dz[du
+鬧	nc[mj
+鬨	hs[kb
+鬩	dz[me
+鬩	er[me
+鬩	ni[me
+鬩	xi[me
+鬮	jq[mv
+鬯	ih[xb
+鬱	yu[ue
+鬲	ge[al	50%
+鬲	li[al	50%
+鬶	gv[fl
+鬷	zs[aw
+鬹	gv[fl
+鬹	xi[fl
+鬻	yu[gl
+鬻	vu[gl
+鬼	gv[ps
+魁	kv[gu
+魂	hy[eg
+魃	ba[gd
+魄	po[bg	100%
+魄	to[bg	0%
+魅	mw[gw
+魆	xu[gv
+魆	yt[gv
+魇	yj[ig
+魈	xn[go
+魉	ll[gl
+魋	tv[gf
+魍	wh[gw
+魎	ll[gl
+魏	ww[hg
+魑	ii[gd
+魑	li[gd
+魔	mo[gg
+魘	yj[ig
+魚	yu[da
+魛	dc[ad
+魢	ji[aj
+魨	ty[at
+魯	lu[ao
+魴	fh[af
+魷	yz[ay
+鮁	ba[ad
+鮁	bo[ad
+鮃	pk[ap
+鮆	ji[va
+鮊	bo[ab
+鮋	iz[ay
+鮋	yz[ay
+鮍	pi[ay
+鮎	nm[ak
+鮐	td[ak
+鮑	bc[as
+鮒	fu[ac
+鮓	va[av
+鮚	ji[ak
+鮚	jp[ak
+鮜	hz[ak
+鮝	xl[ja
+鮞	er[ae
+鮟	an[an
+鮣	yb[ae
+鮦	ts[ak
+鮪	ww[ao
+鮫	jn[ax
+鮭	gv[at
+鮭	xp[at
+鮮	xm[ay
+鮶	jy[ak
+鮸	mm[av
+鮸	wj[av
+鮺	za[ya
+鯀	gy[ax
+鯁	gg[ag
+鯇	hr[ae
+鯉	li[al
+鯊	ua[da
+鯒	ys[ay
+鯔	zi[at
+鯕	qi[ab
+鯖	qk[ao
+鯖	vg[ao
+鯗	xl[ja
+鯛	iz[ak
+鯛	dn[ak
+鯝	gu[ak
+鯡	fw[af
+鯢	ni[ae
+鯤	ky[ab
+鯧	ih[ao
+鯨	jk[ax	100%
+鯨	qk[ax	0%
+鯪	lk[aw
+鯫	zz[ay
+鯴	ui[ai
+鯷	ti[ar
+鯽	ji[ae
+鯿	bm[ac
+鰁	qr[au
+鰂	ze[ad
+鰂	zw[ad
+鰃	ww[an
+鰆	iy[ao
+鰈	dp[am
+鰉	hl[aw
+鰍	qq[ah
+鰏	bi[at
+鰐	ee[ak
+鰓	sd[ax
+鰓	xi[ax
+鰛	wf[am
+鰜	jm[an
+鰟	fh[af
+鰟	ph[af
+鰣	ui[ac
+鰤	ui[aj
+鰥	gr[ad
+鰧	tg[oa
+鰨	ta[ax
+鰩	yc[af
+鰭	qi[ao
+鰮	wf[am
+鰱	lm[az
+鰲	ao[fa
+鰳	le[al
+鰵	mm[pa
+鰷	tn[am
+鰹	jm[at
+鰺	sc[ap
+鰻	mj[ay
+鰼	xi[ab
+鰾	bn[ax
+鰾	pn[ax
+鱂	ih[ac
+鱅	rs[al
+鱅	ys[al
+鱇	kh[an
+鱈	xt[ae
+鱉	bp[da
+鱒	zy[ac
+鱔	uj[ak
+鱖	gv[ar
+鱖	jt[ar
+鱗	lb[al
+鱘	xy[ac
+鱝	ff[ar
+鱟	hz[xa
+鱠	hv[as
+鱠	kk[as
+鱣	uj[ad
+鱣	vj[ad
+鱤	gj[ax
+鱧	li[aa
+鱨	ih[as
+鱭	ji[al
+鱯	hu[ay
+鱲	la[av
+鱲	lp[av
+鱷	ee[ak
+鱸	lu[au
+鱺	li[al
+鱼	yu[da
+鱽	dc[ad
+鱾	ji[aj
+鱿	yz[ay
+鲀	ty[at
+鲁	lu[ao
+鲂	fh[af
+鲃	ba[ab
+鲅	ba[ad
+鲅	bo[ad
+鲆	pk[ap
+鲇	nm[ak
+鲈	lu[au
+鲉	yz[ay
+鲊	va[av
+鲋	fu[ac
+鲌	ba[ab
+鲍	bc[as
+鲎	hz[xa
+鲏	pi[ay
+鲐	td[ak
+鲑	gv[at
+鲒	jp[ak
+鲔	ww[ao
+鲕	er[ae
+鲖	ts[ak
+鲗	zw[ad
+鲗	ze[ad
+鲘	hz[ak
+鲙	kk[as
+鲚	ji[al
+鲛	jn[ax
+鲜	xm[ay
+鲝	va[ya
+鲞	xl[ja
+鲟	xy[ac
+鲠	gg[ag
+鲡	li[al
+鲢	lm[az
+鲣	jm[at
+鲤	li[al
+鲥	ui[ac
+鲦	tn[am
+鲧	gy[ax
+鲨	ua[da
+鲩	hr[ae
+鲪	jy[ak
+鲫	ji[ae
+鲬	ys[ay
+鲭	qk[ao
+鲮	lk[aw
+鲯	qi[ab
+鲰	zz[ay
+鲱	fw[af
+鲲	ky[ab
+鲳	ih[ao
+鲴	gu[ak
+鲵	ni[ae
+鲷	dn[ak
+鲸	jk[ax
+鲹	uf[ap
+鲺	ui[ai
+鲻	zi[at
+鲼	ff[ar
+鲽	dp[am
+鲾	bi[at
+鲿	ih[as
+鳀	ti[ar
+鳁	wf[am
+鳂	ww[an
+鳃	sd[ax
+鳄	ee[ak
+鳅	qq[ah
+鳇	hl[aw
+鳈	qr[au
+鳉	jl[ac
+鳊	bm[ac
+鳌	ao[fa
+鳍	qi[ao
+鳎	ta[ax
+鳏	gr[ad
+鳐	yc[af
+鳑	ph[af
+鳒	jm[an
+鳓	le[al
+鳔	bn[ax
+鳕	xt[ae
+鳖	bp[da
+鳗	mj[ay
+鳘	mb[pa
+鳙	ys[al
+鳚	ww[ac
+鳛	xi[ab
+鳜	gv[ar
+鳝	uj[ak
+鳞	lb[al
+鳟	zy[ac
+鳠	hu[ay
+鳡	gj[ax
+鳢	li[aa
+鳣	vj[ad
+鳤	gr[ak
+鳥	dn[wd	0.14%
+鳥	nn[wd	99.86%
+鳧	fu[pj
+鳧	ji[pj
+鳩	jq[jn
+鳬	fu[pj
+鳬	ji[pj
+鳲	ui[un
+鳳	fg[jy
+鳴	mk[kn
+鳶	yr[yn
+鳾	ui[an
+鴆	vf[dn
+鴇	bc[bn
+鴉	ya[yn
+鴒	lk[rn
+鴕	to[nb
+鴛	yr[xn
+鴝	qu[bn
+鴞	xn[kn
+鴞	xq[kn
+鴟	ii[dn
+鴟	vi[dn
+鴣	gu[un
+鴦	yh[yn
+鴨	ya[jn
+鴯	er[en
+鴰	gx[qn
+鴴	hg[in
+鴷	lp[dn
+鴻	hs[dn
+鴿	ge[rn
+鵁	jn[wn
+鵂	xq[rn
+鵃	vz[vn
+鵐	wu[gn
+鵑	jr[kn
+鵒	yu[bn
+鵓	bo[un
+鵜	ti[bn
+鵝	ee[wn
+鵟	kl[qn
+鵠	gc[nn
+鵠	gu[nn	50%
+鵠	hu[nn	50%
+鵡	wu[an
+鵪	an[dn
+鵬	pg[on
+鵮	qm[dn
+鵯	bw[pn
+鵰	dn[kf
+鵲	qn[cn	0%
+鵲	qt[cn	100%
+鵾	jy[on
+鵾	ky[on
+鵾	yy[on
+鶄	jk[fn
+鶄	qk[fn
+鶇	ds[dn
+鶉	iy[wn
+鶊	gg[gn
+鶓	mn[cn
+鶖	qq[hn
+鶘	hu[un
+鶚	ee[kn
+鶡	he[on
+鶥	mw[vn
+鶩	mu[sn
+鶩	wu[sn
+鶪	ju[on
+鶪	jt[on
+鶬	ch[rn
+鶯	yk[cn
+鶲	wg[bn
+鶴	hc[dn	0%
+鶴	he[dn	100%
+鶹	lq[pn
+鶺	ji[dn
+鶻	gu[gn
+鶻	hu[gn
+鶼	jm[bn
+鶼	qm[bn
+鶿	ci[bn
+鶿	zi[bn
+鷀	ci[bn
+鷀	zi[bn
+鷁	yi[bn
+鷂	yc[pn
+鷄	ji[yn
+鷈	ti[pn
+鷉	ti[pn
+鷊	ni[an
+鷊	yi[an
+鷓	ve[gn
+鷗	ou[kn
+鷙	vi[fn
+鷚	lq[xn
+鷥	si[sn
+鷦	jn[rn
+鷫	su[sn
+鷯	ln[dn
+鷲	jq[wn
+鷳	xm[mn
+鷴	xm[mn
+鷸	yu[sn
+鷹	yk[gn
+鷺	lu[zn
+鷿	pi[un
+鸇	vj[wn
+鸊	pi[un
+鸌	ho[ny
+鸏	mh[cn
+鸏	mg[cn
+鸕	lu[ln
+鸘	ul[yn
+鸚	yk[kn
+鸛	gr[cn
+鸝	li[ln
+鸞	lr[wn
+鸟	nn[wd	99.86%
+鸠	jq[jn
+鸡	ji[yn
+鸢	yr[yn
+鸣	mk[kn
+鸤	ui[un
+鸥	ou[kn
+鸦	ya[yn
+鸧	ch[rn
+鸨	bc[bn
+鸩	vf[dn
+鸪	gu[un
+鸫	ds[dn
+鸬	lu[ln
+鸭	ya[jn
+鸮	xn[kn
+鸯	yh[yn
+鸰	lk[rn
+鸱	ii[dn
+鸲	qu[bn
+鸳	yr[xn
+鸵	to[nb
+鸶	si[sn
+鸷	vi[fn
+鸸	er[en
+鸹	gx[qn
+鸺	xq[rn
+鸻	hg[in
+鸼	vz[vn
+鸽	ge[rn
+鸾	lr[wn
+鸿	hs[dn
+鹀	wu[gn
+鹁	bo[un
+鹂	li[ln
+鹃	jr[kn
+鹄	gu[nn	50%
+鹄	hu[nn	50%
+鹅	ee[wn
+鹆	yu[bn
+鹇	xm[mn
+鹈	ti[bn
+鹉	wu[an
+鹊	qt[cn
+鹋	mn[cn
+鹌	an[dn
+鹍	ky[on
+鹎	bw[pn
+鹏	pg[on
+鹐	qm[dn
+鹑	iy[wn
+鹒	gg[gn
+鹔	su[sn
+鹕	hu[un
+鹖	he[on
+鹗	ee[kn
+鹘	hu[gn	50%
+鹙	qq[hn
+鹚	ci[bn
+鹛	mw[vn
+鹜	wu[sn
+鹝	yi[an
+鹞	yc[pn
+鹟	wg[bn
+鹠	lq[pn
+鹡	ji[dn
+鹢	yi[bn
+鹣	jm[bn
+鹤	he[dn
+鹦	yk[kn
+鹧	ve[gn
+鹨	lq[xn
+鹩	ln[dn
+鹪	jn[rn
+鹫	jq[wn
+鹬	yu[sn
+鹭	lu[zn
+鹮	hr[sn
+鹯	vj[wn
+鹰	yk[gn
+鹱	hu[ny
+鹲	mg[cn
+鹳	gr[cn
+鹴	ul[yn
+鹵	lu[lx
+鹹	xm[xk
+鹺	co[lg
+鹼	jm[uk
+鹽	yj[tm
+鹾	co[lg
+鹿	lu[gb
+麀	yz[gb
+麂	ji[gj
+麇	jy[gh
+麇	qy[gh
+麈	vu[gv
+麋	mi[gm
+麑	ni[ge
+麒	qi[gb
+麓	lu[mb
+麖	jk[gx
+麗	li[ad
+麝	ue[gc
+麟	lb[gl
+麥	md[fw	100%
+麥	mo[fw	0%
+麦	md[fw	100%
+麦	mo[fw	0%
+麩	fu[ff
+麪	mm[aa
+麫	mm[aa
+麯	ju[la
+麯	qu[la
+麴	ju[la
+麴	qu[la
+麵	mm[aa
+麸	fu[ff
+麹	qu[fm
+麻	ma[gm
+麼	ma[ps	0.04%
+麼	me[ps	99.93%
+麼	mo[ps	1%
+麽	ma[ps	0%
+麽	me[ps	93%
+麽	mo[ps	7%
+麾	hc[gm
+麾	hv[gm
+麾	mc[gm
+黃	hl[cb
+黄	hl[cb
+黇	tm[ck
+黉	hs[xb
+黌	hs[xb
+黍	uu[hu
+黎	li[hu
+黏	nm[hk
+黑	he[lh	0%
+黑	hw[lh	100%
+黔	qm[hv	100%
+黔	qb[hv	0%
+默	mo[hq
+黛	dd[rh
+黜	iu[hi
+黜	vo[hi
+黝	yz[hl
+點	dm[lh
+黟	yi[hx
+黠	xx[hk
+黡	yj[ih
+黢	qu[hw
+黥	jk[hx
+黥	qk[hx
+黧	li[hh
+黨	dh[xe
+黩	du[hd
+黪	cj[hp
+黯	an[ho
+黲	cj[hp
+黴	hv[ym	0%
+黴	mw[ym	100%
+黶	yj[ih
+黷	du[hd
+黹	vi[yd
+黻	fu[yd
+黼	fu[yf
+黽	mb[kd
+黾	mb[kd
+黿	yr[ed
+鼉	to[kd
+鼋	yr[ed
+鼍	to[kd
+鼎	dk[ov
+鼐	nd[nv
+鼒	zi[cv
+鼓	gu[uy
+鼕	ds[wd
+鼗	tc[ey
+鼙	pi[uu
+鼠	uu[jv
+鼢	ff[jd
+鼩	ju[jk
+鼩	qu[jk
+鼫	ui[ju
+鼬	yz[jy
+鼯	wu[jk
+鼱	jk[jo
+鼱	qk[jo
+鼴	yj[jn
+鼷	xi[jd
+鼹	yj[jn
+鼻	bi[zl
+鼽	bi[zj
+鼽	iz[zj
+鼽	qq[zj
+鼾	hj[zg
+齁	gz[zk
+齁	hz[zk
+齉	nh[zy
+齊	ji[wl	0%
+齊	qi[wl	100%
+齊	vd[wl	0%
+齊	zi[wl	0%
+齋	vd[we
+齎	ji[ur
+齏	ji[wl
+齏	jq[wl
+齐	ji[wl	0%
+齐	qi[wl	100%
+齐	vd[wl	0%
+齐	zi[wl	0%
+齑	ji[wl
+齒	ii[vk
+齔	if[vb
+齕	he[vq
+齕	qi[vq
+齗	kf[vj
+齗	yb[vj
+齙	bc[vs
+齙	pc[vs
+齜	zi[vb
+齟	ju[vq
+齟	zu[vq
+齠	tn[vk
+齡	lk[vs
+齣	iu[vk
+齦	kf[vg	11.11%
+齦	yb[vg	88.89%
+齧	np[kk
+齪	io[vr
+齬	wu[vk
+齬	yu[vk
+齯	ni[ve
+齲	qu[vy
+齲	yu[vy
+齶	ee[ok
+齷	wo[vt
+齿	ii[vk
+龀	if[vb
+龁	he[vq
+龂	yb[vj
+龃	ju[vq
+龄	lk[vs
+龅	bc[vs
+龆	tn[vk
+龇	zi[vb
+龈	kf[vg	11.11%
+龈	yb[vg	88.89%
+龉	yu[vk
+龊	io[vr
+龋	qu[vy
+龌	wo[vt
+龍	ls[ud
+龐	ph[gl
+龑	yj[lt
+龔	gs[lb
+龕	kj[rl
+龙	ls[ud
+龚	gs[lb
+龛	kj[rl
+龜	gv[dv	99.25%
+龜	jy[dv	0.75%
+龜	qq[dv	0%
+龟	gv[dv	99.25%
+龠	yt[rc
+龢	he[rh
+龢	su[rh
+𠙶	ou[lk
+𠳐	bh[ke
+𡎚	pm[tc
+𡐓	kh[tn
+𡻕	sv[ex
+𣈶	gg[og
+𣗋	dh[me
+𣲗	ww[dw
+𣲘	wu[dw
+𣸣	ff[dr
+𤧛	di[wj
+𤩽	hr[wq
+𤫉	xp[wy
+𥔲	ee[uk
+𥕢	cc[uo
+𥖨	zc[um
+𥻗	ia[md
+𦈡	xu[se
+𦒍	ts[lx
+𦝼	lv[on
+𦭜	vi[cb
+𧿹	mu[zm
+𨐈	gl[iw
+𨙸	qi[ue
+𨙸	vi[ue
+𨚕	bm[se
+𨟠	jt[oe
+𨟠	qr[oe
+𨟠	qt[oe
+𨭆	hw[jh
+𨭉	bj[wj
+𨱇	qq[jq
+𨱏	da[jk
+𨱑	hl[jb
+𨱔	zy[jc
+𨺙	ni[ee
+𩽾	an[an
+𩾃	mm[av
+𩾌	kh[an
+𪨊	ss[ur
+𪾢	xm[oe
+𫄨	ii[sj
+𫄸	xy[sh
+𫌀	ji[pr
+𫍲	xn[yy
+𫐄	yt[iw
+𫐐	ni[ie
+𫐓	bu[im
+𫓧	fu[jf
+𫔎	jt[jk
+𫗧	su[uu
+𫗴	vj[ud
+𫘝	jt[mn
+𫘨	ti[mr
+𫚕	ui[aj
+揼	bg[fu
+墶	da[tz
+擝	mg[fm
+嚡	hd[kt
+滧	xn[dw

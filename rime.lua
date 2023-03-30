@@ -85,6 +85,12 @@ select_character = require("select_character")
 -- 详见 `lua/single_char.lua`
 single_char_filter = require("single_char")
 
+local long_word_firest = require("long_word")
+long_word_filter = long_word_firest.longwordfilter
+
+local auto_caps_switch = require("autocap_filter")
+autocaps_filter = auto_caps_switch.autocapfilter
+
 -- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 -- 详见 `lua/reverse.lua`
 reverse_lookup_filter = require("reverse")
@@ -94,6 +100,10 @@ expand_translator = require("expand_translator")
 
 
 -- III. processors:
+
+local ecdict = require("ecdict")
+ecdict_processor = ecdict.processor
+ecdict_filter = ecdict.filter
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 `lua/switch.lua`
