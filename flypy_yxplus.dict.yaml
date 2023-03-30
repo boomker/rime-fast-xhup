@@ -1,0 +1,22 @@
+# Rime dictionary
+# encoding: utf-8
+
+---
+name: flypy_yxplus
+version: "2023-03-04"
+sort: by_weight
+use_preset_vocabulary: true
+min_phrase_weight: 100
+
+import_tables:
+  # - cn_dicts/8105         # 字表
+  - cn_dicts/flypy_flypy    # 字表EXT
+  - cn_dicts/flypy_base     # 基础词库
+  - cn_dicts/flypy_sougou   # 搜狗流行词
+  - cn_dicts/flypy_ext      # 扩展词库
+  - cn_dicts/flypy_tencent  # 腾讯词向量（大词库，部署时间较长）
+  # - cn_dicts/others   # 一些杂项
+
+  # 建议把扩展词库放到下面，有重复词条时，最上面的权重生效
+  # - cn_dicts/my_dict
+...
