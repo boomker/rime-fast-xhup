@@ -36,7 +36,6 @@
 等待	dfd	2
 等等	dfd	1
 手机号	sjh	1
-18939740924	sjh	2
 
 
 ## 常用个人信息
@@ -45,8 +44,6 @@
 ##xxx（学号/工号）	jf	60
 ##xx学院/部门	jf	48
 ##xx學校/單位	jf	44
-18939740924（手机）	jf	56
-gmboomker@gmail.com（邮箱）	jf	40
 
 ## 常用短语
 Python	py	2
