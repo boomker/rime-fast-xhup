@@ -2,18 +2,17 @@
 # encoding: utf-8
 
 schema:
-  schema_id: flypy_zrmfast
-  name: 小鹤快手 # 鹤拼快形 
+  schema_id:  flypy_xhfast
+  name: 鹤拼快形
   version: "0.1"
   author:
     - Functoreality
   description: |
-    小鹤双拼，自然快手辅助码
+    小鹤双拼+辅助码
   dependencies:
     - stroke
     - emoji
-    - easy_en
-    - ecdict          # 英文单词&词组 - 简明英汉词典（增强版）
+    - melt_eng          # 英文单词&词组 - 简明英汉词典（增强版）
 
 switches:
   - name: ascii_mode
@@ -34,7 +33,6 @@ switches:
 
 engine:
   processors:
-    # - lua_processor@ecdict_processor               # 非ASCII模式下，使用右shift键切换中英/英文模式
     - ascii_composer
     - recognizer
     - key_binder
@@ -48,10 +46,7 @@ engine:
     - matcher
     - abc_segmentor
     - punct_segmentor
-    # - affix_segmentor@quanpin
-    # - affix_segmentor@xhup
     - affix_segmentor@emojis
-    # - affix_segmentor@verbatim ## not as the last of this list
     - affix_segmentor@soft_capslock
     - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
@@ -63,8 +58,6 @@ engine:
     - table_translator@chinese_phrases
     - reverse_lookup_translator
     - script_translator
-    # - script_translator@quanpin
-    # - script_translator@xhup
     - table_translator@emojis
     - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
@@ -72,9 +65,8 @@ engine:
     - lua_translator@date_translator
     - lua_translator@time_translator
     - table_translator@easy_en_simp ## 添加注释后：停用单词输入
-    - table_translator@ecdict
+    - table_translator@melt_eng
   filters:
-    - lua_filter@ecdict_filter      # 控制中英混合输入或者纯英文输入，以及截断过长的comment
     - lua_filter@autocaps_filter
     - lua_filter@long_word_filter
     - simplifier
@@ -87,31 +79,39 @@ speller:
   ## speller 未允许 aj 表示 an
   algebra:
     - erase/^xx$/
-    - derive/^(..).+$/$1/
-    - derive/^(..[[].).+$/$1/
-    - derive/^([jqxy])u/$1v/
     #- xform/[[]// ## 取消注释后：直接引导辅助码
-    - derive/^l/n/                  # n -> l
-    - derive/^n/l/                  # l -> n
-    - derive/^([qtypdjlxbnm])k/$1b/ # ing 可以通过 in 打出
-    - derive/^(.)b/$1k/             # in 可以通过 ing 打出
-    - derive/^(v)(.)/z$2/           # zh => z
-    - derive/^(i)(.)/c$2/           # ch => c
-    - derive/^(u)(.)/s$2/           # sh => s
-    - derive/^(z)(.)/v$2/           # z => zh
-    - derive/^(c)(.)/i$2/           # c => ch
-    - derive/^(s)(.)/u$2/           # s => sh
-    - derive/^([zcsviu])f/$1g/      # [zcs][h]en 可以通过 [zcs][h]eng 打出
-    - derive/^([zcsviu])g/$1f/      # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    # - derive/^(..).+$/$1/
+    # - derive/^(..[[].).+$/$1/
+    - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/    # Flypy: ABCD
+    - derive/^(\w+)\[(\w)(\w)$/$1\[$2/      # Flypy: ABC
+    - derive/^(\w+)\[(\w)(\w)$/$1/
+    - derive/^([jqxy])v/$1u/
+
+    - derive/([nl])v/$1ü/
+    - derive/^l/n/                     # l -> n
+    - derive/^n/l/                     # n -> l
+
+    - derive/^(v)(.)/z$2/               # zh => z
+    - derive/^(i)(.)/c$2/               # ch => c
+    - derive/^(u)(.)/s$2/               # sh => s
+    - derive/^(z)(.)/v$2/               # z => zh
+    - derive/^(c)(.)/i$2/               # c => ch
+    - derive/^(s)(.)/u$2/               # s => sh
+    - derive/^([zcsviu])f/$1g/          # [zcs][h]en 可以通过 [zcs][h]eng 打出
+    - derive/^([zcsviu])g/$1f/          # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    - derive/^([qtypdjlxbnm])k/$1b/     # ing 可以通过 in 打出
+    - derive/^(.)b/$1k/                 # in 可以通过 ing 打出
 
 grammar:
   language: zh-hans-t-essay-bgw
 
 translator:
-  dictionary: flypy_yxplus
+  dictionary: flypy_xhfast
   contextual_suggestions: true  # 开启八股文
   spelling_hints: 1
-  # enable_user_dict: true
+  initial_quality: 1.2
+  enable_user_dict: true
+
   # preedit_format:
     # - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
     # - "xform/((^|[ '])\\w)g/$1eng/"
@@ -152,7 +152,7 @@ custom_phrase:
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
-  initial_quality: 1
+  initial_quality: 2
 
 chinese_phrases:
   dictionary: ""
@@ -191,18 +191,14 @@ key_binder:
     #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
     #- { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
 
-
 recognizer:
   # import_preset: default
   patterns:
     uppercase: "^[A-Z].*$"
     punct: '^/[015-9A-Za-z]+$' ## use "/er" instead of "/2"
     ## associate schemes: 
-    reverse_lookup: "^oa[a-z]*'?$" # "[[]b[a-z]*'?$"
-    # quanpin: "^oq[a-z]*'?$"
-    # xhup: "^ox[a-z]*'?$"
+    reverse_lookup: "^oq[a-z]*'?$" # "[[]b[a-z]*'?$"
     emojis: "^oe[a-z]*'?$" # "^oe.*$" 
-    # verbatim: "^ox.*$"
     soft_capslock: "^od.*$"
     dbpy_flypy_help: "^oh.*$"
     easy_en_simp: "^oz[a-z]*"
@@ -211,22 +207,6 @@ recognizer:
 menu:
   page_size: 4
 
-# quanpin:
-#   tag: quanpin
-#   dictionary: rime_ice ## 用户可自行改为扩展后的词典
-#   prism: rime_ice
-#   enable_completion: true
-#   prefix: "oq"
-#   suffix: "'"
-#   tips: "全拼"
-# xhup:
-#   tag: xhup
-#   dictionary: rime_ice ## 用户可自行改为扩展后的词典
-#   prism: double_pinyin_flypy
-#   enable_completion: true
-#   prefix: "ox"
-#   suffix: "'"
-#   tips: "双拼"
 emojis:
   tag: emojis
   dictionary: emoji
@@ -234,10 +214,6 @@ emojis:
   prefix: "oe"
   suffix: "'"
   tips: " Emoji"
-# verbatim:
-#   tag: verbatim ## english; ascii
-#   prefix: ""
-#   tips: "临时小写"
 soft_capslock:
   dictionary: ""
   user_dict: uppercase
@@ -260,9 +236,10 @@ dbpy_flypy_help:
   initial_quality: 1
 easy_en_simp:
   tag: easy_en_simp
-  dictionary: easy_en
+  dictionary: melt_eng
   enable_completion: true
   enable_sentence: false
+  enable_user_dict: false
   prefix: "oz"
   # suffix: "'"
   tips: "英文单词（可去元音）"
@@ -273,18 +250,18 @@ tex_translator:
   tag: tex_translator
   prefix: "tl"
   tips: " TeX 公式"
-ecdict:                           # 英文单词
+melt_eng:                           # 英文单词
   enable_encoder: false
   encode_commit_history: false
   enable_sentence: false
   enable_completion: true         # 是否启用英文输入联想补全
-  enable_user_dict: true
-  dictionary: ecdict
-  initial_quality: -1
+  enable_user_dict: false
+  dictionary: melt_eng
+  initial_quality: 1
 reverse_lookup:
   dictionary: chaizi_flypy # stroke
   enable_completion: true
-  prefix: "oa"
+  prefix: "oq"
   suffix: "'"
   tips: 〔部件组字〕 # 〔筆畫〕
   preedit_format:

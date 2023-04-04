@@ -2,17 +2,16 @@
 # encoding: utf-8
 
 schema:
-  schema_id: flypy_zrmfast
-  name: 小鹤快手 # 鹤拼快形 
+  schema_id:  flypy_yxm
+  name: 鹤形快手
   version: "0.1"
   author:
     - Functoreality
   description: |
-    小鹤双拼，自然快手辅助码
+    小鹤双拼+辅助码
   dependencies:
     - stroke
     - emoji
-    # - easy_en
     - melt_eng          # 英文单词&词组 - 简明英汉词典（增强版）
 
 switches:
@@ -34,6 +33,7 @@ switches:
 
 engine:
   processors:
+    - lua_processor@select_char
     - ascii_composer
     - recognizer
     - key_binder
@@ -68,9 +68,12 @@ engine:
     - table_translator@easy_en_simp ## 添加注释后：停用单词输入
     - table_translator@melt_eng
   filters:
+    - lua_filter@charset_filter
     - lua_filter@autocaps_filter
+    - lua_filter@xhxm_filter
     - lua_filter@long_word_filter
     - simplifier
+    # - simplifier@emoji                  # Emoji
     - uniquifier
 
 speller:
@@ -80,6 +83,10 @@ speller:
   ## speller 未允许 aj 表示 an
   algebra:
     - erase/^xx$/
+    - erase/^ng\[kx$/   # 响应超级简拼，取消「嗯 ng」的独占
+    - erase/^n\[\w+$/   # 响应超级简拼，取消「嗯 n」的独占
+    - erase/^m\[\w+$/   # 响应超级简拼，取消「呒 m」的独占
+    - erase/^m\[\w+$/   # 响应超级简拼，取消「呣 m」的独占
     #- xform/[[]// ## 取消注释后：直接引导辅助码
     # - derive/^(..).+$/$1/
     # - derive/^(..[[].).+$/$1/
@@ -87,8 +94,10 @@ speller:
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2/      # Flypy: ABC
     - derive/^(\w+)\[(\w)(\w)$/$1/
     - derive/^([jqxy])v/$1u/
+    - derive/^([jqxy])u/$1v/
+    - derive/^(j)n/$1c/
 
-    - derive/([nl])v/$1ü/
+    # - derive/^([nl])v/$1ü/
     - derive/^l/n/                     # l -> n
     - derive/^n/l/                     # n -> l
 
@@ -102,16 +111,22 @@ speller:
     - derive/^([zcsviu])g/$1f/          # [zcs][h]eng 可以通过 [zcs][h]en 打出
     - derive/^([qtypdjlxbnm])k/$1b/     # ing 可以通过 in 打出
     - derive/^(.)b/$1k/                 # in 可以通过 ing 打出
+    - abbrev/^([wkif]).+$/$1/   # 超级简拼
 
 grammar:
   language: zh-hans-t-essay-bgw
 
 translator:
-  dictionary: flypy_zrmfast
+  dictionary: flypy_xhfast
+  # prism: flypy_yxm  ## 使用小鹤原版辅助码
   contextual_suggestions: true  # 开启八股文
-  spelling_hints: 1
   initial_quality: 1.2
-  # enable_user_dict: true
+  spelling_hints: 2 ## 关闭单字编码提示
+  comment_format:
+    - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
+    - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/ ## 单字编码提示只显示辅助码部分
+    - xform/^\w+\s\w+$// ## 单字编码提示只显示辅助码部分
+
   # preedit_format:
     # - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
     # - "xform/((^|[ '])\\w)g/$1eng/"
@@ -176,12 +191,16 @@ punctuator:
 
 key_binder:
   import_preset: default
+  select_first_character: 'comma'
+  select_last_character: 'bracketright'
   bindings:
     #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu,  accept: semicolon, send: 2 }
-    - { when: has_menu,  accept: slash,     send: 3 }
+    # - { when: has_menu,  accept: slash,     send: 3 }
+    - { when: has_menu,  accept: apostrophe, send: 3 } ## 单引号用于第3候选
+    - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
     - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
     ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
@@ -206,6 +225,11 @@ recognizer:
 
 menu:
   page_size: 4
+
+# Emoji
+emoji:
+  opencc_config: emoji.json
+  option_name: emoji
 
 emojis:
   tag: emojis
@@ -257,7 +281,7 @@ melt_eng:                           # 英文单词
   enable_completion: true         # 是否启用英文输入联想补全
   enable_user_dict: false
   dictionary: melt_eng
-  initial_quality: 1
+  initial_quality: 1.1
 reverse_lookup:
   dictionary: chaizi_flypy # stroke
   enable_completion: true

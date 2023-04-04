@@ -1,0 +1,40 @@
+##  一些常用的设置项。找到需要进行的设置所在的行，
+##  取消注释（删除行开头的单个 # 符号）即可启用该设置项。
+##  注意不要删除前面的空格，YAML 文件的缩进比较严格，缩进不对容易报错。
+patch:
+
+  #engine/translators/@last: '' ## 禁用英文单词输入功能
+  engine/+:
+    translators/+:
+      # - table_translator@melt_eng
+    filters/+:
+      - lua_filter@charset_filter
+      - simplifier
+      - uniquifier
+
+  #punctuator/half_shape: {} ## 恢复默认引号
+  menu/page_size: 5 ## 自定义候选项个数
+  key_binder/bindings/+:
+    #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
+    - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
+    #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
+    - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
+    # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
+    - { when: composing, accept: bracketright, send_sequence: "{Left}" }
+      ## `键（grave，Tab 上面那个）为词组逐字追加辅助码。
+      ## 可将 grave 改成 Tab，Control+Tab，bracketright（] 键）。
+
+  ##  直接引导辅助码（改用自然码等其他双拼方案的用户请在 pinyin_switch.yaml 中设置）
+  ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
+  # speller/algebra/@next: derive/[[]//
+
+  translator/dictionary: flypy_yxm    ## 使用小鹤原版辅助码
+  # translator/prism: flypy_yxm  ## 使用小鹤原版辅助码
+  # translator/contextual_suggestions: true
+  # translator/max_homophones: 7
+
+  translator/spelling_hints: 2 ## 关闭单字编码提示
+  translator/comment_format:
+    - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
+    - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/ ## 单字编码提示只显示辅助码部分
+

@@ -3,7 +3,7 @@
 # 小鹤双拼加辅助码
 # 繁体字码表
 ---
-name: flypy_flypy
+name: flypy_yxm
 version: "2020.02.08"
 sort: by_weight
 use_preset_vocabulary: true
