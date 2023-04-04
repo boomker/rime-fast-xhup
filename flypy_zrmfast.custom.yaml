@@ -28,22 +28,16 @@ patch:
   ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
   #speller/algebra/@next: xform/[[]//
   # speller/algebra/@next: derive/[[]//
-  speller/+:
-    algebra/+:
-      # - abbrev/^_?([a-zA-Z]).*$/$1/
-      # - abbrev/^_(.+)$/$1/
 
-  # translator/dictionary: flypy_flypy ## 使用小鹤原版辅助码
-  translator/dictionary: flypy_yxplus  ## 使用小鹤原版辅助码
-  translator/contextual_suggestions: true
-  translator/max_homophones: 7
+  translator/dictionary: flypy_zrmfast ## 使用小鹤原版辅助码
+  # translator/dictionary: flypy_yxm  ## 使用小鹤原版辅助码
+  # translator/contextual_suggestions: true
+  # translator/max_homophones: 7
 
-  #translator/spelling_hints: 0 ## 关闭单字编码提示
+  translator/spelling_hints: 1 ## 关闭单字编码提示
   translator/comment_format:
-    #- xform/^[^[]+[[]// ## 单字编码提示只显示辅助码部分
+    - xform/^[^[]+[[](\w+)/~$1/ ## 单字编码提示只显示辅助码部分
 
-  grammar:
-    language: zh-hans-t-essay-bgw
   ##  改用自然码双拼；相关设置见 pinyin_switch.yaml，例如直接引导辅助码
   #__include: pinyin_switch:/flypy2zrm
   ##  另外需同时在 chaizi.custom.yaml 里设置“部件组字使用自然码双拼”
