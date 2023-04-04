@@ -6,8 +6,10 @@
 
 patch:
   schema_list:
+    # - schema: flypy_zrmfast
+    - schema: flypy_yxm
     - schema: flypy_xhfast
-    - schema: easy_en
+    - schema: melt_eng
     - schema: emoji               # emoji表情
     # - schema: stroke
     - schema: chaizi

@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 --[[
 date_translator: 将 `date` 翻译为当前日期
 
@@ -27,11 +28,15 @@ local function translator(input, seg)
             - text:  候选项的文本
             - comment: 候选项的注释
        --]]
-      yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), "日期"))
+      local canda = Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), "日期")
       --[[ 用 `yield` 再产生一个候选项
            最终的效果是输入法候选框中出现两个格式不同的当前日期的候选项。
       --]]
-      yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), "日期"))
+      local candb = Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), "日期")
+      canda.quality = 100
+      candb.quality = 100
+      yield(canda)
+      yield(candb)
    end
 end
 
