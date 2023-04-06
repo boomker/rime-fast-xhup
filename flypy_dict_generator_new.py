@@ -2,12 +2,13 @@
 
 import sys
 from pathlib import PosixPath as pp
-
+from functools import lru_cache
 # from pypinyin import lazy_pinyin
 # from datetime import date
 
 
 def pinyin_to_flypy(pinyin: list[str]):
+    @lru_cache(maxsize=None, typed=True)
     def to_flypy(pinyin: str):
         shengmu_dict = {"zh": "v", "ch": "i", "sh": "u"}
         yunmu_dict = {
@@ -126,7 +127,7 @@ def write_date_to_file(data, outfile):
 
 def open_dict_and_send_line(infile):
     with open(infile, "r") as df:
-        for line in df.readlines():
+        for line in df:
             tl = any(
                 [
                     line.startswith("#"),
