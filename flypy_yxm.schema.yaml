@@ -65,6 +65,7 @@ engine:
     - lua_translator@tex_translator
     - lua_translator@date_translator
     - lua_translator@time_translator
+    # - lua_translator@xhxm_translator
     - table_translator@easy_en_simp ## 添加注释后：停用单词输入
     - table_translator@melt_eng
   filters:
@@ -82,7 +83,6 @@ speller:
   delimiter: " '"
   ## speller 未允许 aj 表示 an
   algebra:
-    - erase/^xx$/
     - erase/^ng\[kx$/   # 响应超级简拼，取消「嗯 ng」的独占
     - erase/^n\[\w+$/   # 响应超级简拼，取消「嗯 n」的独占
     - erase/^m\[\w+$/   # 响应超级简拼，取消「呒 m」的独占
