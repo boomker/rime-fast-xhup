@@ -1,42 +1,48 @@
-
 ---@diagnostic disable: undefined-global
 
 -- require(utf8_sub)
+-- local puts = require("tools/debugtool")
+require("tools/metatable")
 local utf8_sub = require("utf8_sub")
 local xhxm_map = require("xhxm_map")
+Xhxm = {}
 
 local function xhxm_filter(input, env)
 	Cands = {}
-	-- CandTwords = {}
-    --[[ local map_dict={
-        ['付']='rc',
-        ['伯']='rb',
-        ['父']='bx',
-    } ]]
 	local commit = env.engine.context:get_commit_text()
+    local commitLengths = {3, 4, 5}
+    local commitLength = string.len(commit)
+    local commitIdx = table.find_index(commitLengths, commitLength)
 	for cand in input:iter() do
 		local candLength = utf8.len(cand.text)
 		local candText = cand.text
-		if candLength == 2 and string.len(commit) == 4 and (string.find(candText, "[^x00-xff]+")) then
-            local wordTailChar = utf8_sub.utf8Sub(candText, -1, -1)
-            local candComment = "~" .. xhxm_map[wordTailChar]
-            local candTword = Candidate("word", 0, 6, candText, candComment)
-            -- CandTwords[cand_tword] = candComment
-            -- table.insert(CandTwords, candTword)
-            yield(candTword)
-
-		-- elseif string.len(commit) == 6 and string.match(commit, "^[%l]+%[%l$") then
-  --           for _, c in ipairs(Cands) do
-  --               -- if string.sub(c.comment, 2, 2) == string.sub(commit, -1, -1) then
-  --               yield(c)
-  --               -- end
-  --           end
+		if candLength == 2 and commitIdx  and (string.find(candText, "[^x00-xff]+")) then
+			local wordTailChar = utf8_sub.utf8Sub(candText, -1, -1)
+			local candComment = "~" .. xhxm_map[wordTailChar]
+			local candword = Candidate("custom_type", 0, 8, candText, candComment)
+			yield(candword)
+        elseif candLength == 2 and commitLength > 5 and (string.find(candText, "[^x00-xff]+")) then
+			local candword = Candidate("custom_type", 0, 8, candText, "")
+			yield(candword)
 		else
-          yield(cand)
-            -- table.insert(Cands, cand)
+			yield(cand)
 		end
 	end
+	-- for _, cand in ipairs(Cands) do
+	-- 	yield(cand)
+	-- end
 end
 
+--[[ local function xhxm_translator(input, seg, env)
+	-- for _, c in Cands:iter() do
+		if cand:get_dynamic_type() == "Simple" and string.len(commit) == 6 and string.match(commit, "^[%l]+%[%l$") then
+			puts(INFO, c.text)
+			yield(c)
+		end
+	-- end
+end ]]
 
-return { xhxmfilter = xhxm_filter }
+Xhxm.xhxm_filter = xhxm_filter
+-- Xhxm.xhxm_translator = xhxm_translator
+
+return Xhxm
