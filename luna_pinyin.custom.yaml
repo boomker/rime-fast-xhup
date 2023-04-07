@@ -28,7 +28,7 @@ patch:
 
   ##  flypy_zrmfast.custom.yaml 所提到的“临时全拼模式下使用扩展词典”的步骤 3
   ##  （注意，设置该项时不要同时在上面启用辅助码）：
-  #translator/dictionary: luna_pinyin.extended
+  translator/dictionary: rime_ice
 
   ##  用户词典记录为文本格式（默认为二进制）。如果发现重启/部署/同步之后经常
   ##  忘掉之前输入的词（例如 Linux ibus-rime.appimage 的用户），可以尝试开启。
@@ -48,7 +48,7 @@ patch:
     - table_translator@soft_capslock
     - table_translator@easy_en_simp
     - lua_translator@tex_translator
-    - lua_translator@func_translator
+    # - lua_translator@func_translator
   engine/segmentors:
     - ascii_segmentor
     - matcher
@@ -104,7 +104,7 @@ patch:
     initial_quality: 1
   easy_en_simp:
     tag: easy_en_simp
-    dictionary: easy_en
+    dictionary: melt_eng
     enable_completion: true
     enable_sentence: false
     prefix: "iw"
