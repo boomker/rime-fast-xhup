@@ -7,12 +7,6 @@ name: flypy_flypy
 version: "2020.02.08"
 sort: by_weight
 use_preset_vocabulary: true
-min_phrase_weight: 100
-## import_tables:
-##   - cn_dicts/flypy_base      # 基础词库
-##   - cn_dicts/flypy_sougou    # 搜狗流行词
-##   - cn_dicts/ext
-##   - cn_dicts/flypy_tencent   # 腾讯词向量(大词库, 部署时间较长)
 ...
 
 〇	lk[vv

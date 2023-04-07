@@ -28,8 +28,8 @@ patch:
   ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
   # speller/algebra/@next: derive/[[]//
 
-  translator/dictionary: flypy_yxm    ## 使用小鹤原版辅助码
-  # translator/prism: flypy_yxm  ## 使用小鹤原版辅助码
+  translator/dictionary: flypy_xhfast    ## 使用小鹤原版辅助码
+  # translator/prism: flypy_flypy  ## 使用小鹤原版辅助码
   # translator/contextual_suggestions: true
   # translator/max_homophones: 7
 
