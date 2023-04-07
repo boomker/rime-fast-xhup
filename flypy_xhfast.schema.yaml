@@ -1,8 +1,9 @@
+# Rime schem
 # Rime schema
 # encoding: utf-8
 
 schema:
-  schema_id:  flypy_xhfast
+  schema_id: flypy_xhfast
   name: 鹤拼快形
   version: "0.1"
   author:
@@ -33,6 +34,7 @@ switches:
 
 engine:
   processors:
+    - lua_processor@select_char
     - ascii_composer
     - recognizer
     - key_binder
@@ -64,13 +66,17 @@ engine:
     - lua_translator@tex_translator
     - lua_translator@date_translator
     - lua_translator@time_translator
+    # - lua_translator@xhxm_translator
     - table_translator@easy_en_simp ## 添加注释后：停用单词输入
     - table_translator@melt_eng
   filters:
+    - lua_filter@charset_filter
     - lua_filter@autocaps_filter
+    - lua_filter@xhxm_filter
     - lua_filter@long_word_filter
     - simplifier
     - uniquifier
+    # - simplifier@emoji                  # Emoji
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
@@ -114,9 +120,10 @@ grammar:
 translator:
   dictionary: flypy_xhfast
   contextual_suggestions: true  # 开启八股文
-  spelling_hints: 1
   initial_quality: 1.2
-  enable_user_dict: true
+  spelling_hints: 2 ## 关闭单字编码提示
+  comment_format:
+    - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
 
   # preedit_format:
     # - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
@@ -182,12 +189,16 @@ punctuator:
 
 key_binder:
   import_preset: default
+  select_first_character: 'comma'
+  select_last_character: 'bracketright'
   bindings:
     #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu,  accept: semicolon, send: 2 }
-    - { when: has_menu,  accept: slash,     send: 3 }
+    # - { when: has_menu,  accept: slash,     send: 3 }
+    - { when: has_menu,  accept: apostrophe, send: 3 } ## 单引号用于第3候选
+    - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
     - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
     ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
@@ -212,6 +223,11 @@ recognizer:
 
 menu:
   page_size: 4
+
+# Emoji
+emoji:
+  opencc_config: emoji.json
+  option_name: emoji
 
 emojis:
   tag: emojis
@@ -263,7 +279,7 @@ melt_eng:                           # 英文单词
   enable_completion: true         # 是否启用英文输入联想补全
   enable_user_dict: false
   dictionary: melt_eng
-  initial_quality: 1
+  initial_quality: 1.1
 reverse_lookup:
   dictionary: chaizi_flypy # stroke
   enable_completion: true
@@ -272,4 +288,5 @@ reverse_lookup:
   tips: 〔部件组字〕 # 〔筆畫〕
   preedit_format:
     # - xlit/hspnz/一丨丿丶乙/
+
 
