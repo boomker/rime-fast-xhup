@@ -6,9 +6,9 @@
 
 patch:
   schema_list:
-    # - schema: flypy_zrmfast
-    - schema: flypy_yxm
+    - schema: flypy_zrmfast
     - schema: flypy_xhfast
+    - schema: luna_pinyin
     - schema: melt_eng
     - schema: emoji               # emoji表情
     # - schema: stroke
