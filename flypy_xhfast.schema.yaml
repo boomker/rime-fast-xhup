@@ -4,7 +4,7 @@
 
 schema:
   schema_id: flypy_xhfast
-  name: 鹤拼快形
+  name: 飞鹤快拼
   version: "0.1"
   author:
     - Functoreality
@@ -66,13 +66,12 @@ engine:
     - lua_translator@tex_translator
     - lua_translator@date_translator
     - lua_translator@time_translator
-    # - lua_translator@xhxm_translator
     - table_translator@easy_en_simp ## 添加注释后：停用单词输入
     - table_translator@melt_eng
   filters:
     - lua_filter@charset_filter
     - lua_filter@autocaps_filter
-    - lua_filter@xhxm_filter
+    # - lua_filter@xhxm_filter
     - lua_filter@long_word_filter
     - simplifier
     - uniquifier
@@ -121,7 +120,7 @@ translator:
   dictionary: flypy_xhfast
   contextual_suggestions: true  # 开启八股文
   initial_quality: 1.2
-  spelling_hints: 2 ## 关闭单字编码提示
+  spelling_hints: 1 ## 关闭单字编码提示
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
 
