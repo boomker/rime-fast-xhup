@@ -104,7 +104,7 @@ patch:
     initial_quality: 1
   easy_en_simp:
     tag: easy_en_simp
-    dictionary: easy_en
+    dictionary: melt_eng
     enable_completion: true
     enable_sentence: false
     prefix: "iw"
