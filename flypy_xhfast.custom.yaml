@@ -33,7 +33,7 @@ patch:
   # translator/contextual_suggestions: true
   # translator/max_homophones: 7
 
-  translator/spelling_hints: 2 ## 关闭单字编码提示
+  translator/spelling_hints: 1 ## 关闭单字编码提示
   translator/comment_format:
     - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
     - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/ ## 单字编码提示只显示辅助码部分
