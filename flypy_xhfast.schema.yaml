@@ -19,9 +19,13 @@ switches:
   - name: ascii_mode
     reset: 0
     states: [ 中文, 西文 ]
+  - name: emoji
+    reset: 1
+    states: [ "No", "Yes" ]
   - name: full_shape
     states: [ 半角, 全角 ]
   - name: simplification
+    reset: 1
     states: [ 漢字, 汉字 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
@@ -71,11 +75,11 @@ engine:
   filters:
     - lua_filter@charset_filter
     - lua_filter@autocaps_filter
-    # - lua_filter@xhxm_filter
     - lua_filter@long_word_filter
     - simplifier
+    - simplifier@emoji                  # Emoji
+    - simplifier@simplification
     - uniquifier
-    # - simplifier@emoji                  # Emoji
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
@@ -227,6 +231,14 @@ menu:
 emoji:
   opencc_config: emoji.json
   option_name: emoji
+  tags: abc
+
+simplification:
+  option_name: simplification
+  opencc_config: t2s.json
+  tags: abc
+  tips: all
+  excluded_types: [ reverse_lookup ]
 
 emojis:
   tag: emojis
