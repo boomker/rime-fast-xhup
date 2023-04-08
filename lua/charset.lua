@@ -19,6 +19,7 @@
 -- 帮助函数（可跳过）
 local charset = {
 	["CJK"] = { first = 0x4E00, last = 0x9FFF }, -- CJK Unified Ideographs - https://unicode.org/charts/PDF/U4E00.pdf
+    ["ExtQ"] = {first = 0x1f6dc, last = 0x1faf8 }, -- 128732~129784
 	["ExtA"] = { first = 0x3400, last = 0x4DBF }, -- CJK Unified Ideographs Extension A - https://unicode.org/charts/PDF/U3400.pdf
 	["ExtB"] = { first = 0x20000, last = 0x2A6DF }, -- CJK Unified Ideographs Extension B - https://unicode.org/charts/PDF/U20000.pdf
 	["ExtC"] = { first = 0x2A700, last = 0x2B73F }, -- CJK Unified Ideographs Extension C - https://unicode.org/charts/PDF/U2A700.pdf
@@ -46,7 +47,8 @@ local function is_charset(s)
 end
 
 local function is_cjk_ext(c)
-	return is_charset("ExtA")(c)
+	return is_charset("ExtQ")(c)
+		or is_charset("ExtA")(c)
 		or is_charset("ExtB")(c)
 		or is_charset("ExtC")(c)
 		or is_charset("ExtD")(c)
