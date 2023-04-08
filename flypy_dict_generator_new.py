@@ -8,7 +8,7 @@ from xhxm_map import xhxm_dict
 # from datetime import date
 
 
-def pinyin_to_flypy(pinyin: list[str]):
+def pinyin_to_flypy(quanpin: list[str]):
     @lru_cache(maxsize=None, typed=True)
     def to_flypy(pinyin: str):
         shengmu_dict = {"zh": "v", "ch": "i", "sh": "u"}
@@ -55,7 +55,7 @@ def pinyin_to_flypy(pinyin: list[str]):
         }
         if pinyin in zero:
             return zero[pinyin]
-        if pinyin[1] == "h":
+        if pinyin[1] == "h" and len(pinyin) > 2:
             shengmu = shengmu_dict[pinyin[:2]]
             yunmu = yunmu_dict[pinyin[2:]] if pinyin[2:] in yunmu_dict else pinyin[2:]
             return shengmu + yunmu
@@ -64,7 +64,7 @@ def pinyin_to_flypy(pinyin: list[str]):
             yunmu = yunmu_dict[pinyin[1:]] if pinyin[1:] in yunmu_dict else pinyin[1:]
             return shengmu + yunmu
 
-    return [to_flypy(x) for x in pinyin]
+    return [to_flypy(x) for x in quanpin]
 
 
 def quanpin_to_flypy(line_content, *args):
@@ -144,6 +144,7 @@ def main():
     option1 = None if cli_args[-1].endswith("yaml") else cli_args[-1]
     option2 = "xm" if cli_args[-2].endswith("xm") else None
     option2 = "xm" if option1 == "xm" else option2
+    option1 = None if option1 == "xm" else option1
 
     pp_objs = [pp(sys.argv[i]) for i in range(1, len(sys.argv))]
     infile_names = [f for f in pp_objs if f.is_file()]

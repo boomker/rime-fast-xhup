@@ -30,6 +30,7 @@ patch:
   translator/comment_format:
     - xform/^[^[]+[[]// ## 单字编码提示只显示辅助码部分
     - xform/[^[]+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
+    - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/ ## 单字编码提示只显示辅助码部分
 
   ##  改用自然码双拼；相关设置见 pinyin_switch.yaml，例如直接引导辅助码
   #__include: pinyin_switch:/flypy2zrm
