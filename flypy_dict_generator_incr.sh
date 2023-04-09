@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 
-files=("base" "ext" "sogou" "tencent")
+files=("base" "ext" "sogou" "tencent" "emoji")
 iceRepoPath="${HOME}/gitrepos/rime-ice"
 prevCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
 # prevCommit="51461d7"
@@ -12,19 +12,39 @@ curCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
 
 for f in "${files[@]}";
 do
-    echo "$f"
-    target_file="${iceRepoPath}/cn_dicts/$f.dict.yaml"
-    git -C "${iceRepoPath}" diff ${prevCommit}..HEAD -- "${target_file}" |\rg  "^\+" |\rg -v "\+#|\+v|\+\+" |tr -d "+"  > "${f}.diff"
-    if [[ $(wc -l "${f}.diff" |cut -c 1) != 0 ]]; then
+    echo "\n----------\n" "$f"  "\n----------\n"
+    src_file="${iceRepoPath}/cn_dicts/$f.dict.yaml"
+    tgt_file="./cn_dicts/flypy_${f}.dict.yaml"
+    [[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
+    [[ "$f" == "emoji" ]] && tgt_file="./opencc/emoji.txt"
+
+    if [[ "$f" == "base" ]] || [[ "$f" == "emoji" ]]; then
+        git -C "${iceRepoPath}" diff ${prevCommit}..HEAD -- "${src_file}" |\
+            /usr/local/bin/rg  "^\-" |\rg -v "\-#|\+v|\---" |tr -d "-" > "${f}_min.diff"
+        gcut -f1 "${f}_min.diff" |gxargs -I % -n 1 gsed -i  '/%/d' "${tgt_file}"
+        rm "${f}_min.diff"
+    fi
+    git -C "${iceRepoPath}" diff ${prevCommit}..HEAD -- "${src_file}" |\
+        /usr/local/bin/rg "^\+" |\rg -v "\+#|\+v|\+\+" |tr -d "+" > "${f}_add.diff"
+
+    [[ "$f" == "emoji" ]] && {
+        cat "${f}_add.diff" >> "${tgt_file}"
+        rm "${f}_add.diff"
+        exit
+    }
+
+    if [[ $(wc -l "${f}_add.diff" |cut -c 1) != 0 ]]; then
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
-            python3.11 ./flypy_dict_generator_new.py "$f.diff"
+            python3.11 ./flypy_dict_generator_new.py "${f}_add.diff"
         else
-            python3.11 ./flypy_dict_generator_new.py "$f.diff" hanzhi
+            python3.11 ./flypy_dict_generator_new.py "${f}_add.diff" hanzhi
         fi
     fi
 
-    sed -n '13,$p' "flypy_${f}.dict.yaml" >> "./cn_dicts/flypy_${f}.dict.yaml"
-    rm "flypy_${f}.dict.yaml"
-    rm "$f.diff"
+    sed -n '13,$p' "flypy_${f}_add.dict.yaml" >> "${tgt_file}"
+    rm "flypy_${f}_add.dict.yaml" "${f}_add.diff"
 done
+
+cp -ar "${iceRepoPath}/en_dicts/*.dict.yaml" "./en_dicts/"
+sed -ir '/^[oz|oh|oq|oe|od]/Id' "./en_dicts/en.dict.yaml"
 
