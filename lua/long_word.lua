@@ -13,10 +13,15 @@ local function long_word_filter(input, env)
 		local leng = utf8.len(cand.text)
 		if length < 1 then
 			length = leng or 0
-			yield(cand)
+			-- yield(cand)
 
 			if (string.find(cand.text, "[^x00-xff]+")) then
                 FirstWordType = "chinese"
+                yield(cand)
+            else
+                if string.len(commit) > 3 then
+                    yield(cand)
+                end
 			end
 		--[[ elseif string.len(cand.text) > 15 then
 			table.insert(cands, cand)]]
