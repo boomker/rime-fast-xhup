@@ -83,7 +83,7 @@ engine:
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
   delimiter: " '"
   ## speller 未允许 aj 表示 an
   algebra:
@@ -100,6 +100,7 @@ speller:
     - derive/^([jqxy])v/$1u/
     - derive/^([jqxy])u/$1v/
     - derive/^(j)n/$1c/
+    - derive/^(q)r/$1j/
 
     # - derive/^([nl])v/$1ü/
     - derive/^l/n/                     # l -> n
