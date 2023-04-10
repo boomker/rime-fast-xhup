@@ -116,7 +116,7 @@ speller:
     - derive/^([zcsviu])g/$1f/          # [zcs][h]eng 可以通过 [zcs][h]en 打出
     - derive/^([qtypdjlxbnm])k/$1b/     # ing 可以通过 in 打出
     - derive/^(.)b/$1k/                 # in 可以通过 ing 打出
-    - abbrev/^([wkif]).+$/$1/   # 超级简拼
+    # - abbrev/^([wkif]).+$/$1/   # 超级简拼
 
 grammar:
   language: zh-hans-t-essay-bgw

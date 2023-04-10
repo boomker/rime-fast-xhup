@@ -14,9 +14,9 @@ for f in "${files[@]}";
 do
     echo "\n----------\n" "$f"  "\n----------\n"
     src_file="${iceRepoPath}/cn_dicts/$f.dict.yaml"
-    tgt_file="./cn_dicts/flypy_${f}.dict.yaml"
+    tgt_file="../cn_dicts/flypy_${f}.dict.yaml"
     [[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
-    [[ "$f" == "emoji" ]] && tgt_file="./opencc/emoji.txt"
+    [[ "$f" == "emoji" ]] && tgt_file="../opencc/emoji.txt"
 
     if [[ "$f" == "base" ]] || [[ "$f" == "emoji" ]]; then
         git -C "${iceRepoPath}" diff ${prevCommit}..HEAD -- "${src_file}" |\
