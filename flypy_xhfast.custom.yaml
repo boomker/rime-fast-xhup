@@ -15,7 +15,7 @@ patch:
   #punctuator/half_shape: {} ## 恢复默认引号
   menu/page_size: 5 ## 自定义候选项个数
   key_binder/bindings/+:
-    #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
+    - { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
     - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
     #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
     - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
