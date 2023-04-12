@@ -11,6 +11,9 @@ schema:
     - tumuyan <tumuyan@21cn.com>
   description:
     Easy English Nano，只包含少量常用词汇，方便中英文混合输入度方案调用。
+  keyboard:
+    label: upcase
+    layout: qwerty
 
 switches:
   - name: ascii_mode
