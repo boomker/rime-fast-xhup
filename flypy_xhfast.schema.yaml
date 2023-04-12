@@ -100,34 +100,36 @@ speller:
     - derive/^(\w+)\[(\w)(\w)$/$1/
 
     - derive/^(j)n/$1c/
-    - derive/^([jyn])t/$1d/                       # t --> d
-    - derive/^([bjmnx])p/$1e/                     # p --> e
-    - derive/^([djnx])q/$1f/                      # q --> f
+    - derive/^([jyn])t/$1d/                             # t --> d
+    - derive/^([bjmnx])p/$1e/                           # p --> e
+    - derive/^([djnx])q/$1f/                            # q --> f
     - derive/^q([biklmnrsxy])$/f$1/
-    - derive/^qu$/fc/
-    - derive/^qt$/fd/
+    - derive/^qu$/fs/
     - derive/^qp$/fe/
-    - derive/^tp$/df/
-    - derive/^t[er]$/dw/
-    - derive/^p([okiuhjnm])$/e$1/                 # pk --> ek
-    - derive/^([jk])y$/$1w/                       # [jk]y --> [jk]w
+    - derive/^qt$/fd/
+    - derive/^([td])p$/fc/                              # [td]p --> fc
+    - derive/^p([okifuhjbnm])$/e$1/                     # pk --> ek
+    - derive/^pc$/ef/                                   # pc --> ef
+    - derive/^pg$/es/                                   # pg --> es
+    - derive/^([jk])y$/$1w/                             # [jk]y --> [jk]w
+    - derive/^t([wy])$/dw/                              # t[wy] --> dw
+    - derive/^t([er])$/df/                              # t[er] --> df
+    - derive/^b([fgnm])$/s$1/                           # b[fgnm] --> s[fgnm]
 
-      # - derive/^l/n/                            # l -> n
-      # - derive/^n/l/                            # n -> l
-    - derive/^l([uom])$/n$1/                      # l -> n
-    - derive/^n([uom])$/l$1/                      # l -> n
+    - derive/^l([uom])$/n$1/                            # l -> n
+    - derive/^n([uom])$/l$1/                            # l -> n
     - derive/^([jqxy])v/$1u/
     - derive/^([jqxy])u/$1v/
-    - derive/^(v)(.)/z$2/                         # zh => z
-    - derive/^(i)(.)/c$2/                         # ch => c
-    - derive/^(u)(.)/s$2/                         # sh => s
-    - derive/^(z)(.)/v$2/                         # z => zh
-    - derive/^(c)(.)/i$2/                         # c => ch
-    - derive/^(s)(.)/u$2/                         # s => sh
-    - derive/^([zcsviu])f/$1g/                    # [zcs][h]en 可以通过 [zcs][h]eng 打出
-    - derive/^([zcsviu])g/$1f/                    # [zcs][h]eng 可以通过 [zcs][h]en 打出
-    - derive/^([typdjxbm])k/$1b/                  # ing 可以通过 in 打出
-    - derive/^([typdjxbmn])b/$1k/                 # in 可以通过 ing 打出
+    - derive/^(v)([^f])/z$2/                            # zh => z
+    - derive/^(i)(.)/c$2/                               # ch => c
+    - derive/^(u)([^fgnm])/s$2/                         # sh => s
+    - derive/^(z)(.)/v$2/                               # z => zh
+    - derive/^(c)(.)/i$2/                               # c => ch
+    - derive/^(s)([^fgnm])/u$2/                         # s => sh
+    - derive/^([zcviu])f/$1g/                           # [zcs][h]en 可以通过 [zcs][h]eng 打出
+    - derive/^([cviu])g/$1f/                            # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    - derive/^([typdjxbm])k/$1b/                        # ing 可以通过 in 打出
+    - derive/^([typdjxbmn])b/$1k/                       # in 可以通过 ing 打出
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -211,8 +213,8 @@ key_binder:
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu,  accept: semicolon, send: 2 }
-    # - { when: has_menu,  accept: slash,     send: 3 }
     - { when: has_menu,  accept: apostrophe, send: 3 } ## 单引号用于第3候选
+      # - { when: has_menu,  accept: slash,     send: 3 }
     - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
     - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
