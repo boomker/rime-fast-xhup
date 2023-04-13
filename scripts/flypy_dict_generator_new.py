@@ -1,6 +1,5 @@
 #!/usr/local/bin/python3.11
 
-# import sys
 from pathlib import PosixPath as pp
 from functools import lru_cache
 from xhxm_map import xhxm_dict
@@ -9,8 +8,40 @@ import argparse
 # from pypinyin import pinyin, lazy_pinyin, Style
 # from datetime import date
 
+"""
+
+usage: flypy_dict_generator_new.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
+                                   [--convert] [--shape]
+                                   [--input_files [INPUT_FILES ...]]
+                                   [--word_frequency WORD_FREQUENCY]
+                                   [--outfile_type {yaml,txt}]
+
+shuang pin dict generator tool
+
+options:
+  -h, --help            show this help message and exit
+  --style {q,s,xh,he,zr,zrm,j}, -s {q,s,xh,he,zr,zrm,j}
+                        spec the style, quanpin, shuangpin, jianpin, etc
+  --convert, -c         spec from hanzi convert to pinyin style
+  --shape, -x           spec the style of shape, hxm, zrm etc
+  --input_files [INPUT_FILES ...], -i [INPUT_FILES ...]
+                        additional yaml dict files to input
+  --word_frequency WORD_FREQUENCY, -f WORD_FREQUENCY
+                        sepc word_frequency
+  --outfile_type {yaml,txt}, -o {yaml,txt}
+                        spec generate FileType for output , yaml or text.
+"""
+
 
 def pinyin_to_flypy(quanpin: list[str]):
+    """ 全拼拼音转为小鹤双拼码, 如果转自然码请自行替换双拼映射
+
+    Args:
+        quanpin: [str]
+
+    Returns:
+        [str]
+    """
     @lru_cache(maxsize=None, typed=True)
     def to_flypy(pinyin: str):
         shengmu_dict = {"zh": "v", "ch": "i", "sh": "u"}
@@ -69,7 +100,7 @@ def pinyin_to_flypy(quanpin: list[str]):
     return [to_flypy(x) for x in quanpin]
 
 
-def quanpin_to_flypy(line_content, *args):
+def parser_line_content(line_content, *args):
     contents_perline = line_content.strip().split()
     if args[0] and args[1]:
         from pypinyin import lazy_pinyin, Style
@@ -100,14 +131,14 @@ def quanpin_to_flypy(line_content, *args):
                 " ".join(flypy_list) if args[0] != "jianpin" else "".join(flypy_list)
             )
 
-        if args[-1] == "yaml":
+        if args[-1] == "yaml" or args[3] == 1:
             word_frequency = (
                 f"\t{contents_perline[-1]}"
                 if contents_perline[-1].isnumeric()
                 else "\t1"
             )
         else:
-            word_frequency = ""
+            word_frequency = "" if not args[3] else args[3]
 
         yield f"{contents_perline[0].strip()}\t{xhup_str}{word_frequency}\n"
 
@@ -161,6 +192,7 @@ def open_dict_and_send_line(infile):
             if not tl:
                 yield line
 
+
 def get_cli_args():
     parser = argparse.ArgumentParser(description="shuang pin dict generator tool")
     parser.add_argument(
@@ -198,6 +230,9 @@ def get_cli_args():
         type=pp,
     )
     parser.add_argument(
+        "--word_frequency", "-f", default=1, help=("sepc word_frequency"), type=int
+    )
+    parser.add_argument(
         "--outfile_type",
         "-o",
         help=("spec generate FileType for output , yaml or text."),
@@ -207,18 +242,32 @@ def get_cli_args():
     args = parser.parse_args()
     if args.hanzi_to_pinyin:
         from subprocess import run
-        c = run(['python3', '-m', 'pypinyin', '-V'], capture_output=True)
+
+        c = run(["python3", "-m", "pypinyin", "-V"], capture_output=True)
         if not c.stdout and c.returncode:
-            print('python3 pypinyin module not installed! \n')
-            print('pls exec `pip3 install pypinyin`\n')
+            print("python3 pypinyin module not installed! \n")
+            print("pls exec `pip3 install pypinyin`\n")
             exit()
 
-    return parser.parse_args()
+    return parser
+    # return parser.parse_args()
+
+
+def check_cli_args():
+    try:
+        get_cli_args()
+    except ValueError as ve:
+        print("参数异常: ", repr(ve).split(":")[0], '")')
+        exit()
+    if not get_cli_args().parse_args().input_files:
+        print(get_cli_args().print_help())
+        print("你没有指定待处理的输入文件!!!")
+        exit()
 
 
 def main():
-
-    cli_args = get_cli_args()
+    check_cli_args()
+    cli_args = get_cli_args().parse_args()
 
     pinyin_style_map = {
         "s": "shuangpin",
@@ -243,6 +292,7 @@ def main():
         pinyin_style_map[cli_args.style],
         cli_args.hanzi_to_pinyin,
         cli_args.shape_type,
+        cli_args.word_frequency,
         """\n 当你只看到上的回显提示,脚本就结束了, 那么说明命令行参数出问题了.
         当词典文件没有附带拼音, 那么`-c` 需要指定 \n""",
     )
@@ -251,11 +301,12 @@ def main():
 
     for outfile, indata in zip(outfile_names, input_datas):
         for idata in indata:
-            for odata in quanpin_to_flypy(
+            for odata in parser_line_content(
                 idata,
                 pinyin_style_map[cli_args.style],
                 cli_args.hanzi_to_pinyin,
                 cli_args.shape_type,
+                cli_args.word_frequency,
                 cli_args.outfile_type,
             ):
                 write_date_to_file(odata, outfile)
