@@ -104,6 +104,7 @@ speller:
     - derive/^([bjmnx])p/$1e/                           # p --> e
     - derive/^([djnx])q/$1f/                            # q --> f
     - derive/^q([biklmnrsxy])$/f$1/
+    - derive/^qq$/fz/
     - derive/^qu$/fs/
     - derive/^qp$/fe/
     - derive/^qt$/fd/
@@ -114,6 +115,9 @@ speller:
     - derive/^([jk])y$/$1w/                             # [jk]y --> [jk]w
     - derive/^t([wy])$/dw/                              # t[wy] --> dw
     - derive/^t([er])$/df/                              # t[er] --> df
+    - derive/^tk$/rk/
+    - derive/^rg$/rd/
+    - derive/^xt$/xd/
     - derive/^b([fgnm])$/s$1/                           # b[fgnm] --> s[fgnm]
 
     - derive/^l([uom])$/n$1/                            # l -> n

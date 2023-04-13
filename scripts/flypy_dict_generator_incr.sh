@@ -14,7 +14,7 @@ curCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
 [[ ${curCommit} == "${prevCommit}" ]] && exit
 
 gcp -aR "${iceRepoPath}"/en_dicts/*.dict.yaml "${repoRoot}/en_dicts/"
-gsed -ir '/^[oz|oh|oq|oe|od]/Id' "${repoRoot}/en_dicts/en.dict.yaml"
+gsed -i '/^[oz|oh|oq|oe|od]/Id' "${repoRoot}/en_dicts/en.dict.yaml"
 
 for f in "${files[@]}";
 do
@@ -39,16 +39,21 @@ do
         exit
     }
 
-    if [[ $(wc -l "${f}_add.diff" |cut -c 1) != 0 ]]; then
+    if [[ $(cat "${f}_add.diff" |wc -l |tr -d ' ') != 0 ]]; then
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
-            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -o txt
+            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff"
         else
-            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -o txt -c
+            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -c
         fi
-        # sed -n '13,$p' "flypy_${f}_add.dict.yaml" >> "${tgt_file}"
-        cat "flypy_${f}_add.txt" >> "${tgt_file}"
-        rm "flypy_${f}_add.txt"
+        sed -n '13,$p' "flypy_${f}_add.dict.yaml" >> "${tgt_file}"
+        rm "flypy_${f}_add.dict.yaml"
     fi
 
+    [[ "${f}" == "base" ]] && {
+        rg '^..\t.*'  "${f}_add.diff" > "${f}_twords.txt"
+        python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_twords.txt" -c -x -o txt
+        cat "flypy_${f}_twords.txt" >> "${repoRoot}/cn_dicts/flypy_twords.dict.yaml"
+        rm "${f}_twords.txt" "flypy_${f}_twords.txt"
+    }
     rm "${f}_add.diff"
 done
