@@ -1,5 +1,14 @@
 #!/usr/local/bin/python3.11
 
+"""
+Description: "shuang pin dict generator tool"
+Project: github.com/boomker/rime-flypy-xhfast
+Author: gmboomker@gmail.com
+Date: 2023-04-14 11:47:22
+LastEditTime: 2023-04-14 11:47:22
+LastEditors: boomker
+"""
+
 from pathlib import PosixPath as pp
 from functools import lru_cache
 from xhxm_map import xhxm_dict
@@ -9,12 +18,11 @@ import argparse
 # from datetime import date
 
 """
-
 usage: flypy_dict_generator_new.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
-                                   [--convert] [--shape]
-                                   [--input_files [INPUT_FILES ...]]
-                                   [--word_frequency WORD_FREQUENCY]
-                                   [--outfile_type {yaml,txt}]
+                                   [--convert] [--shape] --input_files
+                                   [INPUT_FILES ...]
+                                   [--word_frequency WORD_FREQUENCY] [--mode]
+                                   [--type | --out_files [OUT_FILES ...]]
 
 shuang pin dict generator tool
 
@@ -28,13 +36,23 @@ options:
                         additional yaml dict files to input
   --word_frequency WORD_FREQUENCY, -f WORD_FREQUENCY
                         sepc word_frequency
-  --outfile_type {yaml,txt}, -o {yaml,txt}
-                        spec generate FileType for output , yaml or text.
+  --mode, -m            spec output mode for generate file , w or a.
+  --type, -t            spec generate filetype for output , yaml or text.
+  --out_files [OUT_FILES ...], -o [OUT_FILES ...]
+                        spec generate filename for output.
+
+example:
+    python3 flypy_dict_generator_new.py -i a.dict.yaml
+    python3 flypy_dict_generator_new.py -i b.txt -t txt
+    python3 flypy_dict_generator_new.py -i bb.txt -t txt -f 0
+    python3 flypy_dict_generator_new.py -i ab.dict.yaml -c
+    python3 flypy_dict_generator_new.py -i abc.dict.yaml -c -x -f 100
+    python3 flypy_dict_generator_new.py -i c.dict.yaml d.dict.yaml -o nc.dict.yaml nd.dict.yaml -m
 """
 
 
 def pinyin_to_flypy(quanpin: list[str]):
-    """ 全拼拼音转为小鹤双拼码, 如果转自然码请自行替换双拼映射
+    """全拼拼音转为小鹤双拼码, 如果转自然码请自行替换双拼映射
 
     Args:
         quanpin: [str]
@@ -42,6 +60,7 @@ def pinyin_to_flypy(quanpin: list[str]):
     Returns:
         [str]
     """
+
     @lru_cache(maxsize=None, typed=True)
     def to_flypy(pinyin: str):
         shengmu_dict = {"zh": "v", "ch": "i", "sh": "u"}
@@ -97,7 +116,7 @@ def pinyin_to_flypy(quanpin: list[str]):
             yunmu = yunmu_dict[pinyin[1:]] if pinyin[1:] in yunmu_dict else pinyin[1:]
             return shengmu + yunmu
 
-    return [to_flypy(x) for x in quanpin]
+    return [to_flypy(x) if x.isalpha() else x for x in quanpin ]
 
 
 def parser_line_content(line_content, *args):
@@ -112,11 +131,10 @@ def parser_line_content(line_content, *args):
             _pys = lazy_pinyin(contents_perline[0], style=Style.FIRST_LETTER)
             pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
     else:
-        pinyin_list = [i for i in contents_perline if i.isascii() and i.isalpha()]
+        pinyin_list = [i for i in contents_perline if (i.isascii() and i.isalpha()) or i.find('[')==2]
 
     if pinyin_list:
         print("pinyin_list: ", pinyin_list)
-        # print("xhxm_list: ", words_xm_list)
         if args[0] == "shuangpin":
             flypy_list = pinyin_to_flypy(pinyin_list)
         else:
@@ -131,11 +149,11 @@ def parser_line_content(line_content, *args):
                 " ".join(flypy_list) if args[0] != "jianpin" else "".join(flypy_list)
             )
 
-        if args[-1] == "yaml" or args[3] == 1:
+        if args[-1] == "yaml" or args[3] >= 1:
             word_frequency = (
                 f"\t{contents_perline[-1]}"
                 if contents_perline[-1].isnumeric()
-                else "\t1"
+                else f"\t{args[3]}"
             )
         else:
             word_frequency = "" if not args[3] else args[3]
@@ -143,11 +161,17 @@ def parser_line_content(line_content, *args):
         yield f"{contents_perline[0].strip()}\t{xhup_str}{word_frequency}\n"
 
 
-def write_date_to_file(data, outfile):
+def write_date_to_file(data, outfile, mode):
     from datetime import date
 
-    outfile_name = outfile.split(".")[0]
-    outfile_suffix_name = outfile.split(".")[-1]
+    if isinstance(outfile, pp):
+        outfile_name = outfile.name.split(".")[0]
+        outfile_suffix_name = outfile.name.split(".")[-1]
+    else:
+        outfile_name = outfile.split(".")[0]
+        outfile_suffix_name = outfile.split(".")[-1]
+        outfile = pp(outfile)
+
     dict_header = f"""
         # Rime dictionary
         # encoding: utf-8
@@ -163,9 +187,11 @@ def write_date_to_file(data, outfile):
     """
 
     if outfile_suffix_name == "txt":
-        globals()[outfile] = True
+        globals()[outfile_name] = True
+    if not outfile.exists():
+        mode = "w"
 
-    if outfile in globals():
+    if outfile_name in globals() or mode == "a":
         with open(outfile, "a") as odf:
             odf.write(data)
     else:
@@ -173,28 +199,28 @@ def write_date_to_file(data, outfile):
             # odf.write(dict_header)
             odf.write("\n".join([c.lstrip() for c in dict_header.splitlines()]))
             odf.write("\n")
-    globals()[outfile] = True
+    globals()[outfile_name] = True
 
 
 def open_dict_and_send_line(infile):
-    with open(infile, "r") as df:
-        for line in df:
-            tl = any(
-                [
-                    line.startswith("#"),
-                    line.startswith(" "),
-                    line.startswith("\n"),
-                    line.startswith("-"),
-                    line.startswith("."),
-                    line[0].islower(),
-                ]
-            )
-            if not tl:
-                yield line
+    for line in infile:
+        tl = any(
+            [
+                line.startswith("#"),
+                line.startswith(" "),
+                line.startswith("\n"),
+                line.startswith("-"),
+                line.startswith("."),
+                line[0].islower(),
+            ]
+        )
+        if not tl:
+            yield line
 
 
 def get_cli_args():
     parser = argparse.ArgumentParser(description="shuang pin dict generator tool")
+    outfile_group = parser.add_mutually_exclusive_group()
     parser.add_argument(
         "--style",
         "-s",
@@ -224,50 +250,83 @@ def get_cli_args():
         "--input_files",
         "-i",
         nargs="*",
+        required=True,
         # action="append",
-        # dest="input_files",
         help=("additional yaml dict files to input"),
-        type=pp,
+        type=open,
     )
     parser.add_argument(
         "--word_frequency", "-f", default=1, help=("sepc word_frequency"), type=int
     )
     parser.add_argument(
-        "--outfile_type",
-        "-o",
-        help=("spec generate FileType for output , yaml or text."),
+        "--mode",
+        "-m",
+        help=("spec output mode for generate file , w or a."),
+        default="w",
+        const="a",
+        action="store_const",
+        # choices=["w", "a"],
+    )
+    outfile_group.add_argument(
+        "--type",
+        "-t",
+        help=("spec generate filetype for output , yaml or text."),
+        dest="outfile_type",
         default="yaml",
-        choices=["yaml", "txt"],
+        const="txt",
+        action="store_const",
+        # choices=["yaml", "txt"],
+    )
+    outfile_group.add_argument(
+        "--out_files",
+        "-o",
+        help=("spec generate filename for output."),
+        default="flypy",
+        nargs="*",
+        type=pp,
     )
     args = parser.parse_args()
-    if args.hanzi_to_pinyin:
-        from subprocess import run
 
-        c = run(["python3", "-m", "pypinyin", "-V"], capture_output=True)
-        if not c.stdout and c.returncode:
-            print("python3 pypinyin module not installed! \n")
-            print("pls exec `pip3 install pypinyin`\n")
-            exit()
-
-    return parser
-    # return parser.parse_args()
+    outfile_names = []
+    if isinstance(args.out_files, pp) and args.out_files.name == "flypy":
+        for f in args.input_files:
+            if args.outfile_type == "yaml":
+                outfile_names.append(f"flypy_{f.name.split('.')[0]}.dict.yaml")
+            else:
+                outfile_names.append(f"flypy_{f.name.split('.')[0]}.txt")
+    args_dict = vars(args)
+    args_dict["out_files"] = outfile_names if outfile_names else args.out_files
+    return args_dict, parser
 
 
 def check_cli_args():
     try:
-        get_cli_args()
+        _, test_args = get_cli_args()
     except ValueError as ve:
         print("参数异常: ", repr(ve).split(":")[0], '")')
         exit()
-    if not get_cli_args().parse_args().input_files:
-        print(get_cli_args().print_help())
-        print("你没有指定待处理的输入文件!!!")
+    except FileNotFoundError as fnfe:
+        print("输入文件参数异常: ", repr(fnfe).split(":")[0])
         exit()
+    else:
+        if not test_args.parse_args().input_files:
+            print(test_args.print_help())
+            print("你没有指定待处理的输入文件!!!")
+            exit()
+        if test_args.parse_args().hanzi_to_pinyin:
+            from subprocess import run
+
+            c = run(["python3", "-m", "pypinyin", "-V"], capture_output=True)
+            if not c.stdout and c.returncode:
+                print("python3 pypinyin module not installed! \n")
+                print("pls exec `pip3 install pypinyin`\n")
+                exit()
 
 
 def main():
     check_cli_args()
-    cli_args = get_cli_args().parse_args()
+    cli_args_dict, _p = get_cli_args()
+    cli_args = _p.parse_args()
 
     pinyin_style_map = {
         "s": "shuangpin",
@@ -279,27 +338,26 @@ def main():
         "j": "jianpin",
     }
     infiles = cli_args.input_files
-    outfile_names = []
-    for f in infiles:
-        if cli_args.outfile_type == "yaml":
-            outfile_names.append(f"flypy_{f.name.split('.')[0]}.dict.yaml")
-        else:
-            outfile_names.append(f"flypy_{f.name.split('.')[0]}.txt")
+    outfiles = cli_args_dict["out_files"]
+    # outfiles = cli_args.out_files
+    write_mode = cli_args.mode
 
     print(
-        infiles,
-        outfile_names,
-        pinyin_style_map[cli_args.style],
-        cli_args.hanzi_to_pinyin,
-        cli_args.shape_type,
-        cli_args.word_frequency,
+        f"input_files: {infiles}\n",
+        f"output_files: {outfiles}\n",
+        f"style: {pinyin_style_map[cli_args.style]}\n",
+        f"mode: {write_mode}\n",
+        f"converte_to_pinyin: {cli_args.hanzi_to_pinyin}\n",
+        f"generate_shape_type: {cli_args.shape_type}\n",
+        f"word_frequency: {cli_args.word_frequency}\n",
         """\n 当你只看到上的回显提示,脚本就结束了, 那么说明命令行参数出问题了.
         当词典文件没有附带拼音, 那么`-c` 需要指定 \n""",
     )
 
+    # exit()
     input_datas = [open_dict_and_send_line(infile) for infile in infiles]
 
-    for outfile, indata in zip(outfile_names, input_datas):
+    for outfile, indata in zip(outfiles, input_datas):
         for idata in indata:
             for odata in parser_line_content(
                 idata,
@@ -309,7 +367,7 @@ def main():
                 cli_args.word_frequency,
                 cli_args.outfile_type,
             ):
-                write_date_to_file(odata, outfile)
+                write_date_to_file(odata, outfile, write_mode)
 
 
 if __name__ == "__main__":
