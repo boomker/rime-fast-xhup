@@ -41,19 +41,16 @@ do
 
     if [[ $(cat "${f}_add.diff" |wc -l |tr -d ' ') != 0 ]]; then
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
-            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff"
+            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -o "${tgt_file}" -m
         else
-            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -c
+            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -o "${tgt_file}" -m -c
         fi
-        sed -n '13,$p' "flypy_${f}_add.dict.yaml" >> "${tgt_file}"
-        rm "flypy_${f}_add.dict.yaml"
     fi
 
     [[ "${f}" == "base" ]] && {
         rg '^..\t.*'  "${f}_add.diff" > "${f}_twords.txt"
-        python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_twords.txt" -c -x -o txt
-        cat "flypy_${f}_twords.txt" >> "${repoRoot}/cn_dicts/flypy_twords.dict.yaml"
-        rm "${f}_twords.txt" "flypy_${f}_twords.txt"
+        python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_twords.txt" -c -x -m -o "${repoRoot}/cn_dicts/flypy_twords.dict.yaml"
+        rm "${f}_twords.txt"
     }
     rm "${f}_add.diff"
 done
