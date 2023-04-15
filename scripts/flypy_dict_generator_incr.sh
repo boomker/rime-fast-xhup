@@ -5,6 +5,7 @@ files=("base" "ext" "sogou" "tencent" "emoji")
 iceRepoPath="${HOME}/gitrepos/rime-ice"
 repoRoot="$(git rev-parse --show-toplevel)"
 scriptPath=$(dirname "$(realpath "$0")")
+pyScrPath="${scriptPath}/flypy_dict_generator_new.py"
 prevCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
 # prevCommit="51461d7"
 git -C "${iceRepoPath}" pull
@@ -22,7 +23,7 @@ do
     src_file="${iceRepoPath}/cn_dicts/$f.dict.yaml"
     tgt_file="${repoRoot}/cn_dicts/flypy_${f}.dict.yaml"
     [[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
-    [[ "$f" == "emoji" ]] && tgt_file="{repoRoot}/opencc/emoji.txt"
+    [[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji.txt"
 
     if [[ "$f" == "base" ]] || [[ "$f" == "emoji" ]]; then
         git -C "${iceRepoPath}" diff ${prevCommit}..HEAD -- "${src_file}" |\
@@ -41,15 +42,15 @@ do
 
     if [[ $(cat "${f}_add.diff" |wc -l |tr -d ' ') != 0 ]]; then
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
-            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -o "${tgt_file}" -m
+            python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
         else
-            python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_add.diff" -o "${tgt_file}" -m -c
+            python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
         fi
     fi
 
     [[ "${f}" == "base" ]] && {
         rg '^..\t.*'  "${f}_add.diff" > "${f}_twords.txt"
-        python3.11 "${scriptPath}/flypy_dict_generator_new.py" -i "${f}_twords.txt" -c -x -m -o "${repoRoot}/cn_dicts/flypy_twords.dict.yaml"
+        python3.11 "${pyScrPath}" -i "${f}_twords.txt" -c -x -m -o "${repoRoot}/cn_dicts/flypy_twords.dict.yaml"
         rm "${f}_twords.txt"
     }
     rm "${f}_add.diff"
