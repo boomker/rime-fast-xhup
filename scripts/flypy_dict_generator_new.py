@@ -65,46 +65,46 @@ def pinyin_to_flypy(quanpin: list[str]):
     def to_flypy(pinyin: str):
         shengmu_dict = {"zh": "v", "ch": "i", "sh": "u"}
         yunmu_dict = {
-            "ou": "z",
-            "iao": "n",
-            "uang": "l",
-            "iang": "l",
-            "en": "f",
-            "eng": "g",
-            "ang": "h",
-            "an": "j",
-            "ao": "c",
-            "ai": "d",
-            "ian": "m",
-            "in": "b",
-            "uo": "o",
-            "un": "y",
-            "iu": "q",
-            "uan": "r",
-            "iong": "s",
-            "ong": "s",
-            "ue": "t",
-            "ve": "t",
-            "ui": "v",
-            "ua": "x",
-            "ia": "x",
-            "ie": "p",
-            "uai": "k",
-            "ing": "k",
-            "ei": "w",
-        }
+                "ou": "z",
+                "iao": "n",
+                "uang": "l",
+                "iang": "l",
+                "en": "f",
+                "eng": "g",
+                "ang": "h",
+                "an": "j",
+                "ao": "c",
+                "ai": "d",
+                "ian": "m",
+                "in": "b",
+                "uo": "o",
+                "un": "y",
+                "iu": "q",
+                "uan": "r",
+                "iong": "s",
+                "ong": "s",
+                "ue": "t",
+                "ve": "t",
+                "ui": "v",
+                "ua": "x",
+                "ia": "x",
+                "ie": "p",
+                "uai": "k",
+                "ing": "k",
+                "ei": "w",
+                }
         zero = {
-            "a": "aa",
-            "an": "an",
-            "ai": "ai",
-            "ang": "ah",
-            "o": "oo",
-            "ou": "ou",
-            "e": "ee",
-            "n": "en",
-            "en": "en",
-            "eng": "eg",
-        }
+                "a": "aa",
+                "an": "an",
+                "ai": "ai",
+                "ang": "ah",
+                "o": "oo",
+                "ou": "ou",
+                "e": "ee",
+                "n": "en",
+                "en": "en",
+                "eng": "eg",
+                }
         if pinyin in zero:
             return zero[pinyin]
         if pinyin[1] == "h" and len(pinyin) > 2:
@@ -116,7 +116,7 @@ def pinyin_to_flypy(quanpin: list[str]):
             yunmu = yunmu_dict[pinyin[1:]] if pinyin[1:] in yunmu_dict else pinyin[1:]
             return shengmu + yunmu
 
-    return [to_flypy(x) if x.isalpha() else x for x in quanpin ]
+    return [to_flypy(x) if x.isalpha() else x for x in quanpin]
 
 
 def parser_line_content(line_content, *args):
@@ -126,12 +126,15 @@ def parser_line_content(line_content, *args):
 
         if args[0] != "jianpin":
             _pys = lazy_pinyin(contents_perline[0])
-            pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
         else:
             _pys = lazy_pinyin(contents_perline[0], style=Style.FIRST_LETTER)
-            pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
+        pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
     else:
-        pinyin_list = [i for i in contents_perline if (i.isascii() and i.isalpha()) or i.find('[')==2]
+        pinyin_list = [
+            i
+            for i in contents_perline
+            if (i.isascii() and i.isalpha()) or i.find('[') == 2
+        ]
 
     if pinyin_list:
         print("pinyin_list: ", pinyin_list)
@@ -156,7 +159,7 @@ def parser_line_content(line_content, *args):
                 else f"\t{args[3]}"
             )
         else:
-            word_frequency = "" if not args[3] else args[3]
+            word_frequency = args[3] or ""
 
         yield f"{contents_perline[0].strip()}\t{xhup_str}{word_frequency}\n"
 
@@ -164,7 +167,8 @@ def parser_line_content(line_content, *args):
 def write_date_to_file(data, outfile, mode):
     from datetime import date
 
-    if isinstance(outfile, pp):
+    # if isinstance(outfile, pp):
+    if not isinstance(outfile, str):
         outfile_name = outfile.name.split(".")[0]
         outfile_suffix_name = outfile.name.split(".")[-1]
     else:
@@ -295,7 +299,7 @@ def get_cli_args():
             else:
                 outfile_names.append(f"flypy_{f.name.split('.')[0]}.txt")
     args_dict = vars(args)
-    args_dict["out_files"] = outfile_names if outfile_names else args.out_files
+    args_dict["out_files"] = outfile_names or args.out_files
     return args_dict, parser
 
 
@@ -321,7 +325,6 @@ def check_cli_args():
                 print("python3 pypinyin module not installed! \n")
                 print("pls exec `pip3 install pypinyin`\n")
                 exit()
-
 
 def main():
     check_cli_args()

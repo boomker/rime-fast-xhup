@@ -108,11 +108,12 @@ speller:
     - derive/^qu/fs/
     - derive/^qp/fe/
     - derive/^qt/fd/
-    - derive/^([td])p/fc/                              # [td]p --> fc
+    - derive/^([td])p/dl/                              # [td]p --> dl
     - derive/^p([okifuhjbnm])/e$1/                     # pk --> ek
     - derive/^pb/ek/
-    - derive/^pc/ef/                                   # pc --> ef
-    - derive/^pg/es/                                   # pg --> es
+    - derive/^pc/ec/                                   # pc --> ec
+    - derive/^pg/ey/                                   # pg --> ey
+    - derive/^pw/es/                                   # pw --> ey
     - derive/^([jk])y/$1w/                             # [jk]y --> [jk]w
     - derive/^t([wy])/dw/                              # t[wy] --> dw
     - derive/^t([er])/df/                              # t[er] --> df
@@ -202,7 +203,11 @@ chinese_phrases:
 punctuator:
   import_preset: symbols
   half_shape:
-    '>' : [》, 〉, '> ', », › ]
+    '#' : [ commit: '#' ]
+    '=' : [ 〃 ]
+    # '@' : [ '@', ©, ®, ℗ ]
+    '<' : [ 《, 〈, «, ‹ ]
+    '>' : [ 》, 〉, », › ]
     '"' : { pair: [ '‘', '’' ] } ## 添加注释后：恢复默认引号
     '''' : { pair: [ '“', '”' ] } ## 添加注释后：恢复默认引号
   symbols:
