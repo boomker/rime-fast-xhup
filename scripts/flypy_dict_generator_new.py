@@ -9,13 +9,19 @@ LastEditTime: 2023-04-14 11:47:22
 LastEditors: boomker
 """
 
-from pathlib import PosixPath as pp
-from functools import lru_cache
-from xhxm_map import xhxm_dict
 import argparse
+import itertools
+from functools import lru_cache
+from pathlib import PosixPath as pp
 
-# from pypinyin import pinyin, lazy_pinyin, Style
 # from datetime import date
+from pypinyin import Style, lazy_pinyin, load_single_dict, pinyin
+from pypinyin.contrib.tone_convert import to_normal
+
+from chars_zhuyin_dict import single_dict
+from xhxm_map import xhxm_dict
+
+load_single_dict(single_dict)
 
 """
 usage: flypy_dict_generator_new.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
@@ -65,46 +71,46 @@ def pinyin_to_flypy(quanpin: list[str]):
     def to_flypy(pinyin: str):
         shengmu_dict = {"zh": "v", "ch": "i", "sh": "u"}
         yunmu_dict = {
-                "ou": "z",
-                "iao": "n",
-                "uang": "l",
-                "iang": "l",
-                "en": "f",
-                "eng": "g",
-                "ang": "h",
-                "an": "j",
-                "ao": "c",
-                "ai": "d",
-                "ian": "m",
-                "in": "b",
-                "uo": "o",
-                "un": "y",
-                "iu": "q",
-                "uan": "r",
-                "iong": "s",
-                "ong": "s",
-                "ue": "t",
-                "ve": "t",
-                "ui": "v",
-                "ua": "x",
-                "ia": "x",
-                "ie": "p",
-                "uai": "k",
-                "ing": "k",
-                "ei": "w",
-                }
+            "ou": "z",
+            "iao": "n",
+            "uang": "l",
+            "iang": "l",
+            "en": "f",
+            "eng": "g",
+            "ang": "h",
+            "an": "j",
+            "ao": "c",
+            "ai": "d",
+            "ian": "m",
+            "in": "b",
+            "uo": "o",
+            "un": "y",
+            "iu": "q",
+            "uan": "r",
+            "iong": "s",
+            "ong": "s",
+            "ue": "t",
+            "ve": "t",
+            "ui": "v",
+            "ua": "x",
+            "ia": "x",
+            "ie": "p",
+            "uai": "k",
+            "ing": "k",
+            "ei": "w",
+        }
         zero = {
-                "a": "aa",
-                "an": "an",
-                "ai": "ai",
-                "ang": "ah",
-                "o": "oo",
-                "ou": "ou",
-                "e": "ee",
-                "n": "en",
-                "en": "en",
-                "eng": "eg",
-                }
+            "a": "aa",
+            "an": "an",
+            "ai": "ai",
+            "ang": "ah",
+            "o": "oo",
+            "ou": "ou",
+            "e": "ee",
+            "n": "en",
+            "en": "en",
+            "eng": "eg",
+        }
         if pinyin in zero:
             return zero[pinyin]
         if pinyin[1] == "h" and len(pinyin) > 2:
@@ -118,50 +124,72 @@ def pinyin_to_flypy(quanpin: list[str]):
 
     return [to_flypy(x) if x.isalpha() else x for x in quanpin]
 
+def converte_to_pinyin(hanzi: str):
+    pinyin_list = pinyin(hanzi, heteronym=True)
+    sl = [" ".join(i) for i in itertools.product(*pinyin_list)]
+    if len(sl) > 3:
+        return {'lp': lazy_pinyin(hanzi)}
+    npyl = []
+    for j in sl:
+        npy = to_normal(j)
+        npyl.append(npy)
+    spyl = list(set(npyl))
+    return {'duoyinzi': spyl}
+
+def gen_dict_record(pinyin_list, contents_perline, *args):
+    if not pinyin_list:
+        return
+    print("pinyin_list: ", pinyin_list)
+    if args[0] == "shuangpin": # 转换全拼为小鹤双拼
+        flypy_list = pinyin_to_flypy(pinyin_list)
+    else:
+        flypy_list = pinyin_list # 首字母简写
+
+    if args[2]: # 转换对应汉字的形码
+        words_xm_list = [xhxm_dict.get(m, "[") for m in contents_perline[0].strip()]
+        xhup_list = ["[".join([e, x]) for e, x in zip(flypy_list, words_xm_list)]
+        xhup_str = " ".join(xhup_list)
+    else:
+        xhup_str = " ".join(flypy_list) if args[0] != "jianpin" else "".join(flypy_list)
+
+    if args[-1] == "yaml" or args[3] >= 1: # 当指定文件为yaml 或词频大于1
+        word_frequency = (
+            f"\t{contents_perline[-1]}"
+            if contents_perline[-1].isnumeric()
+            else f"\t{args[3]}"
+        )
+    else:
+        word_frequency = args[3] or ""
+
+    return f"{contents_perline[0].strip()}\t{xhup_str}{word_frequency}\n"
 
 def parser_line_content(line_content, *args):
     contents_perline = line_content.strip().split()
-    if args[0] and args[1]:
-        from pypinyin import lazy_pinyin, Style
-
+    if args[0] and args[1]: # 汉字转换对应风格的拼音
         if args[0] != "jianpin":
-            _pys = lazy_pinyin(contents_perline[0])
+            _pyd = converte_to_pinyin(contents_perline[0])
+
+            if list(_pyd.keys())[0] == 'lp':
+                _pys = list(_pyd.values())[0]
+                pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
+                yield gen_dict_record(pinyin_list, contents_perline, *args)
+            else:
+                for i in list(_pyd.values())[0]:
+                    _pyl = i.split()
+                    pinyin_list = [i for i in _pyl if i.isascii() and i.isalpha()]
+                    yield gen_dict_record(pinyin_list, contents_perline, *args)
+
         else:
             _pys = lazy_pinyin(contents_perline[0], style=Style.FIRST_LETTER)
-        pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
+            pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
+            yield gen_dict_record(pinyin_list, contents_perline, *args)
     else:
         pinyin_list = [
             i
             for i in contents_perline
             if (i.isascii() and i.isalpha()) or i.find('[') == 2
         ]
-
-    if pinyin_list:
-        print("pinyin_list: ", pinyin_list)
-        if args[0] == "shuangpin":
-            flypy_list = pinyin_to_flypy(pinyin_list)
-        else:
-            flypy_list = pinyin_list
-
-        if args[2]:
-            words_xm_list = [xhxm_dict.get(m, "[") for m in contents_perline[0].strip()]
-            xhup_list = ["[".join([e, x]) for e, x in zip(flypy_list, words_xm_list)]
-            xhup_str = " ".join(xhup_list)
-        else:
-            xhup_str = (
-                " ".join(flypy_list) if args[0] != "jianpin" else "".join(flypy_list)
-            )
-
-        if args[-1] == "yaml" or args[3] >= 1:
-            word_frequency = (
-                f"\t{contents_perline[-1]}"
-                if contents_perline[-1].isnumeric()
-                else f"\t{args[3]}"
-            )
-        else:
-            word_frequency = args[3] or ""
-
-        yield f"{contents_perline[0].strip()}\t{xhup_str}{word_frequency}\n"
+        yield gen_dict_record(pinyin_list, contents_perline, *args)
 
 
 def write_date_to_file(data, outfile, mode):
@@ -325,6 +353,7 @@ def check_cli_args():
                 print("python3 pypinyin module not installed! \n")
                 print("pls exec `pip3 install pypinyin`\n")
                 exit()
+
 
 def main():
     check_cli_args()

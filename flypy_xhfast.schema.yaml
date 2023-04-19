@@ -83,8 +83,11 @@ engine:
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
+  # initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
   delimiter: " '"
+  # max_code_length: 5
+  # auto_select: true
+  # auto_select_pattern: '^\w+\[\w{2}$'
   ## speller 未允许 aj 表示 an
   algebra:
     # - abbrev/^([wesdfjklm]).+$/$1/   # 超级简拼
@@ -112,8 +115,9 @@ speller:
     - derive/^p([okifuhjbnm])/e$1/                     # pk --> ek
     - derive/^pb/ek/
     - derive/^pc/ec/                                   # pc --> ec
+    - derive/^pd/ef/                                   # pc --> ef
     - derive/^pg/ey/                                   # pg --> ey
-    - derive/^pw/es/                                   # pw --> ey
+    - derive/^pw/es/                                   # pw --> es
     - derive/^([jk])y/$1w/                             # [jk]y --> [jk]w
     - derive/^t([wy])/dw/                              # t[wy] --> dw
     - derive/^t([er])/df/                              # t[er] --> df
