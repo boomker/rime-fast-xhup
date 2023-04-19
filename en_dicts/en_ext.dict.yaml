@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-04-15"
+version: "2023-04-19"
 sort: by_weight
 ...
 # 一些杂项
@@ -193,8 +193,11 @@ Windows 8	Windows	8
 Windows 10	Windows	10
 Windows 11	Windows	11
 
+ERC-20	ERC
+ERC-721	ERC
+ERC-1155	ERC
 
-# 往下开始都是扩展单词
+
 # +_+
 Griffiths	Griffiths
 Chapman	Chapman
@@ -275,9 +278,14 @@ SSH	SSH
 Secure Shell	SSH
 Secure Shell	SecureShell
 ISO	ISO
+International Organization for Standardization	ISO
 ISO 8601	ISO
 RFC	RFC
+Request for Comments	RFC
 RFC 3339	RFC
+RFCs	RFCs
+IETF	IETF
+Internet Engineering Task Force	IETF
 Pro Max	ProMax
 Aeron	Aeron
 Aeron Chair	AeronChair
@@ -1667,7 +1675,7 @@ LGPL	LGPL
 GNU Lesser General Public License	LGPL
 GNU Lesser General Public License	GNULesserGeneralPublicLicense
 Mozilla	Mozilla
-Mozilla	Firefox	MozillaFirefox
+Mozilla Firefox	MozillaFirefox
 Apache	Apache
 Steam	Steam
 App	App
@@ -2083,3 +2091,69 @@ gimme	gimme
 CodeWhisperer	CodeWhisperer
 Heisenberg	Heisenberg
 Codex	Codex
+storyteller	storyteller
+troublemaker	troublemaker
+troublemaking	troublemaking
+espanso	espanso
+okey	okey
+okey dokey	okeydokey
+CAPTCHA	CAPTCHA
+Coinbase	Coinbase
+Kraken	Kraken
+Huobi	Huobi
+Bitfinex	Bitfinex
+KuCoin	KuCoin
+OKX	OKX
+Arbitrum	Arbitrum
+Avalanche	Avalanche
+Binance	Binance
+Binance Smart Chain	BinanceSmartChain
+OpenSea	OpenSea
+BNB Chain	BNBChain
+Chainlink	Chainlink
+Cosmos	Cosmos
+Cardano	Cardano
+Polkadot	Polkadot
+Solana	Solana
+Starknet	Starknet
+Optimism	Optimism
+Polygon	Polygon
+NEAR Protocol	NEARProtocol
+Lens Protocal	LensProtocal
+zkSync	zkSync
+Arweave	Arweave
+Filecoin	Filecoin
+Harmony	Harmony
+Harmony One	HarmonyOne
+DApp	DApp
+DApps	DApps
+Uniswap	Uniswap
+SushiSwap	SushiSwap
+PancakeSwap	PancakeSwap
+JediSwap	JediSwap
+Orbiter	Orbiter
+MakerDAO	MakerDAO
+Compound	Compound
+Aave	Aave
+Curve	Curve
+Curve Finance	CurveFinance
+dYdX	dYdX
+NFT	NFT
+Non-Fungible Token	NFT
+Solidity	Solidity
+Argent	Argent
+argent	argent
+Argent X	ArgentX
+Braavos	Braavos
+Braavos Wallet	Braavos
+OneKey	OneKey
+Hamster	Hamster
+hamster	hamster
+hamsters	hamsters
+DYOR	DYOR
+Do Your Own Research	DYOR
+Noita	Noita
+Screen Studio	ScreenStudio
+Norah	Norah
+floccus	floccus
+Wappalyzer	Wappalyzer
