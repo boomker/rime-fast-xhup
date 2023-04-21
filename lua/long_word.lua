@@ -2,6 +2,7 @@
 
 -- local puts = require("tools/debugtool")
 
+-- require("tools/metatable")
 local reverse_dict = ReverseDb("build/flypy_xhfast.reverse.bin") -- 从编译文件中获取反查词库
 local function long_word_filter(input, env)
 	local cands = {}
@@ -9,6 +10,8 @@ local function long_word_filter(input, env)
     local tword_phrase_cands = {}
 	-- 记录第一个候选词的长度，提前的候选词至少要比第一个候选词长
 	local length = 0
+    local count = 2
+    local done = 0
 	-- 记录筛选了多少个英语词条(只提升2个词的权重，并且对comment长度过长的候选进行过滤)
 	-- local s_onlyEN = 0
 	-- 记录筛选了多少个汉语词条(只提升2个词的权重)
@@ -37,19 +40,21 @@ local function long_word_filter(input, env)
 			then
 				yield(cand)
 			end
-		elseif ((leng > length) and (s_onlyCN < 2)) and (string.find(cand.text, "[%w%u]") == nil) then
+		elseif ((leng > length) and (s_onlyCN < count)) and (string.find(cand.text, "[%w%u]") == nil) then
 			if string.len(commit_text) > 2 then
 				yield(cand)
 				s_onlyCN = s_onlyCN + 1
+                done = done + 1
 			end
 		elseif
-			((leng > length) and (sCNEN < 2))
+			((leng > length) and (sCNEN < count))
 			and (string.find(cand.text, "%w%u+"))
 			and (string.find(cand.text, "[^x00-xff]+"))
 		then
 			if string.len(commit_text) > 3 then
 				yield(cand)
 				sCNEN = sCNEN + 1
+                done = done + 1
 			end
 		else
 			table.insert(cands, cand)
@@ -62,6 +67,10 @@ local function long_word_filter(input, env)
                 table.insert(tword_phrase_cands , cand)
             end
         end
+        -- 找齐了或者 l 太大了，就不找了
+        if (done == count) or (#cands > 30) then
+            break
+        end
 	end
     if string.len(commit_text) == 5 and string.find(commit_text, "^[%l]+%[[%l]+$") then
         for _, cand in ipairs(single_char_cands) do
@@ -69,8 +78,9 @@ local function long_word_filter(input, env)
             local cand_code = reverse_dict:lookup(cand.text) or "" -- 待自动上屏的候选项编码
             local ccand_code = string.gsub(cand_code, '%[', '')
             local ccommit_text = string.gsub(commit_text, '%[', '')
+            -- local char_cands = table.unique(single_char_cands)
             -- puts(INFO, '++++++', ccand_code, ccommit_text, cand.text, #single_char_cands)
-            if string.find(ccand_code, ccommit_text) and #single_char_cands == 1 then
+            if string.find(ccand_code, ccommit_text) and #single_char_cands <= 2 then
                 env.engine:commit_text(cand.text)
                 env.engine.context:clear()
                 return 1 -- kAccepted
