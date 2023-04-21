@@ -36,13 +36,8 @@ do
     git -C "${iceRepoPath}" diff ${prevCommit}..HEAD -- "${src_file}" |\
         /usr/local/bin/rg "^\+" |\rg -v "\+#|\+v|\+\+" |tr -d "+" > "${f}_add.diff"
 
-    [[ "$f" == "emoji" ]] && {
-        cat "${f}_add.diff" >> "${tgt_file}"
-        rm "${f}_add.diff"
-        exit
-    }
-
     if [[ $(cat "${f}_add.diff" |wc -l |tr -d ' ') != 0 ]]; then
+        [[ "$f" == "emoji" ]] && break && echo "skip emoji..."
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
             python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
         else
@@ -55,6 +50,8 @@ do
         python3.11 "${pyScrPath}" -i "${f}_twords.txt" -c -x -m -o "${repoRoot}/cn_dicts/flypy_twords.dict.yaml"
         rm "${f}_twords.txt"
     }
+
+    [[ "$f" == "emoji" ]] && cat "${f}_add.diff" >> "${tgt_file}"
     rm "${f}_add.diff"
 done
 
