@@ -6,7 +6,7 @@
 
 -- local puts = require("tools/debugtool")
 
-require("tools/metatable")
+-- require("tools/metatable")
 
 local function utf8_sub(s, i, j)
 	i = i or 1
@@ -112,7 +112,7 @@ local function select_character(key, env)
     -- end ]]
 
     if key:repr() == first_cand_key and string.find(input_code, "^[%w]+%[$") then
-		engine:commit_text(string.sub(commit_text, 1, -2))
+		engine:commit_text(utf8_sub(commit_text, 1, -2))
 		context:clear()
 
 		return 1 -- kAccepted

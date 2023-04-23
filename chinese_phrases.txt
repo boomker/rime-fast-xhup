@@ -19822,7 +19822,6 @@
 角立杰出	jljc
 进禄加官	jljg
 拒狼进虎	jljh
-赍粮藉寇	jljk
 积里渐里	jljl
 解铃系铃	jljl
 竭力尽能	jljn
@@ -32791,7 +32790,6 @@
 删华就素	shjs
 桑户棬枢	shjs
 随行就市	shjs
-十行俱下	shjx
 三回九转	shjz
 四海九州	shjz
 数黑论白	shlb
@@ -35683,7 +35681,6 @@
 兔死狐悲	tshb
 通时合变	tshb
 通商惠工	tshg
-梯山航海	tshh
 韬神晦迹	tshj
 铁树花开	tshk
 涕泗横流	tshl
@@ -38052,7 +38049,6 @@
 悬壶问世	xhws
 学海无涯	xhwy
 邂逅相逢	xhxf
-悬河泻火	xhxh
 虾荒蟹乱	xhxl
 悬河泻水	xhxs
 悬壶行医	xhxy
@@ -38398,7 +38394,6 @@
 心满意足	xmyz
 心满愿足	xmyz
 斜目妖蛛	xmyz
-询谋谘度	xmzd
 循名责实	xmzs
 徙木之信	xmzx
 熊梦徵祥	xmzx
@@ -39529,7 +39524,6 @@
 一蹴而成	ycec
 一蹴而得	yced
 一长二短	yced
-一蹴而几	ycej
 一蹴而就	ycej
 扬长而去	yceq
 一差二误	ycew
@@ -39855,7 +39849,6 @@
 掩耳偷铃	yetl
 以耳为目	yewm
 勇而无谋	yewm
-狖轭鼯轩	yewx
 言而无信	yewx
 燕尔新婚	yexh
 尤而效之	yexz
@@ -41909,7 +41902,6 @@
 怡堂燕雀	ytyq
 瑶台银阙	ytyq
 怨天尤人	ytyr
-有亭翼然	ytyr
 移天易日	ytyr
 渊图远算	ytys
 有头有尾	ytyw
