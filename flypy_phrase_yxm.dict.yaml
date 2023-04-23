@@ -6,7 +6,6 @@
 name: flypy_phrase_yxm
 version: "2020.03.17"
 sort: by_weight
-use_preset_vocabulary: false
 columns:
   - text
   - weight

@@ -71,9 +71,8 @@ engine:
     - table_translator@easy_en_simp     # 添加注释后：停用单词输入
     - table_translator@melt_eng
     - table_translator@flypy_yxm
+    - lua_translator@datetime_translator
     - lua_translator@tex_translator
-    - lua_translator@date_translator
-    - lua_translator@time_translator
   filters:
     - lua_filter@charset_filter
     - lua_filter@autocaps_filter
@@ -122,9 +121,11 @@ speller:
     - derive/^pg/ey/                                   # pg --> ey
     - derive/^pw/es/                                   # pw --> es
     - derive/^([jk])y/$1w/                             # [jk]y --> [jk]w
+    - derive/^y([ik])/w$1/                             # y[ik] --> w[ik]
+    - derive/^yj/wn/
+    - derive/^tk/rk/
     - derive/^t([wy])/dw/                              # t[wy] --> dw
     - derive/^t([er])/df/                              # t[er] --> df
-    - derive/^tk/rk/
     - derive/^rg/rd/
     - derive/^xt/xd/
     - derive/^xl/xh/
@@ -227,8 +228,7 @@ flypy_yxm:                     # 小鹤音形-短语，支持自动补全, 词�
 punctuator:
   import_preset: symbols
   half_shape:
-    '#' : '#'
-    '=' : '='
+    '@' : [ '@', ＠, ☯ ]
     '<' : [ 《, 〈, «, ‹ ]
     '>' : [ 》, 〉, », › ]
     '"' : { pair: [ '‘', '’' ] } ## 添加注释后：恢复默认引号
@@ -263,15 +263,15 @@ key_binder:
 recognizer:
   # import_preset: default
   patterns:
-    uppercase: "^[A-Z].*$"
+    uppercase: "^[A-Z]+$"
     punct: '^/[015-9A-Za-z]+$' ## use "/er" instead of "/2"
-    ## associate schemes: 
-    reverse_lookup: "^oq[a-z]*'?$" # "[[]b[a-z]*'?$"
+    ## associate schemes:
+    reverse_lookup: "^oq[a-z]*'?$"
     emojis: "^oe[a-z]*'?$" # "^oe.*$" 
     soft_capslock: "^od.*$"
     dbpy_flypy_help: "^oh.*$"
     easy_en_simp: "^oz[a-z]*"
-    tex_translator: "^tl(.*)$"
+    tex_translator: "^/tl(.*)$"
 
 menu:
   page_size: 4
@@ -324,7 +324,7 @@ easy_en_simp:
   enable_user_dict: false
   prefix: "oz"
   # suffix: "'"
-  tips: "英文单词（可去元音）"
+  tips: "英文单词(可去元音)"
   spelling_hints: 9
   comment_format:
     - xform/^.+$//
@@ -338,5 +338,6 @@ reverse_lookup:
     # - xlit/hspnz/一丨丿丶乙/
 tex_translator:
   tag: tex_translator
-  prefix: "tl"
+  prefix: "/tl"
   tips: " TeX 公式"
+

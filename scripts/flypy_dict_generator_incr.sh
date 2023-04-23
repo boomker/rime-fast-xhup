@@ -17,7 +17,7 @@ curCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
 [[ ${curCommit} == "${prevCommit}" ]] && exit
 
 gcp -aR "${iceRepoPath}"/en_dicts/*.dict.yaml "${repoRoot}/en_dicts/"
-gsed -i '/^[oz|oh|oq|oe|od]/Id' "${repoRoot}/en_dicts/en.dict.yaml"
+gsed -i '/^[oz|oq|oe|od]/Id' "${repoRoot}/en_dicts/en.dict.yaml"
 
 for f in "${files[@]}";
 do
@@ -51,12 +51,11 @@ do
         rm "${f}_twords.txt"
     }
 
-    [[ "$f" == "emoji" ]] && cat "${f}_add.diff" >> "${tgt_file}"
+    [[ "$f" == "emoji" ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >> "${tgt_file}"
     rm "${f}_add.diff"
 done
 
-
-gcp -ar "${repoRoot}/cn_dicts/*" "${rimeUserPath}/cn_dicts/"
-gcp -ar "${repoRoot}/en_dicts/*" "${rimeUserPath}/en_dicts/"
-gcp -ar "${repoRoot}/opencc/*" "${rimeUserPath}/opencc/"
-"${rimeDeployer}" --compile "${rimeUserPath}/flypy_xhfast.schema.yaml" > /dev/null && echo 'enjoy rime'
+gcp -ar ${repoRoot}/cn_dicts/* "${rimeUserPath}/cn_dicts/"
+gcp -ar ${repoRoot}/en_dicts/* "${rimeUserPath}/en_dicts/"
+gcp -ar ${repoRoot}/opencc/* "${rimeUserPath}/opencc/"
+# "${rimeDeployer}" --compile "${rimeUserPath}/flypy_xhfast.schema.yaml" > /dev/null && echo 'enjoy rime'
