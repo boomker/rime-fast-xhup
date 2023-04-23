@@ -17,16 +17,16 @@ schema:
 switches:
   - name: ascii_mode
     reset: 1
-    states: [ 中, En ]
+    states: [中, En]
   - name: full_shape
-    states: [ ◖, ● ]
+    states: [◖, ●]
   - name: simplification
     reset: 1
-    states: [ 繁, 简 ]
+    states: [繁, 简]
   - name: ascii_punct
-    states: [ 。, ． ]
-  - options: [ gbk+emoji, utf8 ]
-    states: [ GBK, UTF-8 ]
+    states: [。, ．]
+  - options: [gbk+emoji, utf8]
+    states: [GBK, UTF-8]
     reset: 1
 
 engine:
@@ -51,11 +51,12 @@ engine:
     # - script_translator
     - reverse_lookup_translator
   filters:
-    # - lua_filter@long_word_filter
+    - lua_filter@charset_filter
     - simplifier
+    - simplifier@simplification
     - uniquifier
-    - charset_filter@gb2312+emoji
-    - charset_filter
+    # - charset_filter@gb2312+emoji
+    # - charset_filter
 
 speller:
   alphabet: "zyxwvutsrqponmlkjihgfedcba`["
@@ -63,38 +64,45 @@ speller:
   auto_select: true
   max_code_length: 4
   algebra:
-    # - erase/^(\w+);(\w)(\w)$/  # erase single chars
-    - derive/^l([uom])$/n$1/                            # l -> n
-    - derive/^n([uom])$/l$1/                            # l -> n
+    - erase/^(\w+)\[(\w)(\w)$/  # erase single chars
+    - erase/^ng\[kx$/   # 响应超级简拼，取消「嗯 ng」的独占
+    - erase/^n\[\w+$/   # 响应超级简拼，取消「嗯 n」的独占
+    - erase/^m\[\w+$/   # 响应超级简拼，取消「呒 m」的独占
+    - erase/^m\[\w+$/   # 响应超级简拼，取消「呣 m」的独占
+    - derive/^l([uom])$/n$1/      # l -> n
+    - derive/^n([uom])$/l$1/      # l -> n
     - derive/^([jqxy])v/$1u/
     - derive/^([jqxy])u/$1v/
-    - derive/^(v)([^f])/z$2/                            # zh => z
-    - derive/^(i)(.)/c$2/                               # ch => c
-    - derive/^(u)([^fgnm])/s$2/                         # sh => s
-    - derive/^(z)(.)/v$2/                               # z => zh
-    - derive/^(c)(.)/i$2/                               # c => ch
-    - derive/^(s)([^fgnm])/u$2/                         # s => sh
-    - derive/^([zcviu])f/$1g/                           # [zcs][h]en 可以通过 [zcs][h]eng 打出
-    - derive/^([cviu])g/$1f/                            # [zcs][h]eng 可以通过 [zcs][h]en 打出
-    - derive/^([typdjxbm])k/$1b/                        # ing 可以通过 in 打出
-    - derive/^([typdjxbmn])b/$1k/                       # in 可以通过 ing 打出
-    - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
-    # - derive/^(\w+);(\w)(\w)$/$1$2$3/  # AB`D
-    # - derive/^(\w+);(\w)(\w)$/$1$2/  # ABC`
-    # - derive/^(\w+);(\w)(\w)$/$1/   # AB``
-    # - xform/^(\w+);(\w)(\w)$/$2$3/ # ``CD
+    - derive/^(v)([^f])/z$2/      # zh => z
+    - derive/^(i)(.)/c$2/         # ch => c
+    - derive/^(u)([^fgnm])/s$2/   # sh => s
+    - derive/^(z)(.)/v$2/         # z => zh
+    - derive/^(c)(.)/i$2/         # c => ch
+    - derive/^(s)([^fgnm])/u$2/   # s => sh
+    - derive/^([zcviu])f/$1g/     # [zcs][h]en 可以通过 [zcs][h]eng 打出
+    - derive/^([cviu])g/$1f/      # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    - derive/^([typdjxbm])k/$1b/  # ing 可以通过 in 打出
+    - derive/^([typdjxbmn])b/$1k/ # in 可以通过 ing 打出
 
     # - derive/^(\w+);(\w)(\w)$/$1$2`/  # ABC`
     # - derive/^(\w+);(\w)(\w)$/$1`$3/  # AB`D
     # - derive/^(\w+);(\w)(\w)$/$1``/   # AB``
-    # - xform/^(\w+);(\w)(\w)$/``$2$3/ # ``CD
+    # - xform/^(\w+);(\w)(\w)$/``$2$3/  # ``CD
+    # - derive/^(\w+)\[(\w)(\w)$/$1/      # AB``
+    # - derive/^(\w+)\[(\w)(\w)$/$1$2/    # ABC`
+    # - derive/^(\w+)\[(\w)(\w)$/$1$2$3/  # AB``
+    - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
+
+grammar:
+  language: zh-hans-t-essay-bgw
 
 translator:
   dictionary: flypy_phrase_yxm
   prism: flypy_phrase_yxm
-  #enable_correction: true
+  contextual_suggestions: true  # 开启八股文
   preedit_format:
-  enable_charset_filter: true
+  # enable_correction: true
+  # enable_charset_filter: true
 
 reverse_lookup:
   dictionary: flypy_chars_yxm
@@ -112,19 +120,18 @@ key_binder:
     #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
-    - { when: has_menu,  accept: semicolon, send: 2 }
-    - { when: has_menu,  accept: apostrophe, send: 3 } ## 单引号用于第3候选
+    - { when: has_menu, accept: semicolon, send: 2 }
+    - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
     - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
     # - { when: has_menu,  accept: slash,     send: 3 }
     # - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
-      ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
-      ## （自然码等其他双拼用户请在 pinyin_switch.yaml 中设置）
-      #- { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
-      #- { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
-      #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
-      #- { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
-
+    ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
+    ## （自然码等其他双拼用户请在 pinyin_switch.yaml 中设置）
+    #- { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
+    #- { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
+    #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
+    #- { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
 
 recognizer:
   import_preset: default
@@ -133,7 +140,13 @@ recognizer:
 
 menu:
   page_size: 4 #候选项数
-  
+
 style:
   horizontal: false #竖排为false
 
+simplification:
+  option_name: simplification
+  opencc_config: t2s.json
+  tags: abc
+  tips: all
+  excluded_types: [ reverse_lookup ]
