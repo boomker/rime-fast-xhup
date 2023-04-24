@@ -3,23 +3,24 @@
 ##  注意不要删除前面的空格，YAML 文件的缩进比较严格，缩进不对容易报错。
 patch:
 
-  #engine/translators/@last: '' ## 禁用英文单词输入功能
   engine/+:
     translators/+:
-      # - table_translator@melt_eng
+      # - lua_translator@user_dict_translator
     filters/+:
       - lua_filter@charset_filter
       - simplifier
       - uniquifier
 
-  #punctuator/half_shape: {} ## 恢复默认引号
+  # engine/translators/@last: '' ## 禁用英文单词输入功能
+  # punctuator/half_shape: {} ## 恢复默认引号
   menu/page_size: 5 ## 自定义候选项个数
   key_binder/bindings/+:
-    - { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
+    #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
     - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
     #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
     - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
     # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
+    - { when: composing, accept: Control+a, send_sequence: '{Home}{Right}{Right}[' }
     - { when: composing, accept: bracketright, send_sequence: "{Left}" }
       ## `键（grave，Tab 上面那个）为词组逐字追加辅助码。
       ## 可将 grave 改成 Tab，Control+Tab，bracketright（] 键）。

@@ -1,6 +1,8 @@
 ---@diagnostic disable: undefined-global
 
 -- local puts = require("tools/debugtool")
+-- local opencc_emoji = Opencc('emoji.json')
+-- local arr = opencc_emoji:convert_word(cand.text) or {}
 
 -- require("tools/metatable")
 local reverse_dict = ReverseDb("build/flypy_xhfast.reverse.bin") -- 从编译文件中获取反查词库
@@ -10,7 +12,7 @@ local function long_word_filter(input, env)
     local tword_phrase_cands = {}
 	-- 记录第一个候选词的长度，提前的候选词至少要比第一个候选词长
 	local length = 0
-    local count = 2
+    local count = 1
     local done = 0
 	-- 记录筛选了多少个英语词条(只提升2个词的权重，并且对comment长度过长的候选进行过滤)
 	-- local s_onlyEN = 0
@@ -20,6 +22,7 @@ local function long_word_filter(input, env)
 	local commit_text = env.engine.context:get_commit_text()
 	for cand in input:iter() do
 		local leng = utf8.len(cand.text)
+
 		if length < 1 then
 			length = leng or 0
 
@@ -40,7 +43,7 @@ local function long_word_filter(input, env)
 			then
 				yield(cand)
 			end
-		elseif ((leng > length) and (s_onlyCN < count)) and (string.find(cand.text, "[%w%u]") == nil) then
+		elseif ((leng > length) and leng > 3 and (s_onlyCN < count)) and (string.find(cand.text, "[%w%u]") == nil) then
 			if string.len(commit_text) > 2 then
 				yield(cand)
 				s_onlyCN = s_onlyCN + 1
@@ -67,6 +70,7 @@ local function long_word_filter(input, env)
                 table.insert(tword_phrase_cands , cand)
             end
         end
+
         -- 找齐了或者 l 太大了，就不找了
         if (done == count) or (#cands > 30) then
             break
@@ -79,7 +83,6 @@ local function long_word_filter(input, env)
             local ccand_code = string.gsub(cand_code, '%[', '')
             local ccommit_text = string.gsub(commit_text, '%[', '')
             -- local char_cands = table.unique(single_char_cands)
-            -- puts(INFO, '++++++', ccand_code, ccommit_text, cand.text, #single_char_cands)
             if string.find(ccand_code, ccommit_text) and #single_char_cands <= 2 then
                 env.engine:commit_text(cand.text)
                 env.engine.context:clear()

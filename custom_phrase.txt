@@ -2,12 +2,10 @@
 ## 格式：文本-输入码-权重，其间用 Tab 符分隔。
 ## 如要添加新的，可以复制已有的行，然后在其基础上修改。
 ## 置顶字词
-是	u	4
-時	u	3
+是	u	1
 是	s	1
 去	q	1
 我	w	2
-爲	w	1
 有	y	2
 又	y	1
 哦	o	1
@@ -22,20 +20,23 @@
 在	z	2
 再	z	1
 下	x	1
-才	c	1
-不	b	2
+啊	a	1
 吧	b	1
 把	b	1
+才	c	1
 你	n	1
-沒	m	1
-這	v	2
-只	v	1
-涉及	uej	2
-設計	uej	1
+吗	m	1
+這	v	1
+发	f	1
+人	r	1
+他	t	2
+她	t	1
 等	df	1
 等待	dfd	2
 等等	dfd	1
+涉及	uej	2
 手机号	sjh	1
+18939740924	sjhm	2
 
 
 ## 常用个人信息
@@ -44,37 +45,884 @@
 ##xxx（学号/工号）	jf	60
 ##xx学院/部门	jf	48
 ##xx學校/單位	jf	44
+gmboomker@gmail.com	ggem	40
 
 ## 常用短语
-Python	py	2
-PyTorch	pyt	1
-Matplotlib	pym	1
-TensorFlow	pyt	1
-Jupyter Notebook	pyj	1
-MATLAB	pym	1
-Markdown	pym	1
-Google	pyg	1
-Microsoft	pym	1
-GitHub	pyg	1
-LaTeX	pyl	1
-Linux	pyl	1
-Android	pya	1
-Windows	pyw	1
-iOS	pyi	1
-Rime	pyr	1
-Vim	pyv	1
-NeoVim	pyn	1
-Emacs	pye	1
-VSCode	pyv	1
-Sublime Text	pys	1
-Typora	pyt	1
-UTF-8	pyu	1
-Unicode	pyu	1
-WiFi	pyw	1
-Syncthing	pys	1
+DevOps	devo	2
+Django	djan	2
+Deploy	depl	2
+GitHub	gith	1
+Mac	mac	2
+NeoVim	neovi	1
+VSCode	vscode	1
 
-Schrödinger	jas	1
-Maxwell	jam	1
-Lagrange	jal	1
-Gauss	jag	1
-Monte Carlo	jam	1
+
+馬上到！	msd
+什麼玩意兒!	wtf	2
+What the fuck!	wtf	1
+WTF	wtf	3
+星際我爭霸	starcraft
+HorizonZeroDawn	hzd	4
+地平线：黎明时分	hzd	2
+正在開會，一會給你回復：）	meet
+中州韻輸入法引擎	rime	2
+又双叒叕	yyy
+http://rime.im/	rime	1
+Rime	rime	3
+⌘	cmd Command
+⌃	ctl Control
+⌥	opt Option
+⇧	shift Shift
+⇥	tab Tab
+⇪	caps CapsLock
+⏎	return Return
+␣	space Space
+⌫	del Del
+⎋	esc Escape 
+⏏	eject Eject
+GBK	gbk
+UTF-8	utfba
+SeaTable	hdbn
+AAC	aac
+AAX	aax
+AcFUN	acfun
+Adblock	adblock
+ADSL	adsl
+AFP	afp
+AGPS	agps
+AirTag	airtag
+AIFF	aiff
+AkelPad	akelpad
+AlBayan	albayan
+AMD	amd
+Amphetamine	amphetamine
+Android	android
+Annotable	annotable
+AnyConnect	anyconnect
+AnyDrop	anydrop
+AOL	aol
+APFS	apfs
+API	api
+Arduino	arduino
+Arial	arial
+ARP	arp
+aText	atext
+Athelas	athelas
+ATI	ati
+ATM	atm
+Automator	automator
+Auxo	auxo
+Axure	axure
+Ayuthaya	ayuthaya
+AZW	azw
+Bangla	bangla
+Baskerville	baskerville
+BBC	bbc
+BFR	bfr
+BigCaslon	bigcaslon
+Big Sur	bigsur
+Bitcron	bitcron
+BlackBerry	black berry
+BMP	bmp
+Bodoni	bodoni
+Brackets	brackets
+Bug	bug
+Calcbot	calcbot
+Calibre	calibre
+Calibri	calibri
+CATIA	catia
+CDMA	cdma
+CDN	cdn
+Cochin	cochin
+Cond	cond
+Copperplate	copperplate
+Corsiva	corsiva
+Cortana	cortana
+CPU	cpu
+ChatGPT	chatgpt
+Curio	curio
+Cydia	cydia
+CentOS	centos
+Devanagari	devanagari
+DFU	dfu
+DHCP	dhcp
+Didot	didot
+Diumoo	diumoo
+DNS	dns
+DOC	doc
+DOCX	docx
+Drafts	drafts
+Droplr	droplr
+Due	due
+DVD	dvd
+DVI	dvi
+EarPods	earpods
+Elpass	elpass
+EdgePoint	edge point
+EdgeSwitch	edge switch
+eDRAM	edram
+EDXOR	edxor
+Emacs	emacs
+ePub	epub
+eSATA	esata
+Evernote	evernote
+ExFAT	exfat
+FALSE	false
+FAQ	faq
+Farah	farah
+Farisi	farisi
+FAT	fat
+Flickr	flickr
+Followers	followers
+FTP	ftp
+Futura	futura
+Gestimer	gestimer
+GHz	ghz
+GIF	gif
+GillSans	gillsans
+GIMP	gimp
+GitHub	github
+GLONASS	glonass
+Gmail	gmail
+Gneo	gneo
+Google	google
+GoPro	gopro
+GPS	gps
+GPU	gpu
+Graffle	graffle
+GRE	gre
+GSM	gsm
+GaN	gan
+GUI	gui
+Gujarati	gujarati
+Gurmukhi	gurmukhi
+Hangouts	hangouts
+HDMI	hdmi
+HDR	hdr
+Herculanum	herculanum
+HHKB	hhkb
+HIEF	hief
+HiRise	hirise
+HOSTS	hosts
+Houdini	houdini
+HSPA	hspa
+HTC	htc
+HTML	html
+HTTP	http
+HTTPS	https
+iBeacon	ibeacon
+ICQ	icq
+iExplorer	iexplorer
+iFFmpeg	iffmpeg
+iFixit	ifixit
+IFTTT	ifttt
+iKlear	iklear
+IMAP	imap
+iMessage	imessage
+iMore	imore
+iMovie	imovie
+Inconsolata	inconsolata
+Ingress	ingress
+InsomniaX	insomniax
+IP	ip
+iPack	ipack
+IPN	ipn
+IPS	ips
+iPerf	iperf
+iSight	isight
+iTerm	iterm
+jEdit	jedit
+JOE	joe
+JPEG	jpeg
+Kailasa	kailasa
+Kefa	kefa
+Keka	keka
+Keycard	keycard
+KeyCue	keycue
+Kile	kile
+Kindle	kindle
+KMail	kmail
+Kodi	kodi
+Kokonor	kokonor
+Konqueror	konqueror
+Krita	krita
+Krungthep	krungthep
+Lacie	lacie
+LED	led
+Lexar	lexar
+Linux	linux
+Live Photo	live photo
+LTE	lte
+Luminari	luminari
+Mac	mac
+MacID	macid
+Manico	manico
+MaterialIcons	material icons
+MAYA	maya
+Mbps	mbps
+MediumItalic	mediumit
+Mextures	mextures
+MIPS	mips
+Mishafi	mishafi
+MitM	mitm
+MOBI	mobi
+Moke	moke
+Moom	moom
+Mountie	mountie
+Moves	moves
+MariaDB	maria
+Movist	movist
+Mozilla	mozilla
+MPlayer	mplayer
+MplayerX	mplayer
+Mshtakan	mshtakan
+mStand	mstand
+MTU	mtu
+Multi-Touch	multi touch
+Muna	muna
+Nadeem	nadeem
+Nano	nano
+NAS	nas
+NAT	nat
+NBA	nba
+NEdit	nedit
+Netpadd	netpadd
+NewPeninim	newpeninim
+NFC	nfc
+Niantic	niantic
+Noizio	noizio
+NTFS	ntfs
+Oculus	oculus
+OnyX	onyx
+Oriya	oriya
+OTA	ota
+Pages	pages
+Pastebot	pastebot
+Paw	paw
+PayPal	paypal
+PDF	pdf
+Picatext	picatext
+Pico	pico
+Pikachu	pikachu
+Pixave	pixave
+PNG	png
+POP	pop
+Potion	potion
+PPPoE	pppoe
+PPT	ppt
+PRC	prc
+Prisma	prisma
+Privoxy	privoxy
+Pro	pro
+ProMotion	promotion
+Promotee	promotee
+Proxifier	proxifier
+PSP	psp
+PSPad	pspad
+PuTTY	putty
+PVC	pvc
+Quiver	quiver
+Raanana	raanana
+Radeon Pro	radeon pro
+Rails	rails
+Rdio	rdio
+Reeder	reeder
+Regulex	regulex
+Results	results
+RMB	rmb
+RSS	rss
+RTSP	rtsp
+Sana	sana
+Sathu	sathu
+Savoye	savoye
+Scapple	scapple
+SciTE	scite
+Scrivener	scrivener
+SeaTable	seatable
+SDK	sdk
+Seravek	seravek
+Shree	shree
+Sigil	sigil
+Silom	silom
+Sinhala	sinhala
+Skia	skia
+Skype	skype
+Slicy	slicy
+Smartisan	smartisan
+SMB	smb
+SMTP	smtp
+Snagit	snagit
+SOCKS	socks
+Sonos	sonos
+SPDY	spdy
+Spendee	spendee
+Spotify	spotify
+Spss	spss
+sRGB	srgb
+SSD	ssd
+SSH	ssh
+SSID	ssid
+STM	stm
+Stage Manager	stage manager
+Tag	tag
+Tags	tags
+Tahoma	tahoma
+TCP	tcp
+Things	things
+Trattatello	trattatello
+Trello	trello
+TTL	ttl
+Tumblr	tumblr
+TUN	tun
+Twitter	twitter
+Typora	typora
+UAP	uap
+uBlock	ublock
+UDP	udp
+UMTS	umts
+UniFi	unifi
+Unix	unix
+URL	url
+USB	usb
+VanDyke	vandyke
+Verdana	verdana
+Versions	versions
+Vesper	vesper
+VGA	vga
+Vim	vim
+Visio	visio
+VLC	vlc
+VMware	vmware
+VoLTE	volte
+VPN	vpn
+Waltr	waltr
+Waseem	waseem
+WCDMA	wcdma
+Webdings	webdings
+WEP	wep
+Wiki	wiki
+Winamp	winamp
+Windows	windows
+WINS	wins
+WinSCP	winscp
+WLAN	wlan
+WMP	wmp
+WPA	wpa
+WPS	wps
+WWDC	wwdc
+Xbmc	xbmc
+Xbox	xbox
+Xee	xee
+Xeon	xeon
+XMind	xmind
+xScope	xscope
+yEd	yed
+Yudit	yudit
+Zapfino	zapfino
+ZEALER	zealer
+Zowie	zowie
+After Effects	after effects
+Adobe Illustrator	adobe illustrator
+Adobe Photoshop	adobe photoshop
+Afterlight	after light
+Air Display	airdisplay
+Air Video	airvideo
+AirDroid	airdroid
+AirDrop	airdrop
+airFiber	airfiber
+Airmail	airmail
+airMAX	airmax
+AirPlay	airplay
+AirPods	airpods
+AirPods Pro	airpods
+AirPort	airport
+Al Nile	alnile
+Al Tarikh	altarikh
+Alphabet	alpha bet
+Amazon Cloud Drive	acd
+Amazon Fire	amazon fire
+AmazonBasics	amazon basics
+AMOLED	amoled
+AmpliFi	amplifi
+Andale Mono	andale mono
+Animoji	animoji
+Ansible	ansible
+App Store	appstore
+Apple Developer	apple developer
+Apple Watch	apple watch
+Apple ID	appleid
+Apple Music	apple music
+Apple Store	apple store
+	apple logo
+ATM 機	atm ji
+AutoCAD	auto cad
+Baidu	baidu
+BBEdit	bbedit
+Better Rename	better rename
+BetterTouchTool	btt
+BetterZip	better zip
+Beyond Compare	beyond compare
+Bitcron	bitcron
+Blizzard	bliz
+Bluetooth	blue tooth
+BoldItalic	bold italic
+Bose soundlink	bose soundlink
+Bradley Hand	bradley hand
+Brush Script	brush script
+BundleHunt	bundle hunt
+Bypass	bypass
+Byword	byword
+C++	cpp
+CallMaster	call master
+CCTV	cctv
+Chalkboard	chalk board
+Chrome	chrome
+Chalkduster	chalk duster
+CheatSheet	cheat sheet
+ChemBioDraw	chem bio draw
+Cisco IPSec	cisco ipsec
+CloudApp	cloud app
+CloudMagic	cloud magic
+cnBeta	cnbeta
+CNN	cnn
+Cocoa Touch	cocoa touch
+CodeBox	codebox
+CodeKit	codekit
+CodeRunner	code runner
+CoffeeScript	coffee script
+ColorSchemer	color schemer
+ColorSnapper	color snapper
+Combat Power	combat power
+Comic Sans MS	comic sans ms
+ConTEXT	context
+Control Center	control center
+CorelDRAW	corel draw
+Cornerstone	corner stone
+Courier New	courier new
+Crimson Editor	crimson editor
+CSS	css
+D-Link	dlink
+DailyCost	daily cost
+DaisyDisk	daisy disk
+Dashboard	dash board
+Datagraph	data graph
+DataMeter	data meter
+Day One	dayone
+DDoS	ddos
+Developer Preview	developer preview
+DEVONthink	devon think
+DevOps	devops
+Disk Utility	disk utility
+DiskMaker	disk maker
+DisplayPort	display port
+Diwan Kufi	diwan ku fi
+Diwan Thuluth	diwan thuluth
+DJI	dji
+DNA	dna
+Double Tour	double tour
+Dreammail	dream mail
+Dribbble	dribbble
+Dropbox	dropbox
+Dropshare	dropshare
+Dropzone	dropzone
+DynamicLyrics	dynamic lyrics
+Dyson	dyson
+Easytime	easytime
+EdgeRouter	edge router
+EditPad lite	editpad lite
+EditPlus	edit plus
+Emmet	emmet
+Emoji	emoji
+EuphemiaCAS	euphemia cas
+EV-DO	evdo
+ExFAT	fat
+ExtraLight	extra light
+Face ID	face id
+Facebook	face book
+FaceTime	face time
+Fantastical	fantas
+FAT32	fat
+FIFA	fifa
+FileBrowser	file browser
+FileVault	file vault
+Final Cut Pro	final cut pro
+FineReader	fine reader
+Firefox	fire fox
+FireWire	fire wire
+Flipboard	flip board
+Focus Pixels	focus pixels
+FontAwesome	font awesome
+Foobar2000	foobar
+Force Touch	force touch
+Forecast	fore cast
+ForkLift	fork lift
+Frank DeLoupe	frank deloupe
+Fura Code	fura code
+Fura Mono	fura mono
+Fusion Drive	fusion drive
+Game Center	game center
+GarageBand	garage band
+GBoard	gboard
+Geekbench	geek bench
+Genius Bar	genius bar
+GFW	gfw
+GhostNote	ghost note
+GhostTile	ghost tile
+GitHub Gist	github
+Gitter	gitter
+GNU	gnu
+GoodReader	good reader
+Google Chrome	google
+Google Docs	google docs
+Google Drive	google drive
+Google Maps	google maps
+Google Music	google music
+Google Play	google Play
+Great Ball	great ball
+GSW	gsw
+Handoff	hangoff
+HeavyItalic	heavy italic
+Hermès	hermes
+HEVC	hevc
+Hoefler Text	hoefler text
+HoloLens	holo lens
+Homebrew	home brew
+HomeKit	home kit
+HomePod	home pod
+HTC Vive	htc
+HTML5	html wu
+Hyper Potion	hyper potion
+iA Writer	iaw
+iBooks Author	ibooks
+iBooks	ibooks
+iCloud	icloud
+iCloud Drive	icloud drive
+IDE	ide
+IKEv2	ikev
+ImageOptim	image optim
+IMDb	imdb
+InaiMathi	inai mathi
+Infographics	info graphics
+infoQ	infoq
+Instacast	insta cast
+Instaframe Pro	insta frame
+Instagram	insta gram
+Instashare	insta share
+Intel Core	intel core
+Intellij IDEA	intellij idea
+Internet Explorer	internet explorer
+intoLive	into live
+iOS	ios
+Ion-X	ionx
+iMac	imac
+iMac Pro	imac
+iPad	ipad
+iPad Air	ipad
+iPad mini	ipad
+iPad Pro	ipad
+iPadOS	ipados
+iPhone	iphone
+iPod	ipod
+iPod classic	ipod
+iPod mini	ipod
+iPod nano	ipod
+iPod shuffle	ipod
+iPod touch	ipod
+IPTV	iptv
+IPv4	ipv
+IPv6	ipv
+iStat Menus	istat menus
+iThoughtsX	ithoughts
+iTunes	itunes
+iTunes Connect	itunes connect
+iTunes Match	itunes match
+iWatch	iwatch
+iMazing	imazing
+iWork	iwork
+J2EE	jtee
+Jailbreak	jail break
+JavaScript	java script
+Jay	jay
+JetBrains	jetb
+JS Blocker	jsb
+JSLint	jslint
+Just Mobile	just mobile
+Kaleidoscope	kaleido scope
+Karabiner	kara biner
+Keyboard Maestro	keyboard maestro
+Kindle Format	kindle
+Kindle Oasis	kindle
+Kindle Paperwhite	kindle
+Kindle Unlimited	kindle
+Kindle Voyage	kindle
+Klib	klib
+L2TP	lrtp
+Launch Center Pro	lcp
+Launchpad	launch pad
+LibreOffice	libre office
+LightItalic	light italic
+Lightning	light ning
+LiteBeam	lite beam
+Little Snitch	little snitch
+Live Cams Pro	live cams pro
+LiveReload	live reload
+Local Client	local client
+LockScreen	lock screen
+Lucky Egg	lucky egg
+Lure Module	lure module
+Mac App Store	mas
+Mac mini	macmini
+Mac Pro	macpro
+MacBook Air	macbook
+MacBook Pro	macbook
+macOS	macos
+macOS Ventura	macos
+macOS Monterey	macos
+Magic Keyboard	magic keyboard
+Magic Mouse	magic mouse
+Magic Trackpad	magic trackpad
+Mailbox	mail box
+MailTags	mail tags
+MAMP PRO	mamp pro
+MarkDown	markd
+Mathtype	math type
+MarginNote	margin note
+Metapad	meta pad
+Memoji	memoji
+Micro SD	micro sd
+Micro-SIM	micro sim
+Microsoft	micro soft
+Microsoft Office	microsoft office
+Sans Serif	sans serif
+Virtual PC	virtual pc
+Microsoft Word	microsoft word
+MindNode	mind node
+Mini DisplayPort	mdp
+Mishafi Gold	mishafi gold
+Mission Control	mission control
+Mobile Mouse	mobile mouse
+Money Monitor	money monitor
+MoneyWiz	money wiz
+MTV	mtv
+Multi-Touch	multi touch
+MyriadPro	myriad pro
+myTV SUPER	mytv
+Nano-SIM	nano sim
+NanoBeam	nano beam
+NeoeEdit	neoe edit
+Niantic	niantic
+Nikon	nikon
+Notepad	note pad
+Notepad++	note pad
+NoteTab	note tab
+nPlayer	nplayer
+NuPro	nupro
+nvALT	nvalt
+Nvidia	nvidia
+Objective-C	objc
+Objective-C	objective
+Oculus Rift	oculus
+Oculus VR	oculus
+OfficeSuite	office suite
+Olympics	olymipcs
+OmniFocus	omnif
+OmniGraffle	omnig
+OmniOutliner	omnio
+OmniPlan	omnip
+OpenVPN	open vpn
+Oracle Database	oracle database
+LTPO OLED	oled
+OLED	oled
+OS X	osx
+OS X Server	osx
+Outlook Express	outlook express
+PaintCode	paint code
+Parallels Desktop	pd
+Perl	perl
+Photo Booth	photo booth
+PhotoDesk	photo desk
+Photoshop	photo shop
+Ping Hei	ping hei
+PingWest	ping west
+Pixelmator	pixel mator
+Play by Play	play by play
+PlayStation	play station
+PlistEdit	plist edit
+Plurk	plurk
+Poké Ball	poke ball
+Pokémon	pokemon
+Pokémon GO	pokemon
+Pokétop	poketop
+POWER UP	power up
+PowerPoint	power point
+PragmataPro	pragmata pro
+PRAM	pram
+Proxy Group	proxy group
+Public Beta	public beta
+PyCharm	pycharm
+QuickTime Player	quick time player
+RAM	ram
+Razz Berry	razz berry
+Readability	read ability
+Readkit	read kit
+RealPlayer	real player
+RegularItalic	regular italic
+Remote Client	remote client
+RescueTime	rescue time
+Resilio Sync	resilio sync
+RightFont	right font
+RobotoSlab	roboto slab
+RocketDish	rocket dish
+ROM	rom
+Ruby on Rails	ror
+RubyMine	ruby mine
+Sabrent USB	sabrent usb
+Safari	safari
+Safari View Controller	svc
+SaneDesk	sane desk
+SAP	sap
+Sauce Code Pro	sauce code pro
+Scala	scala
+Scrapbook	scrap book
+ScreenFloat	screen float
+ScreenFlow	screen flow
+Screens VNC	screens vnc
+SecureCRT	secure crt
+Semibold	semi bold
+Shadowsocks	ss
+SignPainter	sign painter
+SIM	sim
+eSIM	esim
+SIM 卡	sim ka
+Simplenote	simple note
+SimpleText	simple text
+Single Tour	single tour
+Siri	siri
+Siri Remote	siri remote
+Sleep Cycle	sleep cycle
+Slide Over	slide over
+Smart Connector	smart connector
+Smart Cover	smart cover
+Smart Keyboard	smart keyboard
+Smartisan OS	smartisan
+Snapselect	snap select
+SnellRoundhand	snell round hand
+Softimage	soft image
+Software Development Kit	sdk
+Solar Walk	solar walk
+SourceTree	source tree
+Sparkbox	spark box
+Specialist	specia list
+Speedtest	speed test
+Splashtop	splash top
+Split View	split view
+Spotlight	spot light
+StackSocial	stack social
+Statistics	stati stics
+Steve Jobs Theater	steve jobs theater
+StockWatch	stock watch
+Sublime Text	sublime text
+Super Potion	super potion
+SuperClarendon	super clarendon
+Surge	surge
+Surge iOS	surge ios
+Surge Mac	surge mac
+Swift Playgrounds	swift playgrounds
+SwipeSelection	swipe selection
+Symbian	symbian
+Symbol	symbol
+Sync for Firefox	sync for firefox
+Synology NAS	synology nas
+Taptic Engine	taptic engine
+TCP/IP	tcp ip
+TeamViewer	team viewer
+TechWeb	tech web
+TED	ted
+TeeVee	teevee
+Telegram	telegram
+Tencent	tencent
+TestFlight	test flight
+Texshop	texshop
+Textastic	text astic
+TextExpander	text expander
+TextGrabber	text grabber
+TextMate	text mate
+TextPad	textpad
+TextWrangler	text wrangler
+Thunderbird	thunder bird
+Thunderbolt	thunder bolt
+Thunderbolt Bridge	thunderbolt bridge
+Thunderbolt Ethernet	thunderbolt ethernet
+Time Capsule	timec
+Time Machine	timem
+TinkerTool	tinker tool
+Touch ID	touch id
+TP-LINK	tplink
+Trebuchet MS	trebuchet ms
+True Tone	true tone
+Tupac	tupac
+Turbo Boost	turbo boost
+Tuxera Disk Manager	tuxera
+tvOS	tvos
+Tweetbot	tweet bot
+Twist Plus	twist plus
+Ubuntu	ubuntu
+UIM 卡	uim
+Ultra Ball	ultra ball
+UltraEdit	ultra edit
+Ultralight	ultra light
+Ultrathin	ultra thin
+UniFi Security Gateway	unifi
+UniFi Switch	unifi
+USB-A	usb a
+USB-C	usb c
+USIM 卡	usim ka
+V2EX	vtex
+Vimeo	vimeo
+VirtualBox	virtual box
+VPS	vps
+Warcraft	warcraft
+Warriors	warriors
+watchOS	watch os
+WeChat	wechat
+Weibo	weibo
+WhatsApp	whats app
+Whispersync	whisper sync
+Wi-Fi	wifi
+WiFi	wifi
+🛜	wifi
+🛜	wuxm
+Wikipedia	wiki
+Window Tidy	window tidy
+Windows Live Mail	windows live
+Windows Live Messenger	windows live messenger
+Wireless Keyboard	wireless keyboard
+Withings Thermo	withings thermo
+WLAN + Cellular	wlan jia
+Wordpress	word press
+WordStar	word star
+Workflow	work flow
+WorkFlowy	work flowy
+WORKGROUP	work group
+World of Warcraft	wow
+World Wide Web	www
+WPA2	wpa
+Writer Pro	writer pro
+X-Ray	xray
+Xbox One	xbox
+Xcode	xcode
+XcodeDigits	xcode digits
+XtraFinder	xtra finder
+Yummy FTP	yummy ftp
+ZeroNet	zero net
+β 粒子	bei ta li zi
+β 射線	bei ta she xian
+γ 刀	gama
+γ 射線	gama
+ID	id
+AB型血	abxk
+A型血	axk
+B型血	bxk
+O型血	oxk
+K歌	kge
+X光	xgl

@@ -25,7 +25,7 @@ patch:
   ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
   #speller/algebra/@next: xform/[[]//
 
-  translator/dictionary: flypy_flypy ## 使用小鹤原版辅助码
+  # translator/dictionary: flypy_yxm ## 使用小鹤原版辅助码
   translator/spelling_hints: 2 ## 0, 关闭单字编码提示
   translator/comment_format:
     - xform/^[^[]+[[]// ## 单字编码提示只显示辅助码部分

@@ -79,7 +79,7 @@ engine:
     - lua_filter@long_word_filter
     - simplifier
     - simplifier@emoji                  # Emoji
-    - simplifier@simplification
+    # - simplifier@simplification
     - uniquifier
 
 speller:
@@ -206,7 +206,7 @@ chinese_phrases:
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
-  initial_quality: -1
+  initial_quality: 1
 
 melt_eng:                           # 英文单词
   enable_encoder: false
@@ -276,12 +276,12 @@ recognizer:
 menu:
   page_size: 4
 
-simplification:
-  option_name: simplification
-  opencc_config: t2s.json
-  tags: abc
-  tips: all
-  excluded_types: [ reverse_lookup ]
+# simplification:
+#   option_name: simplification
+#   opencc_config: t2s.json
+#   tags: abc
+#   tips: all
+#   excluded_types: [ reverse_lookup ]
 
 # Emoji
 emoji:
