@@ -39,7 +39,7 @@ switches:
 
 engine:
   processors:
-    - lua_processor@select_char
+    - lua_processor@select_char_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -62,7 +62,7 @@ engine:
   translators:
     - punct_translator
     - table_translator@custom_phrase
-    - table_translator@chinese_phrases
+    - table_translator@idiom_phrase
     - reverse_lookup_translator
     - script_translator
     - table_translator@emojis
@@ -75,11 +75,12 @@ engine:
     - lua_translator@tex_translator
   filters:
     - lua_filter@charset_filter
-    - lua_filter@autocaps_filter
-    - lua_filter@long_word_filter
+    - lua_filter@engword_autocaps_filter
+    - lua_filter@long_word_up_filter
+    - lua_filter@top_word_autocommit_filter
     - simplifier
     - simplifier@emoji                  # Emoji
-    - simplifier@simplification
+    # - simplifier@simplification
     - uniquifier
 
 speller:
@@ -200,9 +201,9 @@ custom_phrase:
   enable_sentence: false
   initial_quality: 2
 
-chinese_phrases:
+idiom_phrase:
   dictionary: ""
-  user_dict: chinese_phrases
+  user_dict: idiom_phrase
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
@@ -266,22 +267,22 @@ recognizer:
     uppercase: "^[A-Z]+$"
     punct: '^/[015-9A-Za-z]+$' ## use "/er" instead of "/2"
     ## associate schemes:
-    reverse_lookup: "^oq[a-z]*'?$"
-    emojis: "^oe[a-z]*'?$" # "^oe.*$" 
-    soft_capslock: "^od.*$"
-    dbpy_flypy_help: "^oh.*$"
-    easy_en_simp: "^oz[a-z]*"
+    reverse_lookup: "^Oq[a-z]*'?$"
+    emojis: "^Oe[a-z]*'?$" # "^oe.*$" 
+    soft_capslock: "^Od.*$"
+    dbpy_flypy_help: "^Oh.*$"
+    easy_en_simp: "^Oz[a-z]*"
     tex_translator: "^/tl(.*)$"
 
 menu:
   page_size: 4
 
-simplification:
-  option_name: simplification
-  opencc_config: t2s.json
-  tags: abc
-  tips: all
-  excluded_types: [ reverse_lookup ]
+# simplification:
+#   option_name: simplification
+#   opencc_config: t2s.json
+#   tags: abc
+#   tips: all
+#   excluded_types: [ reverse_lookup ]
 
 # Emoji
 emoji:
@@ -293,14 +294,14 @@ emojis:
   tag: emojis
   dictionary: emoji
   enable_completion: true
-  prefix: "oe"
+  prefix: "Oe"
   suffix: "'"
   tips: " Emoji"
 soft_capslock:
   dictionary: ""
   user_dict: uppercase
   tag: soft_capslock
-  prefix: "od"
+  prefix: "Od"
   tips: "临时大写"
   db_class: stabledb
   enable_completion: false
@@ -310,7 +311,7 @@ dbpy_flypy_help:
   dictionary: ""
   user_dict: dbpy_flypy_help
   tag: dbpy_flypy_help
-  prefix: "oh"
+  prefix: "Oh"
   tips: "小鹤双拼查键"
   db_class: stabledb
   enable_completion: true
@@ -322,7 +323,7 @@ easy_en_simp:
   enable_completion: true
   enable_sentence: false
   enable_user_dict: false
-  prefix: "oz"
+  prefix: "Oz"
   # suffix: "'"
   tips: "英文单词(可去元音)"
   spelling_hints: 9
@@ -331,7 +332,7 @@ easy_en_simp:
 reverse_lookup:
   dictionary: chaizi_flypy # stroke
   enable_completion: true
-  prefix: "oq"
+  prefix: "Oq"
   suffix: "'"
   tips: 〔部件组字〕 # 〔筆畫〕
   preedit_format:
