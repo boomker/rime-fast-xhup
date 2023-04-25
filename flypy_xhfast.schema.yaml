@@ -39,7 +39,7 @@ switches:
 
 engine:
   processors:
-    - lua_processor@select_char
+    - lua_processor@select_char_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -75,8 +75,9 @@ engine:
     - lua_translator@tex_translator
   filters:
     - lua_filter@charset_filter
-    - lua_filter@autocaps_filter
-    - lua_filter@long_word_filter
+    - lua_filter@engword_autocaps_filter
+    - lua_filter@long_word_up_filter
+    - lua_filter@top_word_autocommit_filter
     - simplifier
     - simplifier@emoji                  # Emoji
     # - simplifier@simplification
