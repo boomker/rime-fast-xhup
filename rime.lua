@@ -1,22 +1,5 @@
 ---@diagnostic disable: lowercase-global
 
--- 增加 KeySequence(string)
--- 1
---    local ks= KeySequence()
---    ks:parse("abc")
--- 2
---    local ks= KeySequence("abc")
---
-local _KeySequence=KeySequence
-KeySequence = function(str)
-  local ks = _KeySequence()
-  if type(str)== "string" then
-    ks:parse(str)
-  end
-  return ks
-end
-
-
 --[[
 librime-lua 样例
 
@@ -57,19 +40,24 @@ librime-lua 样例
 
 -- I. translators:
 
--- date_translator: 将 `date` 翻译为当前日期
--- 详见 `lua/date.lua`:
-date_translator = require("date")
-
--- time_translator: 将 `time` 翻译为当前时间
--- 详见 `lua/time.lua`
-time_translator = require("time")
+-- datetime_translator: 将 `date`, `rq` ,`week`, `oxq`, `time`, `osj`
+-- 翻译为当前日期, 星期, 时间
+-- date_translator = require("date")
+-- time_translator = require("time")
+date_time = require("date_time")
+datetime_translator = date_time.translator.func
 
 -- number_translator: 将 `/` + 阿拉伯数字 翻译为大小写汉字
 -- 详见 `lua/number.lua`
 number_translator = require("number")
 
+tex_translator = require("tex_translator")
 
+-- user_dict = require("user_dict")
+-- user_dict_translator = user_dict.translator
+
+
+-- ---------------------------------------------------------------
 -- II. filters:
 
 -- charset_filter: 滤除含 CJK 扩展汉字的候选项
@@ -79,31 +67,37 @@ local charset = require("charset")
 charset_filter = charset.filter
 charset_comment_filter = charset.comment_filter
 
-select_character = require("select_character")
-
 -- single_char_filter: 候选项重排序，使单字优先
 -- 详见 `lua/single_char.lua`
-single_char_filter = require("single_char")
+-- single_char_filter = require("single_char")
 
-local long_word_firest = require("long_word")
-long_word_filter = long_word_firest.longwordfilter
+-- 英文单词支持首字母大写, 全大写等格式
+engword_autocaps = require("word_autocaps")
+engword_autocaps_filter = engword_autocaps.filter
 
-local auto_caps_switch = require("autocap_filter")
-autocaps_filter = auto_caps_switch.autocapfilter
+-- 提升1 个中文长词的位置到第二候选, 加入了提升词的词频优化
+-- 除此之外, 对纯英文单词的长词降频, 对中英混合长词提升1 个
+long_word_up = require("long_word_up")
+long_word_up_filter = long_word_up.filter
+
+--  单字和二字词的 全码顶屏(自动上屏)
+top_word_autocommit = require("top_word_autocommit")
+top_word_autocommit_filter = top_word_autocommit.filter
 
 -- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 -- 详见 `lua/reverse.lua`
 reverse_lookup_filter = require("reverse")
 
 --use wildcard to search code
-expand_translator = require("expand_translator")
+-- expand_translator = require("expand_translator")
 
 
+-- ---------------------------------------------------------------
 -- III. processors:
 
-local ecdict = require("ecdict")
-ecdict_processor = ecdict.processor
-ecdict_filter = ecdict.filter
+-- 以词定字, 附加fix在有引导符`[`时, 不能数字键上屏
+select_char = require("select_char")
+select_char_processor = select_char.processor
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 `lua/switch.lua`
