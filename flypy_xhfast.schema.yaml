@@ -13,7 +13,7 @@ schema:
   dependencies:
     - stroke
     - emoji
-    - flypy_yxm     # 中文词库 - 现代汉语词典 & 清华开源词库
+    # - flypy_yxm     # 中文词库 - 现代汉语词典 & 清华开源词库
     - melt_eng      # 英文单词&词组 - 简明英汉词典（增强版）
 
 switches:
@@ -40,6 +40,7 @@ switches:
 engine:
   processors:
     - lua_processor@select_char_processor
+    - lua_processor@word_turndown_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -70,7 +71,7 @@ engine:
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp     # 添加注释后：停用单词输入
     - table_translator@melt_eng
-    - table_translator@flypy_yxm
+    # - table_translator@flypy_yxm
     - lua_translator@datetime_translator
     - lua_translator@tex_translator
   filters:
@@ -78,6 +79,7 @@ engine:
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
     - lua_filter@top_word_autocommit_filter
+    - lua_filter@word_turndown_filter
     - simplifier
     - simplifier@emoji                  # Emoji
     # - simplifier@simplification
@@ -117,7 +119,7 @@ speller:
     - derive/^([td])p/dl/                              # [td]p --> dl
     - derive/^p([okifuhjbnm])/e$1/                     # pk --> ek
     - derive/^pb/ek/
-    - derive/^pc/ec/                                   # pc --> ec
+    - derive/^pc/ev/                                   # pc --> ev
     - derive/^pd/ef/                                   # pd --> ef
     - derive/^pg/ey/                                   # pg --> ey
     - derive/^pw/es/                                   # pw --> es
@@ -244,14 +246,14 @@ key_binder:
   import_preset: default
   select_first_character: 'comma'
   select_last_character: 'bracketright'
+  turn_down_cand: "Control+j"
   bindings:
-    #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
+    #- { when: composing, accept: Tab, send: '[' }        ## 取消注释后: tab引导辅助码
+    - { when: composing, accept: bracketleft, send: "[" } ## `[`引导辅助码
+    - { when: has_menu,  accept: semicolon, send: 2 }
+    - { when: has_menu,  accept: apostrophe, send: 3 }    ## 单引号用于第3候选
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
-    - { when: has_menu,  accept: semicolon, send: 2 }
-    - { when: has_menu,  accept: apostrophe, send: 3 } ## 单引号用于第3候选
-    # - { when: has_menu,  accept: slash,     send: 3 }
-    - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
     - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
     ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
