@@ -1157,7 +1157,6 @@ single_dict = {
     ord('陌'): 'mò',
     ord('孤'): 'gū',
     ord('陕'): 'shǎn',
-    ord('降'): 'jiàng',
     ord('函'): 'hán',
     ord('限'): 'xiàn',
     ord('妹'): 'mèi',

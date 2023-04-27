@@ -45,7 +45,7 @@ librime-lua 样例
 -- date_translator = require("date")
 -- time_translator = require("time")
 date_time = require("date_time")
-datetime_translator = date_time.translator.func
+datetime_translator = date_time.translator
 
 -- number_translator: 将 `/` + 阿拉伯数字 翻译为大小写汉字
 -- 详见 `lua/number.lua`
@@ -75,7 +75,7 @@ charset_comment_filter = charset.comment_filter
 engword_autocaps = require("word_autocaps")
 engword_autocaps_filter = engword_autocaps.filter
 
--- 提升1 个中文长词的位置到第二候选, 加入了提升词的词频优化
+-- 提升1 个中文长词的位置到第二候选, 加入了对提升词的词频计算
 -- 除此之外, 对纯英文单词的长词降频, 对中英混合长词提升1 个
 long_word_up = require("long_word_up")
 long_word_up_filter = long_word_up.filter
@@ -91,6 +91,8 @@ reverse_lookup_filter = require("reverse")
 --use wildcard to search code
 -- expand_translator = require("expand_translator")
 
+word_turndown = require('word_turndown')
+word_turndown_filter = word_turndown.filter
 
 -- ---------------------------------------------------------------
 -- III. processors:
@@ -102,6 +104,10 @@ select_char_processor = select_char.processor
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 `lua/switch.lua`
 switch_processor = require("switch")
+
+-- 
+word_turndown_processor = word_turndown.processor
+
 
 -- 由lua 導入 engine/下的組件 processor segmentor translator filters
 -- 生成一個processor 於自己 schema speller 取得 config

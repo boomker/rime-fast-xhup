@@ -124,35 +124,37 @@ def pinyin_to_flypy(quanpin: list[str]):
 
     return [to_flypy(x) if x.isalpha() else x for x in quanpin]
 
+
 def converte_to_pinyin(hanzi: str):
     pinyin_list = pinyin(hanzi, heteronym=True)
     sl = [" ".join(i) for i in itertools.product(*pinyin_list)]
     if len(sl) > 3:
-        return {'lp': lazy_pinyin(hanzi)}
+        return {"lp": lazy_pinyin(hanzi)}
     npyl = []
     for j in sl:
         npy = to_normal(j)
         npyl.append(npy)
     spyl = list(set(npyl))
-    return {'duoyinzi': spyl}
+    return {"duoyinzi": spyl}
+
 
 def gen_dict_record(pinyin_list, contents_perline, *args):
     if not pinyin_list:
         return
     print("pinyin_list: ", pinyin_list)
-    if args[0] == "shuangpin": # 转换全拼为小鹤双拼
+    if args[0] == "shuangpin":  # 转换全拼为小鹤双拼
         flypy_list = pinyin_to_flypy(pinyin_list)
     else:
-        flypy_list = pinyin_list # 首字母简写
+        flypy_list = pinyin_list  # 首字母简写
 
-    if args[2]: # 转换对应汉字的形码
+    if args[2]:  # 转换对应汉字的形码
         words_xm_list = [xhxm_dict.get(m, "[") for m in contents_perline[0].strip()]
         xhup_list = ["[".join([e, x]) for e, x in zip(flypy_list, words_xm_list)]
         xhup_str = " ".join(xhup_list)
     else:
         xhup_str = " ".join(flypy_list) if args[0] != "jianpin" else "".join(flypy_list)
 
-    if args[-1] == "yaml" or args[3] >= 1: # 当指定文件为yaml 或词频大于1
+    if args[-1] == "yaml" or args[3] >= 1:  # 当指定文件为yaml 或词频大于1
         word_frequency = (
             f"\t{contents_perline[-1]}"
             if contents_perline[-1].isnumeric()
@@ -163,13 +165,14 @@ def gen_dict_record(pinyin_list, contents_perline, *args):
 
     return f"{contents_perline[0].strip()}\t{xhup_str}{word_frequency}\n"
 
+
 def parser_line_content(line_content, *args):
     contents_perline = line_content.strip().split()
-    if args[0] and args[1]: # 汉字转换对应风格的拼音
+    if args[0] and args[1]:  # 汉字转换对应风格的拼音
         if args[0] != "jianpin":
             _pyd = converte_to_pinyin(contents_perline[0])
 
-            if list(_pyd.keys())[0] == 'lp':
+            if list(_pyd.keys())[0] == "lp":
                 _pys = list(_pyd.values())[0]
                 pinyin_list = [i for i in _pys if i.isascii() and i.isalpha()]
                 yield gen_dict_record(pinyin_list, contents_perline, *args)
@@ -187,7 +190,7 @@ def parser_line_content(line_content, *args):
         pinyin_list = [
             i
             for i in contents_perline
-            if (i.isascii() and i.isalpha()) or i.find('[') == 2
+            if (i.isascii() and i.isalpha()) or i.find("[") == 2
         ]
         yield gen_dict_record(pinyin_list, contents_perline, *args)
 
@@ -288,7 +291,13 @@ def get_cli_args():
         type=open,
     )
     parser.add_argument(
-        "--word_frequency", "-f", default=1, help=("sepc word_frequency"), type=int
+        "--word_frequency",
+        "-f",
+        default=1,
+        help=("sepc word_frequency"),
+        type=int,
+        # const="1",
+        # action="store_const",
     )
     parser.add_argument(
         "--mode",
@@ -302,7 +311,7 @@ def get_cli_args():
     outfile_group.add_argument(
         "--type",
         "-t",
-        help=("spec generate filetype for output , yaml or text."),
+        help=("spec generate filetype for output , yaml or txt."),
         dest="outfile_type",
         default="yaml",
         const="txt",
