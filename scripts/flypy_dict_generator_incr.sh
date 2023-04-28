@@ -36,8 +36,8 @@ do
     git -C "${iceRepoPath}" diff ${prevCommit}..HEAD -- "${src_file}" |\
         /usr/local/bin/rg "^\+" |\rg -v "\+#|\+v|\+\+" |tr -d "+" > "${f}_add.diff"
 
-    if [[ $(cat "${f}_add.diff" |wc -l |tr -d ' ') != 0 ]]; then
-        [[ "$f" == "emoji" ]] && break && echo "skip emoji..."
+    [[ "$f" == "emoji" ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >> "${tgt_file}"
+    if [[ $(cat "${f}_add.diff" |wc -l |tr -d ' ') != 0 ]] && $f != "emoji"; then
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
             python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
         else
@@ -47,11 +47,12 @@ do
 
     [[ "${f}" == "base" ]] && {
         rg '^..\t.*'  "${f}_add.diff" > "${f}_twords.txt"
-        python3.11 "${pyScrPath}" -i "${f}_twords.txt" -c -x -m -o "${repoRoot}/cn_dicts/flypy_twords.dict.yaml"
+        python3.11 "${pyScrPath}" -i "${f}_twords.txt" -x -t -o "${repoRoot}/flypy_twords.txt"
+        # twords_file="${repoRoot}/cn_dicts/flypy_twords_fzm.dict.yaml"
+        # awk -F'[ \t[]+' '{x=substr($3,1,1);y=substr($5,1,1);print $1"\t",$2,$4"["y x"\t",$NF}' flypy_twords.txt >> "${twords_file}"
         rm "${f}_twords.txt"
     }
 
-    [[ "$f" == "emoji" ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >> "${tgt_file}"
     rm "${f}_add.diff"
 done
 

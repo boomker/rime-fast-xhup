@@ -91,8 +91,8 @@ reverse_lookup_filter = require("reverse")
 --use wildcard to search code
 -- expand_translator = require("expand_translator")
 
-word_turndown = require('word_turndown')
-word_turndown_filter = word_turndown.filter
+cold_word_drop = require('cold_word_drop')
+cold_word_drop_filter = cold_word_drop.filter
 
 -- ---------------------------------------------------------------
 -- III. processors:
@@ -106,7 +106,7 @@ select_char_processor = select_char.processor
 switch_processor = require("switch")
 
 -- 
-word_turndown_processor = word_turndown.processor
+cold_word_drop_processor = cold_word_drop.processor
 
 
 -- 由lua 導入 engine/下的組件 processor segmentor translator filters
