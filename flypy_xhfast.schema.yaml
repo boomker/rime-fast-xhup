@@ -13,7 +13,7 @@ schema:
   dependencies:
     - stroke
     - emoji
-    # - flypy_yxm     # 中文词库 - 现代汉语词典 & 清华开源词库
+    - flypy_fzm     # 中文词库 - 现代汉语词典 & 清华开源词库
     - melt_eng      # 英文单词&词组 - 简明英汉词典（增强版）
 
 switches:
@@ -40,7 +40,7 @@ switches:
 engine:
   processors:
     - lua_processor@select_char_processor
-    - lua_processor@word_turndown_processor
+    - lua_processor@cold_word_drop_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -62,24 +62,24 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
-    - table_translator@custom_phrase
-    - table_translator@idiom_phrase
     - reverse_lookup_translator
     - script_translator
+    - table_translator@flypy_fzm
+    - table_translator@custom_phrase
+    - table_translator@idiom_phrase
     - table_translator@emojis
     - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp     # 添加注释后：停用单词输入
     - table_translator@melt_eng
-    # - table_translator@flypy_yxm
-    - lua_translator@datetime_translator
     - lua_translator@tex_translator
+    - lua_translator@datetime_translator
   filters:
     - lua_filter@charset_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
     - lua_filter@top_word_autocommit_filter
-    - lua_filter@word_turndown_filter
+    - lua_filter@cold_word_drop_filter
     - simplifier
     - simplifier@emoji                  # Emoji
     # - simplifier@simplification
@@ -124,7 +124,7 @@ speller:
     - derive/^pg/ey/                                   # pg --> ey
     - derive/^pw/es/                                   # pw --> es
     - derive/^([jk])y/$1w/                             # [jk]y --> [jk]w
-    - derive/^y([ik])/w$1/                             # y[ik] --> w[ik]
+    - derive/^y([ikb])/w$1/                            # y[ik] --> w[ik]
     - derive/^yj/wn/
     - derive/^tk/rk/
     - derive/^t([wy])/dw/                              # t[wy] --> dw
@@ -209,7 +209,7 @@ idiom_phrase:
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
-  initial_quality: -1
+  initial_quality: 1
 
 melt_eng:                           # 英文单词
   enable_encoder: false
@@ -220,13 +220,14 @@ melt_eng:                           # 英文单词
   dictionary: melt_eng
   initial_quality: 1.1
 
-flypy_yxm:                     # 小鹤音形-短语，支持自动补全, 词库源自现代汉语词典
+flypy_fzm:                     # 小鹤音形-短语，支持自动补全, 词库源自现代汉语词典
   enable_encoder: false
   encode_commit_history: false
   enable_sentence: false
-  enable_user_dict: true
-  dictionary: flypy_phrase_yxm
-  initial_quality: 1
+  enable_user_dict: false
+  enable_completion: true
+  dictionary: flypy_phrase_fzm
+  initial_quality: 1.3
 
 punctuator:
   import_preset: symbols
@@ -307,7 +308,7 @@ soft_capslock:
   tips: "临时大写"
   db_class: stabledb
   enable_completion: false
-  enable_sentence: true
+  enable_sentence: false
   initial_quality: 1
 dbpy_flypy_help:
   dictionary: ""
