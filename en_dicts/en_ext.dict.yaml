@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-04-27"
+version: "2023-04-28"
 sort: by_weight
 ...
 # 一些杂项
@@ -1026,7 +1026,6 @@ Really Simple Syndication	RSS
 gosh	gosh
 CocoaPods	CocoaPods
 Zsh	Zsh
-Oh My Zsh	OhMyZsh
 deploy	deploy
 ProxyChains	ProxyChains
 AdSense	AdSense
@@ -1819,7 +1818,6 @@ MitM	MitM
 man-in-the-middle	MitM
 ToDesk	ToDesk
 PreSearch	PreSearch
-Odysee	Odysee
 ISBN	ISBN
 International Standard Book Number	ISBN
 International Standard Book Number	InternationalStandardBookNumber
@@ -2030,7 +2028,6 @@ Model-View-ViewModel	MVVM
 NGO	NGO
 Non-Governmental Organization	NGO
 OMG	OMG
-Oh My God	OMG
 RFT	RFT
 Rich Text Format	RFT
 SVG	SVG
@@ -2175,3 +2172,6 @@ Sumatra PDF	SumatraPDF
 sideload	sideload
 sideloading	sideloading
 misdirection	misdirection
+librime	librime
+JRPG	JRPG
+Japanese Role-Playing Game	JRPG
