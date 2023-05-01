@@ -56,7 +56,6 @@ tex_translator = require("tex_translator")
 -- user_dict = require("user_dict")
 -- user_dict_translator = user_dict.translator
 
-
 -- ---------------------------------------------------------------
 -- II. filters:
 
@@ -64,7 +63,7 @@ tex_translator = require("tex_translator")
 -- charset_comment_filter: 为候选项加上其所属字符集的注释
 -- 详见 `lua/charset.lua`
 local charset = require("charset")
-charset_filter = charset.filter
+charset_withEmoji_filter = charset.filter
 charset_comment_filter = charset.comment_filter
 
 -- single_char_filter: 候选项重排序，使单字优先

@@ -3,7 +3,6 @@
 -- local puts = require("tools/debugtool")
 -- local opencc_emoji = Opencc('emoji.json')
 -- local arr = opencc_emoji:convert_word(cand.text) or {}
--- require("tools/metatable")
 
 local function long_word_up(input, env)
 	local cands = {}
@@ -14,7 +13,6 @@ local function long_word_up(input, env)
     local done = 0
 	-- 记录筛选了多少个汉语词条(只提升1个词的权重)
 	local ocn_count = 0
-	local cnen_count = 0
 	local preedit_code = env.engine.context:get_commit_text()
 	for cand in input:iter() do
 		local cand_per_length = utf8.len(cand.text)
@@ -48,15 +46,6 @@ local function long_word_up(input, env)
 				yield(cand)
 				ocn_count = ocn_count + 1
                 done = done + 1
-		elseif
-			(cand_per_length > first_word_length) and (cnen_count < count)
-			and (string.find(cand.text, "%w%u+"))
-			and (string.find(cand.text, "[^x00-xff]+"))
-			and string.len(preedit_code) > 3
-		then
-            yield(cand)
-            cnen_count = cnen_count + 1
-            done = done + 1
 		else
 			table.insert(cands, cand)
 		end
