@@ -1,7 +1,6 @@
 require('tools/string')
 require("tools/metatable")
 -- local puts = require("tools/debugtool")
--- local List = require('tools/list')
 local drop_list = require("drop_words")
 local hide_list = require("hide_words")
 local turndown_freq_list = require("turndown_freq_words")
@@ -55,7 +54,6 @@ local function append_word_to_droplist(ctx, action_type, reversedb)
     local input_code_str = table.concat(input_code_tbl, '')
     if string.match(ccand_code, input_code) or match_result then
         turndown_freq_list[word] = { input_code_str }
-        -- puts(INFO, "------", ccand_code, input_code)
         return 'turndown_freq'
     end
     if not hide_list[word] then
@@ -113,19 +111,29 @@ function cold_word_drop.filter(input, env)
     local preedit_code = context.input
     local idx = 3
     local i = 1
+    local cands = {}
     for cand in input:iter() do
-        if ( i < idx)  then
+        if (i <= idx) then
+            local tfl = turndown_freq_list[cand.text] or nil
             if not
-                (   turndown_freq_list[cand.text] or
+                ((tfl and table.find_index(tfl, preedit_code)) or
                     table.find_index(drop_list, cand.text) or
                     (hide_list[cand.text] and table.find_index(hide_list[cand.text], preedit_code))
                 )
             then
                 i = i + 1
-                -- puts(INFO, '||||||||', preedit_code, cand.text )
                 yield(cand)
             end
-        elseif not
+			table.insert(cands, cand)
+        else
+			table.insert(cands, cand)
+        end
+        if (#cands > 50) then
+            break
+        end
+    end
+	for _, cand in ipairs(cands) do
+        if not
             (
                 table.find_index(drop_list, cand.text) or
                 (hide_list[cand.text] and table.find_index(hide_list[cand.text], preedit_code))
@@ -133,9 +141,8 @@ function cold_word_drop.filter(input, env)
         then
             yield(cand)
         end
-    end
+	end
 end
-
 
 return {
     processor = cold_word_drop.processor,
