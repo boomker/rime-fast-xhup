@@ -59,20 +59,34 @@ local function select_char(key, env)
     local first_key = config:get_string("key_binder/select_first_character")
     local last_key = config:get_string("key_binder/select_last_character")
     local cand_kyes = {
-        "space",
-        "semicolon",
-        "apostrophe",
         ["space"] = 0,
         ["semicolon"] = 1,
-        ["apostrophe"] = 2
+        ["apostrophe"] = 2,
+        ["1"] = 0,
+        ["2"] = 1,
+        ["3"] = 2,
+        ["4"] = 3
     }
 
     if (preedit_code_length > 1 and key:repr() == "bracketleft") then
-        _G['Gcommit_code'] = reversedb:lookup(commit_text)
-        -- puts(INFO, "-----=====", _G['Gcommit_code'])
+        local composition = context.composition
+        local cand_text1, cand_text2, cand_text3 = nil, nil, nil
+        if (not composition:empty()) then
+            local segment = composition:back()
+            local cand_1 = segment:get_candidate_at(1)
+            local cand_2 = segment:get_candidate_at(2)
+            local cand_3 = segment:get_candidate_at(3)
+            cand_text1 = cand_1.text
+            cand_text2 = cand_2.text
+            cand_text3 = cand_3.text
+        end
+        _G['Gcommit_code_0'] = reversedb:lookup(commit_text)
+        _G['Gcommit_code_1'] = reversedb:lookup(cand_text1)
+        _G['Gcommit_code_2'] = reversedb:lookup(cand_text2)
+        _G['Gcommit_code_3'] = reversedb:lookup(cand_text3)
     end
 
-    if table.find(cand_kyes, key:repr()) and string.find(input_code, "^[%w]+%[$") then
+    if (cand_kyes[key:repr()]) and string.find(input_code, "^[%w]+%[$") then
         context:select(cand_kyes[key:repr()])
         local cand_text = context:get_commit_text()
         engine:commit_text(utf8_sub(cand_text, 1, -2))
@@ -81,12 +95,15 @@ local function select_char(key, env)
         return 1 -- kAccepted
     end
 
-    if table.find(cand_kyes, key:repr()) and string.find(input_code, "^[%w]+%[%l+") then
+    if (cand_kyes[key:repr()]) and string.find(input_code, "^[%w]+%[%l+") then
         local pos = context.caret_pos
         if pos == 3 then
-            local char_code = string.sub(Gcommit_code, 4, 4)
-            -- puts(INFO, "||||||||||", _G['Gcommit_code'], char_code)
+            local selected_cand = string.format("Gcommit_code_%s", cand_kyes[key:repr()])
+            local char_code = string.sub(_G[selected_cand], 4, 4)
+            -- puts(INFO, "__________", char_code, selected_cand, _G[selected_cand])
             context:push_input(char_code)
+            context:confirm_current_selection()
+            return 1
         else
             context:confirm_previous_selection()
         end

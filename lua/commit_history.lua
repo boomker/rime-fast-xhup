@@ -1,48 +1,33 @@
-#! /usr/bin/env lua
---
--- commit_history.lua
--- Copyright (C) 2022 Shewer Lu <shewer@gmail.com>
---
--- Distributed under terms of the MIT license.
---
--- lua_translator@commit_history@history
--- 
--- <schema_id>.custom.yaml
--- patch:
---    engine/translators/+:
---      - lua_translator@commit_history@hintory
---    history:  #  h
---      tag: abc
---      size: 10
---      input: z
---      initial_quality: 1000
---
+-- local puts = require("tools/debugtool")
 
-local M = {}
-function M.init(env)
-  env.tag = 'abc'
-  env.size = 9;
-  env.input = 'z';
-  env.quality = 1000;
-  env.history_translatior = Component.Translator(env.engine,"translator", "history_translator")
+-- ============================================================= translator
+
+local translator = {}
+
+local history_list = {}
+
+function translator.init(env)
+    env.notifier_commit_history = env.engine.context.commit_notifier:connect(function (ctx)
+        local cand = ctx:get_selected_candidate()
+        table.insert(history_list, cand)
+    end)
 end
 
-function M.fini(env)
+function translator.fini(env)
+    env.notifier_commit_history:disconnect()
 end
 
-function M.func(inp,seg,env)
-  if not seg:has_tag(env.tag) or not  inp:match("^".. env.input .. "$") then
-    return
-  end
-  local context=env.engine.context
-  local count = env.size
-  --  期望
-  for it, h_record in context.commit_history:iter() do 
-    yield( Candidate(h_record.type, seg.start, seg._end, hrecord.text, "history") )
-    count = count -1
-    if count <=0 then break end
-  end
-
+function translator.func(input, seg, env)
+    if (seg:has_tag("history") or input == "hisz") then
+        -- for _, v in ipairs(history_list) do
+        for i = #history_list , 1 , -1 do
+            local cand = Candidate("history", seg.start, seg._end, history_list[i].text, "history")
+            local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, cand.comment)
+            yield(cand_uniq)
+        end
+    end
 end
 
-return M
+return {
+    translator = { init = translator.init, func = translator.func, fini = translator.fini }
+}
