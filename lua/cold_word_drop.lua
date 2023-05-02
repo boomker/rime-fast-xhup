@@ -1,12 +1,14 @@
 require('tools/string')
 require("tools/metatable")
-local puts = require("tools/debugtool")
+-- local puts = require("tools/debugtool")
 -- local List = require('tools/list')
 local drop_list = require("drop_words")
 local hide_list = require("hide_words")
+local turndown_freq_list = require("turndown_freq_words")
 local tbls = {
     ['drop_list'] = drop_list,
     ['hide_list'] = hide_list,
+    ['turndown_freq_list'] = turndown_freq_list
 }
 local cold_word_drop = {}
 
@@ -39,7 +41,7 @@ local function check_encode_matched(cand_code, word, input_code_tbl, reversedb)
     return true
 end
 
-local function append_word_to_droplist(ctx, action_type)
+local function append_word_to_droplist(ctx, action_type, reversedb)
     local word = ctx.word
     local input_code = ctx.code
     if action_type == 'drop' then
@@ -47,14 +49,15 @@ local function append_word_to_droplist(ctx, action_type)
         return true
     end
     local input_code_tbl = string.split(input_code, " ")
-    -- local cand_code = reversedb:lookup(word) or "" -- 待自动上屏的候选项编码
-    -- local match_result = check_encode_matched(cand_code, word, input_code_tbl, reversebb)
-    -- local ccand_code = string.gsub(cand_code, '%[%l%l', '')
-    -- if string.match(ccand_code, input_code) or match_result then
-    --     puts(INFO, "------", ccand_code, input_code)
-    --     return false
-    -- end
+    local cand_code = reversedb:lookup(word) or "" -- 待自动上屏的候选项编码
+    local match_result = check_encode_matched(cand_code, word, input_code_tbl, reversedb)
+    local ccand_code = string.gsub(cand_code, '%[%l%l', '')
     local input_code_str = table.concat(input_code_tbl, '')
+    if string.match(ccand_code, input_code) or match_result then
+        turndown_freq_list[word] = { input_code_str }
+        -- puts(INFO, "------", ccand_code, input_code)
+        return 'turndown_freq'
+    end
     if not hide_list[word] then
         hide_list[word] = { input_code_str }
         return true
@@ -82,8 +85,8 @@ function cold_word_drop.processor(key, env)
         [drop_cand_key] = 'drop'
     }
 
-    -- local schema_id         = config:get_string("schema/schema_id")
-    -- local reversedb         = ReverseLookup(schema_id)
+    local schema_id         = config:get_string("schema/schema_id")
+    local reversedb         = ReverseLookup(schema_id)
     if key:repr() == turndown_cand_key or key:repr() == drop_cand_key then
         local cand = context:get_selected_candidate()
         local action_type = action_map[key:repr()]
@@ -91,12 +94,13 @@ function cold_word_drop.processor(key, env)
             ['word'] = cand.text,
             ['code'] = preedit_code
         }
-        local res = append_word_to_droplist(ctx_map, action_type)
-        -- local res = append_word_to_droplist(ctx_map, action_type, reversedb)
+        local res = append_word_to_droplist(ctx_map, action_type, reversedb)
 
         context:refresh_non_confirmed_composition()
-        if res then
+        if type(res) == "boolean" then
             write_word_to_file(action_type)
+        else
+            write_word_to_file(res)
         end
         return 1 -- processor_return_kNoop
     end
@@ -104,9 +108,24 @@ function cold_word_drop.processor(key, env)
 end
 
 function cold_word_drop.filter(input, env)
-    local preedit_code = env.engine.context:get_commit_text()
+    -- local preedit_code = env.engine.context:get_commit_text()
+    local context = env.engine.context
+    local preedit_code = context.input
+    local idx = 3
+    local i = 1
     for cand in input:iter() do
-        if not
+        if ( i < idx)  then
+            if not
+                (   turndown_freq_list[cand.text] or
+                    table.find_index(drop_list, cand.text) or
+                    (hide_list[cand.text] and table.find_index(hide_list[cand.text], preedit_code))
+                )
+            then
+                i = i + 1
+                -- puts(INFO, '||||||||', preedit_code, cand.text )
+                yield(cand)
+            end
+        elseif not
             (
                 table.find_index(drop_list, cand.text) or
                 (hide_list[cand.text] and table.find_index(hide_list[cand.text], preedit_code))
@@ -117,7 +136,9 @@ function cold_word_drop.filter(input, env)
     end
 end
 
+
 return {
     processor = cold_word_drop.processor,
+    -- translator = cold_word_drop.translator,
     filter = cold_word_drop.filter,
 }

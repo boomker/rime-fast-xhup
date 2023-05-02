@@ -56,6 +56,9 @@ tex_translator = require("tex_translator")
 -- user_dict = require("user_dict")
 -- user_dict_translator = user_dict.translator
 
+commit_history = require("commit_history")
+commit_history_translator = commit_history.translator
+
 -- ---------------------------------------------------------------
 -- II. filters:
 
@@ -90,6 +93,7 @@ reverse_lookup_filter = require("reverse")
 --use wildcard to search code
 -- expand_translator = require("expand_translator")
 
+-- 强制删词，隐藏词组操作的过滤器
 cold_word_drop = require('cold_word_drop')
 cold_word_drop_filter = cold_word_drop.filter
 
@@ -104,9 +108,14 @@ select_char_processor = select_char.processor
 -- 详见 `lua/switch.lua`
 switch_processor = require("switch")
 
--- 
+-- 强制删词，隐藏词组(匹配输入串时) 
 cold_word_drop_processor = cold_word_drop.processor
 
+-- 快捷启动应用
+easy_cmd = require("easy_cmd")
+easy_cmd_processor = easy_cmd.processor
+
+cold_word_drop_segmentor = cold_word_drop.segmentor
 
 -- 由lua 導入 engine/下的組件 processor segmentor translator filters
 -- 生成一個processor 於自己 schema speller 取得 config

@@ -77,6 +77,7 @@ engine:
     - table_translator@melt_eng
     - lua_translator@tex_translator
     - lua_translator@datetime_translator
+    - lua_translator@commit_history_translator
   filters:
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
@@ -89,7 +90,7 @@ engine:
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   # max_code_length: 5
   # auto_select: true
@@ -161,6 +162,7 @@ grammar:
 translator:
   dictionary: flypy_xhfast
   contextual_suggestions: true  # 开启八股文
+  encode_commit_history: true
   initial_quality: 1.2
   spelling_hints: 1 ## 关闭单字编码提示
   comment_format:
@@ -203,6 +205,7 @@ translator:
 mkst:
   __include: /translator
   enable_sentence: true
+  sentence_over_completion: true
   prefix: '['
   tips: "〔精准造词〕"
   tag: mkst
@@ -356,4 +359,3 @@ tex_formula:
   tag: tex_formula
   prefix: "/tl"
   tips: " TeX 公式"
-
