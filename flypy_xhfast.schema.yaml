@@ -41,6 +41,7 @@ engine:
   processors:
     - lua_processor@select_char_processor
     - lua_processor@cold_word_drop_processor
+    - lua_processor@easy_cmd_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -50,7 +51,6 @@ engine:
     - navigator
     - express_editor
   segmentors:
-    # - lua_segmentor@cold_word_drop_segmentor
     - ascii_segmentor
     - matcher
     - abc_segmentor
@@ -359,3 +359,10 @@ tex_formula:
   tag: tex_formula
   prefix: "/tl"
   tips: " TeX 公式"
+
+history:  #上屏历史记录
+  tag: history
+  history_num_max: 10
+  input: "hisz"
+  initial_quality: 1000
+  excluded_type: 'punct'
