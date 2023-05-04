@@ -122,3 +122,9 @@ md.obsidian 	jjob	3
 org.mozilla.firefox 	jjff	3
 org.freedownloadmanager.fdm6 	jjdl	3
 org.freedownloadmanager.fdm6 	jjfdm	3
+com.izual.Easydict 	jjfy	3
+com.apple.screenshot.launcher 	jjjt	3
+com.apple.screenshot.launcher 	jjss	3
+
+## 化学式符号
+C₂H₆O 	yicy	1

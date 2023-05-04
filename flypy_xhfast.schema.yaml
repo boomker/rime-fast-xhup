@@ -57,10 +57,10 @@ engine:
     - punct_segmentor
     - "affix_segmentor@mkst" #精准造词
     - affix_segmentor@emojis
-    - affix_segmentor@soft_capslock
+    # - affix_segmentor@soft_capslock
     - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
-    - affix_segmentor@tex_formula
+    # - affix_segmentor@laTeX_formula
     - fallback_segmentor
   translators:
     - punct_translator
@@ -71,13 +71,15 @@ engine:
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
     - table_translator@emojis
-    - table_translator@soft_capslock
+    # - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp     # 添加注释后：停用单词输入
     - table_translator@melt_eng
-    - lua_translator@tex_translator
+    - lua_translator@laTex_translator 
     - lua_translator@datetime_translator
+    - lua_translator@number_translator
     - lua_translator@commit_history_translator
+    - lua_translator@select_char_translator
   filters:
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
@@ -125,7 +127,7 @@ speller:
     - derive/^pb/ek/
     - derive/^pc/ev/                                   # pc --> ev
     - derive/^pd/ef/                                   # pd --> ef
-    - derive/^pg/ey/                                   # pg --> ey
+    # - derive/^pg/ey/                                   # pg --> ey
     - derive/^pw/es/                                   # pw --> es
     - derive/^([jk])y/$1w/                             # [jk]y --> [jk]w
     - derive/^y([ikb])/w$1/                            # y[ik] --> w[ik]
@@ -280,7 +282,7 @@ recognizer:
   # import_preset: default
   patterns:
     uppercase: "^[A-Z]+$"
-    punct: '^/[015-9A-Za-z]+$' ## use "/er" instead of "/2"
+    punct: '^/[0-9A-Za-z]+$'
     mkst: "^[a-z]+[[][a-z[[]]+$"    # `[` 引导 精准造词 
     ## associate schemes:
     reverse_lookup: "^Oq[a-z]*'?$"  # 部件拆字，部件使用小鹤双拼编码
@@ -288,7 +290,7 @@ recognizer:
     # soft_capslock: "^Od.*$"
     dbpy_flypy_help: "^Oh.*$"
     easy_en_simp: "^Oz[a-z]*"
-    tex_formula: "^/tl(.*)$"
+    # laTeX_formula: "^/lt(.*)$"
 
 menu:
   page_size: 4
@@ -355,9 +357,9 @@ reverse_lookup:
   preedit_format:
     # - xlit/hspnz/一丨丿丶乙/
 
-tex_formula:
-  tag: tex_formula
-  prefix: "/tl"
+laTeX_formula:
+  tag: laTeX_formula
+  prefix: "/lt"
   tips: " TeX 公式"
 
 history:  #上屏历史记录
