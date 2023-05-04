@@ -48,11 +48,12 @@ local function append_word_to_droplist(ctx, action_type, reversedb)
         return true
     end
     local input_code_tbl = string.split(input_code, " ")
-    local cand_code = reversedb:lookup(word) or "" -- 待自动上屏的候选项编码
+    local cand_code = reversedb:lookup(word) or "" -- 待上屏的候选项编码
     local match_result = check_encode_matched(cand_code, word, input_code_tbl, reversedb)
     local ccand_code = string.gsub(cand_code, '%[%l%l', '')
+    local input_str = string.gsub(input_code, '%[%l+', '')
     local input_code_str = table.concat(input_code_tbl, '')
-    if string.match(ccand_code, input_code) or match_result then
+    if string.match(ccand_code, input_str) or match_result then
         turndown_freq_list[word] = { input_code_str }
         return 'turndown_freq'
     end

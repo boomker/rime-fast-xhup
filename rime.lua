@@ -49,9 +49,12 @@ datetime_translator = date_time.translator
 
 -- number_translator: 将 `/` + 阿拉伯数字 翻译为大小写汉字
 -- 详见 `lua/number.lua`
-number_translator = require("number")
+number = require("number")
+number_translator  = number.translator
 
-tex_translator = require("tex_translator")
+laTex = require("laTex")
+laTex_translator = laTex.translator
+
 
 -- user_dict = require("user_dict")
 -- user_dict_translator = user_dict.translator
@@ -78,7 +81,7 @@ engword_autocaps = require("word_autocaps")
 engword_autocaps_filter = engword_autocaps.filter
 
 -- 提升1 个中文长词的位置到第二候选, 加入了对提升词的词频计算
--- 除此之外, 对纯英文单词的长词降频, 对中英混合长词提升1 个
+-- 除此之外, 对纯英文单词的长词降频
 long_word_up = require("long_word_up")
 long_word_up_filter = long_word_up.filter
 
@@ -88,7 +91,7 @@ top_word_autocommit_filter = top_word_autocommit.filter
 
 -- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 -- 详见 `lua/reverse.lua`
-reverse_lookup_filter = require("reverse")
+-- reverse_lookup_filter = require("reverse")
 
 --use wildcard to search code
 -- expand_translator = require("expand_translator")
@@ -103,10 +106,11 @@ cold_word_drop_filter = cold_word_drop.filter
 -- 以词定字, 附加fix在有引导符`[`时, 不能数字键上屏
 select_char = require("select_char")
 select_char_processor = select_char.processor
+select_char_translator = select_char.translator
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 `lua/switch.lua`
-switch_processor = require("switch")
+-- switch_processor = require("switch")
 
 -- 强制删词，隐藏词组(匹配输入串时) 
 cold_word_drop_processor = cold_word_drop.processor
@@ -115,7 +119,6 @@ cold_word_drop_processor = cold_word_drop.processor
 easy_cmd = require("easy_cmd")
 easy_cmd_processor = easy_cmd.processor
 
-cold_word_drop_segmentor = cold_word_drop.segmentor
 
 -- 由lua 導入 engine/下的組件 processor segmentor translator filters
 -- 生成一個processor 於自己 schema speller 取得 config
