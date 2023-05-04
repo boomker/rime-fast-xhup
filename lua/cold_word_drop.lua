@@ -31,7 +31,8 @@ local function check_encode_matched(cand_code, word, input_code_tbl, reversedb)
         local word_cand_code = string.split(word, "")
         for i, v in ipairs(word_cand_code) do
             local char_code = string.gsub(reversedb:lookup(v), '%[%l%l', '')
-            local char_preedit_code = input_code_tbl[i] or " "
+            local _char_preedit_code = input_code_tbl[i] or " "
+            local char_preedit_code = string.gsub(_char_preedit_code, '%[%l+', '')
             if not string.match(char_code, char_preedit_code) then
                 return false
             end

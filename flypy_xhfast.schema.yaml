@@ -75,7 +75,7 @@ engine:
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp     # 添加注释后：停用单词输入
     - table_translator@melt_eng
-    - lua_translator@laTex_translator 
+    # - lua_translator@laTex_translator 
     - lua_translator@datetime_translator
     - lua_translator@number_translator
     - lua_translator@commit_history_translator

@@ -15,8 +15,9 @@ local function top_word_autocommit(input, env)
         end
 
         if string.len(preedit_code) == 7 and string.find(preedit_code, "^[%l]+%[[%l]+$") then
-            if utf8.len(cand.text) == 2 or pos == 5 then
-                table.insert(tword_phrase_cands, cand)
+            if (utf8.len(cand.text) == 2 or pos == 5 ) and string.sub(preedit_code, 5, 5) == "[" then
+                tword_phrase_cands[cand.text] = cand
+                -- TODO: drop_list 里的 排除, 可能会 内存使用过多
             end
         end
         table.insert(cands, cand)
@@ -36,7 +37,7 @@ local function top_word_autocommit(input, env)
             -- local char_cands = table.unique(single_char_cands)
             -- if string.find(ccand_code, cpreedit_code) and #single_char_cands <= 2 then
             -- puts(INFO, cand.text,  cand.quality, #single_char_cands)
-            -- FixMe : 不可见的繁体生僻字,  脚本识别
+            -- FIXME : 不可见的繁体生僻字,  脚本无法识别
             if #single_char_cands == 1 or (res and #single_char_cands <= 2 )then
                 env.engine:commit_text(cand.text)
                 env.engine.context:clear()
@@ -45,22 +46,25 @@ local function top_word_autocommit(input, env)
             prev_cand_text = cand.text
         end
     end
+
     if string.len(preedit_code) == 7 and string.find(preedit_code, "^[%l]+%[[%l]+$") then
-        for _, cand in ipairs(tword_phrase_cands) do
+        local prev_cand_text = nil
+        for k, cand in pairs(tword_phrase_cands) do
             yield(cand)
 
-            if #tword_phrase_cands == 1 and pos == 7 then
+            if (#tword_phrase_cands == 1 or table.len(tword_phrase_cands) == 1) and pos == 7 then
                 env.engine:commit_text(cand.text)
                 env.engine.context:clear()
                 return 1 -- kAccepted
-            elseif #tword_phrase_cands == 1 and pos == 5 then
+            elseif (#tword_phrase_cands == 2 or table.len(tword_phrase_cands) == 2) and pos == 7 and prev_cand_text == k then
                 env.engine:commit_text(cand.text)
                 context:clear()
-                local prev_remain_code = string.sub(preedit_code, 6, 7)
-                -- puts(INFO, '-----', pos, #tword_phrase_cands,prev_remain_code)
-                context:push_input(prev_remain_code) -- Fix: 已上屏的编码残留，即便refresh_non_confirmed_composition 也没啥用
-                return 2 -- kNoop
+                return 1 -- kAccepted
             end
+                -- local prev_remain_code = string.sub(preedit_code, 6, 7)
+                -- puts(INFO, '-----', pos, #tword_phrase_cands,prev_remain_code)
+                -- context:push_input(prev_remain_code) -- FIX: 已上屏的编码残留，即便refresh_non_confirmed_composition 也没啥用
+            prev_cand_text = k
         end
     end
 
