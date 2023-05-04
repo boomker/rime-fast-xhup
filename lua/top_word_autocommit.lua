@@ -1,5 +1,5 @@
 -- local puts = require("tools/debugtool")
-local reverse_dict = ReverseDb("build/flypy_xhfast.reverse.bin") -- 从编译文件中获取反查词库
+-- local reverse_dict = ReverseDb("build/flypy_xhfast.reverse.bin") -- 从编译文件中获取反查词库
 local function top_word_autocommit(input, env)
     local cands = {}
     local single_char_cands = {}
@@ -10,7 +10,7 @@ local function top_word_autocommit(input, env)
     local pos = context.caret_pos
     -- local preedit_code_length = #input_code
     for cand in input:iter() do
-        if string.len(preedit_code) == 5 and string.find(preedit_code, "^[%l]+%[[%l]+$") then
+        if (#preedit_code == 4 or #preedit_code == 5 ) and string.find(preedit_code, "^[%l]+%[[%l]+$") then
             table.insert(single_char_cands, cand)
         end
 
@@ -22,18 +22,27 @@ local function top_word_autocommit(input, env)
         table.insert(cands, cand)
     end
 
-    if string.len(preedit_code) == 5 and string.find(preedit_code, "^[%l]+%[[%l]+$") then
-        for _, cand in ipairs(single_char_cands) do
+    if (#preedit_code == 4 or #preedit_code == 5 ) and string.find(preedit_code, "^[%l]+%[[%l]+$") then
+        local prev_cand_text = nil
+        for i, cand in ipairs(single_char_cands) do
+            -- local cand_code = reverse_dict:lookup(cand.text) or "" -- 待自动上屏的候选项编码
+
+            if #cand.text < 2 then table.remove(single_char_cands, i) end
+
             yield(cand)
-            local cand_code = reverse_dict:lookup(cand.text) or "" -- 待自动上屏的候选项编码
-            local ccand_code = string.gsub(cand_code, '%[', '')
-            local cpreedit_code = string.gsub(preedit_code, '%[', '')
+            local res = cand.text == prev_cand_text
+            -- local ccand_code = string.gsub(cand_code, '%[', '')
+            -- local cpreedit_code = string.gsub(preedit_code, '%[', '')
             -- local char_cands = table.unique(single_char_cands)
-            if string.find(ccand_code, cpreedit_code) and #single_char_cands <= 2 then
+            -- if string.find(ccand_code, cpreedit_code) and #single_char_cands <= 2 then
+            -- puts(INFO, cand.text,  cand.quality, #single_char_cands)
+            -- FixMe : 不可见的繁体生僻字,  脚本识别
+            if #single_char_cands == 1 or (res and #single_char_cands <= 2 )then
                 env.engine:commit_text(cand.text)
                 env.engine.context:clear()
                 return 1 -- kAccepted
             end
+            prev_cand_text = cand.text
         end
     end
     if string.len(preedit_code) == 7 and string.find(preedit_code, "^[%l]+%[[%l]+$") then
