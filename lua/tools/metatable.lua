@@ -118,6 +118,14 @@ function table:unshift(elm)
     self:insert(1, elm)
 end
 
+function table.len(t)
+    local leng = 0
+    for k, v in pairs(t) do
+        leng = leng + 1
+    end
+    return leng;
+end
+
 -- table to string 序列化
 function table.serialize(obj)
     local serialize_str = ""

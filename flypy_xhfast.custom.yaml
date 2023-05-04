@@ -22,9 +22,13 @@ patch:
     bindings/+:
       #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
       #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
+      - { when: composing, accept: Tab, send: Shift+Right }
       - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
+      - { when: has_menu,  accept: period, send: Page_Down } 
       - { when: has_menu,  accept: apostrophe,  send: 3 }   ## 单引号用于第3候选
       - { when: composing, accept: Control+a,   send_sequence: '{Home}{Right}{Right}[' }
+      - { when: composing, accept: Control+e, send: End }
+      - { when: composing, accept: Control+k, send: Shift+Delete }
       - { when: composing, accept: Right,       send_sequence: "{Right}{Right}" }
       # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
         ## `键（grave，Tab 上面那个）为词组逐字追加辅助码。
