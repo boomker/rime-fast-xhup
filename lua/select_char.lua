@@ -3,7 +3,7 @@
 -- 删除了默认按键，需要在 key_binder（default.custom.yaml）下设置
 -- http://lua-users.org/lists/lua-l/2014-04/msg00590.html
 
-local puts = require("tools/debugtool")
+-- local puts = require("tools/debugtool")
 local function utf8_sub(s, i, j)
     i = i or 1
     j = j or -1
@@ -131,6 +131,7 @@ local function select_char(key, env)
         else
             context:confirm_previous_selection()
         end
+        tword_tail_char_shape_tbl = {}
 
         return 2 -- kAccepted
     end
@@ -153,6 +154,7 @@ local function select_char(key, env)
 end
 
 
+---@diagnostic disable-next-line: unused-local
 local function translator(input, seg, env)
     if table.len(tword_tail_char_shape_tbl) < 1 then return end
     if string.match(input, '^%l+%[%l+$') and #input > 5 then
