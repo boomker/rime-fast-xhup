@@ -10,7 +10,6 @@ local function long_word_up(input, env)
 	local first_word_length = 0
 	local first_word_quality = 0
     local count = 1
-    local done = 0
 	-- 记录筛选了多少个汉语词条(只提升1个词的权重)
 	local ocn_count = 0
 	local preedit_code = env.engine.context:get_commit_text()
@@ -45,12 +44,11 @@ local function long_word_up(input, env)
             and string.len(preedit_code) > 2 then
 				yield(cand)
 				ocn_count = ocn_count + 1
-                done = done + 1
 		else
 			table.insert(cands, cand)
 		end
 
-        if (done == count) or (#cands > 30) then
+        if #cands > 40 then
             break
         end
 	end

@@ -186,7 +186,7 @@ function cold_word_drop.filter(input, env)
         end
     end
 
-    if string.find(preedit_code, '[,.\'"(){}?:!@#$%%^&*|~]') then
+    if string.find(preedit_code, '[,.;\'"(){}?:!@#$%%^&*|~]') then
         context:confirm_current_selection()
         -- context:confirm_previous_selection()
         context:clear()

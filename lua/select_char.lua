@@ -2,7 +2,6 @@
 -- https://github.com/BlindingDark/rime-lua-select-character
 -- 删除了默认按键，需要在 key_binder（default.custom.yaml）下设置
 -- http://lua-users.org/lists/lua-l/2014-04/msg00590.html
--- local puts = require("tools/debugtool")
 local function utf8_sub(s, i, j)
     i = i or 1
     j = j or -1
@@ -38,6 +37,8 @@ local function utf8_sub(s, i, j)
     end
 end
 
+
+-- local puts = require("tools/debugtool")
 local function first_character(s) return utf8_sub(s, 1, 1) end
 
 local function last_character(s) return utf8_sub(s, -1, -1) end
@@ -46,18 +47,18 @@ local tword_tail_char_shape_tbl = {}
 local Gcommit_codes = {}
 
 local function select_char(key, env)
-    local engine = env.engine
-    local config = engine.schema.config
-    local context = engine.context
-    local commit_text = context:get_commit_text()
-    local input_code = context.input
+    local engine              = env.engine
+    local config              = engine.schema.config
+    local context             = engine.context
+    local commit_text         = context:get_commit_text()
+    local input_code          = context.input
     local preedit_code_length = #input_code
-    local pos = context.caret_pos
+    local pos                 = context.caret_pos
 
-    local schema_id = config:get_string("schema/schema_id")
-    local reversedb = ReverseLookup(schema_id)
-    local first_key = config:get_string("key_binder/select_first_character")
-    local last_key = config:get_string("key_binder/select_last_character")
+    local schema_id           = config:get_string("schema/schema_id")
+    local reversedb           = ReverseLookup(schema_id)
+    local first_key           = config:get_string("key_binder/select_first_character")
+    local last_key            = config:get_string("key_binder/select_last_character")
     local cand_kyes = {
         ["space"] = 0,
         ["semicolon"] = 1,
@@ -87,7 +88,7 @@ local function select_char(key, env)
         Gcommit_codes['Gcommit_code_3'] = reversedb:lookup(cand_text3)
     end
 
-    if (preedit_code_length == 4 and key:repr() == "bracketleft") then
+    if (preedit_code_length == 4 and key:repr() == "bracketleft" and pos == 4 and #tword_tail_char_shape_tbl < 1) then
         local composition = context.composition
         if (not composition:empty()) then
             local segment = composition:back()
@@ -95,18 +96,18 @@ local function select_char(key, env)
                 local tword_cand = segment:get_candidate_at(i)
                 if not tword_cand then return 2 end
                 local tword_cand_text = tword_cand.text
-                if utf8.len(tword_cand_text) < 2 then
-                    goto skip_cand
-                end
+                if utf8.len(tword_cand_text) < 2 then goto skip_cand end
                 local cand_tail_text = utf8_sub(tword_cand_text, 2)
-                tword_tail_char_shape_tbl[tword_cand_text] = reversedb:lookup(
-                                                                 cand_tail_text)
+                -- puts(INFO, '-------!!!', tword_cand.text, tword_cand_text, cand_tail_text ,i)
+                table.insert(tword_tail_char_shape_tbl, {tword_cand_text, reversedb:lookup(cand_tail_text)})
                 ::skip_cand::
             end
         end
     end
 
     if (cand_kyes[key:repr()]) and string.find(input_code, "^[%w]+%[$") then
+        tword_tail_char_shape_tbl = {}
+        Gcommit_codes = {}
         context:select(cand_kyes[key:repr()])
         local cand_text = context:get_commit_text()
         engine:commit_text(utf8_sub(cand_text, 1, -2))
@@ -121,8 +122,7 @@ local function select_char(key, env)
             return 2
         end -- 键值对table ,不能使用 `#` 获取长度
         if pos == 3 then
-            local selected_cand = string.format("Gcommit_code_%s",
-                                                cand_kyes[key:repr()])
+            local selected_cand = string.format("Gcommit_code_%s", cand_kyes[key:repr()])
             local char_code = string.sub(Gcommit_codes[selected_cand], 4, 4)
             context:push_input(char_code)
             context:confirm_current_selection()
@@ -150,6 +150,10 @@ local function select_char(key, env)
         return 1 -- kAccepted
     end
 
+    if key:repr() == "Escape" then
+        tword_tail_char_shape_tbl = {}
+        Gcommit_codes = {}
+    end
     return 2 -- kNoop
 end
 
@@ -159,23 +163,21 @@ local function translator(input, seg, env)
     local pos = context.caret_pos
     if table.len(tword_tail_char_shape_tbl) < 1 then return end
     if string.match(input, '^%l+%[$') and #input == 5 and pos == 5 then
-        for key, val in pairs(tword_tail_char_shape_tbl) do
-            local tail_char_hxm = string.sub(val, 4, 5)
+        for _, val in ipairs(tword_tail_char_shape_tbl) do
+            local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
-            local cand = Candidate("custom", seg.start, seg._end, key, comment)
-            cand.quality = 99
+            local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
             yield(cand)
         end
     end
+
     if string.match(input, '^%l+%[%l+$') and #input > 5 then
-        for key, val in pairs(tword_tail_char_shape_tbl) do
-            local tail_char_hxm = string.sub(val, 4, 5)
+        for _, val in ipairs(tword_tail_char_shape_tbl) do
+            local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
             if string.match(tail_char_hxm, string.sub(input, 6)) then
-                -- puts(INFO, '-------!!!', val, input)
-                local cand = Candidate("custom", seg.start, seg._end, key,
-                                       comment)
-                cand.quality = 99
+                local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
+                cand.quality = 9999
                 yield(cand)
             end
             if #input == 7 then tword_tail_char_shape_tbl = {} end
