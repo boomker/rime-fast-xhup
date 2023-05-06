@@ -157,7 +157,6 @@ import_tables:
 肮	!rzkh
 肮	!ytkh
 骯	!gukh
-卬	!kljp
 岇	!ajmc
 枊	!mumc
 昂	!rimc
@@ -523,7 +522,6 @@ import_tables:
 鵯	!bwnn
 北	!qlbi
 鉳	!jbbw
-贝	!klrf
 孛	!usgdzi
 邶	!bwei
 邶	!bwer
@@ -842,7 +840,6 @@ import_tables:
 窆	!xtfa
 扁	!huce
 匾	!xibm
-匾	!klbm
 貶	!bwfa
 惼	!xbbm
 碥	!usbm
@@ -1358,7 +1355,6 @@ import_tables:
 螥	!isch
 艙	!ozch
 鶬	!chnn
-匨	!klvl
 蔵	!ccytif
 藏	!cczh
 鑶	!jbch
@@ -1393,8 +1389,6 @@ import_tables:
 肏	!rurz
 襙	!eizc
 刂	!augz
-冊	!klhgauau
-册	!klklhg
 厕	!ihze
 侧	!rfze
 拺	!uzci
@@ -2315,7 +2309,6 @@ import_tables:
 舩	!ozgs
 船	!ozbakz
 遄	!zzdr
-圌	!kldr
 猭	!qrtr
 瑏	!euir
 瑏	!whir
@@ -2873,7 +2866,6 @@ import_tables:
 靆	!eydd
 亻	!ppau
 卩	!aubc
-丹	!kldmhg
 妉	!nvyb
 担	!uzdj
 担	!cddj
@@ -2895,7 +2887,6 @@ import_tables:
 單	!kzkzjxhg
 媅	!nvuf
 瘅	!bkdj
-匰	!kldj
 頕	!vjye
 鄲	!djei
 鄲	!djer
@@ -3559,7 +3550,6 @@ import_tables:
 都	!oeei
 都	!oeer
 唗	!kzzz
-兜	!klbdbchger
 兠	!bwbder
 兠	!qlbdbier
 蔸	!ccdz
@@ -3624,7 +3614,6 @@ import_tables:
 蝳	!isdu
 錖	!aujb
 獨	!qrau
-匵	!klmd
 凟	!bkmd
 瀆	!uvmd
 嬻	!nvmd
@@ -3775,7 +3764,6 @@ import_tables:
 趸	!wjzu
 躉	!wjzu
 伅	!rfty
-囤	!klty
 沌	!uvty
 炖	!hoty
 逇	!zzdi
@@ -3878,7 +3866,6 @@ import_tables:
 讹	!ejhx
 迗	!zztm
 吪	!kzhx
-囮	!klhx
 俄	!rfwo
 莪	!ccwo
 峨	!ajwo
@@ -4120,7 +4107,6 @@ import_tables:
 凢	!dmji
 凡	!jidm
 杋	!mufj
-匥	!klbm
 柉	!mufa
 矾	!usfj
 钒	!jbfj
@@ -4264,7 +4250,6 @@ import_tables:
 朏	!ytiu
 胐	!rziu
 胐	!ytiu
-匪	!klfw
 诽	!ejfw
 陫	!fufw
 陫	!erfw
@@ -4889,7 +4874,6 @@ import_tables:
 赣	!lizcvigsbw
 贛	!lizcxigsbw
 贛	!lizcvigsbw
-冈	!klia
 罓	!gdia
 冮	!bkgs
 刚	!ghdc
@@ -4897,7 +4881,6 @@ import_tables:
 肛	!ytgs
 纲	!sigh
 矼	!usgs
-岡	!klbahgaj
 牨	!nqkh
 疘	!bkgs
 钢	!jbgh
@@ -5340,7 +5323,6 @@ import_tables:
 盬	!ifpphggumb
 鶻	!gunn
 蠱	!ismb
-固	!klgu
 故	!gupu
 故	!guwf
 怘	!guxb
@@ -5560,7 +5542,6 @@ import_tables:
 宄	!mmjq
 轨	!iejqgv
 庋	!glvi
-匦	!klgv
 佹	!rfww
 诡	!ejww
 陒	!fuww
@@ -5573,7 +5554,6 @@ import_tables:
 癸	!botm
 庪	!glji
 祪	!usww
-匭	!klgv
 晷	!rijq
 蛫	!isww
 湀	!uvgv
@@ -5655,14 +5635,8 @@ import_tables:
 鍋	!jbgo
 蟈	!isgo
 鐹	!jbgo
-囯	!klwh
-国	!kleu
-囶	!klbatu
-囻	!klmb
-圀	!klerfh
 𢮎	!uzhu
 𢮎	!cdhu
-國	!klho
 帼	!jbgo
 𢰢	!uzuz
 𢰢	!cduz
@@ -6171,7 +6145,6 @@ import_tables:
 鱟	!jqycgdeu
 鱟	!xteu
 乎	!ppbahggz
-匢	!klwu
 垀	!tuhu
 苸	!cchu
 昒	!riwu
@@ -6183,7 +6156,6 @@ import_tables:
 轷	!iehu
 烀	!hohu
 恗	!xbkx
-匫	!klhu
 㧾	!uzhu
 㧾	!cdhu
 虖	!huhu
@@ -6201,7 +6173,6 @@ import_tables:
 膴	!rzwu
 膴	!ytwu
 謼	!ejhu
-囫	!klwu
 狐	!qrgx
 弧	!gsgx
 瓳	!guwa
@@ -6416,7 +6387,6 @@ import_tables:
 锾	!jbyr
 瞏	!muyr
 瞏	!whyr
-圜	!klqs
 阛	!mfqs
 澴	!uvqs
 寰	!mmqs
@@ -6452,7 +6422,6 @@ import_tables:
 换	!uzhr
 换	!cdhr
 唤	!kzhr
-圂	!klus
 烉	!dcklbaho
 涣	!uvhr
 浣	!uvwj
@@ -6605,10 +6574,6 @@ import_tables:
 瀈	!uvhv
 鰴	!iiajhgeupu
 鰴	!iiajhgeuwf
-囘	!klsi
-囘	!klei
-回	!klkz
-囬	!klauauhghg
 廻	!ybhv
 茴	!cchv
 廽	!ybhv
@@ -6657,7 +6622,6 @@ import_tables:
 缋	!sigv
 絵	!sihv
 絵	!mihv
-匯	!klhk
 賄	!bwyz
 颒	!uvgsye
 會	!rfhgkzaubayt
@@ -6674,7 +6638,6 @@ import_tables:
 蕙	!cchv
 槥	!muhv
 暳	!rihv
-圚	!klgv
 潓	!uvhv
 憓	!xbhv
 寭	!mmhv
@@ -7235,7 +7198,6 @@ import_tables:
 頰	!jxye
 鴶	!jinn
 鵊	!jxnn
-甲	!klus
 岬	!ajjx
 玾	!eujx
 玾	!whjx
@@ -7354,7 +7316,6 @@ import_tables:
 虃	!ccxm
 韉	!gejm
 鑯	!jbxm
-囝	!klzi
 拣	!uzdshg
 拣	!cddshg
 枧	!mujm
@@ -7430,7 +7391,6 @@ import_tables:
 譾	!ejjm
 襺	!eijm
 鹼	!luqm
-见	!klppyb
 件	!rfnq
 見	!muer
 饯	!usjm
@@ -7558,8 +7518,6 @@ import_tables:
 膙	!ytql
 講	!ejgz
 顜	!gzye
-匞	!klgs
-匠	!kljb
 夅	!xixiau
 夅	!vixiau
 弜	!gsgs
@@ -7884,7 +7842,6 @@ import_tables:
 曁	!jidj
 繲	!sijp
 繲	!mijp
-巾	!klau
 斤	!ihxx
 今	!rfdmya
 钅	!rfwhbajb
@@ -8121,9 +8078,6 @@ import_tables:
 扄	!huxl
 駉	!majs
 駫	!magl
-冋	!klkz
-冏	!klbakz
-囧	!klerkl
 炅	!riho
 迥	!zzjs
 泂	!uvjs
@@ -8191,7 +8145,6 @@ import_tables:
 紤	!sijb
 紤	!mijb
 韮	!ccjq
-匛	!kljq
 旧	!auri
 臼	!ppauhgji
 畂	!tmjq
@@ -8216,7 +8169,6 @@ import_tables:
 殧	!ddjq
 舊	!ccovjq
 鹫	!jqnn
-匶	!kljq
 鯦	!eujq
 麔	!lujq
 齨	!iijq
@@ -8332,7 +8284,6 @@ import_tables:
 櫸	!muju
 齟	!iiqp
 欅	!muju
-巨	!klyahg
 巨	!xibchg
 句	!bckz
 讵	!ejju
@@ -8759,13 +8710,11 @@ import_tables:
 摃	!uzgs
 摃	!cdgs
 亢	!tzji
-匟	!klkh
 伉	!rfkh
 邟	!khei
 邟	!kher
 抗	!uzkh
 抗	!cdkh
-囥	!klkh
 犺	!qrkh
 忼	!xbkh
 炕	!hokh
@@ -8943,7 +8892,6 @@ import_tables:
 彄	!gsqu
 瞘	!muqu
 口	!auyahg
-口	!klhg
 劶	!hzli
 叩	!kzjp
 扣	!uzkz
@@ -8975,7 +8923,6 @@ import_tables:
 堀	!tuqu
 崫	!ajqu
 跍	!zugu
-圐	!klwhfh
 窟	!xtqu
 骷	!gugu
 苦	!ccgu
@@ -9050,13 +8997,7 @@ import_tables:
 歀	!ndqm
 窾	!xtkr
 𦧺	!ueld
-匡	!klwh
-邼	!klei
-邼	!kler
-劻	!klli
 诓	!ejkl
-匩	!klajwh
-匩	!klaj
 哐	!kzkl
 洭	!uvkl
 恇	!xbkl
@@ -9071,7 +9012,6 @@ import_tables:
 軖	!iewh
 軠	!ierf
 誑	!ejkl
-鵟	!klnn
 夼	!dair
 儣	!rfgl
 懭	!xbgl
@@ -9162,7 +9102,6 @@ import_tables:
 磈	!usgv
 蹞	!zuqk
 卼	!wuww
-匮	!klgv
 欳	!boceqm
 蒉	!ccgv
 喟	!kzww
@@ -9171,7 +9110,6 @@ import_tables:
 愦	!xbgv
 愧	!xbgv
 媿	!nvgv
-匱	!klgv
 瞆	!mugv
 聩	!ergv
 聭	!ergv
@@ -9238,7 +9176,6 @@ import_tables:
 綑	!miky
 閫	!mfky
 閸	!mfya
-困	!klmu
 涃	!uvky
 睏	!muky
 扩	!uzgl
@@ -9556,7 +9493,6 @@ import_tables:
 叻	!kzli
 乐	!ppaumu
 乐	!ppaudg
-乐	!klxn
 氻	!uvli
 忇	!xbli
 玏	!euli
@@ -9957,12 +9893,10 @@ import_tables:
 溓	!uvjm
 慩	!xblm
 覝	!gjhojm
-匲	!kldapb
 奩	!daqu
 熑	!hojm
 聫	!erycycda
 磏	!usjm
-匳	!klqm
 噒	!kzlb
 鲢	!eulm
 劆	!lmdc
@@ -10309,7 +10243,6 @@ import_tables:
 坽	!tulk
 苓	!cclk
 岺	!ajlk
-囹	!kllk
 彾	!iilk
 狑	!qrlk
 泠	!uvlk
@@ -10803,9 +10736,6 @@ import_tables:
 滦	!uvlr
 銮	!eijb
 鵉	!einn
-圝	!klsiej
-圝	!klmiejmi
-圝	!kllr
 奱	!siejda
 奱	!miejmida
 奱	!lrda
@@ -10838,7 +10768,6 @@ import_tables:
 臠	!miejmirz
 臠	!lrrz
 虊	!cclr
-圞	!kllr
 灤	!uvlr
 鑾	!siejjb
 鑾	!miejmijb
@@ -10867,7 +10796,6 @@ import_tables:
 掄	!cdly
 仑	!rfbi
 伦	!rfly
-囵	!klly
 沦	!uvly
 纶	!sily
 轮	!iely
@@ -10878,7 +10806,6 @@ import_tables:
 菕	!ccly
 崘	!ajly
 崙	!ajly
-圇	!klly
 淪	!uvly
 惀	!xbly
 婨	!nvly
@@ -11048,7 +10975,6 @@ import_tables:
 略	!tmge
 畧	!tmge
 锊	!jblv
-圙	!klbamm
 鋝	!jblv
 鋢	!jbfu
 呒	!kzwu
@@ -11269,7 +11195,6 @@ import_tables:
 茂	!ccwu
 眊	!mumc
 冒	!mcmu
-冒	!klermu
 冒	!ytmu
 冒	!rimu
 贸	!mcbw
@@ -11521,7 +11446,6 @@ import_tables:
 釄	!yzmi
 米	!bamu
 芈	!ccklerau
-羋	!klaugj
 侎	!rfmi
 沵	!uver
 洣	!uvmi
@@ -11608,7 +11532,6 @@ import_tables:
 娩	!nvmm
 勔	!mmli
 冕	!mcmm
-冕	!klermm
 冕	!ytmm
 冕	!rimm
 偭	!rfmm
@@ -11748,7 +11671,6 @@ import_tables:
 敏	!mwwf
 閔	!mfwf
 湣	!uvhy
-黽	!klhg
 敯	!hypu
 愍	!mbxb
 閩	!mfis
@@ -11830,7 +11752,6 @@ import_tables:
 歾	!ddwu
 歿	!ddbcyz
 殁	!ddau
-冐	!kleryt
 冐	!ytyt
 冐	!riyt
 帓	!jbmo
@@ -11936,7 +11857,6 @@ import_tables:
 木	!usrf
 木	!usba
 木	!hgxn
-目	!kler
 仫	!rfme
 狇	!qrmu
 沐	!uvmu
@@ -12039,7 +11959,6 @@ import_tables:
 鼐	!nddk
 褦	!eing
 錼	!jbnd
-囡	!klnv
 男	!tmli
 抩	!uzrj
 抩	!cdrj
@@ -12146,8 +12065,6 @@ import_tables:
 餒	!usto
 鮾	!euto
 鯘	!euww
-內	!klru
-内	!klrf
 氝	!qinw
 㨅	!uzrv
 㨅	!cdrv
@@ -12224,7 +12141,6 @@ import_tables:
 胒	!ytni
 逆	!zzni
 匿	!xiro
-匿	!klro
 眤	!muni
 痆	!bkni
 堄	!tuer
@@ -12352,7 +12268,6 @@ import_tables:
 鑷	!jbnp
 顳	!npye
 钀	!jbxm
-囜	!klsi
 您	!nixb
 拰	!uzrf
 拰	!cdrf
@@ -12897,7 +12812,6 @@ import_tables:
 朇	!hvbw
 蠯	!glbwisis
 匹	!xier
-匹	!kler
 圮	!tuji
 仳	!rfbi
 苉	!ccpi
@@ -12930,7 +12844,6 @@ import_tables:
 譬	!piej
 闢	!mfpi
 鷿	!pinn
-囨	!klbu
 偏	!rfbm
 媥	!nvbm
 犏	!nqbm
@@ -13106,7 +13019,6 @@ import_tables:
 謈	!rigsej
 皤	!bdfj
 櫇	!mupo
-叵	!klkz
 尀	!pocy
 钷	!jbpo
 笸	!vupo
@@ -13186,12 +13098,10 @@ import_tables:
 纀	!mipu
 朴	!mubo
 埔	!tufu
-圃	!klfu
 浦	!uvfu
 烳	!hofu
 普	!bkri
 普	!bajb
-圑	!klfu
 溥	!uvfu
 暜	!liliri
 谱	!ejpu
@@ -13783,7 +13693,6 @@ import_tables:
 郄	!iagser
 妾	!linv
 怯	!xbqu
-匧	!kljx
 窃	!xtqp
 洯	!uvfsdc
 挈	!fsdcuz
@@ -13907,7 +13816,6 @@ import_tables:
 卿	!mcgfjp
 卿	!xippji
 埥	!tuqk
-圊	!klqk
 氫	!qijk
 清	!uvqk
 淸	!uvqk
@@ -14035,7 +13943,6 @@ import_tables:
 玌	!whyb
 扏	!uzjq
 扏	!cdjq
-囚	!klrf
 叴	!jqkz
 犰	!qrjq
 朹	!mujq
@@ -14098,10 +14005,7 @@ import_tables:
 搝	!cdiz
 糗	!miiz
 区	!xiia
-区	!klia
-曲	!klnm
 曲	!ytauau
-匤	!kleu
 岖	!ajqu
 佉	!rfqu
 伹	!rfqp
@@ -14121,7 +14025,6 @@ import_tables:
 祛	!usqu
 袪	!eiqu
 區	!xipb
-區	!klpb
 蛆	!isqp
 躯	!ufqu
 紶	!siqu
@@ -14176,7 +14079,6 @@ import_tables:
 瞿	!mumuov
 鼩	!auju
 蘧	!ccju
-匷	!klqu
 忂	!iiqu
 灈	!uvqu
 欋	!muqu
@@ -14220,9 +14122,7 @@ import_tables:
 峑	!ajqr
 恮	!xbqr
 悛	!xbqy
-圈	!kljr
 棬	!mujr
-圏	!kljr
 駩	!maqr
 騡	!maqr
 鐉	!jbxy
@@ -14336,7 +14236,6 @@ import_tables:
 鵲	!xinn
 礭	!usho
 夋	!sibavi
-囷	!klhe
 峮	!ajjy
 逡	!zzqy
 輑	!iejy
@@ -14345,7 +14244,6 @@ import_tables:
 裠	!jyei
 羣	!jyeh
 群	!jyeh
-冄	!kler
 呥	!kzrj
 肰	!rzqr
 肰	!ytqr
@@ -14364,7 +14262,6 @@ import_tables:
 燃	!horj
 繎	!sirj
 繎	!mirj
-冉	!klushg
 苒	!ccrj
 姌	!nvrj
 珃	!eurj
@@ -14494,8 +14391,6 @@ import_tables:
 芿	!ccrg
 日	!kzhg
 日	!kzdm
-日	!klhg
-日	!kldm
 驲	!mari
 鈤	!jbri
 馹	!mari
@@ -14559,7 +14454,6 @@ import_tables:
 𢫨	!cdrs
 傇	!rfrs
 氄	!eumc
-禸	!klsi
 柔	!mcmu
 粈	!miiz
 揉	!uzrz
@@ -14584,8 +14478,6 @@ import_tables:
 鰇	!eurz
 鶔	!rznn
 韖	!wwrz
-肉	!klrfrf
-肉	!klruru
 宍	!mmlq
 楺	!murz
 邚	!nvei
@@ -15147,7 +15039,6 @@ import_tables:
 懾	!xbnp
 欇	!munp
 谁	!ejov
-申	!klus
 扟	!uzxy
 扟	!cdxy
 屾	!ajaj
@@ -15363,7 +15254,6 @@ import_tables:
 石	!hgppkz
 时	!ricy
 识	!ejvi
-囸	!klog
 飠	!rfll
 実	!mmerda
 实	!mmtz
@@ -15802,7 +15692,6 @@ import_tables:
 巳	!bchgyb
 亖	!erer
 罒	!gdauauhg
-四	!kler
 寺	!tucy
 汜	!uvsi
 兕	!acer
@@ -15995,7 +15884,6 @@ import_tables:
 狻	!qrqy
 痠	!bkqy
 酸	!yzqy
-匴	!klsr
 祘	!usus
 笇	!vubm
 蒜	!ccusus
@@ -16207,7 +16095,6 @@ import_tables:
 嚺	!kzwhsv
 譶	!ejejej
 躢	!zuta
-囼	!kltd
 孡	!zitd
 珆	!eutd
 珆	!whtd
@@ -16635,7 +16522,6 @@ import_tables:
 酟	!yzvj
 黇	!hlvj
 靝	!qkqi
-田	!klus
 沺	!uvtm
 屇	!ustm
 盷	!muuc
@@ -16816,7 +16702,6 @@ import_tables:
 誔	!ejtk
 頲	!tkye
 濎	!uvdk
-囲	!kljk
 炵	!hods
 通	!zzys
 痌	!bkts
@@ -16825,7 +16710,6 @@ import_tables:
 樋	!muts
 冂	!auei
 仝	!rfgs
-同	!klhgkz
 佟	!rfds
 彤	!djaj
 峂	!ajds
@@ -16923,8 +16807,6 @@ import_tables:
 鋵	!jbtu
 鵚	!tunn
 鼵	!autu
-図	!kliadmdm
-图	!klds
 凃	!bkeu
 捈	!uzeu
 捈	!cdeu
@@ -16950,8 +16832,6 @@ import_tables:
 塗	!uveutu
 酴	!yzeu
 跿	!zuzz
-圖	!klbi
-圗	!klsimm
 廜	!gltu
 潳	!uvtu
 馟	!xlfu
@@ -16975,15 +16855,12 @@ import_tables:
 湍	!uvajer
 煓	!hodr
 貒	!vidr
-团	!klcd
-団	!klcy
 抟	!uzor
 𢰋	!uzkler
 𢰋	!cdkler
 摶	!uzor
 摶	!cdor
 蓴	!ccor
-團	!klor
 漙	!uvor
 慱	!xbor
 槫	!muor
@@ -17299,10 +17176,8 @@ import_tables:
 彺	!iiwh
 莣	!ccwh
 蚟	!iswh
-网	!kliaia
 忹	!xbwh
 枉	!muwh
-罔	!klbahgwh
 徃	!iiug
 往	!iivu
 菵	!ccwh
@@ -17362,12 +17237,10 @@ import_tables:
 巍	!ajww
 鰄	!euww
 鰃	!euww
-囗	!klhg
 囗	!auyahg
 韦	!erbcau
 圩	!tueu
 违	!zzww
-围	!klww
 帏	!jbww
 闱	!mfww
 沩	!uvww
@@ -17386,7 +17259,6 @@ import_tables:
 喡	!kzww
 嵬	!ajgv
 幃	!jbww
-圍	!klww
 溈	!uvww
 湋	!uvww
 違	!zzww
@@ -18131,7 +18003,6 @@ import_tables:
 瞎	!muhd
 蝦	!isjx
 鰕	!eujx
-匣	!kljx
 侠	!rfjx
 狎	!qrjx
 柙	!mujx
@@ -19003,7 +18874,6 @@ import_tables:
 珝	!wheu
 栩	!mueu
 冔	!mcxu
-冔	!klerxu
 蛡	!iseu
 暊	!riye
 詡	!ejeu
@@ -19401,7 +19271,6 @@ import_tables:
 聐	!erji
 氬	!qiya
 猰	!qrqi
-圔	!klhe
 稏	!heya
 窫	!xtqi
 錏	!jbya
@@ -19667,7 +19536,6 @@ import_tables:
 灧	!uvej
 豔	!fshe
 灩	!uvej
-央	!klda
 抰	!uzeh
 抰	!cdeh
 咉	!kzeh
@@ -20027,7 +19895,6 @@ import_tables:
 伊	!rfyb
 衣	!dmhgei
 壱	!usgdbi
-医	!klus
 吚	!kzyb
 依	!rfei
 祎	!usww
@@ -20062,7 +19929,6 @@ import_tables:
 譩	!ejei
 䫯	!eiye
 黳	!eihw
-匜	!klye
 仪	!rfei
 圯	!tuei
 圯	!tusi
@@ -20344,7 +20210,6 @@ import_tables:
 曀	!riei
 螠	!isei
 嶧	!ajei
-圛	!klei
 穓	!heei
 儗	!rfei
 劓	!bidc
@@ -20408,7 +20273,6 @@ import_tables:
 鷾	!einn
 齸	!iiei
 讛	!ejei
-因	!klda
 阥	!fuuv
 阥	!eruv
 阴	!fuyt
@@ -20479,7 +20343,6 @@ import_tables:
 珢	!whgf
 荶	!ccyb
 訔	!ajej
-圁	!klej
 狺	!qrej
 訚	!mfej
 峾	!eiaj
@@ -20820,7 +20683,6 @@ import_tables:
 踴	!zuys
 鯒	!euys
 用	!ytau
-用	!klushg
 苚	!ccys
 醟	!hohogdyz
 醟	!ykyz
@@ -20852,7 +20714,6 @@ import_tables:
 尤	!yzdm
 尤	!hgppybdm
 尣	!baer
-由	!klus
 邮	!yzei
 邮	!yzer
 犹	!qryz
@@ -20929,7 +20790,6 @@ import_tables:
 柚	!muyz
 迶	!zzyz
 哊	!kzyz
-囿	!klyz
 峟	!ajyz
 牰	!nqyz
 宥	!mmyz
@@ -21085,15 +20945,12 @@ import_tables:
 俁	!rfwu
 禹	!ppkzklsi
 语	!ejwu
-圄	!klwu
 峿	!ajwu
 祤	!useu
 𢮁	!uzeu
 𢮁	!cdeu
 敔	!wupu
 敔	!wuwf
-匬	!kleu
-圉	!klxk
 偊	!rfeu
 鄅	!euei
 鄅	!euer
@@ -21264,7 +21121,6 @@ import_tables:
 籲	!vuytye
 灪	!uveu
 爩	!hoeu
-囦	!kluv
 鸢	!einn
 剈	!yrdc
 眢	!yrmu
@@ -21298,11 +21154,9 @@ import_tables:
 鼘	!gupmhgpj
 鼝	!yrgu
 元	!erer
-円	!klah
 邧	!yrei
 邧	!yrer
 贠	!sibw
-园	!klyr
 员	!kzbw
 沅	!uvyr
 妧	!nvyr
@@ -21315,14 +21169,12 @@ import_tables:
 原	!ihqr
 蚖	!isyr
 員	!kzbw
-圆	!klyr
 笎	!vuyr
 厡	!ihqr
 鼋	!yrmb
 援	!uzyr
 援	!cdyr
 喛	!kzyr
-圎	!klyr
 傆	!rfyr
 猨	!qryr
 湲	!uvyr
@@ -21330,8 +21182,6 @@ import_tables:
 塬	!tuyr
 蒝	!ccyr
 楥	!muyr
-園	!klyr
-圓	!klyr
 猿	!qryr
 獂	!qryr
 溒	!uvyr
@@ -21401,7 +21251,6 @@ import_tables:
 彠	!xyho
 𢯵	!uzmugk
 𢯵	!cdmugk
-月	!klhghg
 刖	!ytdc
 抈	!uzyt
 抈	!cdyt
@@ -21468,7 +21317,6 @@ import_tables:
 勻	!bcer
 匀	!bcbk
 芸	!ccey
-囩	!kley
 沄	!uvey
 妘	!nvey
 纭	!siey
@@ -21562,7 +21410,6 @@ import_tables:
 韻	!ybyr
 帀	!ppjb
 帀	!hgjbfu
-匝	!kljb
 迊	!zzbi
 沞	!uvza
 咂	!kzza
@@ -22715,7 +22562,6 @@ import_tables:
 州	!irdmdmdm
 诌	!ejiu
 侜	!rfoz
-周	!kltukz
 洀	!uvoz
 洲	!uvoz
 珘	!euoz
@@ -23650,3 +23496,157 @@ import_tables:
 𤓓	!holo
 揤	!uzji
 揤	!cdji
+卬	!kljp
+贝	!klrf
+匾	!klbm
+匨	!klvl
+冊	!klhgauau
+册	!klklhg
+圌	!kldr
+丹	!kldmhg
+匰	!kldj
+兜	!klbdbchger
+匵	!klmd
+囤	!kzty
+囮	!kzhx
+匥	!klbm
+匪	!klfw
+冈	!klia
+岡	!klbahgaj
+固	!kzgu
+匦	!klgv
+匭	!klgv
+囯	!kzwh
+国	!kzeu
+囶	!kzbatu
+囻	!kzmb
+圀	!kzerfh
+國	!kzho
+匢	!klwu
+匫	!klhu
+囫	!kzwu
+圜	!kzqs
+圂	!kzus
+囘	!klsi
+囘	!klei
+回	!kzkz
+囬	!kzauauhghg
+匯	!klhk
+圚	!kzgv
+甲	!klus
+囝	!kzzi
+见	!klppyb
+匞	!klgs
+匠	!kljb
+巾	!klau
+冋	!klkz
+冏	!klbakz
+囧	!kzerkl
+匛	!kljq
+匶	!kljq
+巨	!klyahg
+匟	!klkh
+囥	!klkh
+口	!kzhg
+圐	!kzwhfh
+匡	!klwh
+邼	!klei
+邼	!kler
+劻	!klli
+匩	!klajwh
+匩	!klaj
+鵟	!klnn
+匮	!klgv
+匱	!klgv
+困	!kzmu
+乐	!klxn
+匲	!kldapb
+匳	!klqm
+囹	!kzlk
+圝	!kzsiej
+圝	!kzmiejmi
+圝	!kzlr
+圞	!kzlr
+囵	!kzly
+圇	!kzly
+圙	!kzbamm
+冒	!klermu
+羋	!klaugj
+冕	!klermm
+黽	!klhg
+冐	!kleryt
+目	!kzer
+囡	!kznv
+內	!klru
+内	!klrf
+匿	!klro
+囜	!kzsi
+匹	!kler
+囨	!kzbu
+叵	!klkz
+圃	!kzfu
+圑	!kzfu
+匧	!kljx
+圊	!kzqk
+囚	!kzrf
+区	!klia
+曲	!klnm
+匤	!kleu
+區	!klpb
+匷	!klqu
+圈	!kzjr
+圏	!kzjr
+囷	!kzhe
+冄	!kler
+冉	!klushg
+日	!kzhg
+日	!kldm
+禸	!klsi
+肉	!klrfrf
+肉	!klruru
+申	!klus
+囸	!kzog
+四	!kzer
+匴	!klsr
+囼	!kztd
+田	!kzus
+囲	!kzjk
+同	!klhgkz
+図	!kziadmdm
+图	!kzds
+圖	!kzbi
+圗	!kzsimm
+团	!kzcd
+団	!kzcy
+團	!kzor
+网	!kliaia
+罔	!klbahgwh
+囗	!klhg
+围	!kzww
+圍	!kzww
+匣	!kljx
+冔	!klerxu
+圔	!klhe
+央	!klda
+医	!klus
+匜	!klye
+圛	!kzei
+因	!kzda
+圁	!kzej
+用	!klushg
+由	!klus
+囿	!kzyz
+圄	!kzwu
+匬	!kleu
+圉	!kzxk
+囦	!kzuv
+円	!klah
+园	!kzyr
+圆	!kzyr
+圎	!kzyr
+園	!kzyr
+圓	!kzyr
+月	!klhghg
+囩	!kzey
+匝	!kljb
+周	!kltukz
