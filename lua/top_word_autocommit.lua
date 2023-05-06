@@ -4,9 +4,11 @@ local function top_word_autocommit(input, env)
     local single_char_cands = {}
     local tword_phrase_cands = {}
     local context = env.engine.context
-    -- local preedit_code = context:get_commit_text()
     local preedit_code = context.input
     local pos = context.caret_pos
+    local done = 0
+    local prev_cand_text_tbl = {}
+    -- local preedit_code = context:get_commit_text()
     -- local preedit_code_length = #input_code
     for cand in input:iter() do
         if (#preedit_code == 4 or #preedit_code == 5) and
@@ -15,14 +17,11 @@ local function top_word_autocommit(input, env)
         end
 
         if string.len(preedit_code) == 7 and
-            string.find(preedit_code, "^[%l]+%[[%l]+$") then
-            if (utf8.len(cand.text) == 2 or pos == 5) and
-                string.sub(preedit_code, 5, 5) == "[" then
-                tword_phrase_cands[cand.text] = cand
-                -- TODO: drop_list 里的 排除, 可能会 内存使用过多
-            else
-                table.insert(cands, cand)
-            end
+            string.find(preedit_code, "^[%l]+%[[%l]+$") and
+            (utf8.len(cand.text) == 2 or pos == 5) and
+            string.sub(preedit_code, 5, 5) == "[" then
+            tword_phrase_cands[cand.text] = cand
+            -- TODO: drop_list 里的 排除, 可能会 内存使用过多
         end
 
         table.insert(cands, cand)
@@ -32,8 +31,6 @@ local function top_word_autocommit(input, env)
         string.find(preedit_code, "^[%l]+%[[%l]+$") then
         local prev_cand_text = nil
         for i, cand in ipairs(single_char_cands) do
-            -- local cand_code = reverse_dict:lookup(cand.text) or "" -- 待自动上屏的候选项编码
-
             if #cand.text < 2 then table.remove(single_char_cands, i) end
 
             yield(cand)
@@ -65,7 +62,7 @@ local function top_word_autocommit(input, env)
                 env.engine.context:clear()
                 return 1 -- kAccepted
             elseif (#tword_phrase_cands == 2 or table.len(tword_phrase_cands) ==
-                2) and pos == 7 and prev_cand_text == k then
+                    2) and pos == 7 and prev_cand_text == k then
                 env.engine:commit_text(cand.text)
                 context:clear()
                 return 1 -- kAccepted
@@ -77,19 +74,27 @@ local function top_word_autocommit(input, env)
         end
     end
 
-    for _, cand in ipairs(cands) do yield(cand)
+    for i, cand in ipairs(cands) do
+        yield(cand)
 
-        if #preedit_code == 6 and string.find(preedit_code, "^[%l]+$") and utf8.len(cand.text) == 2 then
+        if #preedit_code == 6 and string.find(preedit_code, "^[%l]+$") and i <=
+            2 then
+            if utf8.len(cand.text) ~= 2 then goto skip_not_tword end
             local reversedb = ReverseDb("build/flypy_phrase_fzm.reverse.bin")
             local reverse_code = reversedb:lookup(cand.text)
             if reverse_code == preedit_code then
-                env.engine:commit_text(cand.text)
-                env.engine.context:clear()
-                return 1 -- kAccepted
+                done = done + 1
+                prev_cand_text_tbl[i] = cand.text
             end
+            ::skip_not_tword::
         end
-
+        if (i == 2 and done == 1) or
+            (i == 2 and cand.text == prev_cand_text_tbl[1]) then
+            env.engine:commit_text(prev_cand_text_tbl[1])
+            env.engine.context:clear()
+            return 1 -- kAccepted
+        end
     end
 end
 
-return {filter = top_word_autocommit}
+return { filter = top_word_autocommit }

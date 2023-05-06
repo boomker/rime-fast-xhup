@@ -36,7 +36,7 @@ do
         /usr/local/bin/rg "^\+" |\rg -v "\+#|\+v|\+\+" |tr -d "+" > "${f}_add.diff"
 
     [[ "$f" == "emoji" ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >> "${tgt_file}"
-    if [[ $(cat "${f}_add.diff" |wc -l |tr -d ' ') != 0 ]] && [[ $f != "emoji" ]]; then
+    if [[ $(wc -l "${f}_add.diff" |gcut -d ' ' -f -1) != 0 ]] && [[ $f != "emoji" ]]; then
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
             python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
         else
