@@ -1,5 +1,4 @@
 ---@diagnostic disable: lowercase-global
-
 --[[
 librime-lua 样例
 
@@ -21,9 +20,7 @@ librime-lua 样例
 ```
 
 其中各 `lua_function` 为在本文件所定义变量名。
---]]
-
---[[
+--]] --[[
 本文件的后面是若干个例子，按照由简单到复杂的顺序示例了 librime-lua 的用法。
 每个例子都被组织在 `lua` 目录下的单独文件中，打开对应文件可看到实现和注解。
 
@@ -35,11 +32,7 @@ librime-lua 样例
 可认为是载入 `lua/bar.lua` 中的例子，并起名为 `foo`。
 配方文件中的引用方法为：`...@foo`。
 
---]]
-
-
--- I. translators:
-
+--]] -- I. translators:
 -- datetime_translator: 将 `date`, `rq` ,`week`, `oxq`, `time`, `osj`
 -- 翻译为当前日期, 星期, 时间
 -- date_translator = require("date")
@@ -50,11 +43,10 @@ datetime_translator = date_time.translator
 -- number_translator: 将 `/` + 阿拉伯数字 翻译为大小写汉字
 -- 详见 `lua/number.lua`
 number = require("number")
-number_translator  = number.translator
+number_translator = number.translator
 
 laTex = require("laTex")
 laTex_translator = laTex.translator
-
 
 -- user_dict = require("user_dict")
 -- user_dict_translator = user_dict.translator
@@ -79,6 +71,7 @@ charset_comment_filter = charset.comment_filter
 -- 英文单词支持首字母大写, 全大写等格式
 engword_autocaps = require("word_autocaps")
 engword_autocaps_filter = engword_autocaps.filter
+engword_autocaps_translator = engword_autocaps.translator
 
 -- 提升1 个中文长词的位置到第二候选, 加入了对提升词的词频计算
 -- 除此之外, 对纯英文单词的长词降频
@@ -93,7 +86,7 @@ top_word_autocommit_filter = top_word_autocommit.filter
 -- 详见 `lua/reverse.lua`
 -- reverse_lookup_filter = require("reverse")
 
---use wildcard to search code
+-- use wildcard to search code
 -- expand_translator = require("expand_translator")
 
 -- 强制删词，隐藏词组操作的过滤器
@@ -119,7 +112,6 @@ cold_word_drop_processor = cold_word_drop.processor
 easy_cmd = require("easy_cmd")
 easy_cmd_processor = easy_cmd.processor
 
-
 -- 由lua 導入 engine/下的組件 processor segmentor translator filters
 -- 生成一個processor 於自己 schema speller 取得 config
 -- processor=Component.Processor(env.engine,"","speller")
@@ -128,5 +120,4 @@ easy_cmd_processor = easy_cmd.processor
 -- tran = Component.Translator(env.engine,Schema('luna_pinyin'),"","script_translator")
 --
 -- 配合 test.schema.yaml
---require 'component_test'
-
+-- require 'component_test'
