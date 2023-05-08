@@ -177,7 +177,7 @@ local function translator(input, seg, env)
             local comment = string.format("~%s", tail_char_hxm)
             if string.match(tail_char_hxm, string.sub(input, 6)) then
                 local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
-                cand.quality = 9999
+                cand.quality = 99
                 yield(cand)
             end
             if #input == 7 then tword_tail_char_shape_tbl = {} end

@@ -27,8 +27,7 @@ local function top_word_autocommit(input, env)
         table.insert(cands, cand)
     end
 
-    if (#preedit_code == 4 or #preedit_code == 5) and
-        string.find(preedit_code, "^[%l]+%[[%l]+$") then
+    if (#preedit_code == 4 or #preedit_code == 5) and string.find(preedit_code, "^[%l]+%[[%l]+$") then
         local prev_cand_text = nil
         for i, cand in ipairs(single_char_cands) do
             if #cand.text < 2 then table.remove(single_char_cands, i) end
@@ -50,8 +49,7 @@ local function top_word_autocommit(input, env)
         end
     end
 
-    if string.len(preedit_code) == 7 and
-        string.find(preedit_code, "^[%l]+%[[%l]+$") then
+    if string.len(preedit_code) == 7 and string.find(preedit_code, "^[%l]+%[[%l]+$") then
         local prev_cand_text = nil
         for k, cand in pairs(tword_phrase_cands) do
             yield(cand)
@@ -77,19 +75,18 @@ local function top_word_autocommit(input, env)
     for i, cand in ipairs(cands) do
         yield(cand)
 
-        if #preedit_code == 6 and string.find(preedit_code, "^[%l]+$") and i <=
-            2 then
-            if utf8.len(cand.text) ~= 2 then goto skip_not_tword end
+        if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^[%l]+$") and i <= 5
+            and (not table.find(prev_cand_text_tbl, cand.text)) then
             local reversedb = ReverseDb("build/flypy_phrase_fzm.reverse.bin")
             local reverse_code = reversedb:lookup(cand.text)
-            if reverse_code == preedit_code then
+            -- puts(INFO, "__________", cand.text, cand.quality, reverse_code, preedit_code)
+
+            if (reverse_code == preedit_code) or string.match(reverse_code, preedit_code) then
                 done = done + 1
-                prev_cand_text_tbl[i] = cand.text
+                table.insert(prev_cand_text_tbl, cand.text)
             end
-            ::skip_not_tword::
         end
-        if (i == 2 and done == 1) or
-            (i == 2 and cand.text == prev_cand_text_tbl[1]) then
+        if (i == 5 and done == 1)  then
             env.engine:commit_text(prev_cand_text_tbl[1])
             env.engine.context:clear()
             return 1 -- kAccepted

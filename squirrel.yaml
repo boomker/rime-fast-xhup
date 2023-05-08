@@ -84,7 +84,7 @@ preset_color_schemes:
     base_offset: 0                          # 字基高
     alpha: 0.90                             # 透明度，0~1
     spacing: 10                             # 拼音与候选项之间的距离 （inline_preedit: false）
-    color_space: srgb                       # 色彩空间： srgb | display_p3
+    color_space: display_p3                 # 色彩空间： srgb | display_p3
     back_color: 0x545554                    # 底色
     label_color: 0xBBBBBB                   # 序号颜色
     hilited_candidate_back_color: 0x333333  # 第一候选项背景                        # 选中底色
@@ -92,9 +92,9 @@ preset_color_schemes:
     candidate_text_color: 0xEEEEEE          # 文字颜色
     hilited_candidate_text_color: 0x4ddcbb  # 选中文字颜色
     comment_text_color: 0x808080            # 注颜色
-    hilited_comment_text_color: 0x606cff    # 选中注颜色
-    text_color: 0x808080                    # 拼音颜色 （inline_preedit: false）
-    hilited_text_color: 0xEEEEEE            # 选中拼音颜色 （inline_preedit: false）
+    hilited_comment_text_color: 0x606cff    # 选中注解颜色
+    text_color: 0xa0c179                    # 拼音颜色 （inline_preedit: false）
+    hilited_text_color: 0xa0c179            # 选中拼音颜色 （inline_preedit: false）
     # candidate_back_color:                 # 候选项底色
     # preedit_back_color:                   # 拼音底色 （inline_preedit: false）
     # hilited_back_color:                   # 选中拼音底色 （inline_preedit: false）
@@ -172,3 +172,6 @@ app_options:
   com.neovide.neovide:
     ascii_mode: true
     ascii_punct: true # 中文状态输出英文标点(半角)
+  md.obsidian:
+    ascii_mode: true
+

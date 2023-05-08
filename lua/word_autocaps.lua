@@ -22,9 +22,8 @@ local function autocap_filter(input, env)
             local cand_ua = Candidate("cap", 0, string.len(commit),
                                       commit .. suffix, "+" .. suffix)
             yield(cand_ua)
-        elseif string.find(cand.text, "[%l%u]") then
-            local cand_a = Candidate("a", 0, string.len(commit),
-                                     " " .. cand.text, "~AS")
+        elseif string.find(cand.text, "^%l+") and (not string.find(cand.text, "[:/]+")) then
+            local cand_a = Candidate("a", 0, string.len(commit), " " .. cand.text, "~AS")
             yield(cand_a)
         else
             yield(cand)
@@ -35,8 +34,7 @@ end
 ---@diagnostic disable-next-line: unused-local
 local function autocap_translator(input, seg, env)
     if string.match(input, '%u%u%l+') then
-        local cand = Candidate("word_caps", seg.start, seg._end,
-                               string.upper(input), '~AU')
+        local cand = Candidate("word_caps", seg.start, seg._end, string.upper(input), '~AU')
         yield(cand)
     end
 end
