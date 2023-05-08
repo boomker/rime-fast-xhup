@@ -7,6 +7,7 @@ local function top_word_autocommit(input, env)
     local preedit_code = context.input
     local pos = context.caret_pos
     local done = 0
+    local when_done = 0
     local prev_cand_text_tbl = {}
     -- local preedit_code = context:get_commit_text()
     -- local preedit_code_length = #input_code
@@ -81,12 +82,13 @@ local function top_word_autocommit(input, env)
             local reverse_code = reversedb:lookup(cand.text)
             -- puts(INFO, "__________", cand.text, cand.quality, reverse_code, preedit_code)
 
-            if (reverse_code == preedit_code) or string.match(reverse_code, preedit_code) then
+            if string.match(reverse_code, preedit_code) then
                 done = done + 1
+                when_done = i
                 table.insert(prev_cand_text_tbl, cand.text)
             end
         end
-        if (i == 5 and done == 1)  then
+        if (i == 5 and done == 1 and when_done == 1 )  then
             env.engine:commit_text(prev_cand_text_tbl[1])
             env.engine.context:clear()
             return 1 -- kAccepted
