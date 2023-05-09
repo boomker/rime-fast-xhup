@@ -58,6 +58,6 @@ done
 
 gcp -ar ${repoRoot}/cn_dicts/* "${rimeUserPath}/cn_dicts/"
 gcp -ar ${repoRoot}/en_dicts/* "${rimeUserPath}/en_dicts/"
-gcp -ar ${repoRoot}/opencc/* "${rimeUserPath}/opencc/"
+gcp -ar ${repoRoot}/opencc/emoji.txt "${rimeUserPath}/opencc/"
 gcp -ar flypy_phrase_fzm.dict.yaml ~/Library/Rime/
 cd "${rimeUserPath}" && "${rimeDeployer}" --compile "${rimeUserPath}/flypy_xhfast.schema.yaml" > /dev/null && echo 'enjoy rime'
