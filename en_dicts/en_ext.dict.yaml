@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-05-05"
+version: "2023-05-09"
 sort: by_weight
 ...
 # 一些杂项
@@ -16,6 +16,7 @@ sort: by_weight
 .DS_Store	DSStore
 唵嘛呢叭咪吽	ongmanibeimeihong
 唵嘛呢嘛呢叭咪吽	ongmanimanibeimeihong
+README.md	READMEmd
 
 
 # 按键
@@ -1345,7 +1346,6 @@ McCafe	McCafe
 BSD	BSD
 Berkeley Software Distribution	BSD
 Berkeley Software Distribution	BerkeleySoftwareDistribution
-Berkeley	Berkeley
 DNSPod	DNSPod
 Bandizip	Bandizip
 NATO	NATO
@@ -2186,3 +2186,5 @@ disjunction	disjunction
 heil	heil
 maintainers	maintainers
 AmyTelecom	AmyTelecom
+Patreon	Patreon
+Anaconda	Anaconda
