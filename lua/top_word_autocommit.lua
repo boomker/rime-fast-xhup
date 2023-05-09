@@ -1,4 +1,5 @@
 -- local puts = require("tools/debugtool")
+local reversedb = ReverseDb("build/flypy_phrase_fzm.reverse.bin")
 local function top_word_autocommit(input, env)
     local cands = {}
     local single_char_cands = {}
@@ -25,6 +26,7 @@ local function top_word_autocommit(input, env)
             -- TODO: drop_list 里的 排除, 可能会 内存使用过多
         end
 
+        if #cands > 50 then break end
         table.insert(cands, cand)
     end
 
@@ -76,9 +78,8 @@ local function top_word_autocommit(input, env)
     for i, cand in ipairs(cands) do
         yield(cand)
 
-        if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^[%l]+$") and i <= 5
+        if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^[%l]+$") and i <= 4
             and (not table.find(prev_cand_text_tbl, cand.text)) then
-            local reversedb = ReverseDb("build/flypy_phrase_fzm.reverse.bin")
             local reverse_code = reversedb:lookup(cand.text)
             -- puts(INFO, "__________", cand.text, cand.quality, reverse_code, preedit_code)
 
@@ -88,7 +89,7 @@ local function top_word_autocommit(input, env)
                 table.insert(prev_cand_text_tbl, cand.text)
             end
         end
-        if (i == 5 and done == 1 and when_done == 1 )  then
+        if (i == 4 and done == 1 and when_done == 1 )  then
             env.engine:commit_text(prev_cand_text_tbl[1])
             env.engine.context:clear()
             return 1 -- kAccepted

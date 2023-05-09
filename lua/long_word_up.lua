@@ -54,9 +54,7 @@ local function long_word_up(input, env)
 			table.insert(cands, cand)
 		end
 
-        if #cands > 40 then
-            break
-        end
+        if #cands > 50 then break end
 	end
 
 	for _, cand in ipairs(cands) do
