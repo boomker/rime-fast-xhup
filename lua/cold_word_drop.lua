@@ -17,11 +17,11 @@ local function get_record_filername(record_type)
     local filename = nil
     -- body
     if system == "Darwin" then
-        filename = string.format("%s/Library/Rime/lua/others/%s_words.lua", os.getenv('HOME'), record_type)
+        filename = string.format("%s/Library/Rime/lua/cold_word_record/%s_words.lua", os.getenv('HOME'), record_type)
     elseif system == "Linux" then
-        filename = string.format("%s/.config/ibus/rime/lua/others/%s_words.lua", os.getenv('HOME'), record_type)
+        filename = string.format("%s/.config/ibus/rime/lua/cold_word_record/%s_words.lua", os.getenv('HOME'), record_type)
     else
-        filename = string.format("%%APPDATA%%\\Rime\\lua\\others\\%s_words.lua", record_type)
+        filename = string.format("%%APPDATA%%\\Rime\\lua\\cold_word_record\\%s_words.lua", record_type)
     end
     return filename
 end

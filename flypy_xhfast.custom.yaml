@@ -6,9 +6,9 @@ patch:
     translators/+:
      # - lua_translator@*user_dict
     filters/+:
-      - lua_filter@charset_withEmoji_filter
-      - simplifier
-      - uniquifier
+      # - lua_filter@charset_withEmoji_filter
+      # - simplifier
+      # - uniquifier
 
   # engine/translators/@last: '' ## 禁用英文单词输入功能
   # punctuator/half_shape: {} ## 恢复默认引号
