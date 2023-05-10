@@ -12,7 +12,7 @@ schema:
     小鹤双拼+辅助码
   dependencies:
     - stroke
-    - emoji
+    # - emoji
     - flypy_fzm # 中文词库 - 现代汉语词典 & 清华开源词库
     - melt_eng # 英文单词&词组 - 简明英汉词典（增强版）
 
@@ -56,7 +56,7 @@ engine:
     - abc_segmentor
     - punct_segmentor
     - affix_segmentor@mkst #精准造词
-    - affix_segmentor@emojis
+    # - affix_segmentor@emojis
     # - affix_segmentor@soft_capslock
     - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
@@ -70,7 +70,7 @@ engine:
     - table_translator@flypy_fzm
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
-    - table_translator@emojis
+    # - table_translator@emojis
     # - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp # 添加注释后：停用单词输入
@@ -82,14 +82,15 @@ engine:
     - lua_translator@select_char_translator
     - lua_translator@engword_autocaps_translator
   filters:
+    - simplifier@emoji
+    - lua_filter@charset_withEmoji_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
-    - lua_filter@top_word_autocommit_filter
     - lua_filter@cold_word_drop_filter
+    - lua_filter@top_word_autocommit_filter
     - simplifier
-    - simplifier@emoji # Emoji
     # - simplifier@simplification
-    - uniquifier
+    - uniquifier  #  只能放到最后!
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
@@ -259,58 +260,8 @@ punctuator:
     '"': { pair: ["‘", "’"] } ## 添加注释后：恢复默认引号
     "'": { pair: ["“", "”"] } ## 添加注释后：恢复默认引号
   symbols:
-    "/er":
-      [
-        二,
-        貳,
-        ₂,
-        ²,
-        Ⅱ,
-        ⅱ,
-        ②,
-        ➁,
-        ❷,
-        ➋,
-        ⓶,
-        ⑵,
-        ⒉,
-        ２,
-        ㊁,
-        ㈡,
-        弍,
-        弐,
-        貮,
-        㒃,
-        㒳,
-        兩,
-        倆,
-        ㆓,
-      ]
-    "/san":
-      [
-        三,
-        叄,
-        ₃,
-        ³,
-        Ⅲ,
-        ⅲ,
-        ③,
-        ➂,
-        ❸,
-        ➌,
-        ⓷,
-        ⑶,
-        ⒊,
-        ３,
-        ㊂,
-        ㈢,
-        參,
-        参,
-        叁,
-        弎,
-        仨,
-        ㆔,
-      ]
+    "/er": [ 二, 貳, ₂, ², Ⅱ, ⅱ, ②, ➁, ❷, ➋, ⓶, ⑵, ⒉, ２, ㊁, ㈡, 弍, 弐, 貮, 㒃, 㒳, 兩, 倆, ㆓, ]
+    "/san": [ 三, 叄, ₃, ³, Ⅲ, ⅲ, ③, ➂, ❸, ➌, ⓷, ⑶, ⒊, ３, ㊂, ㈢, 參, 参, 叁, 弎, 仨, ㆔, ]
     "/si": [四, 肆, ₄, ⁴, Ⅳ, ⅳ, ④, ➃, ❹, ➍, ⓸, ⑷, ⒋, ４, ㊃, ㈣, 亖]
     "/zb": [┌, └, ┐, ┘, ─, │, ├, ┤, ┬, ┴, ┼, ┏, ┗, ┓, ┛, ━, ┃, ┣, ┫, ┳, ┻, ╋] ## 制表符
 
@@ -340,7 +291,7 @@ recognizer:
     mkst: "^[a-z]+[[][a-z[[]]+$" # `[` 引导 精准造词
     ## associate schemes:
     reverse_lookup: "^Oq[a-z]*?$" # 部件拆字，部件使用小鹤双拼编码
-    emojis: "^Oe[a-z]*'?$"
+    # emojis: "^Oe[a-z]*'?$"
     # soft_capslock: "^Od.*$"
     dbpy_flypy_help: "^Oh.*$"
     easy_en_simp: "^Oz[a-z]*"
@@ -360,25 +311,24 @@ menu:
 emoji:
   opencc_config: emoji.json
   option_name: emoji
-  tags: abc
 
-emojis:
-  tag: emojis
-  dictionary: emoji
-  enable_completion: true
-  prefix: "Oe"
-  suffix: "'"
-  tips: " Emoji"
-soft_capslock:
-  dictionary: ""
-  user_dict: uppercase
-  tag: soft_capslock
-  prefix: "Od"
-  tips: "临时大写"
-  db_class: stabledb
-  enable_completion: false
-  enable_sentence: false
-  initial_quality: 1
+# emojis:
+#   tag: emojis
+#   dictionary: emoji
+#   enable_completion: true
+#   prefix: "Oe"
+#   suffix: "'"
+#   tips: " Emoji"
+# soft_capslock:
+#   dictionary: ""
+#   user_dict: uppercase
+#   tag: soft_capslock
+#   prefix: "Od"
+#   tips: "临时大写"
+#   db_class: stabledb
+#   enable_completion: false
+#   enable_sentence: false
+#   initial_quality: 1
 dbpy_flypy_help:
   dictionary: ""
   user_dict: dbpy_flypy_help

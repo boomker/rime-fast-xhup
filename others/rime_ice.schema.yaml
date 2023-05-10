@@ -13,7 +13,7 @@ schema:
     雾凇拼音
     https://github.com/iDvel/rime-ice
   dependencies:
-    - easy_en  # 英文输入，作为次翻译器挂载到拼音方案
+    - melt_eng  # 英文输入，作为次翻译器挂载到拼音方案
     # - liangfen  # 两分拼字，作为反查挂载到拼音方案
 
 
@@ -153,7 +153,7 @@ translator:
 
 # 次翻译器，英文
 easy_en_simp :
-  dictionary: easy_en     # 挂载词库 melt_eng.dict.yaml
+  dictionary: melt_eng     # 挂载词库 melt_eng.dict.yaml
   enable_sentence: false   # 禁止造句
   enable_user_dict: false  # 禁用用户词典
   initial_quality: 1.1     # 初始权重

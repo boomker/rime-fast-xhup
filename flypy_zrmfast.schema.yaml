@@ -11,8 +11,8 @@ schema:
     小鹤双拼，自然快手辅助码
   dependencies:
     - stroke
-    - emoji
-    - easy_en
+    # - emoji
+    - melt_eng
 
 switches:
   - name: ascii_mode
@@ -41,7 +41,7 @@ engine:
     - abc_segmentor
     - punct_segmentor
     # - affix_segmentor@quanpin
-    - affix_segmentor@emojis
+    # - affix_segmentor@emojis
     - affix_segmentor@verbatim ## not as the last of this list
     - affix_segmentor@soft_capslock
     - affix_segmentor@dbpy_flypy_help
@@ -54,7 +54,7 @@ engine:
     - reverse_lookup_translator
     - script_translator
     # - script_translator@quanpin
-    - table_translator@emojis
+    # - table_translator@emojis
     - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
     - lua_translator@tex_translator
@@ -177,7 +177,7 @@ recognizer:
 
     # quanpin: "^oq[a-z]*'?$"
     reverse_lookup: "^or[a-z]*'?$" # "[[]b[a-z]*'?$"
-    emojis: "^oe[a-z]*'?$" # "^oe.*$" 
+    # emojis: "^oe[a-z]*'?$" # "^oe.*$" 
     verbatim: "^ox.*$"
     soft_capslock: "^od.*$"
     dbpy_flypy_help: "^oh.*$"
