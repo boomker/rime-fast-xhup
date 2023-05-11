@@ -80,6 +80,8 @@ long_word_up_filter = long_word_up.filter
 
 --  单字和二字词的 全码顶屏(自动上屏)
 top_word_autocommit = require("top_word_autocommit")
+top_word_autocommit_processor = top_word_autocommit.processor
+top_word_autocommit_translator = top_word_autocommit.translator
 top_word_autocommit_filter = top_word_autocommit.filter
 
 -- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
@@ -99,7 +101,7 @@ cold_word_drop_filter = cold_word_drop.filter
 -- 以词定字, 附加fix在有引导符`[`时, 不能数字键上屏
 select_char = require("select_char")
 select_char_processor = select_char.processor
-select_char_translator = select_char.translator
+-- select_char_translator = select_char.translator
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 `lua/switch.lua`
