@@ -65,6 +65,7 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
+    # - history_translator@history
     - reverse_lookup_translator
     - script_translator
     - table_translator@mkst #精准造词
@@ -112,57 +113,57 @@ speller:
     # - derive/^(..[[].).+$/$1/
 
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/ # Flypy: AB[CD
-    - derive/^(\w+)\[(\w)(\w)$/$1\[$2/ # Flypy: AB[C
+    - derive/^(\w+)\[(\w)(\w)$/$1\[$2/   # Flypy: AB[C
+    - derive/^(\w+)\[(\w)(\w)$/$1/       # Flypy: AB
     # - derive/^(\w+)\[(\w)(\w)$/$1$2$3/      # Flypy: Aabyx/AZZyZx/AZAyZy
-    - derive/^(\w+)\[(\w)(\w)$/$1/ # Flypy: AB
 
     - derive/^(j)n/$1c/
-    - derive/^([jyn])t/$1d/ # t --> d
-    - derive/^([bjlmnx])p/$1e/ # p --> e
-    - derive/^([djlnx])q/$1f/ # q --> f
+    - derive/^([jyn])t/$1d/         # t --> d
+    - derive/^([bjlmnx])p/$1e/      # p --> e
+    - derive/^([djlnx])q/$1f/       # q --> f
     - derive/^q([biklmnrsxy])/f$1/
     - derive/^qq/fz/
     - derive/^qu/fs/
     - derive/^qp/fe/
     - derive/^qt/fd/
-    - derive/^([td])p/dl/ # [td]p --> dl
+    - derive/^([td])p/dl/           # [td]p --> dl
     - derive/^p([okifuhjbnmg])/e$1/ # pk --> ek
     - derive/^pb/ek/
-    - derive/^pc/ev/ # pc --> ev
-    - derive/^pd/ef/ # pd --> ef
-    - derive/^pw/es/ # pw --> es
-    - derive/^([jkiu])y/$1w/ # [jk]y --> [jk]w
-    - derive/^y([ikb])/w$1/ # y[ik] --> w[ik]
+    - derive/^pc/ev/                # pc --> ev
+    - derive/^pd/ef/                # pd --> ef
+    - derive/^pw/es/                # pw --> es
+    - derive/^([jkiu])y/$1w/        # [jk]y --> [jk]w
+    - derive/^y([ikb])/w$1/         # y[ik] --> w[ik]
     - derive/^y([asderzc])/o$1/
     - derive/^yu/ov/
     - derive/^yj/wm/
     - derive/^yh/wn/
     - derive/^hy/hw/
-    - derive/^t([wy])/dw/ # t[wy] --> dw
-    - derive/^t([er])/df/ # t[er] --> df
-    - derive/^tg/og/ # tg --> og
+    - derive/^t([wy])/dw/           # t[wy] --> dw
+    - derive/^t([er])/df/           # t[er] --> df
+    - derive/^tg/og/                # tg --> og
     - derive/^tk/rk/
     - derive/^rg/rd/
     - derive/^xt/xd/
     - derive/^xl/xh/
     - derive/^bh/sb/
-    - derive/^b([fgnm])/s$1/ # b[fgnm] --> s[fgnm]
+    - derive/^b([fgnm])/s$1/        # b[fgnm] --> s[fgnm]
     - derive/^vg/vk/
 
-    - derive/^l([uom])$/n$1/ # l -> n
-    - derive/^n([uom])$/l$1/ # l -> n
+    - derive/^l([uom])$/n$1/        # l -> n
+    - derive/^n([uom])$/l$1/        # l -> n
     - derive/^([jqxy])v/$1u/
     - derive/^([jqxy])u/$1v/
-    - derive/^(v)([^fg])/z$2/ # zh => z
-    - derive/^(i)([^fg])/c$2/ # ch => c
-    - derive/^(u)([^bfgnm])/s$2/ # sh => s
-    - derive/^(z)([^f])/v$2/ # z => zh
-    - derive/^(c)(.)/i$2/ # c => ch
-    - derive/^(s)([^bfgnm])/u$2/ # s => sh
-    - derive/^([iu])f/$1g/ # [zcs][h]en 可以通过 [zcs][h]eng 打出
-    - derive/^([iu])g/$1f/ # [zcs][h]eng 可以通过 [zcs][h]en 打出
-    - derive/^([typdjxbm])k/$1b/ # ing 可以通过 in 打出
-    - derive/^([typdjxbmn])b/$1k/ # in 可以通过 ing 打出
+    - derive/^(v)([^fg])/z$2/       # zh => z
+    - derive/^(i)([^fg])/c$2/       # ch => c
+    - derive/^(u)([^bfgnm])/s$2/    # sh => s
+    - derive/^(z)([^f])/v$2/        # z => zh
+    - derive/^(c)(.)/i$2/           # c => ch
+    - derive/^(s)([^bfgnm])/u$2/    # s => sh
+    - derive/^([iu])f/$1g/          # [zcs][h]en 可以通过 [zcs][h]eng 打出
+    - derive/^([iu])g/$1f/          # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    - derive/^([typdjxbm])k/$1b/    # ing 可以通过 in 打出
+    - derive/^([typdjxbmn])b/$1k/   # in 可以通过 ing 打出
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -172,43 +173,10 @@ translator:
   contextual_suggestions: true # 开启八股文
   encode_commit_history: true
   initial_quality: 1.2
-  spelling_hints: 1 ## `0`: 关闭单字编码提示
+  spelling_hints: 1            ## `0`: 关闭单字编码提示
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
 
-  # preedit_format:
-  # - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
-  # - "xform/((^|[ '])\\w)g/$1eng/"
-  # - "xform/((^|[ '])\\w)q/$1iu/"
-  # - "xform/((^|[ '])\\w)w/$1ei/"
-  # - "xform/((^|[ '])[dtnlgkhjqxyvuirzcs])r/$1uan/"
-  # - "xform/((^|[ '])\\w)t/$1ve/"
-  # - "xform/((^|[ '])\\w)y/$1un/"
-  # - "xform/((^|[ '])[dtnlgkhvuirzcs])o/$1uo/"
-  # - "xform/((^|[ '])\\w)p/$1ie/"
-  # - "xform/((^|[ '])[jqx])s/$1iong/"
-  # - "xform/((^|[ '])\\w)s/$1ong/"
-  # - "xform/((^|[ '])\\w)d/$1ai/"
-  # - "xform/((^|[ '])\\w)f/$1en/"
-  # - "xform/((^|[ '])\\w)h/$1ang/"
-  # - "xform/((^|[ '])\\w)j/$1an/"
-  # - "xform/((^|[ '])[gkhvuirzcs])k/$1uai/"
-  # - "xform/((^|[ '])\\w)k/$1ing/"
-  # - "xform/((^|[ '])[jqxnl])l/$1iang/"
-  # - "xform/((^|[ '])\\w)l/$1uang/"
-  # - "xform/((^|[ '])\\w)z/$1ou/"
-  # - "xform/((^|[ '])[gkhvuirzcs])x/$1ua/"
-  # - "xform/((^|[ '])\\w)x/$1ia/"
-  # - "xform/((^|[ '])\\w)c/$1ao/"
-  # - "xform/((^|[ '])[dtgkhvuirzcs])v/$1ui/"
-  # - "xform/((^|[ '])\\w)b/$1in/"
-  # - "xform/((^|[ '])\\w)m/$1ian/"
-  # - "xform/(^|[ '])([aoe])\\2(\\w)/$1$2$3/"
-  # - "xform/(^|[ '])v/$1zh/"
-  # - "xform/(^|[ '])i/$1ch/"
-  # - "xform/(^|[ '])u/$1sh/"
-  # - "xform/((^|[ '])[jqxy])v/$1u/"
-  # - "xform/((^|[ '])[nl])v/$1ü/"
 
 mkst:
   __include: /translator
@@ -250,7 +218,7 @@ flypy_fzm: # 小鹤音形-短语，支持自动补全, 词库源自现代汉语�
   enable_user_dict: false
   enable_completion: true
   dictionary: flypy_phrase_fzm
-  initial_quality: 1.6
+  initial_quality: 1.1
 
 punctuator:
   import_preset: symbols
@@ -370,6 +338,7 @@ laTeX_formula:
 history: #上屏历史记录
   tag: history
   history_num_max: 10
+  size: 10
   input: "hisz"
   initial_quality: 1000
   excluded_type: "punct"
