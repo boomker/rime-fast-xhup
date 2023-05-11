@@ -42,6 +42,7 @@ engine:
     - lua_processor@select_char_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@easy_cmd_processor
+    - lua_processor@top_word_autocommit_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -79,8 +80,8 @@ engine:
     - lua_translator@datetime_translator
     - lua_translator@number_translator
     - lua_translator@commit_history_translator
-    - lua_translator@select_char_translator
     - lua_translator@engword_autocaps_translator
+    - lua_translator@top_word_autocommit_translator
   filters:
     - simplifier@emoji
     - lua_filter@charset_withEmoji_filter
