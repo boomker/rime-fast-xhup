@@ -15,13 +15,21 @@ from functools import lru_cache
 from pathlib import PosixPath as pp
 
 # from datetime import date
-from pypinyin import Style, lazy_pinyin, load_single_dict, pinyin
+from pypinyin import Style, lazy_pinyin, pinyin
+from pypinyin_dict.pinyin_data import ktghz2013
+from pypinyin_dict.phrase_pinyin_data import cc_cedict
+from pypinyin_dict.phrase_pinyin_data import zdic_cibs
+from pypinyin_dict.phrase_pinyin_data import zdic_cybs
 from pypinyin.contrib.tone_convert import to_normal
 
-from chars_zhuyin_dict import single_dict
+# from flypy_chars_zhuyin_dict import single_char_dict
+# load_single_dict(single_char_dict)
 from xhxm_map import xhxm_dict
 
-load_single_dict(single_dict)
+ktghz2013.load()
+cc_cedict.load()
+zdic_cibs.load()
+zdic_cybs.load()
 
 """
 usage: flypy_dict_generator_new.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
@@ -128,7 +136,7 @@ def pinyin_to_flypy(quanpin: list[str]):
 def converte_to_pinyin(hanzi: str):
     pinyin_list = pinyin(hanzi, heteronym=True)
     sl = [" ".join(i) for i in itertools.product(*pinyin_list)]
-    if len(sl) > 3:
+    if (len(sl) > 3):
         return {"lp": lazy_pinyin(hanzi)}
     npyl = []
     for j in sl:
