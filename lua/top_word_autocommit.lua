@@ -160,7 +160,7 @@ local function twac_filter(input, env)
             table.insert(tword_phrase_cands, cand)
         end
 
-        if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^[%l]+$")
+        if table.find({6, 7, 8}, #preedit_code) and string.find(preedit_code, "^[%l]+$")
             and (table.len(tfchars_word_cands ) < 6) and (not table.find(tfchars_word_cands, cand.text)) then
             tfchars_word_cands[cand.text] = cand
         end
@@ -197,17 +197,22 @@ local function twac_filter(input, env)
         end
     end
 
-    if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^[%l]+$") then
-        local i, commit_text = 1, nil
+    if table.find({6, 7, 8}, #preedit_code) and string.find(preedit_code, "^[%l]+$") then
+        local i, when_done, commit_text = 1, 0, nil
         for _, cand in pairs(tfchars_word_cands) do
             local reverse_code = reversedb_fzm:lookup(cand.text)
+            -- puts(INFO, '----------', cand.text, cand.quality ,reverse_code)
 
-            if reverse_code and string.match(reverse_code, preedit_code) then
+            local match_res = string.match(reverse_code, preedit_code)
+            if reverse_code and match_res then
                 done = done + 1
+                when_done = when_done + 1
                 if done == 1 then commit_text = cand.text end
             end
 
-            if (i >= 5 ) and (done == 1) and (pos >= 6 ) then
+            -- puts(INFO, '||||||||||', i, done, cand.text, cand.quality )
+            if (i >= 5 ) and (done == 1) and (pos >= 6 ) and (when_done == 1) and
+                ((#preedit_code / 2 == utf8.len(commit_text)) or #preedit_code == 7) then
                 env.engine:commit_text(commit_text)
                 context:clear()
                 return 1 -- kAccepted
