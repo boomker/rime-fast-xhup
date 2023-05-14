@@ -14,19 +14,21 @@ import itertools
 from functools import lru_cache
 from pathlib import PosixPath as pp
 
-# from datetime import date
+# from datetime import date, load_single_dict
 from pypinyin import Style, lazy_pinyin, pinyin
 from pypinyin_dict.pinyin_data import ktghz2013
 from pypinyin_dict.phrase_pinyin_data import cc_cedict
 from pypinyin_dict.phrase_pinyin_data import zdic_cibs
 from pypinyin_dict.phrase_pinyin_data import zdic_cybs
+# from pypinyin_dict.phrase_pinyin_data import pinyin as pp_py
 from pypinyin.contrib.tone_convert import to_normal
 
 # from flypy_chars_zhuyin_dict import single_char_dict
-# load_single_dict(single_char_dict)
 from xhxm_map import xhxm_dict
 
 ktghz2013.load()
+# load_single_dict(single_char_dict)
+# pp_py.load()
 cc_cedict.load()
 zdic_cibs.load()
 zdic_cybs.load()
