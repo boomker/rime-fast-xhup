@@ -7,16 +7,16 @@
 #
 ---
 name: en_ext
-version: "2023-05-09"
+version: "2023-05-16"
 sort: by_weight
 ...
 # 一些杂项
 &nbsp;	nbsp
 <br>	br
 .DS_Store	DSStore
+README.md	READMEmd
 唵嘛呢叭咪吽	ongmanibeimeihong
 唵嘛呢嘛呢叭咪吽	ongmanimanibeimeihong
-README.md	READMEmd
 
 
 # 按键
@@ -200,6 +200,7 @@ ERC-1155	ERC
 
 
 # +_+
+TypeORM	TypeORM
 Griffiths	Griffiths
 Chapman	Chapman
 Walsh	Walsh
@@ -450,6 +451,7 @@ CallKit	CallKit
 OSS	OSS
 Object Storage Service	OSS
 Object Storage Service	ObjectStorageService
+OceanBase	OceanBase
 YouTube Music	YouTubeMusic
 Apple Music	AppleMusic
 TED	TED
@@ -508,6 +510,7 @@ Chief Technology Officer	CTO
 Chief Technology Officer	ChiefTechnologyOfficer
 Coding	Coding
 Django	Django
+DBMesh	DBMesh
 Excel	Excel
 Flask	Flask
 Facebook	Facebook
@@ -2083,6 +2086,9 @@ stargazers	stargazers
 fallback	fallback
 Fyne	Fyne
 Claude	Claude
+Claude+	Claude
+Anthropic	Anthropic
+Poe	Poe
 overdue	overdue
 Cinderella	Cinderella
 WebGPU	WebGPU
@@ -2166,6 +2172,7 @@ DeepMind	DeepMind
 Google DeepMind	GoogleDeepMind
 TL;DR	TLDR
 Ant-Man	AntMan
+Spider-Man	SpiderMan
 ungoogled	ungoogled
 ungoogled-chromium	ungoogledchromium
 taxman	taxman
@@ -2188,3 +2195,11 @@ maintainers	maintainers
 AmyTelecom	AmyTelecom
 Patreon	Patreon
 Anaconda	Anaconda
+LLaMA	LLaMA
+Large Language Model Meta AI	LLaMA
+fellatio	fellatio
+silo	silo
+R.I.P	RIP
+requiescat	requiescat
+AIGC	AIGC
+AI Generated Content	AIGC
