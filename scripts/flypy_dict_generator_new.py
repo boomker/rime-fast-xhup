@@ -12,16 +12,31 @@ LastEditors: boomker
 import argparse
 import itertools
 from functools import lru_cache
-from pathlib import PosixPath as pp
+from platform import system as systype
+
+if systype() == "Windows":
+    from pathlib import Path as pp
+else:
+    from pathlib import PosixPath as pp
+
 
 # from datetime import date
-from pypinyin import Style, lazy_pinyin, load_single_dict, pinyin
+# from pypinyin import Style, lazy_pinyin, pinyin, load_single_dict
+from pypinyin import Style, lazy_pinyin, pinyin
 from pypinyin.contrib.tone_convert import to_normal
+from pypinyin_dict.phrase_pinyin_data import cc_cedict, zdic_cibs, zdic_cybs
+from pypinyin_dict.phrase_pinyin_data import pinyin as pp_py
+from pypinyin_dict.pinyin_data import ktghz2013
 
-from chars_zhuyin_dict import single_dict
+# from flypy_chars_zhuyin_dict import single_char_dict
 from xhxm_map import xhxm_dict
 
-load_single_dict(single_dict)
+ktghz2013.load()
+# load_single_dict(single_char_dict)
+pp_py.load()
+cc_cedict.load()
+zdic_cibs.load()
+zdic_cybs.load()
 
 """
 usage: flypy_dict_generator_new.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
@@ -111,6 +126,9 @@ def pinyin_to_flypy(quanpin: list[str]):
             "en": "en",
             "eng": "eg",
         }
+        # 错误 Pinyin 返回原始拼音串
+        if len(pinyin) == 1 and pinyin not in zero:
+            return pinyin
         if pinyin in zero:
             return zero[pinyin]
         if pinyin[1] == "h" and len(pinyin) > 2:
@@ -128,7 +146,7 @@ def pinyin_to_flypy(quanpin: list[str]):
 def converte_to_pinyin(hanzi: str):
     pinyin_list = pinyin(hanzi, heteronym=True)
     sl = [" ".join(i) for i in itertools.product(*pinyin_list)]
-    if len(sl) > 3:
+    if (len(sl) > 3):
         return {"lp": lazy_pinyin(hanzi)}
     npyl = []
     for j in sl:
@@ -287,8 +305,9 @@ def get_cli_args():
         nargs="*",
         required=True,
         # action="append",
-        help=("additional yaml dict files to input"),
-        type=open,
+        help=("add yaml dict files to input"),
+        # type=open,
+        type=argparse.FileType('r', encoding='UTF-8')
     )
     parser.add_argument(
         "--word_frequency",
@@ -377,6 +396,7 @@ def main():
         "zrm": "zrup",
         "q": "quanpin",
         "j": "jianpin",
+        "jp": "jianpin",
     }
     infiles = cli_args.input_files
     outfiles = cli_args_dict["out_files"]
