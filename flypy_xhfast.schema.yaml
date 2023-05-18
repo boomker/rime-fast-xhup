@@ -14,7 +14,7 @@ schema:
     - stroke
     # - emoji
     - flypy_fzm # 中文词库 - 现代汉语词典 & 清华开源词库
-    - melt_eng # 英文单词&词组 - 简明英汉词典（增强版）
+    - melt_eng  # 英文单词&词组 - 简明英汉词典（增强版）
 
 switches:
   - name: ascii_mode
@@ -56,7 +56,7 @@ engine:
     - matcher
     - abc_segmentor
     - punct_segmentor
-    - affix_segmentor@mkst #精准造词
+    - affix_segmentor@mkst            # 精准造词
     # - affix_segmentor@emojis
     # - affix_segmentor@soft_capslock
     - affix_segmentor@dbpy_flypy_help
@@ -65,16 +65,17 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
+    # - history_translator@history
     - reverse_lookup_translator
     - script_translator
-    - table_translator@mkst #精准造词
+    - table_translator@mkst           # 精准造词
     - table_translator@flypy_fzm
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
     # - table_translator@emojis
     # - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
-    - table_translator@easy_en_simp # 添加注释后：停用单词输入
+    - table_translator@easy_en_simp   # 单词输入
     - table_translator@melt_eng
     # - lua_translator@laTex_translator
     - lua_translator@datetime_translator
@@ -88,145 +89,115 @@ engine:
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
-    - lua_filter@top_word_autocommit_filter
+    - lua_filter@top_word_autocommit_filter       # 若有 bug, 加减注释后重新部署, 即可恢复正常
     - simplifier
-    # - simplifier@simplification
+    - simplifier@simplification
     - uniquifier  #  只能放到最后!
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[09876
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   # max_code_length: 5
   # auto_select: true
   # auto_select_pattern: '^\w+\[\w{2}$'
-  ## speller 未允许 aj 表示 an
   algebra:
     - erase/^ng\[kx$/ # 响应超级简拼，取消「嗯 ng」的独占
     - erase/^ng\[kk$/ # 响应超级简拼，取消「唔 ng」的独占
     - erase/^n\[\w+$/ # 响应超级简拼，取消「嗯 n」的独占
     - erase/^m\[\w+$/ # 响应超级简拼，取消「呒 m」的独占
     - erase/^m\[\w+$/ # 响应超级简拼，取消「呣 m」的独占
-    #- xform/[[]// ## 取消注释后：直接引导辅助码
+    # - xform/[[]//   # 取消注释后：直接引导辅助码
     # - derive/^(..).+$/$1/
     # - derive/^(..[[].).+$/$1/
 
+    ## 字库编码到输入码的转换规则
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/ # Flypy: AB[CD
-    - derive/^(\w+)\[(\w)(\w)$/$1\[$2/ # Flypy: AB[C
-    # - derive/^(\w+)\[(\w)(\w)$/$1$2$3/      # Flypy: Aabyx/AZZyZx/AZAyZy
-    - derive/^(\w+)\[(\w)(\w)$/$1/ # Flypy: AB
+    - derive/^(\w+)\[(\w)(\w)$/$1\[$2/   # Flypy: AB[C
+    - derive/^(\w+)\[(\w)(\w)$/$1/       # Flypy: AB
 
+    ## 音码优化规则,不影响原始音码规则, 属于全新自创
     - derive/^(j)n/$1c/
-    - derive/^([jyn])t/$1d/ # t --> d
-    - derive/^([bjlmnx])p/$1e/ # p --> e
-    - derive/^([djlnx])q/$1f/ # q --> f
+    - derive/^([jyn])t/$1d/         # t --> d
+    - derive/^([bjlmnx])p/$1e/      # p --> e
+    - derive/^([djlnx])q/$1f/       # q --> f
     - derive/^q([biklmnrsxy])/f$1/
     - derive/^qq/fz/
     - derive/^qu/fs/
     - derive/^qp/fe/
     - derive/^qt/fd/
-    - derive/^([td])p/dl/ # [td]p --> dl
+    - derive/^([td])p/dl/           # [td]p --> dl
     - derive/^p([okifuhjbnmg])/e$1/ # pk --> ek
     - derive/^pb/ek/
-    - derive/^pc/ev/ # pc --> ev
-    - derive/^pd/ef/ # pd --> ef
-    - derive/^pw/es/ # pw --> es
-    - derive/^([jkiu])y/$1w/ # [jk]y --> [jk]w
-    - derive/^y([ikb])/w$1/ # y[ik] --> w[ik]
+    - derive/^pc/ev/                # pc --> ev
+    - derive/^pd/ef/                # pd --> ef
+    - derive/^pw/es/                # pw --> es
+    - derive/^([jkiu])y/$1w/        # [jk]y --> [jk]w
+    - derive/^y([ikb])/w$1/         # y[ik] --> w[ik]
     - derive/^y([asderzc])/o$1/
     - derive/^yu/ov/
+    - derive/^yy/ow/
     - derive/^yj/wm/
     - derive/^yh/wn/
     - derive/^hy/hw/
-    - derive/^t([wy])/dw/ # t[wy] --> dw
-    - derive/^t([er])/df/ # t[er] --> df
-    - derive/^tg/og/ # tg --> og
+    - derive/^t([wy])/dw/           # t[wy] --> dw
+    - derive/^t([er])/df/           # t[er] --> df
+    - derive/^tg/og/                # tg --> og
     - derive/^tk/rk/
     - derive/^rg/rd/
     - derive/^xt/xd/
     - derive/^xl/xh/
+    - derive/^xy/xo/
     - derive/^bh/sb/
-    - derive/^b([fgnm])/s$1/ # b[fgnm] --> s[fgnm]
+    - derive/^b([fgnm])/s$1/        # b[fgnm] --> s[fgnm]
     - derive/^vg/vk/
 
-    - derive/^l([uom])$/n$1/ # l -> n
-    - derive/^n([uom])$/l$1/ # l -> n
+    ## 模糊音:
+    - derive/^l([uom])$/n$1/        # l -> n
+    - derive/^n([uom])$/l$1/        # l -> n
     - derive/^([jqxy])v/$1u/
     - derive/^([jqxy])u/$1v/
-    - derive/^(v)([^fg])/z$2/ # zh => z
-    - derive/^(i)([^fg])/c$2/ # ch => c
-    - derive/^(u)([^bfgnm])/s$2/ # sh => s
-    - derive/^(z)([^f])/v$2/ # z => zh
-    - derive/^(c)(.)/i$2/ # c => ch
-    - derive/^(s)([^bfgnm])/u$2/ # s => sh
-    - derive/^([iu])f/$1g/ # [zcs][h]en 可以通过 [zcs][h]eng 打出
-    - derive/^([iu])g/$1f/ # [zcs][h]eng 可以通过 [zcs][h]en 打出
-    - derive/^([typdjxbm])k/$1b/ # ing 可以通过 in 打出
-    - derive/^([typdjxbmn])b/$1k/ # in 可以通过 ing 打出
+    # - derive/^(v)([^fg])/z$2/       # zh => z
+    # - derive/^(i)([^fg])/c$2/       # ch => c
+    # - derive/^(u)([^bfgnm])/s$2/    # sh => s
+    - derive/^(z)([^edf])/v$2/        # z => zh
+    - derive/^(c)(.)/i$2/           # c => ch
+    - derive/^(s)([^bfgnm])/u$2/    # s => sh
+    - derive/^([iu])f/$1g/          # [zcs][h]en 可以通过 [zcs][h]eng 打出
+    - derive/^([iu])g/$1f/          # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    # - derive/^([typdjxbm])k/$1b/    # ing 可以通过 in 打出
+    - derive/^([typdjxbmn])b/$1k/   # in 可以通过 ing 打出
 
 grammar:
   language: zh-hans-t-essay-bgw
 
 translator:
   dictionary: flypy_xhfast
-  contextual_suggestions: true # 开启八股文
-  encode_commit_history: true
+  contextual_suggestions: true  # 开启八股文, 上下文联想
+  encode_commit_history: true   # 上屏历史记录
   initial_quality: 1.2
-  spelling_hints: 1 ## `0`: 关闭单字编码提示
+  spelling_hints: 1             ## `0`: 关闭单字编码提示
   comment_format:
-    - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
+    - xform/^\w+[[](\w+)$/~$1/  ## 单字编码提示只显示辅助码部分
 
-  # preedit_format:
-  # - "xform/((^|[ '])[bpmfdtnljqx])n/$1iao/"
-  # - "xform/((^|[ '])\\w)g/$1eng/"
-  # - "xform/((^|[ '])\\w)q/$1iu/"
-  # - "xform/((^|[ '])\\w)w/$1ei/"
-  # - "xform/((^|[ '])[dtnlgkhjqxyvuirzcs])r/$1uan/"
-  # - "xform/((^|[ '])\\w)t/$1ve/"
-  # - "xform/((^|[ '])\\w)y/$1un/"
-  # - "xform/((^|[ '])[dtnlgkhvuirzcs])o/$1uo/"
-  # - "xform/((^|[ '])\\w)p/$1ie/"
-  # - "xform/((^|[ '])[jqx])s/$1iong/"
-  # - "xform/((^|[ '])\\w)s/$1ong/"
-  # - "xform/((^|[ '])\\w)d/$1ai/"
-  # - "xform/((^|[ '])\\w)f/$1en/"
-  # - "xform/((^|[ '])\\w)h/$1ang/"
-  # - "xform/((^|[ '])\\w)j/$1an/"
-  # - "xform/((^|[ '])[gkhvuirzcs])k/$1uai/"
-  # - "xform/((^|[ '])\\w)k/$1ing/"
-  # - "xform/((^|[ '])[jqxnl])l/$1iang/"
-  # - "xform/((^|[ '])\\w)l/$1uang/"
-  # - "xform/((^|[ '])\\w)z/$1ou/"
-  # - "xform/((^|[ '])[gkhvuirzcs])x/$1ua/"
-  # - "xform/((^|[ '])\\w)x/$1ia/"
-  # - "xform/((^|[ '])\\w)c/$1ao/"
-  # - "xform/((^|[ '])[dtgkhvuirzcs])v/$1ui/"
-  # - "xform/((^|[ '])\\w)b/$1in/"
-  # - "xform/((^|[ '])\\w)m/$1ian/"
-  # - "xform/(^|[ '])([aoe])\\2(\\w)/$1$2$3/"
-  # - "xform/(^|[ '])v/$1zh/"
-  # - "xform/(^|[ '])i/$1ch/"
-  # - "xform/(^|[ '])u/$1sh/"
-  # - "xform/((^|[ '])[jqxy])v/$1u/"
-  # - "xform/((^|[ '])[nl])v/$1ü/"
 
 mkst:
-  __include: /translator
+  __include: /translator  # 复用上面的翻译器,日志中带有 warning
   enable_sentence: true
   sentence_over_completion: true
   prefix: "["
   tips: "〔精准造词〕"
   tag: mkst
 
-custom_phrase:
+custom_phrase:  # 自定义短语, 包含固顶字词, 快捷启动 APP 名称
   dictionary: ""
   user_dict: custom_phrase
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
-  initial_quality: 2
+  initial_quality: 9
 
-idiom_phrase:
+idiom_phrase: # 成语, 俗语缩写, 实现简拼
   dictionary: ""
   user_dict: idiom_phrase
   db_class: stabledb
@@ -250,7 +221,7 @@ flypy_fzm: # 小鹤音形-短语，支持自动补全, 词库源自现代汉语�
   enable_user_dict: false
   enable_completion: true
   dictionary: flypy_phrase_fzm
-  initial_quality: 1.6
+  initial_quality: 1.2
 
 punctuator:
   import_preset: symbols
@@ -270,9 +241,9 @@ key_binder:
   import_preset: default
   bindings:
     #- { when: composing, accept: Tab, send: '[' }        ## 取消注释后: tab引导辅助码
-    - { when: composing, accept: bracketleft, send: "[" } ## `[`引导辅助码
     - { when: has_menu, accept: semicolon, send: 2 }
-    - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
+    - { when: has_menu, accept: apostrophe, send: 3 }     ## 单引号用于第3候选
+    - { when: composing, accept: bracketleft, send: "[" } ## `[`引导辅助码
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: composing, accept: Control+i, send: Shift+Right }
@@ -289,29 +260,29 @@ recognizer:
   patterns:
     uppercase: "^[A-Z]+$"
     punct: "^/[0-9A-Za-z]+$"
-    mkst: "^[a-z]+[[][a-z[[]]+$" # `[` 引导 精准造词
+    mkst: "^[a-z]+[[][a-z[[]]+$"  # `[` 引导 精准造词
     ## associate schemes:
     reverse_lookup: "^Oq[a-z]*?$" # 部件拆字，部件使用小鹤双拼编码
-    # emojis: "^Oe[a-z]*'?$"
-    # soft_capslock: "^Od.*$"
     dbpy_flypy_help: "^Oh.*$"
     easy_en_simp: "^Oz[a-z]*"
+    # emojis: "^Oe[a-z]*'?$"
+    # soft_capslock: "^Od.*$"
     # laTeX_formula: "^/lt(.*)$"
 
 menu:
   page_size: 4
 
-# simplification:
-#   option_name: simplification
-#   opencc_config: t2s.json
-#   tags: abc
-#   tips: all
-#   excluded_types: [ reverse_lookup ]
+simplification:
+  option_name: simplification
+  opencc_config: t2s.json
+  tags: abc
+  tips: all
+  excluded_types: [ reverse_lookup ]
 
 # Emoji
 emoji:
-  opencc_config: emoji.json
   option_name: emoji
+  opencc_config: emoji.json
 
 # emojis:
 #   tag: emojis
@@ -353,7 +324,6 @@ easy_en_simp:
   comment_format:
     - xform/^.+$//
 reverse_lookup:
-  # dictionary: chaizi_flypy # stroke
   dictionary: flypy_chaizi
   enable_completion: true
   prefix: "Oq"
@@ -370,6 +340,7 @@ laTeX_formula:
 history: #上屏历史记录
   tag: history
   history_num_max: 10
+  size: 10
   input: "hisz"
   initial_quality: 1000
   excluded_type: "punct"
