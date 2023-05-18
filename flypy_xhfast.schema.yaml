@@ -91,7 +91,7 @@ engine:
     - lua_filter@cold_word_drop_filter
     - lua_filter@top_word_autocommit_filter       # 若有 bug, 加减注释后重新部署, 即可恢复正常
     - simplifier
-    # - simplifier@simplification
+    - simplifier@simplification
     - uniquifier  #  只能放到最后!
 
 speller:
@@ -136,6 +136,7 @@ speller:
     - derive/^y([ikb])/w$1/         # y[ik] --> w[ik]
     - derive/^y([asderzc])/o$1/
     - derive/^yu/ov/
+    - derive/^yy/ow/
     - derive/^yj/wm/
     - derive/^yh/wn/
     - derive/^hy/hw/
@@ -158,7 +159,7 @@ speller:
     - derive/^([jqxy])u/$1v/
     # - derive/^(v)([^fg])/z$2/       # zh => z
     # - derive/^(i)([^fg])/c$2/       # ch => c
-    - derive/^(u)([^bfgnm])/s$2/    # sh => s
+    # - derive/^(u)([^bfgnm])/s$2/    # sh => s
     - derive/^(z)([^edf])/v$2/        # z => zh
     - derive/^(c)(.)/i$2/           # c => ch
     - derive/^(s)([^bfgnm])/u$2/    # s => sh
@@ -220,7 +221,7 @@ flypy_fzm: # 小鹤音形-短语，支持自动补全, 词库源自现代汉语�
   enable_user_dict: false
   enable_completion: true
   dictionary: flypy_phrase_fzm
-  initial_quality: 1.1
+  initial_quality: 1.2
 
 punctuator:
   import_preset: symbols
@@ -271,17 +272,17 @@ recognizer:
 menu:
   page_size: 4
 
-# simplification:
-#   option_name: simplification
-#   opencc_config: t2s.json
-#   tags: abc
-#   tips: all
-#   excluded_types: [ reverse_lookup ]
+simplification:
+  option_name: simplification
+  opencc_config: t2s.json
+  tags: abc
+  tips: all
+  excluded_types: [ reverse_lookup ]
 
 # Emoji
 emoji:
-  opencc_config: emoji.json
   option_name: emoji
+  opencc_config: emoji.json
 
 # emojis:
 #   tag: emojis

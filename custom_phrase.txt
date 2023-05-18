@@ -8,31 +8,42 @@
 我	w	2
 有	y	2
 又	y	1
-哦	o	1
+哦	o	3
 的	d	3
-地	d	2
-大	d	1
+的	de	3
+大	d	2
+地	d	1
 个	g	1
+个	ge	1
 和	h	1
+和	he	1
 就	j	2
 将	j	1
-可	k	1
+可	k	2
+可	ke	2
 了	l	1
 在	z	2
 再	z	1
 下	x	1
 啊	a	1
-吧	b	1
+吧	b	2
 把	b	1
+吧	ba	2
+把	ba	1
 才	c	1
 你	n	2
 那	n	1
 吗	m	1
-這	v	1
-发	f	1
+这	v	3
+这	ve	3
+发	f	3
 人	r	1
-他	t	2
-她	t	1
+他	t	3
+她	t	2
+它	t	1
+他	ta	3
+她	ta	2
+它	ta	1
 等	df	1
 有	yz	2
 又	yz	1
@@ -43,8 +54,6 @@
 一个	yg
 有个	yg
 是一个	syg
-有一个	uige
-又有	uuu
 有没有	umu
 有没有	ymy
 那些	nx	2
@@ -53,14 +62,19 @@
 哪里	nl	1
 涉及	uej	2
 因为	yw
+我的	wod
 不知道	bzd
-不知道	dnk
 是不是	sbs
+是不是	ubu
 没什么	msm
 什么鬼	smg
 什么意思	smys
-有时候	yshz
-手机号	sjh	1
+什么意思	smos
+什么玩意儿	smwy
+怎么样	zfmy
+怎么样	zfmw
+怎么样了	zfmwl
+手机号	sjhm	1
 
 
 ## 常用个人信息
@@ -112,6 +126,7 @@ com.apple.systempreferences 	jjsf	2
 com.microsoft.edgemac	jjed	3
 com.google.Chrome	jjch	3
 com.tencent.xinWeChat	jjwx	3
+com.tencent.Foxmail	jjfm	3
 com.netease.163music	jjwm	3
 com.cocoatech.PathFinder 	jjfd	3
 com.neovide.neovide 	jjnv	3
