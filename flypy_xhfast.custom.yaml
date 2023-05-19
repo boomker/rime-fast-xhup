@@ -6,9 +6,6 @@ patch:
     translators/+:
      # - lua_translator@*user_dict
     filters/+:
-      # - lua_filter@charset_withEmoji_filter
-      # - simplifier
-      # - uniquifier
 
   # engine/translators/@last: '' ## 禁用英文单词输入功能
   # punctuator/half_shape: {} ## 恢复默认引号
@@ -38,13 +35,8 @@ patch:
   ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
   # speller/algebra/@next: derive/[[]//
 
-  translator/dictionary: flypy_xhfast    ## 使用小鹤原版辅助码
-  # translator/prism: flypy_flypy  ## 使用小鹤原版辅助码
+  translator/dictionary: flypy_xhfast       ## 使用小鹤原版辅助码
+  # translator/prism: flypy_flypy           ## 使用小鹤原版辅助码
   # translator/contextual_suggestions: true
   # translator/max_homophones: 7
 
-  translator/spelling_hints: 2 ## 关闭单字编码提示
-  translator/comment_format:
-    - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
-    - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/ ## 单字编码提示只显示辅助码部分
-    - xform/^\w+\s(\w+)$// ## 单字编码提示只显示辅助码部分

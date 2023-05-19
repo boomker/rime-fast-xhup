@@ -83,7 +83,7 @@ gsed -i -r '/[^是]什[^(锦|尔|时)]*ui/d' "$1" 2>/dev/null
 gsed -i -r '/^什[^(锦|尔|时)]*\tui/d' "$1" 2>/dev/null
 
 gsed -i -r '/[^(自|正|前|后|外|侠)]传[^记].*vr[^(\t)]/d' "$1" 2>/dev/null
-sei -r '/传[^说]*[^(\t)]ir/d' "$1" 2>/dev/null
+gsed -i -r '/传[^说]*[^(\t)]ir/d' "$1" 2>/dev/null
 
 gsed -i -r '/折.*ue/d' "$1" 2>/dev/null
 
@@ -129,10 +129,14 @@ gsed -i -r  '/系.*[^(\t)]ji/d' "$1" 2>/dev/null
 
 gsed -i -r '/度[^步].*do/d' "$1" 2>/dev/null
 
-sei -r '/[^子]弹[^弓].*dj/d' "$1" 2>/dev/null
+gsed -i -r '/[^子]弹[^弓].*dj/d' "$1" 2>/dev/null
 
-sei -r '/洗.*xm/d' "$1" 2>/dev/null
+gsed -i -r '/洗.*xm/d' "$1" 2>/dev/null
 
-sei -r '/率.*uk/d' "$1" 2>/dev/null
+gsed -i -r '/率.*uk/d' "$1" 2>/dev/null
 
-sei -r '/[^反]*省.*xk/d' "$1" 2>/dev/null
+gsed -i -r '/[^反]*省.*xk/d' "$1" 2>/dev/null
+
+gsed -i -r '/柜.*ju/d' "$1" 2>/dev/null
+
+gse -i -r '/[^保]炮.*bc/d' "$1" 2>/dev/null
