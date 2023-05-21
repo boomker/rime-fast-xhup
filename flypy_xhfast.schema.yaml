@@ -14,6 +14,7 @@ schema:
     - stroke
     # - emoji
     - flypy_fzm # 中文词库 - 现代汉语词典 & 清华开源词库
+    - easy_en
     - melt_eng  # 英文单词&词组 - 简明英汉词典（增强版）
 
 switches:
@@ -58,10 +59,9 @@ engine:
     - punct_segmentor
     - affix_segmentor@mkst            # 精准造词
     # - affix_segmentor@emojis
-    # - affix_segmentor@soft_capslock
+    # - affix_segmentor@laTeX_formula
     - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
-    # - affix_segmentor@laTeX_formula
     - fallback_segmentor
   translators:
     - punct_translator
@@ -73,7 +73,6 @@ engine:
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
     # - table_translator@emojis
-    # - table_translator@soft_capslock
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp   # 单词输入
     - table_translator@melt_eng
@@ -143,30 +142,32 @@ speller:
     - derive/^t([wy])/dw/           # t[wy] --> dw
     - derive/^t([er])/df/           # t[er] --> df
     - derive/^tg/og/                # tg --> og
-    - derive/^tk/rk/
+    - derive/^tk/rk/                # tk --> rk
     - derive/^rg/rd/
     - derive/^xt/xd/
     - derive/^xl/xh/
     - derive/^xy/xo/
     - derive/^bh/sb/
-    - derive/^b([fgnm])/s$1/        # b[fgnm] --> s[fgnm]
+    - derive/^bj/aj/
+    - derive/^jb/ja/
+    - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
     - derive/^vg/vk/
 
     ## 模糊音:
-    - derive/^l([uom])$/n$1/        # l -> n
+    # - derive/^l([uom])$/n$1/        # l -> n
     - derive/^n([uom])$/l$1/        # l -> n
     - derive/^([jqxy])v/$1u/
     - derive/^([jqxy])u/$1v/
     # - derive/^(v)([^fg])/z$2/       # zh => z
     # - derive/^(i)([^fg])/c$2/       # ch => c
     # - derive/^(u)([^bfgnm])/s$2/    # sh => s
-    - derive/^(z)([^edf])/v$2/        # z => zh
-    - derive/^(c)(.)/i$2/           # c => ch
-    - derive/^(s)([^bfgnm])/u$2/    # s => sh
-    - derive/^([iu])f/$1g/          # [zcs][h]en 可以通过 [zcs][h]eng 打出
-    - derive/^([iu])g/$1f/          # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    - derive/^(z)([^edfg])/v$2/         # z => zh
+    - derive/^(c)([^fg])/i$2/           # c => ch
+    - derive/^(s)([^bfgknm])/u$2/       # s => sh
+    - derive/^([iu])f/$1g/              # [zcs][h]en 可以通过 [zcs][h]eng 打出
+    - derive/^([iu])g/$1f/              # [zcs][h]eng 可以通过 [zcs][h]en 打出
+    - derive/^([typdjxbmn])b/$1k/       # in 可以通过 ing 打出
     # - derive/^([typdjxbm])k/$1b/    # ing 可以通过 in 打出
-    - derive/^([typdjxbmn])b/$1k/   # in 可以通过 ing 打出
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -175,10 +176,13 @@ translator:
   dictionary: flypy_xhfast
   contextual_suggestions: true  # 开启八股文, 上下文联想
   encode_commit_history: true   # 上屏历史记录
-  initial_quality: 1.2
+  initial_quality: 1.3
   spelling_hints: 1             ## `0`: 关闭单字编码提示
   comment_format:
-    - xform/^\w+[[](\w+)$/~$1/  ## 单字编码提示只显示辅助码部分
+    - xform/^\w+[[](\w+)$/~$1/                   ## 单字编码提示只显示辅助码部分
+    - xform/^~\w+\s.*$//                         ## 单字编码提示只显示辅助码部分
+    # - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/      ## 单字编码提示只显示辅助码部分
+    # - xform/^\w+\s.*$//                          ## 单字编码提示只显示辅助码部分
 
 
 mkst:
@@ -260,13 +264,12 @@ recognizer:
   patterns:
     uppercase: "^[A-Z]+$"
     punct: "^/[0-9A-Za-z]+$"
-    mkst: "^[a-z]+[[][a-z[[]]+$"  # `[` 引导 精准造词
+    mkst: "^[a-z]*[[][a-z[[]]*$"  # `[` 引导 精准造词
     ## associate schemes:
     reverse_lookup: "^Oq[a-z]*?$" # 部件拆字，部件使用小鹤双拼编码
     dbpy_flypy_help: "^Oh.*$"
-    easy_en_simp: "^Oz[a-z]*"
-    # emojis: "^Oe[a-z]*'?$"
-    # soft_capslock: "^Od.*$"
+    easy_en_simp: "^Oe[a-z]*$"
+    # emojis: "^Of[a-z]*'?$"
     # laTeX_formula: "^/lt(.*)$"
 
 menu:
@@ -291,16 +294,7 @@ emoji:
 #   prefix: "Oe"
 #   suffix: "'"
 #   tips: " Emoji"
-# soft_capslock:
-#   dictionary: ""
-#   user_dict: uppercase
-#   tag: soft_capslock
-#   prefix: "Od"
-#   tips: "临时大写"
-#   db_class: stabledb
-#   enable_completion: false
-#   enable_sentence: false
-#   initial_quality: 1
+
 dbpy_flypy_help:
   dictionary: ""
   user_dict: dbpy_flypy_help
@@ -311,18 +305,20 @@ dbpy_flypy_help:
   enable_completion: true
   enable_sentence: false
   initial_quality: 1
+
 easy_en_simp:
   tag: easy_en_simp
-  dictionary: melt_eng
+  dictionary: easy_en
   enable_completion: true
   enable_sentence: false
   enable_user_dict: false
-  prefix: "Oz"
+  prefix: "Oe"
   # suffix: "'"
   tips: "英文单词(可去元音)"
   spelling_hints: 9
   comment_format:
     - xform/^.+$//
+
 reverse_lookup:
   dictionary: flypy_chaizi
   enable_completion: true
