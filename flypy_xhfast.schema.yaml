@@ -176,7 +176,7 @@ translator:
   dictionary: flypy_xhfast
   contextual_suggestions: true  # 开启八股文, 上下文联想
   encode_commit_history: true   # 上屏历史记录
-  initial_quality: 1.2
+  initial_quality: 1.3
   spelling_hints: 1             ## `0`: 关闭单字编码提示
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/                   ## 单字编码提示只显示辅助码部分
@@ -188,7 +188,7 @@ translator:
 mkst:
   __include: /translator  # 复用上面的翻译器,日志中带有 warning
   enable_sentence: true
-  # sentence_over_completion: true
+  sentence_over_completion: true
   prefix: "["
   tips: "〔精准造词〕"
   tag: mkst
@@ -264,7 +264,7 @@ recognizer:
   patterns:
     uppercase: "^[A-Z]+$"
     punct: "^/[0-9A-Za-z]+$"
-    mkst: "^[a-z]+[[][a-z[[]]*?$" # `[` 引导 精准造词
+    mkst: "^[a-z]*[[][a-z[[]]*$"  # `[` 引导 精准造词
     ## associate schemes:
     reverse_lookup: "^Oq[a-z]*?$" # 部件拆字，部件使用小鹤双拼编码
     dbpy_flypy_help: "^Oh.*$"
