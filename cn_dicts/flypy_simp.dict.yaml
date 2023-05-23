@@ -1,8 +1,6 @@
-
 # Rime dictionary
 # encoding: utf-8
 ## Based on http://gerry.lamost.org/blog/?p=296003
-
 ---
 name: flypy_simp
 version: 2023-05-21
@@ -10,7 +8,6 @@ sort: by_weight
 # use_preset_vocabulary: true  # 導入八股文字頻
 # max_phrase_length: 1         # 不生成詞彙
 ...
-
 啊啊	aa aa	801
 阿坝	aa ba	123
 阿宝	aa bc	258
@@ -36411,7 +36408,6 @@ sort: by_weight
 促销员	cu xn yr	170
 催不动	cv bu ds	100
 崔道河	cv dc he	100
-崔杋圭	cv fj gv	100
 翠港园	cv gh yr	100
 翠亨路	cv hg lu	100
 崔洪刚	cv hs gh	100
@@ -36693,7 +36689,6 @@ sort: by_weight
 大块镇	da kk vf	100
 大狂蜂	da kl fg	100
 大狂欢	da kl hr	100
-大堀彩	da ku cd	100
 达拉斯	da la si	115
 大蜡烛	da la vu	100
 打临牌	da lb pd	100
@@ -37750,7 +37745,6 @@ sort: by_weight
 点名了	dm mk le	100
 电脑报	dm nc bc	168
 电脑城	dm nc ig	544
-电脑堺	dm nc jp	100
 电脑里	dm nc li	387
 电脑前	dm nc qm	452
 电脑桌	dm nc vo	144
@@ -38154,7 +38148,6 @@ sort: by_weight
 杜家毫	du jx hc	100
 度假区	du jx qu	113
 读卡器	du ka qi	673
-杜凯琹	du kd qb	100
 杜可风	du ke fg	100
 杜立德	du li de	100
 独立平	du li pk	100
@@ -40831,7 +40824,6 @@ sort: by_weight
 荷光者	he gl ve	100
 何广智	he gl vi	100
 何国勇	he go ys	100
-和菓子	he go zi	100
 何官镇	he gr vf	100
 河鼓街	he gu jp	100
 禾浩辰	he hc if	100
@@ -40894,7 +40886,6 @@ sort: by_weight
 合起来	he qi ld	174
 核潜艇	he qm tk	212
 河桥镇	he qn vf	100
-何秋亊	he qq ui	100
 何瑞贤	he rv xm	100
 何润东	he ry ds	110
 核司令	he si lk	100
@@ -45356,7 +45347,6 @@ sort: by_weight
 拎箱子	lb xl zi	100
 林小北	lb xn bw	100
 林孝俊	lb xn jy	100
-林孝埈	lb xn jy	100
 林孝天	lb xn tm	100
 林修崖	lb xq ya	100
 林夏薇	lb xx ww	100
@@ -45845,7 +45835,6 @@ sort: by_weight
 历生政	li ug vg	100
 李诗沣	li ui fg	100
 理事会	li ui hv	587
-李施嬅	li ui hx	100
 历史剧	li ui ju	105
 李诗佳	li ui jx	100
 李世民	li ui mb	308
@@ -50748,7 +50737,6 @@ sort: by_weight
 三十万	sj ui wj	134
 三十五	sj ui wu	149
 三尸语	sj ui yu	100
-三笘薰	sj uj xy	100
 三束花	sj uu hx	100
 三叔家	sj uu jx	100
 三属性	sj uu xk	100
@@ -57219,7 +57207,6 @@ sort: by_weight
 先擒王	xm qb wh	100
 仙气白	xm qi bd	100
 先遣图	xm qm tu	100
-仙人粄	xm rf bj	100
 仙人兜	xm rf dz	100
 仙人掌	xm rf vh	270
 现如今	xm ru jb	166
@@ -59854,7 +59841,6 @@ sort: by_weight
 雨大不	yu da bu	100
 渝大狮	yu da ui	100
 于德豪	yu de hc	100
-鱼丁糸	yu dk mi	100
 余多多	yu do do	100
 羽渡尘	yu du if	100
 预防吧	yu fh ba	100
@@ -61921,7 +61907,6 @@ sort: by_weight
 表弟表妹	bn di bn mw	100
 标点符号	bn dm fu hc	136
 飙马野郎	bn ma ye lh	100
-嫑忈嘦姕	bn rf jn zi	100
 表示表示	bn ui bn ui	100
 表示感谢	bn ui gj xp	327
 表述错误	bn uu co wu	100
@@ -70671,7 +70656,6 @@ sort: by_weight
 苦死我了	ku si wo le	100
 苦守寒窑	ku uz hj yc	100
 哭笑不得	ku xn bu de	291
-堀与宫村	ku yu gs cy	100
 库有引力	ku yz yb li	100
 奎聚街道	kv ju jp dc	100
 盔甲护身	kv jx hu uf	100
@@ -71882,7 +71866,6 @@ sort: by_weight
 梦想成真	mg xl ig vf	109
 梦想未来	mg xl ww ld	100
 梦想夏乡	mg xl xx xl	100
-曚云之月	mg yy vi yt	100
 孟子三章	mg zi sj vh	100
 忙不过来	mh bu go ld	178
 芒顿小镇	mh dy xn vf	100
@@ -82287,7 +82270,6 @@ sort: by_weight
 逸景公馆	yi jk gs gr	100
 已经开发	yi jk kd fa	100
 已经开放	yi jk kd fh	100
-逸景佲居	yi jk mk ju	100
 一降到底	yi jl dc di	100
 一江弘城	yi jl hs ig	100
 一将无能	yi jl wu ng	100
@@ -83384,7 +83366,6 @@ sort: by_weight
 育人理念	yu rf li nm	100
 与日俱增	yu ri ju zg	168
 遇弱则弱	yu ro ze ro	100
-宇髄天元	yu sv tm yr	100
 雨特别大	yu te bp da	100
 御庭华府	yu tk hx fu	100
 与田钓希	yu tm dn xi	100
@@ -85250,7 +85231,6 @@ sort: by_weight
 出去玩了么	iu qu wj le me	100
 出示健康码	iu ui jm kh ma	100
 初中班主任	iu vs bj vu rf	100
-垂緌饮清露	iv rv yb qk lu	100
 春风十万里	iy fg ui wj li	100
 春闺梦里人	iy gv mg li rf	100
 春节不打烊	iy jp bu da yh	100
