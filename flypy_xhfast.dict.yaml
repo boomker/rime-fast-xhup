@@ -10,12 +10,15 @@ use_preset_vocabulary: true
 
 import_tables:
   # - cn_dicts/8105        # 字表
-  - cn_dicts/flypy_chars   # 字表
-  - cn_dicts/flypy_base    # 基础词库
-  - cn_dicts/flypy_simp    # 简体中文流行词
-  - cn_dicts/flypy_ext     # 扩展词库
-  - cn_dicts/flypy_tencent # 腾讯词向量（大词库，部署时间较长）
-  # - cn_dicts/others   # 一些杂项
+  - cn_dicts/flypy_chars         # 字表
+  - cn_dicts/flypy_base          # 基础词库
+  - cn_dicts/flypy_simp          # 简体中文流行词
+  - cn_dicts/flypy_ext           # 扩展词库
+  - cn_dicts/flypy_simp_ext
+  - cn_dicts/flypy_super_ext     # 扩展词库(大词库，部署时间较长)
+  - cn_dicts/flypy_wuhgit        # from github.com/wuhgit
+  - cn_dicts/flypy_tencent       # 腾讯词向量(大词库，部署时间较长)
+  # - cn_dicts/others              # 一些杂项
 
   # 建议把扩展词库放到下面，有重复词条时，最上面的权重生效
   # - cn_dicts/my_dict

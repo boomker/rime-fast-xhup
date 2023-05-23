@@ -89,15 +89,15 @@ engine:
     - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
     - lua_filter@top_word_autocommit_filter       # 若有 bug, 加减注释后重新部署, 即可恢复正常
-    - simplifier
     - simplifier@simplification
+    - simplifier
     - uniquifier  #  只能放到最后!
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[09876
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
-  # max_code_length: 5
+  # max_code_length: 8
   # auto_select: true
   # auto_select_pattern: '^\w+\[\w{2}$'
   algebra:
@@ -125,7 +125,7 @@ speller:
     - derive/^qu/fs/
     - derive/^qp/fe/
     - derive/^qt/fd/
-    - derive/^([td])p/dl/           # [td]p --> dl
+    - derive/^dp/dl/                # dp --> dl
     - derive/^p([okifuhjbnmg])/e$1/ # pk --> ek
     - derive/^pb/ek/
     - derive/^pc/ev/                # pc --> ev
@@ -152,14 +152,17 @@ speller:
     - derive/^jb/ja/
     - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
     - derive/^vg/vk/
+    - derive/^zw/zk/
+    - derive/^ly/nw/
 
     ## 模糊音:
     # - derive/^l([uom])$/n$1/        # l -> n
-    - derive/^n([uom])$/l$1/        # l -> n
+    - derive/^n([uom])$/l$1/          # l -> n
     - derive/^([jqxy])v/$1u/
     - derive/^([jqxy])u/$1v/
     # - derive/^(v)([^fg])/z$2/       # zh => z
     # - derive/^(i)([^fg])/c$2/       # ch => c
+    - derive/^(i)([k])/c$2/           # ch => c
     # - derive/^(u)([^bfgnm])/s$2/    # sh => s
     - derive/^(z)([^edfg])/v$2/         # z => zh
     - derive/^(c)([^fg])/i$2/           # c => ch
@@ -264,7 +267,7 @@ recognizer:
   patterns:
     uppercase: "^[A-Z]+$"
     punct: "^/[0-9A-Za-z]+$"
-    mkst: "^[a-z]*[[][a-z[[]]*$"  # `[` 引导 精准造词
+    mkst: "^[a-z]*[[][a-z[[]]+$"  # `[` 引导 精准造词
     ## associate schemes:
     reverse_lookup: "^Oq[a-z]*?$" # 部件拆字，部件使用小鹤双拼编码
     dbpy_flypy_help: "^Oh.*$"
@@ -273,7 +276,7 @@ recognizer:
     # laTeX_formula: "^/lt(.*)$"
 
 menu:
-  page_size: 4
+  page_size: 5
 
 simplification:
   option_name: simplification

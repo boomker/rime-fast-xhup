@@ -15,7 +15,7 @@ patch:
     select_last_character: 'bracketright'
     turn_down_cand: "Control+j"   # 匹配当前输入码后隐藏指定的候选字词
     drop_cand: "Control+d"        # 强制删词, 无视输入的编码
-    
+
     bindings/+:
       #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
       #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
