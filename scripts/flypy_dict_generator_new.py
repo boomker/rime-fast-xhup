@@ -92,6 +92,7 @@ def pinyin_to_flypy(quanpin: list[str]):
             "iang": "l",
             "en": "f",
             "eng": "g",
+            "ng": "g",
             "ang": "h",
             "an": "j",
             "ao": "c",
@@ -128,7 +129,7 @@ def pinyin_to_flypy(quanpin: list[str]):
         }
         # 错误 Pinyin 返回原始拼音串
         if len(pinyin) == 1 and pinyin not in zero:
-            return pinyin
+            return ""
         if pinyin in zero:
             return zero[pinyin]
         if pinyin[1] == "h" and len(pinyin) > 2:

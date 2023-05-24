@@ -40,6 +40,7 @@ switches:
 
 engine:
   processors:
+    - lua_processor@engword_autocaps_processor
     - lua_processor@select_char_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@easy_cmd_processor
@@ -149,11 +150,15 @@ speller:
     - derive/^xy/xo/
     - derive/^bh/sb/
     - derive/^bj/aj/
-    - derive/^jb/ja/
-    - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
-    - derive/^vg/vk/
+    - derive/^bu/au/
+    - derive/^jx/ja/
+    - derive/^jb/jo/
+    - derive/^jm/jz/
+    - derive/^mk/zk/
     - derive/^zw/zk/
+    - derive/^vg/vk/
     - derive/^ly/nw/
+    - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
 
     ## 模糊音:
     # - derive/^l([uom])$/n$1/        # l -> n
@@ -169,8 +174,8 @@ speller:
     - derive/^(s)([^bfgknm])/u$2/       # s => sh
     - derive/^([iu])f/$1g/              # [zcs][h]en 可以通过 [zcs][h]eng 打出
     - derive/^([iu])g/$1f/              # [zcs][h]eng 可以通过 [zcs][h]en 打出
-    - derive/^([typdjxbmn])b/$1k/       # in 可以通过 ing 打出
-    # - derive/^([typdjxbm])k/$1b/    # ing 可以通过 in 打出
+    - derive/^([typdxbmn])b/$1k/        # in 可以通过 ing 打出
+    # - derive/^([typdjxbm])k/$1b/      # ing 可以通过 in 打出
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -282,7 +287,7 @@ simplification:
   option_name: simplification
   opencc_config: t2s.json
   tags: abc
-  tips: all
+  tips: none
   excluded_types: [ reverse_lookup ]
 
 # Emoji

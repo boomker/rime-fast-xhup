@@ -20,6 +20,7 @@
 local charset = {
 	["CJK"] = { first = 0x4E00, last = 0x9FFF }, -- CJK Unified Ideographs - https://unicode.org/charts/PDF/U4E00.pdf
     ["ExtQ"] = { first = 0x1fa75, last = 0x1faf8 }, -- 129653~129784
+    ["Misc"] = { 0x1F6DC, 0x1F6DE, 0x1F6DD, 0x1F6DF, 0x1F9CC, 0x1F7F0 },
 	["ExtA"] = { first = 0x3400, last = 0x4DBF }, -- CJK Unified Ideographs Extension A - https://unicode.org/charts/PDF/U3400.pdf
 	["ExtB"] = { first = 0x20000, last = 0x2A6DF }, -- CJK Unified Ideographs Extension B - https://unicode.org/charts/PDF/U20000.pdf
 	["ExtC"] = { first = 0x2A700, last = 0x2B73F }, -- CJK Unified Ideographs Extension C - https://unicode.org/charts/PDF/U2A700.pdf
@@ -42,7 +43,8 @@ end
 
 local function is_charset(s)
 	return function(c)
-		return c >= charset[s].first and c <= charset[s].last
+		-- return c >= charset[s].first and c <= charset[s].last
+		return ((c >= charset[s].first) and (c <= charset[s].last)) or (table.find(charset["Misc"], c))
 	end
 end
 

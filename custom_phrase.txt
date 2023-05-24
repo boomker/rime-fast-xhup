@@ -3,9 +3,11 @@
 ## 如要添加新的，可以复制已有的行，然后在其基础上修改。
 ## 置顶字词
 是	u	1
-是	s	1
+是	ui	2
 去	q	1
+去	qu	2
 我	w	2
+我	wo	2
 有	y	2
 又	y	1
 哦	o	3
@@ -18,13 +20,17 @@
 和	h	1
 和	he	1
 就	j	2
+就	jq	2
 将	j	1
 可	k	2
 可	ke	2
 了	l	1
+了	le	1
 在	z	2
-再	z	1
+在	zd	2
+再	zd	1
 下	x	1
+下	xx	1
 啊	a	1
 吧	b	2
 把	b	1
@@ -32,12 +38,16 @@
 把	ba	1
 才	c	1
 你	n	2
+你	ni	2
 那	n	1
+那	na	1
 吗	m	1
+吗	ma	1
 这	v	3
 这	ve	3
 发	f	3
 人	r	1
+人	rf	1
 他	t	3
 她	t	2
 它	t	1
@@ -47,33 +57,32 @@
 等	df	1
 有	yz	2
 又	yz	1
-等等	dfd	2
-等待	dfd	1
 我们	wm
 人们	rm
 一个	yg
 有个	yg
-是一个	syg
-有没有	umu
-有没有	ymy
 那些	nx	2
 哪些	nx	1
 那里	nl	2
 哪里	nl	1
-涉及	uej	2
+等等	dfd	2
+等待	dfd	1
 因为	yw
 我的	wod
+有没有	umu
+有没有	ymy
 不知道	bzd
 是不是	sbs
 是不是	ubu
 没什么	msm
 什么鬼	smg
-什么意思	smys
-什么意思	smos
-什么玩意儿	smwy
 怎么样	zfmy
 怎么样	zfmw
-怎么样了	zfmwl
+怎么样了	zmyl
+怎么样了	zmwl
+什么意思	smys
+什么意思	smws
+什么玩意儿	smwy
 手机号	sjhm	1
 
 
@@ -94,14 +103,11 @@ NeoVim	neovi	1
 VSCode	vscode	1
 
 
-馬上到！	msd
+馬上到!	msd
 什麼玩意兒!	wtf	2
 What the fuck!	wtf	1
 WTF	wtf	3
-星際我爭霸	starcraft
-HorizonZeroDawn	hzd	4
-地平线：黎明时分	hzd	2
-正在開會，一會給你回復：）	meet
+正在開會，一會給你回復:)	meet
 中州韻輸入法引擎	rime	2
 又双叒叕	yyyy
 http://rime.im/	rime	1

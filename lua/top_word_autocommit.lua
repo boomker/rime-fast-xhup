@@ -177,7 +177,15 @@ local function twac_filter(input, env)
             if (#single_char_cands == 1)  then
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
-                env.engine:commit_text(cand.text)
+                local ccand_text = ""
+                if context:get_property('prev_cand_is_ascii') == "1" then
+                   ccand_text = " " .. cand.text
+                else
+                   ccand_text = cand.text
+                end
+
+                env.engine:commit_text(ccand_text)
+                context:set_property('prev_cand_is_ascii', "0")
                 context:clear()
                 return 1 -- kAccepted
             end
@@ -190,7 +198,15 @@ local function twac_filter(input, env)
             table.remove(tword_phrase_cands, i)
             -- puts(INFO, "||||||", #tword_phrase_cands, cand.text, utf8.codepoint(cand.text, 1))
             if (#tword_phrase_cands == 1) and (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
-                env.engine:commit_text(cand.text)
+                local ccand_text = ""
+                if context:get_property('prev_cand_is_ascii') == "1" then
+                   ccand_text = " " .. cand.text
+                else
+                   ccand_text = cand.text
+                end
+
+                env.engine:commit_text(ccand_text)
+                context:set_property('prev_cand_is_ascii', "0")
                 context:clear()
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
@@ -215,7 +231,14 @@ local function twac_filter(input, env)
             -- puts(INFO, '||||||||||', i, done, cand.text, cand.quality )
             if (i >= 5 ) and (done == 1) and (pos >= 6 ) and (when_done == 1) and
                 ((#preedit_code / 2 == utf8.len(commit_text)) or (#preedit_code / 3 == utf8.len(commit_text))) then
-                env.engine:commit_text(commit_text)
+                local ccand_text = ""
+                if context:get_property('prev_cand_is_ascii') == "1" then
+                   ccand_text = " " .. commit_text
+                else
+                   ccand_text = commit_text
+                end
+                env.engine:commit_text(ccand_text)
+                context:set_property('prev_cand_is_ascii', "0")
                 context:clear()
                 return 1 -- kAccepted
             end

@@ -70,6 +70,7 @@ charset_comment_filter = charset.comment_filter
 
 -- 英文单词支持首字母大写, 全大写等格式
 engword_autocaps = require("word_autocaps")
+engword_autocaps_processor = engword_autocaps.processor
 engword_autocaps_filter = engword_autocaps.filter
 engword_autocaps_translator = engword_autocaps.translator
 
