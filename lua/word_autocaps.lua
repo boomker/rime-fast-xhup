@@ -22,9 +22,9 @@ local function autocap_filter(input, env)
             local suffix = string.sub(text, string.len(commit) + 1)
             local cand_ua = Candidate("cap", 0, string.len(commit), commit .. suffix, "+" .. suffix)
             yield(cand_ua)
-        elseif string.find(text, "^%l+$") and (not string.find(text, "[:/@]+")) then
-            local cand_as = Candidate("as", 0, string.len(text)+2, " " .. text, "~AS")
-            yield(cand_as)
+        --[[ elseif string.find(text, "^%l+$") and (not string.find(text, "[:/.@]+")) then
+            local cand_as = Candidate("as", 0, string.len(text)+2, text .. " " , "~AS")
+            yield(cand_as) ]]
         else
             yield(cand)
         end
@@ -56,21 +56,53 @@ local function autocap_processor(key, env)
         ["comma"] = true,
         ["period"] = true,
         ["Shift+question"] = true,
-        ['Shift+colon'] = true
+        ['Shift+colon'] = true,
     }
 
-    if (punctuator_keys[key:repr()]) then
+    local symbol_keys = {
+        ['minus'] = true,
+        ['equal'] = true,
+        ['slash'] = true,
+        ['Shift+at'] = true,
+        ['Shift+plus'] = true,
+        ['Shift+dollar'] = true,
+        ['Shift+asterisk'] = true,
+        ['Shift+underscore'] = true
+    }
+
+    if (#input_code == 0) and (punctuator_keys[key:repr()]) then
+        context:set_property('prev_cand_is_punct', "1")
+    end
+
+    if (#input_code == 0) and (symbol_keys[key:repr()]) then
+        context:set_property('prev_cand_is_title', "0")
+        context:set_property('prev_cand_is_aword', "0")
+        context:set_property('prev_cand_is_punct', "0")
+        context:set_property('prev_cand_is_preedit', "0")
         context:set_property('prev_cand_is_ascii', "1")
     end
 
     if (#input_code == 0) and (key:repr() == "Return") then
-        context:set_property('prev_cand_is_ascii', "0")
+        context:set_property('prev_cand_is_ascii', "1")
+        context:set_property('prev_cand_is_aword', "0")
+        context:set_property('prev_cand_is_punct', "0")
+        context:set_property('prev_cand_is_title', "0")
+        context:set_property('prev_cand_is_preedit', "0")
     end
 
     if (#input_code > 1) and (key:repr() == "Return") then
-        context:set_property('prev_cand_is_ascii', "1")
-        local cand_text = " " .. input_code
-        engine:commit_text(cand_text)
+        local cand_text = input_code
+        if (context:get_property('prev_cand_is_ascii') == '0')
+            or (context:get_property('prev_cand_is_preedit') == '1')
+            or (context:get_property('prev_cand_is_aword') == '1') then
+            cand_text = " " .. input_code
+            engine:commit_text(cand_text)
+            -- context:set_property('prev_cand_is_ascii', "1")
+            context:set_property('prev_cand_is_preedit', "1")
+        else
+            engine:commit_text(cand_text)
+            context:set_property('prev_cand_is_preedit', "1")
+        end
         context:clear()
         return 1 -- kAccepted
     end
@@ -82,21 +114,60 @@ local function autocap_processor(key, env)
         if (not composition:empty()) then
             local segment = composition:back()
             local candObj = segment:get_candidate_at(cand_kyes[key:repr()])
+            if not candObj then return 2 end
             cand_text = candObj.text
         end
 
-        if string.match(cand_text, '^%s%l+') or string.match(cand_text, '^%u') then
-            context:set_property('prev_cand_is_ascii', "1")
-            engine:commit_text(cand_text)
+        if (context:get_property('prev_cand_is_punct') == "1")
+            or (context:get_property('prev_cand_is_title') == "1")
+            or (context:get_property('prev_cand_is_preedit') == "1" )
+            or (context:get_property('prev_cand_is_aword') == '1') then
+            local ccand_text = " " .. cand_text
+            engine:commit_text(ccand_text)
+            context:set_property('prev_cand_is_aword', "0")
+            context:set_property('prev_cand_is_ascii', "0")
+            context:set_property('prev_cand_is_punct', "0")
+            context:set_property('prev_cand_is_title', "0")
+            context:set_property('prev_cand_is_preedit', "0")
             context:clear()
             return 1 -- kAccepted
-        else
-            if context:get_property('prev_cand_is_ascii') == '1' then
-                local ccand_text = " " .. cand_text
+        end
+
+        if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
+            context:set_property('prev_cand_is_ascii', "0")
+            --[[ engine:commit_text(cand_text)
+            context:clear()
+            return 1 -- kAccepted ]]
+        end
+
+        if string.match(cand_text, '^%l+$') then
+            if (context:get_property('prev_cand_is_ascii') == '0') then
+                local ccand_text = " " .. cand_text .. " "
                 engine:commit_text(ccand_text)
-                context:set_property('prev_cand_is_ascii', "0")
+                context:set_property('prev_cand_is_ascii', "1")
                 context:clear()
                 return 1 -- kAccepted
+            else
+                engine:commit_text(cand_text)
+                context:set_property('prev_cand_is_aword', "1")
+                context:clear()
+                return 1 -- kAccepted
+            end
+        end
+
+        if string.match(cand_text, '^%u+%l+') then
+            if context:get_property('prev_cand_is_ascii') == '0' then
+                local ccand_text = " " .. cand_text
+                engine:commit_text(ccand_text)
+                context:set_property('prev_cand_is_title', "1")
+                context:clear()
+                return 1 -- kAccepted
+            else
+                engine:commit_text(cand_text)
+                context:set_property('prev_cand_is_title', "1")
+                context:clear()
+                return 1 -- kAccepted
+
             end
         end
 
