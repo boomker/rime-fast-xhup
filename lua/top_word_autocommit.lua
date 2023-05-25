@@ -5,6 +5,25 @@ local reversedb_fzm = ReverseDb("build/flypy_phrase_fzm.reverse.bin")
 local tword_tail_char_shape_tbl = {}
 local Gcommit_codes = {}
 
+local function append_space_to_cand(env, cand_text)
+    local context            = env.engine.context
+    local ccand_text = cand_text
+    if (context:get_property('prev_cand_is_punct') == "1")
+        or (context:get_property('prev_cand_is_title') == "1")
+        or (context:get_property('prev_cand_is_preedit') == "1" )
+        or (context:get_property('prev_cand_is_aword') == '1') then
+        ccand_text = " " .. cand_text
+    end
+    env.engine:commit_text(ccand_text)
+    context:clear()
+    context:set_property('prev_cand_is_aword', "0")
+    context:set_property('prev_cand_is_ascii', "0")
+    context:set_property('prev_cand_is_punct', "0")
+    context:set_property('prev_cand_is_title', "0")
+    context:set_property('prev_cand_is_preedit', "0")
+    return 1 -- kAccepted
+end
+
 local function twac_processor(key, env)
     local engine              = env.engine
     local config              = engine.schema.config
@@ -177,7 +196,10 @@ local function twac_filter(input, env)
             if (#single_char_cands == 1)  then
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
-                env.engine:commit_text(cand.text)
+
+                append_space_to_cand(env, cand.text)
+                -- env.engine:commit_text(cand.text)
+                -- context:set_property('prev_cand_is_ascii', "0")
                 context:clear()
                 return 1 -- kAccepted
             end
@@ -190,7 +212,9 @@ local function twac_filter(input, env)
             table.remove(tword_phrase_cands, i)
             -- puts(INFO, "||||||", #tword_phrase_cands, cand.text, utf8.codepoint(cand.text, 1))
             if (#tword_phrase_cands == 1) and (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
-                env.engine:commit_text(cand.text)
+                append_space_to_cand(env, cand.text)
+                -- env.engine:commit_text(cand.text)
+                -- context:set_property('prev_cand_is_ascii', "0")
                 context:clear()
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
@@ -215,7 +239,9 @@ local function twac_filter(input, env)
             -- puts(INFO, '||||||||||', i, done, cand.text, cand.quality )
             if (i >= 5 ) and (done == 1) and (pos >= 6 ) and (when_done == 1) and
                 ((#preedit_code / 2 == utf8.len(commit_text)) or (#preedit_code / 3 == utf8.len(commit_text))) then
-                env.engine:commit_text(commit_text)
+                append_space_to_cand(env, commit_text)
+                -- env.engine:commit_text(commit_text)
+                -- context:set_property('prev_cand_is_ascii', "0")
                 context:clear()
                 return 1 -- kAccepted
             end
