@@ -121,6 +121,7 @@ function cold_word_drop.processor(key, env)
     local reversedb         = ReverseLookup(schema_id)
     if key:repr() == turndown_cand_key or key:repr() == drop_cand_key then
         local cand = context:get_selected_candidate()
+        if not cand then return 2 end
         local action_type = action_map[key:repr()]
         local ctx_map = {
             ['word'] = cand.text,
