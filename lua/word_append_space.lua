@@ -1,4 +1,5 @@
 
+-- local puts = require("tools/debugtool")
 
 local function reset_curCand_property(env)
     local context            = env.engine.context
@@ -54,7 +55,7 @@ local function auto_append_space_processor(key, env)
     local prev_cand_is_awordv = context:get_property('prev_cand_is_aword')
     local prev_cand_is_punctv = context:get_property('prev_cand_is_punct')
     local prev_cand_is_preeditv = context:get_property('prev_cand_is_preedit')
-    -- puts(INFO, '========', input_code, key:repr())
+    -- puts(INFO, '========', input_code, key:repr(), key.keycode)
 
     if (#input_code == 0) and (punctuator_keys[key:repr()]) then
         --[[ if (prev_cand_is_awordv == '1') or (prev_cand_is_asciiv == '1') then
@@ -75,7 +76,12 @@ local function auto_append_space_processor(key, env)
 
     if (#input_code > 1) and (key:repr() == "Return") then
         local cand_text = input_code
-        if (prev_cand_is_asciiv == '0')
+        if (prev_cand_is_specv == '1') then
+            engine:commit_text(cand_text)
+            context:set_property('prev_cand_is_preedit', "1")
+            context:clear()
+            return 1 -- kAccepted
+        elseif (prev_cand_is_asciiv == '0')
             or (prev_cand_is_preeditv == '1')
             or (prev_cand_is_titlev == '1')
             or (prev_cand_is_awordv == '1')
