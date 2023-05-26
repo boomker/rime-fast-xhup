@@ -182,7 +182,7 @@ function cold_word_drop.filter(input, env)
                 (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
             )
         then
-        ---@diagnostic disable-next-line: undefined-global
+            ---@diagnostic disable-next-line: undefined-global
             yield(cand)
         end
     end

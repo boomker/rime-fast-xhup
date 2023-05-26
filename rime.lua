@@ -73,6 +73,9 @@ engword_autocaps = require("word_autocaps")
 engword_autocaps_filter = engword_autocaps.filter
 engword_autocaps_translator = engword_autocaps.translator
 
+engword_append_space = require("word_append_space")
+engword_append_space_processor = engword_append_space.processor
+
 -- 提升1 个中文长词的位置到第二候选, 加入了对提升词的词频计算
 -- 除此之外, 对纯英文单词的长词降频
 long_word_up = require("long_word_up")
