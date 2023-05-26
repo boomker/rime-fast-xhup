@@ -8,20 +8,28 @@ local Gcommit_codes = {}
 local function append_space_to_cand(env, cand_text)
     local context            = env.engine.context
     local ccand_text = cand_text
+    --[[ local prev_cand_is_titlev = context:get_property('prev_cand_is_title')
+    local prev_cand_is_asciiv = context:get_property('prev_cand_is_ascii')
+    local prev_cand_is_awordv = context:get_property('prev_cand_is_aword')
+    local prev_cand_is_punctv = context:get_property('prev_cand_is_punct')
+    local prev_cand_is_preeditv = context:get_property('prev_cand_is_preedit')
+    puts(INFO, '||||||||',  prev_cand_is_asciiv,  prev_cand_is_punctv, prev_cand_is_awordv, prev_cand_is_titlev, prev_cand_is_preeditv) ]]
     if (context:get_property('prev_cand_is_punct') == "1")
         or (context:get_property('prev_cand_is_title') == "1")
-        or (context:get_property('prev_cand_is_preedit') == "1" )
-        or (context:get_property('prev_cand_is_aword') == '1') then
+        or (context:get_property('prev_cand_is_preedit') == "1")
+        or (context:get_property('prev_cand_is_aword') == "1") then
         ccand_text = " " .. cand_text
     end
-    env.engine:commit_text(ccand_text)
-    context:clear()
+    return ccand_text
+end
+
+local function reset_curCand_property(env)
+    local context            = env.engine.context
     context:set_property('prev_cand_is_aword', "0")
     context:set_property('prev_cand_is_ascii', "0")
     context:set_property('prev_cand_is_punct', "0")
     context:set_property('prev_cand_is_title', "0")
     context:set_property('prev_cand_is_preedit', "0")
-    return 1 -- kAccepted
 end
 
 local function twac_processor(key, env)
@@ -197,10 +205,10 @@ local function twac_filter(input, env)
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
 
-                append_space_to_cand(env, cand.text)
-                -- env.engine:commit_text(cand.text)
-                -- context:set_property('prev_cand_is_ascii', "0")
+                local cand_txt = append_space_to_cand(env, cand.text)
+                env.engine:commit_text(cand_txt)
                 context:clear()
+                reset_curCand_property(env)
                 return 1 -- kAccepted
             end
         end
@@ -212,10 +220,10 @@ local function twac_filter(input, env)
             table.remove(tword_phrase_cands, i)
             -- puts(INFO, "||||||", #tword_phrase_cands, cand.text, utf8.codepoint(cand.text, 1))
             if (#tword_phrase_cands == 1) and (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
-                append_space_to_cand(env, cand.text)
-                -- env.engine:commit_text(cand.text)
-                -- context:set_property('prev_cand_is_ascii', "0")
+                local cand_txt = append_space_to_cand(env, cand.text)
+                env.engine:commit_text(cand_txt)
                 context:clear()
+                reset_curCand_property(env)
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
                 return 1 -- kAccepted
@@ -239,10 +247,10 @@ local function twac_filter(input, env)
             -- puts(INFO, '||||||||||', i, done, cand.text, cand.quality )
             if (i >= 5 ) and (done == 1) and (pos >= 6 ) and (when_done == 1) and
                 ((#preedit_code / 2 == utf8.len(commit_text)) or (#preedit_code / 3 == utf8.len(commit_text))) then
-                append_space_to_cand(env, commit_text)
-                -- env.engine:commit_text(commit_text)
-                -- context:set_property('prev_cand_is_ascii', "0")
+                local cand_txt = append_space_to_cand(env, commit_text)
+                env.engine:commit_text(cand_txt)
                 context:clear()
+                reset_curCand_property(env)
                 return 1 -- kAccepted
             end
             i = i + 1

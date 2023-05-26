@@ -27,7 +27,7 @@ local function easy_cmd(key, env)
         end
 
         local cmd_prefix = string.sub(input_code, 1,2)
-        if (preedit_code_length >= 4) and (idx >= 0) and cmd_prefix == "jj" then
+        if (preedit_code_length >= 4) and (idx >= 0) and (cmd_prefix == "jj") then
             -- puts(INFO, idx, keyvalue, preedit_code_length)
             local candidateText = segment:get_candidate_at(idx).text
             local command = "open -b " .. candidateText
@@ -35,18 +35,18 @@ local function easy_cmd(key, env)
             cmd(command)
             return 1 -- kAccepted 收下此key
         end
-        -- local startPos = 5
-        -- local endPos = string.len(candidateText)
-        -- if endPos >= 5 then
-        --     local order = string.sub(candidateText, startPos, endPos)
-        --     local sub_cand = string.sub(candidateText, 1, 4)
-        --     if sub_cand == 'cmd_' then
-        --         context:clear()
-        --         -- local command = "start /b " .. order
-        --         cmd(command)
-        --         return 1 -- kAccepted 收下此key
-        --     end
-        -- end
+        --[[ local startPos = 5
+        local endPos = string.len(candidateText)
+        if endPos >= 5 then
+            local order = string.sub(candidateText, startPos, endPos)
+            local sub_cand = string.sub(candidateText, 1, 4)
+            if sub_cand == 'cmd_' then
+                context:clear()
+                -- local command = "start /b " .. order
+                cmd(command)
+                return 1 -- kAccepted 收下此key
+            end
+        end  ]]
     end
     -- return 0 -- kRejected librime 不處理
     return 2 -- kNoop 此processor 不處理

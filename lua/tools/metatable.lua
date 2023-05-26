@@ -45,6 +45,7 @@ table.each = function (tab, func)
     end
     return tab
 end
+
 table.find_index = function (tab, elm, ...)
     local _, i = table.find(tab, elm, ...)
     return i

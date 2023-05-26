@@ -1,0 +1,13 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "ReverseDb",
+        "yield",
+        "Candidate",
+        "ReverseLookup",
+        "UniquifiedCandidate",
+        "CommitHistory",
+        "LevelDb",
+        "KeyEvent"
+    ]
+}
