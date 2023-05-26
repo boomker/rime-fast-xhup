@@ -43,146 +43,58 @@ local function first_character(s) return utf8_sub(s, 1, 1) end
 
 local function last_character(s) return utf8_sub(s, -1, -1) end
 
-local tword_tail_char_shape_tbl = {}
-local Gcommit_codes = {}
+local function append_space_to_cand(env, cand_text)
+    local context            = env.engine.context
+    local ccand_text = cand_text
+    if (context:get_property('prev_cand_is_punct') == "1")
+        or (context:get_property('prev_cand_is_title') == "1")
+        or (context:get_property('prev_cand_is_preedit') == "1")
+        or (context:get_property('prev_cand_is_aword') == "1") then
+        ccand_text = " " .. cand_text
+    end
+    return ccand_text
+end
+
+local function reset_curCand_property(env)
+    local context            = env.engine.context
+    context:set_property('prev_cand_is_aword', "0")
+    context:set_property('prev_cand_is_ascii', "0")
+    context:set_property('prev_cand_is_punct', "0")
+    context:set_property('prev_cand_is_title', "0")
+    context:set_property('prev_cand_is_preedit', "0")
+end
 
 local function select_char(key, env)
     local engine              = env.engine
     local config              = engine.schema.config
     local context             = engine.context
     local commit_text         = context:get_commit_text()
-    local input_code          = context.input
-    local preedit_code_length = #input_code
-    local pos                 = context.caret_pos
 
-    local schema_id           = config:get_string("schema/schema_id")
-    local reversedb           = ReverseLookup(schema_id)
     local first_key           = config:get_string("key_binder/select_first_character")
     local last_key            = config:get_string("key_binder/select_last_character")
-    local cand_kyes = {
-        ["space"] = 0,
-        ["semicolon"] = 1,
-        ["apostrophe"] = 2,
-        ["1"] = 0,
-        ["2"] = 1,
-        ["3"] = 2,
-        ["4"] = 3
-    }
-
-    if (preedit_code_length > 1 and pos ~= 4 and key:repr() == "bracketleft") then
-        if utf8.len(commit_text) > 1 then return 2 end
-        local composition = context.composition
-        local cand_text1, cand_text2, cand_text3 = nil, nil, nil
-        if (not composition:empty()) then
-            local segment = composition:back()
-            local cand_1 = segment:get_candidate_at(1)
-            local cand_2 = segment:get_candidate_at(2)
-            local cand_3 = segment:get_candidate_at(3)
-            cand_text1 = cand_1.text
-            cand_text2 = cand_2.text
-            cand_text3 = cand_3.text
-        end
-        Gcommit_codes['Gcommit_code_0'] = reversedb:lookup(commit_text)
-        Gcommit_codes['Gcommit_code_1'] = reversedb:lookup(cand_text1)
-        Gcommit_codes['Gcommit_code_2'] = reversedb:lookup(cand_text2)
-        Gcommit_codes['Gcommit_code_3'] = reversedb:lookup(cand_text3)
-    end
-
-    if (preedit_code_length == 4 and key:repr() == "bracketleft" and pos == 4 and #tword_tail_char_shape_tbl < 1) then
-        local composition = context.composition
-        if (not composition:empty()) then
-            local segment = composition:back()
-            for i = 1, 30, 1 do
-                local tword_cand = segment:get_candidate_at(i)
-                if not tword_cand then return 2 end
-                local tword_cand_text = tword_cand.text
-                if utf8.len(tword_cand_text) < 2 then goto skip_cand end
-                local cand_tail_text = utf8_sub(tword_cand_text, 2)
-                -- puts(INFO, '-------!!!', tword_cand.text, tword_cand_text, cand_tail_text ,i)
-                table.insert(tword_tail_char_shape_tbl, {tword_cand_text, reversedb:lookup(cand_tail_text)})
-                ::skip_cand::
-            end
-        end
-    end
-
-    if (cand_kyes[key:repr()]) and string.find(input_code, "^[%w]+%[$") then
-        tword_tail_char_shape_tbl = {}
-        Gcommit_codes = {}
-        context:select(cand_kyes[key:repr()])
-        local cand_text = context:get_commit_text()
-        engine:commit_text(utf8_sub(cand_text, 1, -2))
-        context:clear()
-
-        return 1 -- kAccepted
-    end
-
-    if (cand_kyes[key:repr()]) and string.find(input_code, "^[%w]+%[%l+") then
-        if not Gcommit_codes['Gcommit_code_0'] then
-            tword_tail_char_shape_tbl = {}
-            return 2
-        end -- 键值对table ,不能使用 `#` 获取长度
-        if pos == 3 then
-            local selected_cand = string.format("Gcommit_code_%s", cand_kyes[key:repr()])
-            local char_code = string.sub(Gcommit_codes[selected_cand], 4, 4)
-            context:push_input(char_code)
-            context:confirm_current_selection()
-            Gcommit_codes = {}
-            return 1
-        else
-            context:confirm_previous_selection()
-        end
-        tword_tail_char_shape_tbl = {}
-
-        return 2 -- kNoop
-    end
 
     if key:repr() == first_key and commit_text ~= "" then
-        engine:commit_text(first_character(commit_text))
+        local commit_txt = first_character(commit_text)
+        local cand_txt = append_space_to_cand(env, commit_txt)
+        engine:commit_text(cand_txt)
         context:clear()
 
+        reset_curCand_property(env)
         return 1 -- kAccepted
     end
 
     if key:repr() == last_key and commit_text ~= "" then
-        engine:commit_text(last_character(commit_text))
+        local commit_txt = last_character(commit_text)
+        local cand_txt = append_space_to_cand(env, commit_txt)
+        engine:commit_text(cand_txt)
         context:clear()
 
+        reset_curCand_property(env)
         return 1 -- kAccepted
     end
 
-    if key:repr() == "Escape" then
-        tword_tail_char_shape_tbl = {}
-        Gcommit_codes = {}
-    end
     return 2 -- kNoop
 end
 
----@diagnostic disable-next-line: unused-local
-local function translator(input, seg, env)
-    local context = env.engine.context
-    local pos = context.caret_pos
-    if table.len(tword_tail_char_shape_tbl) < 1 then return end
-    if string.match(input, '^%l+%[$') and #input == 5 and pos == 5 then
-        for _, val in ipairs(tword_tail_char_shape_tbl) do
-            local tail_char_hxm = string.sub(val[2], 4, 5)
-            local comment = string.format("~%s", tail_char_hxm)
-            local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
-            yield(cand)
-        end
-    end
 
-    if string.match(input, '^%l+%[%l+$') and #input > 5 then
-        for _, val in ipairs(tword_tail_char_shape_tbl) do
-            local tail_char_hxm = string.sub(val[2], 4, 5)
-            local comment = string.format("~%s", tail_char_hxm)
-            if string.match(tail_char_hxm, string.sub(input, 6)) then
-                local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
-                cand.quality = 99
-                yield(cand)
-            end
-            if #input == 7 then tword_tail_char_shape_tbl = {} end
-        end
-    end
-end
-
-return {processor = select_char, translator = translator}
+return {processor = select_char }

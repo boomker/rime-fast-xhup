@@ -40,7 +40,7 @@ switches:
 
 engine:
   processors:
-    - lua_processor@engword_autocaps_processor
+    - lua_processor@engword_append_space_processor
     - lua_processor@select_char_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@easy_cmd_processor
@@ -141,7 +141,7 @@ speller:
     - derive/^yh/wn/
     - derive/^hy/hw/
     - derive/^t([wy])/dw/           # t[wy] --> dw
-    - derive/^t([er])/df/           # t[er] --> df
+    - derive/^t([erp])/df/          # t[er] --> df
     - derive/^tg/og/                # tg --> og
     - derive/^tk/rk/                # tk --> rk
     - derive/^rg/rd/
@@ -262,6 +262,7 @@ key_binder:
     - { when: composing, accept: Control+o, send: Shift+Left }
     ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
     ## （自然码等其他双拼用户请在 pinyin_switch.yaml 中设置）
+    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
     #- { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
     #- { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
     #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
