@@ -53,7 +53,6 @@ engine:
   filters:
     - lua_filter@charset_filter
     - simplifier
-    - simplifier@simplification
     - uniquifier
     # - charset_filter@gb2312+emoji
     # - charset_filter
@@ -73,7 +72,7 @@ translator:
   # enable_user_dict: false
   # enable_encoder: false
   # enable_commit_history: false
-  preedit_format:
+  # preedit_format:
   # enable_correction: true
   # enable_charset_filter: true
 
@@ -83,12 +82,12 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    - { when: composing, accept: Control+m, send: Return }
-    - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu, accept: semicolon, send: 2 }
     - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
     - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
+    - { when: composing, accept: Control+m, send: Return }
+    - { when: composing, accept: Control+w, send: Control+BackSpace }
 
 recognizer:
   import_preset: default

@@ -50,7 +50,7 @@ local kNoop = 2
 local function selector(key, env)
   if env.switcher == nil then return kNoop end
   if key:release() or key:alt() then return kNoop end
-  local idx = select_index(key,env)
+  local idx = select_index(key, env)
   if idx < 0 then return kNoop end
   local ctx = env.engine.context
   if ctx.input == "simp" then -- 当输入为 "simp" 时响应选择
@@ -77,7 +77,7 @@ end
 -- 初始化 switcher
 local function init(env)
   -- 若当前 librime-lua 版本未集成 Switcher 则无事发生
-  if Switcher == nil then return end
+  if not Switcher then return end
   env.switcher = Switcher(env.engine)
 end
 

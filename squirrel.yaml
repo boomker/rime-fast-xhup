@@ -155,23 +155,25 @@ preset_color_schemes:
 
 # 特定App默认中/英文输入
 app_options:
-  com.apple.Spotlight:           # 聚焦搜索
+  com.apple.Spotlight:             # 聚焦搜索
     ascii_mode: true               # true默认英文,false默认中文
-  com.runningwithcrayons.Alfred: # alfred
+  com.runningwithcrayons.Alfred:   # alfred
     ascii_mode: true
-  com.apple.Terminal:            # 终端
+  com.apple.Terminal:              # 终端
     ascii_mode: true
-  com.googlecode.iterm2:         # iterm2
-    ascii_mode: true
-    ascii_punct: true              # 中文状态输出英文标点(半角)
-  com.microsoft.VSCode:          # Visual Studio Code
+  com.googlecode.iterm2:           # iterm2
     ascii_mode: true
     ascii_punct: true              # 中文状态输出英文标点(半角)
-  com.raycast.macos:             # Raycast
+  com.microsoft.VSCode:            # Visual Studio Code
+    ascii_mode: true
+    ascii_punct: true              # 中文状态输出英文标点(半角)
+  com.raycast.macos:               # Raycast
     ascii_mode: true
   com.neovide.neovide:
     ascii_mode: true
-    ascii_punct: true # 中文状态输出英文标点(半角)
+    ascii_punct: true              # 中文状态输出英文标点(半角)
   md.obsidian:
+    ascii_mode: true
+  org.alacritty:
     ascii_mode: true
 

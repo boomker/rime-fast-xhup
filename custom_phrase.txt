@@ -31,7 +31,8 @@
 再	zd	1
 下	x	1
 下	xx	1
-啊	a	1
+啊	a	2
+啊	aa	2
 吧	b	2
 把	b	1
 吧	ba	2
@@ -65,9 +66,10 @@
 哪些	nx	1
 那里	nl	2
 哪里	nl	1
+因为	yw	1
 等等	dfd	2
 等待	dfd	1
-因为	yw
+等到	dfd	1
 我的	wod
 有没有	umu
 有没有	ymy
@@ -94,13 +96,15 @@
 ##xx學校/單位	jf	44
 
 ## 常用短语
+Mac	mac	2
 DevOps	devo	2
 Django	djan	2
 Deploy	depl	2
 GitHub	gith	1
-Mac	mac	2
 NeoVim	neovi	1
 VSCode	vscode	1
+Kubernetes	kube	1
+Artificial general inteligence	AGI	1
 
 
 馬上到!	msd

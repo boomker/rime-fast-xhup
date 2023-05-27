@@ -30,7 +30,7 @@ function utf8.gsub(str, si, ei)
     return str:gsub(u_si, u_ei)
 end
 
-function utf8.sub(s, i, j)
+function utf8.csub(s, i, j)
     i = i or 1
     j = j or -1
 
@@ -69,5 +69,5 @@ string.split = string.split
 string.utf8_len = utf8.len
 string.utf8_offset = utf8.offset
 string.utf8_gsub = utf8.gsub
-string.utf8_sub = utf8.sub
+string.utf8_sub = utf8.csub
 return true
