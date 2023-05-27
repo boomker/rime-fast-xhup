@@ -8,6 +8,11 @@
         "UniquifiedCandidate",
         "CommitHistory",
         "LevelDb",
-        "KeyEvent"
+        "KeyEvent",
+        "orgtype",
+        "metatable",
+        "metatable_chk",
+        "Switcher",
+        "log"
     ]
 }

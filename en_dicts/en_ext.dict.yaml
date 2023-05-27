@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-05-18"
+version: "2023-05-27"
 sort: by_weight
 ...
 # 一些杂项
@@ -330,6 +330,7 @@ CCTV	CCTV
 Closed-Circuit Television	CCTV
 Closed-Circuit Television	ClosedCircuitTelevision
 China Central Television	CCTV
+ColorOS	ColorOS
 China Central Television	ChinaCentralTelevision
 GTA	GTA
 Grand Theft Auto	GTA
@@ -376,6 +377,7 @@ International Data Corporation	InternationalDataCorporation
 Wunderlist	Wunderlist
 VMware	VMware
 Fusion	Fusion
+Flyme	Flyme
 VMware Fusion	VMwareFusion
 VMware Fusion Player	VMwareFusionPlayer
 VMware Fusion Pro	VMwareFusionPro
@@ -748,8 +750,6 @@ Little Snitch	LittleSnitch
 Live Photos	LivePhotos
 LiveReload	LiveReload
 LockScreen	LockScreen
-MAS	MAS
-Mac App Store	MAS
 Mac App Store	MacAppStore
 Mac Rumors	MacRumors
 MacAppDeals	MacAppDeals
@@ -873,9 +873,11 @@ Trello	Trello
 Tumblr	Tumblr
 tvOS	tvOS
 Tweetbot	Tweetbot
+tweet	tweet
 Typora	Typora
 Uber	Uber
 uBlock	uBlock
+uBlock Origin	uBlockOrigin
 Ulysses	Ulysses
 USB	USB
 Universal Serial Bus	USB
@@ -931,6 +933,7 @@ gank	gank
 buff	buff
 debuff	debuff
 MagSafe	MagSafe
+Magic UI	MagicUI
 HDMI	HDMI
 High Definition Multimedia Interface	HDMI
 High Definition Multimedia Interface	HighDefinitionMultimediaInterface
@@ -939,7 +942,6 @@ Not Safe For Work	NSFW
 Not Suitable For Work	NSFW
 Not Safe For Work	NotSafeForWork
 Not Suitable For Work	NotSuitableForWork
-Disco	Disco
 Termius	Termius
 Jinja	Jinja
 capitalize	capitalize
@@ -1022,6 +1024,7 @@ CommonMark	CommonMark
 Goldmark	Goldmark
 blackFriday	blackFriday
 Online	Online
+One UI	OneUI
 Raycast	Raycast
 CloudFront	CloudFront
 RSS	RSS
@@ -1056,7 +1059,7 @@ GraphQL	GraphQL
 TOTP	TOTP
 Time-based One-Time Password	TOTP
 Unclutter	Unclutter
-Sitemap	Sitemap
+sitemap	sitemap
 DuckDuckGo	DuckDuckGo
 Yandex	Yandex
 Geralt	Geralt
@@ -1087,6 +1090,7 @@ header	header
 GitHub Copilot	GitHubCopilot
 GitHub Copilot X	GitHubCopilotX
 GitHub Copilot CLI	GitHubCopilotCLI
+GitHub Copilot chat	GitHubCopilotchat
 Blog	Blog
 iPadOS	iPadOS
 Apple Pencil	ApplePencil
@@ -1292,7 +1296,7 @@ Google Drive	GoogleDrive
 Google One	GoogleOne
 Tor	Tor
 Airbnb	Airbnb
-opencc	opencc
+OpenCC	OpenCC
 HarmonyOS	HarmonyOS
 Incase	Incase
 NPC	NPC
@@ -1542,8 +1546,8 @@ VCS	VCS
 version control system	VCS
 version control system	versioncontrolsystem
 cnBeta	cnBeta
-Pull Request	PullRequest
-Merge Request	MergeRequest
+pull request	pullrequest
+merge request	mergerequest
 squash	squash
 Ant Design	AntDesign
 Disney	Disney
@@ -1596,6 +1600,7 @@ Greasy Fork	GreasyFork
 greasy	greasy
 GalGame	GalGame
 VoLTE	VoLTE
+VoWiFi	VoWiFi
 Voice Over LTE	VoLTE
 capper	capper
 shank	shank
@@ -1681,7 +1686,6 @@ Mozilla Firefox	MozillaFirefox
 Apache	Apache
 Steam	Steam
 Steam Deck	SteamDeck
-App	App
 Android	Android
 android	android
 Arch	Arch
@@ -1698,6 +1702,7 @@ Pixel	Pixel
 Wii U	WiiU
 Wii	Wii
 Oracle	Oracle
+OriginOS	OriginOS
 Chrome	Chrome
 Chromium	Chromium
 iPhone	iPhone
@@ -1905,6 +1910,7 @@ Astro	Astro
 SigmaOS	SigmaOS
 switcher	switcher
 fuckity	fuckity
+Funtouch OS	FuntouchOS
 fo	fo
 layouts	layouts
 redirect	redirect
@@ -1976,7 +1982,7 @@ Google Authenticator	GoogleAuthenticator
 Authenticator	Authenticator
 authenticator	authenticator
 Depay	Depay
-codeium	codeium
+Codeium	Codeium
 OpenCat	OpenCat
 AWS	AWS
 Amazon Web Services	AWS
@@ -2205,3 +2211,6 @@ AIGC	AIGC
 AI Generated Content	AIGC
 Presto	Presto
 presto	presto
+Upscayl	Upscayl
+Cocos Creator	CocosCreator
+John Wick	JohnWick
