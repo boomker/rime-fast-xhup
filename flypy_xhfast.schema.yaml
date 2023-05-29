@@ -89,13 +89,13 @@ engine:
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
-    - lua_filter@top_word_autocommit_filter       # 若有 bug, 加减注释后重新部署, 即可恢复正常
+    - lua_filter@top_word_autocommit_filter
     - simplifier@simplification
     - simplifier
     - uniquifier  #  只能放到最后!
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[09876
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   # max_code_length: 8
