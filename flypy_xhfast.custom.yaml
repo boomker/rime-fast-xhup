@@ -6,9 +6,6 @@ patch:
     translators/+:
      # - lua_translator@*user_dict
     filters/+:
-      # - lua_filter@charset_withEmoji_filter
-      # - simplifier
-      # - uniquifier
 
   # engine/translators/@last: '' ## 禁用英文单词输入功能
   # punctuator/half_shape: {} ## 恢复默认引号
@@ -18,17 +15,17 @@ patch:
     select_last_character: 'bracketright'
     turn_down_cand: "Control+j"   # 匹配当前输入码后隐藏指定的候选字词
     drop_cand: "Control+d"        # 强制删词, 无视输入的编码
-    
+
     bindings/+:
-      #- { when: composing, accept: Tab, send: '[' } ## tab引导辅助码
-      #- { when: composing, accept: comma, send: '[' } ## 逗号引导辅助码，常用于手机端
+      # - { when: composing, accept: Tab, send: '[' }         ## tab引导辅助码
+      # - { when: composing, accept: comma, send: '[' }       ## 逗号引导辅助码，常用于手机端
+      - { when: has_menu,  accept: apostrophe,  send: 3 }     ## 单引号用于第3候选
+      - { when: has_menu,  accept: period, send: Page_Down }
+      - { when: composing, accept: bracketleft, send: "[" }   ## tab引导辅助码
       - { when: composing, accept: Tab, send: Shift+Right }
-      - { when: composing, accept: bracketleft, send: "[" } ## tab引导辅助码
-      - { when: has_menu,  accept: period, send: Page_Down } 
-      - { when: has_menu,  accept: apostrophe,  send: 3 }   ## 单引号用于第3候选
-      - { when: composing, accept: Control+a,   send_sequence: '{Home}{Right}{Right}[' }
-      - { when: composing, accept: Control+e, send: End }
       - { when: composing, accept: Control+k, send: Shift+Delete }
+      - { when: composing, accept: Control+e, send: End }
+      - { when: composing, accept: Control+a,   send_sequence: '{Home}{Right}{Right}[' }
       - { when: composing, accept: Right,       send_sequence: "{Right}{Right}" }
       # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
         ## `键（grave，Tab 上面那个）为词组逐字追加辅助码。
@@ -38,13 +35,8 @@ patch:
   ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
   # speller/algebra/@next: derive/[[]//
 
-  translator/dictionary: flypy_xhfast    ## 使用小鹤原版辅助码
-  # translator/prism: flypy_flypy  ## 使用小鹤原版辅助码
+  translator/dictionary: flypy_xhfast       ## 使用小鹤原版辅助码
+  # translator/prism: flypy_flypy           ## 使用小鹤原版辅助码
   # translator/contextual_suggestions: true
   # translator/max_homophones: 7
 
-  translator/spelling_hints: 2 ## 关闭单字编码提示
-  translator/comment_format:
-    - xform/^\w+[[](\w+)$/~$1/ ## 单字编码提示只显示辅助码部分
-    - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/ ## 单字编码提示只显示辅助码部分
-    - xform/^\w+\s(\w+)$// ## 单字编码提示只显示辅助码部分

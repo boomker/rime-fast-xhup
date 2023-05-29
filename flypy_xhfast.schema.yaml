@@ -5,9 +5,9 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "0.1"
+  version: "0.2"
   author:
-    - Functoreality
+    - boomker
   description: |
     小鹤双拼+辅助码
   dependencies:
@@ -31,7 +31,7 @@ switches:
     states: [漢字, 汉字]
   - name: ascii_punct
     states: [。，, ．，]
-  - options: ["utf8", "gbk", "gb2312"] # (※2)字符集选单
+  - options: ["utf8", "gbk", "gb2312"] # 字符集选单
     reset: 0 # 默认 UTF8
     states:
       - UTF-8
