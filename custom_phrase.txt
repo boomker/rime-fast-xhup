@@ -88,7 +88,6 @@
 什么意思	smws
 什么玩意儿	smwy
 手机号	sjhm	1
-18939740924	sjhm	1
 
 
 ## 常用个人信息
@@ -97,7 +96,6 @@
 ##xxx（学号/工号）	jj	60
 ##xx学院/部门	jj	48
 ##xx學校/單位	jj	44
-gmboomker@gmail.com	ggem	44
 
 ## 常用短语
 Mac	mac	2
