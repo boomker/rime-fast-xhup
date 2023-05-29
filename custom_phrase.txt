@@ -42,6 +42,8 @@
 你	ni	2
 那	n	1
 那	na	1
+没	m	2
+没	mw	1
 吗	m	1
 吗	ma	1
 这	v	3
@@ -86,14 +88,16 @@
 什么意思	smws
 什么玩意儿	smwy
 手机号	sjhm	1
+18939740924	sjhm	1
 
 
 ## 常用个人信息
 ## 注意最后的数字控制优先级，希望排在前面的要设置得大一些
-##姓名（在custom_phrase.txt里设置）	jf	64
-##xxx（学号/工号）	jf	60
-##xx学院/部门	jf	48
-##xx學校/單位	jf	44
+##姓名（在custom_phrase.txt里设置）	jj	64
+##xxx（学号/工号）	jj	60
+##xx学院/部门	jj	48
+##xx學校/單位	jj	44
+gmboomker@gmail.com	ggem	44
 
 ## 常用短语
 Mac	mac	2
@@ -104,7 +108,6 @@ GitHub	gith	1
 NeoVim	neovi	1
 VSCode	vscode	1
 Kubernetes	kube	1
-Artificial general inteligence	AGI	1
 
 
 馬上到!	msd
