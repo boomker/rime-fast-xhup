@@ -28,6 +28,7 @@ local function auto_append_space_processor(key, env)
         ["7"] = 6,
         ["8"] = 7,
         ["9"] = 8,
+        ["10"] = 9,
     }
 
     local punctuator_keys = {
@@ -122,6 +123,7 @@ local function auto_append_space_processor(key, env)
 
         if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
             reset_curCand_property(env)
+            context:confirm_previous_selection()
         end
 
         if string.match(cand_text, '^%l+$') then
