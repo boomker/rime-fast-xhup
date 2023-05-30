@@ -1,7 +1,7 @@
 -- local puts = require("tools/debugtool")
 require("tools/string")
 
-local reversedb_fzm = ReverseDb("build/flypy_phrase_fzm.reverse.bin")
+local reversedb_fzm = ReverseDb("build/flypy_phrase.reverse.bin")
 local tword_tail_char_shape_tbl = {}
 local Gcommit_codes = {}
 
@@ -95,7 +95,7 @@ local function twac_processor(key, env)
     end
 
     --  按下 '[' 后, 数字键或符号键快捷选词条
-    if (cand_kyes[key:repr()]) and string.find(input_code, "^%l+(%[?)(%l)*%[$") then
+    if (cand_kyes[key:repr()]) and string.match(input_code, "^%l+[%l%[]+%[$") then
         tword_tail_char_shape_tbl = {}
         Gcommit_codes = {}
         context:select(cand_kyes[key:repr()])
@@ -122,6 +122,7 @@ local function twac_processor(key, env)
         else
             context:confirm_previous_selection()
         end
+        Gcommit_codes = {}
         tword_tail_char_shape_tbl = {}
 
         return 2 -- kNoop

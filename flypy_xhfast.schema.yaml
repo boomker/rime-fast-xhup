@@ -12,10 +12,10 @@ schema:
     小鹤双拼+辅助码
   dependencies:
     - stroke
-    # - emoji
-    - flypy_fzm # 中文词库 - 现代汉语词典 & 清华开源词库
+    # - flypy_phrase  # 中文词库 - 现代汉语词典 & 清华开源词库
+    - melt_eng      # 英文单词&词组 - 简明英汉词典（增强版）
     - easy_en
-    - melt_eng  # 英文单词&词组 - 简明英汉词典（增强版）
+    # - emoji
 
 switches:
   - name: ascii_mode
@@ -70,7 +70,7 @@ engine:
     - reverse_lookup_translator
     - script_translator
     - table_translator@mkst           # 精准造词
-    - table_translator@flypy_fzm
+    # - table_translator@flypy_phrase
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
     # - table_translator@emojis
@@ -215,7 +215,7 @@ idiom_phrase: # 成语, 俗语缩写, 实现简拼
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
-  initial_quality: 1
+  initial_quality: -1
 
 melt_eng: # 英文单词
   enable_encoder: false
@@ -226,14 +226,14 @@ melt_eng: # 英文单词
   dictionary: melt_eng
   initial_quality: 1.1
 
-flypy_fzm: # 小鹤音形-短语，支持自动补全, 词库源自现代汉语词典
-  enable_encoder: false
-  encode_commit_history: false
-  enable_sentence: false
-  enable_user_dict: false
-  enable_completion: true
-  dictionary: flypy_phrase_fzm
-  initial_quality: 1.2
+# flypy_phrase: # 小鹤音形-短语，支持自动补全, 词库源自现代汉语词典
+#   enable_encoder: false
+#   encode_commit_history: false
+#   enable_sentence: false
+#   enable_user_dict: false
+#   enable_completion: true
+#   dictionary: flypy_phrase
+#   initial_quality: 1.2
 
 punctuator:
   import_preset: symbols
