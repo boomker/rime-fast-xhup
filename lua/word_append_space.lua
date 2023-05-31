@@ -31,14 +31,17 @@ local function auto_append_space_processor(key, env)
         ["10"] = 9,
     }
 
+    -- 以下这些符号后面跟空格
     local punctuator_keys = {
         ["comma"] = true,
         ["period"] = true,
         ["semicolon"] = true,
         ['Shift+colon'] = true,
+        ["Shift+exclam"] = true,
         ["Shift+question"] = true,
     }
 
+    -- 以下这些符号后面不跟空格
     local symbol_keys = {
         ['minus'] = true,
         -- ['equal'] = true,
@@ -83,10 +86,10 @@ local function auto_append_space_processor(key, env)
             context:clear()
             return 1 -- kAccepted
         elseif (prev_cand_is_asciiv == '0')
-            or (prev_cand_is_preeditv == '1')
+            -- or (prev_cand_is_preeditv == '1')
+            -- or (prev_cand_is_punctv == '1')
             or (prev_cand_is_titlev == '1')
-            or (prev_cand_is_awordv == '1')
-            or (prev_cand_is_punctv == '1') then
+            or (prev_cand_is_awordv == '1') then
             cand_text = " " .. input_code
             engine:commit_text(cand_text)
         else
