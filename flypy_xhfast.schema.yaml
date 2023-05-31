@@ -58,9 +58,8 @@ engine:
     - matcher
     - abc_segmentor
     - punct_segmentor
-    - affix_segmentor@mkst            # 精准造词
-    # - affix_segmentor@emojis
     # - affix_segmentor@laTeX_formula
+    - affix_segmentor@mkst
     - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
     - fallback_segmentor
@@ -192,12 +191,10 @@ translator:
     # - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/      ## 单字编码提示只显示辅助码部分
     # - xform/^\w+\s.*$//                          ## 单字编码提示只显示辅助码部分
 
-
 mkst:
   __include: /translator  # 复用上面的翻译器,日志中带有 warning
   enable_sentence: true
   sentence_over_completion: true
-  prefix: "["
   tips: "〔精准造词〕"
   tag: mkst
 
@@ -239,8 +236,6 @@ punctuator:
   import_preset: symbols
   half_shape:
     "@": ["@", ＠, ☯]
-    "<": [《, 〈, «, ‹]
-    ">": [》, 〉, », ›]
     '"': { pair: ["‘", "’"] } ## 添加注释后：恢复默认引号
     "'": { pair: ["“", "”"] } ## 添加注释后：恢复默认引号
   symbols:
@@ -256,13 +251,13 @@ key_binder:
     - { when: has_menu, accept: semicolon, send: 2 }
     - { when: has_menu, accept: apostrophe, send: 3 }     ## 单引号用于第3候选
     - { when: composing, accept: bracketleft, send: "[" } ## `[`引导辅助码
-    - { when: composing, accept: Control+m, send: Return }
-    - { when: composing, accept: Control+w, send: Control+BackSpace }
-    - { when: composing, accept: Control+i, send: Shift+Right }
     - { when: composing, accept: Control+o, send: Shift+Left }
+    - { when: composing, accept: Control+i, send: Shift+Right }
+    - { when: composing, accept: Control+w, send: Control+BackSpace }
+    # - { when: composing, accept: Control+m, send: Return }
     ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
     ## （自然码等其他双拼用户请在 pinyin_switch.yaml 中设置）
-    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
+    #- { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
     #- { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
     #- { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
     #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
@@ -271,11 +266,11 @@ key_binder:
 recognizer:
   # import_preset: default
   patterns:
-    uppercase: "^[A-Z]+$"
+    # uppercase: "^[A-Z]+$"
     punct: "^/[0-9A-Za-z]+$"
-    mkst: "^[a-z]*[[][a-z[[]]+$"  # `[` 引导 精准造词
+    mkst: "^[a-z]+[[][a-z[[]]*$"   # `[` 引导 精准造词
     ## associate schemes:
-    reverse_lookup: "^Oq[a-z]*?$" # 部件拆字，部件使用小鹤双拼编码
+    reverse_lookup: "^Oq[a-z]*?$"    # 部件拆字，部件使用小鹤双拼编码
     dbpy_flypy_help: "^Oh.*$"
     easy_en_simp: "^Oe[a-z]*$"
     # emojis: "^Of[a-z]*'?$"

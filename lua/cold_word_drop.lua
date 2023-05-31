@@ -1,6 +1,6 @@
+-- local puts = require("tools/debugtool")
 require('tools/string')
 require("tools/metatable")
--- local puts = require("tools/debugtool")
 local drop_list = require("cold_word_record/drop_words")
 local hide_list = require("cold_word_record/hide_words")
 local turndown_freq_list = require("cold_word_record/turndown_freq_words")
@@ -151,6 +151,7 @@ function cold_word_drop.filter(input, env)
     local preedit_code = context.input
 
     for cand in input:iter() do
+        -- puts(INFO, 'cand_comment', cand.text, cand.comment)
         local cpreedit_code = string.gsub(cand.preedit, ' ', '')
         if (i <= idx) then
             local tfl = turndown_freq_list[cand.text] or nil
@@ -158,7 +159,8 @@ function cold_word_drop.filter(input, env)
             if not
                 ((tfl and table.find_index(tfl, cpreedit_code)) or
                     table.find_index(drop_list, cand.text) or
-                    (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
+                    (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code)) or
+                    (string.find(cand.comment, '☯'))
                     -- cand.quality == 0.0
                 )
             then
@@ -180,7 +182,8 @@ function cold_word_drop.filter(input, env)
             -- 要删的 和要隐藏的词条不显示
             (
                 table.find_index(drop_list, cand.text) or
-                (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
+                (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code)) or
+                (string.find(cand.comment, '☯'))
             )
         then
             ---@diagnostic disable-next-line: undefined-global
