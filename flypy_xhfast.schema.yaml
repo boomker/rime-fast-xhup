@@ -168,7 +168,7 @@ speller:
     # - derive/^(i)([^fg])/c$2/       # ch => c
     - derive/^(i)([k])/c$2/           # ch => c
     # - derive/^(u)([^bfgnm])/s$2/    # sh => s
-    - derive/^(z)([^edfg])/v$2/         # z => zh
+    - derive/^(z)([^edfgk])/v$2/         # z => zh
     - derive/^(c)([^fg])/i$2/           # c => ch
     - derive/^(s)([^bfgknm])/u$2/       # s => sh
     - derive/^([iu])f/$1g/              # [zcs][h]en 可以通过 [zcs][h]eng 打出
@@ -239,8 +239,8 @@ punctuator:
     '"': { pair: ["‘", "’"] } ## 添加注释后：恢复默认引号
     "'": { pair: ["“", "”"] } ## 添加注释后：恢复默认引号
   symbols:
-    "/er": [ 二, 貳, ₂, ², Ⅱ, ⅱ, ②, ➁, ❷, ➋, ⓶, ⑵, ⒉, ２, ㊁, ㈡, 弍, 弐, 貮, 㒃, 㒳, 兩, 倆, ㆓, ]
-    "/san": [ 三, 叄, ₃, ³, Ⅲ, ⅲ, ③, ➂, ❸, ➌, ⓷, ⑶, ⒊, ３, ㊂, ㈢, 參, 参, 叁, 弎, 仨, ㆔, ]
+    "/er": [ 二, 貳, ₂, ², Ⅱ, ⅱ, ②, ➁, ❷, ➋, ⓶, ⑵, ⒉, ２, ㊁, ㈡, 弍, 弐, 貮, 㒃, 㒳, 兩, 倆, ㆓]
+    "/san": [ 三, 叄, ₃, ³, Ⅲ, ⅲ, ③, ➂, ❸, ➌, ⓷, ⑶, ⒊, ３, ㊂, ㈢, 參, 参, 叁, 弎, 仨, ㆔]
     "/si": [四, 肆, ₄, ⁴, Ⅳ, ⅳ, ④, ➃, ❹, ➍, ⓸, ⑷, ⒋, ４, ㊃, ㈣, 亖]
     "/zb": [┌, └, ┐, ┘, ─, │, ├, ┤, ┬, ┴, ┼, ┏, ┗, ┓, ┛, ━, ┃, ┣, ┫, ┳, ┻, ╋] ## 制表符
 
@@ -270,9 +270,9 @@ recognizer:
     punct: "^/[0-9A-Za-z]+$"
     mkst: "^[a-z]+[[][a-z[[]]*$"   # `[` 引导 精准造词
     ## associate schemes:
-    reverse_lookup: "^Oq[a-z]*?$"    # 部件拆字，部件使用小鹤双拼编码
-    dbpy_flypy_help: "^Oh.*$"
-    easy_en_simp: "^Oe[a-z]*$"
+    reverse_lookup: "^oq[a-z]*?$"    # 部件拆字，部件使用小鹤双拼编码
+    dbpy_flypy_help: "^oh.*$"
+    easy_en_simp: "^oy[a-z]*$"
     # emojis: "^Of[a-z]*'?$"
     # laTeX_formula: "^/lt(.*)$"
 
@@ -303,7 +303,7 @@ dbpy_flypy_help:
   dictionary: ""
   user_dict: dbpy_flypy_help
   tag: dbpy_flypy_help
-  prefix: "Oh"
+  prefix: "oh"
   tips: "小鹤双拼查键"
   db_class: stabledb
   enable_completion: true
@@ -316,7 +316,7 @@ easy_en_simp:
   enable_completion: true
   enable_sentence: false
   enable_user_dict: false
-  prefix: "Oe"
+  prefix: "oy"
   # suffix: "'"
   tips: "英文单词(可去元音)"
   spelling_hints: 9
@@ -326,7 +326,7 @@ easy_en_simp:
 reverse_lookup:
   dictionary: flypy_chaizi
   enable_completion: true
-  prefix: "Oq"
+  prefix: "oq"
   suffix: "'"
   tips: 〔部件组字〕 # 〔筆畫〕
   preedit_format:
