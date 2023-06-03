@@ -12,6 +12,7 @@ local function auto_append_space_processor(key, env)
     local engine = env.engine
     local context = engine.context
     local input_code = context.input
+    local pos = context.caret_pos
 
     local cand_select_kyes = {
         ["space"] = 0,
@@ -108,19 +109,25 @@ local function auto_append_space_processor(key, env)
         local composition = context.composition
         if (not composition:empty()) then
             local segment = composition:back()
-            local candObj = segment:get_candidate_at(
-                                cand_select_kyes[key:repr()])
+            local candObj = segment:get_candidate_at(cand_select_kyes[key:repr()])
             if not candObj then return 2 end
             cand_text = candObj.text
         end
 
         if (prev_cand_is_punctv == "1") or (prev_cand_is_titlev == "1") or
             (prev_cand_is_preeditv == "1") or (prev_cand_is_awordv == '1') then
+            if (tonumber(utf8.codepoint(cand_text, 1)) >= 19968) and (#input_code == pos) then
+                local ccand_text = " " .. cand_text
+                engine:commit_text(ccand_text)
+                reset_curCand_property(env)
+                context:set_property('prev_cand_is_specv', "0")
+                context:clear()
+                return 1 -- kAccepted
+            else
+                context:confirm_previous_selection()
+            end
             local ccand_text = " " .. cand_text
             engine:commit_text(ccand_text)
-            if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
-                reset_curCand_property(env)
-            end
             context:clear()
             return 1 -- kAccepted
         end

@@ -15,14 +15,13 @@ curCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
 [[ ${curCommit} == "${prevCommit}" ]] && exit
 
 gcp -aR "${iceRepoPath}"/en_dicts/*.dict.yaml "${repoRoot}/en_dicts/"
-gsed -i -r '/^(Oe|Oq)/d' "${repoRoot}/en_dicts/en.dict.yaml"
 
 for f in "${files[@]}";
 do
     echo -e "\n----------\n" "$f"  "\n----------\n"
     src_file="${iceRepoPath}/cn_dicts/$f.dict.yaml"
     tgt_file="${repoRoot}/cn_dicts/flypy_${f}.dict.yaml"
-    sort_out_file="${repoRoot}/cn_dicts/flypy_${f}_sou.dict.yaml"
+    sorted_outfile="${repoRoot}/cn_dicts/flypy_${f}_sou.dict.yaml"
     [[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
     [[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji.txt"
 
@@ -46,8 +45,8 @@ do
 
     rm "${f}_add.diff" && [[ $f =~ base|emoji ]] && rm "${f}_min.diff"
     [[ $f != "emoji" ]] && {
-        (head -13 "${tgt_file}"; gsed -n '14,$p' "${tgt_file}" |gsort -u) > "${sort_out_file}"
-        rm "${tgt_file}" && mv "${sort_out_file}" "${tgt_file}"
+        (head -13 "${tgt_file}"; gsed -n '14,$p' "${tgt_file}" |gsort -u) > "${sorted_outfile}"
+        rm "${tgt_file}" && mv "${sorted_outfile}" "${tgt_file}"
     }
 done
 
@@ -55,5 +54,4 @@ done
 gcp -ar "${repoRoot}/cn_dicts"/* "${rimeUserPath}/cn_dicts/"
 gcp -ar "${repoRoot}/en_dicts"/* "${rimeUserPath}/en_dicts/"
 gcp -ar "${repoRoot}/opencc"/* "${rimeUserPath}/opencc/"
-# gcp -ar flypy_phrase_fzm.dict.yaml ~/Library/Rime/
 cd "${rimeUserPath}" && "${rimeDeployer}" --build > /dev/null && echo 'enjoy rime'
