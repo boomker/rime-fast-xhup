@@ -19,8 +19,8 @@ gsed -i '/阿/s/, ē//g' scripts/flypy_chars_zhuyin_dict.py
 
 # gsed -i '/没/s/, mò//g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/^没[^(落|入|收)]*\tmo/s/mo/mw/g' "$1" 2>/dev/null
-gsed -i -r '/[^(隐|淹|沉|埋|鬼|覆|出)]没[^(落|莫|摸)]*mo/s/mo/mw/g' "$1" 2>/dev/null
-gsed -i -r '/[^(隐|淹|沉|埋|鬼|覆|出)]没[^(落|莫|摸)]*mo/d' "$1" 2>/dev/null 
+gsed -i -r '/[^(辱|吞|湮|隐|淹|沉|埋|鬼|覆|出)]没[^(落|莫|摸)]*mo/s/mo/mw/g' "$1" 2>/dev/null
+gsed -i -r '/[^(辱|吞|湮|隐|淹|沉|埋|鬼|覆|出)]没[^(落|莫|摸)]*mo/d' "$1" 2>/dev/null 
 gsed -i -r '/^没[^(落|入|收)]*\tmo/d' "$1" 2>/dev/null 
 
 gsed -i '/曾/s/, zēng//g' scripts/flypy_chars_zhuyin_dict.py
@@ -173,3 +173,10 @@ gsed -i -r '/盛[^(饭|水|器)]*ig/s/ig/ug/g' "$1" 2>/dev/null
 gsed -i -r '/[^(可|厌)]恶.*wu/s/wu/ee/g' "$1" 2>/dev/null
 gsed -i -r '/[^(地|甲|躯)]壳.*qn/s/qn/ke/g' "$1" 2>/dev/null
 
+# ------
+awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="hu")print $0}}' "$1" >dyzhu
+awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="ho")print $0}}' "$1" >dyzho
+awk -F'\t'  '{x=index($1, "都");split($2, a, " ");{if(a[x]=="du")print $0}}' "$1" >dyzdu
+awk -F'\t'  '{x=index($1, "说");split($2, a, " ");{if(a[x]=="uv")print $0}}' "$1" >dyzuv
+awk -F'\t'  '{x=index($1, "没");split($2, a, " ");{if(a[x]=="mo")print $0"\t"NR}}' "$1" > dyzmo
+awk -F'\t'  '{x=index($1, "还");split($2, a, " ");{if(a[x]=="hr")print $0"\t"NR}}' "$1" > dyzhr
