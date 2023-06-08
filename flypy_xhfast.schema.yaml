@@ -23,14 +23,14 @@ switches:
     states: [中文, 西文]
   - name: emoji
     reset: 1
-    states: ["No", "Yes"]
+    states: [ 💀, 😄 ]
   - name: full_shape
     states: [半角, 全角]
   - name: simplification
     reset: 1
     states: [漢字, 汉字]
   - name: ascii_punct
-    states: [。，, ．，]
+    states: [。, .]
   - options: ["utf8", "gbk", "gb2312"] # 字符集选单
     reset: 0 # 默认 UTF8
     states:
@@ -159,22 +159,6 @@ speller:
     - derive/^ly/nw/
     - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
 
-    ## 模糊音:
-    # - derive/^l([uom])$/n$1/        # l -> n
-    - derive/^n([uom])$/l$1/          # l -> n
-    - derive/^([jqxy])v/$1u/
-    - derive/^([jqxy])u/$1v/
-    # - derive/^(v)([^fg])/z$2/       # zh => z
-    # - derive/^(i)([^fg])/c$2/       # ch => c
-    - derive/^(i)([k])/c$2/           # ch => c
-    # - derive/^(u)([^bfgnm])/s$2/    # sh => s
-    - derive/^(z)([^edfgk])/v$2/         # z => zh
-    - derive/^(c)([^fg])/i$2/           # c => ch
-    - derive/^(s)([^bfgknm])/u$2/       # s => sh
-    - derive/^([iu])f/$1g/              # [zcs][h]en 可以通过 [zcs][h]eng 打出
-    - derive/^([iu])g/$1f/              # [zcs][h]eng 可以通过 [zcs][h]en 打出
-    - derive/^([typdxbmn])b/$1k/        # in 可以通过 ing 打出
-    # - derive/^([typdjxbm])k/$1b/      # ing 可以通过 in 打出
 
 grammar:
   language: zh-hans-t-essay-bgw

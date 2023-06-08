@@ -39,4 +39,21 @@ patch:
   # translator/prism: flypy_flypy           ## 使用小鹤原版辅助码
   # translator/contextual_suggestions: true
   # translator/max_homophones: 7
-
+  speller/+:
+    algebra/+:
+      ## 模糊音:
+      - derive/^([jqxy])v/$1u/
+      - derive/^([jqxy])u/$1v/
+      # - derive/^l([uom])$/n$1/        # l -> n
+      - derive/^n([uom])$/l$1/          # n -> l
+      # - derive/^(v)([^fg])/z$2/       # zh => z
+      # - derive/^(i)([^fg])/c$2/       # ch => c
+      - derive/^(i)([k])/c$2/           # ch => c
+      # - derive/^(u)([^bfgnm])/s$2/    # sh => s
+      - derive/^(z)([^edfgk])/v$2/        # z => zh
+      - derive/^(c)([^fg])/i$2/           # c => ch
+      - derive/^(s)([^bfgknm])/u$2/       # s => sh
+      - derive/^([iu])f/$1g/              # [zcs][h]en 可以通过 [zcs][h]eng 打出
+      - derive/^([iu])g/$1f/              # [zcs][h]eng 可以通过 [zcs][h]en 打出
+      - derive/^([typdxbmn])b/$1k/        # in 可以通过 ing 打出
+      # - derive/^([typdjxbm])k/$1b/      # ing 可以通过 in 打出
