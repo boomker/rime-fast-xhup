@@ -52,6 +52,8 @@ local function auto_append_space_processor(key, env)
         ['Shift+quotedbl'] = true,
         ['Shift+asterisk'] = true,
         ['Shift+underscore'] = true,
+        ['Shift+parenleft'] = true,
+        ['Shift+parenright'] = true,
         ['Control+a'] = true,
         ['Control+u'] = true
     }
@@ -120,7 +122,7 @@ local function auto_append_space_processor(key, env)
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 reset_curCand_property(env)
-                context:set_property('prev_cand_is_specv', "0")
+                context:set_property('prev_cand_is_spec', "0")
                 context:clear()
                 return 1 -- kAccepted
             else
@@ -134,7 +136,7 @@ local function auto_append_space_processor(key, env)
 
         if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
             reset_curCand_property(env)
-            context:set_property('prev_cand_is_specv', "0")
+            context:set_property('prev_cand_is_spec', "0")
             context:confirm_previous_selection()
         end
 
