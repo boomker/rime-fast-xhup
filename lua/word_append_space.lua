@@ -44,6 +44,7 @@ local function auto_append_space_processor(key, env)
     local symbol_keys = {
         -- ['equal'] = true,
         ['apostrophe'] = true,
+        ['grave'] = true,
         ['minus'] = true,
         ['slash'] = true,
         ['Shift+at'] = true,

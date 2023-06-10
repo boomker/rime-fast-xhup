@@ -17,54 +17,26 @@ gsed -i -r  '/[^聊|不]了[^(无|不起|得|解|望|当|事)]*ln[^(\t)]/d' "$1"
 
 gsed -i '/阿/s/, ē//g' scripts/flypy_chars_zhuyin_dict.py
 
-# gsed -i '/没/s/, mò//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/^没[^(落|入|收)]*\tmo/s/mo/mw/g' "$1" 2>/dev/null
-gsed -i -r '/[^(辱|吞|湮|隐|淹|沉|埋|鬼|覆|出)]没[^(落|莫|摸)]*mo/s/mo/mw/g' "$1" 2>/dev/null
-gsed -i -r '/[^(辱|吞|湮|隐|淹|沉|埋|鬼|覆|出)]没[^(落|莫|摸)]*mo/d' "$1" 2>/dev/null 
-gsed -i -r '/^没[^(落|入|收)]*\tmo/d' "$1" 2>/dev/null 
-
 gsed -i '/曾/s/, zēng//g' scripts/flypy_chars_zhuyin_dict.py
 
-# gsed -i '/都/s/, dū//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/[^(首|大|魔|古|成|京|新|港|丽)]都.*du/s/du/dz/g' "$1" 2>/dev/null
-gsed -i -r '/^都[^(城|市|护|伯|督)]*\tdu.*/s/du/dz/g' "$1" 2>/dev/null
-gsed -i -r '/[^(首|大|魔|古|成|京|新|港|丽)]都.*du/d' "$1" 2>/dev/null
-gsed -i -r '/^都[^(城|市|护|伯|督)]*\tdu.*/d' "$1" 2>/dev/null 
-
 gsed -i '/车/s/, jū//g' scripts/flypy_chars_zhuyin_dict.py
-
-# gsed -i '/会/s/, kuài//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i '/就会/s/jq kk/jq hv/g' "$1" 2>/dev/null
-gsed -i -r '/会[^计]*kk\t/s/kk\t/hv\t/g' "$1" 2>/dev/null
-gsed -i -r '/会[^计].*kk/d' "$1" 2>/dev/null
-
-# gsed -i '/还/s/, huán//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/还没/s/hr mw/hd mw/g' "$1" 2>/dev/null
-gsed -i -r '/还[^(钱|款|书|童|债|手|回|再借|珠|我|清|原)]*hr/d' "$1" 2>/dev/null
 
 gsed -i '/艾/s/, yì//g' scripts/flypy_chars_zhuyin_dict.py
 
 gsed -i '/石/s/dàn, //g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/石.*dj/d' "$1" 2>/dev/null
 
-gsed -i -r '/弹.*术/s/tj/dj/g' "$1" 2>/dev/null
-gsed -i -r '/[^(子|炮|核|导)]弹[^(弓|坑)]*dj/d'  "$1" 2>/dev/null
-
 gsed -i '/得/s/, děi//g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/得[^(亏|看)]*dw/d' "$1" 2>/dev/null
 
 gsed -i '/大/s/, dài//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r  '/大[^夫].*dd/d' "$1" 2>/dev/null
 
 gsed -i '/行/s/héng, //g' scripts/flypy_chars_zhuyin_dict.py
 
 gsed -i '/给/s/, jǐ//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/[^供]给[^(予|与)]*ji/d' "$1" 2>/dev/null
 gsed -i -r '/^给.*\tji.*/d' "$1" 2>/dev/null
 
 gsed -i '/呢/s/, ní//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/呢[^(喃|子|绒)]*ni\t/d' "$1" 2>/dev/null
-
 
 gsed -i '/咋/s/, zé//g' scripts/flypy_chars_zhuyin_dict.py
 
@@ -119,7 +91,6 @@ gsed -i -r '/术.*vu/d' "$1" 2>/dev/null
 gsed -i -r '/提/s/dī, //g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/提[^防]*di/d' "$1" 2>/dev/null
 
-gsed -i -r '/地.*de/d' "$1" 2>/dev/null
 
 gsed -i -r '/叶.*xp/d' "$1" 2>/dev/null
 
@@ -172,6 +143,15 @@ gsed -i -r '/盛[^(饭|水|器)]*ig/s/ig/ug/g' "$1" 2>/dev/null
 
 gsed -i -r '/[^(可|厌)]恶.*wu/s/wu/ee/g' "$1" 2>/dev/null
 gsed -i -r '/[^(地|甲|躯)]壳.*qn/s/qn/ke/g' "$1" 2>/dev/null
+
+gsed -i -r '/弄.*ls/{/弄[(堂|口)]|[里龙]弄/!s/ls/ns/g}' "$1" 2>/dev/null
+gsed -i -r '/呢.*ni/{/呢[(喃|呢喃|子|绒)]|你/!s/ni/ne/g}' "$1" 2>/dev/null
+gsed -i -r '/给.*ji/{/给[(予|与)]|[供|补]给/!s/ji/gw/g}' "$1" 2>/dev/null
+gsed -i -r '/没.*mo/{/没[(落|莫|摸|入|收)]|[(辱|吞|湮|隐|淹|沉|埋|鬼|覆|出)]没/!s/mo/mw/g}' "$1" 2>/dev/null
+gsed -i -r '/都.*du/{/都[(城|市|护|伯|督|司|尉|统|铎)]|[(首|大|魔|古|成|京|新|港|丽|武|盐|花|瓷|定|帝|国)]都/!s/du/dz/g}' "$1" 2>/dev/null
+gsed -i -r '/弹.*dj/{/[(装|拆|投|炸|榴|流|子|炮|氢|铅|核|导|中|飞)]弹|弹[(药|弓|坑|道|幕|孔|壳|夹|膛|托|头|珠|匣|丸)]/!s/dj/tj/g}' "$1" 2>/dev/null
+gsed -i -r '/大.*dd/{/[戴|带|(带领)]大|大[夫|王|袋|(脑袋)|(眼袋)|(麻袋)|代|(时代)]/!s/dd/da/g}' "$1" 2>/dev/null
+gsed -i -r '/会.*kk/{/会[(计|稽)]|财会/!s/kk/hv/g}' "$1" 2>/dev/null
 
 # ------
 awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="hu")print $0}}' "$1" >dyzhu

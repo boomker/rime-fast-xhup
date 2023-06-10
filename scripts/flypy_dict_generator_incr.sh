@@ -42,7 +42,8 @@ do
         fi
     fi
 
-
+    # git diff HEAD -- cn_dicts/flypy_ext.dict.yaml |rg "^\+" |rg -v "\+#|\+v|\+\+" |tr -d "+" > "cn-ext_add.diff"
+    # awk -F'\t' '{s[$1]++;w[$0]}END{for(i in w){split(i, a, " ");if(s[a[1]]>1)print i}}' cn-ext_add.diff |sort
     rm "${f}_add.diff" && [[ $f =~ base|emoji ]] && rm "${f}_min.diff"
     [[ $f != "emoji" ]] && {
         (head -13 "${tgt_file}"; gsed -n '14,$p' "${tgt_file}" |gsort -u) > "${sorted_outfile}"

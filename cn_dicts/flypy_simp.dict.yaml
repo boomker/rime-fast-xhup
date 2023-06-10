@@ -1051,7 +1051,7 @@ sort: by_weight
 半岛	bj dc	686
 办得	bj de	171
 般的	bj de	2952
-般地	bj de	406
+般地	bj di	406
 板凳	bj dg	796
 班底	bj di	173
 斑点	bj dm	392
@@ -3508,14 +3508,14 @@ sort: by_weight
 的人	de rf	50970
 德斯	de si	106
 得体	de ti	321
-地听	de tk	124
+地听	di tk	124
 德胜	de ug	130
 得上	de uh	354
 的事	de ui	11482
 的是	de ui	4041
 得失	de ui	443
 的说	de uo	212
-地说	de uo	5210
+地说	di uo	5210
 的书	de uu	1913
 的手	de uz	2321
 得手	de uz	426
@@ -3537,9 +3537,9 @@ sort: by_weight
 得益	de yi	491
 德育	de yu	346
 德语	de yu	693
-地做	de zo	153
+地做	di zo	153
 得罪	de zv	1197
-地走	de zz	411
+地走	di zz	411
 瞪大	dg da	208
 等到	dg dc	4205
 等待	dg dd	8849
@@ -16401,7 +16401,7 @@ sort: by_weight
 门牙	mf ya	158
 蒙蔽	mg bi	255
 梦到	mg dc	672
-猛地	mg de	508
+猛地	mg di	508
 懵懂	mg ds	252
 萌发	mg fa	210
 盟国	mg go	137
@@ -16921,7 +16921,7 @@ sort: by_weight
 木材	mu cd	761
 目测	mu ce	128
 木村	mu cy	142
-目地	mu de	137
+目地	mu di	137
 目的	mu di	15048
 墓地	mu di	813
 牡丹	mu dj	1092
@@ -23653,7 +23653,7 @@ sort: by_weight
 世代	ui dd	357
 识得	ui de	129
 师德	ui de	164
-似地	ui de	260
+似地	ui di	260
 实德	ui de	303
 似的	ui de	4117
 使得	ui de	8578
@@ -39548,7 +39548,7 @@ sort: by_weight
 更高处	gg gc iu	100
 耿官正	gg gr vg	100
 更公平	gg gs pk	100
-更好地	gg hc de	1723
+更好地	gg hc di	1723
 更好的	gg hc de	3095
 更好地	gg hc di	2224
 耿浩伦	gg hc ly	100
@@ -54830,7 +54830,7 @@ sort: by_weight
 种植业	vs vi ye	169
 中状元	vs vl yr	100
 中转盘	vs vr pj	100
-重重地	vs vs de	179
+重重地	vs vs di	179
 中洲岛	vs vz dc	100
 中州城	vs vz ig	100
 中州韵	vs vz yy	100

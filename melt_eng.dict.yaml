@@ -6,9 +6,10 @@
 
 ---
 name: melt_eng
-version: "2023-02-26"
+version: "2023-06-10"
 import_tables:
-  - en_dicts/en           # 英文主词库
-  - en_dicts/en_exten     # 补充
+  - en_dicts/en                         # 英文主词库
+  - en_dicts/en_ext                     # 上游项目扩展
+  - en_dicts/en_ext_private             # 本项目扩展
   - en_dicts/cn_en_double_pinyin_flypy  # 中英混输词库，里面是写死了的全拼编码，双拼应该注释掉这一行。
 ...
