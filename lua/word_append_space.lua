@@ -44,6 +44,7 @@ local function auto_append_space_processor(key, env)
     local symbol_keys = {
         -- ['equal'] = true,
         ['apostrophe'] = true,
+        ['grave'] = true,
         ['minus'] = true,
         ['slash'] = true,
         ['Shift+at'] = true,
@@ -158,7 +159,7 @@ local function auto_append_space_processor(key, env)
             end
         end
 
-        if string.match(cand_text, '^%u%l+') then
+        if string.match(cand_text, '^%u+%l+') then
             if (prev_cand_is_specv == '1') and (prev_cand_is_asciiv ~= '0') then
                 engine:commit_text(cand_text)
                 context:set_property('prev_cand_is_title', "1")
