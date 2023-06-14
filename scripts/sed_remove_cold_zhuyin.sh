@@ -144,6 +144,7 @@ gsed -i -r '/盛[^(饭|水|器)]*ig/s/ig/ug/g' "$1" 2>/dev/null
 gsed -i -r '/[^(可|厌)]恶.*wu/s/wu/ee/g' "$1" 2>/dev/null
 gsed -i -r '/[^(地|甲|躯)]壳.*qn/s/qn/ke/g' "$1" 2>/dev/null
 
+# ----
 gsed -i -r '/弄.*ls/{/弄[(堂|口)]|[里龙]弄/!s/ls/ns/g}' "$1" 2>/dev/null
 gsed -i -r '/呢.*ni/{/呢[(喃|呢喃|子|绒)]|你/!s/ni/ne/g}' "$1" 2>/dev/null
 gsed -i -r '/给.*ji/{/给[(予|与)]|[供|补]给/!s/ji/gw/g}' "$1" 2>/dev/null
@@ -160,3 +161,4 @@ awk -F'\t'  '{x=index($1, "都");split($2, a, " ");{if(a[x]=="du")print $0}}' "$
 awk -F'\t'  '{x=index($1, "说");split($2, a, " ");{if(a[x]=="uv")print $0}}' "$1" >dyzuv
 awk -F'\t'  '{x=index($1, "没");split($2, a, " ");{if(a[x]=="mo")print $0"\t"NR}}' "$1" > dyzmo
 awk -F'\t'  '{x=index($1, "还");split($2, a, " ");{if(a[x]=="hr")print $0"\t"NR}}' "$1" > dyzhr
+awk -F'\t'  '{x=index($1, "约");split($2, a, " ");{if(a[x]=="yc")print $0}}' "$1" > dyzyc

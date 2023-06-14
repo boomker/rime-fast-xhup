@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-06-06"
+version: "2023-06-13"
 sort: by_weight
 ...
 # 一些杂项
@@ -605,7 +605,6 @@ V2EX	V2EX
 VSCode	VSCode
 Vue	Vue
 Vue.js	Vue.js
-WC	WC
 Web	Web
 WebStorm	WebStorm
 Word	Word
@@ -1126,7 +1125,6 @@ Online Certificate Status Protocol	OnlineCertificateStatusProtocol
 Arthas	Arthas
 Wordle	Wordle
 Silicon Valley	SiliconValley
-Silicon	Silicon
 Pied Piper	PiedPiper
 Pikachu	Pikachu
 Fastmail	Fastmail
@@ -1498,12 +1496,8 @@ Neat Download Manager	NeatDownloadManager
 furry	furry
 Maine	Maine
 Elijah	Elijah
-Love & Peace	LoveandPeace
-Love & Peace	LovePeace
-Love and Peace	LoveandPeace
-Peace & Love	PeaceLove
-Peace & Love	PeaceandLove
-Peace and Love	PeaceandLove
+Love & Peace	Love&Peace
+Peace & Love	Peace&Love
 Liquid	Liquid
 LCD	LCD
 Liquid Crystal Display	LCD
@@ -1511,7 +1505,7 @@ Liquid Crystal Display	LiquidCrystalDisplay
 Emotional Damage	EmotionalDamage
 revert	revert
 GitLab	GitLab
-Apple Silicon	AppleSilicon
+Apple silicon	Applesilicon
 ADSL	ADSL
 Asymmetric Digital Subscriber Line	ADSL
 Asymmetric Digital Subscriber Line	AsymmetricDigitalSubscriberLine
@@ -2020,7 +2014,6 @@ wick	wick
 meow	meow
 woof	woof
 bromite	bromite
-Zelda	Zelda
 hutch	hutch
 Laotian	Laotian
 mitigation	mitigation
@@ -2257,3 +2250,11 @@ shitty	shitty
 shitwork	shitwork
 A4	A4
 3D	3D
+polyphone	polyphone
+traditionalization	traditionalization
+traditionalize	traditionalize
+traditionalist	traditionalist
+traditionalistic	traditionalistic
+simplification	simplification
+simplifier	simplifier
+Loki	Loki
