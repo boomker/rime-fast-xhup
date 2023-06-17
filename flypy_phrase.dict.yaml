@@ -9,4 +9,4 @@ use_preset_vocabulary: true
 
 import_tables:
   - cn_dicts/flypy_chars         # 字表
-  - cn_dicts/flypy_phrase        # 腾讯词向量(大词库，部署时间较长)
+  - cn_dicts/flypy_phrase        # 短语词库
