@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 schema:
-  schema_id: chaizi
-  name: "chaizi"
+  schema_id: flypy_chaizi
+  name: "flypy_chaizi"
   version: "1"
   description: |
     部件组字模式，默认小鹤双拼，
