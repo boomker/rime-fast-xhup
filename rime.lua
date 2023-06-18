@@ -45,8 +45,8 @@ datetime_translator = date_time.translator
 number = require("number")
 number_translator = number.translator
 
--- laTex = require("laTex")
--- laTex_translator = laTex.translator
+laTex = require("laTex")
+laTex_translator = laTex.translator
 
 -- user_dict = require("user_dict")
 -- user_dict_translator = user_dict.translator
