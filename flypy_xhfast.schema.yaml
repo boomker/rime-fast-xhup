@@ -5,17 +5,17 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "0.2"
+  version: "0.3"
   author:
     - boomker
   description: |
     小鹤双拼+辅助码
   dependencies:
-    - stroke
     # - flypy_phrase  # 中文词库 - 现代汉语词典 & 清华开源词库
     - melt_eng      # 英文单词&词组 - 简明英汉词典（增强版）
     - easy_en
     # - emoji
+    # - stroke
 
 switches:
   - name: ascii_mode
@@ -58,7 +58,7 @@ engine:
     - matcher
     - abc_segmentor
     - punct_segmentor
-    # - affix_segmentor@laTeX_formula
+    - affix_segmentor@laTeX_formula
     - affix_segmentor@mkst
     - affix_segmentor@dbpy_flypy_help
     - affix_segmentor@easy_en_simp
@@ -76,7 +76,7 @@ engine:
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp   # 单词输入
     - table_translator@melt_eng
-    # - lua_translator@laTex_translator
+    - lua_translator@laTex_translator
     - lua_translator@datetime_translator
     - lua_translator@number_translator
     - lua_translator@commit_history_translator
@@ -252,13 +252,13 @@ recognizer:
   patterns:
     # uppercase: "^[A-Z]+$"
     punct: "^/[0-9A-Za-z]+$"
-    mkst: "^[a-z]+[[][a-z[[]]*$"   # `[` 引导 精准造词
+    mkst: "^[a-z]+[[][a-z[[]]*$"     # `[` 引导 精准造词
     ## associate schemes:
     reverse_lookup: "^oq[a-z]*?$"    # 部件拆字，部件使用小鹤双拼编码
     dbpy_flypy_help: "^oh.*$"
     easy_en_simp: "^oy[a-z]*$"
     # emojis: "^Of[a-z]*'?$"
-    # laTeX_formula: "^/lt(.*)$"
+    laTeX_formula: "^tf(.*)$"
 
 menu:
   page_size: 5
@@ -318,7 +318,7 @@ reverse_lookup:
 
 laTeX_formula:
   tag: laTeX_formula
-  prefix: "/lt"
+  prefix: "tf"
   tips: " TeX 公式"
 
 history: #上屏历史记录
