@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.11
+#!/usr/local/bin/pypy3
 
 """
 Description: "shuang pin dict generator tool"
