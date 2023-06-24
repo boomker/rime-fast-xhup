@@ -28,7 +28,8 @@ local charset = {
 	["ExtE"] = { first = 0x2B820, last = 0x2CEAF }, -- CJK Unified Ideographs Extension E - https://unicode.org/charts/PDF/U2B820.pdf
 	["ExtF"] = { first = 0x2CEB0, last = 0x2EBEF }, -- CJK Unified Ideographs Extension F - https://unicode.org/charts/PDF/U2CEB0.pdf
 	["ExtG"] = { first = 0x30000, last = 0x3134A }, -- CJK Unified Ideographs Extension G - https://unicode.org/charts/PDF/U30000.pdf
-	["Compat"] = { first = 0x2F800, last = 0x2FA1F }, -- CJK Compatibility Ideographs Supplement - https://unicode.org/charts/PDF/U2F800.pdf
+    ["Compat"] = { first = 0xF900, last = 0xFAFF },      -- CJK Compatibility Ideographs - https://unicode.org/charts/PDF/UF900.pdf
+    ["CompatSupp"] = { first = 0x2F800, last = 0x2FA1F } -- CJK Compatibility Ideographs Supplement - https://unicode.org/charts/PDF/U2F800.pdf
 }
 
 local function exists(single_filter, text)
@@ -56,8 +57,9 @@ local function is_cjk_ext(c)
 		or is_charset("ExtE")(c)
 		or is_charset("ExtF")(c)
 		or is_charset("ExtG")(c)
-		or is_charset("Compat")(c)
         or is_charset("ExtQ")(c)
+		or is_charset("Compat")(c)
+        or is_charset("CompatSupp")(c)
 end
 
 --[[

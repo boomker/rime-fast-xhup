@@ -10,9 +10,6 @@ gsed -i -r '/奇[^(数|偶|计|记|集)]*ji/s/ji/qi/g' "$1" 2>/dev/null
 # gsed -i '/校/s/jiào, //g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/校[^(准|对|补)]*jn/s/jn/xn/g' "$1" 2>/dev/null
 
-# gsed -i '/了/s/, liǎo//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/了\t.*ln\t/s/ln\t/le\t/g' "$1" 2>/dev/null
-gsed -i -r  '/[^聊|不]了[^(无|不起|得|解|望|当|事)]*ln[^(\t)]/d' "$1" 2>/dev/null 
 
 gsed -i '/阿/s/, ē//g' scripts/flypy_chars_zhuyin_dict.py
 
@@ -26,7 +23,6 @@ gsed -i '/石/s/dàn, //g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/石.*dj/d' "$1" 2>/dev/null
 
 gsed -i '/得/s/, děi//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/得[^(亏|看)]*dw/d' "$1" 2>/dev/null
 
 gsed -i '/大/s/, dài//g' scripts/flypy_chars_zhuyin_dict.py
 
@@ -154,7 +150,7 @@ gsed -i -r '/大.*dd/{/[戴|带|(带领)]大|大[夫|王|袋|(脑袋)|(眼袋)|(
 gsed -i -r '/会.*kk/{/会[(计|稽)]|财会/!s/kk/hv/g}' "$1" 2>/dev/null
 gsed -n -r '/说.*uo/{/说服|[(游|劝)]说/p}'
 gsed -n -r '/还.*hr/{/还[(钱|款|书|童|债|手|回|珠|我|清|原)]/p}'
-
+gsed -n -r '/了.*le/{/了[(不起|得|解|望|当|事|然|如指掌|结|无进展|不相涉|无惧色)]|[没完没|一了百|受不]了/p}' "$1" 2>/dev/null 
 # ------
 awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="hu")print $0}}' "$1" >dyzhu
 awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="ho")print $0}}' "$1" >dyzho
@@ -163,3 +159,6 @@ awk -F'\t'  '{x=index($1, "说");split($2, a, " ");{if(a[x]=="uv")print $0}}' "$
 awk -F'\t'  '{x=index($1, "没");split($2, a, " ");{if(a[x]=="mo")print $0"\t"NR}}' "$1" > dyzmo
 awk -F'\t'  '{x=index($1, "还");split($2, a, " ");{if(a[x]=="hr")print $0"\t"NR}}' "$1" > dyzhr
 awk -F'\t'  '{x=index($1, "约");split($2, a, " ");{if(a[x]=="yc")print $0}}' "$1" > dyzyc
+awk -F'\t'  '{x=index($1, "地");split($2, a, " ");{if(a[x]=="de")print $0}}' $1 |rg '地壳|地面|地心|地球|地质|陆地|地下|土地|田地|地主|地区|地点|质地|见地|境地|心地|目的地'
+awk -F'\t'  '{x=index($1, "得");split($2, a, " ");{if(a[x]=="de")print $0}}' $1 |rg '得亏|得看|非得'
+

@@ -36,9 +36,9 @@ do
     [[ "$f" == "emoji" ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >> "${tgt_file}"
     if [[ $(wc -l "${f}_add.diff" |gcut -d ' ' -f -1) != 0 ]] && [[ $f != "emoji" ]]; then
         if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
-            python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
+            pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
         else
-            python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
+            pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
         fi
     fi
 

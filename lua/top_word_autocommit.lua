@@ -213,8 +213,11 @@ local function twac_filter(input, env)
     if (pos >= 4) and (table.find_index({4, 5}, #preedit_code)) and
         string.find(preedit_code, "^%l+%[%l*$") then
         for _, cand in ipairs(single_char_cands) do
-            yield(cand)
-            -- table.remove(single_char_cands, i)
+            local input_shape_code = string.sub(preedit_code, 4)
+            local current_cand_shape_code = string.sub(cand.comment, 2)
+            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '')
+            local comment = (string.len(remain_shape_code) > 0) and string.format('~%s', remain_shape_code) or "~"
+            yield(ShadowCandidate(cand, cand.type, cand.text, comment))
             if (#single_char_cands == 2) and (single_char_cands[cand.text]) then
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
@@ -231,9 +234,11 @@ local function twac_filter(input, env)
     if (pos >= 6) and (table.find({6, 7}, #preedit_code)) and
         string.find(preedit_code, "^%l+%[%l+$") then
         for _, cand in ipairs(tword_phrase_cands) do
-            yield(cand)
-            -- table.remove(tword_phrase_cands, i)
-            -- puts(INFO, "||||||", #tword_phrase_cands, cand.text, utf8.codepoint(cand.text, 1))
+            local input_shape_code = string.sub(preedit_code, 6)
+            local current_cand_shape_code = string.sub(cand.comment, 2)
+            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '')
+            local comment = (string.len(remain_shape_code) > 0) and string.format('~%s', remain_shape_code) or "~"
+            yield(ShadowCandidate(cand, cand.type, cand.text, comment))
             if (#tword_phrase_cands == 2) and (tword_phrase_cands[cand.text]) and
                 (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
                 local cand_txt = append_space_to_cand(env, cand.text)
@@ -248,7 +253,7 @@ local function twac_filter(input, env)
     end
 
     if table.find({6, 8}, #preedit_code) and
-        string.find(preedit_code, "^[%l]+$") then
+        string.find(preedit_code, "^%l+") then
         local i, when_done, commit_text = 1, 0, nil
         for _, cand in pairs(tfchars_word_cands) do
             local reverse_code = reversedb_fzm:lookup(cand.text)
