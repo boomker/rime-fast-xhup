@@ -36,8 +36,6 @@ gsed -i '/呢/s/, ní//g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i '/咋/s/, zé//g' scripts/flypy_chars_zhuyin_dict.py
 
 # gsed -i '/卡/s/, qiǎ//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r  '/([^(发|哨|关)]卡|卡[^(住|壳|脖)]).*qx/s/qx/ka/g'  "$1" 2>/dev/null
-gsed -i -r  '/([^(发|哨|关)]卡|卡[^(住|壳|脖)]).*qx/d' "$1" 2>/dev/null
 
 gsed -i '/娜/s/, nuó//g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i '/.*娜.*no/d' "$1" 2>/dev/null
@@ -151,6 +149,8 @@ gsed -i -r '/会.*kk/{/会[(计|稽)]|财会/!s/kk/hv/g}' "$1" 2>/dev/null
 gsed -n -r '/说.*uo/{/说服|[(游|劝)]说/p}'
 gsed -n -r '/还.*hr/{/还[(钱|款|书|童|债|手|回|珠|我|清|原)]/p}'
 gsed -n -r '/了.*le/{/了[(不起|得|解|望|当|事|然|如指掌|结|无进展|不相涉|无惧色)]|[没完没|一了百|受不]了/p}' "$1" 2>/dev/null 
+gsed -n -r  '/卡.*qx/{/卡[(住|壳|脖)]|[(发|哨|关)]卡/p}'  "$1" 2>/dev/null
+
 # ------
 awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="hu")print $0}}' "$1" >dyzhu
 awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="ho")print $0}}' "$1" >dyzho
