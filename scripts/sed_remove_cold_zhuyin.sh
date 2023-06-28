@@ -159,6 +159,6 @@ awk -F'\t'  '{x=index($1, "说");split($2, a, " ");{if(a[x]=="uv")print $0}}' "$
 awk -F'\t'  '{x=index($1, "没");split($2, a, " ");{if(a[x]=="mo")print $0"\t"NR}}' "$1" > dyzmo
 awk -F'\t'  '{x=index($1, "还");split($2, a, " ");{if(a[x]=="hr")print $0"\t"NR}}' "$1" > dyzhr
 awk -F'\t'  '{x=index($1, "约");split($2, a, " ");{if(a[x]=="yc")print $0}}' "$1" > dyzyc
-awk -F'\t'  '{x=index($1, "地");split($2, a, " ");{if(a[x]=="de")print $0}}' $1 |rg '地壳|地面|地心|地球|地质|陆地|地下|土地|田地|地主|地区|地点|质地|见地|境地|心地|目的地'
-awk -F'\t'  '{x=index($1, "得");split($2, a, " ");{if(a[x]=="de")print $0}}' $1 |rg '得亏|得看|非得'
+awk -F'\t'  '{x=index($1, "地");split($2, a, " ");{if(a[x]=="de")print $0}}' "$1" |rg '地壳|地面|地心|地球|地质|陆地|地下|土地|田地|地主|地区|地点|质地|见地|境地|心地|目的地'
+awk -F'\t'  '{x=index($1, "得");split($2, a, " ");{if(a[x]=="de")print $0}}' "$1" |rg '得亏|得看|非得'
 
