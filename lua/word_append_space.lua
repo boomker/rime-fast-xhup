@@ -59,11 +59,11 @@ local function auto_append_space_processor(key, env)
         ['Control+u'] = true
     }
 
-    local prev_cand_is_specv = context:get_property('prev_cand_is_spec')
-    local prev_cand_is_titlev = context:get_property('prev_cand_is_title')
-    local prev_cand_is_asciiv = context:get_property('prev_cand_is_ascii')
-    local prev_cand_is_awordv = context:get_property('prev_cand_is_aword')
-    local prev_cand_is_punctv = context:get_property('prev_cand_is_punct')
+    local prev_cand_is_specv    = context:get_property('prev_cand_is_spec')
+    local prev_cand_is_titlev   = context:get_property('prev_cand_is_title')
+    local prev_cand_is_asciiv   = context:get_property('prev_cand_is_ascii')
+    local prev_cand_is_awordv   = context:get_property('prev_cand_is_aword')
+    local prev_cand_is_punctv   = context:get_property('prev_cand_is_punct')
     local prev_cand_is_preeditv = context:get_property('prev_cand_is_preedit')
 
     if (#input_code == 0) and (punctuator_keys[key:repr()]) then
@@ -73,7 +73,6 @@ local function auto_append_space_processor(key, env)
         context:set_property('prev_cand_is_punct', "1")
     end
 
-    -- puts(INFO, '----------', prev_cand_is_specv, prev_cand_is_asciiv)
     if (#input_code == 0) and (symbol_keys[key:repr()]) then
         reset_curCand_property(env)
         context:set_property('prev_cand_is_spec', '1')
@@ -88,7 +87,7 @@ local function auto_append_space_processor(key, env)
 
     if (#input_code >= 1) and (key:repr() == "Return") then
         local cand_text = input_code
-        if (prev_cand_is_specv == '1') and (prev_cand_is_asciiv ~= '0') and
+        if (prev_cand_is_specv == '1') and (prev_cand_is_asciiv ~= '1') and
             (prev_cand_is_titlev ~= '1') and (prev_cand_is_awordv ~= '1') then
             engine:commit_text(cand_text)
             context:set_property('prev_cand_is_preedit', "1")
@@ -142,7 +141,6 @@ local function auto_append_space_processor(key, env)
         end
 
         if string.match(cand_text, '^%l+$') then
-            -- puts(INFO, '========', input_code, key:repr(), prev_cand_is_asciiv, prev_cand_is_specv)
             if (prev_cand_is_asciiv == '0') and (prev_cand_is_specv ~= '1') then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
