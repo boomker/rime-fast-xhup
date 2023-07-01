@@ -27,7 +27,8 @@ do
 
     git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |\
         /usr/local/bin/rg  "^\-" |\rg -v "\-#|\+v|\---" |tr -d "-" > "${f}_min.diff"
-    gcut -f1 "${f}_min.diff" |gxargs -I % -n 1 gsed -i '/^%\t/d' "${tgt_file}"
+    gcut -f1 "${f}_min.diff" |gxargs -I % -n 1 sd '^%\t.*' '' "${tgt_file}"
+    gsed -i -r '14,${/^$/d}' "${tgt_file}"
 
     git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |\
         /usr/local/bin/rg "^\+" |\rg -v "\+#|\+v|\+\+" |tr -d "+" > "${f}_add.diff"

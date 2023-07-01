@@ -5,7 +5,6 @@
 咇	bp[kb	0
 埗	bu[tp	0
 妭	ba[nd	0
-孛	bw[uz	0
 幖	bn[jx	0
 攽	bj[bw	0
 昪	bm[oc	0
@@ -87,7 +86,6 @@
 绖	dp[st	0
 羝	di[yd	0
 荙	da[cz	0
-跶	da[zz	0
 蹢	di[zk	0
 蹾	dy[zw	0
 轪	dd[id	0
@@ -133,7 +131,6 @@
 㽏	gj[dg	0
 䢼	gs[ce	0
 冮	gh[dg	0
-句	gz[bk	0
 唝	gs[kr	0
 嘏	gu[uy	0
 坬	gx[tg	0
@@ -173,7 +170,6 @@
 冱	hu[dh	0
 咍	hd[kk	0
 唝	hs[kr	0
-嗥	hc[ku	0
 嚆	hc[kk	0
 垎	he[tk	0
 垾	hj[tg	0
@@ -246,12 +242,10 @@
 痓	ii[bt	0
 翀	is[xv	0
 胣	ii[oy	0
-艟	is[vl	0
 茝	id[ci	0
 茝	id[cl	0
 襜	ij[pk	0
 赪	ig[tr	0
-铖	ig[ji	0
 镵	ij[jd	0
 雠	iz[rf	0
 韂	ij[gk	0
@@ -273,11 +267,9 @@
 䴔	jn[wn	0
 䴖	jk[fn	0
 䴗	ju[on	0
-丼	jk[ad	0
 乩	ji[lv	0
 伋	ji[rj	0
 僬	jn[rh	0
-僭	jm[ro	0
 剞	ji[dd	0
 叕	jt[yy	0
 叚	jx[vy	0
@@ -288,7 +280,6 @@
 弆	ju[tc	0
 敫	jn[bw	0
 枅	ji[mk	0
-桕	jq[mj	0
 椐	ju[mk	0
 楗	jm[mz	0
 槚	jx[mr	0
@@ -317,7 +308,6 @@
 蜐	jp[il	0
 褯	jp[pj	0
 觭	ji[dk	0
-謇	jm[bk	0
 赆	jb[kd	0
 锩	jr[jv	0
 颎	js[br	0
@@ -378,8 +368,6 @@
 剅	lz[ad	0
 勠	lu[xl	0
 叕	li[yy	0
-呖	li[kl	0
-啰	lo[kx	0
 圙	lt[km	0
 坽	lk[ts	0
 昽	ls[ol	0
@@ -400,8 +388,6 @@
 瑓	lm[wj	0
 瑬	lq[dy	0
 疁	lq[tp	0
-眬	ls[ol	0
-硌	lo[uk	0
 祾	lk[pw	0
 筤	lh[vl	0
 箓	lu[vu	0
@@ -412,7 +398,6 @@
 翷	lb[mx	0
 舻	lu[vu	0
 苈	li[cl	0
-蓠	li[cd	0
 蓢	lh[co	0
 蝲	la[id	0
 蠃	lo[wf	0
@@ -451,8 +436,6 @@
 㠓	mg[en	0
 㠓	mg[eu	0
 勔	mm[ml	0
-嘿	mo[kh	0
-姥	mu[nb	0
 杧	mh[mw	0
 洣	mi[dm	0
 渼	mw[dd	0
@@ -501,7 +484,6 @@
 㛹	pm[ng	0
 䥽	po[jd	0
 䴙	pi[un	0
-否	pi[bk	0
 嚭	pi[uk	0
 帡	pk[jk	0
 涄	pk[dv	0
@@ -531,7 +513,6 @@
 䓛	qu[ci	0
 䓫	qi[ck	0
 伣	qm[re	0
-伽	qp[rk	0
 吣	qb[kx	0
 圲	qm[tq	0
 坥	qu[tq	0
@@ -553,7 +534,6 @@
 碏	qt[uo	0
 碶	qi[ud	0
 磜	qi[ux	0
-祇	qi[pu	0
 蔃	ql[ci	0
 褰	qm[by	0
 锜	qi[jk	0
@@ -586,7 +566,6 @@
 㟃	si[ek	0
 㧐	ss[fy	0
 㴔	se[dx	0
-凇	ss[ds	0
 凘	si[dj	0
 旞	sv[fz	0
 洓	se[dn	0
@@ -617,7 +596,6 @@
 媂	ti[nj	0
 峂	ts[ed	0
 榃	tj[mt	0
-溏	th[dk	0
 烶	tk[hz	0
 煺	tv[hz	0
 瑅	ti[wr	0
@@ -648,12 +626,9 @@
 𬶍	to[ab	0
 䏡	ui[ox	0
 䴓	ui[an	0
-啫	ui[ko	0
 嗄	ua[kw	0
-嘘	ui[ky	0
 埏	uj[tz	0
 嶦	uj[ek	0
-挲	ua[du	0
 柖	uc[mk	0
 棽	uf[mv	0
 殳	uu[jy	0
@@ -675,7 +650,6 @@
 鄯	uj[ye	0
 阇	ue[mo	0
 骦	ul[mo	0
-骰	ud[gy	0
 鲹	uf[ap	0
 鳣	uj[aa	0
 鳣	uj[ad	0
@@ -698,7 +672,6 @@
 䦃	vo[jo	0
 卮	vi[pv	0
 叕	vo[yy	0
-啫	ve[ko	0
 圫	vy[tq	0
 嶦	vj[ek	0
 忪	vs[xs	0
@@ -720,7 +693,6 @@
 潴	vu[do	0
 瑧	vf[wh	0
 疐	vi[ur	0
-禛	vf[pb	0
 纻	vu[sa	0
 纼	vf[sl	0
 舯	vs[vv	0
@@ -902,7 +874,6 @@
 勚	yi[ul	0
 匜	yi[ky	0
 厣	yj[ij	0
-员	yy[kr	0
 咉	yh[ky	0
 嘢	ye[kl	0
 圫	yu[tq	0
@@ -911,7 +882,6 @@
 嬿	yj[nh	0
 峣	yc[ew	0
 嵎	yu[ey	0
-彧	yu[ad	0
 悒	yi[xb	0
 慭	yb[lx	0
 戉	yt[gv	0
@@ -919,7 +889,6 @@
 扆	yi[hy	0
 扊	yj[hh	0
 敔	yu[ww	0
-旸	yh[op	0
 枍	yi[mv	0
 栐	ys[my	0
 棫	yu[ma	0
@@ -940,14 +909,10 @@
 烻	yj[hz	0
 焆	yt[ho	0
 煴	yy[hm	0
-燚	yi[hh	0
 燠	yu[hd	0
 爚	yt[hc	0
 玙	yu[wy	0
 玚	yh[wp	0
-瑀	yu[wy	0
-瘐	yu[by	0
-祎	yi[pw	0
 窬	yu[bd	0
 筼	yy[vr	0
 繄	yi[kx	0
@@ -959,13 +924,11 @@
 蚰	yz[iy	0
 蛘	yh[iy	0
 蝓	yu[id	0
-螈	yr[ix	0
 螠	yi[im	0
 裛	yi[wy	0
 觃	yj[kz	0
 訚	yb[mk	0
 谳	yj[yq	0
-赟	yy[wr	0
 邘	yu[ye	0
 郾	yj[ke	0
 鄅	yu[ye	0
@@ -999,7 +962,6 @@
 𬸚	yt[qn	0
 𬺈	yi[vk	0
 䎖	zg[bx	0
-嗞	zi[ky	0
 岞	zo[ev	0
 槜	zv[mn	0
 疭	zs[br	0
@@ -1013,3 +975,17 @@
 𥖨	zc[um	0
 𨱔	zy[jc	0
 赉
+醴	li[ya	5
+鼋	yr[ed	4
+榧	fw[mf	0
+锼	sz[jy	1
+鲂	fh[af	3
+圜	hr[ky	3
+圜	yr[ky	3
+埌	lh[tl	3
+槭	qi[mx	4
+鼍	to[kd	3
+麹	qu[fm	2
+蘖	np[cm	5
+磏	lm[un	1
+圹	kl[tg	12
