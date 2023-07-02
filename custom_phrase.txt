@@ -3,7 +3,7 @@
 ## 如要添加新的，可以复制已有的行，然后在其基础上修改。
 ## 置顶字词
 是	s	1
-说	u	2
+是	u	2
 是	ui	2
 吃	i	2
 出	i	1
@@ -80,6 +80,8 @@
 等待	dfd	1
 等到	dfd	1
 我的	wod
+缓存	hri
+缓存	hriw
 有没有	umu
 有没有	ymy
 不知道	bzd
@@ -95,16 +97,14 @@
 什么意思	smws
 什么玩意儿	smwy
 手机号	sjhm	1
-18939740924	sjhm	1
 
 
 ## 常用个人信息
 ## 注意最后的数字控制优先级，希望排在前面的要设置得大一些
-##姓名（在custom_phrase.txt里设置）	jj	64
-##xxx（学号/工号）	jj	60
-##xx学院/部门	jj	48
-##xx學校/單位	jj	44
-gmboomker@gmail.com	ggem	44
+## 姓名（在custom_phrase.txt里设置）	jj	64
+## xxx（学号/工号）	jj	60
+## xx学院/部门	jj	48
+## xx學校/單位	jj	44
 
 ## 常用短语
 Mac	mac	2
@@ -116,32 +116,19 @@ NeoVim	neovi	1
 VSCode	vscode	1
 Kubernetes	kube	1
 
-
 馬上到!	msd
+又双叒叕	yyyy
 什麼玩意兒!	wtf	2
 What the fuck!	wtf	1
 WTF	wtf	3
 正在開會，一會給你回復:)	meet
 中州韻輸入法引擎	rime	2
-又双叒叕	yyyy
 http://rime.im/	rime	1
 Rime	rime	3
-⌘	cmd Command
-⌃	ctl Control
-⌥	opt Option
-⇧	shift Shift
-⇥	tab Tab
-⇪	caps CapsLock
-⏎	return Return
-␣	space Space
-⌫	del Del
-⎋	esc Escape 
-⏏	eject Eject
-
 
 ## 快捷命令
 com.apple.ActivityMonitor 	jjam	3
-com.apple.ActivityMonitor 	jjtm	2
+com.apple.ActivityMonitor 	jjtm	3
 com.apple.systempreferences 	jjsf	2
 com.microsoft.edgemac	jjed	3
 com.google.Chrome	jjch	3
@@ -151,7 +138,6 @@ com.netease.163music	jjwm	3
 com.cocoatech.PathFinder 	jjfd	3
 com.neovide.neovide 	jjnv	3
 com.microsoft.VSCode 	jjvs	3
-com.googlecode.iterm2 	jjtm	3
 com.googlecode.iterm2 	jjit	3
 md.obsidian 	jjob	3
 org.mozilla.firefox 	jjff	3
@@ -163,3 +149,11 @@ com.apple.screenshot.launcher 	jjss	3
 
 ## 化学式符号
 C₂H₆O 	yicy	1
+
+## 成对符号
+''	dys
+“”	sys
+……	sls
+ () 	kh
+「」	fkh
+《》	umh
