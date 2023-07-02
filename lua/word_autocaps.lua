@@ -33,7 +33,7 @@ end
 
 ---@diagnostic disable-next-line: unused-local
 local function autocap_translator(input, seg, env)
-    if string.match(input, '%u%u%l+') then
+    if string.match(input, '^%u%u%l+') then
         local cand = Candidate("word_caps", seg.start, seg._end, string.upper(input), '~AU')
         yield(cand)
     end
