@@ -54,9 +54,6 @@ gsed -i -r '/[^(配|口|主|选)]角[^(逐|色|儿)].*jt/d' "$1" 2>/dev/null
 # gsed -i '/吓/s/hè, //g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/[^(恐|恫)]*吓.*he/d' "$1" 2>/dev/null
 
-gsed -i -r '/便/s/, pián//g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/便[^(宜|便)].*pm/d' "$1" 2>/dev/null
-
 gsed -i -r '/期[^(年|月)]*ji/d' "$1" 2>/dev/null
 
 gsed -i -r '/哦.*ee/d' "$1" 2>/dev/null
@@ -65,11 +62,6 @@ gsed -i -r '/哦.*ee/d' "$1" 2>/dev/null
 gsed -i -r '/什么.*ui/s/ui m[w|e]/uf me/g' "$1" 2>/dev/null
 gsed -i -r '/[^(是|布)]什[^(锦|尔|时)]*ui/d' "$1" 2>/dev/null
 gsed -i -r '/^什[^(锦|尔|时)]*\tui/d' "$1" 2>/dev/null
-
-gsed -i -r '/[(自|正|前|后|外|大|中|侠)]传.*ir/s/ir/vr/g' "$1" 2>/dev/null
-gsed -i -r '/传[一|二|三|四|五|六|七|八|九|十]\t.*ir/s/ir/vr/g' "$1" 2>/dev/null
-gsed -i -r '/^传.*\tvr/s/vr/ir/g' "$1" 2>/dev/null
-gsed -i  '/不可外传/s/vr/ir/g' "$1" 2>/dev/null
 
 gsed -i -r '/折/s/shé, //g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/折[^(本|耗)]*ue/d' "$1" 2>/dev/null 
@@ -124,9 +116,6 @@ gsed -i -r '/洗.*xm/d' "$1" 2>/dev/null
 gsed -i -r '/率[^(先|队)]*uk/s/uk/lv/g' "$1" 2>/dev/null
 gsed -i -r '/率[^(先|队)]*uk/d' cn_dicts/flypy_ext.dict.yaml 
 
-gsed -i -r '/[^(反|深)]*省[^(人事|亲)]*xk/s/xk/ug/g'  "$1" 2>/dev/null
-gsed -i -r '/[^(反|深)]*省[^(人事|亲)]*xk/d' "$1" 2>/dev/null
-
 gsed -i -r '/柜.*ju/d' "$1" 2>/dev/null
 
 gsed -i -r '/[^保]炮.*bc/d' "$1" 2>/dev/null
@@ -163,4 +152,10 @@ awk -F'\t'  '{x=index($1, "大");split($2, a, " ");{if(a[x]=="dd")print $0}}' "$
 awk -F'\t'  '{x=index($1, "弹");split($2, a, " ");{if(a[x]=="dj")print $0}}' "$1" |gsed -n -r '/弹.*dj/{/(装|拆|投|炸|榴|流|子|炮|氢|铅|核|导|中|飞)弹|弹(药|弓|坑|道|幕|孔|壳|夹|膛|托|头|珠|匣|丸)/!p}'
 awk -F'\t'  '{x=index($1, "弹");split($2, a, " ");{if(a[x]=="dj")print $0}}' "$1" |rg '反弹|弹奏|弹走|不轻弹|弹性|弹指|弹簧|弹劾'
 awk -F'\t'  '{x=index($1, "没");split($2, a, " ");{if(a[x]=="mo")print $0}}' "$1" |gsed -n -r '/没.*mo/{/没[(落|莫|摸|入|收)]|[(辱|吞|湮|隐|淹|沉|埋|鬼|覆|出)]没/!p}'
-
+awk -F'\t'  '{x=index($1, "强");split($2, a, " ");{if(a[x]=="jl")print $0}}' "$1" |rg -v '倔强|强嘴' >dyzjl
+awk -F'\t'  '{x=index($1, "差");split($2, a, " ");{if(a[x]=="id")print $0}}' "$1" |rg -v '差使|差遣|公差|差事|信差|出差|差旅' > dyzid
+awk -F'\t'  '{x=index($1, "便");split($2, a, " ");{if(a[x]=="pm")print $0}}' "$1" |rg '便利|便衣|即便|便当|随便' > dyzpm
+awk -F'\t'  '{x=index($1, "省");split($2, a, " ");{if(a[x]=="xk")print $0}}' "$1" |rg -v '反省|省亲|不省|深省|自省' >dyzxk_ext
+awk -F'\t'  '{x=index($1, "传");split($2, a, " ");{if(a[x]=="vr")print $0}}' "$1" |rg -v '(自|正|前|后|外|大|中|侠|立|正)传'
+gsed -i -r '/传[一|二|三|四|五|六|七|八|九|十]\t.*ir/s/ir/vr/g' "$1" 2>/dev/null
+awk -F'\t'  '{x=index($1, "称");split($2, a, " ");{if(a[x]=="if")print $0}}' "$1" |rg -v '匀称|称职|相称|称心|对称' >dyzift
