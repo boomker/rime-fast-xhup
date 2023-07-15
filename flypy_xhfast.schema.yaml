@@ -12,7 +12,7 @@ schema:
     小鹤双拼+辅助码
   dependencies:
     # - flypy_phrase  # 中文词库 - 现代汉语词典 & 清华开源词库
-    - melt_eng      # 英文单词&词组 - 简明英汉词典（增强版）
+    - melt_eng      # 英文单词&词组 - 简明英汉词典(增强版)
     - easy_en
     # - emoji
     # - stroke
@@ -21,6 +21,9 @@ switches:
   - name: ascii_mode
     reset: 0
     states: [中文, 西文]
+  - name: ascii_punct
+    reset: 0
+    states: [。, .]
   - name: emoji
     reset: 1
     states: [ 💀, 😄 ]
@@ -29,8 +32,6 @@ switches:
   - name: simplification
     reset: 1
     states: [漢字, 汉字]
-  - name: ascii_punct
-    states: [。, .]
   - options: ["utf8", "gbk", "gb2312"] # 字符集选单
     reset: 0 # 默认 UTF8
     states:
@@ -42,9 +43,9 @@ engine:
   processors:
     - lua_processor@engword_append_space_processor
     - lua_processor@select_char_processor
-    - lua_processor@cold_word_drop_processor
     - lua_processor@easy_cmd_processor
     - lua_processor@top_word_autocommit_processor
+    - lua_processor@cold_word_drop_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -87,14 +88,14 @@ engine:
     - lua_filter@charset_withEmoji_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@long_word_up_filter
-    - lua_filter@cold_word_drop_filter
     - lua_filter@top_word_autocommit_filter
     - simplifier@simplification
+    - lua_filter@cold_word_drop_filter
     - simplifier
     - uniquifier  #  只能放到最后!
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[67890
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   # max_code_length: 8
@@ -158,6 +159,7 @@ speller:
     - derive/^vg/vk/
     - derive/^ly/nw/
     - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
+    - derive/^mb/ms/
 
 
 grammar:
@@ -217,11 +219,13 @@ melt_eng: # 英文单词
 #   initial_quality: 1.2
 
 punctuator:
-  import_preset: symbols
+  # import_preset: symbols
+  full_shape:
+     __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
   half_shape:
-    "@": ["@", ＠, ☯]
-    '"': { pair: ["‘", "’"] } ## 添加注释后：恢复默认引号
-    "'": { pair: ["“", "”"] } ## 添加注释后：恢复默认引号
+     __include: default:/punctuator/half_shape  # 从 default.yaml 导入配置
+   # symbols:
+     # __include: symbols_v:/symbols              # 从 symbols_v.yaml 导入配置
   symbols:
     "/er": [ 二, 貳, ₂, ², Ⅱ, ⅱ, ②, ➁, ❷, ➋, ⓶, ⑵, ⒉, ２, ㊁, ㈡, 弍, 弐, 貮, 㒃, 㒳, 兩, 倆, ㆓]
     "/san": [ 三, 叄, ₃, ³, Ⅲ, ⅲ, ③, ➂, ❸, ➌, ⓷, ⑶, ⒊, ３, ㊂, ㈢, 參, 参, 叁, 弎, 仨, ㆔]
@@ -242,10 +246,6 @@ key_binder:
     ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
     ## （自然码等其他双拼用户请在 pinyin_switch.yaml 中设置）
     #- { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
-    #- { when: composing, accept: Control+1, send_sequence: '{Home}{Shift+Right}[' }
-    #- { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
-    #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
-    #- { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
 
 recognizer:
   # import_preset: default
