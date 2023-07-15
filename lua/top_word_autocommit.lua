@@ -8,14 +8,7 @@ local Gcommit_codes = {}
 local function append_space_to_cand(env, cand_text)
     local context = env.engine.context
     local ccand_text = cand_text
-    --[[ local prev_cand_is_titlev = context:get_property('prev_cand_is_title')
-    local prev_cand_is_asciiv = context:get_property('prev_cand_is_ascii')
-    local prev_cand_is_awordv = context:get_property('prev_cand_is_aword')
-    local prev_cand_is_punctv = context:get_property('prev_cand_is_punct')
-    local prev_cand_is_preeditv = context:get_property('prev_cand_is_preedit')
-    puts(INFO, '||||||||',  prev_cand_is_asciiv,  prev_cand_is_punctv, prev_cand_is_awordv, prev_cand_is_titlev, prev_cand_is_preeditv) ]]
-    if (context:get_property('prev_cand_is_punct') == "1") or
-        (context:get_property('prev_cand_is_title') == "1") or
+    if (context:get_property('prev_cand_is_hanzi') == "1") or
         (context:get_property('prev_cand_is_preedit') == "1") or
         (context:get_property('prev_cand_is_aword') == "1") then
         ccand_text = " " .. cand_text
@@ -23,12 +16,11 @@ local function append_space_to_cand(env, cand_text)
     return ccand_text
 end
 
-local function reset_curCand_property(env)
+local function reset_cand_property(env)
     local context = env.engine.context
+    context:set_property('prev_cand_is_null', "0")
     context:set_property('prev_cand_is_aword', "0")
-    context:set_property('prev_cand_is_ascii', "0")
-    context:set_property('prev_cand_is_punct', "0")
-    context:set_property('prev_cand_is_title', "0")
+    context:set_property('prev_cand_is_hanzi', "0")
     context:set_property('prev_cand_is_preedit', "0")
 end
 
@@ -225,7 +217,7 @@ local function twac_filter(input, env)
                 local cand_txt = append_space_to_cand(env, cand.text)
                 env.engine:commit_text(cand_txt)
                 context:clear()
-                reset_curCand_property(env)
+                reset_cand_property(env)
                 return 1 -- kAccepted
             end
         end
@@ -244,7 +236,7 @@ local function twac_filter(input, env)
                 local cand_txt = append_space_to_cand(env, cand.text)
                 env.engine:commit_text(cand_txt)
                 context:clear()
-                reset_curCand_property(env)
+                reset_cand_property(env)
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
                 return 1 -- kAccepted
@@ -271,7 +263,7 @@ local function twac_filter(input, env)
                 local cand_txt = append_space_to_cand(env, commit_text)
                 env.engine:commit_text(cand_txt)
                 context:clear()
-                reset_curCand_property(env)
+                reset_cand_property(env)
                 return 1 -- kAccepted
             end
             i = i + 1
