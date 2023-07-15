@@ -1,10 +1,9 @@
 -- local puts = require("tools/debugtool")
-local function reset_curCand_property(env)
+local function reset_cand_property(env)
     local context = env.engine.context
+    context:set_property('prev_cand_is_null', "0")
     context:set_property('prev_cand_is_aword', "0")
-    context:set_property('prev_cand_is_ascii', "0")
-    context:set_property('prev_cand_is_punct', "0")
-    context:set_property('prev_cand_is_title', "0")
+    context:set_property('prev_cand_is_hanzi', "0")
     context:set_property('prev_cand_is_preedit', "0")
 end
 
@@ -30,18 +29,7 @@ local function auto_append_space_processor(key, env)
         ["10"] = 9
     }
 
-    -- 以下这些符号后面跟空格
-    local punctuator_keys = {
-        ["comma"] = true,
-        ["period"] = true,
-        ["semicolon"] = true,
-        ['Shift+colon'] = true,
-        ["Shift+exclam"] = true,
-        ["Shift+question"] = true
-    }
-
-    -- 以下这些符号后面不跟空格
-    local symbol_keys = {
+    local spec_keys ={
         -- ['equal'] = true,
         ['apostrophe'] = true,
         ['grave'] = true,
@@ -55,47 +43,24 @@ local function auto_append_space_processor(key, env)
         ['Shift+underscore'] = true,
         ['Shift+parenleft'] = true,
         ['Shift+parenright'] = true,
-        ['Control+a'] = true,
-        ['Control+u'] = true
+        ['Return'] = true,
+        ['Control+Return'] = true,
+        ['Alt+Return'] = true,
     }
 
-    local prev_cand_is_specv = context:get_property('prev_cand_is_spec')
-    local prev_cand_is_titlev = context:get_property('prev_cand_is_title')
-    local prev_cand_is_asciiv = context:get_property('prev_cand_is_ascii')
-    local prev_cand_is_awordv = context:get_property('prev_cand_is_aword')
-    local prev_cand_is_punctv = context:get_property('prev_cand_is_punct')
+    local prev_cand_is_nullv    = context:get_property('prev_cand_is_null')
+    local prev_cand_is_hanziv   = context:get_property('prev_cand_is_hanzi')
+    local prev_cand_is_awordv   = context:get_property('prev_cand_is_aword')
     local prev_cand_is_preeditv = context:get_property('prev_cand_is_preedit')
 
-    if (#input_code == 0) and (punctuator_keys[key:repr()]) then
-        --[[ if (prev_cand_is_awordv == '1') or (prev_cand_is_asciiv == '1') then
-            local res = env.engine:process_key(KeyEvent("BackSpace"))
-        end ]]
-        context:set_property('prev_cand_is_punct', "1")
-    end
-
-    -- puts(INFO, '----------', prev_cand_is_specv, prev_cand_is_asciiv)
-    if (#input_code == 0) and (symbol_keys[key:repr()]) then
-        reset_curCand_property(env)
-        context:set_property('prev_cand_is_spec', '1')
-        context:set_property('prev_cand_is_ascii', '1')
-    end
-
-    if (#input_code == 0) and
-        ((key:repr() == "Return") or (key:repr() == "Shift+Return")) then
-        reset_curCand_property(env)
-        context:set_property('prev_cand_is_spec', '1')
+    if (#input_code == 0) and (spec_keys[key:repr()]) then
+        reset_cand_property(env)
+        context:set_property('prev_cand_is_null', '1')
     end
 
     if (#input_code >= 1) and (key:repr() == "Return") then
         local cand_text = input_code
-        if (prev_cand_is_specv == '1') and (prev_cand_is_asciiv ~= '0') and
-            (prev_cand_is_titlev ~= '1') and (prev_cand_is_awordv ~= '1') then
-            engine:commit_text(cand_text)
-            context:set_property('prev_cand_is_preedit', "1")
-            context:clear()
-            return 1 -- kAccepted
-        elseif ((prev_cand_is_punctv ~= '1') and (prev_cand_is_asciiv == '0') or
-            (prev_cand_is_titlev == '1') or (prev_cand_is_awordv == '1')) then
+        if (prev_cand_is_nullv ~= '1') and ((prev_cand_is_hanziv == '1') or (prev_cand_is_awordv == '1')) then
             cand_text = " " .. input_code
             engine:commit_text(cand_text)
         else
@@ -117,65 +82,47 @@ local function auto_append_space_processor(key, env)
             cand_text = candObj.text
         end
 
-        if (prev_cand_is_punctv == "1") or (prev_cand_is_titlev == "1") or
-            (prev_cand_is_preeditv == "1") or (prev_cand_is_awordv == '1') then
+        if (prev_cand_is_nullv ~= '1') and ((prev_cand_is_preeditv == "1") or (prev_cand_is_awordv == '1')) then
             if (tonumber(utf8.codepoint(cand_text, 1)) >= 19968) and (#input_code == pos) then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
-                reset_curCand_property(env)
-                context:set_property('prev_cand_is_spec', "0")
+                reset_cand_property(env)
+                context:set_property('prev_cand_is_hanzi', "1")
+                context:clear()
+                return 1 -- kAccepted
+            elseif (string.match(cand_text, '^[%l%u]+')) then
+                local ccand_text = " " .. cand_text
+                engine:commit_text(ccand_text)
+                reset_cand_property(env)
+                context:set_property('prev_cand_is_aword', "1")
                 context:clear()
                 return 1 -- kAccepted
             else
                 context:confirm_previous_selection()
             end
-            local ccand_text = " " .. cand_text
-            engine:commit_text(ccand_text)
-            context:clear()
-            return 1 -- kAccepted
+            return 2 -- kAccepted
         end
 
         if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
-            reset_curCand_property(env)
-            context:set_property('prev_cand_is_spec', "0")
+            reset_cand_property(env)
+            context:set_property('prev_cand_is_hanzi', "1")
             context:confirm_previous_selection()
         end
 
-        if string.match(cand_text, '^%l+$') then
-            -- puts(INFO, '========', input_code, key:repr(), prev_cand_is_asciiv, prev_cand_is_specv)
-            if (prev_cand_is_asciiv == '0') and (prev_cand_is_specv ~= '1') then
+        if string.match(cand_text, '^[%l%u]+') then
+            if (prev_cand_is_nullv ~= '1') and ((prev_cand_is_hanziv == '1') or (prev_cand_is_awordv == '1')) then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 context:set_property('prev_cand_is_aword', "1")
                 context:clear()
                 return 1 -- kAccepted
-            elseif (prev_cand_is_specv == '1') then
+            elseif (prev_cand_is_nullv == '1') or (prev_cand_is_hanziv ~= '1') then
                 engine:commit_text(cand_text)
                 context:set_property('prev_cand_is_aword', "1")
                 context:clear()
                 return 1 -- kAccepted
             else
                 context:set_property('prev_cand_is_aword', "1")
-            end
-        end
-
-        if string.match(cand_text, '^%u+%l+') then
-            if (prev_cand_is_specv == '1') and (prev_cand_is_asciiv ~= '0') then
-                engine:commit_text(cand_text)
-                context:set_property('prev_cand_is_title', "1")
-                context:clear()
-                return 1 -- kAccepted
-            elseif prev_cand_is_asciiv == '0' then
-                local ccand_text = " " .. cand_text
-                engine:commit_text(ccand_text)
-                context:set_property('prev_cand_is_title', "1")
-                context:clear()
-                return 1 -- kAccepted
-            else
-                engine:commit_text(cand_text)
-                context:set_property('prev_cand_is_title', "1")
-                context:clear()
-                return 1 -- kAccepted
             end
         end
 
