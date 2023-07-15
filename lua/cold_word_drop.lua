@@ -105,8 +105,6 @@ function cold_word_drop.processor(key, env)
     local engine            = env.engine
     local config            = engine.schema.config
     local context           = engine.context
-    -- local top_cand_text = context:get_commit_text()
-    -- local preedit_code  = context.input
     local preedit_code      = context:get_script_text()
     local turndown_cand_key = config:get_string("key_binder/turn_down_cand") or "Control+j"
     local drop_cand_key     = config:get_string("key_binder/drop_cand") or "Control+d"
@@ -146,12 +144,20 @@ end
 function cold_word_drop.filter(input, env)
     local idx = 3 -- 降频的词条放到第三个后面, 即第四位, 可在 yaml 里配置
     local i = 1
+    local s = 0
     local cands = {}
-    local context = env.engine.context
-    local preedit_code = context.input
+    local engine            = env.engine
+    local context           = engine.context
+    local input_code        = env.engine.context:get_commit_text()
 
     for cand in input:iter() do
-        -- puts(INFO, 'cand_comment', cand.text, cand.comment)
+        if (s < 1) and string.match(input_code, '^[,.;\'"(){}<>%]%[\\/?:!@#$%%^&*|~`+-=_]') and (#input_code == 1) then
+            s = s + 1
+            engine:commit_text(cand.text)
+            context:clear()
+            return 1
+        end
+
         local cpreedit_code = string.gsub(cand.preedit, ' ', '')
         if (i <= idx) then
             local tfl = turndown_freq_list[cand.text] or nil
@@ -191,12 +197,6 @@ function cold_word_drop.filter(input, env)
         end
     end
 
-    if string.find(preedit_code, '[,.;\'"(){}?:!@#$%%^&*|~]') then
-        context:confirm_current_selection()
-        -- context:confirm_previous_selection()
-        context:clear()
-        return 1
-    end
 end
 
 return {
