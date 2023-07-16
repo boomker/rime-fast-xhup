@@ -136,8 +136,8 @@ gsed -i -r '/会.*kk/{/会(计|稽)|财会/!s/kk/hv/g}'
 gsed -n -r '/说.*uo/{/说服|[(游|劝)]说/p}'
 gsed -n -r '/还.*hr/{/还(钱|款|书|童|债|手|回|珠|我|清|原|贷|朝|魂|俗|乡|给)|(返|交|归)还/!p}' 
 gsed -n -r '/了.*le/{/了(不起|得|解|望|当|事|然|如指掌|结|无进展|不相涉|无惧色)|(没完没|一了百|受不)了/p}' "$1" 2>/dev/null 
-gsed -n -r  '/卡.*qx/{/卡(住|壳|脖|子|具)|(发|哨|关|路|边)卡/!p}'  "$1" 2>/dev/null
-
+gsed -n -r '/卡.*qx/{/卡(住|壳|脖|子|具)|(发|哨|关|路|边)卡/!p}'  "$1" 2>/dev/null
+gsed -i -r '/传[一|二|三|四|五|六|七|八|九|十]\t.*ir/s/ir/vr/g' "$1" 2>/dev/null
 # ------
 awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="hu")print $0}}' "$1" >dyzhu
 awk -F'\t'  '{x=index($1, "和");split($2, a, " ");{if(a[x]=="ho")print $0}}' "$1" >dyzho
@@ -157,12 +157,10 @@ awk -F'\t'  '{x=index($1, "差");split($2, a, " ");{if(a[x]=="id")print $0}}' "$
 awk -F'\t'  '{x=index($1, "便");split($2, a, " ");{if(a[x]=="pm")print $0}}' "$1" |rg '便利|便衣|即便|便当|随便' > dyzpm
 awk -F'\t'  '{x=index($1, "省");split($2, a, " ");{if(a[x]=="xk")print $0}}' "$1" |rg -v '反省|省亲|不省|深省|自省' >dyzxk_ext
 awk -F'\t'  '{x=index($1, "传");split($2, a, " ");{if(a[x]=="vr")print $0}}' "$1" |rg -v '(自|正|前|后|外|大|中|侠|立|正)传'
-gsed -i -r '/传[一|二|三|四|五|六|七|八|九|十]\t.*ir/s/ir/vr/g' "$1" 2>/dev/null
 awk -F'\t'  '{x=index($1, "称");split($2, a, " ");{if(a[x]=="if")print $0}}' "$1" |rg -v '匀称|称职|相称|称心|对称' >dyzift
 awk -F'\t'  '{x=index($1, "长");split($2, a, " ");{if(a[x]=="vh")print $0}}' "$1" |rg -v '生长|成长|家长|学长|队长|市长|校长|班长|军长|师长|屯长|团长|营长|连长|部长|首长|长老|长锈|长见识|长一智|长得|增长'
 awk -F'\t'  '{x=index($1, "查");split($2, a, " ");{if(a[x]=="va")print $0}}' "$1"
 awk -F'\t'  '{x=index($1, "咋");split($2, a, " ");{if(a[x]=="ze")print $0}}' "$1"
 awk -F'\t'  '{x=index($1, "数");split($2, a, " ");{if(a[x]=="uo")print $0}}' "$1"
 awk -F'\t'  '{x=index($1, "读");split($2, a, " ");{if(a[x]=="dz")print $0}}' "$1"
-
 
