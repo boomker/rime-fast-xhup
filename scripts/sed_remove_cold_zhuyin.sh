@@ -159,3 +159,10 @@ awk -F'\t'  '{x=index($1, "省");split($2, a, " ");{if(a[x]=="xk")print $0}}' "$
 awk -F'\t'  '{x=index($1, "传");split($2, a, " ");{if(a[x]=="vr")print $0}}' "$1" |rg -v '(自|正|前|后|外|大|中|侠|立|正)传'
 gsed -i -r '/传[一|二|三|四|五|六|七|八|九|十]\t.*ir/s/ir/vr/g' "$1" 2>/dev/null
 awk -F'\t'  '{x=index($1, "称");split($2, a, " ");{if(a[x]=="if")print $0}}' "$1" |rg -v '匀称|称职|相称|称心|对称' >dyzift
+awk -F'\t'  '{x=index($1, "长");split($2, a, " ");{if(a[x]=="vh")print $0}}' "$1" |rg -v '生长|成长|家长|学长|队长|市长|校长|班长|军长|师长|屯长|团长|营长|连长|部长|首长|长老|长锈|长见识|长一智|长得|增长'
+awk -F'\t'  '{x=index($1, "查");split($2, a, " ");{if(a[x]=="va")print $0}}' "$1"
+awk -F'\t'  '{x=index($1, "咋");split($2, a, " ");{if(a[x]=="ze")print $0}}' "$1"
+awk -F'\t'  '{x=index($1, "数");split($2, a, " ");{if(a[x]=="uo")print $0}}' "$1"
+awk -F'\t'  '{x=index($1, "读");split($2, a, " ");{if(a[x]=="dz")print $0}}' "$1"
+
+
