@@ -36,13 +36,14 @@ engine:
   translators:
     - table_translator
     - punct_translator
-    # - lua_translator@tex_translator
+    - lua_translator@en_custom_translator
+    - lua_translator@laTex_translator
+    - lua_translator@engword_autocaps_translator
   filters:
     - uniquifier
-    # - lua_filter@append_blank_filter
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_/`
   delimiter: " '"
   algebra:
     - xform/^a/!/
