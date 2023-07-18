@@ -67,6 +67,8 @@ charset_comment_filter = charset.comment_filter
 -- single_char_filter: 候选项重排序，使单字优先
 -- 详见 `lua/single_char.lua`
 -- single_char_filter = require("single_char")
+en_custom = require("en_custom")
+en_custom_translator = en_custom.translator
 
 word_append_space = require("word_append_space")
 word_append_space_processor = word_append_space.processor
