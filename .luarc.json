@@ -9,10 +9,10 @@
         "CommitHistory",
         "LevelDb",
         "KeyEvent",
-        "orgtype",
-        "metatable",
-        "metatable_chk",
+        "KeySequence",
+        "log",
         "Switcher",
-        "log"
+        "ShadowCandidate",
+        "rime_api"
     ]
 }
