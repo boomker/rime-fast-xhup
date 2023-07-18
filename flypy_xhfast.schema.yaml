@@ -41,7 +41,7 @@ switches:
 
 engine:
   processors:
-    - lua_processor@engword_append_space_processor
+    - lua_processor@word_append_space_processor
     - lua_processor@select_char_processor
     - lua_processor@easy_cmd_processor
     - lua_processor@top_word_autocommit_processor
@@ -77,6 +77,7 @@ engine:
     - table_translator@dbpy_flypy_help
     - table_translator@easy_en_simp   # 单词输入
     - table_translator@melt_eng
+    - lua_translator@en_custom_translator
     - lua_translator@laTex_translator
     - lua_translator@datetime_translator
     - lua_translator@number_translator
@@ -95,7 +96,7 @@ engine:
     - uniquifier  #  只能放到最后!
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[67890
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[/`67890
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   # max_code_length: 8
