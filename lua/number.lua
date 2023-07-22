@@ -1,31 +1,99 @@
 --[[
 number_translator: 将 `/` + 阿拉伯数字 翻译为大小写汉字
---]]
-local confs = {
+--]] local confs = {
     {
         comment = " 大写",
-        number = { [0] = "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" },
-        suffix = { [0] = "", "拾", "佰", "仟" },
-        suffix2 = { [0] = "", "万", "亿", "万亿", "亿亿" }
-    },
-    {
+        numeral = {
+            [0] = "零",
+            "壹",
+            "贰",
+            "叁",
+            "肆",
+            "伍",
+            "陆",
+            "柒",
+            "捌",
+            "玖"
+        },
+        place = {[0] = "", "拾", "佰", "仟"},
+        group = {[0] = "", "万", "亿", "万亿", "亿亿"}
+    }, {
         comment = " 小写",
-        number = { [0] = "零", "一", "二", "三", "四", "五", "六", "七", "八", "九" },
-        suffix = { [0] = "", "十", "百", "千" },
-        suffix2 = { [0] = "", "万", "亿", "万亿", "亿亿" }
-    },
-    {
+        numeral = {
+            [0] = "零",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六",
+            "七",
+            "八",
+            "九"
+        },
+        place = {[0] = "", "十", "百", "千"},
+        group = {[0] = "", "万", "亿", "万亿", "亿亿"}
+    }, {
+        comment = " 序数",
+        numeral = {
+            [0] = "〇",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六",
+            "七",
+            "八",
+            "九"
+        }
+    }, {
         comment = " 大寫",
-        number = { [0] = "零", "壹", "貳", "參", "肆", "伍", "陸", "柒", "捌", "玖" },
-        suffix = { [0] = "", "拾", "佰", "仟" },
-        suffix2 = { [0] = "", "萬", "億", "萬億", "億億" }
-    },
-    {
+        numeral = {
+            [0] = "零",
+            "壹",
+            "貳",
+            "參",
+            "肆",
+            "伍",
+            "陸",
+            "柒",
+            "捌",
+            "玖"
+        },
+        place = {[0] = "", "拾", "佰", "仟"},
+        group = {[0] = "", "萬", "億", "兆", "京"}
+    }, {
         comment = " 小寫",
-        number = { [0] = "零", "一", "二", "三", "四", "五", "六", "七", "八", "九" },
-        suffix = { [0] = "", "十", "百", "千" },
-        suffix2 = { [0] = "", "萬", "億", "萬億", "億億" }
-    },
+        numeral = {
+            [0] = "零",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六",
+            "七",
+            "八",
+            "九"
+        },
+        place = {[0] = "", "十", "百", "千"},
+        group = {[0] = "", "萬", "億", "兆", "京"}
+    }, {
+        comment = " 序數",
+        numeral = {
+            [0] = "〇",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六",
+            "七",
+            "八",
+            "九"
+        }
+    }
 }
 
 local function read_seg(conf, n)
@@ -35,13 +103,15 @@ local function read_seg(conf, n)
 
     while string.len(n) > 0 do
         local d = tonumber(string.sub(n, -1, -1))
-        if d ~= 0 then
-            s = conf.number[d] .. conf.suffix[i] .. s
+        if conf.place == nil then
+            s = conf.numeral[d] .. s
+        elseif d == 1 and i == 1 and string.len(n) == 1 then
+            s = conf.place[i] .. s
+        elseif d ~= 0 then
+            s = conf.numeral[d] .. conf.place[i] .. s
             zf = false
         else
-            if not zf then
-                s = conf.number[0] .. s
-            end
+            if not zf then s = conf.numeral[0] .. s end
             zf = true
         end
         i = i + 1
@@ -58,17 +128,17 @@ local function read_number(conf, n)
 
     n = string.gsub(n, "^0+", "")
 
-    if n == "" then
-        return conf.number[0]
-    end
+    if n == "" then return conf.numeral[0] end
 
     while string.len(n) > 0 do
         local zf2, r = read_seg(conf, string.sub(n, -4, -1))
         if r ~= "" then
-            if zf and s ~= "" then
-                s = r .. conf.suffix2[i] .. conf.number[0] .. s
+            if conf.group == nil then
+                s = r .. s
+            elseif zf and s ~= "" then
+                s = r .. conf.group[i] .. conf.numeral[0] .. s
             else
-                s = r .. conf.suffix2[i] .. s
+                s = r .. conf.group[i] .. s
             end
         end
         zf = zf2
@@ -78,9 +148,9 @@ local function read_number(conf, n)
     return s
 end
 
-local function number_convert(input, seg)
-    if string.sub(input, 1, 1) == "/" then
-        local n = string.sub(input, 2)
+local function number_convert_to_chinese(input, seg, env)
+    if string.sub(input, 1, 2) == "n/" then
+        local n = string.sub(input, 3)
         if tonumber(n) ~= nil then
             for _, conf in ipairs(confs) do
                 local r = read_number(conf, n)
@@ -90,4 +160,4 @@ local function number_convert(input, seg)
     end
 end
 
-return { translator = number_convert }
+return {translator = number_convert_to_chinese}

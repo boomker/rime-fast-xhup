@@ -7,7 +7,7 @@ https://blog.csdn.net/lp12345678910/article/details/121396243
 1024 ==> 一千零百二十四；
 100001==>一百零十零千零百零十一
 
---]] 
+--]]
 --[[
 零
 一
@@ -72,12 +72,12 @@ local function  convert_arab_to_chinese(number)
     for index, digit in ipairs(numerical_tbl) do
         local curr_unit = numerical_units[len_number-index+1]
         local curr_name = numerical_names[digit+1]
-        if(digit == 0) then 
+        if(digit == 0) then
             if(not pre_zero) then
                 result = result .. curr_name
             end
             pre_zero = true
-        else 
+        else
             result = result .. curr_name .. curr_unit
             pre_zero = false
         end

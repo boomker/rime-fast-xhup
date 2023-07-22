@@ -30,7 +30,7 @@ menu:
 switcher:
   caption: 「方案选单」
   hotkeys:
-    - Control+grave
+    - Alt+grave
   save_options:  # 开关记忆，从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
     - ascii_punct
     - traditionalization
@@ -58,7 +58,7 @@ ascii_composer:
   good_old_caps_lock: true  # true | false
   switch_key:
     Caps_Lock: clear      # commit_code | commit_text | clear
-    Shift_L: commit_code  # commit_code | commit_text | inline_ascii | clear | noop
+    Shift_L: inline_ascii # commit_code | commit_text | inline_ascii | clear | noop
     Shift_R: noop         # commit_code | commit_text | inline_ascii | clear | noop
     Control_L: noop       # commit_code | commit_text | inline_ascii | clear | noop
     Control_R: noop       # commit_code | commit_text | inline_ascii | clear | noop
@@ -85,7 +85,7 @@ punctuator:
     '.' : { commit: 。 }
     '<' : [ 《, 〈, «, ‹ ]
     '>' : [ 》, 〉, », › ]
-    '/' : [ ／, ÷ ]
+    '/' : [ 、, ､, '/', ／, ÷ ]
     '?' : { commit: ？ }
     ';' : { commit: ； }
     ':' : { commit: ： }
@@ -118,14 +118,14 @@ punctuator:
     '.' : '。'
     '<' : '《'
     '>' : '》'
-    '/' : '/'
+    '/' : [ ／, ÷ ]
     '?' : '？'
     ';' : '；'
     ':' : ':'
     '''' : { pair: [ '‘', '’' ] }
     '"' : { pair: [ '“', '”' ] }
     '\' : '、'
-    '|' : '|'
+    '|' : [ ·, ｜, '§', '¦' ]
     '`' : '`'
     '~' : '~'
     '!' : '！'
@@ -152,6 +152,7 @@ punctuator:
 # 此处配置所有方案通用的；各方案中另设专有的，比如全拼的拼字用 u，双拼的拼字用 L
 recognizer:
   patterns:
+    punct: '^v/([0-9]0?|[A-Za-z]+)$'
     email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"                            # 自带的，email 正则
     # uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"                           # 自带的，大写字母开头后，可以输入[-_+.'0-9A-Za-z]这些字符
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"  # 自带的，URL 正则
@@ -194,8 +195,8 @@ key_binder:
     # numbered_mode_switch:
     # - { when: always, accept: Control+Shift+1, select: .next }               # 在最近的两个方案之间切换
     # - { when: always, accept: Control+Shift+2, toggle: ascii_mode }          # 切换中英
-    # - { when: always, accept: Control+Shift+3, toggle: ascii_punct }           # 切换中英标点
-    # - { when: always, accept: Control+Shift+4, toggle: traditionalization }    # 切换简繁
+    # - { when: always, accept: Control+Shift+3, toggle: ascii_punct }         # 切换中英标点
+    # - { when: always, accept: Control+Shift+4, toggle: traditionalization }  # 切换简繁
     # - { when: always, accept: Control+Shift+5, toggle: full_shape }          # 切换全半角
 
     # emacs_editing:
