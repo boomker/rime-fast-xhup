@@ -173,10 +173,7 @@ macOS Ventura	macOSVentura
 macOS Sonoma	macOSSonoma
 Windows 95	Windows95
 Windows 98	Windows98
-Windows Me	WindowsMe
 Windows 2000	Windows2000
-Windows XP	WindowsXP
-Windows Vista	WindowsVista
 Windows 7	Windows7
 Windows 8	Windows8
 Windows 10	Windows10
@@ -1058,7 +1055,6 @@ Cloudflare Images	CloudflareImages
 Cloudflare Stream	CloudflareStream
 Zero Trust	ZeroTrust
 goroutines	goroutines
-Universal Actions	UniversalActions
 Google Drive	GoogleDrive
 Google One	GoogleOne
 Airbnb	Airbnb
@@ -1377,7 +1373,6 @@ OriginOS	OriginOS
 Chrome	Chrome
 iPad	iPad
 United Kingdom	UK
-United Kingdom	UnitedKingdom
 Kinect	Kinect
 azure	azure
 Cloudflare	Cloudflare

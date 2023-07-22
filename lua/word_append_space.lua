@@ -12,6 +12,8 @@ local function auto_append_space_processor(key, env)
     local context = engine.context
     local input_code = context.input
     local pos = context.caret_pos
+    local composition = context.composition
+    -- local cand_text   = context:get_commit_text()
 
     local cand_select_kyes = {
         ["space"] = 0,
@@ -29,7 +31,7 @@ local function auto_append_space_processor(key, env)
         ["10"] = 9
     }
 
-    local spec_keys ={
+    local spec_keys = {
         -- ['equal'] = true,
         ['apostrophe'] = true,
         ['grave'] = true,
@@ -45,13 +47,14 @@ local function auto_append_space_processor(key, env)
         ['Shift+parenright'] = true,
         ['Return'] = true,
         ['Control+Return'] = true,
-        ['Alt+Return'] = true,
+        ['Alt+Return'] = true
     }
 
-    local prev_cand_is_nullv    = context:get_property('prev_cand_is_null')
-    local prev_cand_is_hanziv   = context:get_property('prev_cand_is_hanzi')
-    local prev_cand_is_awordv   = context:get_property('prev_cand_is_aword')
+    local prev_cand_is_nullv = context:get_property('prev_cand_is_null')
+    local prev_cand_is_hanziv = context:get_property('prev_cand_is_hanzi')
+    local prev_cand_is_awordv = context:get_property('prev_cand_is_aword')
     local prev_cand_is_preeditv = context:get_property('prev_cand_is_preedit')
+
 
     if (#input_code == 0) and (spec_keys[key:repr()]) then
         reset_cand_property(env)
@@ -60,7 +63,8 @@ local function auto_append_space_processor(key, env)
 
     if (#input_code >= 1) and (key:repr() == "Return") then
         local cand_text = input_code
-        if (prev_cand_is_nullv ~= '1') and ((prev_cand_is_hanziv == '1') or (prev_cand_is_awordv == '1')) then
+        if (prev_cand_is_nullv ~= '1') and
+            ((prev_cand_is_hanziv == '1') or (prev_cand_is_awordv == '1')) then
             cand_text = " " .. input_code
             engine:commit_text(cand_text)
         else
@@ -74,16 +78,18 @@ local function auto_append_space_processor(key, env)
     if (cand_select_kyes[key:repr()]) and (#input_code >= 1) then
         local cand_text = context:get_commit_text()
 
-        local composition = context.composition
         if (not composition:empty()) then
             local segment = composition:back()
-            local candObj = segment:get_candidate_at(cand_select_kyes[key:repr()])
+            local candObj = segment:get_candidate_at(
+                                cand_select_kyes[key:repr()])
             if not candObj then return 2 end
             cand_text = candObj.text
         end
 
-        if (prev_cand_is_nullv ~= '1') and ((prev_cand_is_preeditv == "1") or (prev_cand_is_awordv == '1')) then
-            if (tonumber(utf8.codepoint(cand_text, 1)) >= 19968) and (#input_code == pos) then
+        if (prev_cand_is_nullv ~= '1') and
+            ((prev_cand_is_preeditv == "1") or (prev_cand_is_awordv == '1')) then
+            if (tonumber(utf8.codepoint(cand_text, 1)) >= 19968) and
+                (#input_code == pos) then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 reset_cand_property(env)
@@ -110,7 +116,8 @@ local function auto_append_space_processor(key, env)
         end
 
         if string.match(cand_text, '^[%l%u]+') then
-            if (prev_cand_is_nullv ~= '1') and ((prev_cand_is_hanziv == '1') or (prev_cand_is_awordv == '1')) then
+            if (prev_cand_is_nullv ~= '1') and
+                ((prev_cand_is_hanziv == '1') or (prev_cand_is_awordv == '1')) then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 context:set_property('prev_cand_is_aword', "1")
