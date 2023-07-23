@@ -1,3 +1,7 @@
+-- 为交替输出中英情况加空格
+-- 为中英混输词条（cn_en.dict.yaml）自动空格
+-- 示例：`VIP中P` → `VIP 中 P`
+--
 -- local puts = require("tools/debugtool")
 local function reset_cand_property(env)
     local context = env.engine.context
@@ -8,53 +12,52 @@ local function reset_cand_property(env)
 end
 
 local function auto_append_space_processor(key, env)
-    local engine = env.engine
-    local context = engine.context
-    local input_code = context.input
-    local pos = context.caret_pos
+    local engine      = env.engine
+    local context     = engine.context
+    local input_code  = context.input
+    local pos         = context.caret_pos
     local composition = context.composition
     -- local cand_text   = context:get_commit_text()
 
     local cand_select_kyes = {
-        ["space"] = 0,
-        ["semicolon"] = 1,
+        ["space"]      = 0,
+        ["semicolon"]  = 1,
         ["apostrophe"] = 2,
-        ["1"] = 0,
-        ["2"] = 1,
-        ["3"] = 2,
-        ["4"] = 3,
-        ["5"] = 4,
-        ["6"] = 5,
-        ["7"] = 6,
-        ["8"] = 7,
-        ["9"] = 8,
-        ["10"] = 9
+        ["1"]          = 0,
+        ["2"]          = 1,
+        ["3"]          = 2,
+        ["4"]          = 3,
+        ["5"]          = 4,
+        ["6"]          = 5,
+        ["7"]          = 6,
+        ["8"]          = 7,
+        ["9"]          = 8,
+        ["10"]         = 9
     }
 
     local spec_keys = {
         -- ['equal'] = true,
-        ['apostrophe'] = true,
-        ['grave'] = true,
-        ['minus'] = true,
-        ['slash'] = true,
-        ['Shift+at'] = true,
-        ['Shift+plus'] = true,
-        ['Shift+dollar'] = true,
-        ['Shift+quotedbl'] = true,
-        ['Shift+asterisk'] = true,
+        ['apostrophe']       = true,
+        ['grave']            = true,
+        ['minus']            = true,
+        ['slash']            = true,
+        ['Shift+at']         = true,
+        ['Shift+plus']       = true,
+        ['Shift+dollar']     = true,
+        ['Shift+quotedbl']   = true,
+        ['Shift+asterisk']   = true,
         ['Shift+underscore'] = true,
-        ['Shift+parenleft'] = true,
+        ['Shift+parenleft']  = true,
         ['Shift+parenright'] = true,
-        ['Return'] = true,
-        ['Control+Return'] = true,
-        ['Alt+Return'] = true
+        ['Return']           = true,
+        ['Control+Return']   = true,
+        ['Alt+Return']       = true
     }
 
-    local prev_cand_is_nullv = context:get_property('prev_cand_is_null')
-    local prev_cand_is_hanziv = context:get_property('prev_cand_is_hanzi')
-    local prev_cand_is_awordv = context:get_property('prev_cand_is_aword')
+    local prev_cand_is_nullv    = context:get_property('prev_cand_is_null')
+    local prev_cand_is_hanziv   = context:get_property('prev_cand_is_hanzi')
+    local prev_cand_is_awordv   = context:get_property('prev_cand_is_aword')
     local prev_cand_is_preeditv = context:get_property('prev_cand_is_preedit')
-
 
     if (#input_code == 0) and (spec_keys[key:repr()]) then
         reset_cand_property(env)
@@ -137,4 +140,27 @@ local function auto_append_space_processor(key, env)
     return 2 -- kNoop
 end
 
-return {processor = auto_append_space_processor}
+local function add_spaces(s)
+    -- 在中文字符后和英文字符前插入空格
+    s = s:gsub("([\228-\233][\128-\191]-)([%w%p])", "%1 %2")
+    -- 在英文字符后和中文字符前插入空格
+    s = s:gsub("([%w%p])([\228-\233][\128-\191]-)", "%1 %2")
+    return s
+end
+
+-- 是否同时包含中文和英文数字
+local function is_mixed_cn_en_num(s)
+    return s:find("([\228-\233][\128-\191]-)") and s:find("[%a%d]")
+end
+
+local function cn_en_spacer(input, env)
+    for cand in input:iter() do
+        if is_mixed_cn_en_num(cand.text) then
+            cand = cand:to_shadow_candidate(cand.type, add_spaces(cand.text),
+                                            cand.comment)
+        end
+        yield(cand)
+    end
+end
+
+return {processor = auto_append_space_processor, filter = cn_en_spacer}

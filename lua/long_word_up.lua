@@ -53,7 +53,7 @@ local function long_word_up(input, env)
     end
 
     for _, cand in ipairs(cands) do
-        if (utf8.len(cand.text) / #preedit_code) < 1.5 then
+        if (utf8.len(cand.text) / #preedit_code) <= 1.5 then
             yield(cand)
         else
             table.insert(longWord_cands, cand)
