@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 set -eu
 
-files=("base" "ext" "tencent" "emoji")
+files=("base" "ext" "tencent" "emoji" "en_ext")
 iceRepoPath="${HOME}/gitrepos/rime-ice"
 repoRoot="$(git rev-parse --show-toplevel)"
 scriptPath=$(dirname "$(realpath "$0")")
@@ -22,29 +22,32 @@ do
     src_file="${iceRepoPath}/cn_dicts/$f.dict.yaml"
     tgt_file="${repoRoot}/cn_dicts/flypy_${f}.dict.yaml"
     sorted_outfile="${repoRoot}/cn_dicts/flypy_${f}_sou.dict.yaml"
+    [[ "$f" == "en_ext" ]] && src_file="${iceRepoPath}/en_dicts/en_ext.dict.yaml"
+    [[ "$f" == "en_ext" ]] && tgt_file="${repoRoot}/en_dicts/en_ext.dict.yaml"
     [[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
     [[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji.txt"
 
-    if [[ "$f" == "base" ]] || [[ "$f" == "emoji" ]]; then
-        git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |\
-            /usr/local/bin/rg  "^\-" |\rg -v "\-#|\+v|\---" |tr -d "-" > "${f}_min.diff"
-        gcut -f1 "${f}_min.diff" |gxargs -I % -n 1 gsed -i '/^%\t/d' "${tgt_file}"
-    fi
+    git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |\
+        /usr/local/bin/rg  "^\-" |\rg -v "\-#|\+v|\---" |tr -d "-" > "${f}_min.diff"
+    gcut -f1 "${f}_min.diff" |gxargs -I % -n 1 sd '^%\t.*' '' "${tgt_file}"
+    gsed -i -r '14,${/^$/d}' "${tgt_file}"
+
     git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |\
         /usr/local/bin/rg "^\+" |\rg -v "\+#|\+v|\+\+" |tr -d "+" > "${f}_add.diff"
 
-    [[ "$f" == "emoji" ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >> "${tgt_file}"
-    if [[ $(wc -l "${f}_add.diff" |gcut -d ' ' -f -1) != 0 ]] && [[ $f != "emoji" ]]; then
-        if [[ "$f" == "base" ]] || [[ "$f" == "sogou" ]]; then
-            python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
+    [[ "$f" =~ emoji|en_ext ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >> "${tgt_file}"
+    if [[ $(wc -l "${f}_add.diff" |gcut -d ' ' -f -1) != 0 ]] && [[ ! $f =~ "emoji" ]]; then
+        if [[ "$f" == "base" ]] || [[ "$f" == "ext" ]]; then
+            pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
         else
-            python3.11 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
+            pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
         fi
     fi
 
-
-    rm "${f}_add.diff" && [[ $f =~ base|emoji ]] && rm "${f}_min.diff"
-    [[ $f != "emoji" ]] && {
+    # git diff HEAD -- cn_dicts/flypy_ext.dict.yaml |rg "^\+" |rg -v "\+#|\+v|\+\+" |tr -d "+" > "cn-ext_add.diff"
+    # awk -F'\t' '{s[$1]++;w[$0]}END{for(i in w){split(i, a, " ");if(s[a[1]]>1)print i}}' cn-ext_add.diff |sort
+    rm "${f}_add.diff" "${f}_min.diff"
+    [[ ! $f =~ emoji|en_ext ]] && {
         (head -13 "${tgt_file}"; gsed -n '14,$p' "${tgt_file}" |gsort -u) > "${sorted_outfile}"
         rm "${tgt_file}" && mv "${sorted_outfile}" "${tgt_file}"
     }
