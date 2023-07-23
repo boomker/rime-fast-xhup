@@ -45,6 +45,11 @@ datetime_translator = date_time.translator
 number = require("number")
 number_translator = number.translator
 
+-- 英文生词造词入词库
+en_custom = require("en_custom")
+en_custom_translator = en_custom.translator
+
+-- LaTeX 公式输入
 laTex = require("laTex")
 laTex_translator = laTex.translator
 
@@ -67,19 +72,21 @@ charset_comment_filter = charset.comment_filter
 -- single_char_filter: 候选项重排序，使单字优先
 -- 详见 `lua/single_char.lua`
 -- single_char_filter = require("single_char")
-en_custom = require("en_custom")
-en_custom_translator = en_custom.translator
 
+-- 适用于中文输入方案的中英文之间加空格
 word_append_space = require("word_append_space")
+word_append_space_filter = word_append_space.filter
 word_append_space_processor = word_append_space.processor
+
+-- 适用于英文输入方案的英文单词之间加空格
+engword_append_space = require("engword_append_space")
+engword_append_space_processor = engword_append_space.processor
 
 -- 英文单词支持首字母大写, 全大写等格式
 engword_autocaps = require("word_autocaps")
 engword_autocaps_filter = engword_autocaps.filter
 engword_autocaps_translator = engword_autocaps.translator
 
-engword_append_space = require("engword_append_space")
-engword_append_space_processor = engword_append_space.processor
 -- 提升1 个中文长词的位置到第二候选, 加入了对提升词的词频计算
 -- 除此之外, 对纯英文单词的长词降频
 long_word_up = require("long_word_up")

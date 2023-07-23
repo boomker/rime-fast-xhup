@@ -133,12 +133,14 @@ com.apple.systempreferences 	jjsf	2
 com.microsoft.edgemac	jjed	3
 com.google.Chrome	jjch	3
 com.tencent.xinWeChat	jjwx	3
-com.tencent.Foxmail	jjfm	3
+com.tencent.WeWorkMac	jjww	3
+com.microsoft.Outlook	jjol	3
 com.netease.163music	jjwm	3
 com.cocoatech.PathFinder 	jjfd	3
 com.neovide.neovide 	jjnv	3
 com.microsoft.VSCode 	jjvs	3
 com.googlecode.iterm2 	jjit	3
+org.alacritty	jjat	3
 md.obsidian 	jjob	3
 org.mozilla.firefox 	jjff	3
 org.freedownloadmanager.fdm6 	jjdl	3

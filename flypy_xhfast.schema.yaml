@@ -89,8 +89,9 @@ engine:
     - simplifier@emoji
     - simplifier@simplification
     - lua_filter@charset_withEmoji_filter
+    - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
-    # - lua_filter@long_word_up_filter
+    - lua_filter@long_word_up_filter
     - lua_filter@top_word_autocommit_filter
     - lua_filter@cold_word_drop_filter
     - simplifier

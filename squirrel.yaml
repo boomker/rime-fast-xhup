@@ -172,8 +172,9 @@ app_options:
   com.neovide.neovide:
     ascii_mode: true
     ascii_punct: true              # 中文状态输出英文标点(半角)
-  md.obsidian:
-    ascii_mode: true
   org.alacritty:
     ascii_mode: true
+    ascii_punct: true              # 中文状态输出英文标点(半角)
+  com.microsoft.edgemac:
+    ascii_mode: false
 
