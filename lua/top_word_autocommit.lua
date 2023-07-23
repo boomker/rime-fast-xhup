@@ -205,8 +205,8 @@ local function twac_filter(input, env)
     if (pos >= 4) and (table.find_index({4, 5}, #preedit_code)) and
         string.find(preedit_code, "^%l+%[%l*$") then
         for _, cand in ipairs(single_char_cands) do
-            local input_shape_code = string.sub(preedit_code, 4)
-            local current_cand_shape_code = string.sub(cand.comment, 2)
+            local input_shape_code = string.sub(preedit_code, 4):gsub('%[', '')
+            local current_cand_shape_code = string.sub(cand.comment, 2):gsub('%[', '')
             local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '')
             local comment = (string.len(remain_shape_code) > 0) and string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
