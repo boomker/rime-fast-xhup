@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-07-23"
+version: "2023-07-28"
 sort: by_weight
 ...
 # 一些杂项
@@ -2218,14 +2218,18 @@ beyatch	beyatch
 perplexity	perplexity
 masturbate	masturbate
 thorium	thorium
-pythonic	pythonic 
-ChatGPT	Plus ChatGPTPlus
-Language	Model for
-Protocol	Buffers ProtocolBuffers
-protobuf	protobuf 
-interstellar	interstellar 
-weirdo	weirdo 
-beyatch	beyatch 
-perplexity	perplexity 
-masturbate	masturbate 
-thorium	thorium 
+iBus	iBus
+BT	BT
+corrector	corrector
+hashtag	hashtag
+ProtonMail	ProtonMail
+Elasticsearch	Elasticsearch
+iBus	iBus 
+BT	BT 
+corrector	corrector 
+hashtag	hashtag 
+ProtonMail	ProtonMail 
+Elasticsearch	Elasticsearch 
+BT	BT	1
+ProtonMail	ProtonMail	1
+Elasticsearch	Elasticsearch	1
