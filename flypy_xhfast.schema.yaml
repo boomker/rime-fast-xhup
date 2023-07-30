@@ -80,6 +80,7 @@ engine:
     - table_translator@dbpy_flypy_help            # oh 触发
     - lua_translator@commit_history_translator    # hisz 触发
     - lua_translator@datetime_translator          # date, rq, week, time 触发
+    - lua_translator@lunar_translator
     - lua_translator@en_custom_translator         # `尾触发
     - lua_translator@laTex_translator             # tf 触发
     - lua_translator@number_translator            # n/ 触发
@@ -89,8 +90,9 @@ engine:
     - simplifier@emoji
     - simplifier@simplification
     - lua_filter@charset_withEmoji_filter
+    - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
-    # - lua_filter@long_word_up_filter
+    - lua_filter@long_word_up_filter
     - lua_filter@top_word_autocommit_filter
     - lua_filter@cold_word_drop_filter
     - simplifier
@@ -146,7 +148,8 @@ speller:
     - derive/^t([erp])/df/          # t[er] --> df
     - derive/^tg/og/                # tg --> og
     - derive/^tk/rk/                # tk --> rk
-    - derive/^rg/rd/
+    - derive/^rg/rb/
+    - derive/^rf/rn/
     - derive/^xt/xd/
     - derive/^xl/xh/
     - derive/^xy/xo/
