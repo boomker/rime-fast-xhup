@@ -80,6 +80,7 @@ engine:
     - table_translator@dbpy_flypy_help            # oh 触发
     - lua_translator@commit_history_translator    # hisz 触发
     - lua_translator@datetime_translator          # date, rq, week, time 触发
+    - lua_translator@lunar_translator
     - lua_translator@en_custom_translator         # `尾触发
     - lua_translator@laTex_translator             # tf 触发
     - lua_translator@number_translator            # n/ 触发
@@ -147,7 +148,8 @@ speller:
     - derive/^t([erp])/df/          # t[er] --> df
     - derive/^tg/og/                # tg --> og
     - derive/^tk/rk/                # tk --> rk
-    - derive/^rg/rd/
+    - derive/^rg/rb/
+    - derive/^rf/rn/
     - derive/^xt/xd/
     - derive/^xl/xh/
     - derive/^xy/xo/
