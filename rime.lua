@@ -40,6 +40,8 @@ librime-lua 样例
 date_time = require("date_time")
 datetime_translator = date_time.translator
 
+lunar = require("lunar")
+lunar_translator = lunar.translator
 -- number_translator: 将 `/` + 阿拉伯数字 翻译为大小写汉字
 -- 详见 `lua/number.lua`
 number = require("number")
