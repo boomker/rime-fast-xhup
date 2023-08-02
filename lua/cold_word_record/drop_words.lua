@@ -19,5 +19,6 @@ local drop_words =
 	"朱注意否斠联想",
 	"倭坠髻",
 	"提么",
+	"坎纳癸",
 }
 return drop_words

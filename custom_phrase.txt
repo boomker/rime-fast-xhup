@@ -65,6 +65,18 @@
 等	df	1
 有	yz	2
 又	yz	1
+
+
+## 常用个人信息
+## 注意最后的数字控制优先级，希望排在前面的要设置得大一些
+## 姓名（在custom_phrase.txt里设置）	jj	64
+## xxx（学号/工号）	jj	60
+## xx学院/部门	jj	48
+## xx學校/單位	jj	44
+gmboomker@gmail.com	ggem	44
+18939740924	sjhm	4
+
+## 常用短语
 我们	wm
 人们	rm
 一个	yg
@@ -82,6 +94,7 @@
 我的	wod
 缓存	hri
 缓存	hriw
+馬上到!	msd
 有没有	umu
 有没有	ymy
 不知道	bzd
@@ -89,6 +102,7 @@
 是不是	ubu
 没什么	msm
 什么鬼	smg
+怎样的	zmd
 怎么样	zfmy
 怎么样	zfmw
 怎么样了	zmyl
@@ -96,27 +110,9 @@
 什么意思	smys
 什么意思	smws
 什么玩意儿	smwy
-手机号	sjhm	1
-
-
-## 常用个人信息
-## 注意最后的数字控制优先级，希望排在前面的要设置得大一些
-## 姓名（在custom_phrase.txt里设置）	jj	64
-## xxx（学号/工号）	jj	60
-## xx学院/部门	jj	48
-## xx學校/單位	jj	44
-
-## 常用短语
-Mac	mac	2
-DevOps	devo	2
-Django	djan	2
-Deploy	depl	2
-GitHub	gith	1
-NeoVim	neovi	1
-VSCode	vscode	1
-Kubernetes	kube	1
-
-馬上到!	msd
+还是怎样的	huzyd
+还是怎样的	hszyd
+手机号	sjh	1
 又双叒叕	yyyy
 什麼玩意兒!	wtf	2
 What the fuck!	wtf	1
@@ -125,6 +121,15 @@ WTF	wtf	3
 中州韻輸入法引擎	rime	2
 http://rime.im/	rime	1
 Rime	rime	3
+
+Mac	mac	2
+DevOps	devo	2
+Django	djan	2
+Deploy	depl	2
+GitHub	gith	1
+NeoVim	neovi	1
+VSCode	vscode	1
+Kubernetes	kube	1
 
 ## 快捷命令
 com.apple.ActivityMonitor 	jjam	3
@@ -140,14 +145,14 @@ com.cocoatech.PathFinder 	jjfd	3
 com.neovide.neovide 	jjnv	3
 com.microsoft.VSCode 	jjvs	3
 com.googlecode.iterm2 	jjit	3
-org.alacritty	jjat	3
-md.obsidian 	jjob	3
-org.mozilla.firefox 	jjff	3
-org.freedownloadmanager.fdm6 	jjdl	3
-org.freedownloadmanager.fdm6 	jjfdm	3
 com.izual.Easydict 	jjfy	3
 com.apple.screenshot.launcher 	jjjt	3
 com.apple.screenshot.launcher 	jjss	3
+org.alacritty	jjat	3
+org.mozilla.firefox 	jjff	3
+org.freedownloadmanager.fdm6 	jjdl	3
+org.freedownloadmanager.fdm6 	jjfdm	3
+md.obsidian 	jjob	3
 
 ## 化学式符号
 C₂H₆O 	yicy	1
@@ -156,6 +161,6 @@ C₂H₆O 	yicy	1
 ''	dys
 “”	sys
 ……	sls
- () 	kh
+（）	ykh
 「」	fkh
 《》	umh
