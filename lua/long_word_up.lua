@@ -15,8 +15,7 @@ local function long_word_up(input, env)
         local cand_length = utf8.len(cand.text)
         -- local cand_per_quality = cand.quality
 
-        if (cand.quality > 9) or ((idx <= 1) and
-            (tonumber(utf8.codepoint(cand.text, 1)) >= 19968)) then
+        if (cand.quality > 9) or (idx <= 1) then
             prev_word_length = cand_length or 0
             idx = idx + 1
             yield(cand)
