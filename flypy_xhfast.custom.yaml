@@ -50,8 +50,8 @@ patch:
       # - derive/^(i)([^fg])/c$2/       # ch => c
       - derive/^(i)([k])/c$2/           # ch => c
       # - derive/^(u)([^bfgnm])/s$2/    # sh => s
-      - derive/^(z)([^edfghk])/v$2/       # z => zh
-      - derive/^(c)([^fgh])/i$2/          # c => ch
+      - derive/^(z)([^edfghik])/v$2/      # z => zh
+      - derive/^(c)([^fghi])/i$2/         # c => ch
       - derive/^(s)([^bfgknm])/u$2/       # s => sh
       - derive/^([iu])f/$1g/              # [zcs][h]en 可以通过 [zcs][h]eng 打出
       - derive/^([iu])g/$1f/              # [zcs][h]eng 可以通过 [zcs][h]en 打出
