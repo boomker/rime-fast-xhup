@@ -14,8 +14,12 @@
 				"dicts": [
 					{
 						"type": "text",
-						"file": "emoji.txt"
+						"file": "emoji_ext.txt"
 					},
+					{
+						"type": "text",
+						"file": "others.txt"
+					}
 				]
 			}
 		}
