@@ -22,6 +22,7 @@ switches:
 
 engine:
   processors:
+    - lua_processor@engword_append_space_processor
     - ascii_composer
     - key_binder
     - speller
@@ -130,7 +131,6 @@ algebra_flypy:
   - derive/0/lk/
   - derive/1/wi/
   - derive/2/er/
-  - derive/2/ll/
   - derive/3/sj/
   - derive/4/si/
   - derive/5/wu/

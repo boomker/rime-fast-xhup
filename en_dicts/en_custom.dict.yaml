@@ -15,5 +15,13 @@ chown	chown	100000
 kolla	kolla	100000
 autostart	autostart	100000
 libvirt	libvirt	100000
-
 libvirtd	libvirtd	100000
+limit	limit	100000
+neovide	neovide	100000
+cgroup	cgroup	100000
+iscsid	iscsid	100000
+cinder	cinder	100000
+systemctl	systemctl	100000
+keycode	keycode	100000
+hotkey	hotkey	100000
+httpserver	httpserver	100000
