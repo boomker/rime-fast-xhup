@@ -35,6 +35,12 @@ conf.pattern_date = {
   "{month_en} {day_en_st},{year}", -- September 05th,2022
   "{month_en_st} {day_en_st},{year}" -- Sept.05th,2022
 }
+conf.pattern_today = {
+  "{year}{month}{day}", -- 20220905
+  "{year}{month}{day}{hour}{min}", -- 202209051836
+  "{year}{month}{day}{hour}{min}{sec}", -- 20220905183658
+  "{year}-{month}-{day} {hour}:{min}:{sec}", -- 2022-09-05 18:36:58
+}
 conf.pattern_week = {
   "{week_cn}", -- 星期一
   "{week_en}", -- Monday 
@@ -128,7 +134,7 @@ function translator.func(input, seg, env)
       local comment = getTimeStr(v)
       local cand = Candidate("date", seg.start, seg._end, comment, tip)
       cand.preedit = string.sub(input, seg._start+1, seg._end)
-      cand.quality = 1
+      cand.quality = 999
       yield(cand)
     end
   end
@@ -139,18 +145,29 @@ function translator.func(input, seg, env)
       local comment = getTimeStr(v)
       local cand = Candidate("week", seg.start, seg._end, comment, tip)
       cand.preedit = string.sub(input, seg._start+1, seg._end)
-      cand.quality = 99
+      cand.quality = 999
       yield(cand)
     end
   end
-  if(seg:has_tag("time") or input == "time") then
+  if(seg:has_tag("time") or input == "time" or input == "wt") then
     -- 时间
     local tip = "〔时间〕"
     for _,v in ipairs(conf.pattern_time) do
       local comment = getTimeStr(v)
       local cand = Candidate("time", seg.start, seg._end, comment, tip)
       cand.preedit = string.sub(input, seg._start+1, seg._end)
-      cand.quality = 99
+      cand.quality = 999
+      yield(cand)
+    end
+  end
+  if (input == "dt" or input == "today") then
+    -- 日期
+    local tip = "〔日期〕"
+    for _,v in ipairs(conf.pattern_today) do
+      local comment = getTimeStr(v)
+      local cand = Candidate("today", seg.start, seg._end, comment, tip)
+      cand.preedit = string.sub(input, seg._start+1, seg._end)
+      cand.quality = 1
       yield(cand)
     end
   end

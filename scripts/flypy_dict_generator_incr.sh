@@ -25,7 +25,7 @@ do
     [[ "$f" == "en_ext" ]] && src_file="${iceRepoPath}/en_dicts/en_ext.dict.yaml"
     [[ "$f" == "en_ext" ]] && tgt_file="${repoRoot}/en_dicts/en_ext.dict.yaml"
     [[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
-    [[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji.txt"
+    [[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji_ext.txt"
 
     git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |\
         /usr/local/bin/rg  "^\-" |\rg -v "\-#|\+v|\---" |tr -d "-" > "${f}_min.diff"
