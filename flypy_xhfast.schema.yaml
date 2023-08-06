@@ -92,9 +92,9 @@ engine:
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
-    - lua_filter@long_word_up_filter
     - lua_filter@top_word_autocommit_filter
     - lua_filter@cold_word_drop_filter
+    - lua_filter@long_word_up_filter
     - simplifier
     - uniquifier  #  只能放到最后!
 
@@ -150,6 +150,9 @@ speller:
     - derive/^tk/rk/                # tk --> rk
     - derive/^rg/rb/
     - derive/^rf/rn/
+    - derive/^gf/gn/
+    - derive/^gr/gm/
+    - derive/^gy/gi/
     - derive/^xt/xd/
     - derive/^xl/xh/
     - derive/^xy/xo/
@@ -162,6 +165,7 @@ speller:
     - derive/^mk/zk/
     - derive/^zw/zk/
     - derive/^vg/vk/
+    - derive/^vr/vm/
     - derive/^ly/nw/
     - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
     - derive/^mb/ms/
@@ -203,7 +207,7 @@ idiom_phrase: # 成语, 俗语缩写, 实现简拼
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
-  initial_quality: -1
+  initial_quality: 0.8
 
 melt_eng: # 英文单词
   enable_encoder: false
