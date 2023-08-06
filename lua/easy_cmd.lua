@@ -28,7 +28,6 @@ local function easy_cmd(key, env)
 
         local cmd_prefix = string.sub(input_code, 1,2)
         if (preedit_code_length >= 4) and (idx >= 0) and (cmd_prefix == "jj") then
-            -- puts(INFO, idx, keyvalue, preedit_code_length)
             local candidateText = segment:get_candidate_at(idx).text
             local command = "open -b " .. candidateText
             context:clear()
@@ -48,8 +47,7 @@ local function easy_cmd(key, env)
             end
         end  ]]
     end
-    -- return 0 -- kRejected librime 不處理
-    return 2 -- kNoop 此processor 不處理
+    return 2
 end
 
 return { processor = easy_cmd }
