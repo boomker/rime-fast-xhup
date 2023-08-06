@@ -43,6 +43,7 @@ local function apply_switch(env, keyword, target_state)
   end
 end
 
+---@diagnostic disable-next-line: unused-local
 local kRejected = 0
 local kAccepted = 1
 local kNoop = 2
