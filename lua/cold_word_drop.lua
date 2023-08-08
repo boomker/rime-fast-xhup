@@ -14,7 +14,7 @@ local cold_word_drop = {}
 
 local function get_record_filername(record_type)
     -- local user_data_dir = string.gsub(rime_api:get_user_data_dir(), "/", "//")
-    local user_distribute_name = string.gsub(rime_api:get_distribution_name())
+    local user_distribute_name = rime_api:get_distribution_name()
     if user_distribute_name == '小狼毫' then
         return string.format("%%APPDATA%%\\Rime\\lua\\cold_word_record\\%s_words.lua", record_type)
     end
@@ -156,7 +156,8 @@ function cold_word_drop.filter(input, env)
     local input_code        = env.engine.context:get_commit_text()
 
     for cand in input:iter() do
-        if (s < 1) and string.match(input_code, '^[,.;\'"(){}<>%]%[\\/?:!@#$%%^&*|~`+-=_]') and (#input_code == 1) then
+        -- if (s < 1) and string.match(input_code, '^[,.;\'"(){}<>%]%[\\/?:!@#$%%^&*|~`+-=_]') and (#input_code == 1) then
+        if (s < 1) and string.match(input_code, '^[,.;\'"()?:!#^&+-=_]') and (#input_code == 1) then
             s = s + 1
             engine:commit_text(cand.text)
             context:clear()
