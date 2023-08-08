@@ -13,6 +13,11 @@ local cold_word_drop = {}
 
 
 local function get_record_filername(record_type)
+    -- local user_data_dir = string.gsub(rime_api:get_user_data_dir(), "/", "//")
+    local user_distribute_name = string.gsub(rime_api:get_distribution_name())
+    if user_distribute_name == '小狼毫' then
+        return string.format("%%APPDATA%%\\Rime\\lua\\cold_word_record\\%s_words.lua", record_type)
+    end
     local system = io.popen("uname -s"):read("*l")
     local filename = nil
     -- body
@@ -20,8 +25,8 @@ local function get_record_filername(record_type)
         filename = string.format("%s/Library/Rime/lua/cold_word_record/%s_words.lua", os.getenv('HOME'), record_type)
     elseif system == "Linux" then
         filename = string.format("%s/.config/ibus/rime/lua/cold_word_record/%s_words.lua", os.getenv('HOME'), record_type)
-    else
-        filename = string.format("%%APPDATA%%\\Rime\\lua\\cold_word_record\\%s_words.lua", record_type)
+    -- else
+        -- filename = string.format("%%APPDATA%%\\Rime\\lua\\cold_word_record\\%s_words.lua", record_type)
     end
     return filename
 end
