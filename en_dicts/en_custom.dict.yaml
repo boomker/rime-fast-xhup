@@ -25,3 +25,4 @@ systemctl	systemctl	100000
 keycode	keycode	100000
 hotkey	hotkey	100000
 httpserver	httpserver	100000
+qcow2	qcow	100000
