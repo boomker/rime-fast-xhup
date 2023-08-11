@@ -14,14 +14,14 @@ local function long_word_up(input, env)
     for cand in input:iter() do
         local cand_length = utf8.len(cand.text)
         -- local cand_per_quality = cand.quality
-
+        local cand_text_code = tonumber(utf8.codepoint(cand.text, 1))
         if (cand.quality > 9) or (idx <= 1) then
             prev_word_length = cand_length or 0
             idx = idx + 1
             yield(cand)
         elseif (cand_length > prev_word_length) and (cand_length >= 3) and
             (pickup_count < count) and (string.len(preedit_code) > 2) and
-            (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
+            ((19968 <= cand_text_code) and (cand_text_code <= 117777)) then
             yield(cand)
             pickup_count = pickup_count + 1
         else
