@@ -26,3 +26,10 @@ keycode	keycode	100000
 hotkey	hotkey	100000
 httpserver	httpserver	100000
 qcow2	qcow	100000
+
+ethtool	ethtool	100000
+linewise	linewise	100000
+openkruise	openkruise	100000
+apiserver	apiserver	100000
+leveldb	leveldb	100000
+levelDB	leveldb	100000
