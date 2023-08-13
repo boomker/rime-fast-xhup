@@ -8,8 +8,7 @@ local Gcommit_codes = {}
 local function append_space_to_cand(env, cand_text)
     local context = env.engine.context
     local ccand_text = cand_text
-    if (context:get_property('prev_cand_is_hanzi') == "1") or
-        (context:get_property('prev_cand_is_preedit') == "1") or
+    if (context:get_property('prev_cand_is_preedit') == "1") or
         (context:get_property('prev_cand_is_aword') == "1") then
         ccand_text = " " .. cand_text
     end
@@ -207,10 +206,10 @@ local function twac_filter(input, env)
         for _, cand in ipairs(single_char_cands) do
             local input_shape_code = string.sub(preedit_code, 4):gsub('%[', '')
             local current_cand_shape_code = string.sub(cand.comment, 2):gsub('%[', '')
-            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '')
+            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '', 1)
             local comment = (string.len(remain_shape_code) > 0) and string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-            if (#single_char_cands == 2) and (single_char_cands[cand.text]) then
+            if (#single_char_cands == 1) and (single_char_cands[cand.text]) then
                 tword_tail_char_shape_tbl = {}
                 Gcommit_codes = {}
 
@@ -228,11 +227,10 @@ local function twac_filter(input, env)
         for _, cand in ipairs(tword_phrase_cands) do
             local input_shape_code = string.sub(preedit_code, 6)
             local current_cand_shape_code = string.sub(cand.comment, 2)
-            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '')
+            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '', 1)
             local comment = (string.len(remain_shape_code) > 0) and string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-            if (#tword_phrase_cands == 2) and (tword_phrase_cands[cand.text]) and
-                (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
+            if (#tword_phrase_cands == 1) and (tword_phrase_cands[cand.text]) and (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
                 local cand_txt = append_space_to_cand(env, cand.text)
                 env.engine:commit_text(cand_txt)
                 context:clear()
