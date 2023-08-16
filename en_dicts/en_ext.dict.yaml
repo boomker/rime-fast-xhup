@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-08-10"
+version: "2023-08-15"
 sort: by_weight
 ...
 # 一些杂项
@@ -948,7 +948,6 @@ iKlear	iKlear
 Legal High	LegalHigh
 Werkzeug	Werkzeug
 itsdangerours	itsdangerours
-Unicode	Unicode
 Mimestream	Mimestream
 CRUD	CRUD
 Create Read Update Delete	CRUD
@@ -1038,7 +1037,7 @@ Zoho	Zoho
 Harington	Harington
 Hades	Hades
 Gecko	Gecko
-Omicron	Omicron
+omicron	omicron
 TinyPNG	TinyPNG
 Thanos	Thanos
 XML	XML
@@ -1114,7 +1113,6 @@ GNU General Public License	GNU
 GNU General Public License	GNUGeneralPublicLicense
 GPL	GPL
 GNU General Public License	GPL
-Delta	Delta
 Ukraine	Ukraine
 Minions	Minions
 Rush B	RushB
@@ -2224,6 +2222,32 @@ tabby	tabby
 subtext	subtext
 homophone	homophone
 homophones	homophones
-Chrome	Chrome 
-homophone	homophone 
-homophones	homophones 
+JDK	JDK
+Java Development Kit	JDK
+polyphony	polyphony
+iota	iota
+mu	mu
+rho	rho
+upsilon	upsilon
+D&D	D&D
+Dungeons & Dragons	D&D
+Dungeons & Dragons	Dungeons&Dragons
+DnD	DnD
+D&D	DnD
+Dungeons & Dragons	DnD
+Minecraft	Minecraft
+omicron	omicron 
+JDK	JDK 
+Java	Development Kit
+polyphony	polyphony 
+iota	iota 
+mu	mu 
+rho	rho 
+upsilon	upsilon 
+D&D	D&D 
+Dungeons	& Dragons
+Dungeons	& Dragons
+DnD	DnD 
+D&D	DnD 
+Dungeons	& Dragons
+Minecraft	Minecraft 

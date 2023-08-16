@@ -4,7 +4,7 @@
 		"type": "mmseg",
 		"dict": {
 			"type": "text",
-			"file": "emoji.txt"
+			"file": "emoji_word.txt"
 		}
 	},
 	"conversion_chain": [
@@ -14,7 +14,7 @@
 				"dicts": [
 					{
 						"type": "text",
-						"file": "emoji_ext.txt"
+						"file": "emoji_word.txt"
 					},
 					{
 						"type": "text",
