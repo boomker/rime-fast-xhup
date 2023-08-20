@@ -89,13 +89,13 @@ engine:
   filters:
     - simplifier@emoji
     - simplifier@simplification
+    # - simplifier
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@top_word_autocommit_filter
     - lua_filter@cold_word_drop_filter
     - lua_filter@long_word_up_filter
-    - simplifier
     - uniquifier  #  只能放到最后!
 
 speller:
@@ -126,6 +126,7 @@ speller:
     - derive/^([bjlmnx])p/$1e/      # p --> e
     - derive/^([djlnx])q/$1f/       # q --> f
     - derive/^q([biklmnrsxy])/f$1/
+    - derive/^qr/fo/
     - derive/^qq/fz/
     - derive/^qu/fs/
     - derive/^qp/fe/
@@ -277,8 +278,8 @@ recognizer:
     reverse_lookup: "^oq[a-z]*?$"    # 部件拆字，部件使用小鹤双拼编码
     dbpy_flypy_help: "^oh.*$"
     easy_en_simp: "^oy[a-z]*$"
-    # emojis: "^Of[a-z]*'?$"
     laTeX_formula: "^tf(.*)$"
+    # emojis: "^Of[a-z]*'?$"
 
 menu:
   page_size: 5
@@ -292,8 +293,8 @@ simplification:
 
 # Emoji
 emoji:
-  option_name: emoji
   opencc_config: emoji.json
+  option_name: emoji
 
 # emojis:
 #   tag: emojis

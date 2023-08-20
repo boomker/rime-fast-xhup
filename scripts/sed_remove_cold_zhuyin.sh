@@ -1,15 +1,6 @@
-# awk 'FNR>26 && NR==FNR{s[$1]=$0}{if(NR!=FNR && FNR>14 ){a[$1]++}}END{for(i in s)if(a[i]<1)print s[i]}' ext.dict.yaml flypy_ext.dict.yaml >jkl
-
 gsed -i '/强/s/jiàng, //g' scripts/flypy_chars_zhuyin_dict.py
 
-# gsed -i '/说/s/shuì, //g' scripts/flypy_chars_zhuyin_dict.py
-
-# gsed -i '/奇/s/jī, //g' scripts/flypy_chars_zhuyin_dict.py
-gsed -i -r '/奇[^(数|偶|计|记|集)]*ji/s/ji/qi/g' "$1" 2>/dev/null
-
-# gsed -i '/校/s/jiào, //g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i -r '/校[^(准|对|补)]*jn/s/jn/xn/g' "$1" 2>/dev/null
-
 
 gsed -i '/阿/s/, ē//g' scripts/flypy_chars_zhuyin_dict.py
 
@@ -34,8 +25,6 @@ gsed -i -r '/^给.*\tji.*/d' "$1" 2>/dev/null
 gsed -i '/呢/s/, ní//g' scripts/flypy_chars_zhuyin_dict.py
 
 gsed -i '/咋/s/, zé//g' scripts/flypy_chars_zhuyin_dict.py
-
-# gsed -i '/卡/s/, qiǎ//g' scripts/flypy_chars_zhuyin_dict.py
 
 gsed -i '/娜/s/, nuó//g' scripts/flypy_chars_zhuyin_dict.py
 gsed -i '/.*娜.*no/d' "$1" 2>/dev/null

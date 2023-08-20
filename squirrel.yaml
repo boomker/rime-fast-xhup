@@ -48,8 +48,7 @@ style:
   spacing: 10
   #candidate_format: '%c. %@'
   #base_offset: 6
-  # font_face: 'PingFangSC,LXGWWenKaiMono-Regular'
-  font_face: "MiSans"                                      # 候选词编号字体
+  font_face: "HONOR Sans CN,MiSans,LXGWWenKaiMono-Regular"                                      # 候选词编号字体
   font_point: 22
   #label_font_face: 'Lucida Grande'
   label_font_point: 18
