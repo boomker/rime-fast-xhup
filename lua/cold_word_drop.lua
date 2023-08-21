@@ -66,18 +66,35 @@ end
 local function append_word_to_droplist(ctx, action_type, reversedb)
     local word = ctx.word
     local input_code = ctx.code
+    local input_code_tbl = string.split(input_code, " ")
+    local input_code_str = table.concat(input_code_tbl, '')
     if action_type == 'drop' then
         table.insert(drop_list, word) -- 高亮选中的词条插入到 drop_list
         return true
     end
-    local input_code_tbl = string.split(input_code, " ")
+
+    if action_type == 'hide' then
+        -- 单字和二字词 如果不匹配 就隐藏
+        if not hide_list[word] then
+            hide_list[word] = { input_code_str }
+            return true
+        else
+            -- 隐藏的词条如果已经在 hide_list 中, 则将输入串追加到 值表中, 如: ['藏'] = {'chang', 'zhang'}
+            if not table.find_index(hide_list[word], input_code_str) then
+                table.insert(hide_list[word], input_code_str)
+                return true
+            else
+                return false
+            end
+        end
+    end
+
     local cand_code = reversedb:lookup(word) or "" -- 反查候选项文字编码
     -- 二字词 的匹配检查, 匹配返回true, 不匹配返回false
     local match_result = check_encode_matched(cand_code, word, input_code_tbl, reversedb)
     local ccand_code = string.gsub(cand_code, '%[%l%l', '')
     -- 如有 `[` 引导的辅助码情况,  去掉引导符及之后的所有形码字符
     local input_str = string.gsub(input_code, '%[%l+', '')
-    local input_code_str = table.concat(input_code_tbl, '')
     -- 单字和二字词 的匹配检查, 如果匹配, 降频
     if string.match(ccand_code, input_str) or match_result then
         if turndown_freq_list[word] then
@@ -88,19 +105,6 @@ local function append_word_to_droplist(ctx, action_type, reversedb)
         return 'turndown_freq'
     end
 
-    -- 单字和二字词 如果不匹配 就隐藏
-    if not hide_list[word] then
-        hide_list[word] = { input_code_str }
-        return true
-    else
-        -- 隐藏的词条如果已经在 hide_list 中, 则将输入串追加到 值表中, 如: ['藏'] = {'chang', 'zhang'}
-        if not table.find_index(hide_list[word], input_code_str) then
-            table.insert(hide_list[word], input_code_str)
-            return true
-        else
-            return false
-        end
-    end
 end
 
 function cold_word_drop.processor(key, env)
@@ -108,18 +112,20 @@ function cold_word_drop.processor(key, env)
     local config            = engine.schema.config
     local context           = engine.context
     local preedit_code      = context:get_script_text()
-    local turndown_cand_key = config:get_string("key_binder/turn_down_cand") or "Control+j"
     local drop_cand_key     = config:get_string("key_binder/drop_cand") or "Control+d"
+    local hide_cand_key     = config:get_string("key_binder/hide_cand") or "Control+x"
+    local turndown_cand_key = config:get_string("key_binder/turn_down_cand") or "Control+j"
     local action_map        = {
-        [turndown_cand_key] = 'hide',
-        [drop_cand_key] = 'drop'
+        [drop_cand_key] = 'drop',
+        [hide_cand_key] = 'hide',
+        [turndown_cand_key] = 'turn_down'
     }
 
     -- local schema_id         = config:get_string("schema/schema_id")
     local schema_id         = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
     ---@diagnostic disable-next-line: undefined-global
     local reversedb         = ReverseLookup(schema_id)
-    if key:repr() == turndown_cand_key or key:repr() == drop_cand_key then
+    if action_map[key:repr()] then
         local cand = context:get_selected_candidate()
         if not cand then return 2 end
         local action_type = action_map[key:repr()]
