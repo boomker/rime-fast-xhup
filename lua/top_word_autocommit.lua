@@ -62,10 +62,10 @@ local function twac_processor(key, env)
                 local single_cand = segment:get_candidate_at(i)
                 if not single_cand then return 2 end
                 local cand_text = single_cand.text
-                if (utf8.len(cand_text) ~= 1) then goto skip_cand end
+                if (utf8.len(cand_text) ~= 1) then goto skip_cand1 end
                 local commit_code_num = string.format("commit_code_%s", i)
                 Gcommit_codes[commit_code_num] = reversedb:lookup(cand_text)
-                ::skip_cand::
+                ::skip_cand1::
             end
         end
     end
