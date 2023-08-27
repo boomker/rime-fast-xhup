@@ -13,8 +13,9 @@ patch:
   key_binder/+:
     select_first_character: 'comma'
     select_last_character: 'bracketright'
-    turn_down_cand: "Control+j"   # 匹配当前输入码后隐藏指定的候选字词
     drop_cand: "Control+d"        # 强制删词, 无视输入的编码
+    hide_cand: "Control+x"        # 匹配当前输入码后隐藏指定的候选字词
+    turn_down_cand: "Control+j"   # 匹配当前输入码后降频指定的候选字词
 
     bindings/+:
       # - { when: composing, accept: Tab, send: '[' }         ## tab引导辅助码
@@ -28,10 +29,10 @@ patch:
       - { when: composing, accept: Control+a,   send_sequence: '{Home}{Right}{Right}[' }
       - { when: composing, accept: Right,       send_sequence: "{Right}{Right}" }
       # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
-        ## `键（grave，Tab 上面那个）为词组逐字追加辅助码。
-        ## 可将 grave 改成 Tab，Control+Tab，bracketright（] 键）。
+      # `键（grave, Tab 上面那个）为词组逐字追加辅助码.
+      # 可将 grave 改成 Tab, Control+Tab, bracketright(] 键).
 
-  ##  直接引导辅助码（改用自然码等其他双拼方案的用户请在 pinyin_switch.yaml 中设置）
+  ##  直接引导辅助码(改用自然码等其他双拼方案的用户请在 pinyin_switch.yaml 中设置)
   ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
   # speller/algebra/@next: derive/[[]//
 
@@ -44,16 +45,16 @@ patch:
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
-      # - derive/^l([uom])$/n$1/        # l -> n
-      - derive/^n([uo])$/l$1/           # n -> l
-      # - derive/^(v)([^fg])/z$2/       # zh => z
-      # - derive/^(i)([^fg])/c$2/       # ch => c
-      - derive/^(i)([k])/c$2/           # ch => c
-      # - derive/^(u)([^bfgnm])/s$2/    # sh => s
-      - derive/^(z)([^edfghik])/v$2/      # z => zh
-      - derive/^(c)([^fghi])/i$2/         # c => ch
-      - derive/^(s)([^bfgknm])/u$2/       # s => sh
-      - derive/^([iu])f/$1g/              # [zcs][h]en 可以通过 [zcs][h]eng 打出
-      - derive/^([iu])g/$1f/              # [zcs][h]eng 可以通过 [zcs][h]en 打出
+      # - derive/^l([uom])$/n$1/          # l -> n
+      # - derive/^(v)([^fg])/z$2/         # zh => z
+      # - derive/^(i)([^fg])/c$2/         # ch => c
+      # - derive/^(u)([^bfgnm])/s$2/      # sh => s
+      - derive/^n([uo])$/l$1/             # n -> l
+      - derive/^(z)([^acdefghijk])/v$2/     # z => zh
+      - derive/^(c)([^acdefghij])/i$2/      # c => ch
+      - derive/^(s)([^abcdefgjknm])/u$2/    # s => sh
+      # - derive/^(i)k/c$2/               # ch => c
+      - derive/^(i)f/$1g/                 # [zcs][h]en 可以通过 [zcs][h]eng 打出
+      - derive/^(i)g/$1f/                 # [zcs][h]eng 可以通过 [zcs][h]en 打出
       - derive/^([typdxbn])b/$1k/         # in 可以通过 ing 打出
       # - derive/^([typdjxbm])k/$1b/      # ing 可以通过 in 打出

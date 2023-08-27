@@ -1,4 +1,3 @@
-# Rime schem
 # Rime schema
 # encoding: utf-8
 
@@ -69,18 +68,18 @@ engine:
     - punct_translator
     - reverse_lookup_translator
     - script_translator
-    - table_translator@mkst                       # 精准造词
     # - history_translator@history
     # - table_translator@flypy_phrase
+    # - table_translator@emojis
+    - table_translator@mkst                       # 精准造词
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
-    # - table_translator@emojis
     - table_translator@melt_eng
     - table_translator@easy_en_simp               # oy 触发单词输入
     - table_translator@dbpy_flypy_help            # oh 触发
     - lua_translator@commit_history_translator    # hisz 触发
     - lua_translator@datetime_translator          # date, rq, week, time 触发
-    - lua_translator@lunar_translator
+    - lua_translator@lunar_translator             # cnl/znl, 触发
     - lua_translator@en_custom_translator         # `尾触发
     - lua_translator@laTex_translator             # tf 触发
     - lua_translator@number_translator            # n/ 触发
@@ -89,13 +88,13 @@ engine:
   filters:
     - simplifier@emoji
     - simplifier@simplification
+    # - simplifier
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@top_word_autocommit_filter
     - lua_filter@cold_word_drop_filter
     - lua_filter@long_word_up_filter
-    - simplifier
     - uniquifier  #  只能放到最后!
 
 speller:
@@ -111,9 +110,6 @@ speller:
     - erase/^n\[\w+$/ # 响应超级简拼，取消「嗯 n」的独占
     - erase/^m\[\w+$/ # 响应超级简拼，取消「呒 m」的独占
     - erase/^m\[\w+$/ # 响应超级简拼，取消「呣 m」的独占
-    # - xform/[[]//   # 取消注释后：直接引导辅助码
-    # - derive/^(..).+$/$1/
-    # - derive/^(..[[].).+$/$1/
 
     ## 字库编码到输入码的转换规则
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/ # Flypy: AB[CD
@@ -126,6 +122,7 @@ speller:
     - derive/^([bjlmnx])p/$1e/      # p --> e
     - derive/^([djlnx])q/$1f/       # q --> f
     - derive/^q([biklmnrsxy])/f$1/
+    - derive/^qr/fo/
     - derive/^qq/fz/
     - derive/^qu/fs/
     - derive/^qp/fe/
@@ -170,16 +167,18 @@ speller:
     - derive/^b([fgknm])/s$1/       # b[fgknm] --> s[fgknm]
     - derive/^mb/ms/
 
-
 grammar:
   language: zh-hans-t-essay-bgw
 
 translator:
   dictionary: flypy_xhfast
-  contextual_suggestions: true  # 开启八股文, 上下文联想
+  # enable_encoder: true
+  enable_user_dict: true
   encode_commit_history: true   # 上屏历史记录
+  contextual_suggestions: true  # 开启八股文, 上下文联想
+  sentence_over_completion: true
   initial_quality: 1.3
-  spelling_hints: 1             ## `0`: 关闭单字编码提示
+  spelling_hints: 1             # `0`: 关闭单字编码提示
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/                   ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//                         ## 单字编码提示只显示辅助码部分
@@ -189,7 +188,6 @@ translator:
 mkst:
   __include: /translator  # 复用上面的翻译器,日志中带有 warning
   enable_sentence: true
-  sentence_over_completion: true
   tips: "〔精准造词〕"
   tag: mkst
 
@@ -201,7 +199,7 @@ custom_phrase:  # 自定义短语, 包含固顶字词, 快捷启动 APP 名称
   enable_sentence: false
   initial_quality: 9
 
-idiom_phrase: # 成语, 俗语缩写, 实现简拼
+idiom_phrase:   # 成语, 俗语缩写, 实现简拼
   dictionary: ""
   user_dict: idiom_phrase
   db_class: stabledb
@@ -209,7 +207,7 @@ idiom_phrase: # 成语, 俗语缩写, 实现简拼
   enable_sentence: false
   initial_quality: 0.8
 
-melt_eng: # 英文单词
+melt_eng:       # 英文单词
   enable_encoder: false
   encode_commit_history: false
   enable_sentence: false
@@ -277,8 +275,8 @@ recognizer:
     reverse_lookup: "^oq[a-z]*?$"    # 部件拆字，部件使用小鹤双拼编码
     dbpy_flypy_help: "^oh.*$"
     easy_en_simp: "^oy[a-z]*$"
-    # emojis: "^Of[a-z]*'?$"
     laTeX_formula: "^tf(.*)$"
+    # emojis: "^Of[a-z]*'?$"
 
 menu:
   page_size: 5
@@ -292,8 +290,8 @@ simplification:
 
 # Emoji
 emoji:
-  option_name: emoji
   opencc_config: emoji.json
+  option_name: emoji
 
 # emojis:
 #   tag: emojis
@@ -326,7 +324,7 @@ easy_en_simp:
   enable_sentence: false
   enable_user_dict: false
   prefix: "oy"
-  # suffix: "'"
+  suffix: "'"
   tips: "英文单词(可去元音)"
   spelling_hints: 9
   comment_format:
