@@ -73,8 +73,6 @@
 ## xxx（学号/工号）	jj	60
 ## xx学院/部门	jj	48
 ## xx學校/單位	jj	44
-gmboomker@gmail.com	ggem	44
-18939740924	sjhm	4
 
 ## 常用短语
 我们	wm
@@ -88,6 +86,35 @@ gmboomker@gmail.com	ggem	44
 那里	nl	2
 哪里	nl	1
 因为	yw	1
+查询	ix	4
+重新	ix	3
+才行	ix	2
+出现	ix	1
+成本	ib	3
+差别	ib	2
+初步	ib	1
+是吧	ub	4
+失败	ub	3
+上班	ub	2
+傻逼	ub	1
+上图	ut	4
+身体	ut	3
+视图	ut	2
+渗透	ut	1
+从来	cl	4
+出来	cl	3
+处理	cl	2
+策略	cl	1
+才能	cn	2
+传你	cn	1
+出门	cm	3
+聪明 	cm	2
+从没	cm	1
+窗口	ck	5
+查看	ck	4
+参考	ck	3
+仓库	ck	2
+出口	ck	1
 等等	dfd	2
 等待	dfd	1
 等到	dfd	1
