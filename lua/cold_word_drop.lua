@@ -89,7 +89,7 @@ local function append_word_to_droplist(ctx, action_type, reversedb)
         end
     end
 
-    local cand_code = reversedb:lookup(word) or "" -- 反查候选项文字编码
+    local cand_code = reversedb:lookup(word) or "" -- 反查候选字编码
     -- 二字词 的匹配检查, 匹配返回true, 不匹配返回false
     local match_result = check_encode_matched(cand_code, word, input_code_tbl, reversedb)
     local ccand_code = string.gsub(cand_code, '%[%l%l', '')
@@ -103,6 +103,10 @@ local function append_word_to_droplist(ctx, action_type, reversedb)
             turndown_freq_list[word] = { input_code_str }
         end
         return 'turndown_freq'
+    else
+        if append_word_to_droplist(ctx, 'hide', reversedb) then
+            return 'hide'
+        end
     end
 
 end
@@ -121,9 +125,7 @@ function cold_word_drop.processor(key, env)
         [turndown_cand_key] = 'turn_down'
     }
 
-    -- local schema_id         = config:get_string("schema/schema_id")
     local schema_id         = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
-    ---@diagnostic disable-next-line: undefined-global
     local reversedb         = ReverseLookup(schema_id)
     if action_map[key:repr()] then
         local cand = context:get_selected_candidate()
@@ -136,7 +138,9 @@ function cold_word_drop.processor(key, env)
         local res = append_word_to_droplist(ctx_map, action_type, reversedb)
 
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        if type(res) == "boolean" then
+        if res == nil then return 2 end
+        if res == 'hide' then action_type = 'hide' end
+        if type(res) == "boolean" or res == 'hide' then
             -- 期望被删的词和隐藏的词条写入文件(drop_words.lua, hide_words.lua)
             write_word_to_file(action_type)
         else
@@ -150,23 +154,20 @@ function cold_word_drop.processor(key, env)
 end
 
 function cold_word_drop.filter(input, env)
-    local idx = 3 -- 降频的词条放到第三个后面, 即第四位, 可在 yaml 里配置
-    local i = 1
-    local s = 0
-    local cands = {}
     local engine            = env.engine
     local context           = engine.context
+    local config            = engine.schema.config
     local input_code        = env.engine.context:get_commit_text()
+    local cands = {}
+    local i = 1
+    local idx = config:get_int("turn_down_freq_config/idx") or 3
+    if string.match(input_code, '^[,.;\'"()?:!@#^&+-%=%_]') and (#input_code == 1) then
+        engine:commit_text(input_code)
+        context:clear()
+        return 1
+    end
 
     for cand in input:iter() do
-        -- if (s < 1) and string.match(input_code, '^[,.;\'"(){}<>%]%[\\/?:!@#$%%^&*|~`+-=_]') and (#input_code == 1) then
-        if (s < 1) and string.match(input_code, '^[,.;\'"()?:!@#^&+-=_]') and (#input_code == 1) then
-            s = s + 1
-            engine:commit_text(cand.text)
-            context:clear()
-            return 1
-        end
-
         local cpreedit_code = string.gsub(cand.preedit, ' ', '')
         if (i <= idx) then
             local tfl = turndown_freq_list[cand.text] or nil
@@ -174,13 +175,12 @@ function cold_word_drop.filter(input, env)
             if not
                 ((tfl and table.find_index(tfl, cpreedit_code)) or
                     table.find_index(drop_list, cand.text) or
-                    (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code)) or
-                    (string.find(cand.comment, '☯'))
+                    (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
+                    or (string.find(cand.comment, '☯'))
                     -- cand.quality == 0.0
                 )
             then
                 i = i + 1
-                ---@diagnostic disable-next-line: undefined-global
                 yield(cand)
             end
             table.insert(cands, cand)
@@ -197,11 +197,10 @@ function cold_word_drop.filter(input, env)
             -- 要删的 和要隐藏的词条不显示
             (
                 table.find_index(drop_list, cand.text) or
-                (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code)) or
-                (string.find(cand.comment, '☯'))
+                (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
+                or (string.find(cand.comment, '☯'))
             )
         then
-            ---@diagnostic disable-next-line: undefined-global
             yield(cand)
         end
     end
