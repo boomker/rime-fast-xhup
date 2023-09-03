@@ -34,8 +34,8 @@ app_options:
 
 style:
   # 选择皮肤，亮色与暗色主题
-  color_scheme: purity_of_form_custom
-  color_scheme_dark: purity_of_form_custom
+  color_scheme: dracula
+  color_scheme_dark: purity_of_form
 
   # 预设选项：（可被皮肤覆盖；如果皮肤没写，则默认使用这些属性。）
   text_orientation: horizontal  # horizontal | vertical
@@ -48,20 +48,18 @@ style:
   spacing: 10
   #candidate_format: '%c. %@'
   #base_offset: 6
-  # font_face: 'PingFangSC,LXGWWenKaiMono-Regular'
-  font_face: "MiSans"                                      # 候选词编号字体
+  font_face: "HONOR Sans CN,MiSans,LXGWWenKaiMono-Regular"                                      # 候选词编号字体
   font_point: 22
   #label_font_face: 'Lucida Grande'
   label_font_point: 18
   #comment_font_face: 'Lucida Grande'
   comment_font_point: 18
 
-
 # 皮肤列表
 preset_color_schemes:
   # 对 purity_of_form 略微调整颜色，让色彩更柔和点，补全其他选项和注释
-  purity_of_form_custom:
-    name: "純粹的形式/Purity of Form Custom"
+  purity_of_form:
+    name: "純粹的形式/Purity of Form"
     author: 雨過之後、佛振
     font_face: ''
     font_point: 21
@@ -87,11 +85,11 @@ preset_color_schemes:
     color_space: display_p3                 # 色彩空间： srgb | display_p3
     back_color: 0x545554                    # 底色
     label_color: 0xBBBBBB                   # 序号颜色
-    hilited_candidate_back_color: 0x333333  # 第一候选项背景                        # 选中底色
+    hilited_candidate_back_color: 0x333333  # 第一候选项背景 选中底色
     hilited_candidate_label_color: 0x4C4C4C # 选中序号颜色
     candidate_text_color: 0xEEEEEE          # 文字颜色
     hilited_candidate_text_color: 0x4ddcbb  # 选中文字颜色
-    comment_text_color: 0x808080            # 注颜色
+    comment_text_color: 0x808080            # 注释颜色
     hilited_comment_text_color: 0x606cff    # 选中注解颜色
     text_color: 0xa0c179                    # 拼音颜色 （inline_preedit: false）
     hilited_text_color: 0xa0c179            # 选中拼音颜色 （inline_preedit: false）
@@ -152,6 +150,49 @@ preset_color_schemes:
     hilited_corner_radius: 4                                 # 高亮圆角
     border_height: 4                                         # 窗口边界高度，大于圆角半径才生效
     border_width: 4                                          # 窗口边界宽度，大于圆角半径才生效
+
+  dracula:
+    name: dracula
+    horizontal: false
+    candidate_format: "%c %@ "
+    font_point: 20
+    label_font_point: 16
+    corner_radius: 8
+    line_spacing: 10
+    alpha: 0.90                             # 透明度，0~1
+    back_color: 0x362A28
+    border_color: 0x362A28
+    text_color: 0x6CB8FF
+    candidate_text_color: 0xF993BD
+    comment_text_color: 0x808080
+    hilited_text_color: 0x5A4744
+    hilited_back_color: 0xF2F8F8
+    hilited_candidate_label_color: 0xfafafa
+    hilited_candidate_text_color: 0xF2F8F8
+    hilited_candidate_back_color: 0x333333  # 第一候选项背景 选中底色
+    hilited_comment_text_color: 0x606cff    # 选中注解颜色
+    inline_preedit: false
+
+  dracula_light:
+      name: dracula_light
+      horizontal: false
+      candidate_format: "%c %@ "
+      font_point: 22
+      label_font_point: 16
+      corner_radius: 5
+      line_spacing: 10
+      back_color: 0xF2F8F8
+      border_color: 0xF2F8F8
+      text_color: 0x362A28
+      hilited_text_color: 0x362A28
+      hilited_back_color: 0xF2F8F8
+      hilited_candidate_label_color: 0xF2F8F8
+      hilited_candidate_text_color:  0xF2F8F8
+      hilited_candidate_back_color: 0xC679FF
+      hilited_comment_text_color: 0x362b00
+      candidate_text_color: 0x362A28
+      comment_text_color: 0x5A4744
+      inline_preedit: false
 
 # 特定App默认中/英文输入
 app_options:
