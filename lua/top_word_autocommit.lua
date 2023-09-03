@@ -24,12 +24,12 @@ local function reset_cand_property(env)
 end
 
 local function twac_processor(key, env)
-    local engine              = env.engine
-    local config              = engine.schema.config
-    local context             = engine.context
-    local commit_text         = context:get_commit_text()
-    local pos                 = context.caret_pos
-    local input_code          = context.input
+    local engine = env.engine
+    local config = engine.schema.config
+    local context = engine.context
+    local commit_text = context:get_commit_text()
+    local pos = context.caret_pos
+    local input_code = context.input
     local preedit_code_length = #input_code
 
     local schema_id = config:get_string("schema/schema_id")
@@ -62,7 +62,9 @@ local function twac_processor(key, env)
                 local single_cand = segment:get_candidate_at(i)
                 if not single_cand then return 2 end
                 local cand_text = single_cand.text
-                if (utf8.len(cand_text) ~= 1) then goto skip_cand1 end
+                if (utf8.len(cand_text) ~= 1) then
+                    goto skip_cand1
+                end
                 local commit_code_num = string.format("commit_code_%s", i)
                 Gcommit_codes[commit_code_num] = reversedb:lookup(cand_text)
                 ::skip_cand1::
@@ -76,7 +78,7 @@ local function twac_processor(key, env)
         local composition = context.composition
         if (not composition:empty()) then
             local segment = composition:back()
-            for i = 1, 30, 1 do
+            for i = 1, 50, 1 do
                 local tword_cand = segment:get_candidate_at(i)
                 if not tword_cand then return 2 end
                 local tword_cand_text = tword_cand.text
@@ -111,7 +113,8 @@ local function twac_processor(key, env)
             return 2
         end -- 键值对table ,不能使用 `#` 获取长度
         if (pos == 3) or (pos == 7) then
-            local selected_cand = string.format("commit_code_%s", cand_kyes[key:repr()])
+            local selected_cand = string.format("commit_code_%s",
+                                                cand_kyes[key:repr()])
             local char_code = string.sub(Gcommit_codes[selected_cand], 4, 5)
             context:push_input(char_code)
             context:confirm_current_selection()
@@ -142,18 +145,21 @@ local function twac_translator(input, seg, env)
         for _, val in ipairs(tword_tail_char_shape_tbl) do
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
-            local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
+            local cand = Candidate("custom", seg.start, seg._end, val[1],
+                                   comment)
+            -- local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, comment)
             yield(cand)
         end
     end
 
-    --  四码二字词, 通过形码过滤候选项并 加词条权重后 yield
+    --  四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
     if string.match(input, '^%l+%[%l+$') and (#input > 5) and (pos > 5) then
         for _, val in ipairs(tword_tail_char_shape_tbl) do
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
             if string.match(tail_char_hxm, string.sub(input, 6)) then
-                local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
+                local cand = Candidate("custom", seg.start, seg._end, val[1],
+                                       comment)
                 cand.quality = 999
                 yield(cand)
             end
@@ -202,12 +208,15 @@ local function twac_filter(input, env)
     end
 
     if (pos >= 4) and (table.find_index({4, 5}, #preedit_code)) and
-        string.find(preedit_code, "^%l+%[%l*$") then
+        string.find(preedit_code, "^%l+%[%l+$") then
         for _, cand in ipairs(single_char_cands) do
             local input_shape_code = string.sub(preedit_code, 4):gsub('%[', '')
-            local current_cand_shape_code = string.sub(cand.comment, 2):gsub('%[', '')
-            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '', 1)
-            local comment = (string.len(remain_shape_code) > 0) and string.format('~%s', remain_shape_code) or "~"
+            local current_cand_shape_code =
+                string.sub(cand.comment, 2):gsub('%[', '')
+            local remain_shape_code, _ =
+                string.gsub(current_cand_shape_code, input_shape_code, '', 1)
+            local comment = (string.len(remain_shape_code) > 0) and
+                                string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
             if (#single_char_cands == 1) and (single_char_cands[cand.text]) then
                 tword_tail_char_shape_tbl = {}
@@ -227,10 +236,13 @@ local function twac_filter(input, env)
         for _, cand in ipairs(tword_phrase_cands) do
             local input_shape_code = string.sub(preedit_code, 6)
             local current_cand_shape_code = string.sub(cand.comment, 2)
-            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, '', 1)
-            local comment = (string.len(remain_shape_code) > 0) and string.format('~%s', remain_shape_code) or "~"
+            local remain_shape_code, _ =
+                string.gsub(current_cand_shape_code, input_shape_code, '', 1)
+            local comment = (string.len(remain_shape_code) > 0) and
+                                string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-            if (#tword_phrase_cands == 1) and (tword_phrase_cands[cand.text]) and (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
+            if (#tword_phrase_cands == 1) and (tword_phrase_cands[cand.text]) and
+                (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
                 local cand_txt = append_space_to_cand(env, cand.text)
                 env.engine:commit_text(cand_txt)
                 context:clear()
@@ -242,8 +254,7 @@ local function twac_filter(input, env)
         end
     end
 
-    if table.find({6, 8}, #preedit_code) and
-        string.find(preedit_code, "^%l+") then
+    if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^%l+") then
         local i, when_done, commit_text = 1, 0, nil
         for _, cand in pairs(tfchars_word_cands) do
             local reverse_code = reversedb_fzm:lookup(cand.text)
