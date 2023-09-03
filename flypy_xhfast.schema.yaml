@@ -93,8 +93,8 @@ engine:
     - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@top_word_autocommit_filter
-    - lua_filter@cold_word_drop_filter
     - lua_filter@long_word_up_filter
+    - lua_filter@cold_word_drop_filter
     - uniquifier  #  只能放到最后!
 
 speller:
@@ -230,9 +230,9 @@ punctuator:
     __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
   half_shape:
     __include: default:/punctuator/half_shape  # 从 default.yaml 导入配置
-    '<' : [ 《, ‹,〈, «, ⟨, ˂, ˱ ]
-    '>' : [ 》, ›, 〉, », ⟩, ˃, ˲ ]
-    '/' : [ 、, ､, '/', ／, ÷ ]
+    '<' : [ 《, '<', ‹,〈, «, ⟨, ˂, ˱ ]
+    '>' : [ 》, '>', ›, 〉, », ⟩, ˃, ˲ ]
+    '/' : [ '/', ／, ÷ ]
     '\' : [ 、, '\', ＼ ]
     '|' : [ ·, ・, '|', ｜, '§', '¦', '‖', ︴ ]
     '`' : [ '`', '```', ‵, ‶, ‷, ′, ″, ‴, ⁗ ]

@@ -1,6 +1,6 @@
-##  一些常用的设置项。找到需要进行的设置所在的行，
-##  取消注释（删除行开头的单个 # 符号）即可启用该设置项。
-##  注意不要删除前面的空格，YAML 文件的缩进比较严格，缩进不对容易报错。
+##  一些常用的设置项。找到需要进行的设置所在的行,
+##  取消注释 (删除行开头的单个 # 符号) 即可启用该设置项.
+##  注意不要删除前面的空格, YAML 文件的缩进比较严格，缩进不对容易报错.
 patch:
   engine/+:
     translators/+:
@@ -18,8 +18,6 @@ patch:
     turn_down_cand: "Control+j"   # 匹配当前输入码后降频指定的候选字词
 
     bindings/+:
-      # - { when: composing, accept: Tab, send: '[' }         ## tab引导辅助码
-      # - { when: composing, accept: comma, send: '[' }       ## 逗号引导辅助码，常用于手机端
       - { when: has_menu,  accept: apostrophe,  send: 3 }     ## 单引号用于第3候选
       - { when: has_menu,  accept: period, send: Page_Down }
       - { when: composing, accept: bracketleft, send: "[" }   ## tab引导辅助码
@@ -31,6 +29,10 @@ patch:
       # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
       # `键（grave, Tab 上面那个）为词组逐字追加辅助码.
       # 可将 grave 改成 Tab, Control+Tab, bracketright(] 键).
+
+  turn_down_freq_config:
+    # 降低到第 idx 个位置
+    idx: 3
 
   ##  直接引导辅助码(改用自然码等其他双拼方案的用户请在 pinyin_switch.yaml 中设置)
   ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
@@ -50,9 +52,9 @@ patch:
       # - derive/^(i)([^fg])/c$2/         # ch => c
       # - derive/^(u)([^bfgnm])/s$2/      # sh => s
       - derive/^n([uo])$/l$1/             # n -> l
-      - derive/^(z)([^acdefghijk])/v$2/     # z => zh
-      - derive/^(c)([^acdefghij])/i$2/      # c => ch
-      - derive/^(s)([^abcdefgjknm])/u$2/    # s => sh
+      - derive/^(z)([^acdefghijku])/v$2/     # z => zh
+      - derive/^(c)([^acdefghiju])/i$2/      # c => ch
+      - derive/^(s)([^abcdefgjknmu])/u$2/    # s => sh
       # - derive/^(i)k/c$2/               # ch => c
       - derive/^(i)f/$1g/                 # [zcs][h]en 可以通过 [zcs][h]eng 打出
       - derive/^(i)g/$1f/                 # [zcs][h]eng 可以通过 [zcs][h]en 打出
