@@ -510,7 +510,7 @@ xProxy	xproxy
 xForce	xforce
 FlowExport	flowexport
 CachePro	cachepro
-CacheMv	cachevv
+CacheMv	cachemv
 SmartEcho	smartecho
 xForward	xforward
 tacker	tacker
