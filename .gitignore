@@ -2,3 +2,5 @@ __pycache__/
 build/
 *.userdb/
 sync/
+installation.yaml
+user.yaml
