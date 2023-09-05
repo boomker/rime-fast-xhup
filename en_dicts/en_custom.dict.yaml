@@ -36,3 +36,13 @@ ucloud	ucloud	100000
 fastapi	fastapi	100000
 webhook	webhook	100000
 filebeat	filebeat	100000
+xProxy	xproxy	100000
+xForce	xforce	100000
+xForward	xforward	100000
+xcollector	xcollector	100000
+FlowExport	flowexport	100000
+CachePro	cachepro	100000
+SmartEcho	smartecho	100000
+CacheMv	cachemv	100000
+tacker	tacker	100000
+Dnsys	dnsys	100000

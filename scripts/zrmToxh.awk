@@ -26,7 +26,7 @@
                  arr[i]=substr(arr[i],1,1)"z"
              } else if (arr[i] ~ /[a-z]c/) {
                  arr[i]=substr(arr[i],1,1)"n"
-             } else if (arr[i] ~ /[a-z]n/) {
+             } else if (arr[i] ! ~ /[a|e]n/) {
                  arr[i]=substr(arr[i],1,1)"b"
              }
          }
