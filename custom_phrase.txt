@@ -72,7 +72,6 @@
 ## 姓名（在custom_phrase.txt里设置）	jj	64
 ## xxx（学号/工号）	jj	60
 ## xx学院/部门	jj	48
-## xx學校/單位	jj	44
 
 ## 常用短语
 我们	wm
@@ -119,29 +118,24 @@
 等待	dfd	1
 等到	dfd	1
 我的	wod
-缓存	hri
-缓存	hriw
+手机号	sjh	1
 馬上到!	msd
 有没有	umu
-有没有	ymy
-也没有	emy
+有没有	ymy	2
+也没有	ymy	1
 不知道	bzd
 是不是	sbs
 是不是	ubu
 没什么	msm
 什么鬼	smg
 怎样的	zmd
-怎么样	zfmy
-怎么样	zfmw
 怎么样了	zmyl
 怎么样了	zmwl
-什么意思	smys
-什么意思	smws
-什么玩意儿	smwy
 还是怎样的	huzyd
 还是怎样的	hszyd
-手机号	sjh	1
 又双叒叕	yyyy
+什么意思	smys
+什么玩意儿	smwy
 什麼玩意兒!	wtf	2
 What the fuck!	wtf	1
 WTF	wtf	3
@@ -183,7 +177,7 @@ org.freedownloadmanager.fdm6 	jjfdm	3
 md.obsidian 	jjob	3
 
 ## 化学式符号
-C₂H₆O 	yicy	1
+C₂H₆O 	yiiy	1
 
 ## 成对符号
 ''	dys

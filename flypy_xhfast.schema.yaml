@@ -88,7 +88,6 @@ engine:
   filters:
     - simplifier@emoji
     - simplifier@simplification
-    # - simplifier
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
@@ -96,6 +95,7 @@ engine:
     - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
     - uniquifier                                      #  只能放到最后!
+
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[`/
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
@@ -230,6 +230,7 @@ punctuator:
   half_shape:
     ",": {commit: ，}
     ".": {commit: 。}
+    ';': {commit: ；}
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
@@ -288,7 +289,6 @@ simplification:
   tips: none
   excluded_types: [reverse_lookup]
 
-# Emoji
 emoji:
   opencc_config: emoji.json
   option_name: emoji
