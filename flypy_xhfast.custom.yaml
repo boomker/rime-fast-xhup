@@ -47,16 +47,15 @@ patch:
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
-      # - derive/^l([uom])$/n$1/          # l -> n
-      # - derive/^(v)([^fg])/z$2/         # zh => z
-      # - derive/^(i)([^fg])/c$2/         # ch => c
-      # - derive/^(u)([^bfgnm])/s$2/      # sh => s
-      - derive/^n([uo])$/l$1/             # n -> l
-      - derive/^(z)([^acdefghijku])/v$2/     # z => zh
-      - derive/^(c)([^acdefghiju])/i$2/      # c => ch
-      - derive/^(s)([^abcdefgjknmu])/u$2/    # s => sh
-      # - derive/^(i)k/c$2/               # ch => c
-      - derive/^(i)f/$1g/                 # [zcs][h]en 可以通过 [zcs][h]eng 打出
-      - derive/^(i)g/$1f/                 # [zcs][h]eng 可以通过 [zcs][h]en 打出
-      - derive/^([typdxbn])b/$1k/         # in 可以通过 ing 打出
-      # - derive/^([typdjxbm])k/$1b/      # ing 可以通过 in 打出
+      # - derive/^l([uom])$/n$1/              # l -> n
+      # - derive/^(v)([^fg])/z$2/             # zh => z
+      # - derive/^(i)([^fg])/c$2/             # ch => c
+      # - derive/^(u)([^bfgnm])/s$2/          # sh => s
+      - derive/^n([uo])$/l$1/                 # n -> l
+      - derive/^(z)([^acdefghijku])/v$2/      # z => zh
+      - derive/^(c)([^acdefghiju])/i$2/       # c => ch
+      - derive/^(s)([^abcdefgijknmu])/u$2/    # s => sh
+      - derive/^(i)f/$1g/                     # [zcs][h]en 可以通过 [zcs][h]eng 打出
+      - derive/^(i)g/$1f/                     # [zcs][h]eng 可以通过 [zcs][h]en 打出
+      - derive/^([typdxbn])b/$1k/             # in 可以通过 ing 打出
+      # - derive/^([typdjxbm])k/$1b/          # ing 可以通过 in 打出
