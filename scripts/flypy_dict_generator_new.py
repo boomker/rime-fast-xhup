@@ -57,8 +57,8 @@ options:
                         additional yaml dict files to input
   --word_frequency WORD_FREQUENCY, -f WORD_FREQUENCY
                         sepc word_frequency
-  --mode, -m            spec output mode for generate file , w or a.
-  --type, -t            spec generate filetype for output , yaml or text.
+  --mode, -m            spec output mode for generate file, w[rite] or a[ppend].
+  --type, -t            spec generate filetype for output, yaml or text.
   --out_files [OUT_FILES ...], -o [OUT_FILES ...]
                         spec generate filename for output.
 
@@ -139,7 +139,7 @@ def pinyin_to_flypy(quanpin: list[str]):
         else:
             shengmu = pinyin[:1]
             yunmu = yunmu_dict[pinyin[1:]] if pinyin[1:] in yunmu_dict else pinyin[1:]
-            return shengmu + yunmu
+            return f"{shengmu}{yunmu}"
 
     return [to_flypy(x) if x.isalpha() else x for x in quanpin]
 
@@ -161,10 +161,10 @@ def gen_dict_record(pinyin_list, contents_perline, *args):
     if not pinyin_list:
         return
     print("pinyin_list: ", pinyin_list)
-    if args[0] == "shuangpin":  # 转换全拼为小鹤双拼
+    if args[0] == "shuangpin":      # 转换全拼为小鹤双拼
         flypy_list = pinyin_to_flypy(pinyin_list)
     else:
-        flypy_list = pinyin_list  # 首字母简写
+        flypy_list = pinyin_list    # 首字母简写
 
     if args[2]:  # 转换对应汉字的形码
         words_xm_list = [xhxm_dict.get(m, "[") for m in contents_perline[0].strip()]
@@ -187,6 +187,8 @@ def gen_dict_record(pinyin_list, contents_perline, *args):
 
 def parser_line_content(line_content, *args):
     contents_perline = line_content.strip().split()
+    if not len(contents_perline):
+        return ''
     if args[0] and args[1]:  # 汉字转换对应风格的拼音
         if args[0] != "jianpin":
             _pyd = converte_to_pinyin(contents_perline[0])
