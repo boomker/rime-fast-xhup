@@ -2,69 +2,71 @@
 ## 格式：文本-输入码-权重，其间用 Tab 符分隔。
 ## 如要添加新的，可以复制已有的行，然后在其基础上修改。
 ## 置顶字词
-是	s	1
-是	u	2
-是	ui	2
-吃	i	2
-出	i	1
-去	q	1
-去	qu	2
-我	w	2
-我	wo	2
-有	y	2
-又	y	1
-哦	o	3
-的	d	3
-的	de	3
-大	d	2
-地	d	1
+啊	a	1
+啊	aa	1
+把	b	1
+吧	b	2
+把	ba	1
+吧	ba	2
+才	c	1
+次	ci	1
+大	d	1
+的	d	2
+的	de	1
+发	f	1
 个	g	1
 个	ge	1
 和	h	1
+好	h	2
 和	he	1
+出	i	1
+吃	i	2
+将	j	1
 就	j	2
 就	jq	2
-将	j	1
 可	k	2
 可	ke	2
 了	l	1
 了	le	1
-在	z	2
-在	zd	2
-再	zd	1
-下	x	1
-下	xx	1
-啊	a	2
-啊	aa	2
-吧	b	2
-把	b	1
-吧	ba	2
-把	ba	1
-才	c	1
-你	n	2
-你	ni	2
-那	n	1
-那	na	1
+没	m	1
 吗	m	2
 吗	ma	1
-没	m	1
-说	u	1
-说	uo	1
 没	mw	1
-这	v	3
-这	ve	3
-发	f	3
+能	n	1
+你	n	2
+那	na	1
+您	nb	2
+哦	o	1
+去	q	1
+去	qu	2
 人	r	1
 人	rf	1
-他	t	3
-她	t	2
+搜	s	1
 它	t	1
-他	ta	3
-她	ta	2
+她	t	2
+他	t	3
 它	ta	1
-等	df	1
+她	ta	2
+他	ta	3
+是	u	2
+是	ui	2
+说	u	1
+说	uo	1
+这	v	1
+这	ve	1
+我	w	1
+我	wo	1
+些	x	2
+些	xp	2
+下	x	1
+下	xx	1
+有	y	2
 有	yz	2
 又	yz	1
+又	y	1
+在	z	2
+再	zd	1
+在	zd	2
 
 
 ## 常用个人信息
@@ -72,14 +74,14 @@
 ## 姓名（在custom_phrase.txt里设置）	jj	64
 ## xxx（学号/工号）	jj	60
 ## xx学院/部门	jj	48
+gmboomker@gmail.com	ggem	44
+18939740924	sjhm	4
 
 ## 常用短语
 我们	wm
 人们	rm
 一个	yg
 有个	yg
-一个	oge
-有个	oge
 那些	nx	2
 哪些	nx	1
 那里	nl	2
@@ -114,28 +116,40 @@
 参考	ck	3
 仓库	ck	2
 出口	ck	1
-等等	dfd	2
-等待	dfd	1
-等到	dfd	1
 我的	wod
+好吧	hb	1
+那边	nb	1
+这边	vb	1
+我这边	wvb	1
+你那边	nnb	2
+您那边	nnb	1
 手机号	sjh	1
-馬上到!	msd
-有没有	umu
+馬上到	msd
+不知道	bzd
+是不是	ubu
+哦哦	oo	1
+有吗	ym
 有没有	ymy	2
 也没有	ymy	1
-不知道	bzd
-是不是	sbs
-是不是	ubu
-没什么	msm
-什么鬼	smg
+有没有	umu
+怎样的	zyd
 怎样的	zmd
 怎么样了	zmyl
 怎么样了	zmwl
 还是怎样的	huzyd
-还是怎样的	hszyd
+截图看看	jtkk
+截图看下	jtkx
 又双叒叕	yyyy
-什么意思	smys
-什么玩意儿	smwy
+没什么	mum
+有吗	um
+有吗	uma
+什么	um
+什么	ume
+什么鬼	umg
+什么情况	umqk
+什么情况	umfk
+什么意思	umys
+什么玩意儿	umwy
 什麼玩意兒!	wtf	2
 What the fuck!	wtf	1
 WTF	wtf	3
