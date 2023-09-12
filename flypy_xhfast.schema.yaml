@@ -10,7 +10,7 @@ schema:
   description: |
     小鹤双拼+辅助码
   dependencies:
-    # - flypy_phrase  # 中文词库 - 现代汉语词典 & 清华开源词库
+    # - flypy_phrase    # 中文词库 - 现代汉语词典 & 清华开源词库
     - melt_eng        # 英文单词&词组 - 简明英汉词典(增强版)
     - easy_en
     # - emoji
@@ -69,8 +69,8 @@ engine:
     - reverse_lookup_translator
     - script_translator
     # - history_translator@history
-    # - table_translator@flypy_phrase
     # - table_translator@emojis
+    # - table_translator@flypy_phrase
     - table_translator@mkst                           # 精准造词
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
@@ -215,14 +215,14 @@ melt_eng:                           # 英文单词
   dictionary: melt_eng
   initial_quality: 1.1
 
-# flypy_phrase: # 小鹤音形-短语，支持自动补全, 词库源自现代汉语词典
-#   enable_encoder: false
-#   encode_commit_history: false
-#   enable_sentence: false
-#   enable_user_dict: false
-#   enable_completion: true
-#   dictionary: flypy_phrase
-#   initial_quality: 1.2
+flypy_phrase:
+  enable_encoder: false
+  encode_commit_history: false
+  enable_sentence: false
+  enable_user_dict: false
+  enable_completion: true
+  dictionary: flypy_phrase
+  initial_quality: -1
 
 punctuator:
   full_shape:
