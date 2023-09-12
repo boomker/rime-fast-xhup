@@ -1,5 +1,5 @@
 # default.custom.yaml
-# save it to: 
+# save it to:
 #   ~/.config/ibus/rime  (linux)
 #   ~/Library/Rime       (macos)
 #   %APPDATA%\Rime       (windows)
@@ -9,7 +9,6 @@ patch:
     - schema: flypy_xhfast
     - schema: flypy_chaizi
     - schema: melt_eng
-    # - schema: flypy_phrase
+    - schema: flypy_phrase
     # - schema: flypy_zrmfast
     # - schema: emoji               # emoji表情
-

@@ -3,7 +3,7 @@
 
 ---
 name: flypy_phrase
-version: "2023-05-30"
+version: "2023-09-12"
 sort: by_weight
 use_preset_vocabulary: true
 
