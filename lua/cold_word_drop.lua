@@ -161,13 +161,13 @@ function cold_word_drop.filter(input, env)
     local cands = {}
     local i = 1
     local idx = config:get_int("turn_down_freq_config/idx") or 3
-    if string.match(input_code, '^[,.;\'"()?:!@#^&+-%=%_]') and (#input_code == 1) then
-        engine:commit_text(input_code)
-        context:clear()
-        return 1
-    end
 
     for cand in input:iter() do
+        if string.match(input_code, '^[.,;()?:!@#^&+-%=%_]') and (#input_code == 1) then
+            engine:commit_text(cand.text)
+            context:clear()
+            return 1
+        end
         local cpreedit_code = string.gsub(cand.preedit, ' ', '')
         if (i <= idx) then
             local tfl = turndown_freq_list[cand.text] or nil
