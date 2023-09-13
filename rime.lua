@@ -20,7 +20,9 @@ librime-lua 样例
 ```
 
 其中各 `lua_function` 为在本文件所定义变量名。
---]] --[[
+--]]
+
+--[[
 本文件的后面是若干个例子，按照由简单到复杂的顺序示例了 librime-lua 的用法。
 每个例子都被组织在 `lua` 目录下的单独文件中，打开对应文件可看到实现和注解。
 
@@ -32,32 +34,35 @@ librime-lua 样例
 可认为是载入 `lua/bar.lua` 中的例子，并起名为 `foo`。
 配方文件中的引用方法为：`...@foo`。
 
---]] -- I. translators:
--- datetime_translator: 将 `date`, `rq` ,`week`, `oxq`, `time`, `osj`
+--]]
+
+-- I. translators:
+-- datetime_translator: 将 `date`, `dt`, `rq` ,`week`, `time`
 -- 翻译为当前日期, 星期, 时间
--- date_translator = require("date")
--- time_translator = require("time")
 date_time = require("date_time")
 datetime_translator = date_time.translator
 
+-- lunar_translator: 将 `cnl`, `znl`, 翻译成农历
 lunar = require("lunar")
 lunar_translator = lunar.translator
--- number_translator: 将 `/` + 阿拉伯数字 翻译为大小写汉字
+
+-- number_translator: 将 `n/` + 阿拉伯数字 翻译为大小写汉字
 -- 详见 `lua/number.lua`
 number = require("number")
 number_translator = number.translator
 
--- 英文生词造词入词库
+-- 英文生词造词入词库, 输入串末尾跟'`'
 en_custom = require("en_custom")
 en_custom_translator = en_custom.translator
 
--- LaTeX 公式输入
+-- LaTeX 公式输入, `tf`触发
 laTex = require("laTex")
 laTex_translator = laTex.translator
 
 -- user_dict = require("user_dict")
 -- user_dict_translator = user_dict.translator
 
+-- 最近输入历史, `hisz` 触发
 commit_history = require("commit_history")
 commit_history_translator = commit_history.translator
 
@@ -89,8 +94,7 @@ engword_autocaps = require("word_autocaps")
 engword_autocaps_filter = engword_autocaps.filter
 engword_autocaps_translator = engword_autocaps.translator
 
--- 提升1 个中文长词的位置到第二候选, 加入了对提升词的词频计算
--- 除此之外, 对纯英文单词的长词降频
+-- 提升1 个中文长词的位置到第三候选
 long_word_up = require("long_word_up")
 long_word_up_filter = long_word_up.filter
 
@@ -104,38 +108,27 @@ top_word_autocommit_filter = top_word_autocommit.filter
 -- 详见 `lua/reverse.lua`
 -- reverse_lookup_filter = require("reverse")
 
--- use wildcard to search code
--- expand_translator = require("expand_translator")
+-- 成语短句优先
+expand_idiom_abbr = require("expand_idiom_abbr")
+expand_idiom_abbr_processor = expand_idiom_abbr.processor
+expand_idiom_abbr_translator = expand_idiom_abbr.translator
 
 -- 强制删词，隐藏词组操作的过滤器
 cold_word_drop = require('cold_word_drop')
 cold_word_drop_filter = cold_word_drop.filter
+cold_word_drop_processor = cold_word_drop.processor
 
 -- ---------------------------------------------------------------
 -- III. processors:
 
--- 以词定字, 附加fix在有引导符`[`时, 不能数字键上屏
+-- 以词定字
 select_char = require("select_char")
 select_char_processor = select_char.processor
--- select_char_translator = select_char.translator
 
 -- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
 -- 详见 `lua/switch.lua`
 -- switch_processor = require("switch")
 
--- 强制删词，隐藏词组(匹配输入串时) 
-cold_word_drop_processor = cold_word_drop.processor
-
 -- 快捷启动应用
 easy_cmd = require("easy_cmd")
 easy_cmd_processor = easy_cmd.processor
-
--- 由lua 導入 engine/下的組件 processor segmentor translator filters
--- 生成一個processor 於自己 schema speller 取得 config
--- processor=Component.Processor(env.engine,"","speller")
--- 生成一每translator 由 luna_pinyin.schema:/translator 取得 translator config
---
--- tran = Component.Translator(env.engine,Schema('luna_pinyin'),"","script_translator")
---
--- 配合 test.schema.yaml
--- require 'component_test'
