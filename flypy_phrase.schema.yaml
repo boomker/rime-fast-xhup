@@ -3,16 +3,16 @@
 
 schema:
   schema_id: flypy_phrase
-  name: 小鹤音形
+  name: 小鹤短语
   version: "0.20"
   author:
     - boomker
   description: |
-    小鹤音形
+    小鹤短语
     - Flypy by 小鹤
     - Rime schema by 佛振 <chen.sst@gmail.com>
   dependencies:
-    - flypy_chars
+    # - flypy_chars
 
 switches:
   - name: ascii_mode
@@ -60,7 +60,7 @@ speller:
   auto_select: true
   max_code_length: 8
   algebra:
-    - erase/^(\w+)\[(\w)(\w)$/  # erase single chars
+    - erase/^(\w+)\[(\w)(\w)$/                # erase single chars
     - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
 
 translator:
