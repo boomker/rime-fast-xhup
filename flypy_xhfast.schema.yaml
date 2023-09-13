@@ -42,6 +42,7 @@ engine:
   processors:
     - lua_processor@easy_cmd_processor
     - lua_processor@select_char_processor
+    - lua_processor@expand_idiom_abbr_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@word_append_space_processor
     - lua_processor@top_word_autocommit_processor
@@ -84,6 +85,7 @@ engine:
     - lua_translator@laTex_translator                 # tf 触发
     - lua_translator@number_translator                # n/ 触发
     - lua_translator@engword_autocaps_translator      # 大写字母开头触发
+    - lua_translator@expand_idiom_abbr_translator
     - lua_translator@top_word_autocommit_translator
   filters:
     - simplifier@emoji
