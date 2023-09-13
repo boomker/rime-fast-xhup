@@ -225,12 +225,15 @@ flypy_phrase:
   initial_quality: -1
 
 punctuator:
+  import_preset: symbols
   full_shape:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
   half_shape:
     ",": {commit: ，}
     ".": {commit: 。}
     ';': {commit: ；}
+    '"': {pair: ['‘', '’']}      ## 添加注释后：恢复默认引号
+    "'": {pair: ['“', '”']}      ## 添加注释后：恢复默认引号
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
@@ -262,13 +265,12 @@ key_binder:
     - {when: composing, accept: Control+w, send: Control+BackSpace}
     # - { when: composing, accept: Control+m, send: Return }
     ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
-    ## （自然码等其他双拼用户请在 pinyin_switch.yaml 中设置）
+    ## (自然码等其他双拼用户请在 pinyin_switch.yaml 中设置)
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 recognizer:
   # import_preset: default
   patterns:
-    # uppercase: "^[A-Z]+$"
     punct: "^/([0-9]0?|[A-Za-z]+)$"
     chinese_number: "^n/[0-9]+$"
     mkst: "^[a-z]+[[][a-z[[]]*$"        # `[` 引导 精准造词
@@ -277,7 +279,7 @@ recognizer:
     dbpy_flypy_help: "^oh.*$"
     easy_en_simp: "^oy[a-z]*$"
     laTeX_formula: "^tf(.*)$"
-    # emojis: "^Of[a-z]*'?$"
+    # emojis: "^of[a-z]*'?$"
 
 menu:
   page_size: 5
@@ -297,7 +299,7 @@ emoji:
 #   tag: emojis
 #   dictionary: emoji
 #   enable_completion: true
-#   prefix: "Oe"
+#   prefix: "of"
 #   suffix: "'"
 #   tips: " Emoji"
 
