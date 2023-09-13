@@ -45,7 +45,7 @@ local function last_character(s) return utf8_sub(s, -1, -1) end
 local function append_space_to_cand(env, cand_text)
     local context = env.engine.context
     local ccand_text = cand_text
-    if (context:get_property('prev_cand_is_hanzi') == "1") or
+    if
         (context:get_property('prev_cand_is_preedit') == "1") or
         (context:get_property('prev_cand_is_aword') == "1") then
         ccand_text = " " .. cand_text
