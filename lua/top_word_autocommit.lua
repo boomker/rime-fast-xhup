@@ -145,8 +145,7 @@ local function twac_translator(input, seg, env)
         for _, val in ipairs(tword_tail_char_shape_tbl) do
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
-            local cand = Candidate("custom", seg.start, seg._end, val[1],
-                                   comment)
+            local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
             -- local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, comment)
             yield(cand)
         end
@@ -163,7 +162,6 @@ local function twac_translator(input, seg, env)
                 cand.quality = 999
                 yield(cand)
             end
-            -- if #input == 7 then tword_tail_char_shape_tbl = {} end
         end
     end
 end
