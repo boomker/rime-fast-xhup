@@ -163,7 +163,7 @@ function cold_word_drop.filter(input, env)
     local idx = config:get_int("turn_down_freq_config/idx") or 3
 
     for cand in input:iter() do
-        if string.match(input_code, '^[.,;\'"()?:!@#^&+-%=%_]') and (#input_code == 1) then
+        if string.match(input_code, '^[.,;()?:!@#^&+-%=%_]') and (#input_code == 1) then
             engine:commit_text(cand.text)
             context:clear()
             return 1
