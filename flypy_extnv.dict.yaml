@@ -2,9 +2,10 @@
 # encoding: utf-8
 
 ---
-name: flypy_extNV
+name: flypy_extnv
 version: "2023-07-27"
 
+...
 # 按需启用：
 
 A	A
