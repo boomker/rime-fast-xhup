@@ -22,7 +22,7 @@ local function long_word_up(input, env)
         elseif (cand_length > prev_word_length) and (cand_length >= 3) and
             (pickup_count < count) and (string.len(preedit_code) > 2) and
             ((19968 <= cand_text_code) and (cand_text_code <= 117777))
-            and (#cand.comment < 3) then
+            and (#cand.comment < 3) and (prev_word_length > 1) then
             yield(cand)
             pickup_count = pickup_count + 1
         else
