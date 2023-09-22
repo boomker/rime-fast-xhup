@@ -129,6 +129,10 @@ select_char_processor = select_char.processor
 -- 详见 `lua/switch.lua`
 -- switch_processor = require("switch")
 
+-- 符号配对
+pair_symbols = require("pair_symbols")
+pair_symbols_processor = pair_symbols.processor
+
 -- 快捷启动应用
 easy_cmd = require("easy_cmd")
 easy_cmd_processor = easy_cmd.processor
