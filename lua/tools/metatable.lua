@@ -33,12 +33,14 @@ table.eachi = function(tab, func)
     end
     return tab
 end
+
 table.eacha = function(tab, func)
     for i, v in ipairs(tab) do
         func(v, i)
     end
     return tab
 end
+
 table.each = function(tab, func)
     for k, v in pairs(tab) do
         func(v, k)
@@ -50,6 +52,7 @@ table.find_index = function(tab, elm, ...)
     local _, i = table.find(tab, elm, ...)
     return i
 end
+
 table.find = function(tab, elm, func)
     for i, v in ipairs(tab) do
         if elm == v then
@@ -61,6 +64,7 @@ end
 table.find_with_func = function(tab, elm, ...)
     local i, v = table.find(tab, elm)
 end
+
 table.delete = function(tab, elm, ...)
     local index = table.find_index(tab, elm)
     return index and table.remove(tab, index)
@@ -76,6 +80,7 @@ table.find_all = function(tab, elm, ...)
     end
     return tmptab
 end
+
 table.select = table.find_all
 
 table.reduce = function(tab, func, arg)
@@ -94,6 +99,7 @@ table.map = function(tab, func)
     end
     return newtab
 end
+
 table.map_hash = function(tab, func)  --  table to   list of array  { key, v}
     local newtab = setmetatable({}, { __index = table })
     func = func or function(k, v) return { k, v } end
@@ -102,11 +108,7 @@ table.map_hash = function(tab, func)  --  table to   list of array  { key, v}
     end
     return newtab
 end
-function table:push(elm)
-    self:insert(elm)
-end
 
-table.append = table.push
 function table:pop()
     return self:remove(#self)
 end

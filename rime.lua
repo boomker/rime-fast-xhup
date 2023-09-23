@@ -113,10 +113,14 @@ expand_idiom_abbr = require("expand_idiom_abbr")
 expand_idiom_abbr_processor = expand_idiom_abbr.processor
 expand_idiom_abbr_translator = expand_idiom_abbr.translator
 
--- 强制删词，隐藏词组操作的过滤器
+-- 强制删词, 隐藏词组
 cold_word_drop = require('cold_word_drop')
 cold_word_drop_filter = cold_word_drop.filter
 cold_word_drop_processor = cold_word_drop.processor
+
+-- 音码优化 fixed
+fly_fixed = require('fly_fixed')
+fly_fixed_filter = fly_fixed.filter
 
 -- ---------------------------------------------------------------
 -- III. processors:
