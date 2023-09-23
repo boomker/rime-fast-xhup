@@ -89,8 +89,8 @@ engine:
     - lua_translator@expand_idiom_abbr_translator
     - lua_translator@top_word_autocommit_translator
   filters:
-    # - simplifier@emoji
-    # - simplifier@simplification
+    - simplifier@emoji
+    - simplifier@simplification
     - lua_filter@fly_fixed_filter
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
