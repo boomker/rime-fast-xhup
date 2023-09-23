@@ -89,14 +89,16 @@ engine:
     - lua_translator@expand_idiom_abbr_translator
     - lua_translator@top_word_autocommit_translator
   filters:
-    - simplifier@emoji
-    - simplifier@simplification
+    # - simplifier@emoji
+    # - simplifier@simplification
+    - lua_filter@fly_fixed_filter
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@top_word_autocommit_filter
     - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
+    - simplifier
     - uniquifier                                      #  只能放到最后!
 
 speller:
@@ -124,50 +126,47 @@ speller:
     - derive/^([bjlmnx])p/$1e/                  # p --> e
     - derive/^([djlnx])q/$1f/                   # q --> f
     - derive/^q([biklmnrsxy])/f$1/
-    - derive/^qr/fo/
     - derive/^qq/fz/
     - derive/^qu/fs/
     - derive/^qp/fe/
     - derive/^qt/fd/
     - derive/^dp/dl/                            # dp --> dl
-    - derive/^p([okifuhjbnmg])/e$1/             # pk --> ek
-    - derive/^pb/ek/
-    - derive/^pc/ev/                            # pc --> ev
-    - derive/^pd/ef/                            # pd --> ef
-    - derive/^pw/es/                            # pw --> es
+    - derive/^p([okifuhjbnmg])/e$1/
     - derive/^([jkiu])y/$1w/                    # [jk]y --> [jk]w
     - derive/^y([ikb])/w$1/                     # y[ik] --> w[ik]
     - derive/^y([asderzc])/o$1/
     - derive/^yu/ov/
     - derive/^yy/ow/
-    - derive/^yj/wm/
-    - derive/^yh/wn/
+    - derive/^yj/oj/
+    - derive/^yh/on/
     - derive/^hy/hw/
     - derive/^t([wy])/dw/                       # t[wy] --> dw
     - derive/^t([erp])/df/                      # t[er] --> df
     - derive/^tg/og/                            # tg --> og
     - derive/^tk/rk/                            # tk --> rk
-    - derive/^rg/rb/
+    - derive/^tm/rm/                            # tm --> rm
+    - derive/^rg/rm/
     - derive/^rf/rn/
     - derive/^gf/gn/
     - derive/^gr/gm/
+    - derive/^gw/gi/
     - derive/^gy/gi/
     - derive/^xt/xd/
     - derive/^xl/xh/
     - derive/^xy/xo/
-    - derive/^bh/sb/
-    - derive/^bj/aj/
-    - derive/^bu/au/
     - derive/^jx/ja/
     - derive/^jb/jo/
     - derive/^jm/jz/
-    - derive/^mk/zk/
     - derive/^zw/zk/
     - derive/^vg/vk/
     - derive/^vr/vm/
     - derive/^ly/nw/
+    - derive/^bj/aj/
+    - derive/^bu/au/
+    - derive/^bh/sb/
     - derive/^b([fgknm])/s$1/                   # b[fgknm] --> s[fgknm]
     - derive/^mb/ms/
+    - derive/^mk/me/
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -259,16 +258,14 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    # - { when: composing, accept: Tab, send: '[' }         ## 取消注释后: tab引导辅助码
     - {when: has_menu, accept: semicolon, send: 2}
     - {when: has_menu, accept: apostrophe, send: 3}         ## 单引号用于第3候选
     - {when: composing, accept: bracketleft, send: "["}     ## `[`引导辅助码
     - {when: composing, accept: Control+o, send: Shift+Left}
     - {when: composing, accept: Control+i, send: Shift+Right}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
+    # - { when: composing, accept: Tab, send: '[' }         ## 取消注释后: tab引导辅助码
     # - { when: composing, accept: Control+m, send: Return }
-    ## 对以下4行取消注释后：启用光标回退至特定音节后、补充辅助码的功能
-    ## (自然码等其他双拼用户请在 pinyin_switch.yaml 中设置)
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 recognizer:

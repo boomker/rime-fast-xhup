@@ -13,6 +13,8 @@
 大	d	1
 的	d	2
 的	de	1
+嗯	en	2
+恩	en	1
 发	f	1
 个	g	1
 个	ge	1
@@ -31,6 +33,7 @@
 没	m	1
 吗	m	2
 吗	ma	1
+么	me	1
 没	mw	1
 能	n	1
 你	n	2
@@ -42,6 +45,8 @@
 人	r	1
 人	rf	1
 搜	s	1
+森	sf	1
+僧	sg	1
 它	t	1
 她	t	2
 他	t	3
@@ -71,15 +76,14 @@
 
 ## 常用个人信息
 ## 注意最后的数字控制优先级，希望排在前面的要设置得大一些
-## 姓名（在custom_phrase.txt里设置）	jj	64
-## xxx（学号/工号）	jj	60
-## xx学院/部门	jj	48
+## 姓名（在custom_phrase.txt里设置）	afxm	64
+## xxx（学号/工号）	afxh	60
+## xx学院/部门	afxy	48
 gmboomker@gmail.com	ggem	44
 18939740924	sjhm	4
 
 ## 常用短语
 我们	wm
-人们	rm
 一个	yg
 有个	yg
 那些	nx	2
@@ -127,7 +131,9 @@ gmboomker@gmail.com	ggem	44
 馬上到	msd
 不知道	bzd
 是不是	ubu
-哦哦	oo	1
+哦哦	oo	3
+噢噢	oo	2
+喔喔	oo	1
 有吗	ym
 有没有	ymy	2
 也没有	ymy	1
