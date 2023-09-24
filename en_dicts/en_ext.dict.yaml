@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-09-15"
+version: "2023-09-24"
 sort: by_weight
 ...
 # 一些杂项
@@ -188,6 +188,10 @@ iPhone 13	iPhone13
 iPhone 13 Mini	iPhone13Mini
 iPhone 13 Pro	iPhone13Pro
 iPhone 13 Pro Max	iPhone13ProMax
+iPhone 14	iPhone14
+iPhone 14 Plus	iPhone14Plus
+iPhone 14 Pro	iPhone14Pro
+iPhone 14 Pro Max	iPhone14ProMax
 iPhone 15	iPhone15
 iPhone 15 Plus	iPhone15Plus
 iPhone 15 Pro	iPhone15Pro
@@ -391,6 +395,7 @@ Workspace	Workspace
 Google Chrome	GoogleChrome
 Google Workspace	GoogleWorkspace
 WYSIWYG	WYSIWYG
+What You See Is What You Get	WYSIWYG
 Mark Text	MarkText
 Joplin	Joplin
 Obsidian	Obsidian
@@ -2007,6 +2012,7 @@ BREAKING CHANGE	BREAKINGCHANGE
 GitHub Actions	GitHubActions
 UUID	UUID
 Universally Unique Identifier	UUID
+stargazer	stargazer
 stargazers	stargazers
 fallback	fallback
 Fyne	Fyne
@@ -2251,14 +2257,8 @@ wombat	wombat
 prank	prank
 RustRover	RustRover
 bilibili	bilibili
-iPhone	15 iPhone
-iPhone	15 Plus
-iPhone	15 Pro
-iPhone	15 Pro
-iPhone	15 iPhone15
-iPhone	15 Plus
-iPhone	15 Pro
-iPhone	15 Pro
-prank	prank 
-RustRover	RustRover 
-bilibili	bilibili 
+Terraria	Terraria
+Unihan	Unihan
+stargazer	stargazer 
+Terraria	Terraria 
+Unihan	Unihan 
