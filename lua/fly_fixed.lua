@@ -11,14 +11,18 @@ local function fly_fixed(input, env)
     local preedit_code = env.engine.context:get_commit_text()
     for cand in input:iter() do
         local cand_text_code = tonumber(utf8.codepoint(cand.text, 1))
-        local yin_code, preedit_last_code = nil, nil
+        local yin_code, preedit_last_code = nil, ""
         if (19968 <= cand_text_code) then
             local last_char = last_character(cand.text)
-            yin_code = reversedb:lookup(last_char):sub(1, 1)
+            yin_code = reversedb:lookup(last_char):gsub('%l%[%l%l', '')
             preedit_last_code = preedit_code:sub(-1, -1)
         end
-        if (string.match(preedit_code, '^.+[andefwosr]$') or string.match(preedit_code, '^[andefwsr]$')) and
-            (#preedit_code % 2 ~= 0) and (yin_code ~= preedit_last_code) then
+        if (cand_text_code < 19968) and (not string.match(cand.text, '[a-zA-Z]+$')) then
+            yin_code = "_y"
+            preedit_last_code = "_p"
+        end
+        if (preedit_code:match('^.+[andefwosr]$') or preedit_code:match('^[andefwosr]$')) and
+            (#preedit_code % 2 ~= 0) and (yin_code and not yin_code:match(preedit_last_code)) then
             table.insert(cands, cand)
         else
             yield(cand)
