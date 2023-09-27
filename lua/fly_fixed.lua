@@ -17,7 +17,8 @@ local function fly_fixed(input, env)
             yin_code = reversedb:lookup(last_char):gsub('%l%[%l%l', '')
             preedit_last_code = preedit_code:sub(-1, -1)
         end
-        if (cand_text_code < 19968) and (not string.match(cand.text, '[a-zA-Z]+$')) then
+        if ((cand_text_code < 19968) and (not cand.text:match('[a-zA-Z]+$')))
+            or (not cand.text:match(preedit_code)) then
             yin_code = "_y"
             preedit_last_code = "_p"
         end
