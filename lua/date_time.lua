@@ -49,7 +49,7 @@ conf.pattern_week = {
 conf.pattern_time = {
   "{hour}:{min}", -- 18:36
   "{hour}:{min}:{sec}", -- 18:36:58
-  "{hour}点{min}", -- 18点37分
+  "{hour}点{min}分", -- 18点37分
   "{hour}点{min}分{sec}秒" -- 18点37分06秒
 }
 
