@@ -17,19 +17,16 @@ local function fly_fixed(input, env)
             yin_code = reversedb:lookup(last_char):gsub('%l%[%l%l', '')
             preedit_last_code = preedit_code:sub(-1, -1)
         end
-        if (cand_text_code < 19968) and (not cand.text:match('[a-zA-Z]+$')) then
+        if (cand_text_code < 19968) then
             yin_code = "_y"
             preedit_last_code = "_p"
         end
         if (preedit_code:match('^.+[andefwosr]$') or preedit_code:match('^[andefwosr]$')) and
             (#preedit_code % 2 ~= 0) and (yin_code and not yin_code:match(preedit_last_code)) then
             table.insert(cands, cand)
+        elseif preedit_code:match('^%l%l%[%l$') and (utf8.len(cand.text) > 1) then
         else
-            if (cand_text_code < 19968) and (not cand.text:match(preedit_code)) then
-                table.insert(cands, cand)
-            else
-                yield(cand)
-            end
+            yield(cand)
         end
 
         if #cands > 50 then break end
