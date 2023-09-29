@@ -79,8 +79,6 @@
 ## 姓名（在custom_phrase.txt里设置）	afxm	64
 ## xxx（学号/工号）	afxh	60
 ## xx学院/部门	afxy	48
-gmboomker@gmail.com	ggem	44
-18939740924	sjhm	4
 
 ## 常用短语
 我们	wm
@@ -124,13 +122,6 @@ gmboomker@gmail.com	ggem	44
 好吧	hb	1
 那边	nb	1
 这边	vb	1
-我这边	wvb	1
-你那边	nnb	2
-您那边	nnb	1
-手机号	sjh	1
-馬上到	msd
-不知道	bzd
-是不是	ubu
 哦哦	oo	3
 噢噢	oo	2
 喔喔	oo	1
@@ -138,11 +129,17 @@ gmboomker@gmail.com	ggem	44
 有没有	ymy	2
 也没有	ymy	1
 有没有	umu
+我这边	wvb	1
+你那边	nnb	2
+您那边	nnb	1
+手机号	sjh	1
+馬上到	msd
+不知道	bzd
+是不是	ubu
 怎样的	zyd
 怎样的	zmd
 怎么样了	zmyl
 怎么样了	zmwl
-还是怎样的	huzyd
 截图看看	jtkk
 截图看下	jtkx
 又双叒叕	yyyy
@@ -164,14 +161,6 @@ WTF	wtf	3
 http://rime.im/	rime	1
 Rime	rime	3
 
-Mac	mac	2
-DevOps	devo	2
-Django	djan	2
-Deploy	depl	2
-GitHub	gith	1
-NeoVim	neovi	1
-VSCode	vscode	1
-Kubernetes	kube	1
 
 ## 快捷命令
 com.apple.ActivityMonitor 	jjam	3
@@ -196,13 +185,99 @@ org.freedownloadmanager.fdm6 	jjdl	3
 org.freedownloadmanager.fdm6 	jjfdm	3
 md.obsidian 	jjob	3
 
-## 化学式符号
-C₂H₆O 	yiiy	1
 
-## 成对符号
-''	dys
-“”	sys
-……	sls
-（）	ykh
-「」	fkh
-《》	umh
+## 简单单词
+Mac	mac	2
+DevOps	devo	2
+Django	djan	2
+Deploy	depl	2
+GitHub	gith	1
+NeoVim	neovi	1
+VSCode	vscode	1
+Kubernetes	kube	1
+auto	auto	10000
+base	base	10000
+beep	beep	10000
+bell	bell	10000
+boss	boss	10000
+call	call	10000
+care	care	10000
+come	come	10000
+cron	cron	10000
+data	data	10000
+date	date	10000
+disk	disk	10000
+face	face	10000
+fail	fail	10000
+file	file	10000
+fill	fill	10000
+find	find	10000
+full	full	10000
+game	game	10000
+give	give	10000
+hash	hash	10000
+helm	helm	10000
+help	help	10000
+here	here	10000
+hero	hero	10000
+hold	hold	10000
+home	home	10000
+huge	huge	10000
+icon	icon	10000
+iron	iron	10000
+jump	jump	10000
+less	less	10000
+line	line	10000
+link	link	10000
+lion	lion	10000
+make	make	10000
+mark	mark	10000
+mask	mask	10000
+math	math	10000
+mean	mean	10000
+melt	melt	10000
+mind	mind	10000
+mode	mode	10000
+moon	moon	10000
+name	name	10000
+node	node	10000
+noon	noon	10000
+note	note	10000
+null	null	10000
+once	once	10000
+only	only	10000
+over	over	10000
+page	page	10000
+ping	ping	10000
+push	push	10000
+rule	rule	10000
+same	same	10000
+send	send	10000
+side	side	10000
+sign	sign	10000
+size	size	10000
+some	some	10000
+soon	soon	10000
+such	such	10000
+take	take	10000
+talk	talk	10000
+task	task	10000
+tell	tell	10000
+then	then	10000
+this	this	10000
+time	time	10000
+true	true	10000
+turn	turn	10000
+user	user	10000
+week	week	10000
+when	when	10000
+wide	wide	10000
+wise	wise	10000
+wish	wish	10000
+with	with	10000
+work	work	10000
+while	while	10000
+which	which	10000
+enter	enter	10000
+false	false	10000
+hello	hello	10000
