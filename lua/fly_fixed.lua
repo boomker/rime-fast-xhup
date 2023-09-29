@@ -5,7 +5,6 @@ local function last_character(s) return string.utf8_sub(s, -1, -1) end
 
 local function fly_fixed(input, env)
     local cands        = {}
-    local drop_cands        = {}
     local config       = env.engine.schema.config
     local schema_id    = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
     local reversedb    = ReverseLookup(schema_id)
@@ -26,7 +25,6 @@ local function fly_fixed(input, env)
             (#preedit_code % 2 ~= 0) and (yin_code and not yin_code:match(preedit_last_code)) then
             table.insert(cands, cand)
         elseif preedit_code:match('^%l%l%[%l$') and (utf8.len(cand.text) > 1) then
-            table.insert(drop_cands, cand)
         else
             yield(cand)
         end
