@@ -79,8 +79,6 @@
 ## 姓名（在custom_phrase.txt里设置）	afxm	64
 ## xxx（学号/工号）	afxh	60
 ## xx学院/部门	afxy	48
-gmboomker@gmail.com	ggem	44
-18939740924	sjhm	4
 
 ## 常用短语
 我们	wm
@@ -186,9 +184,6 @@ org.mozilla.firefox 	jjff	3
 org.freedownloadmanager.fdm6 	jjdl	3
 org.freedownloadmanager.fdm6 	jjfdm	3
 md.obsidian 	jjob	3
-
-## 化学式符号
-C₂H₆O 	yiiy	1
 
 
 ## 简单单词
