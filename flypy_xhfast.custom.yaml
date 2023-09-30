@@ -57,5 +57,5 @@ patch:
       - derive/^(s)([^abcdefgijknmu])/u$2/    # s => sh
       - derive/^(i)f/$1g/                     # [zcs][h]en 可以通过 [zcs][h]eng 打出
       - derive/^(i)g/$1f/                     # [zcs][h]eng 可以通过 [zcs][h]en 打出
-      - derive/^([typdxbn])b/$1k/             # in 可以通过 ing 打出
+      - derive/^([typdbn])b/$1k/              # in 可以通过 ing 打出
       # - derive/^([typdjxbm])k/$1b/          # ing 可以通过 in 打出
