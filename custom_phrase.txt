@@ -187,6 +187,7 @@ md.obsidian 	jjob	3
 
 
 ## 简单单词
+new	new	2
 Mac	mac	2
 DevOps	devo	2
 Django	djan	2
