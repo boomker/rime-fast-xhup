@@ -35,7 +35,7 @@ TV	TV 📺
 T恤	T恤 👕
 T恤衫	T恤衫 👕
 UFO	UFO 🛸
-Vs.	Vs. 🆚
+VS	VS 🆚
 WC	WC 🚻
 Wi-Fi	Wi-Fi 🛜
 WiFi	WiFi 🛜
@@ -2102,7 +2102,7 @@ wireless	wireless 🛜
 第三	第三 🥉
 第二	第二 🥈
 等于	等于 ＝
-等号	等号 ＝
+等号	等号 🟰
 答对	答对 ⭕
 答错	答错 ❌
 筷子	筷子 🥢
