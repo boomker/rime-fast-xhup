@@ -14,11 +14,11 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 西文 ]
+    states: [中文, 西文]
   - name: full_shape
-    states: [ 半角, 全角 ]
+    states: [半角, 全角]
   - name: ascii_punct
-    states: [ 。，, ．， ]
+    states: [。，, ．，]
 
 engine:
   processors:
@@ -51,4 +51,3 @@ menu:
 
 translator:
   dictionary: flypy_chaizi
-

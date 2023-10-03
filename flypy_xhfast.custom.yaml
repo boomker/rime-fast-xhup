@@ -1,31 +1,30 @@
 ##  一些常用的设置项。找到需要进行的设置所在的行,
 ##  取消注释 (删除行开头的单个 # 符号) 即可启用该设置项.
 ##  注意不要删除前面的空格, YAML 文件的缩进比较严格，缩进不对容易报错.
+
 patch:
   engine/+:
     translators/+:
-     # - lua_translator@*user_dict
+    # - lua_translator@*user_dict
     filters/+:
-
   # engine/translators/@last: '' ## 禁用英文单词输入功能
   # punctuator/half_shape: {} ## 恢复默认引号
-  menu/page_size: 5 ## 自定义候选项个数
+  menu/page_size: 5           # 自定义候选项个数
   key_binder/+:
-    select_first_character: 'comma'
-    select_last_character: 'bracketright'
+    select_first_character: "comma"
+    select_last_character: "bracketright"
     drop_cand: "Control+d"        # 强制删词, 无视输入的编码
     hide_cand: "Control+x"        # 匹配当前输入码后隐藏指定的候选字词
     turn_down_cand: "Control+j"   # 匹配当前输入码后降频指定的候选字词
-
     bindings/+:
-      - { when: has_menu,  accept: apostrophe,  send: 3 }     ## 单引号用于第3候选
-      - { when: has_menu,  accept: period, send: Page_Down }
-      - { when: composing, accept: bracketleft, send: "[" }   ## tab引导辅助码
-      - { when: composing, accept: Tab, send: Shift+Right }
-      - { when: composing, accept: Control+k, send: Shift+Delete }
-      - { when: composing, accept: Control+e, send: End }
-      - { when: composing, accept: Control+a,   send_sequence: '{Home}{Right}{Right}[' }
-      - { when: composing, accept: Right,       send_sequence: "{Right}{Right}" }
+      - {when: has_menu, accept: apostrophe, send: 3}       ## 单引号用于第3候选
+      - {when: has_menu, accept: period, send: Page_Down}
+      - {when: composing, accept: bracketleft, send: "["}   ## tab引导辅助码
+      - {when: composing, accept: Tab, send: Shift+Right}
+      - {when: composing, accept: Control+k, send: Shift+Delete}
+      - {when: composing, accept: Control+e, send: End}
+      - {when: composing, accept: Control+a, send_sequence: "{Home}{Right}{Right}["}
+      - {when: composing, accept: Right, send_sequence: "{Right}{Right}"}
       # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
       # `键（grave, Tab 上面那个）为词组逐字追加辅助码.
       # 可将 grave 改成 Tab, Control+Tab, bracketright(] 键).
@@ -42,6 +41,7 @@ patch:
   # translator/prism: flypy_flypy           ## 使用小鹤原版辅助码
   # translator/contextual_suggestions: true
   # translator/max_homophones: 7
+
   speller/+:
     algebra/+:
       ## 模糊音:
