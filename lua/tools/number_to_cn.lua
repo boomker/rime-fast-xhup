@@ -27,6 +27,7 @@ https://blog.csdn.net/lp12345678910/article/details/121396243
 一百零一十万
 
 --]]
+
 local numerical_units = {
 	"",
 	"十",
@@ -61,7 +62,7 @@ local numerical_names = {
 
 local function convert_arab_to_chinese(number)
 	local n_number = tonumber(number)
-	assert(n_number, "传入参数非正确number类型！")
+	assert(n_number, "传入参数非正确number类型!")
 
 	-- 0 ~ 9
 	if n_number < 10 then
