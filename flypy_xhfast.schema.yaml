@@ -30,7 +30,7 @@ switches:
     states: [半角, 全角]
   - name: simplification
     reset: 1
-    states: [漢字, 汉字]
+    states: [繁体, 简体]
   - options: ["utf8", "gbk", "gb2312"]    # 字符集选单
     reset: 0                              # 默认 UTF8
     states:
@@ -89,8 +89,9 @@ engine:
     - lua_translator@expand_idiom_abbr_translator
     - lua_translator@top_word_autocommit_translator
   filters:
+    - simplifier
     - simplifier@emoji
-    - simplifier@simplification
+    - simplifier@transcription
     - lua_filter@fly_fixed_filter
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
@@ -98,7 +99,6 @@ engine:
     - lua_filter@top_word_autocommit_filter
     - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
-    - simplifier
     - uniquifier                                      #  只能放到最后!
 
 speller:
@@ -159,6 +159,7 @@ speller:
     - derive/^jm/jz/
     - derive/^zw/zk/
     - derive/^vg/vk/
+    - derive/^vf/vn/
     - derive/^vr/vm/
     - derive/^ly/nw/
     - derive/^bj/aj/
@@ -166,6 +167,7 @@ speller:
     - derive/^bh/sb/
     - derive/^b([fgknm])/s$1/                   # b[fgknm] --> s[fgknm]
     - derive/^mb/ms/
+    - derive/^mj/mx/
     - derive/^mk/me/
 
 grammar:
@@ -246,6 +248,8 @@ punctuator:
     "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
     "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
     "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
+    "(": [（, '(']
+    ")": [）, ')']
     "[": [「, 【, 〔, ［, 〚, 〘]
     "]": [」, 】, 〕, ］, 〛, 〙]
     "{": [『, 〖, ｛]
@@ -260,6 +264,7 @@ key_binder:
   bindings:
     - {when: has_menu, accept: semicolon, send: 2}
     - {when: has_menu, accept: apostrophe, send: 3}         ## 单引号用于第3候选
+    - {when: has_menu, accept: "Control+0", toggle: simplification}
     - {when: composing, accept: bracketleft, send: "["}     ## `[`引导辅助码
     - {when: composing, accept: Control+o, send: Shift+Left}
     - {when: composing, accept: Control+i, send: Shift+Right}
@@ -272,7 +277,7 @@ recognizer:
   # import_preset: default
   patterns:
     punct: "^/([0-9]0?|[A-Za-z]+)$"
-    chinese_number: "^n/[0-9]+$"
+    chinese_number: "^n/[0-9.]+$"
     mkst: "^[a-z]+[[][a-z[[]]*$"        # `[` 引导 精准造词
     ## associate schemes:
     reverse_lookup: "^oq[a-z]*?$"       # 部件拆字，部件使用小鹤双拼编码
@@ -284,10 +289,10 @@ recognizer:
 menu:
   page_size: 5
 
-simplification:
+transcription:
   option_name: simplification
   opencc_config: t2s.json
-  tags: abc
+  # tags: abc
   tips: none
   excluded_types: [reverse_lookup]
 
