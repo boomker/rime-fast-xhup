@@ -1,7 +1,7 @@
 -- 为交替输出中英情况加空格
 -- 为中英混输词条（cn_en.dict.yaml）自动空格
 -- 示例：`VIP中P` → `VIP 中 P`
---
+
 -- local puts = require("tools/debugtool")
 local function reset_cand_property(env)
     local context = env.engine.context
@@ -20,7 +20,7 @@ local function auto_append_space_processor(key, env)
     -- local cand_text   = context:get_commit_text()
 
     local cand_select_kyes = {
-        ["space"]      = 0,
+        ["space"]      = "x",
         ["semicolon"]  = 1,
         ["apostrophe"] = 2,
         ["1"]          = 0,
@@ -81,10 +81,11 @@ local function auto_append_space_processor(key, env)
     if (cand_select_kyes[key:repr()]) and (#input_code >= 1) then
         local cand_text = context:get_commit_text()
 
+        local _idx = cand_select_kyes[key:repr()]
         if (not composition:empty()) then
             local segment = composition:back()
-            local candObj = segment:get_candidate_at(
-                                cand_select_kyes[key:repr()])
+            local selected_cand_idx = _idx=="x" and segment.selected_index or _idx
+            local candObj = segment:get_candidate_at(selected_cand_idx)
             if not candObj then return 2 end
             cand_text = candObj.text
         end
@@ -129,6 +130,7 @@ local function auto_append_space_processor(key, env)
             elseif (prev_cand_is_nullv == '1') or (prev_cand_is_hanziv ~= '1') then
                 engine:commit_text(cand_text)
                 context:set_property('prev_cand_is_aword', "1")
+                context:set_property('prev_cand_is_null', '0')
                 context:clear()
                 return 1 -- kAccepted
             else

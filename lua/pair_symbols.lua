@@ -39,8 +39,6 @@ local function pair_symbols(key, env)
    local context = engine.context
    local composition = context.composition
    local segment = composition:back()
-   -- local candidate_count = segment.menu:candidate_count() -- 候选项数量
-   -- local selected_candidate=segment:get_selected_candidate() -- 焦点项
 
    if pairTable[key:repr()] and (not context:is_composing()) then
        engine:commit_text(pairTable[key:repr()])
@@ -52,7 +50,12 @@ local function pair_symbols(key, env)
    if context:has_menu() or context:is_composing() then
       local keyvalue = key:repr()
       local idx = -1
-      if keyvalue == 'space' or keyvalue == '1' then
+      -- 获得选中的候选词下标
+      local selected_candidate_index = segment.selected_index
+      if keyvalue == "space" then
+          idx = selected_candidate_index
+      end
+      if keyvalue == '1' then
          idx = 0
       elseif string.find(keyvalue, '^[2-9]$') then
          idx = tonumber(keyvalue) - 1
@@ -75,7 +78,6 @@ local function pair_symbols(key, env)
       end
    end
 
-   -- return 0 -- kRejected librime 不處理
    return 2 -- kNoop 此processor 不處理
 end
 
