@@ -4,42 +4,31 @@
 # 小狼毫似乎不支持 Control+Shift 开头的快捷键，可自行修改成别的。
 # 鼠须管在 Sublime Text、Telegram 等个别软件中也无法使用 Control+Shift+数字 的快捷键，可暂时用方案选单切换。
 
-
 # 要比共享目录的同名文件的 config_version 大才可以生效
-config_version: '2023-05-09'
-
-
+config_version: "2023-05-09"
 # 方案列表
 # schema_list:
-#   - schema: rime_ice
-#   - schema: double_pinyin
-#   - schema: double_pinyin_abc
-#   - schema: double_pinyin_mspy
-#   - schema: double_pinyin_flypy
-#   - schema: double_pinyin_ziguang
-
+#   - schema: flypy_xhfast
 
 # 菜单
 menu:
-  page_size: 5  # 候选词个数
+  page_size: 5    # 候选词个数
   # alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⑩ ]  # 修改候选项标签
   # alternative_select_keys: ASDFGHJKL  # 如编码字符占用数字键，则需另设选字键
-
-
 # 方案选单相关
 switcher:
   caption: 「方案选单」
   hotkeys:
     - Alt+grave
-  save_options:  # 开关记忆，从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
+  # 开关记忆，从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
+  save_options:
     - ascii_punct
     - traditionalization
     - emoji
-  fold_options: true            # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
+  # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
+  fold_options: true
   abbreviate_options: true      # 折叠时是否缩写选项
-  option_list_separator: ' / '  # 折叠时的选项分隔符
-
-
+  option_list_separator: " / "  # 折叠时的选项分隔符
 # 中西文切换
 #
 # good_old_caps_lock:
@@ -55,21 +44,17 @@ switcher:
 # inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
 # noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
 ascii_composer:
-  good_old_caps_lock: true  # true | false
-  switch_key:
+  good_old_caps_lock: true    # true | false
+  switch_key:     # commit_code | commit_text | inline_ascii | clear | noop
     Caps_Lock: clear          # commit_code | commit_text | clear
-    Shift_L: inline_ascii     # commit_code | commit_text | inline_ascii | clear | noop
-    Shift_R: noop             # commit_code | commit_text | inline_ascii | clear | noop
-    Control_L: noop           # commit_code | commit_text | inline_ascii | clear | noop
-    Control_R: noop           # commit_code | commit_text | inline_ascii | clear | noop
-
-
+    Shift_L: inline_ascii
+    Shift_R: noop
+    Control_L: noop
+    Control_R: noop
 ###################################################################################
-
 
 # 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。
 # 写在 default.yaml 里，方便多个方案引用，就是不用每个方案都写一遍了。
-
 
 # 标点符号
 # 设置为一个映射，就自动上屏；设置为多个映射，如 '/' : [ '/', ÷ ] 则进行复选。
@@ -80,98 +65,96 @@ ascii_composer:
 #              '`'（反引号）没有改成 '·'（间隔号）。
 punctuator:
   full_shape:
-    ' ' : { commit: '　' }
-    ',' : { commit: ， }
-    '.' : { commit: 。 }
-    '<' : [ 《, 〈, «, ‹ ]
-    '>' : [ 》, 〉, », › ]
-    '/' : [ 、, ､, '/', ／, ÷ ]
-    '?' : { commit: ？ }
-    ';' : { commit: ； }
-    ':' : { commit: ： }
-    '''' : { pair: [ '‘', '’' ] }
-    '"' : { pair: [ '“', '”' ] }
-    '\' : [ 、, ＼ ]
-    '|' : [ ·, ｜, '§', '¦' ]
-    '`' : ｀
-    '~' : ～
-    '!' : { commit: ！ }
-    '@' : [ ＠, ☯ ]
-    '#' : [ ＃, ⌘ ]
-    '%' : [ ％, '°', '℃' ]
-    '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
-    '^' : { commit: …… }
-    '&' : ＆
-    '*' : [ ＊, ·, ・, ×, ※, ❂ ]
-    '(' : （
-    ')' : ）
-    '-' : －
-    '_' : ——
-    '+' : ＋
-    '=' : ＝
-    '[' : [ 「, 【, 〔, ［ ]
-    ']' : [ 」, 】, 〕, ］ ]
-    '{' : [ 『, 〖, ｛ ]
-    '}' : [ 』, 〗, ｝ ]
+    " ": {commit: "　"}
+    ",": {commit: ，}
+    ".": {commit: 。}
+    "<": [《, 〈, «, ‹]
+    ">": [》, 〉, », ›]
+    "/": [、, ､, "/", ／, ÷]
+    "?": {commit: ？}
+    ";": {commit: ；}
+    ":": {commit: ：}
+    "'": {pair: ["‘", "’"]}
+    '"': {pair: ["“", "”"]}
+    '\': [、, ＼]
+    "|": [·, ｜, "§", "¦"]
+    "`": ｀
+    "~": ～
+    "!": {commit: ！}
+    "@": [＠, ☯]
+    "#": [＃, ⌘]
+    "%": [％, "°", "℃"]
+    "$": [￥, "$", "€", "£", "¥", "¢", "¤"]
+    "^": {commit: ……}
+    "&": ＆
+    "*": [＊, ·, ・, ×, ※, ❂]
+    "(": （
+    ")": ）
+    "-": －
+    "_": ——
+    "+": ＋
+    "=": ＝
+    "[": [「, 【, 〔, ［]
+    "]": [」, 】, 〕, ］]
+    "{": [『, 〖, ｛]
+    "}": [』, 〗, ｝]
   half_shape:
-    ',' : '，'
-    '.' : '。'
-    '<' : '《'
-    '>' : '》'
-    '/' : [ ／, ÷ ]
-    '?' : '？'
-    ';' : '；'
-    ':' : ':'
-    '''' : { pair: [ '‘', '’' ] }
-    '"' : { pair: [ '“', '”' ] }
-    '\' : '、'
-    '|' : [ ·, ｜, '§', '¦' ]
-    '`' : '`'
-    '~' : '~'
-    '!' : '！'
-    '@' : '@'
-    '#' : '#'
-    '%' : '%'
-    '$' : '¥'
-    '^' : '……'
-    '&' : '&'
-    '*' : '*'
-    '(' : '（'
-    ')' : '）'
-    '-' : '-'
-    '_' : ——
-    '+' : '+'
-    '=' : '='
-    '[' : '「'
-    ']' : '」'
-    '{' : '【'
-    '}' : '】'
-
-
+    ',': '，'
+    '.': '。'
+    "<": "《"
+    ">": "》"
+    "/": [／, ÷]
+    "?": "？"
+    ";": "；"
+    ":": ":"
+    "'": {pair: ["‘", "’"]}
+    '"': {pair: ["“", "”"]}
+    '\': "、"
+    "|": [·, ｜, "§", "¦"]
+    "`": "`"
+    "~": "~"
+    "!": "！"
+    "@": "@"
+    "#": "#"
+    "%": "%"
+    "$": "¥"
+    "^": "……"
+    "&": "&"
+    "*": "*"
+    "(": "（"
+    ")": "）"
+    "-": "-"
+    "_": ——
+    "+": "+"
+    "=": "="
+    "[": "「"
+    "]": "」"
+    "{": "【"
+    "}": "】"
 # 处理符合特定规则的输入码，如网址、反查
 # 此处配置所有方案通用的；各方案中另设专有的，比如全拼的拼字用 u，双拼的拼字用 L
 recognizer:
   patterns:
-    punct: '^v/([0-9]0?|[A-Za-z]+)$'
-    email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"                            # 自带的，email 正则
-    # uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"                           # 自带的，大写字母开头后，可以输入[-_+.'0-9A-Za-z]这些字符
-    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"  # 自带的，URL 正则
-    # 一些不直接上屏的配置示例：
-    # url_2: "^[A-Za-z]+[.].*"     # 句号不上屏，支持 google.com abc.txt 等网址或文件名，使用句号翻页时需要注释掉
+    punct: "^v/([0-9]0?|[A-Za-z]+)$"
+    email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"   # 自带的，email 正则
+    # 自带的，大写字母开头后，可以输入[-_+.'0-9A-Za-z]这些字符
+    # uppercase: "[A-Z][-_+.'0-9A-Za-z]*$"
+    # 自带的，URL 正则
+    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
+    # 一些不直接上屏的配置示例
+    # url_2: "^[A-Za-z]+[.].*"
+    # 句号不上屏，支持 google.com abc.txt 等网址或文件名，使用句号翻页时需要注释掉：
     # colon: "^[A-Za-z]+:.*"       # 冒号不上屏
     # underscore: "^[A-Za-z]+_.*"  # 下划线不上屏
-
-
 # 快捷键
 key_binder:
   # Lua 配置: 以词定字（上屏当前词句的第一个或最后一个字），和中括号翻页有冲突
-  # select_first_character: "bracketleft"  # 左中括号 [
-  select_last_character: "bracketright"  # 右中括号 ]
-
+  # select_first_character: "bracketleft"   # 左中括号 [
+  # select_last_character: "bracketright"     # 右中括号 ]
   bindings:
     # Tab / Shift+Tab 切换光标至下/上一个拼音
-    - { when: composing, accept: Shift+Tab, send: Shift+Left }
-    - { when: composing, accept: Tab, send: Shift+Right }
+    - {when: composing, accept: Shift+Tab, send: Shift+Left}
+    - {when: composing, accept: Tab, send: Shift+Right}
     # Tab / Shift+Tab 翻页
     # - { when: has_menu, accept: Shift+Tab, send: Page_Up }
     # - { when: has_menu, accept: Tab, send: Page_Down }
@@ -181,47 +164,44 @@ key_binder:
     # - { when: composing, accept: Alt+Right, send: Shift+Right }
 
     # 翻页 - =
-    - { when: has_menu, accept: minus, send: Page_Up }
-    - { when: has_menu, accept: equal, send: Page_Down }
-
+    - {when: has_menu, accept: minus, send: Page_Up}
+    - {when: has_menu, accept: equal, send: Page_Down}
     # 翻页 , .
     # - { when: paging, accept: comma, send: Page_Up }
     # - { when: has_menu, accept: period, send: Page_Down }
-
     # 翻页 [ ]
     # - { when: paging, accept: bracketleft, send: Page_Up }
     # - { when: has_menu, accept: bracketright, send: Page_Down }
 
-    # numbered_mode_switch:
-    # - { when: always, accept: Control+Shift+1, select: .next }               # 在最近的两个方案之间切换
-    # - { when: always, accept: Control+Shift+2, toggle: ascii_mode }          # 切换中英
-    # - { when: always, accept: Control+Shift+3, toggle: ascii_punct }         # 切换中英标点
-    # - { when: always, accept: Control+Shift+4, toggle: traditionalization }  # 切换简繁
-    # - { when: always, accept: Control+Shift+5, toggle: full_shape }          # 切换全半角
+# numbered_mode_switch:
+# - { when: always, accept: Control+Shift+1, select: .next }               # 在最近的两个方案之间切换
+# - { when: always, accept: Control+Shift+2, toggle: ascii_mode }          # 切换中英
+# - { when: always, accept: Control+Shift+3, toggle: ascii_punct }         # 切换中英标点
+# - { when: always, accept: Control+Shift+4, toggle: traditionalization }  # 切换简繁
+# - { when: always, accept: Control+Shift+5, toggle: full_shape }          # 切换全半角
 
-    # emacs_editing:
-    # - { when: composing, accept: Control+p, send: Up }
-    # - { when: composing, accept: Control+n, send: Down }
-    # - { when: composing, accept: Control+b, send: Left }
-    # - { when: composing, accept: Control+f, send: Right }
-    # - { when: composing, accept: Control+a, send: Home }
-    # - { when: composing, accept: Control+e, send: End }
-    # - { when: composing, accept: Control+d, send: Delete }
-    # - { when: composing, accept: Control+k, send: Shift+Delete }
-    # - { when: composing, accept: Control+h, send: BackSpace }
-    # - { when: composing, accept: Control+g, send: Escape }
-    # - { when: composing, accept: Control+bracketleft, send: Escape }
-    # - { when: composing, accept: Control+y, send: Page_Up }
-    # - { when: composing, accept: Alt+v, send: Page_Up }
-    # - { when: composing, accept: Control+v, send: Page_Down }
+# emacs_editing:
+# - { when: composing, accept: Control+p, send: Up }
+# - { when: composing, accept: Control+n, send: Down }
+# - { when: composing, accept: Control+b, send: Left }
+# - { when: composing, accept: Control+f, send: Right }
+# - { when: composing, accept: Control+a, send: Home }
+# - { when: composing, accept: Control+e, send: End }
+# - { when: composing, accept: Control+d, send: Delete }
+# - { when: composing, accept: Control+k, send: Shift+Delete }
+# - { when: composing, accept: Control+h, send: BackSpace }
+# - { when: composing, accept: Control+g, send: Escape }
+# - { when: composing, accept: Control+bracketleft, send: Escape }
+# - { when: composing, accept: Control+y, send: Page_Up }
+# - { when: composing, accept: Alt+v, send: Page_Up }
+# - { when: composing, accept: Control+v, send: Page_Down }
 
-    # optimized_mode_switch:
-    # - { when: always, accept: Control+Shift+space, select: .next }
-    # - { when: always, accept: Shift+space, toggle: ascii_mode }
-    # - { when: always, accept: Control+comma, toggle: full_shape }
-    # - { when: always, accept: Control+period, toggle: ascii_punct }
-    # - { when: always, accept: Control+slash, toggle: traditionalization }
-
+# optimized_mode_switch:
+# - { when: always, accept: Control+Shift+space, select: .next }
+# - { when: always, accept: Shift+space, toggle: ascii_mode }
+# - { when: always, accept: Control+comma, toggle: full_shape }
+# - { when: always, accept: Control+period, toggle: ascii_punct }
+# - { when: always, accept: Control+slash, toggle: traditionalization }
 
 # 按键速查
 # https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md

@@ -5,14 +5,11 @@
 patch:
   engine/+:
     translators/+:
-    # - lua_translator@*user_dict
     filters/+:
-  # engine/translators/@last: '' ## 禁用英文单词输入功能
-  # punctuator/half_shape: {} ## 恢复默认引号
-  menu/page_size: 5           # 自定义候选项个数
+  menu/page_size: 5               # 自定义候选项个数
   key_binder/+:
-    select_first_character: "comma"
-    select_last_character: "bracketright"
+    select_first_character: "equal"
+    select_last_character: "minus"
     drop_cand: "Control+d"        # 强制删词, 无视输入的编码
     hide_cand: "Control+x"        # 匹配当前输入码后隐藏指定的候选字词
     turn_down_cand: "Control+j"   # 匹配当前输入码后降频指定的候选字词
