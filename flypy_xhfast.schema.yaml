@@ -70,7 +70,6 @@ engine:
     - punct_translator
     - reverse_lookup_translator
     - script_translator
-    # - history_translator@history
     # - table_translator@emojis
     # - table_translator@flypy_phrase
     - table_translator@mkst                           # 精准造词
@@ -169,6 +168,8 @@ speller:
     - derive/^mb/ms/
     - derive/^mj/mx/
     - derive/^mk/me/
+    - derive/^mo/mr/
+    - derive/^mu/mv/
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -233,9 +234,9 @@ punctuator:
   full_shape:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
   half_shape:
-    ",": {commit: ，}
-    ".": {commit: 。}
-    ';': {commit: ；}
+    ",": {commit: "，"}
+    ".": {commit: "。"}
+    ";": {commit: "；"}
     '"': {pair: ['‘', '’']}      ## 添加注释后：恢复默认引号
     "'": {pair: ['“', '”']}      ## 添加注释后：恢复默认引号
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]

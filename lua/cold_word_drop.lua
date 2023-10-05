@@ -172,37 +172,25 @@ function cold_word_drop.filter(input, env)
         if (i <= idx) then
             local tfl = turndown_freq_list[cand.text] or nil
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
-            if not
-                ((tfl and table.find_index(tfl, cpreedit_code)) or
+            if tfl and table.find_index(tfl, cpreedit_code) then
+                table.insert(cands, cand)
+            elseif not
+                (
                     table.find_index(drop_list, cand.text) or
                     (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
-                    or (string.find(cand.comment, '☯'))
-                    -- cand.quality == 0.0
+                    or (string.find(cand.comment, '☯')) -- cand.quality == 0.0
                 )
             then
                 i = i + 1
                 yield(cand)
             end
-            table.insert(cands, cand)
         else
             table.insert(cands, cand)
         end
-        if (#cands > 50) then
-            break
-        end
+        if (#cands > 50) then break end
     end
     for _, cand in ipairs(cands) do
-        local cpreedit_code = string.gsub(cand.preedit, ' ', '')
-        if not
-            -- 要删的 和要隐藏的词条不显示
-            (
-                table.find_index(drop_list, cand.text) or
-                (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
-                or (string.find(cand.comment, '☯'))
-            )
-        then
-            yield(cand)
-        end
+        yield(cand)
     end
 
 end

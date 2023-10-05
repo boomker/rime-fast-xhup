@@ -82,7 +82,6 @@ local function select_char(key, env)
     end
 
     if key:repr() == last_key and commit_text ~= "" then
-        -- local commit_txt = last_character(commit_text)
         local cand_text, commit_txt = context:get_selected_candidate().text, nil
         if cand_text then commit_txt = last_character(cand_text) end
         local cand_txt = append_space_to_cand(env, commit_txt)
