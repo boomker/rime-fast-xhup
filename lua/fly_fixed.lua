@@ -18,6 +18,7 @@ local function fly_fixed(input, env)
 			(19968 <= cand_text_code)
 			and (cand_text_code <= 117777)
 			and (#preedit_code % 2 ~= 0)
+			and (not preedit_code:find('%['))
 			and (preedit_code:match("^.+[andefwosr]$") or preedit_code:match("^[andefwosr]$"))
 		then
 			local last_char = last_character(cand.text)
