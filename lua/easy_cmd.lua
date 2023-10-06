@@ -1,5 +1,4 @@
--- local puts = require("tools/debugtool")
-
+local puts = require("tools/debugtool")
 
 local function cmd(order)
     local osascript = order
@@ -18,7 +17,15 @@ local function easy_cmd(key, env)
     if context:has_menu() or context:is_composing() then
         local keyvalue = key:repr()
         local idx = -1
-        if keyvalue == 'space' or keyvalue == '1' or keyvalue == "Shift+Control+Alt" then
+        local selected_candidate_index = segment.selected_index
+        if keyvalue == "space" then
+            idx = selected_candidate_index
+        elseif keyvalue == "semicolon" then
+            idx  = 1
+        elseif keyvalue == "apostrophe" then
+            idx = 2
+        end
+        if keyvalue == '1' then
             idx = 0
         elseif string.find(keyvalue, '^[2-9]$') then
             idx = tonumber(keyvalue) - 1
@@ -29,10 +36,16 @@ local function easy_cmd(key, env)
         local cmd_prefix = string.sub(input_code, 1,2)
         if (preedit_code_length >= 4) and (idx >= 0) and (cmd_prefix == "jj") then
             local candidateText = segment:get_candidate_at(idx).text
-            local command = "open -b " .. candidateText
-            context:clear()
-            cmd(command)
-            return 1 -- kAccepted 收下此key
+            if candidateText:match('^[%l%u]+') then
+                local command = "open -b " .. candidateText
+                context:clear()
+                cmd(command)
+                return 1 -- kAccepted 收下此key
+            else
+                engine:commit_text(candidateText)
+                context:clear()
+                return 1 -- kAccepted 收下此key
+            end
         end
         --[[ local startPos = 5
         local endPos = string.len(candidateText)
