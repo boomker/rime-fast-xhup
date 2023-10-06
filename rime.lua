@@ -138,5 +138,6 @@ pair_symbols = require("pair_symbols")
 pair_symbols_processor = pair_symbols.processor
 
 -- 快捷启动应用
-easy_cmd = require("easy_cmd")
-easy_cmd_processor = easy_cmd.processor
+launcher = require("launcher")
+launcher_processor = launcher.processor
+launcher_translator = launcher.translator

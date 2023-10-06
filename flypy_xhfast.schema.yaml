@@ -40,7 +40,7 @@ switches:
 
 engine:
   processors:
-    - lua_processor@easy_cmd_processor
+    - lua_processor@launcher_processor
     - lua_processor@pair_symbols_processor
     - lua_processor@select_char_processor
     - lua_processor@expand_idiom_abbr_processor
@@ -80,7 +80,8 @@ engine:
     - table_translator@dbpy_flypy_help                # oh 触发
     - lua_translator@commit_history_translator        # hisz 触发
     - lua_translator@datetime_translator              # date, rq, week, time 触发
-    - lua_translator@lunar_translator                 # cnl/znl, 触发
+    - lua_translator@launcher_translator              # jj 快捷命令 触发
+    - lua_translator@lunar_translator                 # cnl/znl 触发
     - lua_translator@en_custom_translator             # `尾触发
     - lua_translator@laTex_translator                 # tf 触发
     - lua_translator@number_translator                # n/ 触发
@@ -124,9 +125,10 @@ speller:
     - derive/^([jyn])t/$1d/                     # t --> d
     - derive/^([bjlmnx])p/$1e/                  # p --> e
     - derive/^([djlnx])q/$1f/                   # q --> f
-    - derive/^q([biklmnrsxy])/f$1/
+    - derive/^q([biklmnsxy])/f$1/
     - derive/^qq/fz/
     - derive/^qu/fs/
+    - derive/^qr/fo/
     - derive/^qp/fe/
     - derive/^qt/fd/
     - derive/^dp/dl/                            # dp --> dl
@@ -239,6 +241,8 @@ punctuator:
     ";": {commit: "；"}
     '"': {pair: ['‘', '’']}      ## 添加注释后：恢复默认引号
     "'": {pair: ['“', '”']}      ## 添加注释后：恢复默认引号
+    "#": "#"
+    "=": "="
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
@@ -247,7 +251,9 @@ punctuator:
     "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
     "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
     "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
-    "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
+    # '^': [^, ……]
+    # "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
+    "$": "￥"
     "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
     "(": [（, '(']
     ")": [）, ')']
