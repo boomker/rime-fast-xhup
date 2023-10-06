@@ -79,6 +79,8 @@
 ## 姓名（在custom_phrase.txt里设置）	afxm	64
 ## xxx（学号/工号）	afxh	60
 ## xx学院/部门	afxy	48
+gmboomker@gmail.com	ggem	44
+18939740924	sjhm	4
 
 ## 常用短语
 我们	wm
@@ -162,31 +164,6 @@ WTF	wtf	3
 http://rime.im/	rime	1
 Rime	rime	3
 
-
-## 快捷命令
-com.apple.screenshot.launcher	jjjt	3
-com.apple.screenshot.launcher	jjss	3
-com.apple.ActivityMonitor	jjam	3
-com.apple.ActivityMonitor	jjtm	3
-com.apple.systempreferences	jjsp	3
-com.binarynights.ForkLift-3	jjfl	3
-com.apple.Safari	jjsf	3
-com.izual.Easydict	jjed	2
-com.izual.Easydict	jjfy	3
-com.google.Chrome	jjch	3
-com.googlecode.iterm2	jjit	3
-com.microsoft.Outlook	jjol	3
-com.microsoft.VSCode	jjvs	3
-com.microsoft.edgemac	jjed	3
-com.netease.163music	jjwm	3
-com.tencent.WeWorkMac	jjww	3
-com.tencent.xinWeChat	jjwx	3
-com.tencent.xinWeChat	jjwc	3
-com.neovide.neovide	jjnv	3
-md.obsidian	jjob	3
-org.alacritty	jjat	3
-org.mozilla.firefox	jjff	3
-org.freedownloadmanager.fdm6	jjdl	3
 
 
 ## 简单单词
