@@ -40,9 +40,26 @@ local commands = {
 		["jjdl"] = { "FDM 下载", "org.freedownloadmanager.fdm6" },
 		["jjdlf"] = { "打开下载文件夹", "~/Downloads" },
 		["jjdof"] = { "打开文档文件夹", "~/Documents" },
-		["jjgem"] = { "打开 Gmail 首页", "https://www.gmail.com" },
-		["jjytb"] = { "打开 Youtube 首页", "https://mail.google.com" },
+		["jjgem"] = { "打开 Gmail 首页", "https://mail.google.com" },
+		["jjytb"] = { "打开 Youtube 首页", "https://youtube.com" },
 	},
+    ["Favor"] = {
+        ["MailBox"] = {
+            "boomker@gmail.com",
+            "cyzhu@yamutech.com",
+            "moichigo@outlook.com",
+        },
+        ["BookMark"] = {
+            "https://youtube.com",
+            "https://bilibili.com",
+            "https://github.com",
+            "https://mail.google.com",
+        },
+        ["PhoneNumber"] = {
+            "18930000000",
+            "17710000000",
+        },
+    },
 	["iOS"] = {},
 }
 
