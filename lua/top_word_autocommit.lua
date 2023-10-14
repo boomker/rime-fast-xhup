@@ -1,9 +1,8 @@
 -- local puts = require("tools/debugtool")
 require("tools/string")
 
-local reversedb_fzm = ReverseDb("build/flypy_phrase.reverse.bin")
 local tword_tail_char_shape_tbl = {}
-local Gcommit_codes = {}
+local commit_codes = {}
 
 local function append_space_to_cand(env, cand_text)
     local context = env.engine.context
@@ -66,7 +65,7 @@ local function twac_processor(key, env)
                     goto skip_cand1
                 end
                 local commit_code_num = string.format("commit_code_%s", i)
-                Gcommit_codes[commit_code_num] = reversedb:lookup(cand_text)
+                commit_codes[commit_code_num] = reversedb:lookup(cand_text)
                 ::skip_cand1::
             end
         end
@@ -97,7 +96,7 @@ local function twac_processor(key, env)
     --  按下 '[' 后, 数字键或符号键快捷选词条
     if (cand_kyes[key:repr()]) and string.match(input_code, "^%l+[%l%[]*%[$") then
         tword_tail_char_shape_tbl = {}
-        Gcommit_codes = {}
+        commit_codes = {}
         context:select(cand_kyes[key:repr()])
         local cand_text = context:get_commit_text()
         engine:commit_text(string.utf8_sub(cand_text, 1, -2))
@@ -108,22 +107,22 @@ local function twac_processor(key, env)
 
     -- '[' 造字时, 数字键或符号键选单字时, 形码自动填充
     if (cand_kyes[key:repr()]) and string.find(input_code, "^%l+%[[%l%[]*") then
-        if not Gcommit_codes['commit_code_0'] then
+        if not commit_codes['commit_code_0'] then
             tword_tail_char_shape_tbl = {}
             return 2
         end -- 键值对table ,不能使用 `#` 获取长度
         if (pos == 3) or (pos == 7) then
             local selected_cand = string.format("commit_code_%s",
                                                 cand_kyes[key:repr()])
-            local char_code = string.sub(Gcommit_codes[selected_cand], 4, 5)
+            local char_code = string.sub(commit_codes[selected_cand], 4, 5)
             context:push_input(char_code)
             context:confirm_current_selection()
-            Gcommit_codes = {}
+            commit_codes = {}
             return 1
         else
             context:confirm_previous_selection()
         end
-        Gcommit_codes = {}
+        commit_codes = {}
         tword_tail_char_shape_tbl = {}
 
         return 2 -- kNoop
@@ -131,7 +130,7 @@ local function twac_processor(key, env)
 
     if key:repr() == "Escape" then
         tword_tail_char_shape_tbl = {}
-        Gcommit_codes = {}
+        commit_codes = {}
     end
     return 2 -- kNoop
 end
@@ -218,7 +217,7 @@ local function twac_filter(input, env)
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
             if (#single_char_cands == 1) and (single_char_cands[cand.text]) then
                 tword_tail_char_shape_tbl = {}
-                Gcommit_codes = {}
+                commit_codes = {}
 
                 local cand_txt = append_space_to_cand(env, cand.text)
                 env.engine:commit_text(cand_txt)
@@ -246,16 +245,17 @@ local function twac_filter(input, env)
                 context:clear()
                 reset_cand_property(env)
                 tword_tail_char_shape_tbl = {}
-                Gcommit_codes = {}
+                commit_codes = {}
                 return 1 -- kAccepted
             end
         end
     end
 
     if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^%l+") then
+        local reversedb_phrase = ReverseLookup("flypy_phrase")
         local i, when_done, commit_text = 1, 0, nil
         for _, cand in pairs(tfchars_word_cands) do
-            local reverse_code = reversedb_fzm:lookup(cand.text)
+            local reverse_code = reversedb_phrase:lookup(cand.text)
 
             local match_res = string.match(reverse_code, preedit_code)
             if reverse_code and match_res then

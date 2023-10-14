@@ -22,7 +22,6 @@ patch:
       - {when: composing, accept: Control+e, send: End}
       - {when: composing, accept: Control+a, send_sequence: "{Home}{Right}{Right}["}
       - {when: composing, accept: Right, send_sequence: "{Right}{Right}"}
-      # - { when: composing, accept: grave, send_sequence: '{Right}{Right}{Shift+Left}{Right}{Right}[' }
       # `键（grave, Tab 上面那个）为词组逐字追加辅助码.
       # 可将 grave 改成 Tab, Control+Tab, bracketright(] 键).
 
@@ -50,7 +49,7 @@ patch:
       # - derive/^(u)([^bfgnm])/s$2/          # sh => s
       - derive/^n([uo])$/l$1/                 # n -> l
       - derive/^(z)([^acdefghijku])/v$2/      # z => zh
-      - derive/^(c)([^acdefghiju])/i$2/       # c => ch
+      - derive/^(c)([^acdefghijuo])/i$2/      # c => ch
       - derive/^(s)([^abcdefgijknmu])/u$2/    # s => sh
       - derive/^(i)f/$1g/                     # [zcs][h]en 可以通过 [zcs][h]eng 打出
       - derive/^(i)g/$1f/                     # [zcs][h]eng 可以通过 [zcs][h]en 打出
