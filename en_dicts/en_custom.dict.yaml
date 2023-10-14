@@ -43,9 +43,11 @@ xcollector	xcollector	100000
 FlowExport	flowexport	100000
 CachePro	cachepro	100000
 SmartEcho	smartecho	100000
-CacheMv	cachemv	100000
+CacheMV	cachemv	100000
 tacker	tacker	100000
 Dnsys	dnsys	100000
-
 scrum	scrum	100000
 kanban	kanban	100000
+websocket	websocket	100000
+serfail	serfail	100000
+tcpdump	tcpdump	100000
