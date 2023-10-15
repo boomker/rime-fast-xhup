@@ -68,7 +68,18 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案）。使用�
 ### 文件说明
 
 * 将这些文件放入 Rime 的用户目录下，重新部署（右键点击任务栏的 Rime 图标可见）即可。
-  * 默认的用户目录：`%APPDATA%\Rime`（Windows），`~/Library/Rime`（MacOS)，`~/.config/ibus/rime`（Linux；根据前端类型，可能需要将 ibus 改成 fcitx 或 fcitx5），`/sdcard/rime`（Android）。
+  * librime 允许输入法指定用户文件夹的位置。用户文件夹的位置应使用绝对路径。请勿使用相对路径
+  * 默认的用户目录：
+  * `%APPDATA%\Rime`（Windows，小狼毫： 用户文件夹的默认路径为 %APPDATA%\Rime。也可以通过「开始菜单＼小狼毫输入法＼用户文件夹」打开。）;
+  * `~/Library/Rime`（MacOS，鼠鬚管： 用户文件夹的路径为 ~/Library/Rime。也可以通过「系统输入法菜单／鼠鬚管／用户设定…」打开。)
+  * ~~`~/.config/ibus/rime`~~
+ 
+  * ibus-rime: `~/.config/ibus/rime`
+  
+    fcitx-rime: `~/.config/fcitx/rime`
+    
+    fcitx5-rime: `~/.local/share/fcitx5/rime/` （Linux； ~~根据前端类型，可能需要将 ibus 改成 fcitx 或 fcitx5~~）;
+  * `/sdcard/rime`（Android）。
   * 如果某些同名文件已经存在，本节的后续部分可能有参考价值。否则，可以直接跳过这些文件内容说明，去看下一节“附加功能”。
   * 如果 Rime 老用户之前已有较多配置文件，希望在不混淆各类配置的同时试用本项目的完整功能（毕竟本项目文件较多），也可以考虑备份/重命名原来的用户目录，将本项目单独放在新建的用户目录下部署。
 * 一些设置项需要通过修改文件内容实现。Windows（尤其是 7 及以下的版本）自带的记事本可能无法胜任 YAML 文件的编辑任务，推荐使用 VS Code，Sublime Text 等通用代码编辑器。其他桌面系统的默认文本编辑器原则上都可用。
