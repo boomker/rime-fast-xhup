@@ -74,9 +74,11 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案）。使用�
   * `~/Library/Rime`（MacOS，鼠鬚管： 用戶文件夾的路徑爲 ~/Library/Rime。也可以通過「系統輸入法菜單／鼠鬚管／用戶設定…」打開。)
   * ~~`~/.config/ibus/rime`~~
  
-  * ibus-rime: ~/.config/ibus/rime
-    fcitx-rime: ~/.config/fcitx/rime
-    fcitx5-rime: ~/.local/share/fcitx5/rime/（Linux； ~~根据前端类型，可能需要将 ibus 改成 fcitx 或 fcitx5~~）;
+  * ibus-rime: `~/.config/ibus/rime`
+  
+    fcitx-rime: `~/.config/fcitx/rime`
+    
+    fcitx5-rime: `~/.local/share/fcitx5/rime/` （Linux； ~~根据前端类型，可能需要将 ibus 改成 fcitx 或 fcitx5~~）;
   * `/sdcard/rime`（Android）。
   * 如果某些同名文件已经存在，本节的后续部分可能有参考价值。否则，可以直接跳过这些文件内容说明，去看下一节“附加功能”。
   * 如果 Rime 老用户之前已有较多配置文件，希望在不混淆各类配置的同时试用本项目的完整功能（毕竟本项目文件较多），也可以考虑备份/重命名原来的用户目录，将本项目单独放在新建的用户目录下部署。
