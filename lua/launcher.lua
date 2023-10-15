@@ -2,10 +2,16 @@
 local launcher = {}
 local app_items = require("launcher_config")
 local of_items = nil
+local first_menu_text = nil
 
-local function cmd(order)
-	local osascript = order
-	os.execute(osascript)
+local function cmd(system, cmdArgs)
+	if system:lower():match("darwin") then
+		local osascript = "open " .. cmdArgs
+		os.execute(osascript)
+	elseif system:lower():match("windows") then
+		local script = "start" .. "" .. cmdArgs
+		os.execute(script)
+	end
 end
 
 local function detect_os()
@@ -26,71 +32,87 @@ function launcher.processor(key, env)
 	local preedit_code_length = #input_code
 	local keyvalue = key:repr()
 
-    local selected_candidate_keyval_tbl = {
-        ["Escape"] = true,
-        ["Enter"] = "x",
-        ["Return"] = "x",
-        ["space"] = "x",
-        ["semicolon"] = 1,
-        ["apostrophe"] = 2,
-        ["1"] = 0,
-        ["2"] = 1,
-        ["3"] = 2,
-        ["4"] = 3,
-        ["5"] = 4,
-        ["6"] = 5,
-        ["7"] = 6,
-        ["8"] = 7,
-        ["9"] = 8,
-    }
+	local idx = -1
+	local selected_candidate_index = (composition:empty() == false) and segment.selected_index or -1
+	if keyvalue == "space" then
+		idx = selected_candidate_index
+	elseif keyvalue == "Return" and (input_code == "ofk") then
+		idx = selected_candidate_index
+	elseif keyvalue == "semicolon" then
+		idx = 1
+	elseif keyvalue == "apostrophe" then
+		idx = 2
+	end
 
-    if of_items and (input_code == "ofkc") and (selected_candidate_keyval_tbl[keyvalue]) then
-        if keyvalue == "Escape" then
-            of_items = nil
-            return 1 -- kAccepted 收下此key
-        end
+	if keyvalue == "1" then
+		idx = 0
+	elseif string.find(keyvalue, "^[2-9]$") then
+		idx = tonumber(keyvalue) - 1
+	elseif keyvalue == "0" then
+		idx = 9
+	end
 
-		local selected_candidate_index = segment.selected_index
-        local index = selected_candidate_keyval_tbl[keyvalue]
-        local idx = index=="x" and selected_candidate_index or index
-        local candidateText = segment:get_candidate_at(idx).text
-        if candidateText:match('^http') then
-            local command = "open " .. candidateText
-            cmd(command)
-            of_items = nil
-            context:clear()
-            return 1 -- kAccepted 收下此key
-        end
-        of_items = nil
-        return 1 -- kAccepted 收下此key
-    end
+	local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
-	if context:has_menu() or context:is_composing() then
-		local idx = -1
-		local selected_candidate_index = segment.selected_index
-		if keyvalue == "space" then
-			idx = selected_candidate_index
-		elseif keyvalue == "Return" and (input_code == "ofkc") then
-			idx = selected_candidate_index
-		elseif keyvalue == "semicolon" then
-			idx = 1
-		elseif keyvalue == "apostrophe" then
-			idx = 2
+	if of_items and context:has_menu() and (input_code:match("^ofk")) then
+		if spec_keys[keyvalue] and (preedit_code_length >= 4) then
+			of_items = nil
+            context:pop_input(1)
+			context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+			return 1 -- kAccepted 收下此key
+        elseif spec_keys[keyvalue] then
+			of_items = nil
+			context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+			return 1 -- kAccepted 收下此key
+		elseif idx >= 0 then
+			local sys = detect_os()
+			local candidateText = segment:get_candidate_at(idx).text
+			if candidateText:match("^http") then
+				cmd(sys, candidateText)
+				of_items = nil
+				first_menu_text = nil
+				context:clear()
+				return 1 -- kAccepted 收下此key
+			elseif first_menu_text and first_menu_text:match("目录位置") then
+				local path = app_items["Favor"][first_menu_text][candidateText]
+				cmd(sys, path)
+				of_items = nil
+				first_menu_text = nil
+				context:clear()
+				return 1 -- kAccepted 收下此key
+			elseif first_menu_text and first_menu_text:match("卡号") then
+				local card_text = app_items["Favor"][first_menu_text][candidateText]
+				engine:commit_text(card_text)
+				context:clear()
+				of_items = nil
+				first_menu_text = nil
+				return 1 -- kAccepted 收下此key
+			else
+				engine:commit_text(candidateText)
+				context:clear()
+				of_items = nil
+				first_menu_text = nil
+				return 1 -- kAccepted 收下此key
+			end
 		end
+	end
 
-		if keyvalue == "1" then
-			idx = 0
-		elseif string.find(keyvalue, "^[2-9]$") then
-			idx = tonumber(keyvalue) - 1
-		elseif keyvalue == "0" then
-			idx = 9
+	if (not of_items) and (idx >= 0) and context:has_menu() and (input_code == "ofk") then
+		local candidateText = segment:get_candidate_at(idx).text
+		first_menu_text = candidateText:gsub(" ", "")
+		local candidateComment = segment:get_candidate_at(idx).comment
+		if first_menu_text and candidateComment:match("快捷指令") then
+			of_items = app_items["Favor"][first_menu_text]
+			context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+			return 1
 		end
+	end
 
-		local sys = detect_os()
-		local items = app_items[sys][input_code]
+	if context:has_menu() and (input_code:match("^jj")) then
+		if (idx >= 0) and (preedit_code_length >= 4) then
+			local sys = detect_os()
+			local items = app_items[sys][input_code]
 
-		local cmd_prefix = string.sub(input_code, 1, 2)
-		if (preedit_code_length >= 4) and (idx >= 0) and (cmd_prefix == "jj") then
 			local candidateText = segment:get_candidate_at(idx).text
 			local candidateComment = segment:get_candidate_at(idx).comment
 			local tgtId = nil
@@ -104,24 +126,13 @@ function launcher.processor(key, env)
 				tgtId = items[2]
 			end
 
-			if items and candidateText and candidateComment:match("快捷命令") and sys:match("Darwin") then
-				local command
-				if
-					candidateText:match("文件夹")
-					or candidateText:match("链接")
-					or candidateText:match("首页")
-				then
-					command = "open " .. tgtId
-				else
-					command = "open -b " .. tgtId
+			if items and candidateText and candidateComment:match("快捷命令") then
+				local commandArgs
+				if tgtId then
+					commandArgs = "-b " .. tgtId
 				end
 				context:clear()
-				cmd(command)
-				return 1 -- kAccepted 收下此key
-			elseif items and candidateText and candidateComment:match("快捷命令") and sys:match("Windows") then
-				local command = "start " .. tgtId
-				context:clear()
-				cmd(command)
+				cmd(sys, commandArgs)
 				return 1 -- kAccepted 收下此key
 			else
 				engine:commit_text(candidateText)
@@ -129,17 +140,6 @@ function launcher.processor(key, env)
 				return 1 -- kAccepted 收下此key
 			end
 		end
-
-        if (not of_items) and (preedit_code_length == 4) and (idx >= 0) and (cmd_prefix == "of") then
-			local candidateText = segment:get_candidate_at(idx).text
-			local candidateComment = segment:get_candidate_at(idx).comment
-			if candidateText and candidateComment:match("快捷指令") then
-                of_items = app_items["Favor"][candidateText]
-                context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-	            return 1
-            end
-        end
-
 	end
 
 	return 2
@@ -160,21 +160,43 @@ function launcher.translator(input, seg, env)
 		yield(cand)
 	end
 
-    if (not of_items) and input:match('^ofkc') then
-        for key, _ in pairs(app_items["Favor"]) do
+	if (not of_items) and input:match("^ofk$") then
+		for key, _ in pairs(app_items["Favor"]) do
 			local cand = Candidate("favor", seg.start, seg._end, key, "〔快捷指令〕")
 			cand.quality = 999
 			yield(cand)
-        end
-    end
+		end
+	end
 
-    if of_items and input:match('^ofkc') then
-        for _, val in pairs(of_items) do
-			local cand = Candidate("favor", seg.start, seg._end, val, "")
-			cand.quality = 999
-			yield(cand)
-        end
-    end
+	if (not of_items) and input:match("^ofk") and (#input >= 4) then
+		local item_prefix = input:sub(4)
+		for key, val in pairs(app_items["Favor"]) do
+			if key:match(item_prefix) and (key:sub(1, 1) == item_prefix:sub(1, 1)) then
+				for k, v in pairs(val) do
+					local item = type(k) == "number" and v or k
+					local cand = Candidate("favor", seg.start, seg._end, item, "")
+					cand.quality = 999
+					yield(cand)
+				end
+                of_items = app_items["Favor"]
+                first_menu_text = key
+			end
+		end
+	end
+
+	if type(of_items) == "table" and input:match("^ofk$") then
+		for key, val in pairs(of_items) do
+			if type(key) == "number" and type(val) == "string" then
+				local cand = Candidate("favor", seg.start, seg._end, val, "")
+				cand.quality = 999
+				yield(cand)
+			else
+				local cand = Candidate("favor", seg.start, seg._end, key, "")
+				cand.quality = 999
+				yield(cand)
+			end
+		end
+	end
 end
 
 return launcher
