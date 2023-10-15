@@ -168,7 +168,7 @@ speller:
     - derive/^bh/sb/
     - derive/^b([fgknm])/s$1/                   # b[fgknm] --> s[fgknm]
     - derive/^mb/ms/
-    - derive/^mj/mx/
+    - derive/^mh/mx/
     - derive/^mk/me/
     - derive/^mo/mr/
     - derive/^mu/mv/
