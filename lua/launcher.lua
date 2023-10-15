@@ -2,6 +2,7 @@
 local launcher = {}
 local app_items = require("launcher_config")
 local of_items = nil
+local first_menu_text = nil
 
 local function cmd(system, cmdArgs)
 	if system:lower():match("darwin") then
@@ -32,10 +33,10 @@ function launcher.processor(key, env)
 	local keyvalue = key:repr()
 
 	local idx = -1
-	local selected_candidate_index = (context:has_menu() or context:is_composing()) and segment.selected_index
+	local selected_candidate_index = (composition:empty() == false) and segment.selected_index or -1
 	if keyvalue == "space" then
 		idx = selected_candidate_index
-	elseif keyvalue == "Return" and (input_code == "ofkc") then
+	elseif keyvalue == "Return" and (input_code == "ofk") then
 		idx = selected_candidate_index
 	elseif keyvalue == "semicolon" then
 		idx = 1
@@ -51,32 +52,57 @@ function launcher.processor(key, env)
 		idx = 9
 	end
 
-	if of_items and (idx >= 0) and context:has_menu() and (input_code == "ofkc") then
-		if keyvalue == "Escape" then
-			of_items = nil
-			return 1 -- kAccepted 收下此key
-		end
+	local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
-		local sys = detect_os()
-		local candidateText = segment:get_candidate_at(idx).text
-		if candidateText:match("^http") then
-			cmd(sys, candidateText)
+	if of_items and context:has_menu() and (input_code:match("^ofk")) then
+		if spec_keys[keyvalue] and (preedit_code_length >= 4) then
 			of_items = nil
-			context:clear()
+            context:pop_input(1)
+			context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
 			return 1 -- kAccepted 收下此key
-		else
-			engine:commit_text(candidateText)
-			context:clear()
+        elseif spec_keys[keyvalue] then
 			of_items = nil
+			context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
 			return 1 -- kAccepted 收下此key
+		elseif idx >= 0 then
+			local sys = detect_os()
+			local candidateText = segment:get_candidate_at(idx).text
+			if candidateText:match("^http") then
+				cmd(sys, candidateText)
+				of_items = nil
+				first_menu_text = nil
+				context:clear()
+				return 1 -- kAccepted 收下此key
+			elseif first_menu_text and first_menu_text:match("目录位置") then
+				local path = app_items["Favor"][first_menu_text][candidateText]
+				cmd(sys, path)
+				of_items = nil
+				first_menu_text = nil
+				context:clear()
+				return 1 -- kAccepted 收下此key
+			elseif first_menu_text and first_menu_text:match("卡号") then
+				local card_text = app_items["Favor"][first_menu_text][candidateText]
+				engine:commit_text(card_text)
+				context:clear()
+				of_items = nil
+				first_menu_text = nil
+				return 1 -- kAccepted 收下此key
+			else
+				engine:commit_text(candidateText)
+				context:clear()
+				of_items = nil
+				first_menu_text = nil
+				return 1 -- kAccepted 收下此key
+			end
 		end
 	end
 
-	if (not of_items) and (idx >= 0) and context:has_menu() and (input_code == "ofkc") then
+	if (not of_items) and (idx >= 0) and context:has_menu() and (input_code == "ofk") then
 		local candidateText = segment:get_candidate_at(idx).text
+		first_menu_text = candidateText:gsub(" ", "")
 		local candidateComment = segment:get_candidate_at(idx).comment
-		if candidateText and candidateComment:match("快捷指令") then
-			of_items = app_items["Favor"][candidateText]
+		if first_menu_text and candidateComment:match("快捷指令") then
+			of_items = app_items["Favor"][first_menu_text]
 			context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
 			return 1
 		end
@@ -102,13 +128,7 @@ function launcher.processor(key, env)
 
 			if items and candidateText and candidateComment:match("快捷命令") then
 				local commandArgs
-				if
-					candidateText:match("文件夹")
-					or candidateText:match("链接")
-					or candidateText:match("首页")
-				then
-					commandArgs = tgtId
-				else
+				if tgtId then
 					commandArgs = "-b " .. tgtId
 				end
 				context:clear()
@@ -140,7 +160,7 @@ function launcher.translator(input, seg, env)
 		yield(cand)
 	end
 
-	if (not of_items) and input:match("^ofkc") then
+	if (not of_items) and input:match("^ofk$") then
 		for key, _ in pairs(app_items["Favor"]) do
 			local cand = Candidate("favor", seg.start, seg._end, key, "〔快捷指令〕")
 			cand.quality = 999
@@ -148,11 +168,33 @@ function launcher.translator(input, seg, env)
 		end
 	end
 
-	if of_items and input:match("^ofkc") then
-		for _, val in pairs(of_items) do
-			local cand = Candidate("favor", seg.start, seg._end, val, "")
-			cand.quality = 999
-			yield(cand)
+	if (not of_items) and input:match("^ofk") and (#input >= 4) then
+		local item_prefix = input:sub(4)
+		for key, val in pairs(app_items["Favor"]) do
+			if key:match(item_prefix) and (key:sub(1, 1) == item_prefix:sub(1, 1)) then
+				for k, v in pairs(val) do
+					local item = type(k) == "number" and v or k
+					local cand = Candidate("favor", seg.start, seg._end, item, "")
+					cand.quality = 999
+					yield(cand)
+				end
+                of_items = app_items["Favor"]
+                first_menu_text = key
+			end
+		end
+	end
+
+	if type(of_items) == "table" and input:match("^ofk$") then
+		for key, val in pairs(of_items) do
+			if type(key) == "number" and type(val) == "string" then
+				local cand = Candidate("favor", seg.start, seg._end, val, "")
+				cand.quality = 999
+				yield(cand)
+			else
+				local cand = Candidate("favor", seg.start, seg._end, key, "")
+				cand.quality = 999
+				yield(cand)
+			end
 		end
 	end
 end

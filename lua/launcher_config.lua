@@ -38,28 +38,30 @@ local commands = {
 		["jjat"] = { "alacritty 终端", "org.alacritty" },
 		["jjit"] = { "iTerm2 终端", "com.googlecode.iterm2" },
 		["jjdl"] = { "FDM 下载", "org.freedownloadmanager.fdm6" },
-		["jjdlf"] = { "打开下载文件夹", "~/Downloads" },
-		["jjdof"] = { "打开文档文件夹", "~/Documents" },
-		["jjgem"] = { "打开 Gmail 首页", "https://mail.google.com" },
-		["jjytb"] = { "打开 Youtube 首页", "https://youtube.com" },
 	},
-    ["Favor"] = {
-        ["MailBox"] = {
-            "boomker@gmail.com",
-            "cyzhu@yamutech.com",
-            "moichigo@outlook.com",
-        },
-        ["BookMark"] = {
-            "https://youtube.com",
-            "https://bilibili.com",
-            "https://github.com",
-            "https://mail.google.com",
-        },
-        ["PhoneNumber"] = {
-            "18930000000",
-            "17710000000",
-        },
-    },
+	["Favor"] = {
+		["mb邮箱"] = {
+			"boomker@gmail.com",
+			"zhu@yamutech.com",
+			"ichigo@outlook.com",
+		},
+		["bm书签"] = {
+			"https://youtube.com",
+			"https://bilibili.com",
+			"https://github.com",
+			"https://mail.google.com",
+		},
+		["cn卡号"] = {
+			["电信个人"] = "10000000000",
+			["移动工作"] = "10000000000",
+			["招商工资"] = "6000000000099999",
+			["身份证号"] = "400000000009999999",
+		},
+		["fl目录位置"] = {
+			["打开下载文件夹"] = "~/Downloads",
+			["打开文档文件夹"] = "~/Documents",
+		},
+	},
 	["iOS"] = {},
 }
 
