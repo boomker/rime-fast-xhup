@@ -66,7 +66,8 @@ function launcher.processor(key, env)
 			return 1 -- kAccepted 收下此key
 		elseif idx >= 0 then
 			local sys = detect_os()
-			local candidateText = segment:get_candidate_at(idx).text
+			local _candidateText = segment:get_candidate_at(idx).text
+			local candidateText = _candidateText:gsub(' ', '')
 			if candidateText:match("^http") then
 				cmd(sys, candidateText)
 				of_items = nil
@@ -74,7 +75,8 @@ function launcher.processor(key, env)
 				context:clear()
 				return 1 -- kAccepted 收下此key
 			elseif first_menu_text and first_menu_text:match("目录位置") then
-				local path = app_items["Favor"][first_menu_text][candidateText]
+				local _path = app_items["Favor"][first_menu_text][candidateText]
+                local path = _path:gsub(' ', '\\ ')
 				cmd(sys, path)
 				of_items = nil
 				first_menu_text = nil
