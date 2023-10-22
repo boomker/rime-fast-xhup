@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-09-24"
+version: "2023-10-17"
 sort: by_weight
 ...
 # 一些杂项
@@ -153,10 +153,20 @@ Windows 7	Windows	7
 Windows 8	Windows	8
 Windows 10	Windows	10
 Windows 11	Windows	11
+# 为了每组的排序，code 必须保持一致
+hell	hell	2
+he'll	hell	1
+shell	shell	2
+she'll	shell	1
+well	well	2
+we'll	well	1
+ill	ill	2
+I'll	ill	1
+ID	id	2
+I'd	id	1
+shed	shed	2
+she'd	shed	1
 # +_+
-ERC-20	ERC-20
-ERC-721	ERC-721
-ERC-1155	ERC-1155
 iPhone 3G	iPhone3G
 iPhone 3GS	iPhone3GS
 iPhone 4	iPhone4
@@ -226,6 +236,9 @@ Windows 7	Windows7
 Windows 8	Windows8
 Windows 10	Windows10
 Windows 11	Windows11
+ERC-20	ERC-20
+ERC-721	ERC-721
+ERC-1155	ERC-1155
 cheetah	cheetah
 mavericks	mavericks
 High Sierra	HighSierra
@@ -1380,7 +1393,7 @@ Simple Mail Transfer Protocol	SMTP
 Simple Mail Transfer Protocol	SimpleMailTransferProtocol
 unacceptable	unacceptable
 Waterfox	Waterfox
-Let's Go	Let'sGo
+Let's go	Let'sgo
 one-liner	one-liner
 Callback	Callback
 SSID	SSID
@@ -1529,7 +1542,6 @@ IdeaVim	IdeaVim
 unfo	unfo
 timestamp	timestamp
 ChatGPT	ChatGPT
-ChatGPT Plus	ChatGPTPlus
 OpenAI	OpenAI
 OpenAI Codex	OpenAICodex
 OpenAI ChatGPT	OpenAIChatGPT
@@ -1605,10 +1617,9 @@ RNA	RNA
 ribonucleic acid	RNA
 mRNA	mRNA
 messenger RNA	mRNA
-C++	Cpp
 C++	C++
+C++	Cpp
 Python	Python
-Perl	Perl
 MIT	MIT
 Massachusetts Institute of Technology	MIT
 Massachusetts Institute of Technology	MassachusettsInstituteofTechnology
@@ -2247,7 +2258,6 @@ add-on	add-on
 add-ons	add-ons
 C#	C#
 C#	Csharp
-C#	Cjing
 decode	decode
 KeyCastr	KeyCastr
 Laugh Tale	LaughTale
@@ -2259,6 +2269,69 @@ RustRover	RustRover
 bilibili	bilibili
 Terraria	Terraria
 Unihan	Unihan
-stargazer	stargazer 
-Terraria	Terraria 
-Unihan	Unihan 
+adrift	adrift
+joker	joker
+cannibalistic	cannibalistic
+micrometer	micrometer
+nanometer	nanometer
+DLsite	DLsite
+picosecond	picosecond
+femtosecond	femtosecond
+attosecond	attosecond
+I'm	I'm
+you're	you're
+she's	she's
+we're	we're
+they're	they're
+aren't	aren't
+wasn't	wasn't
+weren't	weren't
+hasn't	hasn't
+haven't	haven't
+hadn't	hadn't
+wouldn't	wouldn't
+couldn't	couldn't
+shouldn't	shouldn't
+mightn't	mightn't
+mustn't	mustn't
+shan't	shan't
+ain't	ain't
+daren't	daren't
+needn't	needn't
+oughtn't	oughtn't
+who's	who's
+where's	where's
+when's	when's
+why's	why's
+how's	how's
+here's	here's
+you'll	you'll
+it'll	it'll
+they'll	they'll
+you'd	you'd
+we'd	we'd
+I've	I've
+he'd	he'd
+it'd	it'd
+they'd	they'd
+you've	you've
+we've	we've
+they've	they've
+sorta	sorta
+lemme	lemme
+outta	outta
+whatcha	whatcha
+Google TV	GoogleTV
+PVP	PVP
+Player versus Player	PVP
+PVE	PVE
+player versus environment	PVE
+Elon	Elon
+Musk	Musk
+Google	TV GoogleTV
+PVP	PVP 
+Player	versus Player
+PVE	PVE 
+player	versus environment
+Elon	Elon 
+Musk	Musk 

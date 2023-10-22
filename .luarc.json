@@ -1,6 +1,5 @@
 {
     "diagnostics.globals": [
-        "vim",
         "ReverseDb",
         "yield",
         "Candidate",
@@ -16,8 +15,4 @@
         "rime_api",
         "Code"
     ],
-    "diagnostics.disable": [
-        "different-requires",
-        "unused-local"
-    ]
 }
