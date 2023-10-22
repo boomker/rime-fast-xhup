@@ -1,4 +1,5 @@
 ---@diagnostic disable: lowercase-global
+
 --[[
 librime-lua 样例
 
@@ -108,11 +109,6 @@ top_word_autocommit_filter = top_word_autocommit.filter
 -- 详见 `lua/reverse.lua`
 -- reverse_lookup_filter = require("reverse")
 
--- 成语短句优先
-expand_idiom_abbr = require("expand_idiom_abbr")
-expand_idiom_abbr_processor = expand_idiom_abbr.processor
-expand_idiom_abbr_translator = expand_idiom_abbr.translator
-
 -- 强制删词, 隐藏词组
 cold_word_drop = require('cold_word_drop')
 cold_word_drop_filter = cold_word_drop.filter
@@ -141,3 +137,8 @@ pair_symbols_processor = pair_symbols.processor
 launcher = require("launcher")
 launcher_processor = launcher.processor
 launcher_translator = launcher.translator
+
+-- 成语短句优先
+expand_idiom_abbr = require("expand_idiom_abbr")
+expand_idiom_abbr_processor = expand_idiom_abbr.processor
+expand_idiom_abbr_translator = expand_idiom_abbr.translator
