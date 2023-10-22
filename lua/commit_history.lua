@@ -8,8 +8,7 @@ local history_list = {}
 
 local function is_candidate_in_type(cand, type)
     local cs = cand:get_genuines()
-    ---@diagnostic disable-next-line: unused-local
-    for i, c in pairs(cs) do
+    for _, c in pairs(cs) do
         if (c.type == type) then
             return true
         end
@@ -37,7 +36,6 @@ function translator.fini(env)
     env.notifier_commit_history:disconnect()
 end
 
----@diagnostic disable-next-line: unused-local
 function translator.func(input, seg, env)
     if (seg:has_tag("history") or input == "hisz") then
         for i = #history_list , 1 , -1 do

@@ -1,4 +1,9 @@
+-- 默认应用启动或切换触发前缀为"jj"
+-- 可在下行配置其他的触发前缀
+local appLaunchPrefix = "af"
+
 local commands = {
+	-- 应用启动切换
 	["Windows"] = {
 		["jjcm"] = { "CMD", "cmd.exe" },
 		["jjdn"] = { "Explorer", "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" },
@@ -18,7 +23,7 @@ local commands = {
 		["jjsf"] = { "Safari 浏览器", "com.apple.Safari" },
 		["jjgc"] = { "Chrome 浏览器", "com.google.Chrome" },
 		["jjch"] = { "Chrome 浏览器", "com.google.Chrome" },
-		["jjff"] = { "火狐浏览器", "org.mozilla.firefox" },
+		["jjff"] = { "Firefox 浏览器", "org.mozilla.firefox" },
 		["jjfy"] = { "Easydict", "com.izual.Easydict" },
 		["jjed"] = {
 			{ "Edge 浏览器", "com.microsoft.edgemac" },
@@ -39,30 +44,50 @@ local commands = {
 		["jjit"] = { "iTerm2 终端", "com.googlecode.iterm2" },
 		["jjdl"] = { "FDM 下载", "org.freedownloadmanager.fdm6" },
 	},
+	["iOS"] = {},
+
+	-- 快捷指令〔邮箱账号, 书签网址, 各种卡号(手机/银行卡/身份证), 文件夹位置〕
 	["Favor"] = {
+		-- [中括号]里的为索引键, 最好不要带「空 格」字符
+		-- [action]里的为执行动作, "commit" 为字符上屏, "open" 为打开对象
+        -- 动作名称"commit/open", 不能更改
 		["mb邮箱"] = {
-			"boomker@gmail.com",
-			"zhu@yamutech.com",
-			"ichigo@outlook.com",
-		},
-		["bm书签"] = {
-			"https://youtube.com",
-			"https://bilibili.com",
-			"https://github.com",
-			"https://mail.google.com",
+			["action"] = "commit",
+			["items"] = {
+				"000000000@gmail.com",
+				"000000@yamu.com",
+				"000000000000@outlook.com",
+			},
 		},
 		["cn卡号"] = {
-			["电信个人"] = "10000000000",
-			["移动工作"] = "10000000000",
-			["招商工资"] = "6000000000099999",
-			["身份证号"] = "400000000009999999",
+			["action"] = "commit",
+			["items"] = {
+				["电信个人"] = "10000000000",
+				["移动工作"] = "10000000000",
+				["招商工资"] = "6000000000000000",
+				["身份证号"] = "400000000000000000",
+			},
 		},
-		["fl目录位置"] = {
-			["打开下载文件夹"] = "~/Downloads",
-			["打开文档文件夹"] = "~/Documents",
+		["bm书签"] = {
+			["action"] = "open",
+			["items"] = {
+				"https://youtube.com",
+				"https://bilibili.com",
+				"https://github.com",
+			},
+		},
+		["fl文件夹路径"] = {
+			["action"] = "open",
+			["items"] = {
+				["〔下载〕文件夹"] = "~/Downloads",
+				["〔文档〕文件夹"] = "~/Documents",
+				["〔Rime〕用户配置"] = "~/Library/Rime",
+				["〔iCloud〕文件夹"] = "~/Library/Mobile Documents",
+				["〔系统应用〕文件夹"] = "/System/Applications",
+                ["〔Rime〕安装目录"] = "/Library/Input Methods/Squirrel.app/Contents/SharedSupport"
+			},
 		},
 	},
-	["iOS"] = {},
 }
 
-return commands
+return { appLaunchPrefix, commands }
