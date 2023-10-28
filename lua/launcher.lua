@@ -5,7 +5,10 @@ local of_items = nil
 local first_menu_text = nil
 
 local function cmd(system, cmdArgs, objId)
-	if system:lower():match("darwin") then
+	if system:lower():match("darwin") and (cmdArgs == "exec") then
+		local osascript = objId
+		os.execute(osascript)
+	elseif system:lower():match("darwin") then
 		local osascript = "open " .. cmdArgs .. objId
 		os.execute(osascript)
 	elseif system:lower():match("windows") then
@@ -80,7 +83,7 @@ function processor.func(key, env)
 
 			local action = app_items["Favor"][first_menu_text]["action"]
 			local items = app_items["Favor"][first_menu_text]["items"]
-			if (action == "commit") and (not items[1]) then
+			if (action == "commit") and not items[1] then
 				local commitText = app_items["Favor"][first_menu_text]["items"][candidateText]
 				engine:commit_text(commitText)
 			elseif (action == "open") and (items[1] == nil) then
@@ -89,14 +92,17 @@ function processor.func(key, env)
 				cmd(sys, "", path)
 			elseif action == "open" and type(items[1]) == "string" then
 				cmd(sys, "", candidateText)
+			elseif action == "exec" and (items[1] == nil) then
+				local cmdString = app_items["Favor"][first_menu_text]["items"][candidateText]
+				cmd(sys, "exec", cmdString)
 			else
 				engine:commit_text(candidateText)
 			end
 
-            context:clear()
-            of_items = nil
-            first_menu_text = nil
-            return 1 -- kAccepted 收下此key
+			context:clear()
+			of_items = nil
+			first_menu_text = nil
+			return 1 -- kAccepted 收下此key
 		end
 	end
 
