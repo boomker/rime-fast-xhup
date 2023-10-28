@@ -50,7 +50,7 @@ local commands = {
 	["Favor"] = {
 		-- [中括号]里的为索引键, 最好不要带「空 格」字符
 		-- [action]里的为执行动作, "commit" 为字符上屏, "open" 为打开对象
-        -- 动作名称"commit/open", 不能更改
+		-- 动作名称"commit/open", 不能更改
 		["mb邮箱"] = {
 			["action"] = "commit",
 			["items"] = {
@@ -59,13 +59,24 @@ local commands = {
 				"000000000000@outlook.com",
 			},
 		},
+		["tc终端命令"] = {
+			["action"] = "exec",
+			["items"] = {
+				["隐藏桌面图标"] = "defaults write com.apple.finder CreateDesktop false && killall Finder",
+				["显示桌面图标"] = "defaults write com.apple.finder CreateDesktop true && killall Finder",
+				["暗夜模式开关"] = "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'",
+				["开启屏保"] = "osascript -e 'tell application \"System Events\" to start current screen saver'",
+                ["立即熄屏"] = "pmset displaysleepnow",
+                ["刷新DNS缓存"] = "dscacheutil -flushcache"
+			},
+		},
 		["cn卡号"] = {
 			["action"] = "commit",
 			["items"] = {
-				["电信个人"] = "10000000000",
-				["移动工作"] = "10000000000",
+				["电信个人"] = "00000000000",
+				["移动工作"] = "00000000000",
 				["招商工资"] = "6000000000000000",
-				["身份证号"] = "400000000000000000",
+				["身份证号"] = "000000000000000000",
 			},
 		},
 		["bm书签"] = {
@@ -84,7 +95,7 @@ local commands = {
 				["〔Rime〕用户配置"] = "~/Library/Rime",
 				["〔iCloud〕文件夹"] = "~/Library/Mobile Documents",
 				["〔系统应用〕文件夹"] = "/System/Applications",
-                ["〔Rime〕安装目录"] = "/Library/Input Methods/Squirrel.app/Contents/SharedSupport"
+				["〔Rime〕安装目录"] = "/Library/Input Methods/Squirrel.app/Contents/SharedSupport",
 			},
 		},
 	},
