@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-10-17"
+version: "2023-10-30"
 sort: by_weight
 ...
 # 一些杂项
@@ -15,6 +15,8 @@ sort: by_weight
 <br>	<br>
 .DS_Store	.DS_Store
 README.md	README.md
+
+
 # 按键
 Fn	Fn
 Cmd	Cmd
@@ -35,6 +37,8 @@ Del	Del
 Delete	Delete
 Esc	Esc
 Eject	Eject
+
+
 # 月份（据说好像 5、6、7 月不要缩写 https://www.zhihu.com/question/29896678）
 January	January
 Jan.	Jan.
@@ -73,6 +77,8 @@ November	Nov
 December	December
 Dec.	Dec.
 December	Dec
+
+
 # 星期
 Monday	Monday
 Mon.	Mon.
@@ -98,6 +104,8 @@ Saturday	Sat
 Sunday	Sunday
 Sun.	Sun.
 Sunday	Sun
+
+
 # 生活大爆炸 & 老友记
 Sheldon	Sheldon
 Leonard	Leonard
@@ -112,12 +120,33 @@ Joey	Joey
 Ross	Ross
 Chandler	Chandler
 Phoebe	Phoebe
+
+
+# 特定的排序，为了每组的排序，code 必须保持一致
+
+he'll	hell	1
+shell	shell	2
+she'll	shell	1
+well	well	2
+we'll	well	1
+ill	ill	2
+I'll	ill	1
+ID	id	2
+I'd	id	1
+shed	shed	2
+she'd	shed	1
+net	net	2
+.NET	net	1
+.NET	dotnet
+
+
 # 带权重的系列
 iPhone	iPhone	999
 iPhone 15	iPhone	4
 iPhone 15 Plus	iPhone	3
 iPhone 15 Pro	iPhone	2
 iPhone 15 Pro Max	iPhone	1
+
 Mac OS X	MacOSX	999
 Mac OS X Cheetah	MacOSX	1
 Mac OS X Puma	MacOSX	2
@@ -126,12 +155,14 @@ Mac OS X Panther	MacOSX	4
 Mac OS X Tiger	MacOSX	5
 Mac OS X Leopard	MacOSX	6
 Mac OS X Snow Leopard	MacOSX	7
+
 OS X	OSX	999
 OS X Lion	OSX	1
 OS X Mountain Lion	OSX	2
 OS X Mavericks	OSX	3
 OS X Yosemite	OSX	4
 OS X El Capitan	OSX	5
+
 macOS	macOS	999
 macOS Sierra	macOS	1
 macOS High Sierra	macOS	2
@@ -141,6 +172,7 @@ macOS Big Sur	macOS	5
 macOS Monterey	macOS	6
 macOS Ventura	macOS	7
 macOS Sonoma	macOS	8
+
 Windows	Windows	999
 Windows 95	Windows	1
 Windows 98	Windows	2
@@ -153,19 +185,8 @@ Windows 7	Windows	7
 Windows 8	Windows	8
 Windows 10	Windows	10
 Windows 11	Windows	11
-# 为了每组的排序，code 必须保持一致
-hell	hell	2
-he'll	hell	1
-shell	shell	2
-she'll	shell	1
-well	well	2
-we'll	well	1
-ill	ill	2
-I'll	ill	1
-ID	id	2
-I'd	id	1
-shed	shed	2
-she'd	shed	1
+
+
 # +_+
 iPhone 3G	iPhone3G
 iPhone 3GS	iPhone3GS
@@ -411,7 +432,7 @@ WYSIWYG	WYSIWYG
 What You See Is What You Get	WYSIWYG
 Mark Text	MarkText
 Joplin	Joplin
-Obsidian	Obsidian
+obsidian	obsidian
 SteamOS	SteamOS
 TikTok	TikTok
 IDC	IDC
@@ -802,9 +823,6 @@ Overcast	Overcast
 Overflow	Overflow
 PaintCode	PaintCode
 Parallels Desktop	ParallelsDesktop
-Password	Password
-Paste	Paste
-Paw	Paw
 PayPal	PayPal
 PhotoDesk	PhotoDesk
 Picatext	Picatext
@@ -923,8 +941,6 @@ WSGI	WSGI
 BTC	BTC
 Bitcoin	BTC
 Bitcoin	Bitcoin
-template	template
-IMDb	IMDb
 gank	gank
 debuff	debuff
 MagSafe	MagSafe
@@ -988,7 +1004,6 @@ Optical Character Recognition	OCR
 Optical Character Recognition	OpticalCharacterRecognition
 Déjà vu	Dejavu
 FFmpeg	FFmpeg
-Pokemon	Pokemon
 DMCA	DMCA
 Digital Millennium Copyright Act	DMCA
 Digital Millennium Copyright Act	DigitalMillenniumCopyrightAct
@@ -1106,7 +1121,6 @@ Shottr	Shottr
 turbo	turbo
 Turbo Boost	TurboBoost
 Turbo Boost Switcher	TurboBoostSwitcher
-P2P	P2P
 OPPO	OPPO
 vivo	vivo
 Uno	Uno
@@ -1219,7 +1233,6 @@ Windows Media Player	MediaPlayer
 Visual Studio Code	VisualStudioCode
 Visual Studio Code	VSCode
 PowerShell	PowerShell
-.NET	.NET
 Surface	Surface
 MSN	MSN
 Skype	Skype
@@ -1507,19 +1520,14 @@ deprecate	deprecate
 deprecated	deprecated
 tum	tum
 rapper	rapper
-fucked	fucked
 Fedora	Fedora
 downbeat	downbeat
 hading	hading
 LeetCode	LeetCode
 danced	danced
-swept	swept
-spun	spun
 ghosts	ghosts
-admiral	admiral
 moonlit	moonlit
 Helvetica	Helvetica
-rewrite	rewrite
 limon	limon
 annotate	annotate
 annotated	annotated
@@ -2328,10 +2336,28 @@ PVE	PVE
 player versus environment	PVE
 Elon	Elon
 Musk	Musk
-Google	TV GoogleTV
-PVP	PVP 
-Player	versus Player
-PVE	PVE 
-player	versus environment
-Elon	Elon 
-Musk	Musk 
+Logseq	Logseq
+WPS	WPS
+Morty	Morty
+destructible	destructible
+indestructible	indestructible
+Frundles	Frundles
+Brotato	Brotato
+homie	homie
+homey	homey
+cynical	cynical
+seduce	seduce
+pinky	pinky
+engineman	engineman
+unhuman	unhuman
+unhumified	unhumified
+unhumanize	unhumanize
+flares	flares
+P2P	P2P
+F2A	F2A
+B2B	B2B
+C2C	C2C
+B2C	B2C
+C2B	C2B
+O2O	O2O
+NBA 2K	NBA2K
