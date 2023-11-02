@@ -54,9 +54,9 @@ local commands = {
 		["mb邮箱"] = {
 			["action"] = "commit",
 			["items"] = {
-				"gmboomker@gmail.com",
-				"cy.zhu@yamu.com",
-				"moichigo0924@outlook.com",
+				"000000ker@gmail.com",
+				"000000@yamu.com",
+				"000000go0@outlook.com",
 			},
 		},
 		["tc终端命令"] = {
@@ -67,16 +67,18 @@ local commands = {
 				["暗夜模式开关"] = "osascript -e 'tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode'",
 				["开启屏保"] = "osascript -e 'tell application \"System Events\" to start current screen saver'",
                 ["立即熄屏"] = "pmset displaysleepnow",
-                ["刷新DNS缓存"] = "dscacheutil -flushcache"
+                ["刷新DNS缓存"] = "dscacheutil -flushcache",
+                ["部署Rime"] = "/Library/Input Methods/Squirrel.app/Contents/MacOS/squirrel --reload",
+                ["同步Rime"] = "/Library/Input Methods/Squirrel.app/Contents/MacOS/squirrel --sync"
 			},
 		},
 		["cn卡号"] = {
 			["action"] = "commit",
 			["items"] = {
-				["电信个人"] = "18939740924",
-				["移动工作"] = "17717292587",
-				["招商工资"] = "6000000000000000",
-				["身份证号"] = "420506199409241817",
+				["电信个人"] = "00000000000",
+				["移动工作"] = "00000000000",
+				["招商工资"] = "0000000000000000",
+				["身份证号"] = "000000000000000000",
 			},
 		},
 		["bm书签"] = {
