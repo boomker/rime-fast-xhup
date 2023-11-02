@@ -93,7 +93,13 @@ function processor.func(key, env)
 			elseif action == "open" and type(items[1]) == "string" then
 				cmd(sys, "", candidateText)
 			elseif action == "exec" and (items[1] == nil) then
-				local cmdString = app_items["Favor"][first_menu_text]["items"][candidateText]
+				local _cmdString = app_items["Favor"][first_menu_text]["items"][candidateText]
+                local cmdString
+                if _cmdString and _cmdString:match('^/') then
+                    cmdString = _cmdString:gsub(" ", "\\ ", 1)
+                else
+                    cmdString = _cmdString
+                end
 				cmd(sys, "exec", cmdString)
 			else
 				engine:commit_text(candidateText)
