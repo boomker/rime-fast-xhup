@@ -54,7 +54,6 @@ do
     }
 done
 
-
 gcp -ar "${repoRoot}/cn_dicts"/* "${rimeUserPath}/cn_dicts/"
 gcp -ar "${repoRoot}/en_dicts"/* "${rimeUserPath}/en_dicts/"
 gcp -ar "${repoRoot}/opencc"/* "${rimeUserPath}/opencc/"
