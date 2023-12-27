@@ -13,5 +13,9 @@ local drop_words =
 	"倭坠髻",
 	"坎纳癸",
 	"离经畔道",
+	"每懂",
+	"妆安",
+	"是延",
+	"相应包",
 }
 return drop_words
