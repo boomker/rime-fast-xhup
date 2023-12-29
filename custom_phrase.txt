@@ -79,8 +79,6 @@
 ## 姓名（在custom_phrase.txt里设置）	afxm	64
 ## xxx（学号/工号）	afxh	60
 ## xx学院/部门	afxy	48
-gmboomker@gmail.com	ggem	44
-18939740924	sjhm	4
 
 ## 常用短语
 我们	wm
@@ -121,14 +119,12 @@ gmboomker@gmail.com	ggem	44
 参考	ck	3
 仓库	ck	2
 出口	ck	1
-我的	wod
 好吧	hb	1
 那边	nb	1
 这边	vb	1
 哦哦	oo	3
 噢噢	oo	2
 喔喔	oo	1
-有吗	ym
 有没有	ymy	2
 也没有	ymy	1
 有没有	umu
@@ -137,10 +133,8 @@ gmboomker@gmail.com	ggem	44
 您那边	nnb	1
 手机号	sjh	1
 馬上到	msd
-不知道	bzd
 是不是	ubu
 怎样的	zyd
-怎样的	zmd
 怎么样了	zmyl
 怎么样了	zmwl
 截图看看	jtkk
@@ -149,9 +143,7 @@ gmboomker@gmail.com	ggem	44
 没什么	mum
 那么	name	10001
 有吗	um
-有吗	uma
 什么	um
-什么	ume
 什么鬼	umg
 什么情况	umqk
 什么情况	umfk
