@@ -59,6 +59,6 @@ scapy	scapy	100000
 smartddi	smartddi	100000
 yrdns	yrdns	100000
 wireshark	wireshark	100000
-ireshark	ireshark	100000
 Wireshark	wireshark	100000
 kpump	kpump	100000
+dmesg	dmesg	100000

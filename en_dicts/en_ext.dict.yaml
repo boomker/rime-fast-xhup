@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-12-08"
+version: "2023-12-25"
 sort: by_weight
 ...
 # 一些杂项
@@ -468,7 +468,6 @@ IntelliJ	IntelliJ
 IntelliJ IDEA	IntelliJIDEA
 IntelliJ IDEA Community	IntelliJIDEACommunity
 IntelliJ IDEA Ultimate	IntelliJIDEAUltimate
-IDEA	IDEA
 IDEA Community	IDEACommunity
 IDEA Ultimate	IDEAUltimate
 IDE	IDE
@@ -816,7 +815,6 @@ PlistEdit	pliPlistEdit
 PopClip	PopClip
 PowerPack	PowerPack
 Privoxy	Privoxy
-Pro	Pro
 Promotee	Promotee
 Proxifier	Proxifier
 Public Beta	PublicBeta
@@ -2245,6 +2243,7 @@ Google Pixel	GooglePixel
 medallion	medallion
 add-on	add-on
 add-ons	add-ons
+C#	C#
 decode	decode
 KeyCastr	KeyCastr
 Laugh Tale	LaughTale
@@ -2364,31 +2363,12 @@ keychains	keychains
 guile	guile
 e.g.	e.g.
 i.e.	i.e.
-et al.	etal.CFO	CFO 
-Chief	Financial Officer
-EPUB	EPUB 
-tempting	tempting 
-WebCatalog	WebCatalog 
-Apple	One AppleOne
-pixiv	pixiv 
-M4A1	M4A1 
-shogun	shogun 
-wail	wail 
-wails	wails 
-wailed	wailed 
-wailing	wailing 
-PK	PK 
-WireGuard	WireGuard 
-AdGuard	AdGuard 
-Altman	Altman 
-Ultraman	Ultraman 
-silicones	silicones 
-GPTs	GPTs 
-sider	sider 
-DALL·E	DALL·E 
-keychain	keychain 
-keychains	keychains 
-guile	guile 
-e.g.	e.g. 
-i.e.	i.e. 
+Zettlr	Zettlr
+Codium	Codium
+CodiumAI	CodiumAI
+SaaS	SaaS
+Software as a service	SaaS
+gitignore	gitignore
+.gitignore	.gitignore
+humankind	humankind
 et	al. etal.
