@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2023-12-25"
+version: "2024-01-02"
 sort: by_weight
 ...
 # 一些杂项
@@ -2363,6 +2363,7 @@ keychains	keychains
 guile	guile
 e.g.	e.g.
 i.e.	i.e.
+et al.	etal.
 Zettlr	Zettlr
 Codium	Codium
 CodiumAI	CodiumAI
@@ -2371,4 +2372,14 @@ Software as a service	SaaS
 gitignore	gitignore
 .gitignore	.gitignore
 humankind	humankind
-et	al. etal.
+Alita	Alita
+epoll	epoll
+kqueue	kqueue
+LangChain	LangChain
+LangServe	LangServe
+LangSmith	LangSmithAlita	Alita 
+epoll	epoll 
+kqueue	kqueue 
+LangChain	LangChain 
+LangServe	LangServe 
+LangSmith	LangSmith 

@@ -17,5 +17,6 @@ local drop_words =
 	"妆安",
 	"是延",
 	"相应包",
+	"嘉慧世人",
 }
 return drop_words
