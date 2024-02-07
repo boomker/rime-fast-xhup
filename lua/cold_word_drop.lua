@@ -23,7 +23,11 @@ local function get_record_filername(record_type)
     if system == "Darwin" then
         filename = string.format("%s/Library/Rime/lua/cold_word_record/%s_words.lua", os.getenv('HOME'), record_type)
     elseif system == "Linux" then
-        filename = string.format("%s/.config/ibus/rime/lua/cold_word_record/%s_words.lua", os.getenv('HOME'), record_type)
+        local gtk_env = os.getenv('GTK_IM_MODULE')
+        filename = string.format("%s/%s/rime/lua/cold_word_drop/%s_words.lua",
+            os.getenv('HOME'),
+            gtk_env and (string.find(gtk_env, 'fcitx') and '.local/share/fcitx5' or '.config/ibus'),
+            record_type)
     end
     return filename
 end
@@ -155,19 +159,14 @@ end
 
 function cold_word_drop.filter(input, env)
     local engine            = env.engine
-    local context           = engine.context
+    -- local context           = engine.context
     local config            = engine.schema.config
-    local input_code        = env.engine.context:get_commit_text()
+    -- local input_code        = env.engine.context:get_commit_text()
     local cands = {}
     local i = 1
     local idx = config:get_int("turn_down_freq_config/idx") or 3
 
     for cand in input:iter() do
-        if string.match(input_code, '^[.,;?:!@#^&%+%-%=%_]') and (#input_code == 1) then
-            engine:commit_text(cand.text)
-            context:clear()
-            return 1
-        end
         local cpreedit_code = string.gsub(cand.preedit, ' ', '')
         if (i <= idx) then
             local tfl = turndown_freq_list[cand.text] or nil
