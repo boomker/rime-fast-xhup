@@ -29,8 +29,7 @@ switches:
   - name: full_shape
     states: [半角, 全角]
   - name: simplification
-    reset: 1
-    states: [繁体, 简体]
+    states: [简体, 繁体]
   - options: ["utf8", "gbk", "gb2312"]    # 字符集选单
     reset: 0                              # 默认 UTF8
     states:
@@ -168,7 +167,7 @@ speller:
     - derive/^bh/sb/
     - derive/^b([fgknm])/s$1/                   # b[fgknm] --> s[fgknm]
     - derive/^mb/ms/
-    - derive/^mj/mx/
+    - derive/^mh/mx/
     - derive/^mk/me/
     - derive/^mo/mr/
     - derive/^mu/mv/
@@ -298,9 +297,9 @@ menu:
 
 transcription:
   option_name: simplification
-  opencc_config: t2s.json
-  # tags: abc
+  opencc_config: s2t.json
   tips: none
+  # tags: abc
   excluded_types: [reverse_lookup]
 
 emoji:
