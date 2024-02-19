@@ -97,7 +97,7 @@ style:
 
 simplification:
   option_name: simplification
-  opencc_config: t2s.json
+  opencc_config: s2t.json
   tags: abc
   tips: all
   excluded_types: [ reverse_lookup ]
