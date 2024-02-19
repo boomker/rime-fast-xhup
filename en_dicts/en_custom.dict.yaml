@@ -67,3 +67,5 @@ loginshell	loginshell	100000
 pidstat	pidstat	100000
 recursion	recursion	100000
 IPMI	ipmi	100000
+quickfix	quickfix	100000
+vimgrep	vimgrep	100000
