@@ -2,7 +2,6 @@
 name: en_custom
 version: "2023-07-15"
 ...
-
 vnext	vnext	100000
 xform	xform	100000
 devstack	devstack	100000
@@ -62,3 +61,9 @@ wireshark	wireshark	100000
 Wireshark	wireshark	100000
 kpump	kpump	100000
 dmesg	dmesg	100000
+ospf	ospf	100000
+tcpreplay	tcpreplay	100000
+loginshell	loginshell	100000
+pidstat	pidstat	100000
+recursion	recursion	100000
+IPMI	ipmi	100000
