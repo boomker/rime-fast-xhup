@@ -177,7 +177,7 @@ local function twac_filter(input, env)
     for cand in input:iter() do
         if (pos >= 4) and (table.find_index({4, 5}, #preedit_code)) and
             string.find(preedit_code, "^%l+%[%l*$") and
-            (not table.find(single_char_cands, cand.text)) then
+            (not single_char_cands[cand.text]) then
             single_char_cands[cand.text] = cand
             table.insert(single_char_cands, cand)
         end
@@ -187,8 +187,8 @@ local function twac_filter(input, env)
             (utf8.len(cand.text) == 2) and
             (string.sub(preedit_code, 5, 5) == "[") and
             (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) and
-            (not (table.find(tword_phrase_cands, cand.text) or
-                (cand.quality == 0))) then
+            (not tword_phrase_cands[cand.text]) then
+                -- (cand.quality == 0)) then
             tword_phrase_cands[cand.text] = cand
             table.insert(tword_phrase_cands, cand)
         end
@@ -196,7 +196,7 @@ local function twac_filter(input, env)
         if table.find({6, 8}, #preedit_code) and
             string.find(preedit_code, "^[%l]+$") and
             (table.len(tfchars_word_cands) < 6) and
-            (not table.find(tfchars_word_cands, cand.text)) then
+            (not tfchars_word_cands[cand.text]) then
             tfchars_word_cands[cand.text] = cand
         end
 
@@ -215,7 +215,8 @@ local function twac_filter(input, env)
             local comment = (string.len(remain_shape_code) > 0) and
                                 string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-            if (#single_char_cands == 1) and (single_char_cands[cand.text]) then
+            -- if (#single_char_cands == 1) and (single_char_cands[cand.text]) then
+            if (#single_char_cands == 1) then
                 tword_tail_char_shape_tbl = {}
                 commit_codes = {}
 
