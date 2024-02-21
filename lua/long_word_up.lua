@@ -9,11 +9,9 @@ local function long_word_up(input, env)
     local count = 1
     local pickup_count = 0
     local idx = 0
-    -- local second_cand_quality = 0
     local preedit_code = env.engine.context:get_commit_text()
     for cand in input:iter() do
         local cand_length = utf8.len(cand.text)
-        -- local cand_per_quality = cand.quality
         local cand_text_code = tonumber(utf8.codepoint(cand.text, 1))
         if (cand.quality > 9) or (idx <= 1) then
             prev_word_length = cand_length or 0
@@ -22,7 +20,7 @@ local function long_word_up(input, env)
         elseif (cand_length > prev_word_length) and (cand_length >= 3) and
             (pickup_count < count) and (string.len(preedit_code) > 2) and
             ((19968 <= cand_text_code) and (cand_text_code <= 117777))
-            and (#cand.comment < 3) and (prev_word_length > 1) then
+            and (#cand.comment < 3) then
             yield(cand)
             pickup_count = pickup_count + 1
         else

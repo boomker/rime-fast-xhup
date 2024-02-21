@@ -2,11 +2,11 @@
 
 读取系统时间
 
-  rq => 日期、sj => 时间、xq => 星期
+  dt/rq => 日期、time => 时间、week => 星期
 
 --
 参考：
-  1. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md#%E7%A4%BA%E4%BE%8B-9
+  1. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
   2. https://www.zhihu.com/question/268770492/answer/2190114796
   3. https://zhuanlan.zhihu.com/p/471429749
   4. https://github.com/xkinput/Rime_JD/blob/master/rime/lua/date.lua
@@ -135,14 +135,14 @@ local function getTimeStr(str)
 
 			if replace_index then
 				local _ni = tonumber(replace_index)
-                -- 值：转换为中文，e.g. 0=>〇，1=>一，...
+				-- 值：转换为中文，e.g. 0=>〇，1=>一，...
 				if (not flag) and string.find(pattern, ".number_cn}$") then
 					if string.find(pattern, ".arith.number_cn}$") then
 						-- 21 => 二十一
 						replace_value = tool.convert_arab_to_chinese(_ni)
 					else
 						-- 21 => 二一
-                        local _nis = tostring(_ni)
+						local _nis = tostring(_ni)
 						for i = 1, _nis:len() do
 							local _ni_digit = tonumber(_nis:sub(i, i))
 							replace_value = replace_value .. tool.convert_arab_to_chinese(_ni_digit)
@@ -152,16 +152,18 @@ local function getTimeStr(str)
 					flag = true
 				end
 
-                -- 值：根据conf的prop转换
+				-- 值：根据conf的prop转换
 				if not flag then
 					local prop_name = string.match(pattern, "{(.+)}")
 					local prop = conf[prop_name]
 					if prop then
-						local _np = #prop
-						if _np > _ni then
+						replace_value = prop[_ni]
+						flag = true
+						-- local _np = #prop
+						--[[ if _np >= _ni then
 							replace_value = prop[_ni]
 							flag = true
-						end
+						end ]]
 					end
 				end
 			end
@@ -179,6 +181,7 @@ end
 
 local translator = {}
 
+---@diagnostic disable-next-line: unused-local
 function translator.func(input, seg, env)
 	if seg:has_tag("date") or (input == "date" or input == "rq") then
 		-- 日期
