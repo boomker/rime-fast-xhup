@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2024-02-18"
+version: "2024-02-27"
 sort: by_weight
 ...
 # 一些杂项
@@ -567,6 +567,8 @@ markdown	markdown
 Microsoft Access	Access
 MongoDB	MongoDB
 MySQL	MySQL
+MyISAM	MyISAM
+InnoDB	InnoDB
 Node.js	Node.js
 Pornhub	Pornhub
 Postgres	Postgres
@@ -2430,4 +2432,11 @@ imbalanced	imbalanced
 GitButler	GitButler
 Sora	Sora
 WinNAS	WinNAS
-WinNAS	WinNAS 
+prune	prune
+Wireshark	Wireshark
+Theseus	Theseus
+Laravel	Laravel
+monolith	monolith
+Chiikawa	Chiikawa
+MyISAM	MyISAM 
+InnoDB	InnoDB 
