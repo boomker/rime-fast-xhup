@@ -16,10 +16,9 @@
 local tool = require("tools/number_to_cn")
 
 local conf = {
-	number_en_st = {
-		"0st",
-		"1nd",
-		"2rd",
+	day_en_st = {
+		"1st",
+		"2nd",
 		"3th",
 		"4th",
 		"5th",
@@ -27,6 +26,28 @@ local conf = {
 		"7th",
 		"8th",
 		"9th",
+		"10th",
+		"11th",
+		"12th",
+		"13th",
+		"14th",
+		"15th",
+		"16th",
+		"17th",
+		"18th",
+		"19th",
+		"20th",
+		"21th",
+		"22th",
+		"23th",
+		"24th",
+		"25th",
+		"26th",
+		"27th",
+		"28th",
+		"29th",
+		"30th",
+		"31th",
 	},
 	week_cn = {
 		"星期日",
@@ -77,7 +98,6 @@ local conf = {
 	},
 }
 
-conf.day_en_st = conf.number_en_st
 conf.pattern_date = {
 	"{year}年{month}月{day}日", -- 2022年09月05日
 	"{year}{month}{day}", -- 20220905
@@ -159,11 +179,6 @@ local function getTimeStr(str)
 					if prop then
 						replace_value = prop[_ni]
 						flag = true
-						-- local _np = #prop
-						--[[ if _np >= _ni then
-							replace_value = prop[_ni]
-							flag = true
-						end ]]
 					end
 				end
 			end

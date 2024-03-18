@@ -1,6 +1,6 @@
-##  一些常用的设置项。找到需要进行的设置所在的行,
+##  一些常用的设置项, 找到需要进行的设置所在的行,
 ##  取消注释 (删除行开头的单个 # 符号) 即可启用该设置项.
-##  注意不要删除前面的空格, YAML 文件的缩进比较严格，缩进不对容易报错.
+##  注意不要删除前面的空格, YAML 文件的缩进比较严格, 缩进不对容易报错.
 
 patch:
   engine/+:
@@ -14,27 +14,25 @@ patch:
     hide_cand: "Control+x"        # 匹配当前输入码后隐藏指定的候选字词
     turn_down_cand: "Control+j"   # 匹配当前输入码后降频指定的候选字词
     bindings/+:
+      - {when: has_menu, accept: semicolon, send: 2}
       - {when: has_menu, accept: apostrophe, send: 3}       ## 单引号用于第3候选
+      # - {when: paging, accept: comma, send: Page_Up}
       - {when: has_menu, accept: period, send: Page_Down}
-      - {when: composing, accept: bracketleft, send: "["}   ## tab引导辅助码
-      - {when: composing, accept: Tab, send: Shift+Right}
       - {when: composing, accept: Control+k, send: Shift+Delete}
       - {when: composing, accept: Control+e, send: End}
-      - {when: composing, accept: Control+a, send_sequence: "{Home}{Right}{Right}["}
-      - {when: composing, accept: Right, send_sequence: "{Right}{Right}"}
-      # `键（grave, Tab 上面那个）为词组逐字追加辅助码.
+      - {when: composing, accept: Tab, send: Shift+Right}
+      - {when: composing, accept: bracketleft, send: "["}   ## [引导辅助码
+      # - { when: composing, accept: grave, send: '`' }     ## 取消注释后: `引导辅助码
+      # `键 (grave, Tab 上面那个) 为词组逐字追加辅助码.
       # 可将 grave 改成 Tab, Control+Tab, bracketright(] 键).
+      # 如果希望无论有无 [ 均可引导, 取消注释的同时将 xform 改成 derive
+      # speller/algebra/@next: derive/[[]//
 
   turn_down_freq_config:
     # 降低到第 idx 个位置
     idx: 3
 
-  ##  直接引导辅助码(改用自然码等其他双拼方案的用户请在 pinyin_switch.yaml 中设置)
-  ##  如果希望无论有无 [ 均可引导，取消注释的同时将 xform 改成 derive
-  # speller/algebra/@next: derive/[[]//
-
-  translator/dictionary: flypy_xhfast       ## 使用小鹤原版辅助码
-  # translator/prism: flypy_flypy           ## 使用小鹤原版辅助码
+  translator/dictionary: flypy_xhfast
   # translator/contextual_suggestions: true
   # translator/max_homophones: 7
 
@@ -43,15 +41,15 @@ patch:
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
-      # - derive/^l([uom])$/n$1/              # l -> n
-      # - derive/^(v)([^fg])/z$2/             # zh => z
-      # - derive/^(i)([^fg])/c$2/             # ch => c
-      # - derive/^(u)([^bfgnm])/s$2/          # sh => s
-      - derive/^n([uo])$/l$1/                 # n -> l
-      - derive/^(z)([^acdefghijku])/v$2/      # z => zh
-      - derive/^(c)([^acdefghijuo])/i$2/      # c => ch
-      - derive/^(s)([^abcdefgijknmu])/u$2/    # s => sh
-      - derive/^(i)f/$1g/                     # [zcs][h]en 可以通过 [zcs][h]eng 打出
-      - derive/^(i)g/$1f/                     # [zcs][h]eng 可以通过 [zcs][h]en 打出
-      - derive/^([typdbn])b/$1k/              # in 可以通过 ing 打出
-      # - derive/^([typdjxbm])k/$1b/          # ing 可以通过 in 打出
+      # - derive/^l([uom])$/n$1/                  # l => n
+      # - derive/^(v)([^fg])/z$2/                 # zh => z
+      # - derive/^(i)([^fg])/c$2/                 # ch => c
+      # - derive/^(u)([^bfgnm])/s$2/              # sh => s
+      # - derive/^n([uo])$/l$1/                   # n => l
+      - derive/^(z)([^acdefghijklmnsu])/v$2/      # z => zh
+      - derive/^(c)([^acdefghijsuo])/i$2/         # c => ch
+      - derive/^(s)([^abcdefgijklmnu])/u$2/       # s => sh
+      - derive/^(i)f/$1g/                         # [zcs][h]en => [zcs][h]eng
+      - derive/^(i)g/$1f/                         # [zcs][h]eng => [zcs][h]en
+      - derive/^([typdbn])b/$1k/                  # in => ing
+      # - derive/^([typdjxbm])k/$1b/              # ing => in
