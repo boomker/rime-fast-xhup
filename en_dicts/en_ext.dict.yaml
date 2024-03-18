@@ -7,7 +7,7 @@
 #
 ---
 name: en_ext
-version: "2024-02-27"
+version: "2024-03-18"
 sort: by_weight
 ...
 # 一些杂项
@@ -920,6 +920,7 @@ WSGI	WSGI
 BTC	BTC
 Bitcoin	BTC
 Bitcoin	Bitcoin
+Blockchain	Blockchain
 gank	gank
 debuff	debuff
 MagSafe	MagSafe
@@ -1080,6 +1081,8 @@ SEO	SEO
 Search Engine Optimization	SEO
 Search Engine Optimization	SearchEngineOptimization
 OCSP	OCSP
+Online Certificate Status Protocol	OCSP
+Online Certificate Status Protocol	OnlineCertificateStatusProtocol
 Arthas	Arthas
 Wordle	Wordle
 Silicon Valley	SiliconValley
@@ -2159,6 +2162,8 @@ personalization	personalization
 K8s	K8s
 Kubernetes	K8s
 Kubernetes	Kubernetes
+Kubeadm	Kubeadm
+Minikube	Minikube
 containerized	containerized
 shitty	shitty
 shitwork	shitwork
@@ -2403,6 +2408,7 @@ punctuator	punctuator
 punctuators	punctuators
 QR code	QRcode
 sentry	sentry
+Prometheus	Prometheus
 Grafana	Grafana
 Mirtle	Mirtle
 Hadoop	Hadoop
@@ -2436,5 +2442,9 @@ Theseus	Theseus
 Laravel	Laravel
 monolith	monolith
 Chiikawa	Chiikawa
-MyISAM	MyISAM 
-InnoDB	InnoDB 
+anxious	anxious
+trudge	trudge
+LibreOffice	LibreOffice
+Asics	Asics
+LibreOffice	LibreOffice 
+Asics	Asics 

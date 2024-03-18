@@ -43,7 +43,7 @@ librime-lua 样例
 date_time = require("date_time")
 datetime_translator = date_time.translator
 
--- lunar_translator: 将 `cnl`, `znl`, 翻译成农历
+-- lunar_translator: 将 `cnl`, 翻译成农历
 lunar = require("lunar")
 lunar_translator = lunar.translator
 
@@ -56,7 +56,7 @@ number_translator = number.translator
 en_custom = require("en_custom")
 en_custom_translator = en_custom.translator
 
--- LaTeX 公式输入, `tf`触发
+-- LaTeX 公式输入, `f/`触发
 laTex = require("laTex")
 laTex_translator = laTex.translator
 
@@ -110,12 +110,12 @@ top_word_autocommit_filter = top_word_autocommit.filter
 -- reverse_lookup_filter = require("reverse")
 
 -- 强制删词, 隐藏词组
-cold_word_drop = require('cold_word_drop')
+cold_word_drop = require("cold_word_drop")
 cold_word_drop_filter = cold_word_drop.filter
 cold_word_drop_processor = cold_word_drop.processor
 
 -- 音码优化 fixed
-fly_fixed = require('fly_fixed')
+fly_fixed = require("fly_fixed")
 fly_fixed_filter = fly_fixed.filter
 
 -- ---------------------------------------------------------------

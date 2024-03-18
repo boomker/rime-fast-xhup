@@ -4,15 +4,16 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "0.5"
+  version: "0.7"
   author:
     - boomker
   description: |
     小鹤双拼+辅助码
   dependencies:
-    # - flypy_phrase    # 中文词库 - 现代汉语词典 & 清华开源词库
-    - melt_eng        # 英文单词&词组 - 简明英汉词典(增强版)
+    - melt_eng          # 英文单词&词组 - 简明英汉词典(增强版)
     - easy_en
+    - flypy_radical
+    # - flypy_phrase    # 中文词库 - 现代汉语词典 & 清华开源词库
     # - emoji
     # - stroke
 
@@ -28,8 +29,9 @@ switches:
     states: [💀, 😄]
   - name: full_shape
     states: [半角, 全角]
-  - name: simplification
+  - name: traditionalization
     states: [简体, 繁体]
+    reset: 0
   - options: ["utf8", "gbk", "gb2312"]    # 字符集选单
     reset: 0                              # 默认 UTF8
     states:
@@ -64,6 +66,7 @@ engine:
     - affix_segmentor@easy_en_simp
     - affix_segmentor@laTeX_formula
     - affix_segmentor@dbpy_flypy_help
+    - affix_segmentor@radical_lookup
     - fallback_segmentor
   translators:
     - punct_translator
@@ -77,20 +80,21 @@ engine:
     - table_translator@melt_eng
     - table_translator@easy_en_simp                   # oy 触发单词输入
     - table_translator@dbpy_flypy_help                # oh 触发
+    - table_translator@radical_lookup                 # oq 触发
     - lua_translator@commit_history_translator        # hisz 触发
     - lua_translator@datetime_translator              # date, rq, week, time 触发
-    - lua_translator@launcher_translator              # jj 快捷命令 触发
-    - lua_translator@lunar_translator                 # cnl/znl 触发
-    - lua_translator@en_custom_translator             # `尾触发
-    - lua_translator@laTex_translator                 # tf 触发
+    - lua_translator@launcher_translator              # jj 快捷命令触发
+    - lua_translator@lunar_translator                 # cnl 触发
+    - lua_translator@laTex_translator                 # f/ 触发
     - lua_translator@number_translator                # n/ 触发
+    - lua_translator@en_custom_translator             # `置于结尾处触发
+    - lua_translator@expand_idiom_abbr_translator     # /置于结尾处触发
     - lua_translator@engword_autocaps_translator      # 大写字母开头触发
-    - lua_translator@expand_idiom_abbr_translator
     - lua_translator@top_word_autocommit_translator
   filters:
     - simplifier
     - simplifier@emoji
-    - simplifier@transcription
+    - simplifier@traditionalize
     - lua_filter@fly_fixed_filter
     - lua_filter@charset_withEmoji_filter
     - lua_filter@word_append_space_filter
@@ -98,6 +102,7 @@ engine:
     - lua_filter@top_word_autocommit_filter
     - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
+    - reverse_lookup_filter@radical_reverse_lookup
     - uniquifier                                      #  只能放到最后!
 
 speller:
@@ -108,69 +113,75 @@ speller:
   # auto_select: true
   # auto_select_pattern: '^\w+\[\w{2}$'
   algebra:
-    - erase/^ng\[kx$/             # 响应超级简拼，取消「嗯 ng」的独占
-    - erase/^ng\[kk$/             # 响应超级简拼，取消「唔 ng」的独占
-    - erase/^n\[\w+$/             # 响应超级简拼，取消「嗯 n」的独占
-    - erase/^m\[\w+$/             # 响应超级简拼，取消「呒 m」的独占
-    - erase/^m\[\w+$/             # 响应超级简拼，取消「呣 m」的独占
+    - erase/^ng\[kk$/            # 取消「唔 ng」的独占
+    - erase/^ng\[kx$/            # 取消「嗯 ng」的独占
+    - erase/^n\[\w+$/            # 取消「嗯 n」的独占
+    - erase/^m\[\w+$/            # 取消「呒 m」的独占
+    - erase/^m\[\w+$/            # 取消「呣 m」的独占
 
     ## 字库编码到输入码的转换规则
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/        # Flypy: AB[CD
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2/          # Flypy: AB[C
     - derive/^(\w+)\[(\w)(\w)$/$1/              # Flypy: AB
 
-    ## 音码优化规则,不影响原始音码规则, 属于全新自创
+    ## 左右并击飞键音码规则
     - derive/^(j)n/$1c/
     - derive/^([jyn])t/$1d/                     # t --> d
-    - derive/^([bjlmnx])p/$1e/                  # p --> e
+    - derive/^([bjlmn])p/$1e/                   # p --> e
     - derive/^([djlnx])q/$1f/                   # q --> f
-    - derive/^q([biklmnsxy])/f$1/
-    - derive/^qq/fz/
-    - derive/^qu/fs/
-    - derive/^qr/fo/
-    - derive/^qp/fe/
+    - derive/^q([biklmnpsxy])/f$1/
     - derive/^qt/fd/
-    - derive/^dp/dl/                            # dp --> dl
+    - derive/^qu/fe/
+    - derive/^qr/fo/
+    - derive/^qq/fz/
     - derive/^p([okifuhjbnmg])/e$1/
-    - derive/^([jkiu])y/$1w/                    # [jk]y --> [jk]w
-    - derive/^y([ikb])/w$1/                     # y[ik] --> w[ik]
+    - derive/^pp/el/                            # pp --> el
+    - derive/^dp/dl/                            # dp --> dl
+    - derive/^([jkiu])y/$1w/                    # [jkiu]y --> [jkiu]w
+    - derive/^y([ikb])/w$1/                     # y[ikb] --> w[ikb]
     - derive/^y([asderzc])/o$1/
     - derive/^yu/ov/
     - derive/^yy/ow/
-    - derive/^yj/oj/
-    - derive/^yh/on/
+    - derive/^yh/wn/
+    - derive/^yj/wm/
     - derive/^hy/hw/
     - derive/^t([wy])/dw/                       # t[wy] --> dw
-    - derive/^t([erp])/df/                      # t[er] --> df
-    - derive/^tg/og/                            # tg --> og
+    - derive/^t([er])/df/                       # t[er] --> df
     - derive/^tk/rk/                            # tk --> rk
-    - derive/^tm/rm/                            # tm --> rm
-    - derive/^rg/rm/
-    - derive/^rf/rn/
-    - derive/^gf/gn/
-    - derive/^gr/gm/
-    - derive/^gw/gi/
-    - derive/^gy/gi/
-    - derive/^xt/xd/
-    - derive/^xl/xh/
+    - derive/^tg/rm/                            # tg --> rm
+    - derive/^tp/rl/                            # tp --> rl
+    - derive/^r([gv])/rb/                       # r[gv] --> rb
+    - derive/^rf/rn/                            # rf --> rn
+    - derive/^gf/gn/                            # gf --> gn
+    - derive/^gr/gm/                            # gr --> gm
+    - derive/^g([wy])/gi/
+    - derive/^xp/sl/
+    - derive/^xt/sb/
     - derive/^xy/xo/
+    - derive/^xs/xh/
+    - derive/^nj/xj/
+    - derive/^nh/xh/
+    - derive/^nu/nx/
+    - derive/^no/nr/
+    - derive/^ly/nw/
+    - derive/^lm/nz/
+    - derive/^jm/jz/
     - derive/^jx/ja/
     - derive/^jb/jo/
-    - derive/^jm/jz/
-    - derive/^zw/zk/
+    - derive/^z([ws])/zk/
+    - derive/^za/zl/
+    - derive/^ze/zn/
+    - derive/^zr/zm/
+    - derive/^vr/vm/                            # vr --> vm
+    - derive/^vf/vn/                            # vf --> vn
     - derive/^vg/vk/
-    - derive/^vf/vn/
-    - derive/^vr/vm/
-    - derive/^ly/nw/
-    - derive/^bj/aj/
-    - derive/^bu/au/
-    - derive/^bh/sb/
-    - derive/^b([fgknm])/s$1/                   # b[fgknm] --> s[fgknm]
     - derive/^mb/ms/
     - derive/^mh/mx/
     - derive/^mk/me/
     - derive/^mo/mr/
     - derive/^mu/mv/
+    - derive/^b([hju])/a$1/
+    - derive/^b([fgknm])/s$1/
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -196,7 +207,7 @@ mkst:
   tips: "〔精准造词〕"
   tag: mkst
 
-custom_phrase:                      # 自定义短语, 包含固顶字词, 快捷启动 APP 名称
+custom_phrase:                      # 自定义短语, 包含固顶字词
   dictionary: ""
   user_dict: custom_phrase
   db_class: stabledb
@@ -268,14 +279,12 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    - {when: has_menu, accept: semicolon, send: 2}
-    - {when: has_menu, accept: apostrophe, send: 3}         ## 单引号用于第3候选
-    - {when: has_menu, accept: "Control+0", toggle: simplification}
-    - {when: composing, accept: bracketleft, send: "["}     ## `[`引导辅助码
+    - {when: has_menu, accept: Control+0, toggle: traditionalization}
+    - {when: has_menu, accept: Control+period, toggle: ascii_punct}
+    - {when: has_menu, accept: Control+slash, toggle: emoji}
     - {when: composing, accept: Control+o, send: Shift+Left}
     - {when: composing, accept: Control+i, send: Shift+Right}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
-    # - { when: composing, accept: Tab, send: '[' }         ## 取消注释后: tab引导辅助码
     # - { when: composing, accept: Control+m, send: Return }
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
@@ -285,26 +294,26 @@ recognizer:
     punct: "^/([0-9]0?|[A-Za-z]+)$"
     chinese_number: "^n/[0-9.]+$"
     mkst: "^[a-z]+[[][a-z[[]]*$"        # `[` 引导 精准造词
-    ## associate schemes:
-    reverse_lookup: "^oq[a-z]*?$"       # 部件拆字，部件使用小鹤双拼编码
+    radical_lookup: "^oq[a-z]+'?$"      # 部件拆字, 部件使用小鹤双拼编码
     dbpy_flypy_help: "^oh.*$"
     easy_en_simp: "^oy[a-z]*$"
-    laTeX_formula: "^tf(.*)$"
+    laTeX_formula: "^f/(.*)$"
     # emojis: "^of[a-z]*'?$"
 
 menu:
   page_size: 5
 
-transcription:
-  option_name: simplification
+traditionalize:
+  option_name: traditionalization
   opencc_config: s2t.json
   tips: none
-  # tags: abc
-  excluded_types: [reverse_lookup]
+  excluded_types: [radical_lookup]
 
 emoji:
   opencc_config: emoji.json
   option_name: emoji
+  tag: emoji
+  excluded_types: [radical_lookup]
 
 # emojis:
 #   tag: emojis
@@ -343,24 +352,38 @@ easy_en_simp:
   comment_format:
     - xform/^.+$//
 
-reverse_lookup:
-  dictionary: flypy_chaizi
-  enable_completion: true
-  prefix: "oq"
+radical_reverse_lookup:
+  tag: radical_reverse_lookup
+  # overwrite_comment: true
+  # dictionary: flypy_xhfast
+  dictionary: kMandarin
+  comment_format:
+    - xform/^/~/
+    # - xform/$/)/
+
+radical_lookup:
+  tag: radical_lookup
+  dictionary: flypy_radical
+  enable_sentence: false
+  enable_user_dict: false
+  # enable_completion: true
+  tips: 〔部件组字〕
+  prefix: 'oq'
   suffix: "'"
-  tips: 〔部件组字〕      # 〔筆畫〕
+  comment_format:
+    - erase/^.*$//
   preedit_format:
   # - xlit/hspnz/一丨丿丶乙/
 
 laTeX_formula:
-  tag: laTeX_formula
-  prefix: "tf"
+  tag: LaTeX_Formula
+  prefix: "f/"
   tips: " TeX 公式"
 
 history:                  # 上屏历史记录
   tag: history
-  history_num_max: 10
-  size: 10
+  history_num_max: 30
+  size: 30
   input: "hisz"
   initial_quality: 1000
   excluded_type: "punct"
