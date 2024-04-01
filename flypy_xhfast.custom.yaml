@@ -10,13 +10,14 @@ patch:
   key_binder/+:
     select_first_character: "minus"
     select_last_character: "equal"
+    pin_cand: "Control+t"         # 候选词置顶
     drop_cand: "Control+d"        # 强制删词, 无视输入的编码
     hide_cand: "Control+x"        # 匹配当前输入码后隐藏指定的候选字词
     turn_down_cand: "Control+j"   # 匹配当前输入码后降频指定的候选字词
     bindings/+:
       - {when: has_menu, accept: semicolon, send: 2}
       - {when: has_menu, accept: apostrophe, send: 3}       ## 单引号用于第3候选
-      # - {when: paging, accept: comma, send: Page_Up}
+      # - {when: paging, accept: comma, send: Page_Up}      ## 逗号返回上一页
       - {when: has_menu, accept: period, send: Page_Down}
       - {when: composing, accept: Control+k, send: Shift+Delete}
       - {when: composing, accept: Control+e, send: End}
@@ -45,11 +46,12 @@ patch:
       # - derive/^(v)([^fg])/z$2/                 # zh => z
       # - derive/^(i)([^fg])/c$2/                 # ch => c
       # - derive/^(u)([^bfgnm])/s$2/              # sh => s
+      - derive/^(u)([h])/s$2/                     # uh => sh
       # - derive/^n([uo])$/l$1/                   # n => l
       - derive/^(z)([^acdefghijklmnsu])/v$2/      # z => zh
       - derive/^(c)([^acdefghijsuo])/i$2/         # c => ch
-      - derive/^(s)([^abcdefgijklmnu])/u$2/       # s => sh
-      - derive/^(i)f/$1g/                         # [zcs][h]en => [zcs][h]eng
+      - derive/^(s)([^abcdefghijklmnu])/u$2/      # s => sh
+      # - derive/^(i)f/$1g/                       # [zcs][h]en => [zcs][h]eng
       - derive/^(i)g/$1f/                         # [zcs][h]eng => [zcs][h]en
-      - derive/^([typdbn])b/$1k/                  # in => ing
+      - derive/^([ypdbn])b/$1k/                   # in => ing
       # - derive/^([typdjxbm])k/$1b/              # ing => in

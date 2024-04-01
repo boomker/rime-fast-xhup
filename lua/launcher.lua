@@ -5,10 +5,16 @@ local of_items = nil
 local first_menu_text = nil
 
 local function cmd(system, cmdArgs, objId)
-	if system:lower():match("darwin") and (cmdArgs == "exec") then
+	if system:lower():match("macos") and (cmdArgs == "exec") then
 		local osascript = objId
 		os.execute(osascript)
-	elseif system:lower():match("darwin") then
+	elseif system:lower():match("ios") and (cmdArgs == "exec") then
+		local osascript = objId
+		os.execute(osascript)
+	elseif system:lower():match("macos") then
+		local osascript = "open " .. cmdArgs .. objId
+		os.execute(osascript)
+	elseif system:lower():match("ios") then
 		local osascript = "open " .. cmdArgs .. objId
 		os.execute(osascript)
 	elseif system:lower():match("windows") then
@@ -18,11 +24,17 @@ local function cmd(system, cmdArgs, objId)
 end
 
 local function detect_os()
+	local system = ""
 	local user_distribute_name = rime_api:get_distribution_code_name()
 	if user_distribute_name:lower():match("weasel") then
-		return "Windows"
+		system = "Windows"
+	elseif user_distribute_name:lower():match("squirrel") then
+		system = "MacOS"
+	elseif user_distribute_name:lower():match("ibus-rime") then
+		system = "Linux"
+	else
+		system = "iOS"
 	end
-	local system = io.popen("uname -s"):read("*l")
 	return system
 end
 
@@ -94,12 +106,12 @@ function processor.func(key, env)
 				cmd(sys, "", candidateText)
 			elseif action == "exec" and (items[1] == nil) then
 				local _cmdString = app_items["Favor"][first_menu_text]["items"][candidateText]
-                local cmdString
-                if _cmdString and _cmdString:match('^/') then
-                    cmdString = _cmdString:gsub(" ", "\\ ", 1)
-                else
-                    cmdString = _cmdString
-                end
+				local cmdString
+				if _cmdString and _cmdString:match("^/") then
+					cmdString = _cmdString:gsub(" ", "\\ ", 1)
+				else
+					cmdString = _cmdString
+				end
 				cmd(sys, "exec", cmdString)
 			else
 				engine:commit_text(candidateText)
