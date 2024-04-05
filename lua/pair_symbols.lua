@@ -58,10 +58,15 @@ local function pair_symbols(key, env)
 	local segment = composition:back()
 
 	local key_name
+
 	if (key:repr():match("quotedbl")) and (key.keycode == 34) then
 		key_name = "quotedbl"
 	else
 		key_name = key:repr()
+	end
+
+	if (key_name == "quotedbl" or key_name == "apostrophe") and (detect_os == "iOS") then
+		return 2
 	end
 
 	if pairTable[key_name] and (not context:is_composing()) then
@@ -71,7 +76,7 @@ local function pair_symbols(key, env)
 			engine:commit_text(pairTable[key_name][1])
 		end
 
-		if detect_os() == "Darwin" then
+		if detect_os() == "MacOS" or detect_os == "iOS" then
 			moveCursorToLeft()
 		end
 		context:clear()
@@ -102,7 +107,7 @@ local function pair_symbols(key, env)
 				engine:commit_text(pairedText)
 				context:clear()
 
-				if detect_os() == "Darwin" then
+				if detect_os() == "MacOS" or detect_os == "iOS" then
 					moveCursorToLeft()
 				end
 
