@@ -1,5 +1,5 @@
 -- local puts = require("tools/debugtool")
-require("tools.string")
+require("tools/string")
 
 local function last_character(s)
 	return string.utf8_sub(s, -1, -1)
@@ -18,7 +18,7 @@ local function fly_fixed(input, env)
 			(19968 <= cand_text_code)
 			and (cand_text_code <= 117777)
 			and (#preedit_code % 2 ~= 0)
-			and (not preedit_code:find('%['))
+			and (not preedit_code:find("%["))
 			and (preedit_code:match("^.+[andefwosr]$") or preedit_code:match("^[andefwosr]$"))
 		then
 			local last_char = last_character(cand.text)
@@ -31,7 +31,6 @@ local function fly_fixed(input, env)
 				table.insert(cands, cand)
 				prev_cand_ok = true
 			end
-		elseif preedit_code:match("^%l%l%[%l$") and (utf8.len(cand.text) > 1) then
 		elseif prev_cand_ok then
 			table.insert(cands, cand)
 			prev_cand_ok = true
@@ -40,7 +39,7 @@ local function fly_fixed(input, env)
 			prev_cand_ok = false
 		end
 
-		if #cands > 50 then
+		if #cands > 80 then
 			break
 		end
 	end

@@ -1,0 +1,116 @@
+# 適用於【鼠鬚管】0.9.13+
+# 位置：~/Library/Rime/squirrel.custom.yaml
+# 用法：想要哪項生效，就刪去該行行首的#字符，但注意保留用於縮進的空格
+
+patch:
+  #  us_keyboard_layout: true      # 鍵盤選項：應用美式鍵盤佈局
+  #  show_notifications_when: growl_is_running
+  # 狀態通知，默認裝有Growl時顯示，也可設爲全開（always）全關（never）
+
+  style:
+    # 註：預設的配色方案及代碼（指定爲 style/color_scheme 系統默認色系 - native）
+    color_scheme: catppuccin_frappe                   # macos明亮主题
+    color_scheme_dark: catppuccin_macchiato           # macos黑暗主题
+
+    show_paging: true
+    inline_preedit: false
+    translucency: 0.93
+    corner_radius: 10
+    hilited_corner_radius: 0
+    border_height: 0
+    border_width: 0
+    line_spacing: 5
+    spacing: 10
+    font_point: 20
+    label_font_point: 16
+    comment_font_point: 16
+    font_face: "LXGWNeoXiHei,HONOR Sans CN,MiSans"    # 候选词编号字体
+
+  # 皮肤主题
+  preset_color_schemes:
+    catppuccin_latte:
+      name: Catppuccin Latte
+
+      back_color: 0xE8E0DC                         # 候选条背景色 Crust
+      border_color: 0xEFE9E6                       # 边框色 Mantle
+      text_color: 0x775F5C                         # 拼音行文字颜色 Subtext1
+      label_color: 0x856F6C                        # 预选栏编号颜色 Subtext0
+      candidate_text_color: 0x694F4C               # 预选项文字颜色 Text
+      hilited_back_color: 0xef3988                 # 第一候选项背景背景色 Mauve
+      hilited_candidate_text_color: 0xF5F1EF       # 第一候选项文字颜色 Base
+      hilited_candidate_label_color: 0xDAD0CC      # 第一候选项编号颜色 Surface0
+      hilited_text_color: 0xBEB0AC                 # 高亮拼音 (需要开启内嵌编码) Surface2
+      hilited_comment_text_color: 0xDAD0CC         # 注解文字高亮 Surface0
+      comment_text_color: 0xBEB0AC                 # 拼音等提示文字颜色 Surface2
+
+    catppuccin_mocha:
+      name: Catppuccin Mocha
+
+      back_color: 0x1B1111                         # 候选条背景色 Crust
+      border_color: 0x251818                       # 边框色 Mantle
+      text_color: 0xDEC2BA                         # 拼音行文字颜色 Subtext1
+      label_color: 0xC8ADA6                        # 预选栏编号颜色 Subtext0
+      candidate_text_color: 0xF4D6CD               # 预选项文字颜色 Text
+      hilited_back_color: 0xF7A6CB                 # 第一候选项背景背景色 Mauve
+      hilited_candidate_text_color: 0x2E1E1E       # 第一候选项文字颜色 Base
+      hilited_candidate_label_color: 0x443231      # 第一候选项编号颜色 Surface0
+      hilited_text_color: 0x705B58                 # 高亮拼音 (需要开启内嵌编码) Surface2
+      hilited_comment_text_color: 0x443231         # 注解文字高亮 Surface0
+      comment_text_color: 0x705B58                 # 拼音等提示文字颜色 Surface2
+
+
+    catppuccin_frappe:
+      name: Catppuccin Frappe
+
+      back_color: 0x342623                         # 候选条背景色 Crust
+      border_color: 0x3C2C29                       # 边框色 Mantle
+      text_color: 0xE2BFB5                         # 拼音行文字颜色 Subtext1
+      label_color: 0xCEADA5                        # 预选栏编号颜色 Subtext0
+      candidate_text_color: 0xF5D0C6               # 预选项文字颜色 Text
+      hilited_back_color: 0x333333                 # 第一候选项背景背景色
+      hilited_candidate_text_color: 0xF6A0C6       # 第一候选项文字颜色 Base
+      hilited_candidate_label_color: 0x594541      # 第一候选项编号颜色 Surface0
+      hilited_text_color: 0x70B558                 # 高亮拼音 (需要开启内嵌编码) Surface2
+      hilited_comment_text_color: 0x606cff         # 选中注解颜色
+      comment_text_color: 0x806862                 # 拼音等提示文字颜色 Surface2
+      preedit_back_color: 0x232634
+
+    catppuccin_macchiato:
+      name: Catppuccin Macchiato
+
+      back_color: 0x261918                         # 候选条背景色 Crust
+      border_color: 0x30201E                       # 边框色 Mantle
+      text_color: 0xE0C0B8                         # 拼音行文字颜色 Subtext1
+      label_color: 0xCBADA5                        # 预选栏编号颜色 Subtext0
+      candidate_text_color: 0xF5D3CA               # 预选项文字颜色 Text
+      hilited_back_color: 0xF6A0C6                 # 第一候选项背景背景色 Mauve
+      hilited_candidate_text_color: 0x3A2724       # 第一候选项文字颜色 Base
+      hilited_candidate_label_color: 0x4F3A36      # 第一候选项编号颜色 Surface0
+      hilited_text_color: 0x70B558                 # 高亮拼音 (需要开启内嵌编码) Surface2
+      hilited_comment_text_color: 0x4F3A36         # 注解文字高亮 Surface2
+      comment_text_color: 0x70B558                 # 拼音等提示文字颜色 Surface0
+
+  # 特定App默认中/英文输入
+  app_options:
+    com.apple.Spotlight:              # 聚焦搜索
+      ascii_mode: true                # true默认英文,false默认中文
+    com.runningwithcrayons.Alfred:    # alfred
+      ascii_mode: true
+    com.apple.Terminal:               # 终端
+      ascii_mode: true
+    com.googlecode.iterm2:            # iterm2
+      ascii_mode: true
+      ascii_punct: true               # 中文状态输出英文标点(半角)
+    com.microsoft.VSCode:             # Visual Studio Code
+      ascii_mode: true
+      ascii_punct: true               # 中文状态输出英文标点(半角)
+    com.raycast.macos:                # Raycast
+      ascii_mode: true
+    com.neovide.neovide:
+      ascii_mode: true
+      ascii_punct: true               # 中文状态输出英文标点(半角)
+    org.alacritty:
+      ascii_mode: true
+      ascii_punct: true               # 中文状态输出英文标点(半角)
+    com.microsoft.edgemac:
+      ascii_mode: false

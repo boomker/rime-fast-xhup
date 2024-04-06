@@ -74,8 +74,11 @@ commit_history_translator = commit_history.translator
 -- charset_comment_filter: 为候选项加上其所属字符集的注释
 -- 详见 `lua/charset.lua`
 local charset = require("charset")
-charset_withEmoji_filter = charset.filter
+charset_filter = charset.filter
 charset_comment_filter = charset.comment_filter
+
+local emoji_reduce = require("reduce_emoji")
+emoji_reduce_filter = emoji_reduce.filter
 
 -- single_char_filter: 候选项重排序，使单字优先
 -- 详见 `lua/single_char.lua`
@@ -108,6 +111,11 @@ top_word_autocommit_filter = top_word_autocommit.filter
 -- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 -- 详见 `lua/reverse.lua`
 -- reverse_lookup_filter = require("reverse")
+
+-- 词条置顶
+pin_word = require("pin_word")
+pin_word_filter = pin_word.filter
+pin_word_processor = pin_word.processor
 
 -- 强制删词, 隐藏词组
 cold_word_drop = require("cold_word_drop")

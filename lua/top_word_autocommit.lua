@@ -200,7 +200,7 @@ local function twac_filter(input, env)
             tfchars_word_cands[cand.text] = cand
         end
 
-        if #cands > 50 then break end
+        if #cands > 80 then break end
         table.insert(cands, cand)
     end
 
@@ -254,7 +254,7 @@ local function twac_filter(input, env)
 
     if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^%l+") then
         local reversedb_phrase = ReverseLookup("flypy_phrase")
-        local i, when_done, commit_text = 1, 0, nil
+        local i, when_done, commit_text = 1, 0, ""
         for _, cand in pairs(tfchars_word_cands) do
             local reverse_code = reversedb_phrase:lookup(cand.text)
 
