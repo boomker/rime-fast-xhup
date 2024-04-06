@@ -1,4 +1,3 @@
--- local puts = require("tools/debugtool")
 require("tools/string")
 
 local tword_tail_char_shape_tbl = {}

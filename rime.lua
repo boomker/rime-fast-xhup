@@ -103,10 +103,10 @@ long_word_up = require("long_word_up")
 long_word_up_filter = long_word_up.filter
 
 --  单字和二字词的 全码顶屏(自动上屏)
-top_word_autocommit = require("top_word_autocommit")
-top_word_autocommit_processor = top_word_autocommit.processor
-top_word_autocommit_translator = top_word_autocommit.translator
-top_word_autocommit_filter = top_word_autocommit.filter
+word_autocommit = require("word_autocommit")
+word_autocommit_processor = word_autocommit.processor
+word_autocommit_translator = word_autocommit.translator
+word_autocommit_filter = word_autocommit.filter
 
 -- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
 -- 详见 `lua/reverse.lua`

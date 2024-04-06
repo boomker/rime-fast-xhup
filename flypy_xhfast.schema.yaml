@@ -48,7 +48,7 @@ engine:
     - lua_processor@expand_idiom_abbr_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@word_append_space_processor
-    - lua_processor@top_word_autocommit_processor
+    - lua_processor@word_autocommit_processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -91,7 +91,7 @@ engine:
     - lua_translator@en_custom_translator             # `置于结尾处触发
     - lua_translator@expand_idiom_abbr_translator     # /置于结尾处触发
     - lua_translator@engword_autocaps_translator      # 大写字母开头触发
-    - lua_translator@top_word_autocommit_translator
+    - lua_translator@word_autocommit_translator
   filters:
     - simplifier
     - simplifier@emoji
@@ -99,11 +99,11 @@ engine:
     - lua_filter@charset_filter
     - lua_filter@fly_fixed_filter
     - lua_filter@pin_word_filter
-    - lua_filter@emoji_reduce_filter
     - lua_filter@long_word_up_filter
-    - lua_filter@top_word_autocommit_filter
+    - lua_filter@word_autocommit_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@word_append_space_filter
+    - lua_filter@emoji_reduce_filter
     - lua_filter@cold_word_drop_filter
     - reverse_lookup_filter@radical_reverse_lookup
     - uniquifier                                      #  只能放到最后!
