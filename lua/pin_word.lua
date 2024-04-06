@@ -91,7 +91,7 @@ function pin_word.filter(input, env)
 			end
 		else
 			table.insert(other_cands, cand)
-			if #other_cands > 50 then
+			if #other_cands > 80 then
 				break
 			end
 		end
