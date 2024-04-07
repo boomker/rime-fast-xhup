@@ -170,16 +170,13 @@ end
 
 function cold_word_drop.filter(input, env)
 	local engine = env.engine
-	-- local context           = engine.context
-	-- local input_code        = env.engine.context:get_commit_text()
 	local config = engine.schema.config
 	local cands = {}
-	local i = 1
-	local idx = config:get_int("turn_down_freq_config/idx") or 3
+	local idx = config:get_int("cold_wold_reduce_config/idx") or 4
 
 	for cand in input:iter() do
 		local cpreedit_code = string.gsub(cand.preedit, " ", "")
-		if i <= idx then
+		if idx > 1 then
 			local tfl = turndown_freq_list[cand.text] or nil
 			-- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
 			if tfl and table.find_index(tfl, cpreedit_code) then
@@ -191,8 +188,8 @@ function cold_word_drop.filter(input, env)
 					or (string.find(cand.comment, "☯")) -- cand.quality == 0.0
 				)
 			then
-				i = i + 1
 				yield(cand)
+                idx = idx - 1
 			end
 		else
 			if not table.find_index(drop_list, cand.text) then

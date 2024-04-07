@@ -14,7 +14,6 @@ kolla	kolla	100000
 autostart	autostart	100000
 libvirt	libvirt	100000
 libvirtd	libvirtd	100000
-limit	limit	100000
 neovide	neovide	100000
 cgroup	cgroup	100000
 iscsid	iscsid	100000
@@ -33,7 +32,6 @@ ucloud	ucloud	100000
 fastapi	fastapi	100000
 webhook	webhook	100000
 filebeat	filebeat	100000
-tacker	tacker	100000
 scrum	scrum	100000
 kanban	kanban	100000
 websocket	websocket	100000
@@ -56,7 +54,12 @@ IPMI	ipmi	100000
 quickfix	quickfix	100000
 vimgrep	vimgrep	100000
 emoji	emoji	100000
-
 todesk	todesk	100000
 youtube	youtube	100000
 librime	librime	100000
+trime	trime	100000
+neovim	neovim	100000
+Vue	vue	100000
+macbook	macbook	100000
+MacBook	macbook	100000
+keyevent	keyevent	100000
