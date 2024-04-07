@@ -26,16 +26,20 @@ patch:
       # - { when: composing, accept: grave, send: '`' }     ## 取消注释后: `引导辅助码
       # `键 (grave, Tab 上面那个) 为词组逐字追加辅助码.
       # 可将 grave 改成 Tab, Control+Tab, bracketright(] 键).
-      # 如果希望无论有无 [ 均可引导, 取消注释的同时将 xform 改成 derive
+      # 如果希望无论有无 [ 均可引导, 取消下行注释, 放到当前文件最后
       # speller/algebra/@next: derive/[[]//
 
-  turn_down_freq_config:
-    # 降低到第 idx 个位置
+  long_word_up_config:
+    # 长词升频到第 idx 个位置
     idx: 3
 
-  translator/dictionary: flypy_xhfast
-  # translator/contextual_suggestions: true
-  # translator/max_homophones: 7
+  cold_wold_reduce_config:
+    # 生僻词条降频到第 idx 个位置
+    idx: 4
+
+  emoji_reduce_config:
+    # Emoji 降频到第 idx 个位置
+    idx: 6
 
   speller/+:
     algebra/+:

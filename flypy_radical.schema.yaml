@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_radical
   name: "飞鹤拆字"
-  version: "1.0"
+  version: "1.1"
   author: Mirtle
   description: |
     用拼音按顺序拼出偏旁部件，以输入汉字。
@@ -16,24 +16,21 @@ schema:
 
 engine:
   processors:
-    - ascii_composer
-    - recognizer
     - key_binder
     - speller
-    - punctuator
     - selector
     - navigator
     - express_editor
   segmentors:
-    - ascii_segmentor
-    - matcher
     - abc_segmentor
-    - punct_segmentor
-    - fallback_segmentor
   translators:
     - echo_translator
-    - punct_translator
     - table_translator
+  filters:
+    - uniquifier
+
+key_binder:
+  __include: default:/key_binder?
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz"
@@ -41,12 +38,3 @@ speller:
 
 translator:
   dictionary: flypy_radical
-
-punctuator:
-  import_preset: default
-
-key_binder:
-  import_preset: default
-
-recognizer:
-  import_preset: default

@@ -19,18 +19,22 @@ schema:
 
 switches:
   - name: ascii_mode
-    reset: 0
     states: [中文, 西文]
-  - name: ascii_punct
     reset: 0
+  - name: ascii_punct
     states: [。, .]
+    reset: 0
   - name: emoji
-    reset: 1
     states: [💀, 😄]
+    reset: 1
   - name: full_shape
     states: [半角, 全角]
+    reset: 0
   - name: traditionalization
     states: [简体, 繁体]
+    reset: 0
+  - name: charset_comment
+    states: [CC关, CC开]
     reset: 0
   - options: ["utf8", "gbk", "gb2312"]    # 字符集选单
     reset: 0                              # 默认 UTF8
@@ -96,15 +100,15 @@ engine:
     - simplifier
     - simplifier@emoji
     - simplifier@traditionalize
-    - lua_filter@charset_filter
     - lua_filter@fly_fixed_filter
     - lua_filter@pin_word_filter
     - lua_filter@word_autocommit_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@word_append_space_filter
-    - lua_filter@emoji_reduce_filter
     - lua_filter@long_word_up_filter
+    - lua_filter@emoji_reduce_filter
     - lua_filter@cold_word_drop_filter
+    - lua_filter@charset_comment_filter
     - reverse_lookup_filter@radical_reverse_lookup
     - uniquifier                                      #  只能放到最后!
 
@@ -189,13 +193,16 @@ speller:
 grammar:
   language: zh-hans-t-essay-bgw
 
+
 translator:
   dictionary: flypy_xhfast
-  # enable_encoder: true
   enable_user_dict: true
   encode_commit_history: true       # 上屏历史记录
   contextual_suggestions: true      # 开启八股文, 上下文联想
   sentence_over_completion: true
+  # enable_encoder: true
+  # contextual_suggestions: true
+  # max_homophones: 7
   initial_quality: 1.3
   spelling_hints: 1                 # `0`: 关闭单字编码提示
   comment_format:
@@ -357,7 +364,7 @@ easy_en_simp:
 
 radical_reverse_lookup:
   tag: radical_reverse_lookup
-  # overwrite_comment: true
+  overwrite_comment: false
   # dictionary: flypy_xhfast
   dictionary: kMandarin
   comment_format:
@@ -369,7 +376,7 @@ radical_lookup:
   dictionary: flypy_radical
   enable_sentence: false
   enable_user_dict: false
-  # enable_completion: true
+  enable_completion: true
   tips: 〔部件组字〕
   prefix: 'oq'
   suffix: "'"

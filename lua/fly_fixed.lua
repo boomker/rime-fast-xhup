@@ -13,13 +13,14 @@ local function fly_fixed(input, env)
 	local reversedb = ReverseLookup(schema_id)
 	local preedit_code = env.engine.context:get_commit_text()
 	for cand in input:iter() do
-		local cand_text_code = tonumber(utf8.codepoint(cand.text, 1))
+		-- local cand_text_code = tonumber(utf8.codepoint(cand.text, 1))
+        -- ((19968 <= cand_text_code) and (cand_text_code <= 40959))
 		if
-			(19968 <= cand_text_code)
-			and (cand_text_code <= 117777)
+			(cand:get_dynamic_type() ~= "Shadow")
+            and (not cand.text:match("[a-zA-Z]"))
 			and (#preedit_code % 2 ~= 0)
 			and (not preedit_code:find("%["))
-			and (preedit_code:match("^.+[andefwosr]$") or preedit_code:match("^[andefwosr]$"))
+            and (preedit_code:match("^.+[andefwosr]$") or preedit_code:match("^[andefwosr]$"))
 		then
 			local last_char = last_character(cand.text)
 			local yin_code = reversedb:lookup(last_char):gsub("%l%[%l%l", "")

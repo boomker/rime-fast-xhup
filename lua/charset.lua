@@ -29,16 +29,21 @@ local charset = {
 	["ExtI"] = { first = 0x2EBF0, last = 0x2EE5D }, -- CJK Unified Ideographs Extension I - https://unicode.org/charts/PDF/U31350.pdf
 	["Compat"] = { first = 0xF900, last = 0xFAFF }, -- CJK Compatibility Ideographs - https://unicode.org/charts/PDF/UF900.pdf
 	["CompatSupp"] = { first = 0x2F800, last = 0x2FA1F }, -- CJK Compatibility Ideographs Supplement - https://unicode.org/charts/PDF/U2F800.pdf
+	-- ["[部首]"] = { first = 0x2e80, last = 0x2eff },
+	-- ["[偏傍]"] = { first = 0x2ff0, last = 0x2fff },
+	-- ["[康熙]"] = { first = 0x2f00, last = 0x2fdf },
+	-- ["[注音]"] = { first = 0x3100, last = 0x31bf },
+	-- ["[笔画]"] = { first = 0x31c0, last = 0x31ef },
 }
 
 local function exists(single_filter, text)
 	for i in utf8.codes(text) do
 		local c = utf8.codepoint(text, i)
-		if single_filter(c) then
-			return true
+		if not single_filter(c) then
+			return false
 		end
 	end
-	return false
+	return true
 end
 
 local function is_charset(s)
@@ -90,18 +95,24 @@ end
 --[[
 如下例所示，charset_comment_filter 为候选项加上其所属字符集的注释：
 --]]
-local function charset_comment_filter(input)
+local function charset_comment_filter(input, env)
 	-- 使用 `iter()` 遍历所有输入候选项
+	local comment_toggle = env.engine.context:get_option("charset_comment")
 	for cand in input:iter() do
 		-- 判断当前候选内容 `cand.text` 中文字属哪个字符集
-		for s, _ in pairs(charset) do
-			if exists(is_charset(s), cand.text) then
-				--[[ 修改候选的注释 `cand.comment`
-                 因复杂类型候选项的注释不能被直接修改，
-                 因此使用 `get_genuine()` 得到其对应真实的候选项
-            --]]
-				cand:get_genuine().comment = cand.comment .. " " .. s
-				break
+		if comment_toggle then
+			for s, _ in pairs(charset) do
+				if exists(is_charset(s), cand.text) then
+					--[[ 修改候选的注释 `cand.comment`
+                    因复杂类型候选项的注释不能被直接修改，
+                    因此使用 `get_genuine()` 得到其对应真实的候选项
+                    --]]
+					if s == "CJK" then
+						break
+					end
+					cand:get_genuine().comment = cand.comment .. " " .. s
+					break
+				end
 			end
 		end
 		-- 在结果中对应产生一个带注释的候选
