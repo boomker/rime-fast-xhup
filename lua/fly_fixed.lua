@@ -20,7 +20,7 @@ local function fly_fixed(input, env)
             and (not cand.text:match("[a-zA-Z]"))
 			and (#preedit_code % 2 ~= 0)
 			and (not preedit_code:find("%["))
-            and (preedit_code:match("^.+[andefwosr]$") or preedit_code:match("^[andefwosr]$"))
+            and (preedit_code:match("^.+[andefwosrx]$") or preedit_code:match("^[andefwosrx]$"))
 		then
 			local last_char = last_character(cand.text)
 			local yin_code = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
