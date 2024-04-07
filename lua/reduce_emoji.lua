@@ -11,9 +11,9 @@ function reduce_emoji.func(input, env)
 
 	for cand in input:iter() do
 		if
-            (cand:get_dynamic_type() == "Shadow")
-            and (not cand.text:match("[a-zA-Z]"))
-            and (emoji_pos >= 1)
+            (emoji_pos >= 1)
+            and (cand:get_dynamic_type() == "Shadow")
+            and (not (cand.text:find("([\228-\233][\128-\191]-)") and cand.text:find("[%a]")))
         then
 			table.insert(emoji_cands, cand)
 			table.insert(emoji_texts, prev_text)

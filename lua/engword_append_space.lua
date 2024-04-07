@@ -1,5 +1,3 @@
--- local puts = require("tools/debugtool")
-
 local processor = {}
 
 local function reset_cand_property(env)
