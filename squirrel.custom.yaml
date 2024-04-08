@@ -24,7 +24,7 @@ patch:
     font_point: 20
     label_font_point: 16
     comment_font_point: 16
-    font_face: "MiSans, MiSans TC, MiSans L3, LXGWNeoXiHei"    # 候选词编号字体
+    font_face: "MiSans, MiSans TC, MiSans L3, MiSans Latin, LXGWNeoXiHei"
 
   # 皮肤主题
   preset_color_schemes:
