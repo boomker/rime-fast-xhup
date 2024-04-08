@@ -29,11 +29,6 @@ local charset = {
 	["ExtI"] = { first = 0x2EBF0, last = 0x2EE5D }, -- CJK Unified Ideographs Extension I - https://unicode.org/charts/PDF/U31350.pdf
 	["Compat"] = { first = 0xF900, last = 0xFAFF }, -- CJK Compatibility Ideographs - https://unicode.org/charts/PDF/UF900.pdf
 	["CompatSupp"] = { first = 0x2F800, last = 0x2FA1F }, -- CJK Compatibility Ideographs Supplement - https://unicode.org/charts/PDF/U2F800.pdf
-	-- ["[部首]"] = { first = 0x2e80, last = 0x2eff },
-	-- ["[偏傍]"] = { first = 0x2ff0, last = 0x2fff },
-	-- ["[康熙]"] = { first = 0x2f00, last = 0x2fdf },
-	-- ["[注音]"] = { first = 0x3100, last = 0x31bf },
-	-- ["[笔画]"] = { first = 0x31c0, last = 0x31ef },
 }
 
 local function exists(single_filter, text)

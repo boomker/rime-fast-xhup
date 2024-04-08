@@ -26,6 +26,7 @@ OK	OK 🆗️ 👌🏻
 O型血	O型血 🅾️
 O血型	O血型 🅾️
 Python	Python 🐍
+python	python 🐍
 Registered	Registered ®
 SOS	SOS 🆘
 SUV	SUV 🚙
