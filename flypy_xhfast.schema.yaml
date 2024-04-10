@@ -4,7 +4,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "0.7"
+  version: "0.8"
   author:
     - boomker
   description: |
@@ -49,7 +49,7 @@ engine:
     - lua_processor@launcher_processor
     - lua_processor@pair_symbols_processor
     - lua_processor@select_char_processor
-    - lua_processor@expand_idiom_abbr_processor
+    - lua_processor@idiom_expand_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@word_append_space_processor
     - lua_processor@word_autocommit_processor
@@ -66,11 +66,11 @@ engine:
     - matcher
     - abc_segmentor
     - punct_segmentor
-    - affix_segmentor@mkst
+    - affix_segmentor@make_sentence
     - affix_segmentor@chinese_number
     - affix_segmentor@easy_en_simp
     - affix_segmentor@laTeX_formula
-    - affix_segmentor@dbpy_flypy_help
+    - affix_segmentor@flypy_help
     - affix_segmentor@radical_lookup
     - fallback_segmentor
   translators:
@@ -78,24 +78,23 @@ engine:
     - reverse_lookup_translator
     - script_translator
     # - table_translator@emojis
-    # - table_translator@flypy_phrase
-    - table_translator@mkst                           # 精准造词
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
     - table_translator@melt_eng
-    - table_translator@easy_en_simp                   # oy 触发单词输入
-    - table_translator@dbpy_flypy_help                # oh 触发
-    - table_translator@radical_lookup                 # oq 触发
-    - lua_translator@commit_history_translator        # hisz 触发
+    - table_translator@make_sentence                  # ` 精准造词
+    - table_translator@flypy_help                     # oh 触发进入双拼键位帮助
+    - table_translator@easy_en_simp                   # oy 触发进入英文输入模式
+    - table_translator@radical_lookup                 # oq 触发进入部件组字模式
+    - lua_translator@commit_history_translator        # hisz 触发显示上屏历史
     - lua_translator@datetime_translator              # date, rq, week, time 触发
     - lua_translator@launcher_translator              # jj 快捷命令触发
-    - lua_translator@lunar_translator                 # cnl 触发
-    - lua_translator@laTex_translator                 # f/ 触发
-    - lua_translator@number_translator                # n/ 触发
-    - lua_translator@en_custom_translator             # `置于结尾处触发
-    - lua_translator@expand_idiom_abbr_translator     # /置于结尾处触发
-    - lua_translator@engword_autocaps_translator      # 大写字母开头触发
-    - lua_translator@word_autocommit_translator
+    - lua_translator@lunar_translator                 # cnl 触发显示农历
+    - lua_translator@laTex_translator                 # f/ 触发 LaTeX 输入
+    - lua_translator@number_translator                # n/ 触发繁体金额数字
+    - lua_translator@en_custom_translator             # \ 置于输入码末尾触发
+    - lua_translator@idiom_expand_translator          # / 置于输入码末尾触发
+    - lua_translator@engword_autocaps_translator      # A-Z 大写字母开头触发
+    - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
   filters:
     - simplifier
     - simplifier@emoji
@@ -105,15 +104,15 @@ engine:
     - lua_filter@word_autocommit_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@word_append_space_filter
-    - lua_filter@emoji_reduce_filter
     - lua_filter@long_word_up_filter
+    - lua_filter@emoji_reduce_filter
     - lua_filter@cold_word_drop_filter
     - lua_filter@charset_comment_filter
     - reverse_lookup_filter@radical_reverse_lookup
     - uniquifier                                      #  只能放到最后!
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[`/
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[/\`
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   # max_code_length: 8
@@ -130,6 +129,10 @@ speller:
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/        # Flypy: AB[CD
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2/          # Flypy: AB[C
     - derive/^(\w+)\[(\w)(\w)$/$1/              # Flypy: AB
+
+    # 响应` 造词
+    - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
+    - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
 
     ## 左右并击飞键音码规则
     - derive/^(j)n/$1c/
@@ -193,7 +196,6 @@ speller:
 grammar:
   language: zh-hans-t-essay-bgw
 
-
 translator:
   dictionary: flypy_xhfast
   enable_user_dict: true
@@ -208,16 +210,14 @@ translator:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
-    # - xform/^\w+[[](\w+)\s\w+[[](\w+)$/~$2/      ## 单字编码提示只显示辅助码部分
-    # - xform/^\w+\s.*$//                          ## 单字编码提示只显示辅助码部分
 
-mkst:
-  __include: /translator            # 复用上面的翻译器,日志中带有 warning
+make_sentence:
+  __include: /translator            # 复用上面的翻译器, 日志 warning 可忽略
   enable_sentence: true
   tips: "〔精准造词〕"
-  tag: mkst
+  tag: make_sentence
 
-custom_phrase:                      # 自定义短语, 包含固顶字词
+custom_phrase:                      # 自定义短语, 包含固顶字
   dictionary: ""
   user_dict: custom_phrase
   db_class: stabledb
@@ -241,6 +241,8 @@ melt_eng:                           # 英文单词
   enable_user_dict: false
   dictionary: melt_eng
   initial_quality: 1.1
+  comment_format:
+    - erase/^.*$//
 
 flypy_phrase:
   enable_encoder: false
@@ -303,12 +305,11 @@ recognizer:
   patterns:
     punct: "^/([0-9]0?|[A-Za-z]+)$"
     chinese_number: "^n/[0-9.]+$"
-    mkst: "^[a-z]+[[][a-z[[]]*$"        # `[` 引导 精准造词
-    radical_lookup: "^oq[a-z]+'?$"      # 部件拆字, 部件使用小鹤双拼编码
-    dbpy_flypy_help: "^oh.*$"
-    easy_en_simp: "^oy[a-z]*$"
     laTeX_formula: "^f/(.*)$"
-    # emojis: "^of[a-z]*'?$"
+    make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导 精准造词
+    radical_lookup: "^oq[a-z]+'?$"          # 部件拆字, 部件使用小鹤双拼编码
+    flypy_help: "^oh.*$"
+    easy_en_simp: "^oy[a-z]*$"
 
 menu:
   page_size: 5
@@ -325,23 +326,15 @@ emoji:
   tag: emoji
   excluded_types: [radical_lookup]
 
-# emojis:
-#   tag: emojis
-#   dictionary: emoji
-#   enable_completion: true
-#   prefix: "of"
-#   suffix: "'"
-#   tips: " Emoji"
-
 chinese_number:
   tag: chinese_number
   # prefix: "n/"
   tips: " 中文数字简繁大小写 "
 
-dbpy_flypy_help:
+flypy_help:
+  tag: flypy_help
   dictionary: ""
-  user_dict: dbpy_flypy_help
-  tag: dbpy_flypy_help
+  user_dict: flypy_help
   prefix: "oh"
   tips: "小鹤双拼查键"
   db_class: stabledb

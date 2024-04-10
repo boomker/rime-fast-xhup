@@ -147,6 +147,6 @@ launcher_processor = launcher.processor
 launcher_translator = launcher.translator
 
 -- 成语短句优先
-expand_idiom_abbr = require("expand_idiom_abbr")
-expand_idiom_abbr_processor = expand_idiom_abbr.processor
-expand_idiom_abbr_translator = expand_idiom_abbr.translator
+idiom_expand = require("idiom_abbr_expand")
+idiom_expand_processor = idiom_expand.processor
+idiom_expand_translator = idiom_expand.translator
