@@ -189,7 +189,7 @@ function cold_word_drop.filter(input, env)
 				)
 			then
 				yield(cand)
-                idx = idx - 1
+				idx = idx - 1
 			end
 		else
 			if not table.find_index(drop_list, cand.text) then

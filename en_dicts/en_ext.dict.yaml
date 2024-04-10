@@ -1375,6 +1375,7 @@ refactoring	refactoring
 refactor	refactor
 Notepad	Notepad
 Notepad++	Notepad++
+Notepad++	npp
 O'Reilly	O'Reilly
 Octocat	Octocat
 IMAP	IMAP
@@ -2138,6 +2139,7 @@ pranksters	pranksters
 npm	npm
 Node Package Manager	npm
 Node Package Manager	NodePackageManager
+.npmrc	.npmrc
 Apple Vision	AppleVision
 Apple Vision Pro	AppleVisionPro
 Vision Pro	VisionPro
@@ -2442,9 +2444,30 @@ Theseus	Theseus
 Laravel	Laravel
 monolith	monolith
 Chiikawa	Chiikawa
-anxious	anxious
 trudge	trudge
 LibreOffice	LibreOffice
 Asics	Asics
 dubbing	dubbing
-dubbing	dubbing 
+nvm	nvm
+Node Version Manager	nvm
+Node Version Manager	NodeVersionManager
+Prettier	Prettier
+ESLint	ESLint
+Hibernate	Hibernate
+MyBatis	MyBatis
+MyBatis-Plus	MyBatis-Plus
+Spring Boot	SpringBoot
+Spring Cloud	SpringCloud
+Element Plus	ElementPlus
+.npmrc	.npmrc 
+nvm	nvm 
+Node	Version Manager
+Node	Version Manager
+Prettier	Prettier 
+ESLint	ESLint 
+Hibernate	Hibernate 
+MyBatis	MyBatis 
+MyBatis-Plus	MyBatis-Plus 
+Spring	Boot SpringBoot
+Spring	Cloud SpringCloud
+Element	Plus ElementPlus

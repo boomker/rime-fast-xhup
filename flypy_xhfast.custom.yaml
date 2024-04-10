@@ -6,7 +6,7 @@ patch:
   engine/+:
     translators/+:
     filters/+:
-  menu/page_size: 6               # 自定义候选项个数
+  menu/page_size: 7               # 自定义候选项个数
   key_binder/+:
     select_first_character: "minus"
     select_last_character: "equal"
