@@ -2,7 +2,6 @@
 -- 为中英混输词条（cn_en.dict.yaml）自动空格
 -- 示例：`VIP中P` → `VIP 中 P`
 
--- local puts = require("tools/debugtool")
 local function reset_cand_property(env)
 	local context = env.engine.context
 	context:set_property("prev_cand_is_null", "0")
