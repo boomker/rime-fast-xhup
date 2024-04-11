@@ -77,7 +77,6 @@ engine:
     - punct_translator
     - reverse_lookup_translator
     - script_translator
-    # - table_translator@emojis
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
     - table_translator@melt_eng
@@ -87,7 +86,7 @@ engine:
     - table_translator@radical_lookup                 # oq 触发进入部件组字模式
     - lua_translator@commit_history_translator        # hisz 触发显示上屏历史
     - lua_translator@datetime_translator              # date, rq, week, time 触发
-    - lua_translator@launcher_translator              # jj 快捷命令触发
+    - lua_translator@launcher_translator              # jj, ofk 触发快捷命令
     - lua_translator@lunar_translator                 # cnl 触发显示农历
     - lua_translator@laTex_translator                 # f/ 触发 LaTeX 输入
     - lua_translator@number_translator                # n/ 触发繁体金额数字
@@ -99,6 +98,7 @@ engine:
     - simplifier
     - simplifier@emoji
     - simplifier@traditionalize
+    - lua_filter@launcher_filter
     - lua_filter@fly_fixed_filter
     - lua_filter@pin_word_filter
     - lua_filter@word_autocommit_filter
@@ -155,11 +155,13 @@ speller:
     - derive/^yh/wn/
     - derive/^yj/wm/
     - derive/^hy/hw/
-    - derive/^t([wy])/dw/                       # t[wy] --> dw
-    - derive/^t([er])/df/                       # t[er] --> df
+    - derive/^ty/ud/                            # ty --> ud
+    - derive/^tw/dw/                            # tw --> dw
+    - derive/^te/df/                            # te --> df
+    - derive/^tg/db/                            # tg --> db
     - derive/^tk/rk/                            # tk --> rk
-    - derive/^tg/rm/                            # tg --> rm
     - derive/^tp/rl/                            # tp --> rl
+    - derive/^tr/rm/                            # tr --> rm
     - derive/^r([gv])/rb/                       # r[gv] --> rb
     - derive/^rf/rn/                            # rf --> rn
     - derive/^gf/gn/                            # gf --> gn
@@ -170,8 +172,8 @@ speller:
     - derive/^xy/xo/
     - derive/^xs/xh/
     - derive/^nj/xj/
-    - derive/^nh/xh/
     - derive/^nu/nx/
+    - derive/^nh/nv/
     - derive/^no/nr/
     - derive/^ly/nw/
     - derive/^lm/nz/
@@ -192,6 +194,9 @@ speller:
     - derive/^mu/mv/
     - derive/^b([hju])/a$1/
     - derive/^b([fgknm])/s$1/
+    - derive/^ce/ck/
+    - derive/^cr/cl/
+    - derive/^cd/cm/
 
 grammar:
   language: zh-hans-t-essay-bgw

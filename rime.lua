@@ -145,6 +145,7 @@ pair_symbols_processor = pair_symbols.processor
 launcher = require("launcher")
 launcher_processor = launcher.processor
 launcher_translator = launcher.translator
+launcher_filter = launcher.filter
 
 -- 成语短句优先
 idiom_expand = require("idiom_abbr_expand")
