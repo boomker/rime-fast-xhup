@@ -25,7 +25,7 @@ switches:
     states: [。, .]
     reset: 0
   - name: emoji
-    states: [💀, 😄]
+    states: [🈚️, 🈶]
     reset: 1
   - name: full_shape
     states: [半角, 全角]
@@ -76,7 +76,6 @@ engine:
   translators:
     - punct_translator
     - reverse_lookup_translator
-    - script_translator
     - table_translator@custom_phrase
     - table_translator@idiom_phrase
     - table_translator@melt_eng
@@ -84,6 +83,7 @@ engine:
     - table_translator@flypy_help                     # oh 触发进入双拼键位帮助
     - table_translator@easy_en_simp                   # oy 触发进入英文输入模式
     - table_translator@radical_lookup                 # oq 触发进入部件组字模式
+    - script_translator
     - lua_translator@commit_history_translator        # hisz 触发显示上屏历史
     - lua_translator@datetime_translator              # date, rq, week, time 触发
     - lua_translator@launcher_translator              # jj, ofk 触发快捷命令
@@ -219,6 +219,7 @@ translator:
 make_sentence:
   __include: /translator            # 复用上面的翻译器, 日志 warning 可忽略
   enable_sentence: true
+  prefix: '`'
   tips: "〔精准造词〕"
   tag: make_sentence
 
