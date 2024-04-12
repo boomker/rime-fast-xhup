@@ -101,13 +101,13 @@ engine:
     - lua_filter@launcher_filter
     - lua_filter@fly_fixed_filter
     - lua_filter@pin_word_filter
+    - lua_filter@charset_comment_filter
     - lua_filter@word_autocommit_filter
     - lua_filter@engword_autocaps_filter
     - lua_filter@word_append_space_filter
     - lua_filter@long_word_up_filter
     - lua_filter@emoji_reduce_filter
     - lua_filter@cold_word_drop_filter
-    - lua_filter@charset_comment_filter
     - reverse_lookup_filter@radical_reverse_lookup
     - uniquifier                                      #  只能放到最后!
 
@@ -195,8 +195,8 @@ speller:
     - derive/^b([hju])/a$1/
     - derive/^b([fgknm])/s$1/
     - derive/^ce/ck/
-    - derive/^cr/cl/
-    - derive/^cd/cm/
+    - derive/^cd/cl/
+    - derive/^cr/cm/
 
 grammar:
   language: zh-hans-t-essay-bgw
