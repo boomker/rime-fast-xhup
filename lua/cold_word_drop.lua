@@ -192,7 +192,12 @@ function cold_word_drop.filter(input, env)
 				idx = idx - 1
 			end
 		else
-			if not table.find_index(drop_list, cand.text) then
+			if
+				not (
+					table.find_index(drop_list, cand.text)
+					or (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
+				)
+			then
 				table.insert(cands, cand)
 			end
 		end

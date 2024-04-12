@@ -23,7 +23,8 @@ patch:
     spacing: 10
     font_point: 20
     label_font_point: 16
-    comment_font_point: 16
+    comment_font_point: 14
+    label_font_face: 'Lucida Grande'
     font_face: "MiSans, MiSans TC, MiSans L3, MiSans Latin, LXGWNeoXiHei"
 
   # 皮肤主题
@@ -62,6 +63,7 @@ patch:
     catppuccin_frappe:
       name: Catppuccin Frappe
 
+      mutual_exclusive: false                      # 色不叠加： false | true
       back_color: 0x342623                         # 候选条背景色 Crust
       border_color: 0x3C2C29                       # 边框色 Mantle
       text_color: 0xE2BFB5                         # 拼音行文字颜色 Subtext1
