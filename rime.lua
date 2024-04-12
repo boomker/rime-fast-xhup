@@ -54,7 +54,7 @@ number_translator = number.translator
 
 -- 英文生词造词入词库, 输入串末尾跟'`'
 en_custom = require("en_custom")
-en_custom_translator = en_custom.translator
+word_custom_translator = en_custom.translator
 
 -- LaTeX 公式输入, `f/`触发
 laTex = require("laTex")
@@ -95,8 +95,8 @@ engword_append_space_processor = engword_append_space.processor
 
 -- 英文单词支持首字母大写, 全大写等格式
 engword_autocaps = require("word_autocaps")
-engword_autocaps_filter = engword_autocaps.filter
-engword_autocaps_translator = engword_autocaps.translator
+word_autocaps_filter = engword_autocaps.filter
+word_autocaps_translator = engword_autocaps.translator
 
 -- 提升1 个中文长词的位置到第三候选
 long_word_up = require("long_word_up")

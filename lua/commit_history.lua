@@ -37,6 +37,7 @@ function translator.func(input, seg, env)
         for i = #history_list, 1, -1 do
             local cand = Candidate("history", seg.start, seg._end, history_list[i].text, "history")
             local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, cand.comment)
+            cand_uniq.quality = 999
             yield(cand_uniq)
         end
     end

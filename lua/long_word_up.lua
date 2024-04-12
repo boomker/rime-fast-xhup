@@ -1,4 +1,3 @@
--- local puts = require("tools/debugtool")
 
 local function long_word_up(input, env)
 	local engine = env.engine
@@ -13,8 +12,10 @@ local function long_word_up(input, env)
 	local idx = config:get_int("long_word_up_config/idx") or 3
 
 	local preedit_code = env.engine.context:get_commit_text()
+    local preedit_length = preedit_code:len()
 	for cand in input:iter() do
-		local cand_length = utf8.len(cand.text)
+        local cand_text = cand.text:gsub(" ", "")
+		local cand_length = utf8.len(cand_text)
 		if (cand.quality > 9) or (idx > 1) then
 			prev_word_length = cand_length or 0
 			idx = idx - 1
@@ -22,17 +23,18 @@ local function long_word_up(input, env)
 		elseif
 			(cand_length > prev_word_length)
 			and (cand_length >= 3)
+			and (preedit_length > 3)
 			and (pickup_count >= 1)
 			and (#cand.comment < 3)
-			and (preedit_code:len() > 2)
-			and (not cand.text:match("[a-zA-Z]"))
+            and (cand_length <= preedit_length)
+			and (not cand_text:match("[a-zA-Z]"))
 			and (cand:get_dynamic_type() ~= "Shadow")
 		then
-			local cand_uniq = UniquifiedCandidate(cand, "LongWordUp", cand.text, cand.comment)
+			local cand_uniq = UniquifiedCandidate(cand, "LongWordUp", cand_text, cand.comment)
 			yield(cand_uniq)
 			pickup_count = pickup_count - 1
 		else
-			if ((utf8.len(cand.text) / #preedit_code) <= 1.5) or (cand.quality > 9) then
+			if ((utf8.len(cand_text) / #preedit_code) <= 1.5) or (cand.quality > 9) then
 				table.insert(cands, cand)
 			else
 				table.insert(longWord_cands, cand)

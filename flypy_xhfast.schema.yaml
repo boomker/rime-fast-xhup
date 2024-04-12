@@ -84,15 +84,15 @@ engine:
     - table_translator@easy_en_simp                   # oy 触发进入英文输入模式
     - table_translator@radical_lookup                 # oq 触发进入部件组字模式
     - script_translator
-    - lua_translator@commit_history_translator        # hisz 触发显示上屏历史
+    - lua_translator@lunar_translator                 # cnl 触发显示农历
     - lua_translator@datetime_translator              # date, rq, week, time 触发
     - lua_translator@launcher_translator              # jj, ofk 触发快捷命令
-    - lua_translator@lunar_translator                 # cnl 触发显示农历
+    - lua_translator@commit_history_translator        # hisz 触发显示上屏历史
     - lua_translator@laTex_translator                 # f/ 触发 LaTeX 输入
     - lua_translator@number_translator                # n/ 触发繁体金额数字
-    - lua_translator@en_custom_translator             # \ 置于输入码末尾触发
     - lua_translator@idiom_expand_translator          # /,0 置于输入码末尾触发
-    - lua_translator@engword_autocaps_translator      # A-Z 大写字母开头触发
+    - lua_translator@word_custom_translator           # ] 置于输入码末尾触发
+    - lua_translator@word_autocaps_translator         # A-Z 大写字母开头触发
     - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
   filters:
     - simplifier
@@ -101,9 +101,9 @@ engine:
     - lua_filter@launcher_filter
     - lua_filter@fly_fixed_filter
     - lua_filter@pin_word_filter
+    - lua_filter@word_autocaps_filter
     - lua_filter@charset_comment_filter
     - lua_filter@word_autocommit_filter
-    - lua_filter@engword_autocaps_filter
     - lua_filter@word_append_space_filter
     - lua_filter@long_word_up_filter
     - lua_filter@emoji_reduce_filter
@@ -112,7 +112,7 @@ engine:
     - uniquifier                                      #  只能放到最后!
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_[/\`
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[_/`]
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   # max_code_length: 8
