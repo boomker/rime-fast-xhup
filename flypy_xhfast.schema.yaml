@@ -91,7 +91,7 @@ engine:
     - lua_translator@laTex_translator                 # f/ 触发 LaTeX 输入
     - lua_translator@number_translator                # n/ 触发繁体金额数字
     - lua_translator@en_custom_translator             # \ 置于输入码末尾触发
-    - lua_translator@idiom_expand_translator          # / 置于输入码末尾触发
+    - lua_translator@idiom_expand_translator          # /,0 置于输入码末尾触发
     - lua_translator@engword_autocaps_translator      # A-Z 大写字母开头触发
     - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
   filters:
@@ -133,6 +133,10 @@ speller:
     # 响应` 造词
     - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
     - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
+
+    # 超级简拼, 开启后可能性能不佳, 视情况开启
+    # 输入4个或更多以下字符，按下`0`触发超级简拼
+    - abbrev/^(.).+$/$1/
 
     ## 左右并击飞键音码规则
     - derive/^(j)n/$1c/
