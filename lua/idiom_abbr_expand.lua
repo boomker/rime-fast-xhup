@@ -9,7 +9,9 @@ function idiom_abbr_expand.processor(key, env)
     local input_code = context.input
     local preedit_code_length = #input_code
 
-    if (table.find({ 3, 4 }, preedit_code_length)) and (table.find({ 3, 4 }, pos)) and (key:repr() == "slash") then
+    if (table.find({ 3, 4 }, preedit_code_length))
+        and (table.find({ 3, 4 }, pos)) and (key:repr() == "slash")
+    then
         local composition = context.composition
 
         if not composition:empty() then
