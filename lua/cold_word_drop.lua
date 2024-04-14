@@ -1,4 +1,3 @@
--- local puts = require("tools/debugtool")
 require("tools/string")
 require("tools/metatable")
 local drop_list = require("cold_word_record/drop_words")
@@ -42,13 +41,13 @@ local function write_word_to_file(record_type)
     end
     local fd = assert(io.open(filename, "w")) --打开
     fd:setvbuf("line")
-    fd:write(record_header)                --写入文件头部
+    fd:write(record_header)                   --写入文件头部
     -- fd:flush() --刷新
     local x = string.format("%s_list", record_type)
     local record = table.serialize(tbls[x]) -- lua 的 table 对象 序列化为字符串
-    fd:write(record)                     --写入 序列化的字符串
-    fd:write(record_tailer)              --写入文件尾部, 结束记录
-    fd:close()                           --关闭
+    fd:write(record)                        --写入 序列化的字符串
+    fd:write(record_tailer)                 --写入文件尾部, 结束记录
+    fd:close()                              --关闭
 end
 
 local function check_encode_matched(cand_code, word, input_code_tbl, reversedb)
@@ -172,26 +171,50 @@ function cold_word_drop.filter(input, env)
     local engine = env.engine
     local config = engine.schema.config
     local cands = {}
+    local prev_cand_text = nil
     local idx = config:get_int("cold_wold_reduce_config/idx") or 4
 
     for cand in input:iter() do
-        local cpreedit_code = string.gsub(cand.preedit, " ", "")
+        local cpreedit_code = cand.preedit:gsub("[^%a]", "")
         local cand_text = cand.text:gsub(" ", "")
         local tfl = turndown_freq_list[cand_text] or nil
         if idx > 1 then
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
             if tfl and table.find_index(tfl, cpreedit_code) then
                 table.insert(cands, cand)
+            elseif (
+                    cand_text:match("^[%l][%l][%l]?$")
+                    or cand_text:match("^[%u][%l][%l]%.?$")
+                    or (
+                        (cand.comment:match("^[%a]+$"))
+                        and (cand.comment:lower() == cpreedit_code:lower())
+                    )
+                    or (
+                        cand_text:match("^[%u][%a][%a]?$")
+                        and (cand_text:lower() == cpreedit_code:lower())
+                    )
+                    or (
+                        cand_text:match("^[%a]+%.?$") and prev_cand_text
+                        and cand_text:lower():match("^" .. prev_cand_text)
+                    )
+                    or (
+                        cand_text:match("[%a]+")
+                        and cand_text:find("([\228-\233][\128-\191]-)")
+                    )
+                )
+                and not (
+                    table.find_index({ "ok", "OK", "Mac" }, cand_text)
+                    or table.find_index({ "OK", "Mac" }, cand.comment)
+                )
+            then
+                table.insert(cands, cand)
+                if cand_text:match("^[%a]+$") and not prev_cand_text then
+                    prev_cand_text = cand_text:lower()
+                end
             elseif
                 not (
                     table.find_index(drop_list, cand_text)
                     or (hide_list[cand_text] and table.find_index(hide_list[cand_text], cpreedit_code))
-                    or (table.find({ 4, 3 }, idx) and
-                        (
-                            cand_text:match("^[%a][%a][%a].?$")
-                            or cand_text:match("^[%a]+([\228-\233][\128-\191]-)$")
-                        )
-                    )
                     or (string.find(cand.comment, "☯")) -- cand.quality == 0.0
                 )
             then
@@ -208,6 +231,7 @@ function cold_word_drop.filter(input, env)
                 table.insert(cands, cand)
             end
         end
+
         if #cands > 80 then
             break
         end

@@ -13,6 +13,7 @@
         "Switcher",
         "ShadowCandidate",
         "rime_api",
-        "Opencc"
+        "Opencc",
+        "UniqifiedCandidate"
     ],
 }
