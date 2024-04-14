@@ -1,4 +1,3 @@
--- local puts = require("tools/debugtool")
 require("tools/string")
 
 local function last_character(s)
@@ -17,9 +16,11 @@ local function fly_fixed(input, env)
         if
             (cand:get_dynamic_type() ~= "Shadow")
             and (not cand_text:match("[a-zA-Z]"))
+            and (not cand.comment:match("农历"))
+            and (not cand.comment:match("日期"))
             and (not preedit_code:find("[%['`]"))
             and (preedit_code:match("^[%l]+$"))
-            and (#preedit_code % 2 ~= 0)
+            and ((#preedit_code % 2 ~= 0) and (#preedit_code < 7))
         then
             local last_char = last_character(cand_text)
             local yin_code = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
@@ -32,10 +33,10 @@ local function fly_fixed(input, env)
                 prev_cand_ok = false
             end
         elseif
-            (preedit_code:match("^[A-Z][a-z]+") and cand_text:match("^[A-Z.]$"))
+            (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
             or (
-                preedit_code:match("^[A-Z][a-z]+$")
-                and (cand_text:find("([\228-\233][\128-\191]-)") and cand_text:find("[%a]"))
+                preedit_code:match("^[%u][%a]+$")
+                and cand_text:find("([\228-\233][\128-\191]-)")
             )
         then
             prev_cand_ok = false
