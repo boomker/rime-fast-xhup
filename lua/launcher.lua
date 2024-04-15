@@ -272,6 +272,7 @@ end
 
 function filter.init(env)
     env.launcher_config = require("launcher_config")
+    env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
     env.favor_items = env.launcher_config[3]["Favors"]
 end
@@ -279,13 +280,14 @@ end
 function filter.func(input, env)
     local input_code = env.engine.context:get_commit_text():gsub(" ", "")
     local favorCmdPrefix = env.favor_cmd_prefix
+    local appLaunchPrefix = env.app_launch_prefix
     local command_cands = {}
     local other_cands = {}
     for cand in input:iter() do
-        if input_code:match("^" .. favorCmdPrefix) and cand.text:match("[1-9]$") then
+        if input_code:match("^" .. favorCmdPrefix) and cand.text:match("[1-9]$") and cand.text:find("([\228-\233][\128-\191]-)") then
             local pos = tostring(cand.text:sub(-1))
             command_cands[pos] = cand
-        elseif input_code:match("^jj") and cand.comment:match("应用闪切") then
+        elseif input_code:match("^" .. appLaunchPrefix) and cand.comment:match("应用闪切") then
             yield(cand)
         else
             table.insert(other_cands, cand)
