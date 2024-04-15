@@ -20,7 +20,7 @@ function reduce_emoji.func(input, env)
             (top_cand_cnt <= (emoji_pos + 1))
             and (cand:get_dynamic_type() == "Shadow")
             and (
-                not ((preedit_code == "/xzm") or table.find_index({ "history" }, cand.comment))
+                not ((preedit_code == "/xzm") or table.find_index({ "history", "应用闪切" }, cand.comment))
             )
         then
             table.insert(emoji_cands, { prev_cand_text, cand })
