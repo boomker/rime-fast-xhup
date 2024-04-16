@@ -19,8 +19,11 @@ function reduce_emoji.func(input, env)
         if
             (top_cand_cnt <= (emoji_pos + 1))
             and (cand:get_dynamic_type() == "Shadow")
-            and (
-                not ((preedit_code == "/xzm") or table.find_index({ "history", "应用闪切" }, cand.comment))
+            and not
+            (
+                preedit_code:match("^ok$") or preedit_code:match("^/")
+                or cand_text:find("([\228-\233][\128-\191]-)")
+                or cand.comment:match("history")
             )
         then
             table.insert(emoji_cands, { prev_cand_text, cand })

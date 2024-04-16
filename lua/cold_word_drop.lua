@@ -1,5 +1,6 @@
 require("tools/string")
 require("tools/metatable")
+
 local drop_list = require("cold_word_record/drop_words")
 local hide_list = require("cold_word_record/hide_words")
 local turndown_freq_list = require("cold_word_record/turndown_freq_words")
@@ -177,6 +178,7 @@ function cold_word_drop.filter(input, env)
     for cand in input:iter() do
         local cpreedit_code = cand.preedit:gsub("[^%a]", "")
         local cand_text = cand.text:gsub(" ", "")
+
         local tfl = turndown_freq_list[cand_text] or nil
         if idx > 1 then
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
@@ -186,26 +188,20 @@ function cold_word_drop.filter(input, env)
                     cand_text:match("^[%l][%l][%l]?$")
                     or cand_text:match("^[%u][%l][%l]%.?$")
                     or (
-                        (cand.comment:match("^[%a]+$"))
-                        and (cand.comment:lower() == cpreedit_code:lower())
-                    )
-                    or (
                         cand_text:match("^[%u][%a][%a]?$")
                         and (cand_text:lower() == cpreedit_code:lower())
                     )
                     or (
-                        cand_text:match("^[%a]+%.?$") and prev_cand_text
+                        cand_text:match("^[%u][%a][%a]%.?") and prev_cand_text
                         and cand_text:lower():match("^" .. prev_cand_text)
                     )
                     or (
-                        cand_text:match("[%a]+")
+                        (cand_text:match("^[%u][%u]?[%u]?") or cand_text:match("[%a]$"))
+                        and (cand_text:match("[%a]+"):len() < 4)
                         and cand_text:find("([\228-\233][\128-\191]-)")
                     )
                 )
-                and not (
-                    table.find_index({ "ok", "OK", "Mac" }, cand_text)
-                    or table.find_index({ "OK", "Mac" }, cand.comment)
-                )
+                and not (cand_text:lower():match("^ok$") or cpreedit_code:match("^mac."))
             then
                 table.insert(cands, cand)
                 if cand_text:match("^[%a]+$") and not prev_cand_text then

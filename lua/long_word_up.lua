@@ -13,10 +13,11 @@ local function long_word_up(input, env)
 
     local preedit_code = context:get_commit_text():gsub("[ ']", "")
     local preedit_length = preedit_code:len()
+    local preedit_for_cand_length = ((preedit_length % 2) == 0) and preedit_length or (preedit_length + 1)
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
         local cand_length = utf8.len(cand_text)
-        if (cand.quality > 9) or (idx > 1) then
+        if  (idx > 1) then
             prev_word_length = cand_length or 0
             idx = idx - 1
             yield(cand)
@@ -26,14 +27,16 @@ local function long_word_up(input, env)
             and (preedit_length > 3)
             and (pickup_count >= 1)
             and (#cand.comment < 3)
-            and (cand_length <= preedit_length)
-            and (not cand_text:match("[a-zA-Z]"))
+            and (cand_length <= ((preedit_for_cand_length // 2) + 2))
+            and (not cand_text:match("[%a]"))
+            and (not preedit_code:match("^hisz$"))
             and (cand:get_dynamic_type() ~= "Shadow")
         then
             local cand_uniq = UniquifiedCandidate(cand, "LongWordUp", cand_text, cand.comment)
             yield(cand_uniq)
             pickup_count = pickup_count - 1
         else
+            -- if (cand_length <= ((preedit_for_cand_length // 2) + 2)) or (cand.quality > 9) then
             if ((utf8.len(cand_text) / #preedit_code) <= 1.5) or (cand.quality > 9) then
                 table.insert(cands, cand)
             else

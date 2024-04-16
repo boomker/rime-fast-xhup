@@ -6,11 +6,11 @@
 
 ---
 name: melt_eng
-version: "2023-06-10"
+version: "2024-03-15"
 import_tables:
   - en_dicts/en                         # 英文主词库
-  - en_dicts/en_ext                     # 上游项目扩展
+  - en_dicts/en_ext                     # 英文扩展
   - en_dicts/en_custom                  # 自定义自造词
   - en_dicts/en_ext_private             # 本项目扩展
-  - en_dicts/cn_en_flypy_pinyin         # 中英混输词库
+  - en_dicts/cn_en_flypy                # 中英混输词库
 ...

@@ -14,7 +14,7 @@ end
 
 function translator.init(env)
     local config = env.engine.schema.config
-    local history_num_max = config:get_string("history" .. "/history_num_max") or 10
+    local history_num_max = config:get_string("history" .. "/history_num_max") or 30
     local excluded_type = config:get_string("history" .. "/excluded_type") or {}
     if #history_list >= tonumber(history_num_max) then
         table.remove(history_list, 1)
@@ -31,9 +31,10 @@ function translator.fini(env)
     env.notifier_commit_history:disconnect()
 end
 
----@diagnostic disable-next-line: unused-local
 function translator.func(input, seg, env)
-    if seg:has_tag("history") or input == "hisz" then
+    local config = env.engine.schema.config
+    local trigger_prefix = config:get_string("history" .. "/input") or "hisz"
+    if seg:has_tag("history") or input == trigger_prefix then
         for i = #history_list, 1, -1 do
             local cand = Candidate("history", seg.start, seg._end, history_list[i].text, "history")
             local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, cand.comment)
