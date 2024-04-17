@@ -1,5 +1,3 @@
-
-
 function string.split(str, sp, sp1)
     sp = type(sp) == "string" and sp or " "
     if #sp == 0 then

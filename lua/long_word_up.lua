@@ -1,3 +1,5 @@
+-- require("tools/string")
+
 local function long_word_up(input, env)
     local engine = env.engine
     local context = engine.context
@@ -13,23 +15,24 @@ local function long_word_up(input, env)
 
     local preedit_code = context:get_commit_text():gsub("[ ']", "")
     local preedit_length = preedit_code:len()
-    local preedit_for_cand_length = ((preedit_length % 2) == 0) and preedit_length or (preedit_length + 1)
+    local preedit_for_cand_length = ((preedit_length % 2) == 0) and preedit_length or (preedit_length - 1)
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
         local cand_length = utf8.len(cand_text)
-        if  (idx > 1) then
-            prev_word_length = cand_length or 0
-            idx = idx - 1
+        local cand_predict_max_length = ((preedit_for_cand_length // 2) + 2)
+        if (idx > 1) then
             yield(cand)
+            idx = idx - 1
+            prev_word_length = cand_length or 0
         elseif
             (cand_length > prev_word_length)
+            and (cand_length <= cand_predict_max_length)
             and (cand_length >= 3)
             and (preedit_length > 3)
             and (pickup_count >= 1)
             and (#cand.comment < 3)
-            and (cand_length <= ((preedit_for_cand_length // 2) + 2))
             and (not cand_text:match("[%a]"))
-            and (not preedit_code:match("^hisz$"))
+            and (not cand.comment:match("^his"))
             and (cand:get_dynamic_type() ~= "Shadow")
         then
             local cand_uniq = UniquifiedCandidate(cand, "LongWordUp", cand_text, cand.comment)
@@ -52,6 +55,7 @@ local function long_word_up(input, env)
     for _, cand in ipairs(cands) do
         yield(cand)
     end
+
     for _, long_cand in ipairs(longWord_cands) do
         yield(long_cand)
     end

@@ -8,7 +8,7 @@ patch:
       states: [联想关, 联想开]
       reset: 0
   # 'engine/processors/@before 0': predictor
-  'engine/translators/@before 0': predict_translator
+  "engine/translators/@before 0": predict_translator
   engine/+:
     processors/+:
     translators/+:
@@ -34,7 +34,7 @@ patch:
       # - { when: composing, accept: grave, send: '`' }     ## 取消注释后: `引导辅助码
       # `键 (grave, Tab 上面那个) 为词组逐字追加辅助码.
       # 可将 grave 改成 Tab, Control+Tab, bracketright(] 键).
-      # 如果希望无论有无 [ 均可引导, 取消下行注释, 放到当前文件最后
+      # 如果希望无论有无 [ 均可引导, 取消下行注释, 放到当前文件`algebra`节点下
       # speller/algebra/@next: derive/[[]//
 
   speller/+:

@@ -142,11 +142,11 @@ function processor.func(key, env)
         end
     end
 
-    if context:has_menu() and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^jj")) then
-        if (idx >= 0) and (preeditCodeLength > appLaunchPrefix:len() + 1) then
+    if context:has_menu() and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j")) then
+        if (idx >= 0) and (preeditCodeLength > appLaunchPrefix:len()) then
             local items = app_command_items[system_name][inputCode]
-            if appLaunchPrefix ~= "jj" and inputCode:sub(1, appLaunchPrefix:len()) == appLaunchPrefix then
-                local appTriggerKey = "jj" .. inputCode:gsub(appLaunchPrefix, "", 1)
+            if appLaunchPrefix ~= "/j" and inputCode:sub(1, appLaunchPrefix:len()) == appLaunchPrefix then
+                local appTriggerKey = "/j" .. inputCode:gsub(appLaunchPrefix, "", 1)
                 items = app_command_items[system_name][appTriggerKey]
             end
 
@@ -194,8 +194,8 @@ function translator.func(input, seg, env)
     local system_name = env.system_name
     local app_items = app_command_items[system_name][input]
 
-    if appLaunchPrefix ~= "jj" and input:sub(1, appLaunchPrefix:len()) == appLaunchPrefix then
-        local appTriggerKey = "jj" .. input:gsub(appLaunchPrefix, "", 1)
+    if appLaunchPrefix ~= "/j" and input:sub(1, appLaunchPrefix:len()) == appLaunchPrefix then
+        local appTriggerKey = "/j" .. input:gsub(appLaunchPrefix, "", 1)
         app_items = app_command_items[system_name][appTriggerKey]
     end
 

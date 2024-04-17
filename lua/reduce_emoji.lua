@@ -21,9 +21,11 @@ function reduce_emoji.func(input, env)
             and (cand:get_dynamic_type() == "Shadow")
             and not
             (
-                preedit_code:match("^ok$") or preedit_code:match("^/")
-                or cand_text:find("([\228-\233][\128-\191]-)")
-                or cand.comment:match("history")
+                preedit_code:match("^ok$")
+                or preedit_code:match("^/")
+                or preedit_code:match("^win.")
+                or cand.comment:match("^his.")
+                or (cand_text:match("^[%a]") and (cand_text:match("[%a]+"):len() > 3))
             )
         then
             table.insert(emoji_cands, { prev_cand_text, cand })
@@ -31,16 +33,16 @@ function reduce_emoji.func(input, env)
                 top_emoji_cnt = #emoji_cands
             end
         elseif (top_cand_cnt <= (emoji_pos + 1)) then
+            table.insert(normal_cands, cand)
+            top_cand_cnt = top_cand_cnt + 1
+            if top_cand_cnt == (emoji_pos - 1) then
+                top_emoji_cnt = #emoji_cands
+            end
             local emoji_tab = opencc_emoji:convert_word(cand_text) or { cand_text }
             for _, emoji_txt in ipairs(emoji_tab) do
                 if #emoji_tab > 1 and emoji_txt == cand_text then
                     prev_cand_text = cand_text
                 end
-            end
-            table.insert(normal_cands, cand)
-            top_cand_cnt = top_cand_cnt + 1
-            if top_cand_cnt == (emoji_pos - 1) then
-                top_emoji_cnt = #emoji_cands
             end
         else
             table.insert(other_cands, cand)
