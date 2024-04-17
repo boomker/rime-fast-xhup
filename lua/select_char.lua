@@ -45,7 +45,6 @@ local function utf8_sub(s, i, j)
 	end
 end
 
--- local puts = require("tools/debugtool")
 local function first_character(s)
 	return utf8_sub(s, 1, 1)
 end
