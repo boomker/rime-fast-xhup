@@ -122,3 +122,5 @@ patch:
       inline: true
     ru.keepcoder.Telegram:
       inline: true
+    com.tencent.xinWeChat:
+      wechat_flag: true
