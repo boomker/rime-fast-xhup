@@ -38,7 +38,6 @@ patch:
       # speller/algebra/@next: derive/[[]//
 
   speller/+:
-    auto_select_unique_candidate: true # 无重码自动上屏
     algebra/+:
       ## 模糊音:
       - derive/^([jqxy])v/$1u/

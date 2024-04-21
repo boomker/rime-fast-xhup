@@ -68,13 +68,26 @@ function pin_word.processor(key, env)
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
+function pin_word.translator(input, seg, env)
+    local input_code = input:gsub(" ", "")
+    local pin_word_tab = pin_word_records[input_code] or nil
+    if pin_word_tab then
+        for _, w in ipairs(pin_word_tab) do
+            local cand = Candidate("top_word", seg.start, seg._end, w, "🔝")
+            cand.quality = 999
+            yield(cand)
+        end
+	end
+end
+
 function pin_word.filter(input, env)
-    local input_code = env.engine.context:get_commit_text()
+    local input_code = env.engine.context:get_commit_text():gsub(" ", "")
     local pin_cands = {}
     local other_cands = {}
     for cand in input:iter() do
+        local cand_text = cand.text:gsub(" ", "")
         local pin_word_tab = pin_word_records[input_code] or nil
-        if pin_word_tab and table.find_index(pin_word_tab, cand.text) then
+        if pin_word_tab and table.find_index(pin_word_tab, cand_text) then
             if #pin_cands < #pin_word_tab then
                 table.insert(pin_cands, cand)
             end
@@ -111,5 +124,6 @@ end
 
 return {
     processor = pin_word.processor,
+    translator = pin_word.translator,
     filter = pin_word.filter,
 }

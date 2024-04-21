@@ -4,7 +4,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "0.9"
+  version: "1.0"
   author:
     - boomker
   description: |
@@ -32,15 +32,12 @@ switches:
   - name: traditionalization
     states: [简体, 繁体]
     reset: 0
+  - name: extended_charset
+    states: [ 通用, 增廣 ]
+    reset: 1
   - name: charset_comment
-    states: [CC关, CC开]
+    states: [码区提示关, 码区提示开]
     reset: 0
-  - options: ["utf8", "gbk", "gb2312"]    # 字符集选单
-    reset: 0                              # 默认 UTF8
-    states:
-      - UTF-8
-      - GBK
-      - GB2312
 
 engine:
   processors:
@@ -82,13 +79,14 @@ engine:
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_help                     # /oh 触发进入双拼键位帮助
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
+    # - lua_translator@pin_word_translator              # 自定义置顶词
     - script_translator
-    - lua_translator@lunar_translator                 # /cnl 触发显示农历
+    - lua_translator@lunar_translator                 # /nl 触发显示农历
     - lua_translator@datetime_translator              # date, week, time, /wd, /wk, /wt 触发
     - lua_translator@launcher_translator              # /jj, /fj 触发快捷命令(可改触发前缀)
+    - lua_translator@laTex_translator                 # /lt 触发 LaTeX 输入
+    - lua_translator@number_translator                # /cn 触发繁体大写金额数字
     - lua_translator@commit_history_translator        # /hs 触发显示上屏历史
-    - lua_translator@laTex_translator                 # f/ 触发 LaTeX 输入
-    - lua_translator@number_translator                # n/ 触发繁体大写金额数字
     - lua_translator@idiom_expand_translator          # /,0 置于输入码末尾触发简拼展开
     - lua_translator@word_custom_translator           # ] 置于输入码末尾触发自定义单词入库
     - lua_translator@word_autocaps_translator         # A-Z 大写字母开头触发单词自动大写
@@ -99,12 +97,13 @@ engine:
     - simplifier@emoji
     - lua_filter@fly_fixed_filter
     - lua_filter@word_autocaps_filter
+    - lua_filter@charset_filter
     - lua_filter@charset_comment_filter
-    - lua_filter@word_autocommit_filter
     - lua_filter@word_append_space_filter
     - lua_filter@long_word_up_filter
     - lua_filter@emoji_reduce_filter
     - lua_filter@cold_word_drop_filter
+    - lua_filter@word_autocommit_filter
     - lua_filter@pin_word_filter
     - lua_filter@launcher_filter
     - reverse_lookup_filter@radical_reverse_lookup
@@ -114,9 +113,6 @@ speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[_/`]
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
-  # max_code_length: 8
-  # auto_select: true
-  # auto_select_pattern: '^\w+\[\w{2}$'
   algebra:
     - erase/^ng\[kk$/            # 取消「唔 ng」的独占
     - erase/^ng\[kx$/            # 取消「嗯 ng」的独占
@@ -136,66 +132,7 @@ speller:
     # 超级简拼, 开启后可能性能不佳, 视情况开启
     # 输入4个或更多以下字符，按下`0`触发超级简拼
     - abbrev/^(.).+$/$1/
-
-    ## 左右并击飞键音码规则
-    - derive/^(j)n/$1c/
-    - derive/^([jyn])t/$1d/                     # t --> d
-    - derive/^([bjlmn])p/$1e/                   # p --> e
-    - derive/^([djlnx])q/$1f/                   # q --> f
-    - derive/^q([biklmnpsxy])/f$1/
-    - derive/^qt/fd/
-    - derive/^qu/fe/
-    - derive/^qr/fo/
-    - derive/^qq/fz/
-    - derive/^p([okifuhjbnmg])/e$1/
-    - derive/^pp/el/                            # pp --> el
-    - derive/^dp/dl/                            # dp --> dl
-    - derive/^([jkiu])y/$1w/                    # [jkiu]y --> [jkiu]w
-    - derive/^y([ikb])/w$1/                     # y[ikb] --> w[ikb]
-    - derive/^yh/wn/
-    - derive/^yj/wm/
-    - derive/^hy/hw/
-    - derive/^ty/ud/                            # ty --> ud
-    - derive/^tw/dw/                            # tw --> dw
-    - derive/^te/df/                            # te --> df
-    - derive/^tg/db/                            # tg --> db
-    - derive/^tk/rk/                            # tk --> rk
-    - derive/^tp/rl/                            # tp --> rl
-    - derive/^tr/rm/                            # tr --> rm
-    - derive/^rf/rn/                            # rf --> rn
-    - derive/^r([gv])/rb/                       # r[gv] --> rb
-    - derive/^g([fv])/gn/                       # g[fv] --> gn
-    - derive/^g([wy])/gi/                       # g[wy] --> gi
-    - derive/^gr/gm/                            # gr --> gm
-    - derive/^xp/sl/
-    - derive/^xt/sb/
-    - derive/^xy/xo/
-    - derive/^xs/xh/
-    - derive/^nj/xj/
-    - derive/^nu/nx/
-    - derive/^nh/nv/
-    - derive/^no/nr/
-    - derive/^ly/nw/
-    - derive/^lm/nz/
-    - derive/^jm/jz/
-    - derive/^jb/ja/
-    - derive/^z([ws])/zk/
-    - derive/^za/zl/
-    - derive/^ze/zn/
-    - derive/^zr/zm/
-    - derive/^vr/vm/                            # vr --> vm
-    - derive/^vf/vn/                            # vf --> vn
-    - derive/^vg/vk/
-    - derive/^mb/ms/
-    - derive/^mh/mx/
-    - derive/^mk/me/
-    - derive/^mo/mr/
-    - derive/^mu/mv/
-    - derive/^b([hju])/a$1/
-    - derive/^b([fgknm])/s$1/
-    - derive/^ce/ck/
-    - derive/^cd/cl/
-    - derive/^cr/cm/
+__patch: chord_composer:/patch                 # 音码键位左右并击规则
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -262,13 +199,13 @@ punctuator:
   full_shape:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
   half_shape:
+    # __include: default:/punctuator/half_shape         # 从 default.yaml 导入配置
     ",": {commit: "，"}
     ".": {commit: "。"}
-    ";": {commit: "；"}
+    # ";": {commit: "；"}
+    ";" : [";", "；"]
     '"': {pair: ['‘', '’']}      ## 添加注释后：恢复默认引号
     "'": {pair: ['“', '”']}      ## 添加注释后：恢复默认引号
-    "#": "#"
-    "=": "="
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
@@ -277,9 +214,7 @@ punctuator:
     "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
     "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
     "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
-    # '^': [^, ……]
-    # "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
-    "$": "￥"
+    "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
     "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
     "(": [（, '(']
     ")": [）, ')']
@@ -287,15 +222,11 @@ punctuator:
     "]": [」, 】, 〕, ］, 〛, 〙]
     "{": [『, 〖, ｛]
     "}": [』, 〗, ｝]
+    "#": "#"
+    "=": "="
+    # "@": "@"
   symbols:
     __include: symbols.custom:/symbols
-    ## 制表符
-    "/zb": [┌, └, ┐, ┘, ─, │, ├, ┤, ┬, ┴, ┼, ┏, ┗, ┓, ┛, ━, ┃, ┣, ┫, ┳, ┻, ╋]
-    "/zt": ["➖", "✅", "❌", "❓"]
-    "/tj": ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★",  "☆☆☆☆☆"]
-    "/jd": ["▉▁▁▁▁", "▉▉▁▁▁", "▉▉▉▁▁", "▉▉▉▉▁", "▉▉▉▉▉",  "▁▁▁▁▁"]
-    "/an": ["🅰️", "🆎", "🅱️", "🆑", "🅾️", "🆘", "🆗", "🆒", "🆓", "🆕", "🆖",  "🆙", "🆔", "Ⓜ️", "🆚", "✅", "🈯", "💹", "❇️", "✳️", "❎", "🏧", "🚾", "♿", "🅿️", "🈳", "🈂️", "🛂", "🛃", "🛄", "🛅", "🚹", "🚺", "🚼", "🚻", "🚮", "🎦", "📶", "🈁", "🔣", "ℹ️", "🔤", "🔡", "🔠", "🆖", "🆗", "🆙", "🆒", "🆕", "🆓", "0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟", "🔢", "#️⃣", "*️⃣", "⏏️", "▶️", "⏸", "⏯", "⏹", "⏺", "⏭", "⏮", "⏩", "⏪", "⏫", "⏬", "◀️", "🔼", "🔽", "➡️", "⬅️", "⬆️", "⬇️", "↗️", "↘️", "↙️", "↖️", "↕️", "↔️", "↪️", "↩️", "⤴️", "⤵️", "🔀", "🔁", "🔂", "🔄", "🔃"]
-    "/bs": ["丨", "亅", "丿", "乛", "一", "乙", "丶", "乚", "十", "厂", "匚", "刂", "卜", "冂", "亻", "八", "人", "入", "勹", "儿", "匕", "几", "亠", "冫", "丷", "冖", "讠", "凵", "卩", "阝", "刀", "力", "又", "厶", "廴", "干", "艹", "屮", "彳", "巛", "川", "辶", "寸", "大", "飞", "彑", "工", "弓", "廾", "广", "己", "彐", "巾", "口", "马", "门", "宀", "女", "犭", "山", "彡", "尸", "饣", "士", "扌", "氵", "纟", "巳", "土", "囗", "兀", "夕", "小", "忄", "幺", "弋", "尢", "夂", "子", "贝", "比", "灬", "长", "车", "歹", "斗", "厄", "方", "风", "父", "戈", "卝", "户", "火", "旡", "见", "斤", "耂", "毛", "木", "牛", "牜", "爿", "片", "攴", "攵", "气", "欠", "犬", "日", "氏", "礻", "手", "殳", "水", "瓦", "王", "韦", "文", "无", "毋", "心", "穴", "牙", "爻", "曰", "月", "爫", "支", "止", "爪", "车", "白", "癶", "甘", "瓜", "禾", "钅", "立", "龙", "矛", "皿", "母", "目", "疒", "鸟", "皮", "生", "石", "矢", "示", "罒", "田", "玄", "疋", "业", "衤", "用", "玉", "臣", "虫", "而", "耳", "缶", "艮", "虍", "臼", "老", "耒", "米", "糸", "齐", "肉", "色", "舌", "糹", "网", "西", "覀", "行", "血", "羊", "页", "衣", "羽", "聿", "至", "舟", "竹", "自", "辰", "赤", "辵", "豆", "谷", "龟", "角", "里", "卤", "麦", "身", "豕", "辛", "言", "邑", "酉", "鱼", "豸", "走", "足", "采", "齿", "非", "阜", "金", "隶", "黾", "青", "鱼", "雨", "隹", "釒", "革", "骨", "鬼", "韭", "面", "食(飠)", "首", "香", "音", "髟", "高", "鬲", "黄", "鹿", "麻", "鼎", "黑", "黍", "鼓", "鼠", "裏", "鼻", "龠"]
 
 key_binder:
   import_preset: default
@@ -312,38 +243,31 @@ key_binder:
 recognizer:
   # import_preset: default
   patterns:
-    punct: "^/([0-9]0?|[A-Za-z]+)$"
+    punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
+    chinese_lunar: "^/nl"
     week: "^/wk"
     time: "^/wt"
     datetime: "^/wd"
     history: "^/hs"
     shortcuts: "^/fj"
-    laTeX_formula: "^f/(.*)$"
-    chinese_number: "^n/[0-9.]+$"
-    make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导精准造词
-    radical_lookup: "~[a-z]+'?$"            # ~ 引导部件拆字, 使用小鹤双拼编码
-    flypy_help: "^/oh[a-z]*$"
     easy_en: "^/oe[a-z]*$"
-
-menu:
-  page_size: 5
+    flypy_help: "^/oh[a-z]*$"
+    laTeX_formula: "^/lt(.*)$"
+    chinese_number: "^/cn[0-9.]+$"
+    radical_lookup: "~[a-z]+'?$"            # ~ 引导部件拆字, 使用小鹤双拼编码
+    make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导精准造词
 
 traditionalize:
   option_name: traditionalization
   opencc_config: s2t.json
   tips: none
-  excluded_types: [radical_lookup]
+  excluded_types: [radical_lookup, chinese_number, chinese_lunar]
 
 emoji:
   opencc_config: emoji.json
   option_name: emoji
   tag: emoji
   excluded_types: [radical_lookup]
-
-chinese_number:
-  tag: chinese_number
-  # prefix: "n/"
-  tips: " 中文数字简繁大小写 "
 
 flypy_help:
   tag: flypy_help
@@ -391,11 +315,6 @@ radical_lookup:
     - erase/^.*$//
   preedit_format:
   # - xlit/hspnz/一丨丿丶乙/
-
-laTeX_formula:
-  tag: LaTeX_Formula
-  prefix: "f/"
-  tips: " TeX 公式"
 
 history:                  # 上屏历史记录
   tag: history

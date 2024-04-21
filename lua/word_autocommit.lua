@@ -72,7 +72,7 @@ local function twac_processor(key, env)
 
     -- 四码二字词时, 按下 '['  生成辅助码提示注解
     if ((preedit_code_length == 4) and (key:repr() == "bracketleft") and
-        (pos == 4) and (#tword_tail_char_shape_tbl < 1)) then
+            (pos == 4) and (#tword_tail_char_shape_tbl < 1)) then
         local composition = context.composition
         if (not composition:empty()) then
             local segment = composition:back()
@@ -112,7 +112,7 @@ local function twac_processor(key, env)
         end -- 键值对table ,不能使用 `#` 获取长度
         if (pos == 3) or (pos == 7) then
             local selected_cand = string.format("commit_code_%s",
-                                                cand_kyes[key:repr()])
+                cand_kyes[key:repr()])
             local char_code = string.sub(commit_codes[selected_cand], 4, 5)
             context:push_input(char_code)
             context:confirm_current_selection()
@@ -155,8 +155,7 @@ local function twac_translator(input, seg, env)
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
             if string.match(tail_char_hxm, string.sub(input, 6)) then
-                local cand = Candidate("custom", seg.start, seg._end, val[1],
-                                       comment)
+                local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
                 cand.quality = 999
                 yield(cand)
             end
@@ -166,6 +165,7 @@ end
 
 local function twac_filter(input, env)
     local cands = {}
+    local symbol_cands = {}
     local single_char_cands = {}
     local tword_phrase_cands = {}
     local tfchars_word_cands = {}
@@ -174,25 +174,32 @@ local function twac_filter(input, env)
     local pos = context.caret_pos
     local done = 0
     for cand in input:iter() do
-        if (pos >= 4) and (table.find_index({4, 5}, #preedit_code)) and
-            string.find(preedit_code, "^%l+%[%l*$") and
-            (not single_char_cands[cand.text]) then
+        if preedit_code:match("^;%l+$") and (not symbol_cands[cand.text])
+        then
+            symbol_cands[cand.text] = cand
+            table.insert(symbol_cands, cand)
+        end
+
+        if (pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
+            and string.find(preedit_code, "^%l+%[%l*$")
+            and (not single_char_cands[cand.text])
+        then
             single_char_cands[cand.text] = cand
             table.insert(single_char_cands, cand)
         end
 
-        if (pos >= 6) and (table.find({6, 7}, #preedit_code)) and
+        if (pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
             string.find(preedit_code, "^[%l]+%[[%l]+$") and
             (utf8.len(cand.text) == 2) and
             (string.sub(preedit_code, 5, 5) == "[") and
             (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) and
             (not tword_phrase_cands[cand.text]) then
-                -- (cand.quality == 0)) then
+            -- (cand.quality == 0)) then
             tword_phrase_cands[cand.text] = cand
             table.insert(tword_phrase_cands, cand)
         end
 
-        if table.find({6, 8}, #preedit_code) and
+        if table.find({ 6, 8 }, #preedit_code) and
             string.find(preedit_code, "^[%l]+$") and
             (table.len(tfchars_word_cands) < 6) and
             (not tfchars_word_cands[cand.text]) then
@@ -203,18 +210,22 @@ local function twac_filter(input, env)
         table.insert(cands, cand)
     end
 
-    if (pos >= 4) and (table.find_index({4, 5}, #preedit_code)) and
-        string.find(preedit_code, "^%l+%[%l+$") then
+    if preedit_code:match("^;%l+$") and (#symbol_cands == 1) then
+        env.engine:commit_text(symbol_cands[1].text)
+        context:clear()
+        return 1     -- kAccepted
+    end
+
+    if (pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
+        and preedit_code:match("^%l+%[%l+$") then
         for _, cand in ipairs(single_char_cands) do
             local input_shape_code = string.sub(preedit_code, 4):gsub('%[', '')
-            local current_cand_shape_code =
-                string.sub(cand.comment, 2):gsub('%[', '')
+            local current_cand_shape_code = cand.comment:match('[%a]') and cand.comment:sub(2):gsub('%[', '')
             local remain_shape_code, _ =
                 string.gsub(current_cand_shape_code, input_shape_code, '', 1)
             local comment = (string.len(remain_shape_code) > 0) and
-                                string.format('~%s', remain_shape_code) or "~"
+                string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-            -- if (#single_char_cands == 1) and (single_char_cands[cand.text]) then
             if (#single_char_cands == 1) then
                 tword_tail_char_shape_tbl = {}
                 commit_codes = {}
@@ -228,15 +239,15 @@ local function twac_filter(input, env)
         end
     end
 
-    if (pos >= 6) and (table.find({6, 7}, #preedit_code)) and
+    if (pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
         string.find(preedit_code, "^%l+%[%l+$") then
         for _, cand in ipairs(tword_phrase_cands) do
             local input_shape_code = string.sub(preedit_code, 6)
-            local current_cand_shape_code = string.sub(cand.comment, 2)
+            local current_cand_shape_code = cand.comment:match('[%a]') and cand.comment:sub(2):gsub('%[', '')
             local remain_shape_code, _ =
                 string.gsub(current_cand_shape_code, input_shape_code, '', 1)
             local comment = (string.len(remain_shape_code) > 0) and
-                                string.format('~%s', remain_shape_code) or "~"
+                string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
             if (#tword_phrase_cands == 1) and (tword_phrase_cands[cand.text]) and
                 (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
@@ -251,7 +262,7 @@ local function twac_filter(input, env)
         end
     end
 
-    if table.find({6, 8}, #preedit_code) and string.find(preedit_code, "^%l+") then
+    if table.find({ 6, 8 }, #preedit_code) and string.find(preedit_code, "^%l+") then
         local reversedb_phrase = ReverseLookup("flypy_phrase")
         local i, when_done, commit_text = 1, 0, ""
         for _, cand in pairs(tfchars_word_cands) do
