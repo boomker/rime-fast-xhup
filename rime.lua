@@ -115,6 +115,7 @@ word_autocommit_filter = word_autocommit.filter
 -- 词条置顶
 pin_word = require("pin_word")
 pin_word_filter = pin_word.filter
+pin_word_translator = pin_word.translator
 pin_word_processor = pin_word.processor
 
 -- 强制删词, 隐藏词组

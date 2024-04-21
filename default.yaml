@@ -12,7 +12,7 @@ config_version: "2024-03-16"
 
 # 菜单
 menu:
-  page_size: 5    # 候选词个数
+  page_size: 7    # 候选词个数
   # alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⑩ ]  # 修改候选项标签
   # alternative_select_keys: ASDFGHJKL  # 如编码字符占用数字键，则需另设选字键
 # 方案选单相关
@@ -24,8 +24,6 @@ switcher:
   save_options:
     - ascii_punct
     - emoji
-    - charset_comment
-    - traditionalization
   # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
   fold_options: true
   abbreviate_options: true      # 折叠时是否缩写选项
