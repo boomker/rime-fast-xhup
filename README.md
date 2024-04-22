@@ -171,11 +171,11 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 2. * Q: 恢复默认单双引号 `'"` 输出方式
    * A: 在[主配置文件](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml)里注释这[两行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml#L266-L267)
 3. * Q: 恢复默认分号 `;` 输出方式, 不想使用 `;`引导的标点符号输出方式
-   * A: 在[主配置文件](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml)里解开[这行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.custom.yaml#L264)注释, 并将下一行注释掉
+   * A: 在[主配置文件](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml)里解开[这行](https://github.com/boomker/rime-fast-xhup/blob/95ee165863b37087b6c3776c9ddecf9f525b42e4/flypy_xhfast.schema.yaml#L264)注释, 并将下一行注释掉
 4. * Q: 如何取消中英候选词条中的空格?
-   * A: 注释主配置文件里的[这行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml#L102)
+   * A: 注释主配置文件里的[这行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml#L101)
 5. * Q: 中英混合输出自动添加空格功能, 有时会在编辑区起始位置添加空格
-   * A:  这个功能目前还不够完善, 可以将[这行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.custom.yaml#L50)注释掉
+   * A:  这个功能目前还不够完善, 可以将[这行](https://github.com/boomker/rime-fast-xhup/blob/95ee165863b37087b6c3776c9ddecf9f525b42e4/flypy_xhfast.schema.yaml#L50)注释掉
 6. * Q: 形码辅助引导符可以去掉吗? 想直接使用辅助码, 不用引导符
    * A: 可以的, 取消[这行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.custom.yaml#L38)注释, 并放到 `speller` 这行下面
 7. * Q: 快捷指令功能能在移动端支持触控点击吗?
@@ -185,7 +185,7 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 9. * Q: 在微信聊天里, 有一些候选项带有中括号 `[]`是怎么回事?
    * A: 这是微信表情, 在候选菜单里不能显示, 在微信里可正常显示. 是通过 `OpenCC` 在 `emoji_word.txt` 编码的.
 10. * Q: 音码键位左右并击规则是什么,  可以删除或不启用吗?
-    * A: 这些规则采用了 不对应汉字读音的字母组合来编码一些小鹤双拼的音码. 可以不启用, 注释掉 [这些行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.yaml#L135-L195) 即可.
+    * A: 这些规则采用了 不对应汉字读音的字母组合来编码一些小鹤双拼的音码. 可以不启用, 注释掉 [这些行](https://github.com/boomker/rime-fast-xhup/blob/95ee165863b37087b6c3776c9ddecf9f525b42e4/flypy_xhfast.schema.yaml#L136-L194) 即可.
 11. * Q: 词库中存在注音错误的词条
     * A: 因为采用开源的 `pypinyin` 项目，存在词组中多音字返回了另外一个注音
 12. * Q: 有一些字打不出来, 字表中的字不全或形码错误
