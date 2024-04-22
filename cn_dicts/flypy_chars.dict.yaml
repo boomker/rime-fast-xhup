@@ -4,7 +4,7 @@
 
 ---
 name: flypy_chars
-version: "2024.03.19"
+version: "2024.04.22"
 sort: by_weight
 ...
 
@@ -531,6 +531,9 @@ sort: by_weight
 嚓	ca[kx	2
 拆	ca[fi	8
 擦	ca[fx	27
+艹	cc[al	0
+屮	cc[vl	0
+艸	cc[vl	0
 𥕢	cc[uo	0
 艚	cc[vo	1
 螬	cc[io	3
