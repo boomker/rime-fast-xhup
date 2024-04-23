@@ -189,7 +189,11 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 11. * Q: 词库中存在注音错误的词条
     * A: 因为采用开源的 `pypinyin` 项目，存在词组中多音字返回了另外一个注音
 12. * Q: 有一些字打不出来, 字表中的字不全或形码错误
-    * A: 本方案只收录了常见的通用汉字, 生僻字可以通过上述的 `~` 反查功能来输入. 字表的形码错误, 可能是容错码, 可自行修改
+    * A: 生僻字可以通过上述的 `~` 反查功能来输入. 字表的形码错误, 可能是容错码, 可自行修改
+13. * Q: 候选菜单里有无法显示的像「问号」一样的候选字
+    * A: 在 `squirrel.custom.yaml` 或 `weasel.yaml`配置可以正常显示的字体, 推荐 [`MiSans`](https://hyperos.mi.com/font/download) 
+14. * Q: `~`反查出来在字没有注音, 部署日志中提示缺少 `kMandarin`
+    * A: 请自行到这个[项目](https://github.com/mirtlecn/rime-radical-pinyin/releases)下载反查注音文件, 或将 `others` 下的 `kMandarin.reverse.bin` 移动到 `build`目录里
 
 ### 鸣谢
 
