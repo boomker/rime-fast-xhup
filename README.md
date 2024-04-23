@@ -6,7 +6,7 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 
 ### 特性说明
 
-- 自创音码键位左右并击规则，替换一些手指*移动不和谐* 的小鹤音码编码组合，实现左右手对侧击键, 更有节奏感
+- 自创音码键位左右并击规则，替换一些手指 *移动不和谐* 的小鹤音码编码组合，实现左右手对侧击键, 更有节奏感
 - 支持简拼，将常见成语、俗语、古诗首字母放入自定义短语实现，初始词频低，加了长词优选功能，提升在前三候选
 - 支持一键展开超级简拼, 输入4个字母编码字符后, 按下 `/` 或 `0` 会把词频最高的成语或短语词条置顶或显示在候选项里
 - 加入了长词优选功能，常见英文单词和成语排在第一页, 中文输入模式下短单词 (字母少于4个) 不会置顶和联想补全
@@ -28,7 +28,7 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 - 替换的字母有这些 `e-->q`，`f-->q` ，`t-->d` , `y-->w`, `s-->b`
 - ```yaml
   - derive/^(j)n/$1c/
-  - derive/^([jyn])t/$1d/ # t --> d
+  - derive/^([jyn])t/$1d/   # t --> d
   - derive/^([bjlmn])p/$1e/ # p --> e
   - derive/^([djlnx])q/$1f/ # q --> f
   - derive/^q([biklmnpsxy])/f$1/
@@ -37,10 +37,10 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
   - derive/^qr/fo/
   - derive/^qq/fz/
   - derive/^p([okifuhjbnmg])/e$1/
-  - derive/^pp/el/ # pp --> el
-  - derive/^dp/dl/ # dp --> dl
-  - derive/^([jkiu])y/$1w/ # [jkiu]y --> [jkiu]w
-  - derive/^y([ikb])/w$1/ # y[ikb] --> w[ikb]
+  - derive/^pp/el/          # pp --> el
+  - derive/^dp/dl/          # dp --> dl
+  - derive/^([jkiu])y/$1w/  # [jkiu]y --> [jkiu]w
+  - derive/^y([ikb])/w$1/   # y[ikb] --> w[ikb]
   - ...
   ```
 
@@ -124,36 +124,39 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 
 - 对 Rime 默认 Emacs 键位的一些补充：
 
-  - `Control+m` 可以替代回车。例如，敲 `yyds` 之后按这个键，输入的就是“yyds”。上面提到过的 `as` 前缀是类似的功能。
-  - `Control+w` 可以替代 `Control+退格`，为删一个字的码。例如，敲 `buk` 或者 `buke[dk` 之后，按这个键得到的都是 `bu`，可以继续敲后面的字。如果在词组输入时发现敲错了，可以用这个方式删掉最后的字。
+  - `Control+m` 可以替代回车。例如，敲 `yyds` 之后按这个键，输入的就是"yyds"。
+  - `Control+w` 可以替代 `Control+退格`，为删一个字的码。例如，敲 `buk` 或者 `buke[dk` 之后，
+    按这个键得到的都是 `bu`，可以继续敲后面的字。如果在词组输入时发现敲错了，可以用这个方式删掉最后的字。
 
   > Rime 自带的 Emacs 键位包括 `Control+[` 替代 `Esc`，取消当前输入；以及 `Control+h` 替代退格。另外，作者喜欢用 `Control` 键是因为在系统里配置了大写锁定和左 `Control` 交换，这样按起来很舒服。由于这是系统的配置而不是 Rime 的，本文件中没有说明其设置方式。
   >
-- 词组的双拼部分输入完成后，可用 `` ` `` 键（Tab 上面那个）逐字追加辅助码。例如，想输入“林纳斯”（默认词库没这个词，但一开始并不知道），可以敲 ``lbnasi`a`sk`q``，这与直接敲 `lb[a na[sk si[q` 是等价的。
+  - 词组的双拼部分输入完成后，可用 `` ` `` 键逐字追加辅助码。例如，想输入「林纳斯」，
+    可以敲 ``lb`m na`sn si`q``，这与直接敲 `lb[m na[sn si[q` 是等价的。
 
-  - 这也能用于重码太多的词库已有词。例如，希望输入“适时”一词，敲 `uiui` 发现候选太多，补上最后一个字的形码后 `uiui[oc` 还是没在第一页看到它。此时按 `` ` ``，输入框成为 `ui[ 光标 ui[oc`。补充敲下第一个字的形码部分 `q`，然后按 `Control+e`（或者 `End`）把光标移动到最后，即可看到想要的“适时”一词出现在候选中。
+  - 这也能用于重码太多的词库已有词。例如，希望输入“适时”一词，敲 `uiui` 发现候选太多，补上最后一个字的形码后 `uiui[oc` 还是没在第一页看到它。此时按 `` ` ``，输入框成为 `ui[ 光标 ui[oc`。补充敲下第一个字的形码部分 `z`，然后按 `Control+e`（或者 `End`）把光标移动到最后，即可看到想要的“适时”一词出现在候选中。
   - 可以在 `flypy_xhfast.custom.yaml` 中将 `` ` `` 改成 `Tab`，`Control+Tab` 或 `]` 等键。
   - 如果不希望自动补充 `[` 符号，其实可以直接改按 `Control+i` 或 `Shift+Right` 移动光标，不必使用 `` ` `` 键。
-  - 对于安卓 Trime 用户来说，可能还需要在 `trime.custom.yaml` 里加上这一句（放在 `patch:` 下，注意缩进）：
+  - 对于安卓 Trime 用户来说，可能还需要在 `trime.custom.yaml` 里加上这一句 (放在 `patch:` 下, 注意缩进):
 
     ```yaml
     style/horizontal: false
     ```
 
-    ←→ 方向键在 Trime 默认用来移动候选项，这一设定将它改成移动光标（和电脑版的默认行为一致），从而这个补充辅助码的快捷键才能正常工作。
+    ←→ 方向键在 Trime 默认用来移动候选项，这一设定将它改成移动光标（和电脑版的默认行为一致），
+    从而这个补充辅助码的快捷键才能正常工作。
 
-    另外，如果用户不嫌麻烦的话，也可以在第一次按 `` ` `` 键前先按 `Home` 或 `Control+a`（Trime 默认的虚拟键盘中长按 `a` 也行）把光标移动到开头。这样就无需改动 Trime 方向键的功能。
-  - 在开启了“直接引导辅助码”的条件下，由于音节组合方式可能出现歧义，这一功能不总能正常运行。
-  - 技术层面而言，该功能可能需要 librime 1.6.0 或以上版本才能生效（可以检查一下用户目录下 `installation.yaml` 文件中 `rime_version` 项是多少；一部分 1.5.3 版本也能支持）。如果用户所用系统能获取的最新版 Rime 不满足条件，而自己又有相应能力，可以考虑手动从 [librime 项目](https://github.com/rime/librime/releases) 安装或自行编译。
+    另外，如果用户不嫌麻烦的话，也可以在第一次按 `` ` `` 键前先按 `Home` 或 `Control+a`
+    (Trime 默认的虚拟键盘中长按 `a` 也行) 把光标移动到开头。这样就无需改动 Trime 方向键的功能。
+  - 在开启了「直接引导辅助码」的条件下，由于音节组合方式可能出现歧义，这一功能不总能正常运行。
 
 ### 关于 Lua 支持
 
+- 建议手动从 [librime 项目](https://github.com/rime/librime/releases) 安装或自行编译。
 - 小狼毫（Windows）和鼠须管（MacOS）的最新版本应该都支持 Lua 。
 - Trime（Android）要在 [GitHub 页面](https://github.com/osfans/trime) 下载最新测试版（注意不是稳定版）。
   另外，Trime 自带的配置文件可能有缺失，此时可以考虑将电脑版 Rime 系统目录里的配置文件也复制到 Trime 的配置目录中，比如朙月拼音的方案文件和字典文件。
 - 对于中州韵（Linux），据说 Arch Linux 源提供的 fcitx5-rime 可以在插件设置里开启 Lua 支持。
-  - 其他发行版的用户可以考虑这个 [ibus-rime AppImage](https://github.com/hchunhui/build)。遇到调频失效等问题可以试着删除各 userdb、build、sync 文件夹重新部署/同步。如果这一问题反复出现，或者重启/部署/同步之后经常忘掉之前输入的词，可以尝试在 `flypy_xhfast.custom.yaml` 里开启“用户词典记录为文本格式”，或者看这个 AppImage 有没有发布新版本。
-- ~~iRime（iOS）没用过，谁试了或许可以告诉作者（据说这个启用配置文件夹要花钱，而这对使用本项目的配置是必需的）。~~
+- 其他发行版的用户可以考虑这个 [ibus-rime AppImage](https://github.com/hchunhui/build)。遇到调频失效等问题可以试着删除各 userdb、build、sync 文件夹重新部署/同步。如果这一问题反复出现，或者重启/部署/同步之后经常忘掉之前输入的词，可以尝试在 `flypy_xhfast.custom.yaml` 里开启“用户词典记录为文本格式”，或者看这个 AppImage 有没有发布新版本。
 
 ### 给进阶用户
 
@@ -168,7 +171,7 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 
 1. * Q: Windows 系统部署项目失败, 一直处于部署中
    * A: 注释 **[flypy_xhfast.dict.yaml](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.dict.yaml)** 文件里大词库
-2. * Q: 恢复默认单双引号 `'"` 输出方式
+2. * Q: 恢复默认单双引号 `'` `"` 输出方式
    * A: 在[主配置文件](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml)里注释这[两行](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml#L266-L267)
 3. * Q: 恢复默认分号 `;` 输出方式, 不想使用 `;`引导的标点符号输出方式
    * A: 在[主配置文件](https://github.com/boomker/rime-fast-xhup/blob/a877ed5632de7edf133fe116de05eb601f7e838f/flypy_xhfast.schema.yaml)里解开[这行](https://github.com/boomker/rime-fast-xhup/blob/95ee165863b37087b6c3776c9ddecf9f525b42e4/flypy_xhfast.schema.yaml#L264)注释, 并将下一行注释掉
@@ -181,17 +184,17 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 7. * Q: 快捷指令功能能在移动端支持触控点击吗?
    * A: 目前暂不支持
 8. * Q: 符号配对功能有时会有光标居中动作的滞后现象
-   * A:  这个功能目前是通过 `applescript`  来实现的, 性能不佳, 得其他方式实现才行
+   * A:  这个功能目前是通过 [`applescript`](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html)  来实现的, 性能不佳, 得其他方式实现才行
 9. * Q: 在微信聊天里, 有一些候选项带有中括号 `[]`是怎么回事?
-   * A: 这是微信表情, 在候选菜单里不能显示, 在微信里可正常显示. 是通过 `OpenCC` 在 `emoji_word.txt` 编码的.
-10. * Q: 音码键位左右并击规则是什么,  可以删除或不启用吗?
-    * A: 这些规则采用了 不对应汉字读音的字母组合来编码一些小鹤双拼的音码. 可以不启用, 注释掉 [这些行](https://github.com/boomker/rime-fast-xhup/blob/95ee165863b37087b6c3776c9ddecf9f525b42e4/flypy_xhfast.schema.yaml#L136-L194) 即可.
+   * A: 这是微信表情, 在候选菜单里不能显示, 在微信里可正常显示. 是通过 [`OpenCC`](https://github.com/BYVoid/OpenCC) 在 [`emoji_word.txt`](https://github.com/boomker/rime-fast-xhup/blob/84e5314dfd70a3286587164233a9576d8d188ee4/opencc/emoji_word.txt) 编码的
+10. * Q: 音码键位左右并击规则是什么, 可以删除或不启用吗?
+    * A: 这些规则采用了 不对应汉字读音的字母组合来编码一些小鹤双拼的音码. 可以不启用, 注释掉 [这些行](https://github.com/boomker/rime-fast-xhup/blob/95ee165863b37087b6c3776c9ddecf9f525b42e4/flypy_xhfast.schema.yaml#L136-L194) 即可
 11. * Q: 词库中存在注音错误的词条
-    * A: 因为采用开源的 `pypinyin` 项目，存在词组中多音字返回了另外一个注音
+    * A: 因为采用开源的 [`pypinyin`](https://github.com/mozillazg/python-pinyin) 项目，存在词组中多音字返回了另外一个注音
 12. * Q: 有一些字打不出来, 字表中的字不全或形码错误
     * A: 生僻字可以通过上述的 `~` 反查功能来输入. 字表的形码错误, 可能是容错码, 可自行修改
 13. * Q: 候选菜单里有无法显示的像「问号」一样的候选字
-    * A: 在 `squirrel.custom.yaml` 或 `weasel.yaml`配置可以正常显示的字体, 推荐 [`MiSans`](https://hyperos.mi.com/font/download) 
+    * A: 在 [`squirrel.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/84e5314dfd70a3286587164233a9576d8d188ee4/squirrel.custom.yaml) 或 [`weasel.yaml`](https://github.com/boomker/rime-fast-xhup/blob/84e5314dfd70a3286587164233a9576d8d188ee4/weasel.yaml) 配置可以正常显示的字体, 推荐 [`MiSans`](https://hyperos.mi.com/font/download)
 14. * Q: `~`反查出来在字没有注音, 部署日志中提示缺少 `kMandarin`
     * A: 请自行到这个[项目](https://github.com/mirtlecn/rime-radical-pinyin/releases)下载反查注音文件, 或将 `others` 下的 `kMandarin.reverse.bin` 移动到 `build`目录里
 
