@@ -36,6 +36,7 @@ local pin_word_records =
 	["limit"] = { "limit", },
 	["iosb"] = { "iOS版", "iOS版本", },
 	["mac"] = { "Mac", "MacOS", },
+    ["macd"] = { "Mac端", "MAC地址", },
 	["those"] = { "those", },
 	["sl"] = { "些", },
 	["tade"] = { "他的", },

@@ -29,11 +29,11 @@ switches:
   - name: full_shape
     states: [半角, 全角]
     reset: 0
-  - name: traditionalization
-    states: [简体, 繁体]
-    reset: 0
+  - name: simplification
+    states: [漢字, 汉字]
+    reset: 1
   - name: extended_charset
-    states: [ 通用, 增廣 ]
+    states: [通用, 增廣]
     reset: 1
   - name: charset_comment
     states: [码区提示关, 码区提示开]
@@ -79,7 +79,7 @@ engine:
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_help                     # /oh 触发进入双拼键位帮助
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
-    # - lua_translator@pin_word_translator              # 自定义置顶词
+    - lua_translator@pin_word_translator              # 自定义置顶词
     - script_translator
     - lua_translator@lunar_translator                 # /nl 触发显示农历
     - lua_translator@datetime_translator              # date, week, time, /wd, /wk, /wt 触发
@@ -93,7 +93,7 @@ engine:
     - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
   filters:
     - simplifier
-    - simplifier@traditionalize
+    - simplifier@simplificationlize
     - simplifier@emoji
     - lua_filter@fly_fixed_filter
     - lua_filter@word_autocaps_filter
@@ -135,34 +135,34 @@ speller:
 
     ## 左右并击飞键音码规则
     - derive/^(j)n/$1c/
-    - derive/^([jyn])t/$1d/ # t --> d
-    - derive/^([bjlmn])p/$1e/ # p --> e
-    - derive/^([djlnx])q/$1f/ # q --> f
+    - derive/^([jyn])t/$1d/         # t --> d
+    - derive/^([bjlmn])p/$1e/       # p --> e
+    - derive/^([djlnx])q/$1f/       # q --> f
     - derive/^q([biklmnpsxy])/f$1/
     - derive/^qt/fd/
     - derive/^qu/fe/
     - derive/^qr/fo/
     - derive/^qq/fz/
     - derive/^p([okifuhjbnmg])/e$1/
-    - derive/^pp/el/ # pp --> el
-    - derive/^dp/dl/ # dp --> dl
-    - derive/^([jkiu])y/$1w/ # [jkiu]y --> [jkiu]w
-    - derive/^y([ikb])/w$1/ # y[ikb] --> w[ikb]
+    - derive/^pp/el/                # pp --> el
+    - derive/^dp/dl/                # dp --> dl
+    - derive/^([jkiu])y/$1w/        # [jkiu]y --> [jkiu]w
+    - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
     - derive/^yh/wn/
     - derive/^yj/wm/
     - derive/^hy/hw/
-    - derive/^ty/ud/ # ty --> ud
-    - derive/^tw/dw/ # tw --> dw
-    - derive/^te/df/ # te --> df
-    - derive/^tk/rk/ # tk --> rk
-    - derive/^tp/rl/ # tp --> rl
-    - derive/^rf/rn/ # rf --> rn
-    - derive/^tr/rm/ # tr --> rm
-    - derive/^t([gv])/db/ # t[gv] --> db
-    - derive/^r([gv])/rb/ # r[gv] --> rb
-    - derive/^g([fv])/gn/ # g[fv] --> gn
-    - derive/^g([wy])/gi/ # g[wy] --> gi
-    - derive/^gr/gm/ # gr --> gm
+    - derive/^ty/ud/                # ty --> ud
+    - derive/^tw/dw/                # tw --> dw
+    - derive/^te/df/                # te --> df
+    - derive/^tk/rk/                # tk --> rk
+    - derive/^tp/rl/                # tp --> rl
+    - derive/^rf/rn/                # rf --> rn
+    - derive/^tr/rm/                # tr --> rm
+    - derive/^t([gv])/db/           # t[gv] --> db
+    - derive/^r([gv])/rb/           # r[gv] --> rb
+    - derive/^g([fv])/gn/           # g[fv] --> gn
+    - derive/^g([wy])/gi/           # g[wy] --> gi
+    - derive/^gr/gm/                # gr --> gm
     - derive/^xp/sl/
     - derive/^xt/sb/
     - derive/^xy/xo/
@@ -179,8 +179,8 @@ speller:
     - derive/^za/zl/
     - derive/^ze/zn/
     - derive/^zr/zm/
-    - derive/^vr/vm/ # vr --> vm
-    - derive/^vf/vn/ # vf --> vn
+    - derive/^vr/vm/                # vr --> vm
+    - derive/^vf/vn/                # vf --> vn
     - derive/^vg/vk/
     - derive/^mb/ms/
     - derive/^mh/mx/
@@ -262,7 +262,7 @@ punctuator:
     ",": {commit: "，"}
     ".": {commit: "。"}
     # ";": {commit: "；"}
-    ";" : [";", "；"]
+    ";": [";", "；"]
     '"': {pair: ['‘', '’']}      ## 添加注释后：恢复默认引号
     "'": {pair: ['“', '”']}      ## 添加注释后：恢复默认引号
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
@@ -290,7 +290,7 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    - {when: has_menu, accept: Control+0, toggle: traditionalization}
+    - {when: has_menu, accept: Control+0, toggle: simplification}
     - {when: has_menu, accept: Control+period, toggle: ascii_punct}
     - {when: has_menu, accept: Control+slash, toggle: emoji}
     - {when: composing, accept: Control+o, send: Shift+Left}
@@ -316,9 +316,9 @@ recognizer:
     radical_lookup: "~[a-z]+'?$"            # ~ 引导部件拆字, 使用小鹤双拼编码
     make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导精准造词
 
-traditionalize:
-  option_name: traditionalization
-  opencc_config: s2t.json
+simplificationlize:
+  option_name: simplification
+  opencc_config: t2s.json
   tips: none
   excluded_types: [radical_lookup, chinese_number, chinese_lunar]
 
