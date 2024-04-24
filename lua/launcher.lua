@@ -2,8 +2,9 @@ local processor = {}
 local translator = {}
 local filter = {}
 local favor_items = nil
-local first_menu_text = nil
--- local second_menu_items = nil
+local first_menu_selected_text = nil
+local second_menu_selected_text = nil
+local second_menu_items = nil
 
 local function cmd(system, cmdArgs, objId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
@@ -64,7 +65,7 @@ function processor.func(key, env)
     local selected_candidate_index = (composition:empty() == false) and segment.selected_index or -1
     if keyValue == "space" then
         idx = selected_candidate_index
-    elseif keyValue == "Return" and (inputCode == favorCmdPrefix) then
+    elseif keyValue == "Return" and (inputCode:match("^" .. favorCmdPrefix)) then
         idx = selected_candidate_index
     elseif keyValue == "semicolon" then
         idx = 1
@@ -82,36 +83,58 @@ function processor.func(key, env)
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
-    if favor_items and context:has_menu() and (inputCode:match("^" .. favorCmdPrefix)) then
-        if spec_keys[keyValue] and (preeditCodeLength >= string.len(favorCmdPrefix) + 1) then
+    if context:has_menu() and (inputCode:match("^" .. favorCmdPrefix))
+        and ((idx >= 0) or spec_keys[keyValue])
+    then
+        if (idx >= 0) and (inputCode == favorCmdPrefix) and (segment.prompt:match("快捷指令")) then
+            local cand = segment:get_candidate_at(idx)
+            local candidateText = cand.text
+            first_menu_selected_text = candidateText:gsub(" ", "") .. tostring(idx + 1)
+            local prompt = first_menu_selected_text:gsub("[%a%d]", "")
+            if first_menu_selected_text then
+                second_menu_items = app_command_items["Favors"][first_menu_selected_text]["items"]
+                context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+                segment.prompt = "〔" .. prompt .. "〕"
+                return 1
+            end
+        end
+
+        if spec_keys[keyValue] then
+            if (inputCode ~= favorCmdPrefix) and (keyValue == "BackSpace") then
+                context:pop_input(1)
+                context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+            elseif (inputCode == favorCmdPrefix) and (keyValue == "BackSpace") then
+                context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+            else
+                context:clear()
+            end
             favor_items = nil
-            context:pop_input(1)
-            context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-            return 1                                    -- kAccepted 收下此key
-        elseif spec_keys[keyValue] then
-            favor_items = nil
+            first_menu_selected_text = nil
+            second_menu_selected_text = nil
+            second_menu_items = nil
             context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
             return 1                                    -- kAccepted 收下此key
         elseif idx >= 0 then
             local _candidateText = segment:get_candidate_at(idx).text
             local candidateText = _candidateText:gsub(" ", "")
 
-            local action = app_command_items["Favors"][first_menu_text]["action"]
-            local items = app_command_items["Favors"][first_menu_text]["items"]
+            local action = app_command_items["Favors"][first_menu_selected_text]["action"]
+            local items = app_command_items["Favors"][first_menu_selected_text]["items"]
             if type(items[1]) ~= "string" then
                 candidateText = candidateText .. tostring(idx + 1)
             end
+
             if (action == "commit") and type(items[1]) ~= "string" then
-                local commitText = app_command_items["Favors"][first_menu_text]["items"][candidateText]
+                local commitText = app_command_items["Favors"][first_menu_selected_text]["items"][candidateText]
                 engine:commit_text(commitText)
             elseif action == "open" and type(items[1]) == "string" then
                 cmd(system_name, "", candidateText)
             elseif (action == "open") then
-                local _path = app_command_items["Favors"][first_menu_text]["items"][candidateText]
+                local _path = app_command_items["Favors"][first_menu_selected_text]["items"][candidateText]
                 local path = _path:gsub(" ", "\\ ")
                 cmd(system_name, "", path)
             elseif action == "exec" then
-                local _cmdString = app_command_items["Favors"][first_menu_text]["items"][candidateText]
+                local _cmdString = app_command_items["Favors"][first_menu_selected_text]["items"][candidateText]
                 local cmdString
                 if _cmdString and _cmdString:match("^/") then
                     cmdString = _cmdString:gsub(" ", "\\ ", 1)
@@ -122,23 +145,12 @@ function processor.func(key, env)
             else
                 engine:commit_text(candidateText)
             end
-
             context:clear()
             favor_items = nil
-            first_menu_text = nil
+            first_menu_selected_text = nil
+            second_menu_selected_text = nil
+            second_menu_items = nil
             return 1 -- kAccepted 收下此key
-        end
-    end
-
-    if (not favor_items) and (idx >= 0) and context:has_menu() and (inputCode == favorCmdPrefix) then
-        local candidateText = segment:get_candidate_at(idx).text
-        first_menu_text = candidateText:gsub(" ", "") .. tostring(idx + 1)
-        local prompt = first_menu_text:gsub("[%a%d]", "")
-        if first_menu_text then
-            favor_items = app_command_items["Favors"][first_menu_text]["items"]
-            context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-            segment.prompt = "〔" .. prompt .. "〕"
-            return 1
         end
     end
 
@@ -175,6 +187,26 @@ function processor.func(key, env)
         end
     end
 
+    if context:has_menu() and (inputCode:match("^" .. favorCmdPrefix)) and (second_menu_selected_text)
+        and (preeditCodeLength >= (string.len(favorCmdPrefix) + 2))
+    then
+        local action = app_command_items["Favors"][first_menu_selected_text]["action"]
+        local items = app_command_items["Favors"][first_menu_selected_text]["items"]
+        if (action == "commit") and type(items[1]) ~= "string" then
+            local commitText = app_command_items["Favors"][first_menu_selected_text]["items"][second_menu_selected_text]
+            engine:commit_text(commitText)
+        elseif (action == "open") and (type(items[1]) ~= "string") then
+            local _path = app_command_items["Favors"][first_menu_selected_text]["items"][second_menu_selected_text]
+            local path = _path:gsub(" ", "\\ ")
+            cmd(system_name, "", path)
+        end
+        context:clear()
+        favor_items = nil
+        first_menu_selected_text = nil
+        second_menu_selected_text = nil
+        second_menu_items = nil
+        return 1 -- kAccepted 收下此key
+    end
     return 2
 end
 
@@ -211,20 +243,24 @@ function translator.func(input, seg, env)
         yield(cand)
     end
 
-    if (not favor_items) and input:match("^" .. favorCmdPrefix .. "$") then
-        if (not composition:empty()) then
-            local segment = composition:back()
-            segment.prompt = "〔快捷指令〕"
-        end
+    if (composition:empty()) then return end
+
+    local segment = composition:back()
+    if (not favor_items) and input:match("^" .. favorCmdPrefix .. "$") and (not first_menu_selected_text) then
+        segment.prompt = "〔快捷指令〕"
+
         for key, _ in pairs(app_command_items["Favors"]) do
             local cand = Candidate("favor", seg.start, seg._end, key, "")
             cand.quality = 999
             yield(cand)
         end
+        favor_items = app_command_items["Favors"]
     end
 
     local favor_cmd_length_range = string.len(favorCmdPrefix) + 1 .. string.len(favorCmdPrefix) + 2
-    if (not favor_items) and input:match("^" .. favorCmdPrefix) and (favor_cmd_length_range:match(#input)) then
+    if (not first_menu_selected_text) and (segment.prompt:match("快捷指令") or (not second_menu_items))
+        and input:match("^" .. favorCmdPrefix) and (favor_cmd_length_range:match(#input))
+    then
         local first_menu_prefix = input:sub(favorCmdPrefix:len() + 1, -1)
         local matchCount = 0
         local matchMenuKey = ""
@@ -238,12 +274,9 @@ function translator.func(input, seg, env)
         end
 
         if matchCount == 1 and matchMenuItems then
-            if (not composition:empty()) then
-                local segment = composition:back()
-                local prompt = matchMenuKey:gsub("[%a%d]", "")
-                segment.prompt = "〔" .. prompt .. "〕"
-            end
-            local second_menu_items = matchMenuItems["items"]
+            local prompt = matchMenuKey:gsub("[%a%d]", "")
+            segment.prompt = "〔" .. prompt .. "〕"
+            second_menu_items = matchMenuItems["items"]
             for k, v in pairs(second_menu_items) do
                 local item = type(k) == "number" and v or k
                 local cand = Candidate("favor", seg.start, seg._end, item, "")
@@ -251,11 +284,42 @@ function translator.func(input, seg, env)
                 yield(cand)
             end
             favor_items = app_command_items["Favors"]
-            first_menu_text = matchMenuKey
+            first_menu_selected_text = matchMenuKey
         end
     end
 
-    if type(favor_items) == "table" and input:match("^" .. favorCmdPrefix .. "$") then
+    if (first_menu_selected_text) and (second_menu_items) and input:match("^" .. favorCmdPrefix .. "$") then
+        for k, v in pairs(second_menu_items) do
+            local item = type(k) == "number" and v or k
+            local cand = Candidate("favor", seg.start, seg._end, item, "")
+            cand.quality = 999
+            yield(cand)
+        end
+    end
+
+    if (not segment.prompt:match("快捷指令")) and (second_menu_items)
+        and (not second_menu_selected_text) and (input:len() >= (favorCmdPrefix:len() + 2))
+    then
+        local prompt = first_menu_selected_text and first_menu_selected_text:gsub("[%a%d]", "")
+        segment.prompt = "〔" .. prompt .. "〕"
+        for k, v in pairs(second_menu_items) do
+            local item = type(k) == "number" and v or k
+            if item:lower():match("^" .. input:sub(-1)) and (type(item) == "string") then
+                second_menu_selected_text = item:gsub(" ", "")
+            end
+        end
+        if second_menu_selected_text then
+            local _text = second_menu_selected_text:gsub("[%d]", "")
+            local cand = Candidate("favor", seg.start, seg._end, _text, "")
+            cand.quality = 999
+            yield(cand)
+        end
+    end
+
+    if type(favor_items) == "table" and input:match("^" .. favorCmdPrefix .. "$") and (not second_menu_items) then
+        segment.prompt = "〔快捷指令〕"
+        first_menu_selected_text = nil
+        second_menu_items = nil
         for key, val in pairs(favor_items) do
             if type(key) == "number" and type(val) == "string" then
                 local cand = Candidate("favor", seg.start, seg._end, val, "")
