@@ -7,9 +7,9 @@ function reduce_emoji.func(input, env)
     local emoji_cands = {}
     local other_cands = {}
     local prev_cand_text = ""
-    local emoji_pos = config:get_int("emoji_reduce_config/idx") or 6
-    local top_emoji_cnt = 0
     local top_cand_cnt = 0
+    local top_emoji_cnt = 0
+    local emoji_pos = config:get_int("emoji_reduce_config/idx") or 6
     local opencc_emoji = Opencc("emoji.json")
     local preedit_code = env.engine.context:get_commit_text():gsub(" ", "")
 
@@ -17,32 +17,39 @@ function reduce_emoji.func(input, env)
         local cand_text = cand.text:gsub(" ", "")
 
         if
-            (top_cand_cnt <= (emoji_pos + 1))
+            (top_cand_cnt <= emoji_pos)
+            and (cand.type ~= "user_table")
             and (cand:get_dynamic_type() == "Shadow")
             and not
             (
-                preedit_code:match("^ok$")
-                or preedit_code:match("^/")
-                or preedit_code:match("^win.")
-                or cand.comment:match("^his.")
-                or (cand_text:match("^[%a]") and (cand_text:match("[%a]+"):len() > 3))
+                preedit_code:match("^/")
+                or (
+                    cand_text:match("^[%a]")
+                    and (cand_text:match("[%a]+"):len() > 3)
+                    and cand_text:find("([\228-\233][\128-\191]-)")
+                )
             )
         then
-            table.insert(emoji_cands, { prev_cand_text, cand })
+            local wechatFlg = env.engine.context:get_option("wechat_flag")
+            if wechatFlg then
+                table.insert(emoji_cands, { prev_cand_text, cand })
+            else
+                if not cand_text:match("%]$") then
+                    table.insert(emoji_cands, { prev_cand_text, cand })
+                end
+            end
             if top_cand_cnt == (emoji_pos - 1) then
                 top_emoji_cnt = #emoji_cands
             end
-        elseif (top_cand_cnt <= (emoji_pos + 1)) then
+        elseif (top_cand_cnt <= emoji_pos) then
             table.insert(normal_cands, cand)
             top_cand_cnt = top_cand_cnt + 1
             if top_cand_cnt == (emoji_pos - 1) then
                 top_emoji_cnt = #emoji_cands
             end
             local emoji_tab = opencc_emoji:convert_word(cand_text) or { cand_text }
-            for _, emoji_txt in ipairs(emoji_tab) do
-                if #emoji_tab > 1 and emoji_txt == cand_text then
-                    prev_cand_text = cand_text
-                end
+            if (#emoji_tab > 1) and (emoji_tab[1] == cand_text) then
+                prev_cand_text = cand_text
             end
         else
             table.insert(other_cands, cand)
@@ -73,6 +80,17 @@ function reduce_emoji.func(input, env)
         end
         emoji_pos = emoji_pos - 1
         yield(normal_cand)
+        if (#emoji_cands == 1) and (emoji_pos < 1) then
+            yield(
+                ShadowCandidate(
+                    emoji_cands[1][2],
+                    emoji_cands[1][2].type,
+                    emoji_cands[1][2].text,
+                    emoji_cands[1][1]
+                )
+            )
+            emoij_yield_done = true
+        end
     end
 
     if (#emoji_cands > 0) and (not emoij_yield_done) then

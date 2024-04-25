@@ -14,7 +14,8 @@ local function fly_fixed(input, env)
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
         if
-            (cand:get_dynamic_type() ~= "Shadow")
+            (cand.type ~= "user_table")
+            and (cand:get_dynamic_type() ~= "Shadow")
             and (not cand_text:match("[a-zA-Z]"))
             and (not cand.comment:match("^🔝$"))
             and (not preedit_code:match("[%u%[/'`]"))
