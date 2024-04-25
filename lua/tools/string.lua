@@ -63,9 +63,22 @@ function utf8.csub(s, i, j)
     end
 end
 
+function utf8.chars(word)
+    local f, s, i = utf8.codes(word)
+    return function()
+        local j, value = f(s, i)
+        if j and value then
+            return j, utf8.char(value)
+        else
+            return nil
+        end
+    end
+end
+
 string.split = string.split
 string.utf8_len = utf8.len
 string.utf8_offset = utf8.offset
 string.utf8_gsub = utf8.gsub
 string.utf8_sub = utf8.csub
+string.utf8_chars = utf8.chars
 return true

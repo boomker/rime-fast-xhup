@@ -39,7 +39,6 @@ local function long_word_up(input, env)
             yield(cand_uniq)
             pickup_count = pickup_count - 1
         else
-            -- if (cand_length <= ((preedit_for_cand_length // 2) + 2)) or (cand.quality > 9) then
             if ((utf8.len(cand_text) / #preedit_code) <= 1.5) or (cand.quality > 9) then
                 table.insert(cands, cand)
             else

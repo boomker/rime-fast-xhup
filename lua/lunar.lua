@@ -544,7 +544,7 @@ end
 -- 农历
 local function translator(input, seg)
 	local date1, date2 = Date2LunarDate(os.date("%Y%m%d"))
-	if input == "/nl" then
+	if (seg.tag == "chinese_lunar") or (input == "/nl") or (input == "lunar") then
 		local lunar_date = Candidate("lunar", seg.start, seg._end, date1, "农历")
 		lunar_date.quality = 999
 		yield(lunar_date)

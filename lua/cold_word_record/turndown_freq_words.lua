@@ -8,7 +8,6 @@ local turndown_freq_words = {
 	["佛莱尔"] = { "folder" },
 	["官婢"] = { "grbi" },
 	["爬松"] = { "pass" },
-	["托达亚"] = { "today" },
 	["爬船"] = { "pair" },
 	["托德斯"] = { "todes" },
 	["狸奴下"] = { "linux" },

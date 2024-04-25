@@ -38,32 +38,33 @@ librime-lua 样例
 --]]
 
 -- I. translators:
--- datetime_translator: 将 `date`, `dt`, `rq` ,`week`, `time`
+-- 本方案帮助菜单, `/oh`, `/help`
+flypy_help = require("flypy_help_menu")
+flypy_help_translator = flypy_help.translator
+
+-- datetime_translator: 将 `date`, `/wd`, `week`, `/wk`, `time`, `/wt`
 -- 翻译为当前日期, 星期, 时间
 date_time = require("date_time")
 datetime_translator = date_time.translator
 
--- lunar_translator: 将 `cnl`, 翻译成农历
+-- lunar_translator: 将 `/nl`, 翻译成农历
 lunar = require("lunar")
 lunar_translator = lunar.translator
 
--- number_translator: 将 `n/` + 阿拉伯数字 翻译为大小写汉字
+-- number_translator: 将 `/cn` + 阿拉伯数字 翻译为大小写汉字
 -- 详见 `lua/number.lua`
 number = require("number")
 number_translator = number.translator
 
--- 英文生词造词入词库, 输入串末尾跟'`'
+-- 英文生词造词入词库, 输入串末尾跟']'
 en_custom = require("en_custom")
 word_custom_translator = en_custom.translator
 
--- LaTeX 公式输入, `f/`触发
+-- LaTeX 公式输入, `/lt`触发
 laTex = require("laTex")
 laTex_translator = laTex.translator
 
--- user_dict = require("user_dict")
--- user_dict_translator = user_dict.translator
-
--- 最近输入历史, `hisz` 触发
+-- 最近输入历史, `/hs` 触发
 commit_history = require("commit_history")
 commit_history_translator = commit_history.translator
 
@@ -80,10 +81,6 @@ charset_comment_filter = charset.comment_filter
 local emoji_reduce = require("reduce_emoji")
 emoji_reduce_filter = emoji_reduce.filter
 
--- single_char_filter: 候选项重排序，使单字优先
--- 详见 `lua/single_char.lua`
--- single_char_filter = require("single_char")
-
 -- 适用于中文输入方案的中英文之间加空格
 word_append_space = require("word_append_space")
 word_append_space_filter = word_append_space.filter
@@ -98,21 +95,17 @@ engword_autocaps = require("word_autocaps")
 word_autocaps_filter = engword_autocaps.filter
 word_autocaps_translator = engword_autocaps.translator
 
--- 提升1 个中文长词的位置到第三候选
+-- 提升 1 个中文长词的位置到第三候选
 long_word_up = require("long_word_up")
 long_word_up_filter = long_word_up.filter
 
---  单字和二字词的 全码顶屏(自动上屏)
+--  单字和二字词 全码顶屏(自动上屏)
 word_autocommit = require("word_autocommit")
 word_autocommit_processor = word_autocommit.processor
 word_autocommit_translator = word_autocommit.translator
 word_autocommit_filter = word_autocommit.filter
 
--- reverse_lookup_filter: 依地球拼音为候选项加上带调拼音的注释
--- 详见 `lua/reverse.lua`
--- reverse_lookup_filter = require("reverse")
-
--- 词条置顶
+-- 词条置顶, 支持自定义编码(效果等同于 `custom_phrase`)
 pin_word = require("pin_word")
 pin_word_filter = pin_word.filter
 pin_word_translator = pin_word.translator
@@ -134,21 +127,17 @@ fly_fixed_filter = fly_fixed.filter
 select_char = require("select_char")
 select_char_processor = select_char.processor
 
--- switch_processor: 通过选择自定义的候选项来切换开关（以简繁切换和下一方案为例）
--- 详见 `lua/switch.lua`
--- switch_processor = require("switch")
-
 -- 符号配对
 pair_symbols = require("pair_symbols")
 pair_symbols_processor = pair_symbols.processor
 
--- 快捷启动应用
+-- 快捷启动/切换应用, 如 `/jj` 触发; `/fj`: 快捷指令
 launcher = require("launcher")
 launcher_processor = launcher.processor
 launcher_translator = launcher.translator
 launcher_filter = launcher.filter
 
--- 成语短句优先
+-- 成语短句优先, `/`, `0` 触发
 idiom_expand = require("idiom_abbr_expand")
 idiom_expand_processor = idiom_expand.processor
 idiom_expand_translator = idiom_expand.translator

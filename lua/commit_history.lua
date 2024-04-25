@@ -33,10 +33,15 @@ end
 
 function translator.func(input, seg, env)
     local config = env.engine.schema.config
-    local trigger_prefix = config:get_string("history" .. "/input") or "hisz"
-    if seg:has_tag("history") or input == trigger_prefix then
+    local composition = env.engine.context.composition
+    if (composition:empty()) then return end
+    local segment = composition:back()
+    local trigger_prefix = config:get_string("history" .. "/prefix") or "/hs"
+    local prompt = config:get_string("history" .. "/tips") or "上屏历史"
+    if seg:has_tag("history") or (input == trigger_prefix) then
+        segment.prompt = "〔" .. prompt .. "〕"
         for i = #history_list, 1, -1 do
-            local cand = Candidate("history", seg.start, seg._end, history_list[i].text, "history")
+            local cand = Candidate("history", seg.start, seg._end, history_list[i].text, "")
             local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, cand.comment)
             cand_uniq.quality = 999
             yield(cand_uniq)
