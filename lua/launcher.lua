@@ -103,6 +103,8 @@ function processor.func(key, env)
             if (inputCode ~= favorCmdPrefix) and (keyValue == "BackSpace") then
                 context:pop_input(1)
                 context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+            elseif (inputCode == favorCmdPrefix) and (keyValue == "BackSpace") and (segment.prompt:match("快捷指令")) then
+                return 2
             elseif (inputCode == favorCmdPrefix) and (keyValue == "BackSpace") then
                 context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
             else

@@ -2,7 +2,6 @@
 name: en_custom
 version: "2024-4-8"
 ...
-
 abcd	abcd	100000
 vnext	vnext	100000
 xform	xform	100000
@@ -74,3 +73,4 @@ docker	docker	100000
 launcher	launcher	100000
 android	android	100000
 applescript	applescript	100000
+ollama	ollama	100000

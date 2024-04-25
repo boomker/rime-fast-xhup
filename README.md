@@ -88,8 +88,9 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 
 ### 前缀模式
 
-- `/` 前缀：符号模式，具体见 Rime 的系统目录自带的 `symbols.yaml` 文件。例如：敲 `/jt` 按 3，即可输入箭头“←”。
-- `/oh` 前缀：小鹤双拼键位查询，该功能为双拼初学者提供。例如：敲 `ohian`，可看到韵母 `ian` 对应的按键是 `m`。
+- `/` 前缀：符号模式，具体见本方案的 [`symbols.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/57bb5b093ae164f46ffac52df47b18addf89c2b1/symbols.custom.yaml) 文件。例如：敲 `/jt` 按 3，即可输入箭头“←”。
+- `/oh` 前缀：本方案帮助菜单, 输入 `/help` 效果等同, 可查看方案中的快捷键, 功能触发前缀字符串等。
+- `/ok` 前缀：小鹤双拼键位查询，该功能为双拼初学者提供。例如：敲 `okian`，可看到韵母 `ian` 对应的按键是 `m`。
 - `/oe` 前缀：单词模式，不仅可以敲完整的单词，也允许“简写”，省略掉除了首字母以外的所有元音字母（`aeiou`）。
   例如：敲 `/oe` `elevation `或者 `/oe ` `elvtn` 再加空格，即可输入“elevation”。
 
@@ -117,7 +118,7 @@ Rime 输入法配置文件，小鹤双拼+小鹤形码辅助方案。使用后�
 - 敲 `date`,  `time`, `today`, `week`, `/wd`, /`wt`, `/wk`, `/nl`, 可以输入当天的日期, 时间, 星期, 农历。
 - `~` 前缀：部件组字模式 (类似搜狗拼音的 u 拆字模式)，其中部件按照小鹤双拼输入。
   例如，要输入“犇”字 (它可以拆为“牛牛牛”)，敲 `~nqnqnq` 空格即可，并看到这个字的拼音是 `ben`。
-- `;` 前缀: 用于自动上屏一些标点符号, 具体编码在 `symbols.custom.yaml` 里, 可自行修改。
+- `;` 前缀: 用于自动上屏一些标点符号, 具体编码在 [`symbols.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/57bb5b093ae164f46ffac52df47b18addf89c2b1/symbols.custom.yaml) 里, 可自行修改。
 - `;f` 前缀: 表情模式, 用于输出常用 emoji 表情和微信表情。比如, 输入 `;fdv` 会输出✅, 输入 `;fhj` 会输出🚀
 - `V` 前缀：表情模式, 用于输出 emoji 表情。比如, 输入 `Vuvgo`, 会输出「水果」类表情
 

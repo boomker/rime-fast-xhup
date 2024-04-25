@@ -65,7 +65,7 @@ engine:
     - affix_segmentor@chinese_number
     - affix_segmentor@easy_en
     - affix_segmentor@laTeX_formula
-    - affix_segmentor@flypy_help
+    - affix_segmentor@flypy_key_help
     - affix_segmentor@radical_lookup
     - punct_segmentor
     - fallback_segmentor
@@ -77,10 +77,11 @@ engine:
     - table_translator@melt_eng
     - table_translator@make_sentence                  # ` 精准造词
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
-    - table_translator@flypy_help                     # /oh 触发进入双拼键位帮助
+    - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
     - lua_translator@pin_word_translator              # 自定义置顶词
     - script_translator
+    - lua_translator@flypy_help_translator            # /oh 触发进入帮助菜单
     - lua_translator@lunar_translator                 # /nl 触发显示农历
     - lua_translator@datetime_translator              # date, week, time, /wd, /wk, /wt 触发
     - lua_translator@launcher_translator              # /jj, /fj 触发快捷命令(可改触发前缀)
@@ -290,31 +291,34 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    - {when: has_menu, accept: Control+0, toggle: simplification}
-    - {when: has_menu, accept: Control+period, toggle: ascii_punct}
-    - {when: has_menu, accept: Control+slash, toggle: emoji}
+    - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+o, send: Shift+Left}
     - {when: composing, accept: Control+i, send: Shift+Right}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
-    # - { when: composing, accept: Control+m, send: Return }
+    - {when: has_menu,  accept: Control+0, toggle: simplification}
+    - {when: has_menu,  accept: Control+period, toggle: ascii_punct}
+    - {when: has_menu,  accept: Control+Shift+slash, toggle: emoji}
+    - {when: has_menu,  accept: Control+Shift+apostrophe, toggle: charset_comment}
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 recognizer:
-  # import_preset: default
+  import_preset: default
   patterns:
-    punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
-    chinese_lunar: "^/nl"
     week: "^/wk"
     time: "^/wt"
     datetime: "^/wd"
+    chinese_lunar: "^/nl"
     history: "^/hs"
     shortcuts: "^/fj"
     easy_en: "^/oe[a-z]*$"
-    flypy_help: "^/oh[a-z]*$"
-    laTeX_formula: "^/lt(.*)$"
+    flypy_help: "^/(oh|help)$"
+    flypy_key_help: "^/ok[a-z]*$"
     chinese_number: "^/cn[0-9.]+$"
+    laTeX_formula: "^/lt(.*)$"
     radical_lookup: "~[a-z]+'?$"            # ~ 引导部件拆字, 使用小鹤双拼编码
     make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导精准造词
+    punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
+    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
 simplificationlize:
   option_name: simplification
@@ -328,11 +332,11 @@ emoji:
   tag: emoji
   excluded_types: [radical_lookup]
 
-flypy_help:
-  tag: flypy_help
+flypy_key_help:
+  tag: flypy_key_help
   dictionary: ""
-  user_dict: flypy_help
-  prefix: "/oh"
+  user_dict: flypy_keymap
+  prefix: "/ok"
   tips: "小鹤双拼查键"
   db_class: stabledb
   enable_completion: true
@@ -376,9 +380,10 @@ radical_lookup:
   # - xlit/hspnz/一丨丿丶乙/
 
 history:                  # 上屏历史记录
+  tips: "上屏历史"
   tag: history
-  history_num_max: 30
+  prefix: "/hs"
   size: 30
-  input: "/hs"
+  history_num_max: 30
   initial_quality: 1000
   excluded_type: "punct"

@@ -196,19 +196,13 @@ function cold_word_drop.filter(input, env)
                         and cand_text:lower():match("^" .. prev_cand_text)
                     )
                     or (
-                        (cand_text:match("^[%u][%a]?[%a]?") or cand_text:match("[%a]$"))
-                        and ((cand_text:match("^[%a]") and (cand_text:match("[%a]+"):len() < 4)))
+                        ((cand_text:match("^[%u][%a]?[%a]?") and (cand_text:match("[%a]+"):len() < 4)))
                         and cand_text:find("([\228-\233][\128-\191]-)")
                     )
                 )
-                and not (
-                    cand_text:lower():match("^ok$")
-                    or cand_text:match("^Mac$")
-                    or cand_text:match("^Win.")
-                )
             then
                 table.insert(cands, cand)
-                if cand_text:match("^[%a]+$") and not prev_cand_text then
+                if cand_text:match("^[%a.]+$") and (not prev_cand_text) then
                     prev_cand_text = cand_text:lower()
                 end
             elseif
