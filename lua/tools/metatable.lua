@@ -19,8 +19,7 @@ end
 
 -- chech metatble
 function metatable_chk(tab)
-    if "table" == type(tab)
-    then
+    if "table" == type(tab) then
         return (tab.each and tab) or metatable(tab)
     else
         return tab
@@ -61,10 +60,6 @@ table.find = function(tab, elm, func)
     end
 end
 
-table.find_with_func = function(tab, elm, ...)
-    local i, v = table.find(tab, elm)
-end
-
 table.delete = function(tab, elm, ...)
     local index = table.find_index(tab, elm)
     return index and table.remove(tab, index)
@@ -72,7 +67,9 @@ end
 
 table.find_all = function(tab, elm, ...)
     local tmptab = setmetatable({}, { __index = table })
-    local _func = (type(elm) == "function" and elm) or function(v, k, ...) return v == elm end
+    local _func = (type(elm) == "function" and elm) or function(v, k, ...)
+        return v == elm
+    end
     for k, v in pairs(tab) do
         if _func(v, k, ...) then
             tmptab:insert(v)
@@ -93,16 +90,20 @@ end
 
 table.map = function(tab, func)
     local newtab = setmetatable({}, { __index = table })
-    func = func or function(v, i) return v, i end
+    func = func or function(v, i)
+        return v, i
+    end
     for i, v in ipairs(tab) do
         newtab[i] = func(v, i)
     end
     return newtab
 end
 
-table.map_hash = function(tab, func)  --  table to   list of array  { key, v}
+table.map_hash = function(tab, func) --  table to   list of array  { key, v}
     local newtab = setmetatable({}, { __index = table })
-    func = func or function(k, v) return { k, v } end
+    func = func or function(k, v)
+        return { k, v }
+    end
     for k, v in pairs(tab) do
         newtab:insert(func(k, v))
     end
@@ -123,10 +124,10 @@ end
 
 function table.len(t)
     local leng = 0
-    for k, v in pairs(t) do
+    for _, _ in pairs(t) do
         leng = leng + 1
     end
-    return leng;
+    return leng
 end
 
 -- table to string 序列化
@@ -150,12 +151,6 @@ function table.serialize(obj)
                 serialize_str = serialize_str .. "\t[" .. table.serialize(k) .. "] = " .. table.serialize(v) .. ",\n"
             end
         end
-        -- local metatable = getmetatable(obj)
-        -- if metatable ~= nil and type(metatable.__index) == "table" then
-        --     for k, v in pairs(metatable.__index) do
-        --         serialize_str = serialize_str .. "[" .. table.serialize(k) .. "]=" .. table.serialize(v) .. ",\n"
-        --     end
-        -- end
         serialize_str = serialize_str .. "}"
     elseif t == "nil" then
         return nil

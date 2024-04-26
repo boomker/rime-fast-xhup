@@ -194,7 +194,6 @@ local function twac_filter(input, env)
             (string.sub(preedit_code, 5, 5) == "[") and
             (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) and
             (not tword_phrase_cands[cand.text]) then
-            -- (cand.quality == 0)) then
             tword_phrase_cands[cand.text] = cand
             table.insert(tword_phrase_cands, cand)
         end
@@ -213,7 +212,7 @@ local function twac_filter(input, env)
     if preedit_code:match("^;%l+$") and (#symbol_cands == 1) then
         env.engine:commit_text(symbol_cands[1].text)
         context:clear()
-        return 1     -- kAccepted
+        return 1 -- kAccepted
     end
 
     if (pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
