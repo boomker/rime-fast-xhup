@@ -1,5 +1,6 @@
 -- require("tools/string")
 
+local excluded_type = { "date", "week", "time", "lunar" }
 local function long_word_up(input, env)
     local engine = env.engine
     local context = engine.context
@@ -18,28 +19,37 @@ local function long_word_up(input, env)
     local preedit_for_cand_length = ((preedit_length % 2) == 0) and preedit_length or (preedit_length - 1)
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
-        local cand_length = utf8.len(cand_text)
-        local cand_predict_max_length = ((preedit_for_cand_length // 2) + 2)
-        if (idx > 1) then
+        local cand_text_length = utf8.len(cand_text)
+        local cand_predict_max_length = cand_text:match("[%a]") and (preedit_length + 3) or
+            ((preedit_for_cand_length // 2) + 2)
+        if (idx > 1) and (
+                (cand.type == "user_table")
+                or (preedit_code:match("^/"))
+                or (cand_text_length <= cand_predict_max_length)
+                or (table.find_index(excluded_type, preedit_code))
+            )
+        then
             yield(cand)
             idx = idx - 1
-            prev_word_length = cand_length or 0
+            prev_word_length = cand_text_length or 0
         elseif
-            (cand_length > prev_word_length)
-            and (cand_length <= cand_predict_max_length)
-            and (cand_length >= 3)
+            (pickup_count >= 1)
             and (preedit_length > 3)
-            and (pickup_count >= 1)
-            and (#cand.comment < 3)
+            and (cand_text_length >= 3)
+            and (cand.comment:len() < 3)
+            and (cand_text_length > prev_word_length)
+            and (cand_text_length <= cand_predict_max_length)
             and (not cand_text:match("[%a]"))
-            and (not cand.comment:match("^his"))
+            and (not preedit_code:match("^/"))
             and (cand:get_dynamic_type() ~= "Shadow")
         then
             local cand_uniq = UniquifiedCandidate(cand, "LongWordUp", cand_text, cand.comment)
             yield(cand_uniq)
             pickup_count = pickup_count - 1
         else
-            if ((utf8.len(cand_text) / #preedit_code) <= 1.5) or (cand.quality > 9) then
+            if (cand_text_length <= cand_predict_max_length) or (cand.quality > 9)
+                or (cand:get_dynamic_type() == "Shadow")
+            then
                 table.insert(cands, cand)
             else
                 table.insert(longWord_cands, cand)

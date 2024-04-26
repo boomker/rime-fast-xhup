@@ -15,10 +15,10 @@ local function fly_fixed(input, env)
         local cand_text = cand.text:gsub(" ", "")
         if
             (cand.type ~= "user_table")
-            and (cand:get_dynamic_type() ~= "Shadow")
-            and (not cand_text:match("[a-zA-Z]"))
             and (not cand.comment:match("^🔝$"))
-            and (not preedit_code:match("[%u%[/'`]"))
+            and (not cand_text:match("[a-zA-Z]"))
+            and (not preedit_code:match("[%u%p]"))
+            and (cand:get_dynamic_type() ~= "Shadow")
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
         then
             local last_char = last_character(cand_text)

@@ -185,8 +185,8 @@ function cold_word_drop.filter(input, env)
             if tfl and table.find_index(tfl, cpreedit_code) then
                 table.insert(cands, cand)
             elseif (
-                    cand_text:match("^[%l][%l][%l]?$")
-                    or cand_text:match("^[%u][%l][%l]%.?$")
+                    cand_text:match("^[%l][%l%d][%l%d]?$")
+                    or cand_text:match("^[%u][%l%d][%l%d]%.?$")
                     or (
                         cand_text:match("^[%u][%a][%a]?$")
                         and (cand_text:lower() == cpreedit_code:lower())

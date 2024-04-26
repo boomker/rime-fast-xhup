@@ -83,8 +83,7 @@ function processor.func(key, env)
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
-    if context:has_menu() and (inputCode:match("^" .. favorCmdPrefix))
-        and ((idx >= 0) or spec_keys[keyValue])
+    if context:has_menu() and (inputCode:match("^" .. favorCmdPrefix)) and ((idx >= 0) or spec_keys[keyValue])
     then
         if (idx >= 0) and (inputCode == favorCmdPrefix) and (segment.prompt:match("快捷指令")) then
             local cand = segment:get_candidate_at(idx)
@@ -111,19 +110,20 @@ function processor.func(key, env)
                 context:clear()
             end
             favor_items = nil
+            second_menu_items = nil
             first_menu_selected_text = nil
             second_menu_selected_text = nil
-            second_menu_items = nil
             context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
             return 1                                    -- kAccepted 收下此key
         elseif idx >= 0 then
-            local _candidateText = segment:get_candidate_at(idx).text
-            local candidateText = _candidateText:gsub(" ", "")
-
+            local candidateText = segment:get_candidate_at(idx).text:gsub(" ", "")
             local action = app_command_items["Favors"][first_menu_selected_text]["action"]
             local items = app_command_items["Favors"][first_menu_selected_text]["items"]
             if type(items[1]) ~= "string" then
                 candidateText = candidateText .. tostring(idx + 1)
+            end
+            if second_menu_selected_text then
+                candidateText = second_menu_selected_text
             end
 
             if (action == "commit") and type(items[1]) ~= "string" then
@@ -189,26 +189,6 @@ function processor.func(key, env)
         end
     end
 
-    if context:has_menu() and (inputCode:match("^" .. favorCmdPrefix)) and (second_menu_selected_text)
-        and (preeditCodeLength >= (string.len(favorCmdPrefix) + 2))
-    then
-        local action = app_command_items["Favors"][first_menu_selected_text]["action"]
-        local items = app_command_items["Favors"][first_menu_selected_text]["items"]
-        if (action == "commit") and type(items[1]) ~= "string" then
-            local commitText = app_command_items["Favors"][first_menu_selected_text]["items"][second_menu_selected_text]
-            engine:commit_text(commitText)
-        elseif (action == "open") and (type(items[1]) ~= "string") then
-            local _path = app_command_items["Favors"][first_menu_selected_text]["items"][second_menu_selected_text]
-            local path = _path:gsub(" ", "\\ ")
-            cmd(system_name, "", path)
-        end
-        context:clear()
-        favor_items = nil
-        first_menu_selected_text = nil
-        second_menu_selected_text = nil
-        second_menu_items = nil
-        return 1 -- kAccepted 收下此key
-    end
     return 2
 end
 
@@ -350,7 +330,7 @@ function filter.func(input, env)
     local command_cands = {}
     local other_cands = {}
     for cand in input:iter() do
-        if input_code:match("^" .. favorCmdPrefix) and cand.text:match("[1-9]$") and cand.text:find("([\228-\233][\128-\191]-)") then
+        if input_code:match("^" .. favorCmdPrefix) and cand.text:match("[1-9]$") then
             local pos = tostring(cand.text:sub(-1))
             command_cands[pos] = cand
         elseif input_code:match("^" .. appLaunchPrefix) and cand.comment:match("应用闪切") then
