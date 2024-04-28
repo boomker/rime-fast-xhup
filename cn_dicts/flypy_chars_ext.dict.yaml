@@ -3,7 +3,7 @@
 
 ---
 name: flypy_chars_ext
-version: 2024-04-23
+version: 2024-04-27
 sort: by_weight
 # use_preset_vocabulary: true  # 導入八股文字頻
 # max_phrase_length: 1         # 不生成詞彙
@@ -15732,6 +15732,7 @@ sort: by_weight
 餇	ts	0
 鮦	ts[ak	0
 㘮	tu	0
+𥤮	tu	0
 㟮	tu	0
 㭸	tu	0
 㻌	tu	0
