@@ -133,7 +133,7 @@ function cold_word_drop.processor(key, env)
 
     local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
     local reversedb = ReverseLookup(schema_id)
-    if action_map[key:repr()] then
+    if context:has_menu() and action_map[key:repr()] then
         local cand = context:get_selected_candidate()
         if not cand then
             return 2
@@ -171,12 +171,13 @@ end
 function cold_word_drop.filter(input, env)
     local engine = env.engine
     local config = engine.schema.config
+    local context = engine.context
     local cands = {}
     local prev_cand_text = nil
     local idx = config:get_int("cold_wold_reduce_config/idx") or 4
+    local cpreedit_code = context:get_preedit().text:gsub("[^%a]", "")
 
     for cand in input:iter() do
-        local cpreedit_code = cand.preedit:gsub("[^%a]", "")
         local cand_text = cand.text:gsub(" ", "")
 
         local tfl = turndown_freq_list[cand_text] or nil
