@@ -4,13 +4,13 @@
 local function autocap_filter(input, env)
 	for cand in input:iter() do
 		local text = cand.text
-		local commit = env.engine.context:get_commit_text()
-		if string.find(text, "^%l%l.*") and string.find(commit, "^%u%u.*") then
+		local preedit_code = env.engine.context:get_commit_text()
+		if string.find(text, "^%l%l.*") and string.find(preedit_code, "^%u%u.*") then
 			if string.len(text) == 2 then
-				local cand_2 = Candidate("cap", 0, 2, commit, "+")
+				local cand_2 = Candidate("cap", 0, 2, preedit_code, "+")
 				yield(cand_2)
 			else
-				local cand_u = Candidate("cap", 0, string.len(commit), string.upper(text), "+AU")
+				local cand_u = Candidate("cap", 0, string.len(preedit_code), string.upper(text), "+AU")
 				yield(cand_u)
 			end
 		--[[ 修改候选的注释 `cand.comment`
@@ -18,9 +18,9 @@ local function autocap_filter(input, env)
             因此使用 `get_genuine()` 得到其对应真实的候选项
             cand:get_genuine().comment = cand.comment .. " " .. s
         --]]
-		elseif string.find(text, "^%l+$") and string.find(commit, "^%u+") then
-			local suffix = string.sub(text, string.len(commit) + 1)
-			local cand_ua = Candidate("cap", 0, string.len(commit), commit .. suffix, "+" .. suffix)
+		elseif string.find(text, "^%l+$") and string.find(preedit_code, "^%u+") then
+			local suffix = string.sub(text, string.len(preedit_code) + 1)
+			local cand_ua = Candidate("cap", 0, string.len(preedit_code), preedit_code .. suffix, "+" .. suffix)
 			yield(cand_ua)
 		else
 			yield(cand)
