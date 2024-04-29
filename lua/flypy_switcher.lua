@@ -16,7 +16,7 @@ function flypy_switcher.func(key, env)
     local comment_hints = config:get_int("translator/spelling_hints") or 1
     local comment_overwrited = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
     local switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
-    if (key:repr() == switch_comment_key) then
+    if context:has_menu() and (key:repr() == switch_comment_key) then
         if (not comment_overwrited) and (comment_hints > 0) then
             config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
         elseif (comment_overwrited) and (comment_hints > 0) then
@@ -32,6 +32,14 @@ function flypy_switcher.func(key, env)
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
+    end
+
+    if context:has_menu() and (key:repr() == "Control+p") then
+        local cand = context:get_selected_candidate()
+        local cand_comment = cand.comment:gsub("%p", "")
+        engine:commit_text(cand_comment)
+        context:clear()
+        return 1
     end
     return 2                                        -- kNoop, 不做任何操作, 交给下个组件处理
 end

@@ -18,6 +18,7 @@ function metatable(...)
 end
 
 -- chech metatble
+---@diagnostic disable-next-line: lowercase-global
 function metatable_chk(tab)
     if "table" == type(tab) then
         return (tab.each and tab) or metatable(tab)

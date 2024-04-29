@@ -60,6 +60,7 @@ patch:
   long_word_up_config:
     # 长词升频到第 idx 个位置
     idx: 3
+    excluded_type: [ "date", "rq", "week", "time", "lunar" ]
 
   cold_wold_reduce_config:
     # 生僻词条降频到第 idx 个位置
