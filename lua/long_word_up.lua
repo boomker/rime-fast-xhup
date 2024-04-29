@@ -1,7 +1,13 @@
--- require("tools/string")
 
-local excluded_type = { "date", "week", "time", "lunar" }
-local function long_word_up(input, env)
+local Env = require("tools/env_api")
+local long_word_up = {}
+
+function long_word_up.init(env)
+    Env(env)
+    env.excluded_type = env:Config_get("long_word_up_config/excluded_type")
+end
+
+function long_word_up.func(input, env)
     local engine = env.engine
     local context = engine.context
     local config = engine.schema.config
@@ -26,7 +32,7 @@ local function long_word_up(input, env)
                 (cand.type == "user_table")
                 or (preedit_code:match("^/"))
                 or (cand_text_length <= cand_predict_max_length)
-                or (table.find_index(excluded_type, preedit_code))
+                or (table.find_index(env.excluded_type, preedit_code))
             )
         then
             yield(cand)
@@ -70,4 +76,4 @@ local function long_word_up(input, env)
     end
 end
 
-return { filter = long_word_up }
+return { filter = { init = long_word_up.init, func = long_word_up.func } }

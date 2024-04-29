@@ -47,6 +47,7 @@ engine:
     - lua_processor@select_char_processor
     - lua_processor@idiom_expand_processor
     - lua_processor@cold_word_drop_processor
+    - lua_processor@flypy_switcher_processor
     - lua_processor@word_append_space_processor
     - lua_processor@word_autocommit_processor
     - ascii_composer
@@ -306,7 +307,7 @@ recognizer:
   patterns:
     week: "^/wk"
     time: "^/wt"
-    datetime: "^/wd"
+    date: "^(/wd|/rq)"
     chinese_lunar: "^/nl"
     history: "^/hs"
     shortcuts: "^/fj"
@@ -362,8 +363,8 @@ radical_reverse_lookup:
   # dictionary: flypy_xhfast
   dictionary: kMandarin
   comment_format:
+    - xform/^(\w+)[[].*$/$1/
     - xform/^/~/
-    # - xform/$/)/
 
 radical_lookup:
   tag: radical_lookup

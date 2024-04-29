@@ -110,15 +110,15 @@ conf.pattern_date = {
 }
 
 conf.pattern_today = {
-    "{year}{month}{day}",                   -- 20220905
-    "{year}{month}{day}{hour}{min}",        -- 202209051836
-    "{year}{month}{day}{hour}{min}{sec}",   -- 20220905183658
+    "{year}{month}{day}",                      -- 20220905
+    "{year}{month}{day}{hour}{min}",           -- 202209051836
+    "{year}{month}{day}{hour}{min}{sec}",      -- 20220905183658
     "{year}-{month}-{day} {hour}:{min}:{sec}", -- 2022-09-05 18:36:58
 }
 
 conf.pattern_week = {
-    "{week_cn}", -- 星期一
-    "{week_en}", -- Monday
+    "{week_cn}",    -- 星期一
+    "{week_en}",    -- Monday
     "{week_en_st}", -- Mon.
 }
 
@@ -138,19 +138,19 @@ local function getTimeStr(str)
 
         if pattern then
             if string.find(pattern, "^{year") then
-                replace_index = os.date("%Y") -- 年
+                replace_index = os.date("%Y")     -- 年
             elseif string.find(pattern, "^{month") then
-                replace_index = os.date("%m") -- 月
+                replace_index = os.date("%m")     -- 月
             elseif string.find(pattern, "^{day") then
-                replace_index = os.date("%d") -- 日
+                replace_index = os.date("%d")     -- 日
             elseif string.find(pattern, "^{week") then
                 replace_index = os.date("%w") + 1 -- 星期
             elseif string.find(pattern, "^{hour") then
-                replace_index = os.date("%H") -- 时
+                replace_index = os.date("%H")     -- 时
             elseif string.find(pattern, "^{min") then
-                replace_index = os.date("%M") -- 分
+                replace_index = os.date("%M")     -- 分
             elseif string.find(pattern, "^{sec") then
-                replace_index = os.date("%S") -- 秒
+                replace_index = os.date("%S")     -- 秒
             end
 
             if replace_index then
@@ -196,9 +196,8 @@ end
 
 local translator = {}
 
----@diagnostic disable-next-line: unused-local
 function translator.func(input, seg, env)
-    if seg:has_tag("date") or (input == "date" or input == "rq") then
+    if seg:has_tag("date") or (input == "date") or (input == "/wd") or (input == "rq") then
         -- 日期
         local tip = "〔日期〕"
         for _, v in ipairs(conf.pattern_date) do
@@ -209,7 +208,7 @@ function translator.func(input, seg, env)
             yield(cand)
         end
     end
-    if seg:has_tag("week") or input == "week" then
+    if seg:has_tag("week") or input == "week" or input == "/wk" then
         -- 星期
         local tip = "〔星期〕"
         for _, v in ipairs(conf.pattern_week) do
@@ -220,7 +219,7 @@ function translator.func(input, seg, env)
             yield(cand)
         end
     end
-    if seg:has_tag("time") or input == "time" or input == "wt" then
+    if seg:has_tag("time") or input == "time" or input == "/wt" then
         -- 时间
         local tip = "〔时间〕"
         for _, v in ipairs(conf.pattern_time) do
@@ -231,7 +230,7 @@ function translator.func(input, seg, env)
             yield(cand)
         end
     end
-    if input == "dt" or input == "today" then
+    if input == "today" then
         -- 日期
         local tip = "〔日期〕"
         for _, v in ipairs(conf.pattern_today) do

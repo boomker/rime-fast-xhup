@@ -76,6 +76,7 @@ patch:
       hilited_comment_text_color: 0x606cff         # 选中注解颜色
       comment_text_color: 0x806862                 # 拼音等提示文字颜色 Surface2
       preedit_back_color: 0x232634
+      candidate_list_layout: stacked               # 候选排布: 层叠 stacked | 行 linear
 
     catppuccin_macchiato:
       name: Catppuccin Macchiato
