@@ -5,3 +5,4 @@ sync/
 installation.yaml
 user.yaml
 lua/launcher_config.lua
+.DS_Store
