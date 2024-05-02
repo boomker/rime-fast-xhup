@@ -24,6 +24,7 @@ local function translator(input, seg, env)
             { '词条删除', '→ Ctrl+d' },
             { '注解切换', '→ Ctrl+n' },
             { '注解上屏', '→ Ctrl+p' },
+            { '切换英打', '→ Ctrl+g' },
             { '繁简切换', '→ Ctrl+0' },
             { '中英标点', '→ Ctrl+.' },
             { '方案选单', '→ Alt+`' },

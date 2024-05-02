@@ -60,8 +60,8 @@ engine:
     - express_editor
   segmentors:
     - ascii_segmentor
-    - matcher
     - abc_segmentor
+    - matcher
     - affix_segmentor@make_sentence
     - affix_segmentor@chinese_number
     - affix_segmentor@easy_en
@@ -95,7 +95,7 @@ engine:
     - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
   filters:
     - simplifier
-    - simplifier@simplificationlize
+    - simplifier@simplification
     - simplifier@emoji
     - lua_filter@fly_fixed_filter
     - lua_filter@word_autocaps_filter
@@ -112,7 +112,7 @@ engine:
     - uniquifier                                      #  只能放到最后!
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[_/`]
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[_/]
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
@@ -134,66 +134,10 @@ speller:
     # 超级简拼, 开启后可能性能不佳, 视情况开启
     # 输入4个或更多以下字符，按下`0`触发超级简拼
     - abbrev/^(.).+$/$1/
-
-    ## 左右并击飞键音码规则
-    - derive/^(j)n/$1c/
-    - derive/^([jyn])t/$1d/         # t --> d
-    - derive/^([bjlmn])p/$1e/       # p --> e
-    - derive/^([djlnx])q/$1f/       # q --> f
-    - derive/^q([biklmnpsxy])/f$1/
-    - derive/^qt/fd/
-    - derive/^qu/fe/
-    - derive/^qr/fo/
-    - derive/^qq/fz/
-    - derive/^p([okifuhjbnmg])/e$1/
-    - derive/^pp/el/                # pp --> el
-    - derive/^dp/dl/                # dp --> dl
-    - derive/^([jkiu])y/$1w/        # [jkiu]y --> [jkiu]w
-    - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
-    - derive/^yh/wn/
-    - derive/^yj/wm/
-    - derive/^hy/hw/
-    - derive/^ty/ud/                # ty --> ud
-    - derive/^tw/dw/                # tw --> dw
-    - derive/^te/df/                # te --> df
-    - derive/^tk/rk/                # tk --> rk
-    - derive/^tp/rl/                # tp --> rl
-    - derive/^rf/rn/                # rf --> rn
-    - derive/^tr/rm/                # tr --> rm
-    - derive/^t([gv])/db/           # t[gv] --> db
-    - derive/^r([gv])/rb/           # r[gv] --> rb
-    - derive/^g([fv])/gn/           # g[fv] --> gn
-    - derive/^g([wy])/gi/           # g[wy] --> gi
-    - derive/^gr/gm/                # gr --> gm
-    - derive/^xp/sl/
-    - derive/^xt/sb/
-    - derive/^xy/xo/
-    - derive/^xs/xh/
-    - derive/^nj/xj/
-    - derive/^nu/nx/
-    - derive/^nh/nv/
-    - derive/^no/nr/
-    - derive/^ly/nw/
-    - derive/^lm/nz/
-    - derive/^jm/jz/
-    - derive/^jb/ja/
-    - derive/^z([ws])/zk/
-    - derive/^za/zl/
-    - derive/^ze/zn/
-    - derive/^zr/zm/
-    - derive/^vr/vm/                # vr --> vm
-    - derive/^vf/vn/                # vf --> vn
-    - derive/^vg/vk/
-    - derive/^mb/ms/
-    - derive/^mh/mx/
-    - derive/^mk/me/
-    - derive/^mo/mr/
-    - derive/^mu/mv/
-    - derive/^b([hju])/a$1/
-    - derive/^b([fgknm])/s$1/
-    - derive/^ce/ck/
-    - derive/^cd/cl/
-    - derive/^cr/cm/
+  ## 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+  __patch:
+    algebra/+:
+      __include: flypy_chord_rule:/patch/speller/algebra
 
 grammar:
   language: zh-hans-t-essay-bgw
@@ -263,7 +207,7 @@ punctuator:
     # __include: default:/punctuator/half_shape         # 从 default.yaml 导入配置
     ",": {commit: "，"}
     ".": {commit: "。"}
-    # ";": {commit: "；"}
+    # ";": {commit: "；"}         ## 取消注释后, 下行添加注释, 以恢复默认分号
     ";": [";", "；"]
     '"': {pair: ['‘', '’']}      ## 添加注释后：恢复默认引号
     "'": {pair: ['“', '”']}      ## 添加注释后：恢复默认引号
@@ -277,8 +221,8 @@ punctuator:
     "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
     "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
     "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
-    "[": [「, 【, 〔, ［, 〚, 〘]
-    "]": [」, 】, 〕, ］, 〛, 〙]
+    "[": ['[',「, 【, 〔, ［, 〚, 〘]
+    "]": [']', 」, 】, 〕, ］, 〛, 〙]
     "{": [『, 〖, ｛]
     "}": [』, 〗, ｝]
     "#": "#"
@@ -305,33 +249,34 @@ key_binder:
 recognizer:
   import_preset: default
   patterns:
-    week: "^/wk"
-    time: "^/wt"
-    date: "^(/wd|/rq)"
-    chinese_lunar: "^/nl"
-    history: "^/hs"
-    shortcuts: "^/fj"
+    week: "^/wk$"
+    time: "^/wt$"
+    date: "^(/wd|/rq)$"
+    chinese_lunar: "^/nl$"
+    history: "^/hs$"
+    shortcuts: "^/fj$"
+    laTeX_formula: "^/lt(.*)$"
     easy_en: "^/oe[a-z]*$"
     flypy_help: "^/(oh|help)$"
     flypy_key_help: "^/ok[a-z]*$"
-    chinese_number: "^/cn[0-9.]+$"
-    laTeX_formula: "^/lt(.*)$"
+    chinese_number: "^/cn[0-9.]*$"
     radical_lookup: "~[a-z]+'?$"            # ~ 引导部件拆字, 使用小鹤双拼编码
     make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导精准造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
-simplificationlize:
+simplification:
   option_name: simplification
   opencc_config: t2s.json
   tips: none
-  excluded_types: [radical_lookup, chinese_number, chinese_lunar]
+  excluded_types: ["radical_lookup", "chinese_number", "chinese_lunar"]
 
 emoji:
   opencc_config: emoji.json
   option_name: emoji
   tag: emoji
-  excluded_types: [radical_lookup]
+  tags: [ abc ]
+  excluded_types: ["history"]
 
 flypy_key_help:
   tag: flypy_key_help
@@ -380,11 +325,17 @@ radical_lookup:
   preedit_format:
   # - xlit/hspnz/一丨丿丶乙/
 
-history:                  # 上屏历史记录
+history:                      # 上屏历史记录
   tips: "上屏历史"
   tag: history
   prefix: "/hs"
   size: 30
   history_num_max: 30
   initial_quality: 1000
-  excluded_type: "punct"
+  excluded_types: ["punct"]
+
+pin_word:                     # 词条置顶配置
+  pin_word_key: "Control+t"   # 词条置顶快捷键, 优先级高于`key_binder`全局配置
+  word_quality: 1000
+  comment_mark: "🔝"          # 不能留空
+  excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]

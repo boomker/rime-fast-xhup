@@ -104,7 +104,9 @@
                                     "extended_charset",
                                     "ascii_punct",
                                     "simplification",
-                                    "gbk"
+                                    "gbk",
+                                    "emoji",
+                                    "charset_comment"
                                 ],
                                 "description": "定义一个二值开关，其内部名称。"
                             },
@@ -401,6 +403,12 @@
                                 "pattern": "^lua_filter@\\w+",
                                 "description": "使用 Lua 函数的自定义过滤器。可定义多个。需添加@{字符集名称}后缀，如 lua_filter@single_char_first。Lua 函数名定义于用户文件夹下的 rime.lua，参数为 (input, env)。",
                                 "example": "lua_filter@single_char_first"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^simplifier@\\w+",
+                                "description": "simplifier转换器",
+                                "example": "simplifier@emoji"
                             }
                         ]
                     }
@@ -465,6 +473,10 @@
                     "type": "boolean",
                     "pattern": "(true|false)",
                     "description": "开关：以空格键作为输入码。"
+                },
+                "__patch": {
+                    "type": "object",
+                    "description": "补丁"
                 }
             }
         },
