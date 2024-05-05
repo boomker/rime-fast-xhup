@@ -16,7 +16,6 @@ local function auto_append_space_processor(key, env)
     local input_code = context.input
     local pos = context.caret_pos
     local composition = context.composition
-    -- local cand_text   = context:get_commit_text()
 
     local cand_select_kyes = {
         ["space"] = "x",
@@ -84,9 +83,7 @@ local function auto_append_space_processor(key, env)
             local segment = composition:back()
             local selected_cand_idx = _idx == "x" and segment.selected_index or _idx
             local candObj = segment:get_candidate_at(selected_cand_idx)
-            if not candObj then
-                return 2
-            end
+            if not candObj then return 2 end
             cand_text = candObj.text
         end
 

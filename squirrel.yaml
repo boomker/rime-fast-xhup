@@ -32,6 +32,7 @@ style:
   text_orientation: horizontal                      # horizontal | vertical
   show_paging: true
   inline_preedit: false
+  mutual_exclusive: false                           # 色不叠加: false | true
   corner_radius: 10
   hilited_corner_radius: 0
   border_height: 0
@@ -62,7 +63,6 @@ preset_color_schemes:
     text_orientation: horizontal                # 行文向: 横 horizontal | 纵 vertical
     inline_preedit: false                       # 拼音位于: 候选框 false | 行内 true
     translucency: false                         # 磨砂: false | true
-    mutual_exclusive: false                     # 色不叠加: false | true
     border_height: 0                            # 外边框 高
     border_width: 0                             # 外边框 宽
     corner_radius: 10                           # 外边框 圆角半径

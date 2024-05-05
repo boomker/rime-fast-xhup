@@ -3,14 +3,12 @@
 
 schema:
   schema_id: flypy_phrase
-  name: 小鹤短语
-  version: "0.20"
+  name: 飞鹤短语
+  version: "2024.05.05"
   author:
     - boomker
   description: |
-    小鹤短语
-    - Flypy by 小鹤
-    - Rime schema by 佛振 <chen.sst@gmail.com>
+    飞鹤短语
 
 switches:
   - name: ascii_mode
@@ -60,10 +58,10 @@ speller:
 translator:
   dictionary: flypy_phrase
   prism: flypy_phrase
-  enable_user_dict: false
   enable_encoder: false
-  enable_commit_history: false
+  enable_user_dict: false
   enable_correction: true
+  enable_commit_history: false
   enable_charset_filter: true
   initial_quality: -1
 
@@ -75,8 +73,8 @@ key_binder:
   bindings:
     - {when: has_menu, accept: semicolon, send: 2}
     - {when: has_menu, accept: apostrophe, send: 3}
-    - {when: composing, accept: Control+i, send: Shift+Right}
-    - {when: composing, accept: Control+o, send: Shift+Left}
+    - {when: composing, accept: Control+i, send: Shift+Left}
+    - {when: composing, accept: Control+o, send: Shift+Right}
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
 
@@ -84,7 +82,7 @@ recognizer:
   import_preset: default
 
 menu:
-  page_size: 5        # 候选项数
+  page_size: 7        # 候选项数
 
 style:
   horizontal: false   # 竖排为false

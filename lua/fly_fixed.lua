@@ -1,28 +1,33 @@
 require("tools/string")
+local fly_fixed = {}
 
 local function last_character(s)
     return string.utf8_sub(s, -1, -1)
 end
 
-local function fly_fixed(input, env)
+function fly_fixed.init(env)
+    local config = env.engine.schema.config
+    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
+    env.reversedb = ReverseLookup(schema_id)
+end
+
+function fly_fixed.func(input, env)
     local cands = {}
     local prev_cand_ok = true
-    local config = env.engine.schema.config
-    local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
-    local reversedb = ReverseLookup(schema_id)
-    local preedit_code = env.engine.context:get_commit_text()
+    local preedit_code = env.engine.context:get_commit_text():gsub(" ", "")
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
         if
             (cand.type ~= "user_table")
-            and (not cand.comment:match("^🔝$"))
+            and (cand:get_dynamic_type() ~= "Shadow")
             and (not cand_text:match("[a-zA-Z]"))
             and (not preedit_code:match("[%u%p]"))
-            and (cand:get_dynamic_type() ~= "Shadow")
+            and (not cand.comment:match("^" .. env.pin_mark .. "$"))
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
         then
             local last_char = last_character(cand_text)
-            local yin_code = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
+            local yin_code = env.reversedb:lookup(last_char):gsub("%l%[%l%l", "")
             local preedit_last_code = preedit_code:sub(-1, -1)
             if yin_code and (yin_code:match(preedit_last_code)) then
                 yield(cand)
@@ -57,4 +62,4 @@ local function fly_fixed(input, env)
     end
 end
 
-return { filter = fly_fixed }
+return { filter = { init = fly_fixed.init, func = fly_fixed.func } }

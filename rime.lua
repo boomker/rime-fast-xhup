@@ -83,7 +83,8 @@ emoji_reduce_filter = emoji_reduce.filter
 
 -- 适用于中文输入方案的中英文之间加空格
 word_append_space = require("word_append_space")
-word_append_space_filter = word_append_space.filter
+cn_space_en_filter = word_append_space.filter
+-- word_append_space_filter = word_append_space.filter
 word_append_space_processor = word_append_space.processor
 
 -- 适用于英文输入方案的英文单词之间加空格
@@ -141,3 +142,6 @@ launcher_filter = launcher.filter
 idiom_expand = require("idiom_abbr_expand")
 idiom_expand_processor = idiom_expand.processor
 idiom_expand_translator = idiom_expand.translator
+
+flypy_switcher = require("flypy_switcher")
+flypy_switcher_processor = flypy_switcher.processor

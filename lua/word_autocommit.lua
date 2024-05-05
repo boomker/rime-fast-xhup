@@ -1,7 +1,11 @@
 require("tools/string")
 
-local tword_tail_char_shape_tbl = {}
-local commit_codes = {}
+local word_shape_char_tbl = {}
+local char_reverse_codes = {}
+local word_auto_commit = {}
+local processor = {}
+local translator = {}
+local filter = {}
 
 local function append_space_to_cand(env, cand_text)
     local context = env.engine.context
@@ -21,18 +25,25 @@ local function reset_cand_property(env)
     context:set_property('prev_cand_is_preedit', "0")
 end
 
-local function twac_processor(key, env)
-    local engine = env.engine
-    local config = engine.schema.config
-    local context = engine.context
-    local commit_text = context:get_commit_text()
-    local pos = context.caret_pos
-    local input_code = context.input
-    local preedit_code_length = #input_code
+function word_auto_commit.init(env)
+    local config          = env.engine.schema.config
+    local schema_id       = config:get_string("schema/schema_id")
+    local phrase_dict     = config:get_string("flypy_phrase/dictionary")
+    local reverse_dict    = config:get_string("radical_reverse_lookup/dictionary")
+    env.reversedb         = ReverseLookup(schema_id)
+    env.reversedb_phrase  = ReverseLookup(phrase_dict)
+    env.radical_reversedb = ReverseLookup(reverse_dict)
+end
 
-    local schema_id = config:get_string("schema/schema_id")
-    local reversedb = ReverseLookup(schema_id)
-    local cand_kyes = {
+function processor.func(key, env)
+    local engine = env.engine
+    local context = engine.context
+    local input_code = context.input
+    local caret_pos = context.caret_pos
+    local preedit_code_length = #input_code
+    -- local commit_text = context:get_commit_text()
+
+    local seleted_cand_kyes = {
         ["space"] = 0,
         ["semicolon"] = 1,
         ["apostrophe"] = 2,
@@ -48,99 +59,98 @@ local function twac_processor(key, env)
         ["10"] = 9
     }
 
-    -- '[' 造字时, 选单字 存单字编码, 后面用于形码自动填充
-    if (preedit_code_length > 1) and (pos ~= 4) and
-        (key:repr() == "bracketleft") then
-        if utf8.len(commit_text) > 1 then return 2 end
+    local shape_prefix_keys = {
+        ["bracketleft"] = true,
+        ["grave"] = true
+    }
+    -- '[' 选单字 存单字编码, 后面用于形码自动填充
+    if (preedit_code_length > 1) and (caret_pos ~= 4) and (shape_prefix_keys[key:repr()]) then
         local composition = context.composition
         if (not composition:empty()) then
             local segment = composition:back()
 
             for i = 0, 50, 1 do
-                local single_cand = segment:get_candidate_at(i)
-                if not single_cand then return 2 end
-                local cand_text = single_cand.text
-                if (utf8.len(cand_text) ~= 1) then
-                    goto skip_cand1
-                end
-                local commit_code_num = string.format("commit_code_%s", i)
-                commit_codes[commit_code_num] = reversedb:lookup(cand_text)
-                ::skip_cand1::
+                local scand = segment:get_candidate_at(i)
+                if not scand then return 2 end
+                local cand_text = scand.text
+                if (utf8.len(cand_text) ~= 1) then goto skip_chars_cand end
+                char_reverse_codes[cand_text] = env.reversedb:lookup(cand_text)
+                ::skip_chars_cand::
             end
         end
     end
 
     -- 四码二字词时, 按下 '['  生成辅助码提示注解
-    if ((preedit_code_length == 4) and (key:repr() == "bracketleft") and
-            (pos == 4) and (#tword_tail_char_shape_tbl < 1)) then
+    if ((preedit_code_length == 4) and (key:repr() == "bracketleft")
+            and (caret_pos == 4) and (#word_shape_char_tbl < 1))
+    then
         local composition = context.composition
         if (not composition:empty()) then
             local segment = composition:back()
             for i = 1, 50, 1 do
-                local tword_cand = segment:get_candidate_at(i)
-                if not tword_cand then return 2 end
-                local tword_cand_text = tword_cand.text
-                if (utf8.len(tword_cand_text) ~= 2) then
-                    goto skip_cand
-                end
-                local cand_tail_text = string.utf8_sub(tword_cand_text, 2)
-                table.insert(tword_tail_char_shape_tbl, {
-                    tword_cand_text, reversedb:lookup(cand_tail_text)
+                local word_cand = segment:get_candidate_at(i)
+                if not word_cand then return 2 end
+                local word_cand_text = word_cand.text
+                if (utf8.len(word_cand_text) ~= 2) then goto skip_cand end
+                local cand_tail_text = string.utf8_sub(word_cand_text, 2)
+                table.insert(word_shape_char_tbl, {
+                    word_cand_text, env.reversedb:lookup(cand_tail_text)
                 })
                 ::skip_cand::
             end
         end
     end
 
-    --  按下 '[' 后, 数字键或符号键快捷选词条
-    if (cand_kyes[key:repr()]) and string.match(input_code, "^%l+[%l%[]*%[$") then
-        tword_tail_char_shape_tbl = {}
-        commit_codes = {}
-        context:select(cand_kyes[key:repr()])
-        local cand_text = context:get_commit_text()
-        engine:commit_text(string.utf8_sub(cand_text, 1, -2))
-        context:clear()
-
-        return 1 -- kAccepted
-    end
-
-    -- '[' 造字时, 数字键或符号键选单字时, 形码自动填充
-    if (cand_kyes[key:repr()]) and string.find(input_code, "^%l+%[[%l%[]*") then
-        if not commit_codes['commit_code_0'] then
-            tword_tail_char_shape_tbl = {}
+    -- 按下 '[' 后, 数字键或符号键选单字时, 形码自动填充
+    if (seleted_cand_kyes[key:repr()]) and input_code:match("^%l+[%[`][%l%[]*") then
+        if table.len(char_reverse_codes) == 0 then
+            word_shape_char_tbl = {}
             return 2
         end -- 键值对table ,不能使用 `#` 获取长度
-        if (pos == 3) or (pos == 7) then
-            local selected_cand = string.format("commit_code_%s",
-                cand_kyes[key:repr()])
-            local char_code = string.sub(commit_codes[selected_cand], 4, 5)
-            context:push_input(char_code)
-            context:confirm_current_selection()
-            commit_codes = {}
+        if ((caret_pos == 3) or (caret_pos == 7)) and (input_code:match("%[$"))then
+            context:select(seleted_cand_kyes[key:repr()])
+            local cand_text = context:get_commit_text():utf8_sub(1, -2)
+            -- local cand = context:get_selected_candidate(seleted_cand_kyes[key:repr()])
+            engine:commit_text(cand_text)
+            context:clear()
+            char_reverse_codes = {}
             return 1
         else
             context:confirm_previous_selection()
         end
-        commit_codes = {}
-        tword_tail_char_shape_tbl = {}
+        char_reverse_codes = {}
+        word_shape_char_tbl = {}
 
         return 2 -- kNoop
     end
 
     if key:repr() == "Escape" then
-        tword_tail_char_shape_tbl = {}
-        commit_codes = {}
+        word_shape_char_tbl = {}
+        char_reverse_codes = {}
     end
     return 2 -- kNoop
 end
 
-local function twac_translator(input, seg, env)
+function translator.func(input, seg, env)
     local context = env.engine.context
-    local pos = context.caret_pos
-    if table.len(tword_tail_char_shape_tbl) < 1 then return end
+    local caret_pos = context.caret_pos
+    local composition = context.composition
+    if (composition:empty()) then return end
+
+    -- 双码单字词, 按下'[`'时, 生成辅助码提示
+    if string.match(input, '^%l+[`%[]]$') and (#input == 3) and (caret_pos == 3) then
+        if table.len(char_reverse_codes) < 1 then return end
+        for text, reverse_code in pairs(char_reverse_codes) do
+            local comment = reverse_code:sub(4, 5)
+            local cand = Candidate("custom", seg.start, seg._end, text, comment)
+            yield(cand)
+        end
+    end
+
+    if table.len(word_shape_char_tbl) < 1 then return end
     -- 四码二字词, 按下'['时, 生成辅助码提示
-    if string.match(input, '^%l+%[$') and (#input == 5) and (pos == 5) then
-        for _, val in ipairs(tword_tail_char_shape_tbl) do
+    if string.match(input, '^%l+%[$') and (#input == 5) and (caret_pos == 5) then
+        for _, val in ipairs(word_shape_char_tbl) do
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
             local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
@@ -150,8 +160,8 @@ local function twac_translator(input, seg, env)
     end
 
     --  四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
-    if string.match(input, '^%l+%[%l+$') and (#input > 5) and (pos > 5) then
-        for _, val in ipairs(tword_tail_char_shape_tbl) do
+    if string.match(input, '^%l+%[%l+$') and (#input > 5) and (caret_pos > 5) then
+        for _, val in ipairs(word_shape_char_tbl) do
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
             if string.match(tail_char_hxm, string.sub(input, 6)) then
@@ -163,7 +173,8 @@ local function twac_translator(input, seg, env)
     end
 end
 
-local function twac_filter(input, env)
+function filter.func(input, env)
+    local done = 0
     local cands = {}
     local symbol_cands = {}
     local single_char_cands = {}
@@ -171,8 +182,11 @@ local function twac_filter(input, env)
     local tfchars_word_cands = {}
     local context = env.engine.context
     local preedit_code = context.input
-    local pos = context.caret_pos
-    local done = 0
+    local caret_pos = context.caret_pos
+    local config = env.engine.schema.config
+    local spelling_hints = config:get_int("translator/spelling_hints")
+    local overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
+
     for cand in input:iter() do
         if preedit_code:match("^;%l+$") and (not symbol_cands[cand.text])
         then
@@ -180,7 +194,7 @@ local function twac_filter(input, env)
             table.insert(symbol_cands, cand)
         end
 
-        if (pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
+        if (caret_pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
             and string.find(preedit_code, "^%l+%[%l*$")
             and (not single_char_cands[cand.text])
         then
@@ -188,7 +202,7 @@ local function twac_filter(input, env)
             table.insert(single_char_cands, cand)
         end
 
-        if (pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
+        if (caret_pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
             string.find(preedit_code, "^[%l]+%[[%l]+$") and
             (utf8.len(cand.text) == 2) and
             (string.sub(preedit_code, 5, 5) == "[") and
@@ -215,19 +229,27 @@ local function twac_filter(input, env)
         return 1 -- kAccepted
     end
 
-    if (pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
-        and preedit_code:match("^%l+%[%l+$") then
+    if (caret_pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
+        and preedit_code:match("^%l+%[%l+$")
+    then
         for _, cand in ipairs(single_char_cands) do
-            local input_shape_code = string.sub(preedit_code, 4):gsub('%[', '')
-            local current_cand_shape_code = cand.comment:match('[%a]') and cand.comment:sub(2):gsub('%[', '')
-            local remain_shape_code, _ =
-                string.gsub(current_cand_shape_code, input_shape_code, '', 1)
-            local comment = (string.len(remain_shape_code) > 0) and
-                string.format('~%s', remain_shape_code) or "~"
+            local comment = ""
+            if spelling_hints > 0 then
+                local input_shape_code = string.sub(preedit_code, 4):gsub('%[', '')
+                local current_cand_shape_code = cand.comment:match('[%l]') and cand.comment:sub(2):gsub('%[', '')
+                local remain_shape_code, _ =
+                    string.gsub(current_cand_shape_code, input_shape_code, '', 1)
+                comment = (string.len(remain_shape_code) > 0) and
+                    string.format('~%s', remain_shape_code) or "~"
+            end
+            if overwrite_comment then
+                comment = env.radical_reversedb:lookup(cand.text) or comment
+            end
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
+
             if (#single_char_cands == 1) then
-                tword_tail_char_shape_tbl = {}
-                commit_codes = {}
+                word_shape_char_tbl = {}
+                char_reverse_codes = {}
 
                 local cand_txt = append_space_to_cand(env, cand.text)
                 env.engine:commit_text(cand_txt)
@@ -238,7 +260,7 @@ local function twac_filter(input, env)
         end
     end
 
-    if (pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
+    if (caret_pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
         string.find(preedit_code, "^%l+%[%l+$") then
         for _, cand in ipairs(tword_phrase_cands) do
             local input_shape_code = string.sub(preedit_code, 6)
@@ -254,18 +276,17 @@ local function twac_filter(input, env)
                 env.engine:commit_text(cand_txt)
                 context:clear()
                 reset_cand_property(env)
-                tword_tail_char_shape_tbl = {}
-                commit_codes = {}
+                word_shape_char_tbl = {}
+                char_reverse_codes = {}
                 return 1 -- kAccepted
             end
         end
     end
 
     if table.find({ 6, 8 }, #preedit_code) and string.find(preedit_code, "^%l+") then
-        local reversedb_phrase = ReverseLookup("flypy_phrase")
         local i, when_done, commit_text = 1, 0, ""
         for _, cand in pairs(tfchars_word_cands) do
-            local reverse_code = reversedb_phrase:lookup(cand.text)
+            local reverse_code = env.reversedb_phrase:lookup(cand.text)
 
             local match_res = string.match(reverse_code, preedit_code)
             if reverse_code and match_res then
@@ -274,7 +295,7 @@ local function twac_filter(input, env)
                 if done == 1 then commit_text = cand.text end
             end
 
-            if (i >= 5) and (done == 1) and (pos >= 6) and (when_done == 1) and
+            if (i >= 5) and (done == 1) and (caret_pos >= 6) and (when_done == 1) and
                 ((#preedit_code / 2 == utf8.len(commit_text)) or
                     (#preedit_code / 3 == utf8.len(commit_text))) then
                 local cand_txt = append_space_to_cand(env, commit_text)
@@ -291,7 +312,7 @@ local function twac_filter(input, env)
 end
 
 return {
-    filter = twac_filter,
-    processor = twac_processor,
-    translator = twac_translator
+    processor = { init = word_auto_commit.init, func = processor.func },
+    translator = { func = translator.func },
+    filter = { init = word_auto_commit.init, func = filter.func },
 }

@@ -170,12 +170,14 @@ end
 
 function cold_word_drop.filter(input, env)
     local engine = env.engine
-    local config = engine.schema.config
     local context = engine.context
+    local config = engine.schema.config
     local cands = {}
     local prev_cand_text = nil
-    local idx = config:get_int("cold_wold_reduce_config/idx") or 4
-    local cpreedit_code = context:get_preedit().text:gsub("[^%a]", "")
+    local idx = config:get_int("cold_wold_reduce/idx") or 4
+    local preedit_code =context.input:gsub(" ", "")
+
+    local easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
@@ -183,14 +185,13 @@ function cold_word_drop.filter(input, env)
         local tfl = turndown_freq_list[cand_text] or nil
         if idx > 1 then
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
-            if tfl and table.find_index(tfl, cpreedit_code) then
+            if tfl and table.find_index(tfl, preedit_code) then
                 table.insert(cands, cand)
             elseif (
-                    cand_text:match("^[%l][%l%d][%l%d]?$")
-                    or cand_text:match("^[%u][%l%d][%l%d]%.?$")
+                    cand_text:match("^[%a][%a%d][%a%d]?%.?$")
                     or (
                         cand_text:match("^[%u][%a][%a]?$")
-                        and (cand_text:lower() == cpreedit_code:lower())
+                        and (cand_text:lower() == preedit_code:lower())
                     )
                     or (
                         cand_text:match("^[%u][%a][%a]%.?") and prev_cand_text
@@ -200,7 +201,7 @@ function cold_word_drop.filter(input, env)
                         ((cand_text:match("^[%u][%a]?[%a]?") and (cand_text:match("[%a]+"):len() < 4)))
                         and cand_text:find("([\228-\233][\128-\191]-)")
                     )
-                )
+                ) and (not preedit_code:match(easy_en_prefix))
             then
                 table.insert(cands, cand)
                 if cand_text:match("^[%a.]+$") and (not prev_cand_text) then
@@ -209,7 +210,7 @@ function cold_word_drop.filter(input, env)
             elseif
                 not (
                     table.find_index(drop_list, cand_text)
-                    or (hide_list[cand_text] and table.find_index(hide_list[cand_text], cpreedit_code))
+                    or (hide_list[cand_text] and table.find_index(hide_list[cand_text], preedit_code))
                     or (string.find(cand.comment, "☯")) -- cand.quality == 0.0
                 )
             then
@@ -220,7 +221,7 @@ function cold_word_drop.filter(input, env)
             if
                 not (
                     table.find_index(drop_list, cand.text)
-                    or (hide_list[cand.text] and table.find_index(hide_list[cand.text], cpreedit_code))
+                    or (hide_list[cand.text] and table.find_index(hide_list[cand.text], preedit_code))
                 )
             then
                 table.insert(cands, cand)

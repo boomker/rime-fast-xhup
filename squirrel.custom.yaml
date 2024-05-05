@@ -9,18 +9,23 @@ patch:
 
   style:
     # 註：預設的配色方案及代碼（指定爲 style/color_scheme 系統默認色系 - native）
-    color_scheme: catppuccin_frappe                   # macos明亮主题
-    color_scheme_dark: catppuccin_macchiato           # macos黑暗主题
+    color_scheme: songhe                        # macos明亮主题
+    color_scheme_dark: catppuccin_frappe        # macos黑暗主题
+    # color_scheme_dark: catppuccin_macchiato   # macos黑暗主题
 
     show_paging: true
     inline_preedit: false
-    translucency: 0.93
+    mutual_exclusive: false                           # 色不叠加： false | true
+    shadow_size: 1
+    alpha: 0.95                                       # 透明度, 0~1
+    translucency: 0.98
     corner_radius: 10
-    hilited_corner_radius: 0
     border_height: 0
     border_width: 0
-    line_spacing: 5
     spacing: 10
+    line_spacing: 5
+    shadow_radius: 8
+    hilited_corner_radius: 8
     font_point: 20
     label_font_point: 16
     comment_font_point: 14
@@ -59,39 +64,63 @@ patch:
       hilited_comment_text_color: 0x443231         # 注解文字高亮 Surface0
       comment_text_color: 0x705B58                 # 拼音等提示文字颜色 Surface2
 
-
     catppuccin_frappe:
       name: Catppuccin Frappe
 
-      mutual_exclusive: false                      # 色不叠加： false | true
-      back_color: 0x342623                         # 候选条背景色 Crust
-      border_color: 0x3C2C29                       # 边框色 Mantle
-      text_color: 0xE2BFB5                         # 拼音行文字颜色 Subtext1
+      text_color: 0xDFBDBC
+      back_color: 0x3C2C2B
       label_color: 0xCEADA5                        # 预选栏编号颜色 Subtext0
-      candidate_text_color: 0xF5D0C6               # 预选项文字颜色 Text
-      hilited_back_color: 0x333333                 # 第一候选项背景背景色
-      hilited_candidate_text_color: 0xF6A0C6       # 第一候选项文字颜色 Base
-      hilited_candidate_label_color: 0x594541      # 第一候选项编号颜色 Surface0
-      hilited_text_color: 0x70B558                 # 高亮拼音 (需要开启内嵌编码) Surface2
-      hilited_comment_text_color: 0x606cff         # 选中注解颜色
-      comment_text_color: 0x806862                 # 拼音等提示文字颜色 Surface2
+      border_color: 0x5D4C50
+      shadow_color: #303546                        # 背景阴影
       preedit_back_color: 0x232634
+      comment_text_color: 0xDFBDBC
+      candidate_text_color: 0xD68381
+      # candidate_back_color: 0x3C2C2B 
+      hilited_text_color: 0x000000
+      hilited_back_color: 0xDFBDBC
+      hilited_shadow_color: #303546                # 高亮编码阴影
+      hilited_comment_text_color: 0x606cff         # 选中注解颜色
+      hilited_candidate_text_color: 0xFFFFFF
+      hilited_candidate_back_color: 0xC73262
+      hilited_candidate_label_color: 0xF7A6CB      # 第一候选项编号颜色 Surface0
+      hilited_candidate_shadow_color: #303546      # 高亮候选阴影
       candidate_list_layout: stacked               # 候选排布: 层叠 stacked | 行 linear
+      # nextpage_color: 0xC73262                   # 下一页
+      # prevpage_color: 0x000000                   # 上一页
 
     catppuccin_macchiato:
       name: Catppuccin Macchiato
 
-      back_color: 0x261918                         # 候选条背景色 Crust
+      back_color: 0x303546                         # 候选条背景色 Crust
       border_color: 0x30201E                       # 边框色 Mantle
       text_color: 0xE0C0B8                         # 拼音行文字颜色 Subtext1
       label_color: 0xCBADA5                        # 预选栏编号颜色 Subtext0
       candidate_text_color: 0xF5D3CA               # 预选项文字颜色 Text
-      hilited_back_color: 0xF6A0C6                 # 第一候选项背景背景色 Mauve
-      hilited_candidate_text_color: 0x3A2724       # 第一候选项文字颜色 Base
-      hilited_candidate_label_color: 0x4F3A36      # 第一候选项编号颜色 Surface0
-      hilited_text_color: 0x70B558                 # 高亮拼音 (需要开启内嵌编码) Surface2
-      hilited_comment_text_color: 0x4F3A36         # 注解文字高亮 Surface2
       comment_text_color: 0x70B558                 # 拼音等提示文字颜色 Surface0
+      hilited_text_color: 0x000000                 # 高亮拼音 (需要开启内嵌编码) Surface2
+      hilited_back_color: 0xB2CECC                 # 第一候选项背景背景色 Mauve
+      hilited_candidate_text_color: 0x3A2724       # 第一候选项文字颜色 Base
+      hilited_candidate_back_color: 0x4ddcbb
+      hilited_candidate_label_color: 0x4F3A36      # 第一候选项编号颜色 Surface0
+      hilited_comment_text_color: 0x4F3A36         # 注解文字高亮 Surface2
+
+    songhe:
+      name: 松鹤
+      author: 空山明月 <sqqlove123@163.com>
+      text_color: 0xB2CECC 
+      back_color: 0x4E7160
+      label_color: 0xB2CECC
+      border_color: 0x38667D
+      comment_text_color: 0xB2CECC
+      candidate_back_color: 0x4E7160 
+      hilited_label_color: 0x606cff
+      hilited_mark_color: 0xffffff
+      hilited_text_color: 0xB2CECC
+      hilited_back_color: 0x26332C
+      hilited_comment_text_color: 0x263030
+      hilited_candidate_text_color: 0x263030
+      hilited_candidate_back_color: 0xC0D9D7
+      hilited_candidate_border_color: 0x434C50
 
   # 特定App默认中/英文输入
   app_options:
