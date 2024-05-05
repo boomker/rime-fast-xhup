@@ -3,9 +3,7 @@
 
 ---
 name: flypy_phrase
-version: "2023-09-12"
-sort: by_weight
-use_preset_vocabulary: true
+version: "2024-05-05"
 
 import_tables:
   - cn_dicts/flypy_chars         # 字表

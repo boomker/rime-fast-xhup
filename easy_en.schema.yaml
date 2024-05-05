@@ -19,6 +19,7 @@ switches:
 
 engine:
   processors:
+    - lua_processor@engword_append_space_processor
     - ascii_composer
     - key_binder
     - speller
@@ -36,14 +37,11 @@ engine:
   translators:
     - table_translator
     - punct_translator
-    - lua_translator@en_custom_translator
-    - lua_translator@laTex_translator
-    - lua_translator@engword_autocaps_translator
   filters:
     - uniquifier
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_/`
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
     - xform/^a/!/
@@ -53,23 +51,23 @@ speller:
     - xform/^u/;/
     - derive/[aeiou]//
     - xlit/!@,:;/aeiou/
+    # 全小写
+    - derive/^.+$/\L$0/
+    # 全大写
+    - derive/^.+$/\U$0/
+    # 首字母大写
+    - derive/^./\U$0/
+    - derive/^([a-z]{2})/\U$1/
     - erase/^.$/
 
 translator:
   dictionary: easy_en
   spelling_hints: 9
-  comment_format:
-    - xform/^.+$//
 
 key_binder:
   import_preset: default
-
-# punctuator:
-#   import_preset: default
 
 recognizer:
   import_preset: default
   patterns:
     uppercase: ''
-    # tex_translator: "^xl(.*)$"
-

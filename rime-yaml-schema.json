@@ -442,19 +442,37 @@
                     ]
                 },
                 "algebra": {
-                    "type": "array",
                     "description": "拼写运算规则。由之算出的拼写汇入 prism 中。",
-                    "items": {
-                        "type": "string",
-                        "pattern": "((|derive|xform|fuzz|xlit|abbrev)/[^/]+/[^/]+/)|(erase/[^/]+/)",
-                        "examples": [
-                            "erase/^xx$/",
-                            "derive/^([jqxy])u$/$1v/",
-                            "xform/^([aoe])(ng)?$/$1$1$2/",
-                            "xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/",
-                            "abbrev/^(.).+$/$1/"
-                        ]
-                    }
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "pattern": "((derive|xform|fuzz|xlit|abbrev)/[^/]+/[^/]*/)|(erase/[^/]+/)",
+                                "examples": [
+                                    "erase/^xx$/",
+                                    "derive/^([jqxy])u$/$1v/",
+                                    "xform/^([aoe])(ng)?$/$1$1$2/",
+                                    "xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/",
+                                    "abbrev/^(.).+$/$1/"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "__include": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                },
+                                "__append": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
                 },
                 "max_code_length": {
                     "type": "integer",
@@ -475,8 +493,47 @@
                     "description": "开关：以空格键作为输入码。"
                 },
                 "__patch": {
+                    "description": "拼写补丁",
                     "type": "object",
-                    "description": "补丁"
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^(algebra|alphabet|initials|auto_select_pattern)(\\/[+=])$": {
+                            "description": "拼写运算规则补丁",
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "((derive|xform|fuzz|xlit|abbrev)/[^/]+/[^/]*/)|(erase/[^/]+/)",
+                                        "examples": [
+                                            "erase/^xx$/",
+                                            "derive/^([jqxy])u$/$1v/",
+                                            "xform/^([aoe])(ng)?$/$1$1$2/",
+                                            "xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/",
+                                            "abbrev/^(.).+$/$1/"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "__include": {
+                                            "type": "string",
+                                            "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                        },
+                                        "__append": {
+                                            "type": "string",
+                                            "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            ]
+                        }
+                    }
                 }
             }
         },
@@ -720,7 +777,7 @@
                 },
                 "excluded_types": {
                     "type": "string",
-                    "description": "取消特定范围（一般为 reverse_lookup_translator）转换用字。"
+                    "description": "取消特定范围(一般为 reverse_lookup_translator)转换用字。"
                 }
             }
         },
