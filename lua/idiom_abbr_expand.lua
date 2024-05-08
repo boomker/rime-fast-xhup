@@ -9,24 +9,18 @@ function idiom_abbr_expand.processor(key, env)
     local input_code = context.input
     local preedit_code_length = #input_code
 
-    if (table.find({ 3, 4 }, preedit_code_length))
-        and (table.find({ 3, 4 }, pos)) and (key:repr() == "slash")
-    then
+    if (preedit_code_length == 4) and (pos == 4) and (key:repr() == "slash") then
         local composition = context.composition
 
-        if not composition:empty() then
-            local segment = composition:back()
-            for i = 1, 30, 1 do
-                local fchar_cand = segment:get_candidate_at(i)
-                if not (fchar_cand and idiom_cands) and (i == 30) then
-                    return 2 -- kNoop
-                else
-                    local fchar_cand_text = fchar_cand.text
-                    local cand_length = utf8.len(fchar_cand_text)
-                    if table.find({ 3, 4 }, cand_length) then
-                        table.insert(idiom_cands, fchar_cand_text)
-                    end
-                end
+        if composition:empty() then return 2 end
+        local segment = composition:back()
+        for i = 1, 30, 1 do
+            local fchar_cand = segment:get_candidate_at(i)
+            if not fchar_cand then return 2 end
+            local fchar_cand_text = fchar_cand.text
+            local cand_length = utf8.len(fchar_cand_text)
+            if cand_length == 4 then
+                table.insert(idiom_cands, fchar_cand_text)
             end
         end
     end
@@ -58,8 +52,7 @@ function idiom_abbr_expand.translator(input, seg, env)
     if
         idiom_cands
         and string.match(input, "^%l+%/$")
-        and (table.find({ 4, 5 }, #input))
-        and (table.find({ 4, 5 }, pos))
+        and (#input == 5) and (pos == 5)
     then
         for _, val in ipairs(idiom_cands) do
             local cand = Candidate("idiom", seg.start, seg._end, val, "")

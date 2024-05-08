@@ -1,5 +1,5 @@
-local drop_words = {
-	"苫次",
+local drop_words =
+{ 	"苫次",
 	"艮园",
 	"戢翼",
 	"镇赉",

@@ -175,9 +175,10 @@ function cold_word_drop.filter(input, env)
     local cands = {}
     local prev_cand_text = nil
     local idx = config:get_int("cold_wold_reduce/idx") or 4
-    local preedit_code =context.input:gsub(" ", "")
+    local preedit_code = context.input:gsub(" ", "")
 
     local easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
+    local pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
@@ -201,7 +202,10 @@ function cold_word_drop.filter(input, env)
                         ((cand_text:match("^[%u][%a]?[%a]?") and (cand_text:match("[%a]+"):len() < 4)))
                         and cand_text:find("([\228-\233][\128-\191]-)")
                     )
-                ) and (not preedit_code:match(easy_en_prefix))
+                ) and not (
+                    preedit_code:match("^" .. easy_en_prefix)
+                    or cand.comment:match(pin_mark)
+                )
             then
                 table.insert(cands, cand)
                 if cand_text:match("^[%a.]+$") and (not prev_cand_text) then

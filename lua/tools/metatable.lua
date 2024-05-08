@@ -1,3 +1,5 @@
+---@diagnostic disable: lowercase-global
+
 -- create metatable
 orgtype = type
 
@@ -18,7 +20,6 @@ function metatable(...)
 end
 
 -- chech metatble
----@diagnostic disable-next-line: lowercase-global
 function metatable_chk(tab)
     if "table" == type(tab) then
         return (tab.each and tab) or metatable(tab)
@@ -32,6 +33,32 @@ table.eachi = function(tab, func)
         func(tab[i], i)
     end
     return tab
+end
+
+table.all = function(tab, func)
+    local res_tab = {}
+    for i = 1, #tab do
+        table.insert(res_tab, func(tab[i]))
+    end
+    for _, v in ipairs(res_tab) do
+        if not v then
+            return false
+        end
+    end
+    return true
+end
+
+table.any = function(tab, func)
+    local res_tab = {}
+    for i = 1, #tab do
+        table.insert(res_tab, func(tab[i]))
+    end
+    for _, v in ipairs(res_tab) do
+        if v then
+            return true
+        end
+    end
+    return false
 end
 
 table.eacha = function(tab, func)

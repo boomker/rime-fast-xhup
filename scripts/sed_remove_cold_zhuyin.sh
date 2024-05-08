@@ -163,4 +163,4 @@ awk -F'\t'  '{x=index($1, "查");split($2, a, " ");{if(a[x]=="va")print $0}}' "$
 awk -F'\t'  '{x=index($1, "咋");split($2, a, " ");{if(a[x]=="ze")print $0}}' "$1"
 awk -F'\t'  '{x=index($1, "数");split($2, a, " ");{if(a[x]=="uo")print $0}}' "$1"
 awk -F'\t'  '{x=index($1, "读");split($2, a, " ");{if(a[x]=="dz")print $0}}' "$1"
-
+awk -F'\t'  '{x=index($1, "单");split($2, a, " ");{if(a[x]=="uj")print $0}}' "$1" |rg -v  '单县|单雄'

@@ -96,6 +96,11 @@ engword_autocaps = require("word_autocaps")
 word_autocaps_filter = engword_autocaps.filter
 word_autocaps_translator = engword_autocaps.translator
 
+easy_en = require("easy_en")
+-- easy_en_processor  = easy_en.processor
+-- easy_en_translator  = easy_en.translator
+easy_en_filter  = easy_en.filter
+
 -- 提升 1 个中文长词的位置到第三候选
 long_word_up = require("long_word_up")
 long_word_up_filter = long_word_up.filter
