@@ -62,7 +62,7 @@ speller:
 
 translator:
   dictionary: easy_en
-  spelling_hints: 9
+  spelling_hints: 0
 
 key_binder:
   import_preset: default
