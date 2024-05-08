@@ -2,9 +2,9 @@ local processor = {}
 local translator = {}
 local filter = {}
 local favor_items = nil
+local second_menu_items = nil
 local first_menu_selected_text = nil
 local second_menu_selected_text = nil
-local second_menu_items = nil
 
 local function cmd(system, cmdArgs, objId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
@@ -83,7 +83,8 @@ function processor.func(key, env)
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
-    if context:has_menu() and (inputCode:match("^" .. favorCmdPrefix)) and ((idx >= 0) or spec_keys[keyValue])
+    if context:has_menu() and ((idx >= 0) or spec_keys[keyValue])
+        and (inputCode:match("^" .. favorCmdPrefix))
     then
         if (idx >= 0) and (inputCode == favorCmdPrefix) and (segment.prompt:match("快捷指令")) then
             local cand = segment:get_candidate_at(idx)
@@ -137,12 +138,7 @@ function processor.func(key, env)
                 cmd(system_name, "", path)
             elseif action == "exec" then
                 local _cmdString = app_command_items["Favors"][first_menu_selected_text]["items"][candidateText]
-                local cmdString
-                if _cmdString and _cmdString:match("^/") then
-                    cmdString = _cmdString:gsub(" ", "\\ ", 1)
-                else
-                    cmdString = _cmdString
-                end
+                local cmdString = _cmdString:match("^/") and _cmdString:gsub(" ", "\\ ", 1) or _cmdString
                 cmd(system_name, "exec", cmdString)
             else
                 engine:commit_text(candidateText)
@@ -228,7 +224,13 @@ function translator.func(input, seg, env)
     if (composition:empty()) then return end
 
     local segment = composition:back()
-    if (not favor_items) and input:match("^" .. favorCmdPrefix .. "$") and (not first_menu_selected_text) then
+    if input:match("^" .. favorCmdPrefix .. "$") and (
+            ((not favor_items) and (not first_menu_selected_text))
+            or (second_menu_items and (segment.prompt == ""))
+        )
+    then
+        second_menu_items = nil
+        first_menu_selected_text = nil
         segment.prompt = "〔快捷指令〕"
 
         for key, _ in pairs(app_command_items["Favors"]) do
@@ -240,8 +242,10 @@ function translator.func(input, seg, env)
     end
 
     local favor_cmd_length_range = string.len(favorCmdPrefix) + 1 .. string.len(favorCmdPrefix) + 2
-    if (not first_menu_selected_text) and (segment.prompt:match("快捷指令") or (not second_menu_items))
-        and input:match("^" .. favorCmdPrefix) and (favor_cmd_length_range:match(#input))
+    if (not first_menu_selected_text)
+        and input:match("^" .. favorCmdPrefix)
+        and (favor_cmd_length_range:match(#input))
+        and (segment.prompt:match("快捷指令") or (not second_menu_items))
     then
         local first_menu_prefix = input:sub(favorCmdPrefix:len() + 1, -1)
         local matchCount = 0
@@ -270,7 +274,10 @@ function translator.func(input, seg, env)
         end
     end
 
-    if (first_menu_selected_text) and (second_menu_items) and input:match("^" .. favorCmdPrefix .. "$") then
+    if (first_menu_selected_text)
+        and (second_menu_items)
+        and input:match("^" .. favorCmdPrefix .. "$")
+    then
         for k, v in pairs(second_menu_items) do
             local item = type(k) == "number" and v or k
             local cand = Candidate("favor", seg.start, seg._end, item, "")
@@ -279,8 +286,11 @@ function translator.func(input, seg, env)
         end
     end
 
-    if (not segment.prompt:match("快捷指令")) and (second_menu_items)
-        and (not second_menu_selected_text) and (input:len() >= (favorCmdPrefix:len() + 2))
+    if (not segment.prompt:match("快捷指令"))
+        and (second_menu_items)
+        and (not second_menu_selected_text)
+        and (input:match("^" .. favorCmdPrefix))
+        and (input:len() >= (favorCmdPrefix:len() + 2))
     then
         local prompt = first_menu_selected_text and first_menu_selected_text:gsub("[%a%d]", "")
         segment.prompt = "〔" .. prompt .. "〕"
@@ -295,10 +305,17 @@ function translator.func(input, seg, env)
             local cand = Candidate("favor", seg.start, seg._end, _text, "")
             cand.quality = 999
             yield(cand)
+        else
+            local cand = Candidate("unknown", seg.start, seg._end, "未匹配到二级菜单", "")
+            cand.quality = 999
+            yield(cand)
         end
     end
 
-    if type(favor_items) == "table" and input:match("^" .. favorCmdPrefix .. "$") and (not second_menu_items) then
+    if (type(favor_items) == "table")
+        and (not second_menu_items)
+        and input:match("^" .. favorCmdPrefix .. "$")
+    then
         segment.prompt = "〔快捷指令〕"
         first_menu_selected_text = nil
         second_menu_items = nil
@@ -321,12 +338,15 @@ function filter.init(env)
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
     env.favor_items = env.launcher_config[3]["Favors"]
+    env.system_name = detect_os()
 end
 
 function filter.func(input, env)
     local input_code = env.engine.context:get_commit_text():gsub(" ", "")
     local favorCmdPrefix = env.favor_cmd_prefix
     local appLaunchPrefix = env.app_launch_prefix
+    local fav_items = env.favor_items
+    local system_name = env.system_name
     local command_cands = {}
     local other_cands = {}
     for cand in input:iter() do
@@ -338,6 +358,25 @@ function filter.func(input, env)
         else
             table.insert(other_cands, cand)
         end
+    end
+
+    if input_code:match("^" .. favorCmdPrefix) and (second_menu_selected_text) then
+        local commitText = fav_items[first_menu_selected_text]["items"][second_menu_selected_text]
+        local action = fav_items[first_menu_selected_text]["action"]
+        if action == "open" then
+            cmd(system_name, "", commitText)
+        elseif action == "exec" then
+            local cmdString = commitText:match("^/") and commitText:gsub(" ", "\\ ", 1) or commitText
+            cmd(system_name, "exec", cmdString)
+        else
+            env.engine:commit_text(commitText)
+        end
+        env.engine.context:clear()
+        favor_items = nil
+        second_menu_items = nil
+        first_menu_selected_text = nil
+        second_menu_selected_text = nil
+        return 1 -- kAccepted
     end
 
     if command_cands then

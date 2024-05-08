@@ -101,7 +101,8 @@ function translator.func(input, seg, env)
 end
 
 function filter.func(input, env)
-    local input_code = env.engine.context:get_commit_text():gsub(" ", "")
+    local pin_mark = env.comment_mark
+    local input_code = env.engine.context.input:gsub(" ", "")
     local pin_cands = {}
     local other_cands = {}
     for cand in input:iter() do
@@ -123,6 +124,8 @@ function filter.func(input, env)
                     end
                 end
             end
+        elseif cand.comment:match(pin_mark) then
+            table.insert(pin_cands, cand)
         else
             table.insert(other_cands, cand)
             if #other_cands > 80 then

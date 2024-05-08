@@ -1,6 +1,5 @@
 -- 自动补全配对的符号, 并把光标左移到符号对内部
 -- ref: https://github.com/hchunhui/librime-lua/issues/84
--- local puts = require("tools/debugtool")
 
 local function moveCursorToLeft()
 	local osascript = [[osascript -e '

@@ -1,10 +1,9 @@
-
 local Env = require("tools/env_api")
 local long_word_up = {}
 
 function long_word_up.init(env)
     Env(env)
-    env.excluded_type = env:Config_get("long_word_up_config/excluded_type")
+    env.excluded_codes = env:Config_get("long_word_up/excluded_codes")
 end
 
 function long_word_up.func(input, env)
@@ -18,21 +17,22 @@ function long_word_up.func(input, env)
     local prev_word_length = 0
     -- 记录筛选了多少个汉语词条(只提升1个词的权重)
     local pickup_count = 1
-    local idx = config:get_int("long_word_up_config/idx") or 3
+    local idx = config:get_int("long_word_up/idx") or 3
 
     local preedit_code = context:get_commit_text():gsub("[ ']", "")
     local preedit_length = preedit_code:len()
-    local preedit_for_cand_length = ((preedit_length % 2) == 0) and preedit_length or (preedit_length - 1)
+    local preedit_for_cand_length = ((preedit_length % 2) == 0)
+        and preedit_length or (preedit_length - 1)
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
         local cand_text_length = utf8.len(cand_text)
-        local cand_predict_max_length = cand_text:match("[%a]") and (preedit_length + 3) or
-            ((preedit_for_cand_length // 2) + 2)
+        local cand_predict_max_length = cand_text:match("[%a]")
+            and (preedit_length + 3) or ((preedit_for_cand_length // 2) + 2)
         if (idx > 1) and (
                 (cand.type == "user_table")
                 or (preedit_code:match("^/"))
                 or (cand_text_length <= cand_predict_max_length)
-                or (table.find_index(env.excluded_type, preedit_code))
+                or (table.find_index(env.excluded_codes, preedit_code))
             )
         then
             yield(cand)

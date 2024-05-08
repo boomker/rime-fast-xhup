@@ -22,13 +22,13 @@ for f in "${files[@]}"; do
 	tgt_file="${repoRoot}/cn_dicts/flypy_${f}.dict.yaml"
 	sorted_outfile="${repoRoot}/cn_dicts/flypy_${f}_sou.dict.yaml"
 	[[ "$f" == "en_ext" ]] && src_file="${iceRepoPath}/en_dicts/en_ext.dict.yaml"
-	[[ "$f" == "en_ext" ]] && tgt_file="${repoRoot}/en_dicts/en_ext.dict.yaml"
+	[[ "$f" == "en_ext" ]] && tgt_file="${repoRoot}/en_dicts/en_ext_full.dict.yaml"
 	[[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
 	[[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji_word.txt"
 
 	git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |
 		/usr/local/bin/rg "^\-" | \rg -v "\-#|\+v|\---" | tr -d "-" >"${f}_min.diff"
-	gcut -f1 "${f}_min.diff" | gxargs -I % -n 1 sd '^%\t.*' '' "${tgt_file}"
+	gcut -f1 "${f}_min.diff" | xargs -I % -n 1 sd '^%\t.*' '' "${tgt_file}"
 	gsed -i -r '14,${/^$/d}' "${tgt_file}"
 
 	git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |
@@ -38,14 +38,14 @@ for f in "${files[@]}"; do
 	[[ "$f" =~ emoji ]] && sort -u "${tgt_file}" -o tmp_emoji && mv tmp_emoji "${tgt_file}"
 	if [[ $(wc -l "${f}_add.diff" | gcut -d ' ' -f -1) != 0 ]] && [[ ! $f =~ emoji|en_ext ]]; then
 		if [[ "$f" == "base" ]] || [[ "$f" == "ext" ]]; then
-			pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
+			python3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
+			# pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m
 		else
-			pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
+			python3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
+			# pypy3 "${pyScrPath}" -i "${f}_add.diff" -o "${tgt_file}" -m -c
 		fi
 	fi
 
-	# git diff HEAD -- cn_dicts/flypy_ext.dict.yaml |rg "^\+" |rg -v "\+#|\+v|\+\+" |tr -d "+" > "cn-ext_add.diff"
-	# awk -F'\t' '{s[$1]++;w[$0]}END{for(i in w){split(i, a, " ");if(s[a[1]]>1)print i}}' cn-ext_add.diff |sort
 	rm "${f}_add.diff" "${f}_min.diff"
 	[[ ! $f =~ emoji|en_ext ]] && {
 		(

@@ -6,7 +6,8 @@ function flypy_switcher.init(env)
     reload_env(env)
     local config = env.engine.schema.config
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
-    env.comment_overwrited = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
+    env.cn_comment_overwrited = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
+    env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
@@ -15,15 +16,19 @@ end
 
 function flypy_switcher.func(key, env)
     local engine = env.engine
-    local config = engine.schema.config
     local schema = engine.schema
     local context = engine.context
+    local config = engine.schema.config
     local preedit_code = context:get_script_text():gsub(" ", "")
 
     if context:has_menu() and (key:repr() == env.switch_comment_key) then
-        if (not env.comment_overwrited) and (env.comment_hints > 0) then
+        if (preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited) then
+            config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
+        elseif (preedit_code:match("^" .. env.easy_en_prefix) and (not env.en_comment_overwrited)) then
+            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true) -- 重写英文注释为空
+        elseif (not env.cn_comment_overwrited) and (env.comment_hints > 0) then
             config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
-        elseif (env.comment_overwrited) and (env.comment_hints > 0) then
+        elseif (env.cn_comment_overwrited) and (env.comment_hints > 0) then
             config:set_int("translator/spelling_hints", 0)
             config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
             env:Config_set('radical_reverse_lookup/comment_format/@last', "xform/^.+$//")

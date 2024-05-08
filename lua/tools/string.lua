@@ -66,7 +66,7 @@ end
 function utf8.chars(word)
     local f, s, i = utf8.codes(word)
     return function()
-        local j, value = f(s, i)
+        local j, value = s and i and f(s, i) or nil, nil
         if j and value then
             return j, utf8.char(value)
         else
