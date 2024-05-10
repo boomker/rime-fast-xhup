@@ -76,3 +76,4 @@ ollama	ollama	100000
 pcall	pcall	100000
 push	push	100000
 punct	punct	100000
+iowait	iowait	100000

@@ -11,6 +11,7 @@ function flypy_switcher.init(env)
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
+    -- env.switch_easy_en_key = config:get_string("key_binder/switch_easy_en") or "Control+q"
     env.easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
 end
 
@@ -25,7 +26,7 @@ function flypy_switcher.func(key, env)
         if (preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited) then
             config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
         elseif (preedit_code:match("^" .. env.easy_en_prefix) and (not env.en_comment_overwrited)) then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true) -- 重写英文注释为空
+            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true)  -- 重写英文注释为空
         elseif (not env.cn_comment_overwrited) and (env.comment_hints > 0) then
             config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
         elseif (env.cn_comment_overwrited) and (env.comment_hints > 0) then
@@ -51,9 +52,17 @@ function flypy_switcher.func(key, env)
         return 1
     end
 
-    if context:has_menu() and (key:repr() == env.switch_english_key) then
+    if context:has_menu() and (key:repr() == env.switch_english_key) and (schema.schema_id ~= "easy_en") then
+        --[[
         context:clear()
         context:push_input(env.easy_en_prefix .. preedit_code)
+        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+        return 1                                    -- kAccept
+    elseif context:has_menu() and (key:repr() == env.switch_easy_en_key) then
+    --]]
+        context:clear()
+        env.engine:apply_schema(Schema("easy_en"))
+        context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
     end

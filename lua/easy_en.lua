@@ -16,17 +16,19 @@ end
 function easy_en.init(env)
     local config = env.engine.schema.config
     env.easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
-    env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
+    env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or true
 end
 
 function easy_en.filter(input, env)
+    local engine = env.engine
+    local schema = engine.schema
     local separator = " 🔎 "
     local en_cands = {}
     local context = env.engine.context
-    local preedit_code =context.input:gsub(" ", "")
+    local preedit_code = context.input:gsub(" ", "")
 
     for cand in input:iter() do
-        if (preedit_code:match("^" .. env.easy_en_prefix)) then
+        if (schema.schema_id == "easy_en") or (preedit_code:match("^" .. env.easy_en_prefix)) then
             if (env.en_comment_overwrited) then
                 local comment = truncate_comment(cand.comment)
                 cand.comment = separator .. comment
@@ -38,10 +40,12 @@ function easy_en.filter(input, env)
         else
             yield(cand)
         end
+
         if #en_cands >= 80 then
             break
         end
     end
+
     for _, cand in ipairs(en_cands) do
         yield(cand)
     end

@@ -49,8 +49,10 @@ function pin_word.init(env)
     reload_env(env)
     env.pin_cand_key = env:Config_get("pin_word/pin_word_key")
     env.word_quality = env:Config_get("pin_word/word_quality")
-    env.comment_mark = env:Config_get("pin_word/comment_mark")
+    env.pin_mark = env:Config_get("pin_word/comment_mark")
+    env.comment_mark = env:Config_get("custom_phrase/comment_mark")
     env.excluded_types = env:Config_get("pin_word/excluded_types")
+    env.key_help_prefix = env:Config_get("recognizer/patterns/flypy_key_help"):match("%^([a-z/]+).*") or "/ok"
 end
 
 function processor.func(key, env)
@@ -63,14 +65,15 @@ function processor.func(key, env)
     if context:has_menu() and (key:repr() == pin_cand_key) then
         local cand = context:get_selected_candidate()
         local cand_text = cand.text:gsub(" ", "")
-        if not cand then
-            return 2
-        end
+        if not cand then return 2 end
 
-        if not pin_word_records[preedit_code] then
-            pin_word_records[preedit_code] = {}
+        if not pin_word_records[preedit_code] then pin_word_records[preedit_code] = {} end
+        if table.find_index(pin_word_records[preedit_code], cand_text) then
+            local index = table.find_index(pin_word_records[preedit_code], cand_text)
+            table.remove(pin_word_records[preedit_code], index)
+        else
+            table.insert(pin_word_records[preedit_code], cand_text)
         end
-        table.insert(pin_word_records[preedit_code], cand_text)
 
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         write_word_to_file()
@@ -85,28 +88,29 @@ local function is_excluded_type(seg)
 end
 
 function translator.func(input, seg, env)
-    local comment_text = env.comment_mark
+    local comment_text = env.pin_mark
     local excluded_types = env.excluded_types
     local input_code = input:gsub(" ", "")
     local pin_word_tab = pin_word_records[input_code] or nil
     if pin_word_tab and not (table.any(excluded_types, is_excluded_type(seg))) then
         for _, w in ipairs(pin_word_tab) do
-            if string.utf8_len(input_code) / string.utf8_len(w) ~= 2 then
-                local cand = Candidate("top_word", seg.start, seg._end, w, comment_text)
-                cand.quality = env.word_quality
-                yield(cand)
-            end
+            -- if string.utf8_len(input_code) / string.utf8_len(w) ~= 2 then
+            local cand = Candidate("top_word", seg.start, seg._end, w, comment_text)
+            cand.quality = env.word_quality
+            yield(cand)
+            -- end
         end
     end
 end
 
 function filter.func(input, env)
-    local pin_mark = env.comment_mark
+    local pin_mark = env.pin_mark
+    local custom_mark = env.comment_mark
     local input_code = env.engine.context.input:gsub(" ", "")
     local pin_cands = {}
     local other_cands = {}
     for cand in input:iter() do
-        local cand_text = cand.text:gsub(" ", "")
+        local cand_text = cand.text
         local pin_word_tab = pin_word_records[input_code] or nil
         if pin_word_tab and table.find_index(pin_word_tab, cand_text) then
             if #pin_cands < #pin_word_tab then
@@ -126,6 +130,9 @@ function filter.func(input, env)
             end
         elseif cand.comment:match(pin_mark) then
             table.insert(pin_cands, cand)
+        elseif (cand.type == "user_table") and (not input_code:match(env.key_help_prefix)) then
+            cand.comment = custom_mark
+            table.insert(other_cands, cand)
         else
             table.insert(other_cands, cand)
             if #other_cands > 80 then

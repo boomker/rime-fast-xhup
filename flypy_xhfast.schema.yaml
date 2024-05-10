@@ -19,6 +19,10 @@ schema:
     - flypy_phrase      # 中文词库 - 现代汉语词典 & 清华开源词库
     # - stroke
 
+# 候选菜单
+menu:
+  page_size: 9    # 候选词个数
+
 # 选项开关
 switches:
   - name: ascii_mode
@@ -74,8 +78,7 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
-    - script_translator
-    # - reverse_lookup_translator
+    - reverse_lookup_translator
     - table_translator@idiom_phrase
     - table_translator@custom_phrase
     - table_translator@melt_eng
@@ -96,6 +99,7 @@ engine:
     - lua_translator@word_custom_translator           # ] 置于输入码末尾触发自定义单词入库
     - lua_translator@word_autocaps_translator         # A-Z 大写字母开头触发单词自动大写
     - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
+    - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
     - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
@@ -160,6 +164,7 @@ custom_phrase:                      # 自定义短语, 包含固顶字
   dictionary: ""
   user_dict: custom_phrase
   db_class: stabledb
+  comment_mark: " 📌"
   enable_completion: false
   enable_sentence: false
   initial_quality: 99
@@ -221,8 +226,11 @@ history:                            # 上屏历史记录
 pin_word:                           # 词条置顶配置
   pin_word_key: "Control+t"   # 词条置顶快捷键, 优先级高于`key_binder`全局配置
   word_quality: 1000
-  comment_mark: "🔝"          # 不能留空
+  comment_mark: " 🔝"         # 不能留空
   excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
+
+word_auto_commit:                   # 词条自动上屏
+  enable: false
 
 long_word_up:                       # 长词升频到第 idx 个位置
   idx: 3
@@ -253,20 +261,20 @@ punctuator:
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
     '\': [、, '\', ＼]
-    "|": [·, ・, "|", ｜, "§", "¦", "‖", ︴]
+    "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
     "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
     "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
     "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
     "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
     "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
+    "(": [（, "("]
+    ")": [）, ")"]
     "[": ['[',「, 【, 〔, ［, 〚, 〘]
     "]": [']', 」, 】, 〕, ］, 〛, 〙]
     "{": [『, 〖, ｛]
     "}": [』, 〗, ｝]
     "#": "#"
     "=": "="
-    "(": "("
-    ")": ")"
     # "@": "@"
   symbols:
     __include: symbols.custom:/symbols
@@ -345,7 +353,7 @@ key_binder:
   turn_down_cand: "Control+j" # 匹配当前输入码后降频指定的候选字词
   switch_comment: "Control+n" # 切换注释(小鹤形码 / 带调拼音 / 无)
   commit_comment: "Control+p" # 注释上屏
-  switch_english: "Control+g" # 切换到英文输入模式
+  switch_english: "Control+g" # 切换到英文输入方案
   bindings:
     - { when: has_menu, accept: semicolon, send: 2 }
     - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选

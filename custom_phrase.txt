@@ -43,6 +43,9 @@
 有	y	2
 又	y	1
 在	z	2
+# 爱	ai	3
+# Illustrator	ai	2
+# Adobe Illustrator	ai	1
 
 ## 常用短语
 🐮🍺	nei

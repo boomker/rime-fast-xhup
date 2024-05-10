@@ -7,8 +7,4 @@
 patch:
   schema_list:
     - schema: flypy_xhfast
-    - schema: melt_eng
-    - schema: flypy_radical
-    - schema: flypy_phrase
-    # - schema: flypy_zrmfast
-    # - schema: emoji               # emoji表情
+    - schema: easy_en

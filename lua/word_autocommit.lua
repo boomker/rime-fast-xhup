@@ -29,6 +29,7 @@ function word_auto_commit.init(env)
     local schema_id       = config:get_string("schema/schema_id")
     local phrase_dict     = config:get_string("flypy_phrase/dictionary")
     local reverse_dict    = config:get_string("radical_reverse_lookup/dictionary")
+    env.autocommit_on     = config:get_bool("word_auto_commit/enable")
     env.reversedb         = ReverseLookup(schema_id)
     env.reversedb_phrase  = ReverseLookup(phrase_dict)
     env.radical_reversedb = ReverseLookup(reverse_dict)
@@ -136,8 +137,8 @@ function filter.func(input, env)
     local cands = {}
     local symbol_cands = {}
     local single_char_cands = {}
-    local tword_phrase_cands = {}
-    local tfchars_word_cands = {}
+    local tchars_word_cands = {}
+    local fchars_word_cands = {}
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
@@ -165,16 +166,16 @@ function filter.func(input, env)
             (utf8.len(cand.text) == 2) and
             (string.sub(preedit_code, 5, 5) == "[") and
             (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) and
-            (not tword_phrase_cands[cand.text]) then
-            tword_phrase_cands[cand.text] = cand
-            table.insert(tword_phrase_cands, cand)
+            (not tchars_word_cands[cand.text]) then
+            tchars_word_cands[cand.text] = cand
+            table.insert(tchars_word_cands, cand)
         end
 
         if table.find({ 6, 8 }, #preedit_code) and
             string.find(preedit_code, "^[%l]+$") and
-            (table.len(tfchars_word_cands) < 6) and
-            (not tfchars_word_cands[cand.text]) then
-            tfchars_word_cands[cand.text] = cand
+            (table.len(fchars_word_cands) < 6) and
+            (not fchars_word_cands[cand.text]) then
+            fchars_word_cands[cand.text] = cand
         end
 
         if #cands > 80 then break end
@@ -219,7 +220,7 @@ function filter.func(input, env)
 
     if (caret_pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
         string.find(preedit_code, "^%l+%[%l+$") then
-        for _, cand in ipairs(tword_phrase_cands) do
+        for _, cand in ipairs(tchars_word_cands) do
             local input_shape_code = string.sub(preedit_code, 6)
             local current_cand_shape_code = cand.comment:match('[%a]') and cand.comment:sub(2):gsub('%[', '')
             local remain_shape_code, _ =
@@ -227,7 +228,7 @@ function filter.func(input, env)
             local comment = (string.len(remain_shape_code) > 0) and
                 string.format('~%s', remain_shape_code) or "~"
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-            if (#tword_phrase_cands == 1) and (tword_phrase_cands[cand.text]) and
+            if (#tchars_word_cands == 1) and (tchars_word_cands[cand.text]) and
                 (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
                 local cand_txt = append_space_to_cand(env, cand.text)
                 env.engine:commit_text(cand_txt)
@@ -239,9 +240,9 @@ function filter.func(input, env)
         end
     end
 
-    if table.find({ 6, 8 }, #preedit_code) and string.find(preedit_code, "^%l+") then
+    if (#preedit_code == 8) and preedit_code:match("^%l+") and (env.autocommit_on) then
         local i, when_done, commit_text = 1, 0, ""
-        for _, cand in pairs(tfchars_word_cands) do
+        for _, cand in pairs(fchars_word_cands) do
             local reverse_code = env.reversedb_phrase:lookup(cand.text)
 
             local match_res = string.match(reverse_code, preedit_code)

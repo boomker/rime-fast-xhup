@@ -3,7 +3,9 @@ local long_word_up = {}
 
 function long_word_up.init(env)
     Env(env)
+    local config = env.engine.schema.config
     env.excluded_codes = env:Config_get("long_word_up/excluded_codes")
+    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 end
 
 function long_word_up.func(input, env)
@@ -31,6 +33,7 @@ function long_word_up.func(input, env)
         if (idx > 1) and (
                 (cand.type == "user_table")
                 or (preedit_code:match("^/"))
+                or cand.comment:match(env.pin_mark)
                 or (cand_text_length <= cand_predict_max_length)
                 or (table.find_index(env.excluded_codes, preedit_code))
             )
@@ -43,14 +46,13 @@ function long_word_up.func(input, env)
             and (preedit_length > 3)
             and (cand_text_length >= 3)
             and (cand.comment:len() < 3)
-            and (cand_text_length > prev_word_length)
-            and (cand_text_length <= cand_predict_max_length)
             and (not cand_text:match("[%a]"))
             and (not preedit_code:match("^/"))
             and (cand:get_dynamic_type() ~= "Shadow")
+            and (cand_text_length > prev_word_length)
+            and (cand_text_length <= cand_predict_max_length)
         then
-            local cand_uniq = UniquifiedCandidate(cand, "LongWordUp", cand_text, cand.comment)
-            yield(cand_uniq)
+            yield(cand)
             pickup_count = pickup_count - 1
         else
             if (cand_text_length <= cand_predict_max_length) or (cand.quality > 9)
@@ -62,14 +64,10 @@ function long_word_up.func(input, env)
             end
         end
 
-        if #cands > 80 then
-            break
-        end
+        if #cands > 80 then break end
     end
 
-    for _, cand in ipairs(cands) do
-        yield(cand)
-    end
+    for _, cand in ipairs(cands) do yield(cand) end
 
     for _, long_cand in ipairs(longWord_cands) do
         yield(long_cand)

@@ -6,7 +6,7 @@ function idiom_abbr_expand.processor(key, env)
     local engine = env.engine
     local context = engine.context
     local pos = context.caret_pos
-    local input_code = context.input
+    local input_code = context.input:gsub("%s", "")
     local preedit_code_length = #input_code
 
     if (preedit_code_length == 4) and (pos == 4) and (key:repr() == "slash") then
@@ -36,7 +36,8 @@ function idiom_abbr_expand.processor(key, env)
                 context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
             else                                            -- 进入展开超级简拼模式
                 -- 将新的简拼编码发送给上下文供Rime引擎处理
-                context:push_input(input_code:gsub("[^%a]", ""):gsub("(.)", "%1'"):sub(1, -1))
+                local simp_code = input_code:gsub("[^%a]", ""):gsub("(.)", "%1'"):sub(1, -2)
+                context:push_input(simp_code)
                 context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
             end
         end
