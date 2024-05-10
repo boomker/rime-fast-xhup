@@ -26,7 +26,7 @@ function flypy_switcher.func(key, env)
         if (preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited) then
             config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
         elseif (preedit_code:match("^" .. env.easy_en_prefix) and (not env.en_comment_overwrited)) then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true)  -- 重写英文注释为空
+            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true)  -- 重写英文注释为中文
         elseif (not env.cn_comment_overwrited) and (env.comment_hints > 0) then
             config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
         elseif (env.cn_comment_overwrited) and (env.comment_hints > 0) then
