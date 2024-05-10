@@ -126,6 +126,9 @@ def pinyin_to_flypy(quanpin: list[str]):
             "n": "en",
             "en": "en",
             "eng": "eg",
+            "ei": "ei",
+            "er": "er",
+            "ao": "ao",
         }
         # 错误 Pinyin 返回原始拼音串
         if len(pinyin) == 1 and pinyin not in zero:
