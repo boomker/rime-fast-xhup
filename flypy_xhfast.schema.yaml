@@ -14,10 +14,16 @@ schema:
   dependencies:
     - melt_eng          # 英文单词&词组 - 简明英汉词典(增强版)
     - easy_en
+    - ecdict_reverse
     - flypy_radical
     - flypy_phrase      # 中文词库 - 现代汉语词典 & 清华开源词库
     # - stroke
 
+# 候选菜单
+menu:
+  page_size: 9    # 候选词个数
+
+# 选项开关
 switches:
   - name: ascii_mode
     states: [中, E]
@@ -45,6 +51,7 @@ engine:
     - lua_processor@pair_symbols_processor
     - lua_processor@select_char_processor
     - lua_processor@idiom_expand_processor
+    # - lua_processor@easy_en_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@flypy_switcher_processor
     - lua_processor@word_append_space_processor
@@ -71,8 +78,7 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
-    - script_translator
-    # - reverse_lookup_translator
+    - reverse_lookup_translator
     - table_translator@idiom_phrase
     - table_translator@custom_phrase
     - table_translator@melt_eng
@@ -89,19 +95,23 @@ engine:
     - lua_translator@number_translator                # /cn 触发繁体大写金额数字
     - lua_translator@commit_history_translator        # /hs 触发显示上屏历史
     - lua_translator@idiom_expand_translator          # /,0 置于输入码末尾触发简拼展开
+    # - lua_translator@easy_en_translator               # / 置于输入码末尾触发英文展开
     - lua_translator@word_custom_translator           # ] 置于输入码末尾触发自定义单词入库
     - lua_translator@word_autocaps_translator         # A-Z 大写字母开头触发单词自动大写
     - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
+    - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
+    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
     - simplifier@emoji
     - simplifier@traditionalize                       # 简繁切换
     - lua_filter@fly_fixed_filter
+    - lua_filter@easy_en_filter
     - lua_filter@charset_filter
     - lua_filter@charset_comment_filter
     - lua_filter@word_autocaps_filter
     - lua_filter@emoji_reduce_filter
-    - lua_filter@cn_space_en_filter
+    # - lua_filter@cn_space_en_filter
     - lua_filter@cold_word_drop_filter
     - lua_filter@word_autocommit_filter
     - lua_filter@long_word_up_filter
@@ -109,10 +119,11 @@ engine:
     - lua_filter@launcher_filter
     - uniquifier                                      #  只能放到最后!
 
+# 八股文
 grammar:
   language: zh-hans-t-essay-bgw
 
-# 主翻译器，拼音
+# 主翻译器, 小鹤双拼
 translator:
   dictionary: flypy_xhfast
   spelling_hints: 1                 # `0`: 关闭单字编码提示
@@ -128,7 +139,8 @@ translator:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
 
-make_sentence:
+# "`" 精准造词
+make_sentence:                      # 精准造词
   __include: /translator            # 复用上面的翻译器, 日志 warning 可忽略
   enable_sentence: true
   prefix: "`"
@@ -147,15 +159,17 @@ melt_eng:                           # 英文输入
   comment_format:
     - xform/.*// # 清空提示码
 
-# 自定义短语：custom_phrase.txt
+# 自定义短语: custom_phrase.txt
 custom_phrase:                      # 自定义短语, 包含固顶字
   dictionary: ""
   user_dict: custom_phrase
   db_class: stabledb
+  comment_mark: " 📌"
   enable_completion: false
   enable_sentence: false
   initial_quality: 99
 
+# 成语短语：idiom_phrase.txt
 idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
   dictionary: ""
   user_dict: idiom_phrase
@@ -164,7 +178,7 @@ idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
   enable_sentence: false
   initial_quality: 0.8
 
-flypy_key_help:
+flypy_key_help:                     # 小鹤双拼键位帮助
   tag: flypy_key_help
   dictionary: ""
   user_dict: flypy_keymap
@@ -175,7 +189,8 @@ flypy_key_help:
   enable_sentence: false
   initial_quality: 1
 
-flypy_phrase:
+# 自动上屏短语
+flypy_phrase:                       # 自动上屏短语
   dictionary: flypy_phrase
   enable_encoder: false
   enable_sentence: false
@@ -192,15 +207,14 @@ emoji:
   tips: all
   tags: [ abc ]
   inherit_comment: false
-  # excluded_types: ["history"]
 
-traditionalize:
+traditionalize:                     # 繁体转简体
   option_name: simplification
   opencc_config: t2s.json   # s2t.json | s2hk.json | s2tw.json | s2twp.json
   tips: none                # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
   tags: [abc]               # 限制在对应 tag，不对其他如反查的内容做简繁转换
 
-history:                      # 上屏历史记录
+history:                            # 上屏历史记录
   tips: "上屏历史"
   tag: history
   prefix: "/hs"
@@ -209,19 +223,20 @@ history:                      # 上屏历史记录
   initial_quality: 1000
   excluded_types: ["punct"]
 
-pin_word:                     # 词条置顶配置
+pin_word:                           # 词条置顶配置
   pin_word_key: "Control+t"   # 词条置顶快捷键, 优先级高于`key_binder`全局配置
   word_quality: 1000
-  comment_mark: "🔝"          # 不能留空
+  comment_mark: " 🔝"         # 不能留空
   excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
 
-long_word_up:
-  # 长词升频到第 idx 个位置
+word_auto_commit:                   # 词条自动上屏
+  enable: false
+
+long_word_up:                       # 长词升频到第 idx 个位置
   idx: 3
   excluded_codes: ["date", "rq", "week", "time", "lunar"]
 
-cold_wold_reduce:
-  # 生僻词条降频到第 idx 个位置
+cold_wold_reduce:                   # 生僻词条降频到第 idx 个位置
   idx: 4
   excluded_types: ["easy_en"]
 
@@ -230,10 +245,6 @@ emoji_reduce:
   idx: 6
 
 # 标点符号
-# punctuator 下面有三个子项：
-#   full_shape 全角标点映射
-#   half_shape 半角标点映射
-#   symbols
 punctuator:
   import_preset: symbols
   full_shape:
@@ -250,20 +261,20 @@ punctuator:
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
     '\': [、, '\', ＼]
-    "|": [·, ・, "|", ｜, "§", "¦", "‖", ︴]
+    "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
     "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
     "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
     "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
     "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
     "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
+    "(": [（, "("]
+    ")": [）, ")"]
     "[": ['[',「, 【, 〔, ［, 〚, 〘]
     "]": [']', 」, 】, 〕, ］, 〛, 〙]
     "{": [『, 〖, ｛]
     "}": [』, 〗, ｝]
     "#": "#"
     "=": "="
-    "(": "("
-    ")": ")"
     # "@": "@"
   symbols:
     __include: symbols.custom:/symbols
@@ -290,6 +301,7 @@ radical_reverse_lookup:
     - xform/^(\w+)[[].*$/$1/
     - xform/^/~/
 
+#英文输入方案
 easy_en:
   tag: easy_en
   dictionary: easy_en
@@ -299,6 +311,15 @@ easy_en:
   prefix: "/oe"
   suffix: "'"
   tips: "英文输入"
+
+#英文反查释意
+ecdict_reverse_lookup:
+  tags: [easy_en]
+  overwrite_comment: true     # 是否开启中文释意注解
+  dictionary: ecdict_reverse
+  comment_format:
+    - xform/\\n/ | /
+    - xform/^/ /
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
@@ -332,7 +353,7 @@ key_binder:
   turn_down_cand: "Control+j" # 匹配当前输入码后降频指定的候选字词
   switch_comment: "Control+n" # 切换注释(小鹤形码 / 带调拼音 / 无)
   commit_comment: "Control+p" # 注释上屏
-  switch_english: "Control+g" # 切换到英文输入模式
+  switch_english: "Control+g" # 切换到英文输入方案
   bindings:
     - { when: has_menu, accept: semicolon, send: 2 }
     - { when: has_menu, accept: apostrophe, send: 3 } ## 单引号用于第3候选
@@ -343,18 +364,21 @@ key_binder:
     - { when: composing, accept: Control+i, send: Shift+Left }
     - { when: composing, accept: Control+o, send: Shift+Right }
     - { when: composing, accept: Tab, send: Shift+Right }
-    - { when: composing, accept: grave, send: "`" }
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu,  accept: Control+0, toggle: simplification }
     - { when: has_menu,  accept: Control+period, toggle: ascii_punct }
     - { when: has_menu,  accept: Control+Shift+slash, toggle: emoji }
     - { when: has_menu,  accept: Control+Shift+apostrophe, toggle: charset_comment }
-    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
+    - { when: composing, accept: grave, send: "`" }
+    # `键 (grave, Tab 上面那个) 为词组逐字追加辅助码.
+    # 如果希望无论有无 [ 均可引导, 取消下行注释, 放到当前文件`algebra`节点下
+    # speller/algebra/@next: derive/[[]//
+  # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
 speller:
-  # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射
+  # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[_/]
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA

@@ -5,17 +5,18 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: "0.5"
+  version: "2024.05.09"
   author:
     - Patrick <ipatrickmac@gmail.com>
     - BlindingDark <blindingdark@outlook.com>
-  description:
-    Easy English
+  description: Easy English
+  dependencies:
+    - ecdict_reverse
 
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ ASCII-OFF, ASCII-ON ]
+    states: [ASCII-OFF, ASCII-ON]
 
 engine:
   processors:
@@ -38,10 +39,12 @@ engine:
     - table_translator
     - punct_translator
   filters:
+    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
+    - lua_filter@easy_en_filter
     - uniquifier
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/*
   delimiter: " '"
   algebra:
     - xform/^a/!/
@@ -64,10 +67,21 @@ translator:
   dictionary: easy_en
   spelling_hints: 0
 
+#英文反查释意
+ecdict_reverse_lookup:
+  dictionary: ecdict_reverse
+  overwrite_comment: true     # 是否开启中文释意注解
+  comment_format:
+    - xform/\\n/ | /
+    - xform/^/ /
+
 key_binder:
+  import_preset: default
+
+punctuator:
   import_preset: default
 
 recognizer:
   import_preset: default
   patterns:
-    uppercase: ''
+    uppercase: ""
