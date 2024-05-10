@@ -45,6 +45,10 @@ local function write_word_to_file()
     fd:close()                                       --关闭
 end
 
+local function is_excluded_type(seg)
+    return function(type) return seg:has_tag(type) end
+end
+
 function pin_word.init(env)
     reload_env(env)
     env.pin_cand_key = env:Config_get("pin_word/pin_word_key")
@@ -68,10 +72,7 @@ function processor.func(key, env)
         if not cand then return 2 end
 
         if not pin_word_records[preedit_code] then pin_word_records[preedit_code] = {} end
-        if table.find_index(pin_word_records[preedit_code], cand_text) then
-            local index = table.find_index(pin_word_records[preedit_code], cand_text)
-            table.remove(pin_word_records[preedit_code], index)
-        else
+        if not table.find_index(pin_word_records[preedit_code], cand_text) then
             table.insert(pin_word_records[preedit_code], cand_text)
         end
 
@@ -83,10 +84,6 @@ function processor.func(key, env)
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
-local function is_excluded_type(seg)
-    return function(type) return seg:has_tag(type) end
-end
-
 function translator.func(input, seg, env)
     local comment_text = env.pin_mark
     local excluded_types = env.excluded_types
@@ -94,11 +91,9 @@ function translator.func(input, seg, env)
     local pin_word_tab = pin_word_records[input_code] or nil
     if pin_word_tab and not (table.any(excluded_types, is_excluded_type(seg))) then
         for _, w in ipairs(pin_word_tab) do
-            -- if string.utf8_len(input_code) / string.utf8_len(w) ~= 2 then
             local cand = Candidate("top_word", seg.start, seg._end, w, comment_text)
             cand.quality = env.word_quality
             yield(cand)
-            -- end
         end
     end
 end

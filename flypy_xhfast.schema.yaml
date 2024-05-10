@@ -320,6 +320,7 @@ ecdict_reverse_lookup:
   comment_format:
     - xform/\\n/ | /
     - xform/^/ /
+    - erase/^.$/
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
@@ -372,9 +373,7 @@ key_binder:
     - { when: has_menu,  accept: Control+Shift+apostrophe, toggle: charset_comment }
     - { when: composing, accept: grave, send: "`" }
     # `键 (grave, Tab 上面那个) 为词组逐字追加辅助码.
-    # 如果希望无论有无 [ 均可引导, 取消下行注释, 放到当前文件`algebra`节点下
-    # speller/algebra/@next: derive/[[]//
-  # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
+    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
 speller:
@@ -394,6 +393,7 @@ speller:
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/        # Flypy: AB[CD
     - derive/^(\w+)\[(\w)(\w)$/$1\[$2/          # Flypy: AB[C
     - derive/^(\w+)\[(\w)(\w)$/$1/              # Flypy: AB
+    # - derive/[[]//      # 取消注释, 直接辅码, 无论有无 [ 均可引导
 
     # 响应 ` 造词
     - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD

@@ -52,7 +52,7 @@ speller:
   auto_select: true
   max_code_length: 8
   algebra:
-    - erase/^(\w+)\[(\w)(\w)$/                # erase single chars
+    - erase/^(\w+)\[(\w)(\w)$/ # erase single chars
     - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
 
 translator:
@@ -60,8 +60,6 @@ translator:
   prism: flypy_phrase
   enable_encoder: false
   enable_user_dict: false
-  enable_correction: true
-  enable_commit_history: false
   enable_charset_filter: true
   initial_quality: -1
 
@@ -71,21 +69,21 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    - {when: has_menu, accept: semicolon, send: 2}
-    - {when: has_menu, accept: apostrophe, send: 3}
-    - {when: composing, accept: Control+i, send: Shift+Left}
-    - {when: composing, accept: Control+o, send: Shift+Right}
-    - {when: composing, accept: Control+m, send: Return}
-    - {when: composing, accept: Control+w, send: Control+BackSpace}
+    - { when: has_menu, accept: semicolon, send: 2 }
+    - { when: has_menu, accept: apostrophe, send: 3 }
+    - { when: composing, accept: Control+i, send: Shift+Left }
+    - { when: composing, accept: Control+o, send: Shift+Right }
+    - { when: composing, accept: Control+m, send: Return }
+    - { when: composing, accept: Control+w, send: Control+BackSpace }
 
 recognizer:
   import_preset: default
 
 menu:
-  page_size: 7        # 候选项数
+  page_size: 7 # 候选项数
 
 style:
-  horizontal: false   # 竖排为false
+  horizontal: false # 竖排为false
 
 simplification:
   option_name: simplification
