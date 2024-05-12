@@ -606,7 +606,6 @@ PNG	PNG
 Portable Network Graphics	PNG
 GIF	GIF
 Graphics Interchange Format	GIF
-DNS	DNS
 Domain Name System	DNS
 Domain Name System	DomainNameSystem
 RimWorld	RimWorld
@@ -868,7 +867,6 @@ Uber	Uber
 uBlock	uBlock
 uBlock Origin	uBlockOrigin
 Ulysses	Ulysses
-USB	USB
 Universal Serial Bus	USB
 Universal Serial Bus	UniversalSerialBus
 Versions	Versions
@@ -1170,7 +1168,6 @@ Celsius	Celsius
 Fahrenheit	Fahrenheit
 nil	nil
 Mojito	Mojito
-weasel	weasel
 Niconico	Niconico
 TickTick	TickTick
 CHDBits	CHDBits
@@ -2377,3 +2374,26 @@ Terraform	Terraform
 systemd	systemd 
 FPGA	FPGA 
 field-programmable	gate array
+Solid-state	drive Solid-statedrive
+Closed-Circuit	Television Closed-CircuitTelevision
+Basic	Input/Output System
+Non-Player	Character Non-PlayerCharacter
+Random-access	memory Random-AccessMemory
+Read-only	memory Read-OnlyMemory
+Type-A	Type-A 
+Type-B	Type-B 
+Type-C	Type-C 
+USB	Type-A USBType-A
+USB	Type-B USBType-B
+USB	Type-C USBType-C
+USB-A	USB-A 
+USB-B	USB-B 
+USB-C	USB-C 
+DNS	over HTTPS/3
+Anti-lock	Braking System
+Command-Line	Interface Command-LineInterface
+denial-of-service	attack denial-of-serviceattack
+distributed	denial-of-service attack
+field-programmable	gate array
+Samsung	Samsung 
+Samsung	Galaxy SamsungGalaxy

@@ -66,7 +66,8 @@ function flypy_switcher.func(key, env)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
     end
-    return 2                                        -- kNoop, 不做任何操作, 交给下个组件处理
+
+    return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
 return {

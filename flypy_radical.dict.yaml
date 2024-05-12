@@ -84,7 +84,7 @@
 
 ---
 name: flypy_radical
-version: "2024.04.27"
+version: "2024.05.11"
 
 sort: original
 
@@ -98,6 +98,7 @@ sort: original
 # vocabulary: essay # 繁体字频，需要安装 rime/essay（多数平台预装）
 # max_phrase_length: 1 # 仅调整单字
 ...
+
 # 丣
 # 丨
 # 丱
@@ -114,6 +115,10 @@ sort: original
 # 匸
 # 夊
 # 癶
+# 龰
+# 龵
+# 龷
+# 龹
 # 𢼋	𪩲 夂
 𱍂	lsls
 𱌽	iiyi
@@ -1862,6 +1867,8 @@ sort: original
 鿍	tuwfkluu
 鿍	tuwffhuu
 鿍	tujl
+龯	jbwu
+龪	zzrf
 龥	ytye
 龤	ytjp
 龣	ytlu
@@ -20594,6 +20601,11 @@ sort: original
 睾	ppwhxk
 睾	ppsixk
 睾	ppmuxk
+睾	nawhxk
+睾	nasixk
+睾	namuxk
+睾	xtxk
+睾	xtxk
 睾	xtxk
 睽	mugv
 睼	muui
@@ -23621,6 +23633,7 @@ sort: original
 熙	yiho
 熘	holq
 熗	hoch
+熖	hoyc
 熕	hogs
 熔	hors
 熓	hoya
@@ -24067,6 +24080,7 @@ sort: original
 灟	uvuu
 灞	uvba
 灝	uvhc
+灜	uvyk
 灛	uvij
 灚	uvjt
 灚	uvjn
@@ -24143,6 +24157,7 @@ sort: original
 瀰	uvmi
 瀯	uvyk
 瀯	uvco
+瀮	uvlb
 瀬	uvld
 瀫	uvhu
 瀪	mbqr
@@ -39615,6 +39630,13 @@ sort: original
 㟆	ujhx
 㟃	ujsi
 㞗	uiqq
+㝞	bcya
+㝞	bcee
+㝝	bclb
+㝚	bcyj
+㝙	bcwhhgba
+㝘	bcyj
+㝗	bcll
 㝖	bcdo
 㝕	bcxbyz
 㝔	bcjn
@@ -39631,7 +39653,41 @@ sort: original
 㝇	xlxl
 㝅	bwuu
 㝅	bwjiyz
+㝃	zimm
+㝂	zive
+㝁	xyzi
+㝀	muzi
+㜿	ziyu
+㜾	zijp
 㜺	nvzj
+㜭	nvdh
+㜫	nvww
+㜩	nvao
+㜨	nvxi
+㜧	nvjt
+㜦	nvxy
+㜦	nvxb
+㜥	nvmd
+㜤	nvtj
+㜣	nvrj
+㜠	nvcv
+㜚	nvsu
+㜙	nvlu
+㜗	nvuf
+㜗	nvcj
+㜖	nvcc
+㜓	nvta
+㜓	nvda
+㜓	nvcche
+㜒	nvyu
+㜒	nvjqns
+㜒	nvjqgs
+㜐	nvqi
+㜐	nvkd
+㜏	nvyy
+㜏	nvyr
+㜎	nvxi
+㜍	nvth
 㜋	nvyi
 㜊	nvvj
 㜉	nvys
@@ -39653,6 +39709,9 @@ sort: original
 㛸	nvvu
 㛸	nvuidz
 㛶	nvtj
+㛲	nvye
+㛱	nvww
+㛯	nvmm
 㛭	nvxi
 㛬	nvtubatu
 㛬	nvlu
@@ -40000,8 +40059,4 @@ sort: original
 㐀	hguuuuhghg
 〇	ve
 〇	lk
-龯	jbwu
-龪	zzrf
-熖	hoyc
-灜	uvyk
-瀮	uvlb
+

@@ -10,7 +10,7 @@ local function append_space_to_cand(env, cand_text)
     local context = env.engine.context
     local ccand_text = cand_text
     if (context:get_property('prev_cand_is_preedit') == "1") or
-        (context:get_property('prev_cand_is_aword') == "1") then
+        (context:get_property('prev_cand_is_word') == "1") then
         ccand_text = " " .. cand_text
     end
     return ccand_text
@@ -19,9 +19,10 @@ end
 local function reset_cand_property(env)
     local context = env.engine.context
     context:set_property('prev_cand_is_null', "0")
-    context:set_property('prev_cand_is_aword', "0")
+    context:set_property('prev_cand_is_word', "0")
     context:set_property('prev_cand_is_hanzi', "0")
     context:set_property('prev_cand_is_preedit', "0")
+    context:set_property("prev_commit_key_is_comma", "0")
 end
 
 function word_auto_commit.init(env)

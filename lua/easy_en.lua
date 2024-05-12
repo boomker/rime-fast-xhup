@@ -3,6 +3,7 @@ ecdict: 把ECDICT.dict.yaml里的text作为comment，code作为text输出
 --]]
 
 local easy_en = {}
+-- local easy_en_cands = {}
 
 local function truncate_comment(comment)
     local MAX_LENGTH = 20
@@ -19,6 +20,22 @@ function easy_en.init(env)
     env.easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
     env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
 end
+
+--[[
+function easy_en.translator(input, seg, env)
+    if input:match("^%l+%*%l+$") then
+        local input_code, fuzz_str = input:match("(.*)%*(.*)")
+        local patter_str = string.format("^%s.*%s", input_code, fuzz_str)
+        local easy_en_tran = env.easy_en_translator:query(input_code, seg)
+        for cand in easy_en_tran:iter() do
+            if cand.text:match(patter_str) then
+                -- table.insert(easy_en_cands, cand)
+                yield(cand)
+            end
+        end
+    end
+end
+--]]
 
 function easy_en.filter(input, env)
     local en_cands = {}
@@ -58,6 +75,6 @@ end
 
 return {
     -- processor = easy_en.processor,
-    -- translator = easy_en.translator
+    translator = { init = easy_en.init, func = easy_en.translator },
     filter = { init = easy_en.init, func = easy_en.filter }
 }

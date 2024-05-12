@@ -25,7 +25,7 @@ function idiom_abbr_expand.processor(key, env)
         end
     end
 
-    if (preedit_code_length >= 4) and (input_code:match("^[a-z][a-z']+$")) and (key:repr() == "0") then
+    if (preedit_code_length >= 3) and (input_code:match("^[a-z][a-z']+$")) and (key:repr() == "0") then
         local composition = context.composition
 
         if not composition:empty() then
@@ -36,7 +36,7 @@ function idiom_abbr_expand.processor(key, env)
                 context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
             else                                            -- 进入展开超级简拼模式
                 -- 将新的简拼编码发送给上下文供Rime引擎处理
-                local simp_code = input_code:gsub("[^%a]", ""):gsub("(.)", "%1'"):sub(1, -2)
+                local simp_code = input_code:gsub("[^%a]", ""):gsub("(.)", "%1'"):sub(1, -1)
                 context:push_input(simp_code)
                 context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
             end

@@ -1,5 +1,3 @@
-require("tools/metatable")
-
 local pin_word_records = require("pin_word_record")
 local reload_env = require("tools/env_api")
 
@@ -7,6 +5,7 @@ local pin_word = {}
 local processor = {}
 local translator = {}
 local filter = {}
+local custom_phrase_cands = {}
 
 local function get_record_filername()
     local user_distribute_name = rime_api:get_distribution_name()
@@ -54,9 +53,10 @@ function pin_word.init(env)
     env.pin_cand_key = env:Config_get("pin_word/pin_word_key")
     env.word_quality = env:Config_get("pin_word/word_quality")
     env.pin_mark = env:Config_get("pin_word/comment_mark")
-    env.comment_mark = env:Config_get("custom_phrase/comment_mark")
     env.excluded_types = env:Config_get("pin_word/excluded_types")
+    env.comment_mark = env:Config_get("custom_phrase/comment_mark")
     env.key_help_prefix = env:Config_get("recognizer/patterns/flypy_key_help"):match("%^([a-z/]+).*") or "/ok"
+    env.custom_phrase_tran = Component.Translator(env.engine, "", "table_translator@custom_phrase")
 end
 
 function processor.func(key, env)
@@ -86,29 +86,46 @@ end
 
 function translator.func(input, seg, env)
     local comment_text = env.pin_mark
+    local custom_mark = env.comment_mark
     local excluded_types = env.excluded_types
     local input_code = input:gsub(" ", "")
     local pin_word_tab = pin_word_records[input_code] or nil
+
     if pin_word_tab and not (table.any(excluded_types, is_excluded_type(seg))) then
         for _, w in ipairs(pin_word_tab) do
-            local cand = Candidate("top_word", seg.start, seg._end, w, comment_text)
-            cand.quality = env.word_quality
-            yield(cand)
+            -- Fix: 一个置顶字词可能对应多个不同长度的编码(如: "字" -> `zi`, `zi[bz`)
+            if string.utf8_len(input_code) / string.utf8_len(w) ~= 2 then
+                -- 只对非完整编码的字词或不在码表里的字进行置顶, 否则会导致造词失效
+                local cand = Candidate("pin_word", seg.start, seg._end, w, comment_text)
+                cand.quality = env.word_quality
+                yield(cand)
+            end
         end
+    end
+
+    -- 自定义短语的置顶字词加标记
+    env.custom_tran = env.custom_phrase_tran:query(input, seg)
+    for cand in env.custom_tran:iter() do
+        cand.comment = custom_mark
+        -- yield(cand)
+        -- yield(ShadowCandidate(cand, "custom_top", cand.text, cand.comment))
+        -- yield(cand:to_shadow_candidate("custom_top", cand.text, env.comment_mark))
+        table.insert(custom_phrase_cands, cand)
     end
 end
 
 function filter.func(input, env)
-    local pin_mark = env.pin_mark
-    local custom_mark = env.comment_mark
-    local input_code = env.engine.context.input:gsub(" ", "")
     local pin_cands = {}
     local other_cands = {}
+    local pin_mark = env.pin_mark
+    local input_code = env.engine.context.input:gsub(" ", "")
+
     for cand in input:iter() do
         local cand_text = cand.text
         local pin_word_tab = pin_word_records[input_code] or nil
         if pin_word_tab and table.find_index(pin_word_tab, cand_text) then
             if #pin_cands < #pin_word_tab then
+                cand.comment = pin_mark
                 table.insert(pin_cands, cand)
             end
             if #pin_cands == #pin_word_tab then
@@ -125,21 +142,23 @@ function filter.func(input, env)
             end
         elseif cand.comment:match(pin_mark) then
             table.insert(pin_cands, cand)
-        elseif (cand.type == "user_table") and (not input_code:match(env.key_help_prefix)) then
-            cand.comment = custom_mark
-            table.insert(other_cands, cand)
         else
             table.insert(other_cands, cand)
-            if #other_cands > 80 then
-                break
-            end
         end
+        if #other_cands >= 80 then break end
     end
 
     if #pin_cands > 0 then
         for _, cand in ipairs(pin_cands) do
             yield(cand)
         end
+    end
+
+    if (#custom_phrase_cands > 0) then
+        for i, _cand in ipairs(custom_phrase_cands) do
+            table.insert(other_cands, i, _cand)
+        end
+        custom_phrase_cands = {}
     end
 
     for _, cand in ipairs(other_cands) do

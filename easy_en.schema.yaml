@@ -45,6 +45,7 @@ engine:
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/*
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
     - xform/^a/!/
@@ -66,8 +67,9 @@ speller:
 translator:
   dictionary: easy_en
   spelling_hints: 9
+  enable_encoder: false
+  enable_sentence: false
   comment_format:
-    - xform/^/~/
     - erase/^.$/
 
 #英文反查释意
@@ -83,7 +85,40 @@ key_binder:
   import_preset: default
 
 punctuator:
-  import_preset: default
+  # import_preset: default
+  half_shape:
+    ',': ','
+    '.': '.'
+    "<": "<"
+    ">": ">"
+    "/": "/"
+    "?": "?"
+    ";": ";"
+    ":": ":"
+    "'": "'"
+    '"': '"'
+    '\': "\\"
+    "|": "|"
+    "`": "`"
+    "~": "~"
+    "!": "!"
+    "@": "@"
+    "#": "#"
+    "%": "%"
+    "$": "$"
+    "^": "^"
+    "&": "&"
+    "*": "*"
+    "(": "("
+    ")": ")"
+    "-": "-"
+    "_": "_"
+    "+": "+"
+    "=": "="
+    "[": "["
+    "]": "]"
+    "{": "{"
+    "}": "}"
 
 recognizer:
   import_preset: default
