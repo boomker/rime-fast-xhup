@@ -20,6 +20,8 @@
 		"Schema",
         "ConfigMap",
         "ConfigList",
-        "Set"
+        "Set",
+        "Component",
+        "Translator"
 	]
 }
