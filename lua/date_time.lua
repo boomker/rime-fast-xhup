@@ -109,7 +109,7 @@ conf.pattern_date = {
     "{month_en_st} {day_en_st},{year}", -- Sept.05th,2022
 }
 
-conf.pattern_today = {
+conf.pattern_day = {
     "{year}{month}{day}",                      -- 20220905
     "{year}{month}{day}{hour}{min}",           -- 202209051836
     "{year}{month}{day}{hour}{min}{sec}",      -- 20220905183658
@@ -129,6 +129,16 @@ conf.pattern_time = {
     "{hour}点{min}分{sec}秒", -- 18点37分06秒
 }
 
+local function gen_day_pattern(num)
+    local pattern_days = {}
+    local offset_num = tostring(num):match("^-") and num or "+" .. num
+    for _, v in ipairs(conf.pattern_day) do
+        local cp = string.gsub(v, "day", "day" .. offset_num)
+        table.insert(pattern_days, cp)
+    end
+    return pattern_days
+end
+
 local function getTimeStr(str)
     while true do
         local pattern = string.match(str, "%b{}")
@@ -138,9 +148,15 @@ local function getTimeStr(str)
 
         if pattern then
             if string.find(pattern, "^{year") then
-                replace_index = os.date("%Y")     -- 年
+                replace_index = os.date("%Y")                    -- 年
             elseif string.find(pattern, "^{month") then
-                replace_index = os.date("%m")     -- 月
+                replace_index = os.date("%m")                    -- 月
+            elseif string.match(pattern, "^{day%-%d") then
+                local _day = os.date("%d") - pattern:match("%d") -- -N日
+                replace_index = _day >= 10 and _day or "0" .. _day
+            elseif string.match(pattern, "^{day%+%d") then
+                local _day = os.date("%d") + pattern:match("%d") -- +N日
+                replace_index = _day >= 10 and _day or "0" .. _day
             elseif string.find(pattern, "^{day") then
                 replace_index = os.date("%d")     -- 日
             elseif string.find(pattern, "^{week") then
@@ -186,7 +202,9 @@ local function getTimeStr(str)
             if not flag then -- 默认值
                 replace_value = tostring(replace_index)
             end
-            str = replace_value and string.gsub(str, pattern, replace_value)
+
+            local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
+            str = replace_value and string.gsub(str, cpattern, replace_value)
         else
             break
         end
@@ -195,47 +213,77 @@ local function getTimeStr(str)
 end
 
 local translator = {}
+local input_prefixs = {
+    ["/wqt"] = { -2, "前天" },
+    ["/wzt"] = { -1, "昨天" },
+    ["/now"] = { 0, "此刻" },
+    ["/wjt"] = { 0, "今天" }, -- 今天
+    ["/wmt"] = { 1, "明天" }, -- 明天
+    ["/wht"] = { 2, "后天" }, -- 后天
+}
 
 function translator.func(input, seg, env)
-    if seg:has_tag("date") or (input == "date") or (input == "/wd") or (input == "rq") then
+    local composition = env.engine.context.composition
+    local config = env.engine.schema.config
+    local pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    if (composition:empty()) then return end
+    local segment = composition:back()
+
+    if (
+            seg:has_tag("date") or (input == "date")
+            or (input == "/wd") or (input == "rq")
+        ) and (not seg:has_tag("easy_en"))
+    then
         -- 日期
         local tip = "〔日期〕"
+        segment.prompt = tip
         for _, v in ipairs(conf.pattern_date) do
             local comment = getTimeStr(v)
-            local cand = Candidate("date", seg.start, seg._end, comment, tip)
+            local cand = Candidate("date", seg.start, seg._end, comment, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
         end
     end
-    if seg:has_tag("week") or input == "week" or input == "/wk" then
+
+    if (seg:has_tag("week") or input == "week" or input == "/wk")
+        and (not seg:has_tag("easy_en"))
+    then
         -- 星期
         local tip = "〔星期〕"
+        segment.prompt = tip
         for _, v in ipairs(conf.pattern_week) do
             local comment = getTimeStr(v)
-            local cand = Candidate("week", seg.start, seg._end, comment, tip)
+            local cand = Candidate("week", seg.start, seg._end, comment, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
         end
     end
-    if seg:has_tag("time") or input == "time" or input == "/wt" then
+
+    if (seg:has_tag("time") or input == "time" or input == "/wt")
+        and (not seg:has_tag("easy_en"))
+    then
         -- 时间
         local tip = "〔时间〕"
+        segment.prompt = tip
         for _, v in ipairs(conf.pattern_time) do
             local comment = getTimeStr(v)
-            local cand = Candidate("time", seg.start, seg._end, comment, tip)
+            local cand = Candidate("time", seg.start, seg._end, comment, pin_mark)
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
         end
     end
-    if input == "today" then
-        -- 日期
-        local tip = "〔日期〕"
-        for _, v in ipairs(conf.pattern_today) do
+
+    if input_prefixs[input] then
+        -- 最近几天日期
+        local _num = input_prefixs[input][1]
+        local new_pattern_days = gen_day_pattern(_num)
+        segment.prompt = "〔" .. input_prefixs[input][2] .. "〕"
+        for _, v in ipairs(new_pattern_days) do
             local comment = getTimeStr(v)
-            local cand = Candidate("today", seg.start, seg._end, comment, tip)
+            local cand = Candidate("day", seg.start, seg._end, comment, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)

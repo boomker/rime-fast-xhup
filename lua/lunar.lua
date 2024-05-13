@@ -542,13 +542,18 @@ local function Date2LunarDate(Gregorian)
 end
 
 -- 农历
-local function translator(input, seg)
+local function translator(input, seg, env)
+    local composition = env.engine.context.composition
+    if (composition:empty()) then return end
+    local segment = composition:back()
+
 	local date1, date2 = Date2LunarDate(os.date("%Y%m%d"))
 	if (seg.tag == "chinese_lunar") or (input == "/nl") or (input == "lunar") then
-		local lunar_date = Candidate("lunar", seg.start, seg._end, date1, "农历")
+        segment.prompt = "〔" .. "农历" .. "〕"
+		local lunar_date = Candidate("lunar", seg.start, seg._end, date1, "")
 		lunar_date.quality = 999
 		yield(lunar_date)
-		local lunar_ymd = (Candidate("lunar", seg.start, seg._end, date2, "农历"))
+		local lunar_ymd = (Candidate("lunar", seg.start, seg._end, date2, ""))
 		lunar_ymd.quality = 999
 		yield(lunar_ymd)
 	end

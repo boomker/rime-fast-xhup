@@ -10,6 +10,7 @@ function fly_fixed.init(env)
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
     env.reversedb = ReverseLookup(schema_id)
+    collectgarbage("step", 110)
 end
 
 function fly_fixed.func(input, env)
@@ -41,7 +42,11 @@ function fly_fixed.func(input, env)
             or (
                 preedit_code:match("^[%u][%a]+$")
                 and cand_text:find("([\228-\233][\128-\191]-)")
+            ) or (
+                preedit_code:match("^%l+[%[`]%l?%l?$")
+                and (cand:get_dynamic_type() == "Shadow")
             )
+
         then
             prev_cand_ok = false
         elseif not prev_cand_ok then
@@ -52,14 +57,14 @@ function fly_fixed.func(input, env)
             prev_cand_ok = true
         end
 
-        if #cands > 80 then
-            break
-        end
+        if #cands >= 80 then break end
     end
 
     for _, cand in ipairs(cands) do
         yield(cand)
     end
+    -- GC
+    if math.random() < 0.1 then collectgarbage() end
 end
 
 return { filter = { init = fly_fixed.init, func = fly_fixed.func } }

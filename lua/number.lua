@@ -300,10 +300,17 @@ local function number_translatorFunc(num)
     return result
 end
 
-local function number_translator(input, seg)
+local function number_translator(input, seg, env)
     local str, numberPart
-    if string.match(input, "^/cn") then
-        str = string.gsub(input, "^/(%l+)", "")
+    local config = env.engine.schema.config
+    local chinese_number_pattern = "recognizer/patterns/chinese_number"
+    local trigger_prefix = config:get_string(chinese_number_pattern):match("%^([a-z/]+).*") or "/cn"
+    if seg:has_tag("chinese_number") or string.match(input, "^" .. trigger_prefix) then
+        str = string.gsub(input, "^" .. trigger_prefix, "")
+        if str:match("[%a]") then
+            yield(Candidate(input, seg.start, seg._end, "输入不合法!", ""))
+            yield(Candidate(input, seg.start, seg._end, "请输入数字!", ""))
+        end
         numberPart = number_translatorFunc(str)
         if #numberPart > 0 then
             for i = 1, #numberPart do
