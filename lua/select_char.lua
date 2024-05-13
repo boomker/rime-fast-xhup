@@ -30,7 +30,6 @@ local function reset_cand_property(env)
     context:set_property("prev_cand_is_word", "0")
     context:set_property("prev_cand_is_hanzi", "1")
     context:set_property("prev_cand_is_preedit", "0")
-    context:set_property("prev_commit_key_is_comma", "0")
 end
 
 function select_char.init(env)

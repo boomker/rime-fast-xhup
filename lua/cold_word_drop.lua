@@ -177,7 +177,8 @@ function cold_word_drop.filter(input, env)
     local idx = config:get_int("cold_wold_reduce/idx") or 4
     local preedit_code = context.input:gsub(" ", "")
 
-    local easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
+    local easy_en_pattern = "recognizer/patterns/easy_en"
+    local easy_en_prefix = config:get_string(easy_en_pattern):match("%^([a-z/]+).*") or "/oe"
     local pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 
     for cand in input:iter() do

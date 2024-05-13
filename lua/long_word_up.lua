@@ -32,6 +32,7 @@ function long_word_up.func(input, env)
         local cand_text_length = utf8.len(cand_text)
         local cand_predict_max_length = cand_text:match("%a")
             and (preedit_length + 4) or ((preedit_script_length // 2) + 2)
+
         if (idx > 1) and ((cand.type == "user_table")
                 or preedit_expand_flag
                 or preedit_code:match("^/")
@@ -60,14 +61,7 @@ function long_word_up.func(input, env)
             yield(cand)
             pickup_count = pickup_count - 1
         else
-            if (
-                    (cand_text_length <= cand_predict_max_length)
-                    and (preedit_length / cand_text_length <= 2)
-                )
-                or (cand:get_dynamic_type() == "Shadow")
-                or preedit_expand_flag
-                or (cand.quality > 9)
-            then
+            if preedit_expand_flag or (cand.quality > 9) then
                 table.insert(cands, cand)
             else
                 table.insert(other_cands, cand)

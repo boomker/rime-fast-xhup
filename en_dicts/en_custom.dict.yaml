@@ -69,7 +69,7 @@ pinyin	pinyin	100000
 kong	kong	100000
 pipx	pipx	100000
 wechat	wechat	100000
-docker	docker	100000
+Docker	docker	100000
 launcher	launcher	100000
 applescript	applescript	100000
 ollama	ollama	100000
@@ -77,3 +77,6 @@ pcall	pcall	100000
 push	push	100000
 punct	punct	100000
 iowait	iowait	100000
+preedit	preedit	100000
+taskset	taskset	100000
+ingress	ingress	100000

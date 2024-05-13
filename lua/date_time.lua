@@ -236,9 +236,10 @@ function translator.func(input, seg, env)
     then
         -- 日期
         local tip = "〔日期〕"
+        segment.prompt = tip
         for _, v in ipairs(conf.pattern_date) do
             local comment = getTimeStr(v)
-            local cand = Candidate("date", seg.start, seg._end, comment, tip)
+            local cand = Candidate("date", seg.start, seg._end, comment, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
@@ -250,9 +251,10 @@ function translator.func(input, seg, env)
     then
         -- 星期
         local tip = "〔星期〕"
+        segment.prompt = tip
         for _, v in ipairs(conf.pattern_week) do
             local comment = getTimeStr(v)
-            local cand = Candidate("week", seg.start, seg._end, comment, tip)
+            local cand = Candidate("week", seg.start, seg._end, comment, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
@@ -263,10 +265,11 @@ function translator.func(input, seg, env)
         and (not seg:has_tag("easy_en"))
     then
         -- 时间
-        local tip = "〔时间 " .. pin_mark .. " 〕"
+        local tip = "〔时间〕"
+        segment.prompt = tip
         for _, v in ipairs(conf.pattern_time) do
             local comment = getTimeStr(v)
-            local cand = Candidate("time", seg.start, seg._end, comment, tip)
+            local cand = Candidate("time", seg.start, seg._end, comment, pin_mark)
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)

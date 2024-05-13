@@ -62,7 +62,7 @@ function processor.func(key, env)
     local keyValue = key:repr()
 
     local idx = -1
-    local selected_candidate_index = (composition:empty() == false) and segment.selected_index or -1
+    local selected_candidate_index = (not composition:empty()) and segment.selected_index or -1
     if keyValue == "space" then
         idx = selected_candidate_index
     elseif keyValue == "Return" and (inputCode:match("^" .. favorCmdPrefix)) then

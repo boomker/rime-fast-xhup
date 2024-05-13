@@ -25,7 +25,6 @@ function processor.func(key, env)
 
     local cand_select_kyes     = {
         ["space"] = "x",
-        ["comma"] = "y",
         ["semicolon"] = 1,
         ["apostrophe"] = 2,
         ["1"] = 0,
@@ -135,8 +134,7 @@ function processor.func(key, env)
         local selected_cand_idx = _idx:match("[xy]") and segment.selected_index or _idx
         local selected_cand = segment:get_candidate_at(selected_cand_idx)
         if not selected_cand then return 2 end
-        local _cand_txt = selected_cand.text:gsub(" ", "")
-        local cand_text = _idx:match("[^y]") and _cand_txt or _cand_txt .. ","
+        local cand_text = selected_cand.text:gsub(" ", "")
 
         if (cand_text) and (
                 (prev_cand_is_word == "1")

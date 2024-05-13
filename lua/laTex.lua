@@ -136,8 +136,14 @@ local snip_charmap = {
 }
 
 local function tex_translator(input, seg, env)
-    local trigger = env.engine.schema.config:get_string("recognizer/patterns/laTeX_formula") or "^/lt(.*)$"
-    local expr, n = env.engine.context.input:gsub(trigger, "%1")
+    local config = env.engine.schema.config
+    local composition = env.engine.context.composition
+    if (composition:empty()) then return end
+    local segment = composition:back()
+
+    local laTex_pattern = "recognizer/patterns/LaTeX"
+    local trigger = config:get_string(laTex_pattern) or "^/lt(.*)$"
+    local expr, n = input:gsub(trigger, "%1")
     if n ~= 0 then
         -- expr = expr:gsub('%W', snip_charmap) --- 启用特殊符号替换
         expr = expr:gsub("ooa(.)", "^{%1+1}")
@@ -151,6 +157,7 @@ local function tex_translator(input, seg, env)
         expr = "$" .. expr .. "$"
         expr = string.gsub(expr, " (%W)", "%1")
         --- Candidate(type, start, end, text, comment)
+        segment.prompt = "〔LaTeX公式〕"
         yield(Candidate("math", seg.start, seg._end, expr, " "))
     end
 end

@@ -19,11 +19,11 @@ function reduce_emoji.func(input, env)
             if
                 emoji_toggle
                 and (cand:get_dynamic_type() == "Shadow")
-                and (not preedit_code:match("[%[`]%l?%l?$"))
+                and (not preedit_code:match("^%l+[%[`]%l?%l?$"))
                 and (not cand.comment:match(env.pin_mark))
                 and (not (
                     cand.text:find("([\228-\233][\128-\191]-)")
-                    and (cand.text:lower():match("^" .. preedit_code))
+                    and cand.text:lower():match("^" .. preedit_code)
                 ))
             then
                 table.insert(emoji_cands, cand)

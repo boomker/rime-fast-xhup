@@ -51,6 +51,7 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - lua_processor@space_leader_word
     - lua_processor@pin_word_processor
     - lua_processor@launcher_processor
     - lua_processor@pair_symbols_processor
@@ -58,7 +59,6 @@ engine:
     - lua_processor@idiom_expand_processor
     - lua_processor@cold_word_drop_processor
     - lua_processor@flypy_switcher_processor
-    - lua_processor@word_append_space_processor
     - lua_processor@word_autocommit_processor
     - ascii_composer
     - recognizer
@@ -115,9 +115,9 @@ engine:
     - lua_filter@word_autocaps_filter
     - lua_filter@emoji_reduce_filter
     # - lua_filter@cn_space_en_filter
+    - lua_filter@long_word_up_filter
     - lua_filter@cold_word_drop_filter
     - lua_filter@word_autocommit_filter
-    - lua_filter@long_word_up_filter
     - lua_filter@pin_word_filter
     - lua_filter@launcher_filter
     - uniquifier                                      #  只能放到最后!
@@ -150,7 +150,7 @@ make_sentence:                      # 精准造词
   tips: "〔精准造词〕"
   tag: make_sentence
 
-# 次翻译器，英文
+# 次翻译器, 英文
 melt_eng:                           # 英文输入
   dictionary: melt_eng
   enable_encoder: false
@@ -172,7 +172,7 @@ custom_phrase:                      # 自定义短语, 包含固顶字
   enable_sentence: false
   initial_quality: 99
 
-# 成语短语：idiom_phrase.txt
+# 成语短语: idiom_phrase.txt
 idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
   dictionary: ""
   user_dict: idiom_phrase
@@ -335,7 +335,7 @@ recognizer:
     chinese_lunar: "^/nl$"
     history: "^/hs$"
     shortcuts: "^/fj$"
-    laTeX_formula: "^/lt(.*)$"
+    LaTeX: "^/lt(.*)$"
     easy_en: "^/oe[a-zA-Z]*$"
     flypy_help: "^/(oh|help)$"
     flypy_key_help: "^/ok[a-z]*$"

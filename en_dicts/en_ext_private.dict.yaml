@@ -127,7 +127,7 @@ grafana	grafana
 grafeas	grafeas
 graphscope	graphscope
 greptimedb	greptimedb
-grpc	grpc
+gRPC	grpc
 gvisor	gvisor
 hadoop	hadoop
 haproxy	haproxy

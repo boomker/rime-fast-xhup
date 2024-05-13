@@ -8,19 +8,18 @@ local function reset_cand_property(env)
     context:set_property("prev_cand_is_word", "0")
     context:set_property("prev_cand_is_hanzi", "0")
     context:set_property("prev_cand_is_preedit", "0")
-    context:set_property("prev_commit_key_is_comma", "0")
 end
 
-local function auto_append_space_processor(key, env)
+local function space_leader_word(key, env)
     local engine = env.engine
     local context = engine.context
     local input_code = context.input
     local pos = context.caret_pos
     local composition = context.composition
+    local key_value = key:repr()
 
     local cand_select_kyes = {
         ["space"] = "x",
-        ["comma"] = "y",
         ["semicolon"] = 1,
         ["apostrophe"] = 2,
         ["1"] = 0,
@@ -58,14 +57,13 @@ local function auto_append_space_processor(key, env)
     local prev_cand_is_word = context:get_property("prev_cand_is_word")
     local prev_cand_is_hanzi = context:get_property("prev_cand_is_hanzi")
     local prev_cand_is_preedit = context:get_property("prev_cand_is_preedit")
-    local prev_commit_key_is_comma = context:get_property("prev_commit_key_is_comma")
 
-    if (#input_code == 0) and spec_keys[key:repr()] then
+    if (#input_code == 0) and spec_keys[key_value] then
         reset_cand_property(env)
         context:set_property("prev_cand_is_null", "1")
     end
 
-    if (#input_code >= 1) and (key:repr() == "Return") then
+    if (#input_code >= 1) and (key_value == "Return") and (input_code:match("^[^/]"))then
         local cand_text = input_code
         if (prev_cand_is_null ~= "1") and ((prev_cand_is_hanzi == "1") or (prev_cand_is_word == "1")) then
             cand_text = " " .. input_code
@@ -78,30 +76,26 @@ local function auto_append_space_processor(key, env)
         return 1 -- kAccepted
     end
 
-    if cand_select_kyes[key:repr()] and (#input_code >= 1) then
+    if cand_select_kyes[key_value] and (#input_code >= 1) and (input_code:match("^[^/]")) then
         if composition:empty() then return 2 end
-
-        local _idx = cand_select_kyes[key:repr()]
         local segment = composition:back()
-        local selected_cand_idx = _idx:match("[xy]") and segment.selected_index or _idx
+
+        local index = cand_select_kyes[key_value]
+        local selected_cand_idx = index:match("x") and segment.selected_index or index
         local selected_cand = segment:get_candidate_at(selected_cand_idx)
         if not selected_cand then return 2 end
-        local _cand_txt = selected_cand.text
-        local cand_text = _idx:match("[^y]") and _cand_txt or _cand_txt .. "，"
-        if _idx:match("y") then
-            prev_commit_key_is_comma = context:set_property("prev_commit_key_is_comma", "1")
-        end
+        local cand_text = selected_cand.text
 
         if (prev_cand_is_null ~= "1") and ((prev_cand_is_preedit == "1") or (prev_cand_is_word == "1")) then
             if (tonumber(utf8.codepoint(cand_text, 1)) >= 19968) and (#input_code == pos) then
-                local ccand_text = (prev_commit_key_is_comma == "1") and cand_text or " " .. cand_text
+                local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 reset_cand_property(env)
                 context:set_property("prev_cand_is_hanzi", "1")
                 context:clear()
                 return 1 -- kAccepted
             elseif string.match(cand_text, "^[%l%u]+") then
-                local ccand_text = (prev_commit_key_is_comma == "1") and cand_text or " " .. cand_text
+                local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 reset_cand_property(env)
                 context:set_property("prev_cand_is_word", "1")
@@ -121,7 +115,7 @@ local function auto_append_space_processor(key, env)
 
         if string.match(cand_text, "^[%l%u]+") then
             if (prev_cand_is_null ~= "1") and ((prev_cand_is_hanzi == "1") or (prev_cand_is_word == "1")) then
-                local ccand_text = (prev_commit_key_is_comma == "1") and cand_text or " " .. cand_text
+                local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 context:set_property("prev_cand_is_word", "1")
                 context:clear()
@@ -162,4 +156,4 @@ local function cn_en_spacer(input, env)
     end
 end
 
-return { processor = auto_append_space_processor, filter = cn_en_spacer }
+return { processor = space_leader_word, filter = cn_en_spacer }
