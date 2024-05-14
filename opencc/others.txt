@@ -682,6 +682,7 @@ eject	eject ⏏
 锇	锇 Os
 铱	铱 Ir
 铂	铂 Pt
+金	金 Au
 汞	汞 Hg
 铊	铊 Tl
 铅	铅 Pb
@@ -719,9 +720,9 @@ eject	eject ⏏
 鈇	鈇 Fl
 镆	镆 Mc
 鉝	鉝 Lv
+鿬	鿬 Ts
+鿫	鿫 Og
 水银	水银 Hg
-石田	石田 Ts
-气奥	气奥 Og
 一氧化二氢	一氧化二氢 H₂O
 酒精	酒精 C₂H₆O
 乙醇	乙醇 C₂H₆O

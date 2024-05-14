@@ -104,15 +104,16 @@ conf.pattern_date = {
     "{year}/{month}/{day}", -- 2022/09/05
     "{year}.{month}.{day}", -- 2022.09.05
     "{year}-{month}-{day}", -- 2022-09-05
-    "{year.number_cn}年{month.arith.number_cn}月{day.arith.number_cn}日", -- 二〇二二年十一月二十五日
     "{month_en} {day_en_st},{year}", -- September 05th,2022
     "{month_en_st} {day_en_st},{year}", -- Sept.05th,2022
+    "{year.number_cn}年{month.arith.number_cn}月{day.arith.number_cn}日", -- 二〇二二年十一月二十五日
 }
 
 conf.pattern_day = {
-    "{year}{month}{day}",                      -- 20220905
-    "{year}{month}{day}{hour}{min}",           -- 202209051836
-    "{year}{month}{day}{hour}{min}{sec}",      -- 20220905183658
+    "{year}年{month}月{day}日", -- 2022年09月05日
+    "{year}{month}{day}", -- 20220905
+    "{year}{month}{day}{hour}{min}", -- 202209051836
+    "{year}{month}{day}{hour}{min}{sec}", -- 20220905183658
     "{year}-{month}-{day} {hour}:{min}:{sec}", -- 2022-09-05 18:36:58
 }
 
@@ -133,10 +134,68 @@ local function gen_day_pattern(num)
     local pattern_days = {}
     local offset_num = tostring(num):match("^-") and num or "+" .. num
     for _, v in ipairs(conf.pattern_day) do
-        local cp = string.gsub(v, "day", "day" .. offset_num)
+        local cp = v:gsub("年", "Y"):gsub("月", "M"):gsub(
+            "{(year)}(.?){(month)}(.?){(day)}",
+            "{%1~}" .. "%2" .. "{%3~}" .. "%4" .. "{%5" .. offset_num .. "}"
+        ):gsub("Y", "年"):gsub("M", "月")
         table.insert(pattern_days, cp)
     end
     return pattern_days
+end
+
+local function get_month_sameday(time_oriented)
+    local offset_days = nil
+    local this_year = os.date("%Y", os.time())
+    local this_month = os.date("%m", os.time())
+    local now_days = os.date("%d", os.time()) -- 本月第几天
+
+    local last_month, next_month = 0, 0
+    local this_day_amount = nil
+    local last_day_amount = nil
+    local next_day_amount = nil
+
+    if time_oriented == "after" then
+        -- 如果现在是12月份，需要向后推一年
+        if this_month == 12 then
+            last_month, next_month = this_month - 1, 1
+        else
+            last_month, next_month = this_month - 1, this_month + 1
+        end
+
+        local this_day_ymd = { year = this_year, month = this_month + 1, day = 0 }
+        local next_day_ymd = { year = this_year, month = next_month + 1, day = 0 }
+
+        this_day_amount = os.date("%d", os.time(this_day_ymd))
+        next_day_amount = os.date("%d", os.time(next_day_ymd))
+
+        -- 如果时间间隔超出了下个月的最后一天，则按最后一天算
+        local temp_offset_max = tonumber(this_day_amount)
+        local temp_offset_min = this_day_amount - now_days + next_day_amount
+        if now_days >= next_day_amount then
+            offset_days = temp_offset_min
+        else
+            offset_days = temp_offset_max
+        end
+    else
+        -- 如果当前是1月份，需要向前推一年
+        if this_month == 1 then
+            last_month, next_month = 12, this_month + 1
+        else
+            last_month, next_month = this_month - 1, this_month + 1
+        end
+
+        local last_day_ymd = { year = this_year, month = last_month + 1, day = 0 }
+        last_day_amount = os.date("%d", os.time(last_day_ymd))
+
+        -- 如果时间间隔超出了下个月的最后一天，则按最后一天算
+        if now_days <= last_day_amount then
+            offset_days = -last_day_amount
+        else
+            offset_days = -now_days
+        end
+    end
+
+    return offset_days
 end
 
 local function getTimeStr(str)
@@ -147,26 +206,27 @@ local function getTimeStr(str)
         local flag = false -- 处理链，以flag基准，判断是否处理下去
 
         if pattern then
-            if string.find(pattern, "^{year") then
-                replace_index = os.date("%Y")                    -- 年
+            if string.match(pattern, "^{year~") then
+                replace_index = "YY"
+            elseif string.match(pattern, "^{month~") then
+                replace_index = "mm"
+            elseif string.match(pattern, "^{day[%+%-]%d+") then
+                local offset = tonumber(pattern:match("%-?%d+"))
+                replace_index = os.date("%Y%m%d", os.time() + offset * 86400) -- [+-]N日
+            elseif string.find(pattern, "^{year") then
+                replace_index = os.date("%Y")                                 -- 年
             elseif string.find(pattern, "^{month") then
-                replace_index = os.date("%m")                    -- 月
-            elseif string.match(pattern, "^{day%-%d") then
-                local _day = os.date("%d") - pattern:match("%d") -- -N日
-                replace_index = _day >= 10 and _day or "0" .. _day
-            elseif string.match(pattern, "^{day%+%d") then
-                local _day = os.date("%d") + pattern:match("%d") -- +N日
-                replace_index = _day >= 10 and _day or "0" .. _day
+                replace_index = os.date("%m")                                 -- 月
             elseif string.find(pattern, "^{day") then
-                replace_index = os.date("%d")     -- 日
+                replace_index = os.date("%d")                                 -- 日
             elseif string.find(pattern, "^{week") then
-                replace_index = os.date("%w") + 1 -- 星期
+                replace_index = os.date("%w") + 1                             -- 周
             elseif string.find(pattern, "^{hour") then
-                replace_index = os.date("%H")     -- 时
+                replace_index = os.date("%H")                                 -- 时
             elseif string.find(pattern, "^{min") then
-                replace_index = os.date("%M")     -- 分
+                replace_index = os.date("%M")                                 -- 分
             elseif string.find(pattern, "^{sec") then
-                replace_index = os.date("%S")     -- 秒
+                replace_index = os.date("%S")                                 -- 秒
             end
 
             if replace_index then
@@ -199,12 +259,18 @@ local function getTimeStr(str)
                 end
             end
 
-            if not flag then -- 默认值
-                replace_value = tostring(replace_index)
+            -- 默认值
+            if not flag then replace_value = tostring(replace_index) end
+            if pattern:match("^{day[%+%-]%d+") then
+                str = replace_value and str:gsub("YY", replace_value:sub(1, 4))
+                str = replace_value and str:gsub("mm", replace_value:sub(5, 6))
+                local dd = replace_index and replace_value:sub(7, 8)
+                local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
+                str = dd and replace_value and string.gsub(str, cpattern, dd)
+            else
+                local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
+                str = replace_value and string.gsub(str, cpattern, replace_value)
             end
-
-            local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
-            str = replace_value and string.gsub(str, cpattern, replace_value)
         else
             break
         end
@@ -217,9 +283,17 @@ local input_prefixs = {
     ["/wqt"] = { -2, "前天" },
     ["/wzt"] = { -1, "昨天" },
     ["/now"] = { 0, "此刻" },
-    ["/wjt"] = { 0, "今天" }, -- 今天
-    ["/wmt"] = { 1, "明天" }, -- 明天
-    ["/wht"] = { 2, "后天" }, -- 后天
+    ["/wjt"] = { 0, "今天" },
+    ["/wmt"] = { 1, "明天" },
+    ["/wht"] = { 2, "后天" },
+    ["/wuz"] = { -7, "上周" },
+    ["/wxz"] = { 7, "下周" },
+    ["/wlk"] = { -7, "上周" },
+    ["/wnk"] = { 7, "下周" },
+    ["/wuy"] = { get_month_sameday("before"), "上个月今天" },
+    ["/wxy"] = { get_month_sameday("after"), "下个月今天" },
+    ["/wlm"] = { get_month_sameday("before"), "上个月今天" },
+    ["/wnm"] = { get_month_sameday("after"), "下个月今天" },
 }
 
 function translator.func(input, seg, env)
@@ -277,13 +351,13 @@ function translator.func(input, seg, env)
     end
 
     if input_prefixs[input] then
-        -- 最近几天日期
+        -- 最近几天/周/月日期
         local _num = input_prefixs[input][1]
         local new_pattern_days = gen_day_pattern(_num)
         segment.prompt = "〔" .. input_prefixs[input][2] .. "〕"
         for _, v in ipairs(new_pattern_days) do
-            local comment = getTimeStr(v)
-            local cand = Candidate("day", seg.start, seg._end, comment, "")
+            local datetime_val = getTimeStr(v)
+            local cand = Candidate("date", seg.start, seg._end, datetime_val, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)

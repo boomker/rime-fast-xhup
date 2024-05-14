@@ -143,6 +143,7 @@ awk -F'\t' '{x=index($1, "弹");split($2, a, " ");{if(a[x]=="dj")print $0}}' "$1
 awk -F'\t' '{x=index($1, "弹");split($2, a, " ");{if(a[x]=="dj")print $0}}' "$1" | rg '反弹|弹奏|弹走|不轻弹|弹性|弹指|弹簧|弹劾'
 awk -F'\t' '{x=index($1, "强");split($2, a, " ");{if(a[x]=="jl")print $0}}' "$1" | rg -v '倔强|强嘴' >dyzjl
 awk -F'\t' '{x=index($1, "差");split($2, a, " ");{if(a[x]=="id")print $0}}' "$1" | rg -v '差使|差遣|公差|差事|信差|出差|差旅' >dyzid
+awk -F'\t' '/差/{x=index($1, "差");split($2, a, " ");{if(a[x]=="id")print $0}}' "$1" | rg '差异|差距|差错|差别|差价|等差|反差|偏差|误差|温差|顺差|逆差|落差|时差' >dyzid-t
 awk -F'\t' '{x=index($1, "便");split($2, a, " ");{if(a[x]=="pm")print $0}}' "$1" | rg '便利|便衣|即便|便当|随便' >dyzpm
 awk -F'\t' '{x=index($1, "省");split($2, a, " ");{if(a[x]=="xk")print $0}}' "$1" | rg -v '反省|省亲|不省|深省|自省' >dyzxk_ext
 awk -F'\t' '{x=index($1, "传");split($2, a, " ");{if(a[x]=="vr")print $0}}' "$1" | rg -v '(自|正|前|后|外|大|中|侠|立|正)传'
