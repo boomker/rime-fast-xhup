@@ -222,12 +222,11 @@ function translator.func(input, seg, env)
     end
 
     if (composition:empty()) then return end
-
     local segment = composition:back()
-    if input:match("^" .. favorCmdPrefix .. "$") and (
-            ((not favor_items) and (not first_menu_selected_text))
-            or (second_menu_items and (segment.prompt == ""))
-        )
+
+    if input:match("^" .. favorCmdPrefix .. "$")
+        and (not favor_items) and (not first_menu_selected_text)
+        and (not second_menu_items) and (segment.prompt == "")
     then
         second_menu_items = nil
         first_menu_selected_text = nil
@@ -241,11 +240,10 @@ function translator.func(input, seg, env)
         favor_items = app_command_items["Favors"]
     end
 
-    local favor_cmd_length_range = string.len(favorCmdPrefix) + 1 .. string.len(favorCmdPrefix) + 2
-    if (not first_menu_selected_text)
-        and input:match("^" .. favorCmdPrefix)
-        and (favor_cmd_length_range:match(#input))
-        and (segment.prompt:match("快捷指令") or (not second_menu_items))
+    if input:match("^" .. favorCmdPrefix) and (#input > favorCmdPrefix:len())
+        -- and segment.prompt:match("快捷指令")
+        and (not first_menu_selected_text) and (not second_menu_items)
+
     then
         local first_menu_prefix = input:sub(favorCmdPrefix:len() + 1, -1)
         local matchCount = 0
@@ -274,8 +272,7 @@ function translator.func(input, seg, env)
         end
     end
 
-    if (first_menu_selected_text)
-        and (second_menu_items)
+    if (first_menu_selected_text) and (second_menu_items)
         and input:match("^" .. favorCmdPrefix .. "$")
     then
         for k, v in pairs(second_menu_items) do
@@ -286,11 +283,10 @@ function translator.func(input, seg, env)
         end
     end
 
-    if (not segment.prompt:match("快捷指令"))
-        and (second_menu_items)
+    if (not segment.prompt:match("快捷指令")) and (second_menu_items)
         and (not second_menu_selected_text)
         and (input:match("^" .. favorCmdPrefix))
-        and (input:len() >= (favorCmdPrefix:len() + 2))
+        and (#input >= (favorCmdPrefix:len() + 2))
     then
         local prompt = first_menu_selected_text and first_menu_selected_text:gsub("[%a%d]", "")
         segment.prompt = "〔" .. prompt .. "〕"
@@ -312,8 +308,7 @@ function translator.func(input, seg, env)
         end
     end
 
-    if (type(favor_items) == "table")
-        and (not second_menu_items)
+    if (type(favor_items) == "table") and (not second_menu_items)
         and input:match("^" .. favorCmdPrefix .. "$")
     then
         segment.prompt = "〔快捷指令〕"
