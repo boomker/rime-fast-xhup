@@ -34,13 +34,14 @@ switches:
     states: [中, E]
   - name: ascii_punct
     states: [。, .]
+  - name: full_shape
+    states: [半角, 全角]
   - name: emoji
     states: [🈚️, 😄]
     reset: 1
-  - name: full_shape
-    states: [半角, 全角]
   - name: simplification
     states: [ 简, 繁 ]
+    reset: 0
   - name: extended_charset
     states: [通用, 增廣]
     reset: 1
@@ -54,11 +55,11 @@ engine:
     - lua_processor@space_leader_word
     - lua_processor@pin_word_processor
     - lua_processor@launcher_processor
-    - lua_processor@pair_symbols_processor
     - lua_processor@select_char_processor
+    - lua_processor@flypy_switch_processor
+    - lua_processor@pair_symbols_processor
     - lua_processor@idiom_expand_processor
     - lua_processor@cold_word_drop_processor
-    - lua_processor@flypy_switcher_processor
     - lua_processor@word_autocommit_processor
     - ascii_composer
     - recognizer
@@ -92,6 +93,7 @@ engine:
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
     - lua_translator@pin_word_translator              # 自定义置顶词
     - lua_translator@flypy_help_translator            # /oh 触发进入帮助菜单
+    - lua_translator@flypy_switch_translator          # /so 触发进入选项切换菜单
     - lua_translator@lunar_translator                 # /nl 触发显示农历
     - lua_translator@datetime_translator              # date, week, time, /wd, /wk, /wt 触发
     - lua_translator@launcher_translator              # /jj, /fj 触发快捷命令(可改触发前缀)
@@ -195,6 +197,7 @@ flypy_key_help:                     # 小鹤双拼键位帮助
 # 自动上屏短语
 flypy_phrase:                       # 自动上屏短语
   dictionary: flypy_phrase
+  auto_commit: false         # 词条自动上屏开关
   enable_encoder: false
   enable_sentence: false
   enable_completion: true
@@ -232,9 +235,6 @@ pin_word:                           # 词条置顶配置
   comment_mark: " 🔝"         # 不能留空
   excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
 
-word_auto_commit:                   # 词条自动上屏
-  enable: false
-
 long_word_up:                       # 长词升频到第 idx 个位置
   idx: 3
   excluded_codes: ["date", "rq", "week", "time", "lunar"]
@@ -258,8 +258,8 @@ punctuator:
     ".": {commit: "。"}
     # ";": {commit: "；"}         ## 取消注释后, 下行添加注释, 以恢复默认分号
     ";": [";", "；"]
-    '"': {pair: ['‘', '’']}      ## 添加注释后：恢复默认引号
-    "'": {pair: ['“', '”']}      ## 添加注释后：恢复默认引号
+    # '"': {pair: ['‘', '’']}
+    # "'": {pair: ['“', '”']}
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
@@ -333,6 +333,7 @@ recognizer:
     time: "^/wt$"
     date: "^(/wd|/rq)$"
     chinese_lunar: "^/nl$"
+    switch_options: "^/so$"
     history: "^/hs$"
     shortcuts: "^/fj$"
     LaTeX: "^/lt(.*)$"

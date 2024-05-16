@@ -50,12 +50,13 @@ end
 
 function pin_word.init(env)
     reload_env(env)
-    env.pin_cand_key = env:Config_get("pin_word/pin_word_key")
-    env.word_quality = env:Config_get("pin_word/word_quality")
-    env.pin_mark = env:Config_get("pin_word/comment_mark")
+    env.pin_cand_key = env:Config_get("pin_word/pin_word_key") or "Control+t"
+    env.word_quality = env:Config_get("pin_word/word_quality") or 999
+    env.pin_mark = env:Config_get("pin_word/comment_mark") or " 🔝"
+    env.comment_mark = env:Config_get("custom_phrase/comment_mark") or " 📌"
     env.excluded_types = env:Config_get("pin_word/excluded_types")
-    env.comment_mark = env:Config_get("custom_phrase/comment_mark")
-    env.key_help_prefix = env:Config_get("recognizer/patterns/flypy_key_help"):match("%^([a-z/]+).*") or "/ok"
+    local flypy_help_pat = "recognizer/patterns/flypy_key_help"
+    env.key_help_prefix = env:Config_get(flypy_help_pat):match("%^([a-z/]+).*") or "/ok"
     env.custom_phrase_tran = Component.Translator(env.engine, "", "table_translator@custom_phrase")
 end
 

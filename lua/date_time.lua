@@ -265,12 +265,11 @@ local function getTimeStr(str)
                 str = replace_value and str:gsub("YY", replace_value:sub(1, 4))
                 str = replace_value and str:gsub("mm", replace_value:sub(5, 6))
                 local dd = replace_index and replace_value:sub(7, 8)
-                local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
-                str = dd and replace_value and string.gsub(str, cpattern, dd)
-            else
-                local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
-                str = replace_value and string.gsub(str, cpattern, replace_value)
+                replace_value = dd or replace_value
             end
+            local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
+            str = replace_value and string.gsub(str, cpattern, replace_value)
+
         else
             break
         end

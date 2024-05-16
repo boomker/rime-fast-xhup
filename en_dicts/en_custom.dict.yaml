@@ -80,3 +80,4 @@ iowait	iowait	100000
 preedit	preedit	100000
 taskset	taskset	100000
 ingress	ingress	100000
+OpenCore	opencore	100000
