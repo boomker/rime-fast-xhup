@@ -66,55 +66,48 @@ local function pair_symbols(key, env)
         key_name = key:repr()
     end
 
-    if ((key_name == "quotedbl") or (key_name == "apostrophe")) and (detect_os == "iOS") then
+    if ((key_name == "quotedbl") or (key_name == "apostrophe"))
+        and (detect_os() == "iOS")
+    then
         return 2
     end
 
+    local prev_ascii_mode = context:get_option("ascii_mode")
     if pairTable[key_name] and (not context:is_composing()) then
-        if context:get_option("ascii_mode") then
+        if prev_ascii_mode then
             engine:commit_text(pairTable[key_name][2])
         else
             engine:commit_text(pairTable[key_name][1])
         end
 
-        if context:get_option("ascii_mode") and (key_name == "quotedbl") then
-            context:set_option("ascii_mode", false)
-        elseif (not context:get_option("ascii_mode")) and (key_name == "quotedbl") then
-            context:set_option("ascii_mode", true)
-        end
-
-        if detect_os() == "MacOS" or detect_os == "iOS" then
+        if (detect_os() == "MacOS") or (detect_os() == "iOS") then
             moveCursorToLeft()
         end
         context:clear()
         return 1 -- kAccepted 收下此key
     end
 
-    if context:has_menu() or context:is_composing() then
+    if context:has_menu() and context:is_composing() then
         local keyvalue = key:repr()
-        local idx = -1
+        local index = -1
         -- 获得选中的候选词下标
-        local selected_candidate_index = segment.selected_index
-        if keyvalue == "space" then
-            idx = selected_candidate_index
-        end
-        if keyvalue == "1" then
-            idx = 0
-        elseif string.find(keyvalue, "^[2-9]$") then
-            idx = tonumber(keyvalue) - 1
+        if (keyvalue == "space") then
+            index = segment.selected_index
+        elseif string.find(keyvalue, "^[1-9]$") then
+            index = tonumber(keyvalue) - 1
         elseif keyvalue == "0" then
-            idx = 9
+            index = 9
         end
 
-        if idx >= 0 and idx < segment.menu:candidate_count() then
-            local candidateText = segment:get_candidate_at(idx).text -- 获取指定项 从0起
+        if (index >= 0) and (index < segment.menu:candidate_count()) then
+            local candidateText = segment:get_candidate_at(index).text -- 获取指定项 从0起
             local pairedText = pairTable[candidateText]
             if pairedText then
                 engine:commit_text(candidateText)
                 engine:commit_text(pairedText)
                 context:clear()
 
-                if detect_os() == "MacOS" or detect_os == "iOS" then
+                if (detect_os() == "MacOS") or (detect_os() == "iOS") then
                     moveCursorToLeft()
                 end
 
