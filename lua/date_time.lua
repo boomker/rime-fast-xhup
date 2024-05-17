@@ -269,7 +269,6 @@ local function getTimeStr(str)
             end
             local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
             str = replace_value and string.gsub(str, cpattern, replace_value)
-
         else
             break
         end
@@ -302,12 +301,10 @@ function translator.func(input, seg, env)
     if (composition:empty()) then return end
     local segment = composition:back()
 
-    if (
-            seg:has_tag("date") or (input == "date")
-            or (input == "/wd") or (input == "rq")
-        ) and (not seg:has_tag("easy_en"))
+    -- 日期
+    if (seg:has_tag("date") or (input == "date") or (input == "/wd")
+            or (input == "rq")) and (not seg:has_tag("easy_en"))
     then
-        -- 日期
         local tip = "〔日期〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_date) do
@@ -319,10 +316,10 @@ function translator.func(input, seg, env)
         end
     end
 
+    -- 星期
     if (seg:has_tag("week") or input == "week" or input == "/wk")
         and (not seg:has_tag("easy_en"))
     then
-        -- 星期
         local tip = "〔星期〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_week) do
@@ -334,10 +331,10 @@ function translator.func(input, seg, env)
         end
     end
 
+    -- 时间
     if (seg:has_tag("time") or input == "time" or input == "/wt")
         and (not seg:has_tag("easy_en"))
     then
-        -- 时间
         local tip = "〔时间〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_time) do
@@ -349,8 +346,21 @@ function translator.func(input, seg, env)
         end
     end
 
+    -- 时间戳
+    if (seg:has_tag("timestamp") or input == "timestamp" or input == "/uts")
+        and (not seg:has_tag("easy_en"))
+    then
+        local tip = "〔时间戳〕"
+        segment.prompt = tip
+        local text = string.format('%d', os.time())
+        local cand = Candidate("timestamp", seg.start, seg._end, text, "")
+        cand.preedit = string.sub(input, seg._start + 1, seg._end)
+        cand.quality = 999
+        yield(cand)
+    end
+
+    -- 最近几天/周/月日期
     if input_prefixs[input] then
-        -- 最近几天/周/月日期
         local _num = input_prefixs[input][1]
         local new_pattern_days = gen_day_pattern(_num)
         segment.prompt = "〔" .. input_prefixs[input][2] .. "〕"
