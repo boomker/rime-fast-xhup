@@ -34,11 +34,13 @@ local function translator(input, seg, env)
             { '以形查音', '→ ~键引导以形查音' },
             { '精准造词', '→ `键引导精准造词' },
             { '单词大写', '→ AZ大写字母触发' },
-            { '时间输出', '→ ' .. "date" .. ' | ' .. "time" },
-            { '日期时间', '→ ' .. "/wd" .. ' | ' .. "/wt" },
-            { '农历星期', '→ ' .. "lunar | week" },
-            { '农历周几', '→ ' .. "/nl | /wk " },
-            { '项目地址', 'boomker/rime-fast-xhup' }
+            { '时间戳值', '→ ' .. "timestamp | /uts" },
+            { '日期时间', '→ ' .. "date | time | /wd | /wt" },
+            { '农历星期', '→ ' .. "lunar | week | /nl | /wk" },
+            { '最近几天', '→ ' .. "/wqt | /wzt | /wmt | /wht" },
+            { '最近几周', '→ ' .. "/wuz | /wlk | /wxz | /wnk" },
+            { '最近几月', '→ ' .. "/wuy | /wlm | /wxy | /wnm" },
+            { '项目地址', '→ ' .. "boomker/rime-fast-xhup" }
         }
         segment.prompt = '〔帮助菜单〕'
         for _, v in ipairs(table) do

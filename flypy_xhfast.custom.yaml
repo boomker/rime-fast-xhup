@@ -68,6 +68,7 @@ patch:
       week: "^/wk$"
       time: "^/wt$"
       date: "^(/wd|/rq)$"
+      timestamp: "^/uts$"
       chinese_lunar: "^/nl$"
       switch_options: "^/so$"
       history: "^/hs$"
@@ -84,7 +85,7 @@ patch:
     half_shape/+:
       # '"': {pair: ['‘', '’']}
       # "'": {pair: ['“', '”']}
-      # ";": {commit: "；"}         ## 取消注释后, 下行添加注释, 以恢复默认分号
+      # ";": {commit: "；"}                  ## 取消注释后, 下行添加注释, 以恢复默认分号
       ";": [";", "；"]
       "@":
         - "@"

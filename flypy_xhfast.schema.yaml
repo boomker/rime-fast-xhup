@@ -321,6 +321,6 @@ speller:
     - abbrev/^(.).+$/$1/
 
     # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
-  __patch:
-    algebra/+:
-      __include: flypy_chord_rule:/patch/speller/algebra
+  # __patch:
+  #   algebra/+:
+  #     __include: flypy_chord_rule:/patch/speller/algebra
