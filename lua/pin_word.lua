@@ -50,7 +50,7 @@ end
 
 function pin_word.init(env)
     reload_env(env)
-    env.pin_cand_key = env:Config_get("pin_word/pin_word_key") or "Control+t"
+    env.pin_cand_key = env:Config_get("key_binder/pin_cand") or "Control+t"
     env.word_quality = env:Config_get("pin_word/word_quality") or 999
     env.pin_mark = env:Config_get("pin_word/comment_mark") or " 🔝"
     env.comment_mark = env:Config_get("custom_phrase/comment_mark") or " 📌"
@@ -66,7 +66,7 @@ function processor.func(key, env)
     local context = engine.context
     local preedit_code = context:get_script_text():gsub(" ", "")
 
-    local pin_cand_key = env.pin_cand_key or config:get_string("key_binder/pin_cand") or "Control+t"
+    local pin_cand_key = env.pin_cand_key or "Control+t"
     if context:has_menu() and (key:repr() == pin_cand_key) then
         local cand = context:get_selected_candidate()
         local cand_text = cand.text:gsub(" ", "")

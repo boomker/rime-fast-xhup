@@ -19,9 +19,7 @@ local function space_leader_word(key, env)
     local key_value = key:repr()
 
     local cand_select_kyes = {
-        ["space"] = "x",
-        ["semicolon"] = 1,
-        ["apostrophe"] = 2,
+        ["space"] = -1,
         ["1"] = 0,
         ["2"] = 1,
         ["3"] = 2,
@@ -81,7 +79,7 @@ local function space_leader_word(key, env)
         local segment = composition:back()
 
         local index = cand_select_kyes[key_value]
-        local selected_cand_idx = index:match("x") and segment.selected_index or index
+        local selected_cand_idx = (index == -1) and segment.selected_index or index
         local selected_cand = segment:get_candidate_at(selected_cand_idx)
         if not selected_cand then return 2 end
         local cand_text = selected_cand.text

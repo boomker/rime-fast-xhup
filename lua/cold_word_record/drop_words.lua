@@ -17,5 +17,6 @@ local drop_words =
 	"直捷了当",
 	"行政区画",
 	"色情市场",
+	"冰蘖",
 }
 return drop_words

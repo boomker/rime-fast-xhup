@@ -10,7 +10,7 @@ function fly_fixed.init(env)
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
     env.reversedb = ReverseLookup(schema_id)
-    collectgarbage("step", 110)
+    collectgarbage("step")
 end
 
 function fly_fixed.func(input, env)
