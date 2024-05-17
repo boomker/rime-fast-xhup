@@ -100,7 +100,7 @@ patch:
 
   speller/+:
     algebra/+:
-      - derive/[[]//                            # 取消注释, 直接辅码
+      - derive/[[]//                            # 取消注释，间接辅码
 
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
