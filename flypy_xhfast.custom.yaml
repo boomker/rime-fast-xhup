@@ -6,6 +6,7 @@ patch:
 
   # 候选菜单
   menu/+:
+    # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
     # alternative_select_keys: 1234890      # 候选项选中快捷键
     page_size: 7                            # 自定义候选项个数
@@ -13,6 +14,9 @@ patch:
   # 候选菜单布局样式
   style/+:
     horizontal: false                 # 横向(true)/纵向(默认false)
+    inline_preedit: false             # 编码位于是否嵌入候选框
+    font_point: 20                    # 候选字体大小
+    line_spacing: 5                   # 行间距
 
   switches/+:
     # - name: prediction
@@ -33,7 +37,9 @@ patch:
     segmentors/+:
     translators/+:
     filters/+:
+  # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
   'engine/processors/@before 0': lua_processor@space_leader_word
+  # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@cn_space_en_filter
   # 'engine/processors/@before 0': predictor
   # "engine/translators/@before 0": predict_translator
@@ -101,7 +107,7 @@ patch:
 
   speller/+:
     algebra/+:
-      - derive/[[]//                            # 取消注释，间接辅码
+      - derive/[[]//                            # 注释后，间接辅码
 
       ## 模糊音:
       - derive/^([jqxy])v/$1u/

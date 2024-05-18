@@ -301,26 +301,34 @@ speller:
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
-    - erase/^ng\[kk$/            # 取消「唔 ng」的独占
-    - erase/^ng\[kx$/            # 取消「嗯 ng」的独占
-    - erase/^n\[\w+$/            # 取消「嗯 n」的独占
-    - erase/^m\[\w+$/            # 取消「呒 m」的独占
-    - erase/^m\[\w+$/            # 取消「呣 m」的独占
+    __include: algebra_common
 
-    ## 字表编码到输入码的转换规则
-    - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/        # Flypy: AB[CD
-    - derive/^(\w+)\[(\w)(\w)$/$1\[$2/          # Flypy: AB[C
-    - derive/^(\w+)\[(\w)(\w)$/$1/              # Flypy: AB
+  # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+  # __patch:
+  #   algebra/+:
+  #     __include: flypy_chord_rule:/patch/speller/algebra
 
-    # 响应 ` 造词
-    - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
-    - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
+algebra_common:
+  - erase/^ng\[kk$/            # 取消「唔 ng」的独占
+  - erase/^ng\[kx$/            # 取消「嗯 ng」的独占
+  - erase/^n\[\w+$/            # 取消「嗯 n」的独占
+  - erase/^m\[\w+$/            # 取消「呒 m」的独占
+  - erase/^m\[\w+$/            # 取消「呣 m」的独占
 
-    # 超级简拼, 开启后可能性能不佳, 视情况开启
-    # 输入3个及以上编码字符, 按下`Ctrl+0`展开超级简拼
-    - abbrev/^(.).+$/$1/
+  ## 字表编码到输入码的转换规则
+  - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/       # Flypy: AB[CD
+  - derive/^(\w+)\[(\w)(\w)$/$1\[$2/         # Flypy: AB[C
+  - derive/^(\w+)\[(\w)(\w)$/$1/             # Flypy: AB
 
-    # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+  # 响应 ` 造词
+  - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
+  - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
+
+  # 超级简拼, 开启后可能性能不佳, 视情况开启
+  # 输入3个及以上编码字符, 按下`Ctrl+0`展开超级简拼
+  - abbrev/^(.).+$/$1/
+
+  # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
   # __patch:
   #   algebra/+:
   #     __include: flypy_chord_rule:/patch/speller/algebra

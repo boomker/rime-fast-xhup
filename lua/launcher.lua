@@ -50,6 +50,7 @@ end
 
 function processor.func(key, env)
     local engine = env.engine
+    local page_size = engine.schema.page_size
     local app_command_items = env.app_command_items
     local appLaunchPrefix = env.app_launch_prefix
     local favorCmdPrefix = env.favor_cmd_prefix
@@ -61,11 +62,19 @@ function processor.func(key, env)
     local preeditCodeLength = #inputCode
     local keyValue = key:repr()
 
+    if not (
+            inputCode:match("^" .. favorCmdPrefix)
+            or inputCode:match("^" .. appLaunchPrefix)
+        )
+    then
+        return 2
+    end
+
     local selected_cand_idx = -1
     local selected_candidate_index = (not composition:empty()) and segment.selected_index or -1
     if keyValue == "space" then
         selected_cand_idx = selected_candidate_index
-    elseif keyValue == "Return" and (inputCode:match("^" .. favorCmdPrefix)) then
+    elseif keyValue == "Return" then
         selected_cand_idx = selected_candidate_index
     elseif keyValue == "semicolon" then
         selected_cand_idx = 1
@@ -76,6 +85,9 @@ function processor.func(key, env)
     elseif keyValue == "0" then
         selected_cand_idx = 9
     end
+    local page_pos = (selected_candidate_index // page_size) + 1
+    selected_cand_idx = ((keyValue ~= -1) and (page_pos > 1))
+        and (keyValue + (page_pos - 1) * page_size) or selected_cand_idx
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
