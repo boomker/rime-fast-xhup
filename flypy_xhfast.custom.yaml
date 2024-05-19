@@ -127,6 +127,31 @@ patch:
       # - derive/^([viu])f/$1g/                 # [zcs][h]en => [zcs][h]eng
       # - derive/^([typdjxbm])k/$1b/            # ing => in
 
+  custom_phrase/+:
+    comment_mark: " 📌"               # 自定义短语注解标记
+
+  flypy_phrase/+:                     # 自动上屏短语
+    auto_commit: false                # 词条自动上屏开关
+
+  flypy_key_help/+:                   # 小鹤双拼键位帮助
+    prefix: "/ok"
+    tips: "小鹤双拼查键"
+
+  emoji/+:                            # Emoji转换
+    tips: all
+
+  easy_en/+:                          # 英文输入方案
+    prefix: "/oe"
+    tips: "英文输入"
+
+  radical_lookup/+:                   # 部件组字
+    prefix: "~"
+    tips: 〔部件组字〕
+
+  radical_reverse_lookup/+:           # 部件组字反查
+    overwrite_comment: false
+    dictionary: kMandarin
+
   history:                            # 上屏历史记录
     tips: "上屏历史"
     tag: history

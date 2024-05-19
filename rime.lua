@@ -76,7 +76,7 @@ history_translator             = commit_history.translator
 -- 详见 `lua/charset.lua`
 local charset                  = require("charset")
 charset_filter                 = charset.filter
-charset_comment_filter         = charset.comment_filter
+charset_comment_hint           = charset.comment_filter
 
 local emoji_reduce             = require("reduce_emoji")
 emoji_reduce_filter            = emoji_reduce.filter
