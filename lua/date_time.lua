@@ -13,7 +13,7 @@
 
 --]]
 
-local tool = require("tools/number_to_cn")
+local number_to_cn = require("tools/number_to_cn")
 
 local conf = {
     day_en_st = {
@@ -235,13 +235,13 @@ local function getTimeStr(str)
                 if (not flag) and string.find(pattern, ".number_cn}$") then
                     if string.find(pattern, ".arith.number_cn}$") then
                         -- 21 => 二十一
-                        replace_value = tool.convert_arab_to_chinese(_ni)
+                        replace_value = number_to_cn.convert_arab_to_chinese(_ni)
                     else
                         -- 21 => 二一
                         local _nis = tostring(_ni)
                         for i = 1, _nis:len() do
                             local _ni_digit = tonumber(_nis:sub(i, i))
-                            replace_value = replace_value .. tool.convert_arab_to_chinese(_ni_digit)
+                            replace_value = replace_value .. number_to_cn.convert_arab_to_chinese(_ni_digit)
                         end
                     end
                     replace_value = string.gsub(replace_value, "零", "〇")

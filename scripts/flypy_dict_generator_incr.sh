@@ -2,7 +2,7 @@
 set -eu
 
 files=("base" "ext" "tencent" "emoji" "en_ext")
-iceRepoPath="${HOME}/gitrepos/rime-ice"
+iceRepoPath="${HOME}/Library/Rime-ice"
 repoRoot="$(git rev-parse --show-toplevel)"
 scriptPath=$(dirname "$(realpath "$0")")
 pyScrPath="${scriptPath}/flypy_dict_generator_new.py"
@@ -21,7 +21,6 @@ for f in "${files[@]}"; do
 	src_file="${iceRepoPath}/cn_dicts/$f.dict.yaml"
 	tgt_file="${repoRoot}/cn_dicts/flypy_${f}.dict.yaml"
 	sorted_outfile="${repoRoot}/cn_dicts/flypy_${f}_sou.dict.yaml"
-	[[ "$f" == "en_ext" ]] && src_file="${iceRepoPath}/en_dicts/en_ext.dict.yaml"
 	[[ "$f" == "en_ext" ]] && tgt_file="${repoRoot}/en_dicts/en_ext_full.dict.yaml"
 	[[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
 	[[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji_word.txt"

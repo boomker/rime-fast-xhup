@@ -10,6 +10,8 @@ local tbls = {
     ["turndown_freq_list"] = turndown_freq_list,
 }
 local cold_word_drop = {}
+local processor = {}
+local filter = {}
 
 local function get_record_filername(record_type)
     local user_distribute_name = rime_api:get_distribution_name()
@@ -117,42 +119,45 @@ local function append_word_to_droplist(ctx, action_type, reversedb)
     end
 end
 
-function cold_word_drop.processor(key, env)
+function cold_word_drop.init(env)
     local engine = env.engine
+    local schema = engine.schema
     local config = engine.schema.config
+    local easy_en_pattern = "recognizer/patterns/easy_en"
+
+    env.wold_reduce_idx = config:get_int("cold_wold_reduce/idx") or 4
+    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    env.easy_en_prefix = config:get_string(easy_en_pattern):match("%^([a-z/]+).*") or "/oe"
+    env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
+    env.hide_cand_key = config:get_string("key_binder/hide_cand") or "Control+x"
+    env.turndown_cand_key = config:get_string("key_binder/turn_down_cand") or "Control+j"
+    env.reversedb = ReverseLookup(schema.schema_id)
+end
+
+function processor.func(key, env)
+    local engine = env.engine
     local context = engine.context
     local preedit_code = context:get_script_text()
-    local drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
-    local hide_cand_key = config:get_string("key_binder/hide_cand") or "Control+x"
-    local turndown_cand_key = config:get_string("key_binder/turn_down_cand") or "Control+j"
     local action_map = {
-        [drop_cand_key] = "drop",
-        [hide_cand_key] = "hide",
-        [turndown_cand_key] = "turn_down",
+        [env.drop_cand_key] = "drop",
+        [env.hide_cand_key] = "hide",
+        [env.turndown_cand_key] = "turn_down",
     }
 
-    local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
-    local reversedb = ReverseLookup(schema_id)
     if context:has_menu() and action_map[key:repr()] then
         local cand = context:get_selected_candidate()
-        if not cand then
-            return 2
-        end
+        if not cand then return 2 end
         local action_type = action_map[key:repr()]
         local ctx_map = {
             ["word"] = cand.text,
             ["code"] = preedit_code,
         }
-        local res = append_word_to_droplist(ctx_map, action_type, reversedb)
+        local res = append_word_to_droplist(ctx_map, action_type, env.reversedb)
 
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        if res == nil then
-            return 2
-        end
+        if not res then return 2 end
 
-        if res == "hide" then
-            action_type = "hide"
-        end
+        if res == "hide" then action_type = "hide" end
 
         if type(res) == "boolean" or res == "hide" then
             -- 期望被删的词和隐藏的词条写入文件(drop_words.lua, hide_words.lua)
@@ -168,29 +173,32 @@ function cold_word_drop.processor(key, env)
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
-function cold_word_drop.filter(input, env)
+function filter.func(input, env)
     local engine = env.engine
     local context = engine.context
-    local config = engine.schema.config
+    local wold_reduce_idx = env.wold_reduce_idx
+    local preedit_code = context.input:gsub(" ", "")
     local cands = {}
     local prev_cand_text = nil
-    local idx = config:get_int("cold_wold_reduce/idx") or 4
-    local preedit_code = context.input:gsub(" ", "")
-
-    local easy_en_pattern = "recognizer/patterns/easy_en"
-    local easy_en_prefix = config:get_string(easy_en_pattern):match("%^([a-z/]+).*") or "/oe"
-    local pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
 
         local tfl = turndown_freq_list[cand_text] or nil
-        if idx > 1 then
+        if wold_reduce_idx > 1 then
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
             if tfl and table.find_index(tfl, preedit_code) then
                 table.insert(cands, cand)
             elseif (
                     cand_text:match("^[%a][%a%d][%a%d]?%.?$")
+                    or (
+                        preedit_code:match("^%u")
+                        and (cand:get_dynamic_type() == "Shadow")
+                    )
+                    or (
+                        (cand.type == "completion") and
+                        (string.utf8_len(cand_text) > preedit_code:len())
+                    )
                     or (
                         cand_text:match("^[%u][%a][%a]?$")
                         and (cand_text:lower() == preedit_code:lower())
@@ -200,17 +208,18 @@ function cold_word_drop.filter(input, env)
                         and cand_text:lower():match("^" .. prev_cand_text)
                     )
                     or (
-                        ((cand_text:match("^[%u][%a]?[%a]?") and (cand_text:match("[%a]+"):len() < 4)))
+                        cand_text:match("^[%u][%a]?[%a]?")
+                        and (cand_text:match("[%a]+"):len() < 4)
                         and cand_text:find("([\228-\233][\128-\191]-)")
                     )
                 ) and not (
-                    preedit_code:match("^" .. easy_en_prefix)
-                    or cand.comment:match(pin_mark)
+                    preedit_code:match("^" .. env.easy_en_prefix)
+                    or cand.comment:match(env.pin_mark)
                 )
             then
                 table.insert(cands, cand)
                 if cand_text:match("^[%a.]+$") and (not prev_cand_text) then
-                    prev_cand_text = cand_text:lower()
+                    prev_cand_text = cand_text:gsub(" ", ""):lower()
                 end
             elseif
                 not (
@@ -220,7 +229,7 @@ function cold_word_drop.filter(input, env)
                 )
             then
                 yield(cand)
-                idx = idx - 1
+                wold_reduce_idx = wold_reduce_idx - 1
             end
         else
             if
@@ -233,17 +242,13 @@ function cold_word_drop.filter(input, env)
             end
         end
 
-        if #cands > 80 then
-            break
-        end
+        if #cands >= 80 then break end
     end
 
-    for _, cand in ipairs(cands) do
-        yield(cand)
-    end
+    for _, cand in ipairs(cands) do yield(cand) end
 end
 
 return {
-    processor = cold_word_drop.processor,
-    filter = cold_word_drop.filter,
+    processor = { init = cold_word_drop.init, func = processor.func },
+    filter = { init = cold_word_drop.init, func = filter.func },
 }

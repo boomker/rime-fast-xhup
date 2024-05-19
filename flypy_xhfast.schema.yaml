@@ -92,10 +92,10 @@ engine:
     - lua_filter@fly_fixed_filter
     - lua_filter@easy_en_filter
     - lua_filter@charset_filter
-    - lua_filter@charset_comment_filter
-    - lua_filter@word_autocaps_filter
     - lua_filter@long_word_up_filter
     - lua_filter@emoji_reduce_filter
+    - lua_filter@charset_comment_hint
+    - lua_filter@word_autocaps_filter
     - lua_filter@cold_word_drop_filter
     - lua_filter@word_autocommit_filter
     - lua_filter@pin_word_filter
@@ -111,8 +111,9 @@ translator:
   dictionary: flypy_xhfast
   spelling_hints: 1                 # `0`: 关闭单字编码提示
   initial_quality: 1.3
+  max_phrase_length: 5
   enable_user_dict: true
-  encode_commit_history: true       # 上屏历史记录
+  encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启八股文, 上下文联想
   sentence_over_completion: true
   # always_show_comments: true
@@ -147,7 +148,6 @@ custom_phrase:                      # 自定义短语, 包含固顶字
   dictionary: ""
   user_dict: custom_phrase
   db_class: stabledb
-  comment_mark: " 📌"
   enable_completion: false
   enable_sentence: false
   initial_quality: 99
@@ -164,7 +164,6 @@ idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
 # 自动上屏短语
 flypy_phrase:                       # 自动上屏短语
   dictionary: flypy_phrase
-  auto_commit: false         # 词条自动上屏开关
   enable_encoder: false
   enable_sentence: false
   enable_completion: true
@@ -193,6 +192,7 @@ emoji:                              # Emoji转换
   tags: [ abc ]
   inherit_comment: false
 
+# 简体转繁体
 traditionalize:                     # 简体转繁体
   option_name: simplification
   opencc_config: s2t.json   # s2t.json | s2hk.json | s2tw.json | s2twp.json
@@ -327,3 +327,4 @@ algebra_common:
   # 超级简拼, 开启后可能性能不佳, 视情况开启
   # 输入3个及以上编码字符, 按下`Ctrl+0`展开超级简拼
   - abbrev/^(.).+$/$1/
+
