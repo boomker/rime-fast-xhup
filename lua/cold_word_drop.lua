@@ -197,6 +197,7 @@ function filter.func(input, env)
                     )
                     or (
                         (cand.type == "completion") and
+                        (not cand_text:match("[%a%p]")) and
                         (string.utf8_len(cand_text) > preedit_code:len())
                     )
                     or (
