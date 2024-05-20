@@ -65,6 +65,7 @@ function processor.func(key, env)
     if not (
             inputCode:match("^" .. favorCmdPrefix)
             or inputCode:match("^" .. appLaunchPrefix)
+            or inputCode:match("^/j%l+")
         )
     then
         return 2

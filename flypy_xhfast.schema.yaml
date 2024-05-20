@@ -24,10 +24,12 @@ switches:
     states: [中, E]
   - name: ascii_punct
     states: [。, .]
+    reset: 0
   - name: full_shape
     states: [半角, 全角]
+    reset: 0
   - name: simplification
-    states: [ 简, 繁 ]
+    states: [简, 繁]
     reset: 0
 
 # 输入引擎
@@ -284,14 +286,13 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   bindings:
-    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
-    - { when: composing, accept: Tab, send: Shift+Right }
-    - { when: composing, accept: Shift+Tab, send: Shift+Left }
     - { when: composing, accept: Control+e, send: End }
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+k, send: Shift+Delete }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu,  accept: Control+period, toggle: ascii_punct }
+    - { when: has_menu,  accept: Control+slash, toggle: simplification }
+    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
 speller:
@@ -327,4 +328,3 @@ algebra_common:
   # 超级简拼, 开启后可能性能不佳, 视情况开启
   # 输入3个及以上编码字符, 按下`Ctrl+0`展开超级简拼
   - abbrev/^(.).+$/$1/
-
