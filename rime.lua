@@ -100,10 +100,6 @@ easy_en                        = require("easy_en")
 easy_en_translator             = easy_en.translator
 easy_en_filter                 = easy_en.filter
 
--- 提升 1 个中文长词的位置到第三候选
-long_word_up                   = require("long_word_up")
-long_word_up_filter            = long_word_up.filter
-
 --  单字和二字词 全码顶屏(自动上屏)
 word_autocommit                = require("word_autocommit")
 word_autocommit_processor      = word_autocommit.processor

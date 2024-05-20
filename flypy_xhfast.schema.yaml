@@ -94,7 +94,6 @@ engine:
     - lua_filter@fly_fixed_filter
     - lua_filter@easy_en_filter
     - lua_filter@charset_filter
-    - lua_filter@long_word_up_filter
     - lua_filter@emoji_reduce_filter
     - lua_filter@charset_comment_hint
     - lua_filter@word_autocaps_filter

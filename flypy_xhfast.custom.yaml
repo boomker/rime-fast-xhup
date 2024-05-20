@@ -167,10 +167,6 @@ patch:
     comment_mark: " 🔝"
     excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
 
-  long_word_up:                       # 长词升频到第 idx 个位置
-    idx: 3
-    excluded_codes: ["date", "rq", "week", "time", "lunar", "sopt"]
-
   cold_wold_reduce:                   # 生僻词条降频到第 idx 个位置
     idx: 4
     excluded_types: ["easy_en"]
