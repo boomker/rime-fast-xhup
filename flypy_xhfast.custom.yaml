@@ -58,29 +58,30 @@ patch:
     select_first_character: "minus"   # `-` 以词定字(第一个字)
     select_last_character:  "equal"   # `=` 以词定字(最后一个字)
     bindings/+:
+      - { when: composing, accept: grave,  send: "`" }      # `键 逐字追加辅码
       - { when: has_menu,  accept: semicolon,  send: 2 }    # 分号用于第2候选
       - { when: has_menu,  accept: apostrophe, send: 3 }    # 单引号用于第3候选
       - { when: paging,    accept: comma,  send: Page_Up }  # 逗号返回上一页
       - { when: has_menu,  accept: period, send: Page_Down }
-      - { when: composing, accept: grave,  send: "`" }      # `键 逐字追加辅码
+      - { when: composing, accept: Tab,    send: Shift+Right }
+      - { when: composing, accept: Shift+Tab, send: Shift+Left }
       - { when: composing, accept: Control+i, send: Shift+Left }
       - { when: composing, accept: Control+o, send: Shift+Right }
-      - { when: has_menu,  accept: Control+slash, toggle: simplification }
       - { when: has_menu,  accept: Control+Shift+slash, toggle: emoji }
       - { when: has_menu,  accept: Control+Shift+comma, toggle: charset_comment }
 
   recognizer/+:
     patterns/+:
-      week: "^/wk$"
-      time: "^/wt$"
-      date: "^(/wd|/rq)$"
+      week: "^(/wk|week)$"
+      time: "^(/wt|time)$"
+      date: "^(/wd|date)$"
       timestamp: "^/uts$"
       chinese_lunar: "^/nl$"
-      switch_options: "^/so$"
-      history: "^/hs$"
+      history: "^(/hs|hisz)$"
       shortcuts: "^/fj[a-z]*$"
       flypy_help: "^/(oh|help)$"
       flypy_key_help: "^/ok[a-z]*$"
+      switch_options: "^(/so|sopt)$"
       LaTeX: "^/lt(.*)$"
       easy_en: "^/oe[a-zA-Z]*$"
       chinese_number: "^/cn[0-9.]*$"
@@ -168,7 +169,7 @@ patch:
 
   long_word_up:                       # 长词升频到第 idx 个位置
     idx: 3
-    excluded_codes: ["date", "rq", "week", "time", "lunar"]
+    excluded_codes: ["date", "rq", "week", "time", "lunar", "sopt"]
 
   cold_wold_reduce:                   # 生僻词条降频到第 idx 个位置
     idx: 4

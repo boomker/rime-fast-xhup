@@ -20,7 +20,7 @@ function flypy_switcher.init(env)
 	env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
 	env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
 	env.easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
-	env.switch_options = config:get_string("recognizer/patterns/switch_options"):match("%^([a-z/]+).*") or "/so"
+	env.switch_options = config:get_string("recognizer/patterns/switch_options"):match("[a-z/]+") or "/so"
 	env.cand_select_kyes = {
 		["space"] = -1,
 		["Return"] = -1,
@@ -41,6 +41,8 @@ function flypy_switcher.init(env)
 		"切换编码区位样式",
 		"切换候选序号样式",
 		"切换Emoji😂显隐",
+        "切换中英标点输出",
+        "切换半角全角符号",
 		"切换简体繁体显示",
 		"增加候选字体大小",
 		"减少候选字体大小",
@@ -138,6 +140,14 @@ function processor.func(key, env)
 			local emoji_visible = env:Config_get("switches/@4/reset")
 			local switch_to_val = (emoji_visible > 0) and 0 or 1
 			env:Config_set("switches/@4/reset", switch_to_val)
+		elseif (cand_text == "切换中英标点输出") then
+            local ascii_punct_state = env:Config_get("switches/@1/reset")
+			local switch_to_val = (ascii_punct_state > 0) and 0 or 1
+			env:Config_set("switches/@1/reset", switch_to_val)
+		elseif (cand_text == "切换半角全角符号") then
+            local full_shape_state = env:Config_get("switches/@2/reset")
+			local switch_to_val = (full_shape_state > 0) and 0 or 1
+			env:Config_set("switches/@2/reset", switch_to_val)
 		elseif (cand_text == "切换简体繁体显示") then
 			local simp_tran_state = env:Config_get("switches/@3/reset")
 			local switch_to_val = (simp_tran_state > 0) and 0 or 1
@@ -194,7 +204,7 @@ function translator.func(input, seg, env)
 	local composition = env.engine.context.composition
 	if (composition:empty()) then return end
 	local segment = composition:back()
-	local trigger_prefix = env.switch_options or "/so"
+	local trigger_prefix = env.switch_options or "/so" or "sopt"
 	if seg:has_tag("switch_options") or (input == trigger_prefix) then
 		segment.prompt = "〔" .. "切换配置选项" .. "〕"
 		for _, text in ipairs(env.switch_options_menu) do
