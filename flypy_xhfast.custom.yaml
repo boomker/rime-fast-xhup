@@ -38,7 +38,7 @@ patch:
     translators/+:
     filters/+:
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  'engine/processors/@before 0': lua_processor@space_leader_word
+  'engine/processors/@after 1': lua_processor@space_leader_word
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@cn_space_en_filter
   # 'engine/processors/@before 0': predictor
