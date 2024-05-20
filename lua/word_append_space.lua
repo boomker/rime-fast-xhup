@@ -16,7 +16,10 @@ local function space_leader_word(key, env)
     local input_code = context.input
     local pos = context.caret_pos
     local composition = context.composition
+    local segment = composition:back()
     local key_value = key:repr()
+
+    if composition:empty() then return 2 end
 
     local cand_select_kyes = {
         ["space"] = -1,
@@ -61,7 +64,8 @@ local function space_leader_word(key, env)
         context:set_property("prev_cand_is_null", "1")
     end
 
-    if (#input_code >= 1) and (key_value == "Return") and (input_code:match("^[^/]"))then
+    if (#input_code >= 1) and (key_value == "Return") and (segment.prompt == "")
+    then
         local cand_text = input_code
         if (prev_cand_is_null ~= "1") and ((prev_cand_is_hanzi == "1") or (prev_cand_is_word == "1")) then
             cand_text = " " .. input_code
@@ -74,10 +78,8 @@ local function space_leader_word(key, env)
         return 1 -- kAccepted
     end
 
-    if cand_select_kyes[key_value] and (#input_code >= 1) and (input_code:match("^[^/]")) then
-        if composition:empty() then return 2 end
-        local segment = composition:back()
-
+    if cand_select_kyes[key_value] and (#input_code >= 1) and (segment.prompt == "")
+    then
         local index = cand_select_kyes[key_value]
         local selected_cand_idx = (index == -1) and segment.selected_index or index
         local selected_cand = segment:get_candidate_at(selected_cand_idx)
