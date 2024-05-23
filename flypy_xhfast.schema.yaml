@@ -106,6 +106,7 @@ engine:
 # 八股文
 grammar:
   language: zh-hans-t-essay-bgw
+  # language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
 translator:
