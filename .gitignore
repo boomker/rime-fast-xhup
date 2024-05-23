@@ -2,7 +2,8 @@ __pycache__/
 build/
 *.userdb/
 sync/
-installation.yaml
 user.yaml
-lua/launcher_config.lua
 .DS_Store
+installation.yaml
+lua/launcher_config.lua
+zh-hans-t-huayu-v7-bgw.gram

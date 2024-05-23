@@ -15,15 +15,16 @@ end
 
 function fly_fixed.func(input, env)
     local cands = {}
-    local prev_cand_ok = true
-    local preedit_code = env.engine.context:get_commit_text():gsub(" ", "")
+    local cand_drop = false
+    local context = env.engine.context
+    local preedit_code = context.input:gsub(" ", "")
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
         if
             (cand.type ~= "user_table")
-            and (cand:get_dynamic_type() ~= "Shadow")
             and (not cand_text:match("[a-zA-Z]"))
             and (not preedit_code:match("[%u%p]"))
+            and (cand:get_dynamic_type() ~= "Shadow")
             and (not cand.comment:match("^" .. env.pin_mark .. "$"))
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
         then
@@ -32,10 +33,8 @@ function fly_fixed.func(input, env)
             local preedit_last_code = preedit_code:sub(-1, -1)
             if yin_code and (yin_code:match(preedit_last_code)) then
                 yield(cand)
-                prev_cand_ok = true
             else
                 table.insert(cands, cand)
-                prev_cand_ok = false
             end
         elseif
             (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
@@ -46,15 +45,10 @@ function fly_fixed.func(input, env)
                 preedit_code:match("^%l+[%[`]%l?%l?$")
                 and (cand:get_dynamic_type() == "Shadow")
             )
-
         then
-            prev_cand_ok = false
-        elseif not prev_cand_ok then
-            table.insert(cands, cand)
-            prev_cand_ok = false
+            cand_drop = true
         else
             yield(cand)
-            prev_cand_ok = true
         end
 
         if #cands >= 80 then break end
