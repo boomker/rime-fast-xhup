@@ -11,5 +11,6 @@ local turndown_freq_words =
 	["官婢"] = { "grbi", },
 	["狸奴下"] = { "linux", },
 	["王二娥"] = { "where", },
+	["目无余子"] = { "mwyz", },
 }
 return turndown_freq_words
