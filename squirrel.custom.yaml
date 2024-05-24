@@ -113,7 +113,7 @@ patch:
       border_color: 0x38667D
       comment_text_color: 0xB2CECC
       candidate_back_color: 0x4E7160 
-      hilited_mark_color: 0xffffff
+      hilited_mark_color: 0x4ddcbb
       hilited_text_color: 0xB2CECC
       hilited_back_color: 0x26332C
       hilited_comment_text_color: 0x263030

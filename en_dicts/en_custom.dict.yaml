@@ -82,3 +82,4 @@ taskset	taskset	100000
 ingress	ingress	100000
 OpenCore	opencore	100000
 vmstat	vmstat	100000
+Baidu	baidu	100000
