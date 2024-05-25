@@ -10,7 +10,6 @@ version: "2024-05-09"
 import_tables:
   - en_dicts/en                         # 英文主词库
   - en_dicts/en_ext                     # 英文扩展
-  # - en_dicts/easy_en                    # 英文扩展(开启卡顿)
   - en_dicts/en_custom                  # 自定义自造词
   - en_dicts/en_ext_private             # 本项目扩展
   - en_dicts/cn_en_flypy                # 中英混输词库

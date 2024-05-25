@@ -27,6 +27,7 @@ patch:
       - derive/^tp/rl/                # tp --> rl
       - derive/^rf/rn/                # rf --> rn
       - derive/^tr/rm/                # tr --> rm
+      - derive/^ti/ri/                # tr --> rm
       - derive/^t([gv])/db/           # t[gv] --> db
       - derive/^r([gv])/rb/           # r[gv] --> rb
       - derive/^g([fv])/gn/           # g[fv] --> gn
