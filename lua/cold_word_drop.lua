@@ -196,11 +196,6 @@ function filter.func(input, env)
                         and (cand:get_dynamic_type() == "Shadow")
                     )
                     or (
-                        (cand.type == "completion") and
-                        (not cand_text:match("[%a%p]")) and
-                        (string.utf8_len(cand_text) > preedit_code:len())
-                    )
-                    or (
                         cand_text:match("^[%u][%a][%a]?$")
                         and (cand_text:lower() == preedit_code:lower())
                     )

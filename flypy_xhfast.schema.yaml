@@ -91,9 +91,9 @@ engine:
     - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
     - simplifier@emoji
     - simplifier@traditionalize                       # 简繁切换
-    - lua_filter@fly_fixed_filter
     - lua_filter@easy_en_filter
     - lua_filter@charset_filter
+    - lua_filter@fly_fixed_filter
     - lua_filter@emoji_reduce_filter
     - lua_filter@charset_comment_hint
     - lua_filter@word_autocaps_filter
@@ -105,8 +105,8 @@ engine:
 
 # 八股文
 grammar:
-  language: zh-hans-t-essay-bgw
-  # language: zh-hans-t-huayu-v7-bgw
+  # language: zh-hans-t-essay-bgw
+  language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
 translator:
