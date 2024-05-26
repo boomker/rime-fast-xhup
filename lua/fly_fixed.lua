@@ -24,9 +24,10 @@ function fly_fixed.func(input, env)
             (cand.type ~= "user_table")
             and (not cand_text:match("[a-zA-Z]"))
             and (not preedit_code:match("[%u%p]"))
-            and (cand:get_dynamic_type() ~= "Shadow")
-            and (not cand.comment:match("^" .. env.pin_mark .. "$"))
+            and (not cand:get_dynamic_type() == "Shadow")
+            and (string.utf8_len(cand_text) <= #preedit_code)
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
+            and (not cand.comment:match("^" .. env.pin_mark .. "$"))
         then
             local last_char = last_character(cand_text)
             local yin_code = env.reversedb:lookup(last_char):gsub("%l%[%l%l", "")
@@ -44,6 +45,11 @@ function fly_fixed.func(input, env)
             ) or (
                 preedit_code:match("^%l+[%[`]%l?%l?$")
                 and (cand:get_dynamic_type() == "Shadow")
+            )
+            or (
+                (cand.type == "completion") and
+                (not cand_text:match("[%a%p]")) and
+                (string.utf8_len(cand_text) - #preedit_code > 2)
             )
         then
             cand_drop = true
