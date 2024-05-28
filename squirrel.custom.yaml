@@ -14,17 +14,17 @@ patch:
     # color_scheme_dark: catppuccin_macchiato   # macos黑暗主题
 
     show_paging: true
+    translucency: true
     inline_preedit: false
-    mutual_exclusive: false                           # 色不叠加： false | true
-    shadow_size: 1
-    alpha: 0.95                                       # 透明度, 0~1
-    translucency: 0.98
-    corner_radius: 10
-    border_height: 0
+    mutual_exclusive: false                     # 色不叠加： false | true
+    alpha: 0.95                                 # 透明度, 0~1
     border_width: 0
+    border_height: 0
     spacing: 10
     line_spacing: 5
+    shadow_size: 1
     shadow_radius: 8
+    corner_radius: 10
     hilited_corner_radius: 8
     font_point: 20
     label_font_point: 16

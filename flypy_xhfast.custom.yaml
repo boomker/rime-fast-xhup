@@ -16,7 +16,7 @@ patch:
     horizontal: false                 # 横向(true)/纵向(默认false)
     inline_preedit: false             # 编码位于是否嵌入候选框
     font_point: 20                    # 候选字体大小
-    line_spacing: 5                   # 行间距
+    line_spacing: 8                   # 行间距
 
   switches/+:
     # - name: prediction
@@ -85,14 +85,14 @@ patch:
       LaTeX: "^/lt(.*)$"
       easy_en: "^/oe[a-zA-Z]*$"
       chinese_number: "^/cn[0-9.]*$"
-      radical_lookup: "~[a-z]+$"              # ~ 引导部件拆字, 使用小鹤双拼编码
+      radical_lookup: "~[a-z]+$"                # ~ 引导部件拆字, 使用小鹤双拼编码
 
   punctuator/+:
     full_shape/+:
     half_shape/+:
       # '"': {pair: ['‘', '’']}
       # "'": {pair: ['“', '”']}
-      # ";": {commit: "；"}                  ## 取消注释后, 下行添加注释, 以恢复默认分号
+      # ";": {commit: "；"}                     # 取消注释后, 下行添加注释, 以恢复默认分号
       ";": [";", "；"]
       "@":
         - "@"
