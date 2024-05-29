@@ -55,9 +55,10 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
+    - affix_segmentor@LaTeX
     - affix_segmentor@easy_en
+    - affix_segmentor@calculator
     - affix_segmentor@make_sentence
-    - affix_segmentor@laTeX_formula
     - affix_segmentor@radical_lookup
     - affix_segmentor@chinese_number
     - affix_segmentor@flypy_key_help
@@ -79,6 +80,7 @@ engine:
     - lua_translator@lunar_translator                 # /nl 触发显示农历
     - lua_translator@datetime_translator              # date, week, time, /wd, /wk, /wt 触发
     - lua_translator@launcher_translator              # /jj, /fj 触发快捷命令(可改触发前缀)
+    - lua_translator@calc_translator                  # /vs 触发计算器
     - lua_translator@laTex_translator                 # /lt 触发 LaTeX 输入
     - lua_translator@number_translator                # /cn 触发繁体大写金额数字
     - lua_translator@history_translator               # /hs 触发显示上屏历史
@@ -105,8 +107,8 @@ engine:
 
 # 八股文
 grammar:
-  # language: zh-hans-t-essay-bgw
-  language: zh-hans-t-huayu-v7-bgw
+  language: zh-hans-t-essay-bgw
+  # language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
 translator:

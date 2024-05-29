@@ -142,9 +142,10 @@ local function tex_translator(input, seg, env)
     local segment = composition:back()
 
     local laTex_pattern = "recognizer/patterns/LaTeX"
+    local tips = config:get_string("LaTeX/tips") or "LaTeX公式"
     local trigger = config:get_string(laTex_pattern) or "^/lt(.*)$"
     local expr, n = input:gsub(trigger, "%1")
-    if n ~= 0 then
+    if (n ~= 0) or (seg:has_tag("LaTeX")) then
         -- expr = expr:gsub('%W', snip_charmap) --- 启用特殊符号替换
         expr = expr:gsub("ooa(.)", "^{%1+1}")
         expr = expr:gsub("oos(.)", "^{%1-1}")
@@ -157,7 +158,7 @@ local function tex_translator(input, seg, env)
         expr = "$" .. expr .. "$"
         expr = string.gsub(expr, " (%W)", "%1")
         --- Candidate(type, start, end, text, comment)
-        segment.prompt = "〔LaTeX公式〕"
+        segment.prompt = "〔 .. " .. tips .. "〕"
         yield(Candidate("math", seg.start, seg._end, expr, " "))
     end
 end

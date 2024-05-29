@@ -56,6 +56,8 @@ lunar_translator               = lunar.translator
 number                         = require("number")
 number_translator              = number.translator
 
+calc_translator                = require("calculator")
+
 -- 英文生词造词入词库, 输入串末尾跟']'
 en_custom                      = require("en_custom")
 word_custom_translator         = en_custom.translator
