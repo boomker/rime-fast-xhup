@@ -79,11 +79,12 @@ patch:
       chinese_lunar: "^/nl$"
       history: "^(/hs|hisz)$"
       shortcuts: "^/fj[a-z]*$"
+      easy_en: "^/oe[a-zA-Z]*$"
       flypy_help: "^/(oh|help)$"
       flypy_key_help: "^/ok[a-z]*$"
       switch_options: "^(/so|sopt)$"
       LaTeX: "^/lt(.*)$"
-      easy_en: "^/oe[a-zA-Z]*$"
+      calculator: "^/vs(.*)$"
       chinese_number: "^/cn[0-9.]*$"
       radical_lookup: "~[a-z]+$"                # ~ 引导部件拆字, 使用小鹤双拼编码
 
@@ -153,10 +154,25 @@ patch:
     overwrite_comment: false
     dictionary: kMandarin
 
+  LaTeX:                             # LaTeX 公式输入
+    tag: LaTeX
+    prefix: "/lt"
+    tips: "LaTeX 公式"
+
+  calculator:                        # 计算器
+    tag: calculator
+    prefix: "/vs"
+    tips: "计算器"
+
+  chinese_number:                    # 中文数字
+    tag: chinese_number
+    prefix: "/cn"
+    tips: "中文数字"
+
   history:                            # 上屏历史记录
-    tips: "上屏历史"
     tag: history
     prefix: "/hs"
+    tips: "上屏历史"
     size: 30
     history_num_max: 30
     initial_quality: 1000

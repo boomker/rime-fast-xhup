@@ -20,6 +20,7 @@ local function space_leader_word(key, env)
     local key_value = key:repr()
 
     if composition:empty() then return 2 end
+    if input_code:match("^/.*") then return 2 end
 
     local cand_select_kyes = {
         ["space"] = -1,
