@@ -95,7 +95,7 @@
 劲	jin, jing	25
 露	lou, lu	25
 埋	mai, man	25
-蒙	meng	25	#------------------------
+蒙	meng	25
 乜	mie, nie	25
 娜	na, nuo	25
 扁	bian, pian	24
@@ -105,7 +105,7 @@
 识	shi, zhi	24
 扎	za, zha	24
 伯	bai, bo	23
-划	hua	23	#-----------------------
+划	hua	23
 靓	jing, liang	23
 壳	ke, qiao	23
 仔	zai, zi	23
@@ -134,7 +134,7 @@
 爪	zhao, zhua	20
 柏	bai, bo	19
 尺	che, chi	19
-担	dan	19	#-----------------
+担	dan	19
 繁	fan, po	19
 咖	ga, ka	19
 扛	gang, kang	19
@@ -197,7 +197,7 @@
 绰	chao, chuo	11
 畜	chu, xu	11
 驮	duo, tuo	11
-艮	gen	11	#----------------
+艮	gen	11
 莞	guan, wan	11
 涡	guo, wo	11
 筠	jun, yun	11
