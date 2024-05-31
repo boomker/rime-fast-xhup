@@ -3,7 +3,6 @@ ecdict: 把ECDICT.dict.yaml里的text作为comment，code作为text输出
 --]]
 
 local easy_en = {}
--- local easy_en_cands = {}
 
 local function truncate_comment(comment)
     local MAX_LENGTH = 20
@@ -74,7 +73,6 @@ function easy_en.filter(input, env)
 end
 
 return {
-    -- processor = easy_en.processor,
     translator = { init = easy_en.init, func = easy_en.translator },
     filter = { init = easy_en.init, func = easy_en.filter }
 }

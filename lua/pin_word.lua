@@ -107,11 +107,10 @@ function translator.func(input, seg, env)
     -- 自定义短语的置顶字词加标记
     env.custom_tran = env.custom_phrase_tran:query(input, seg)
     for cand in env.custom_tran:iter() do
-        cand.comment = custom_mark
-        -- yield(cand)
-        -- yield(ShadowCandidate(cand, "custom_top", cand.text, cand.comment))
-        -- yield(cand:to_shadow_candidate("custom_top", cand.text, env.comment_mark))
-        table.insert(custom_phrase_cands, cand)
+        if not cand.text:match("<br>") then
+            cand.comment = custom_mark
+            table.insert(custom_phrase_cands, cand)
+        end
     end
 end
 
