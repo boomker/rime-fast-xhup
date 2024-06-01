@@ -2,7 +2,7 @@
 set -eu
 
 files=("base" "ext" "tencent" "emoji" "en_ext")
-iceRepoPath="${HOME}/Library/Rime-ice"
+iceRepoPath="${HOME}/gitrepos/rime-ice"
 repoRoot="$(git rev-parse --show-toplevel)"
 scriptPath=$(dirname "$(realpath "$0")")
 pyScrPath="${scriptPath}/flypy_dict_generator_new.py"
@@ -27,8 +27,8 @@ for f in "${files[@]}"; do
 
 	git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |
 		/usr/local/bin/rg "^\-" | \rg -v "\-#|\+v|\---" | tr -d "-" >"${f}_min.diff"
-	gcut -f1 "${f}_min.diff" | xargs -I % -n 1 sd '^%\t.*' '' "${tgt_file}"
-	gsed -i -r '14,${/^$/d}' "${tgt_file}"
+	gcut -f1 "${f}_min.diff" | xargs -I % -n 1 ambr --no-interactive --no-parent-ignore --regex '^%\t.*' '' "${tgt_file}"
+	gsed -i -r '12,${/^$/d}' "${tgt_file}"
 
 	git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |
 		/usr/local/bin/rg "^\+" | \rg -v "\+#|\+v|\+\+" | tr -d "+" >"${f}_add.diff"
