@@ -101,6 +101,8 @@ Rime	rime	3
 开源输入法引擎	rime	2
 http://rime.im/	rime	1
 正在开会，一会儿回复你	meet
+换行词条<br>第二行	hhctest
+# 其他换行词条<br>我是下一行	hhct
 
 ## 简单单词
 Hugo	hugo
