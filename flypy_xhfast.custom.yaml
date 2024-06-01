@@ -16,8 +16,8 @@ patch:
     font_point: 20                    # 候选字大小
     line_spacing: 8                   # 行间距大小
     inline_preedit: false             # 编码位于是否嵌入候选框
-    candidate_list_layout: stacked    # 横向(linear)/纵向(stacked)
-    text_orientation: horizontal      # 横向(horizontal)/纵向(vertical)
+    candidate_list_layout: stacked    # 候选菜单横向(linear)/纵向(stacked)
+    text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
 
   switches/+:
     # - name: prediction
@@ -96,6 +96,7 @@ patch:
       # "'": {pair: ['“', '”']}
       # ";": {commit: "；"}                     # 取消注释后, 下行添加注释, 以恢复默认分号
       ";": [";", "；"]
+      '\': [、, '\', '\r', '\n', '\t', ＼]
       "@":
         - "@"
         # - "@xxx.com"
@@ -110,7 +111,7 @@ patch:
 
   speller/+:
     algebra/+:
-      - derive/[[]//                            # 注释后，间接辅码
+      - derive/[[]//                             # 注释后，间接辅码
 
       ## 模糊音:
       - derive/^([jqxy])v/$1u/

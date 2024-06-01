@@ -267,7 +267,6 @@ punctuator:
     "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
     ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
-    '\': [、, '\', ＼]
     "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
     "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
     "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
@@ -288,13 +287,13 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   bindings:
+    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
     - { when: composing, accept: Control+e, send: End }
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+k, send: Shift+Delete }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu,  accept: Control+period, toggle: ascii_punct }
     - { when: has_menu,  accept: Control+slash, toggle: simplification }
-    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
 speller:

@@ -53,7 +53,7 @@ style:
   vertical_text: false                     # 竖排文本：true；false
   text_orientation: horizontal             # 文本排列方向，效果和 `vertical_text` 相同：horizontal；vertical
   candidate_list_layout: stacked           # stacked | linear  候选项排列方向（似乎只有在custom内才可以生效）
-  horizontal: false                        # 候选项水平排列（在custom内和andidate_list_layout的linear效果一样）
+  # horizontal: false                      # 候选项水平排列(已废弃)
   vertical_text_left_to_right: false       # 竖排方向是否从左到右：true；false
   vertical_text_with_wrap: false           # 文本竖排模式下，自动换行：true；false
   vertical_auto_reverse: false             # 文本竖排模式下，候选窗口位于光标上方时倒序排列：true；false
@@ -74,7 +74,7 @@ style:
     max_height: 600                        # 候选框最大高度，horizontal 布局如宽超此尺寸则换行显示候选，设置为 0 不启用此功能
     max_width: 0                           # 候选框最大宽度，文本竖排模式下如高度超此尺寸则换列显示候选，设置为 0 不启用此功能
     min_height: 0                          # 候选框最小高度
-    min_width: 145                          # 候选框最小宽度
+    min_width: 145                         # 候选框最小宽度
     border_width: 0                        # 边框宽度；又名 border
     margin_x: 8                            # 主体元素和候选框的左右边距；为负值时，不显示候选框
     margin_y: 8                            # 主体元素的上下边距；为负值时，不显示候选框
@@ -90,7 +90,8 @@ style:
     corner_radius: 8                       # 候选窗口圆角半径
     round_corner: 8                        # 候选背景色块圆角半径，又名 hilited_corner_radius
     # type: vertical                       # 布局设置，效果和 style 下的设置相同：
-                                           # horizontal（横向）；vertical（竖向） ; vertical_text（竖排文本） ; vertical+fullscreen（全屏） ; horizontal+fullscreen（横向全屏）
+    # horizontal（横向）；vertical（竖向） ; vertical_text（竖排文本） ;
+    #vertical+fullscreen（全屏） ; horizontal+fullscreen（横向全屏）
 # [End of <style>]
 
 # [preset_color_schemes]
