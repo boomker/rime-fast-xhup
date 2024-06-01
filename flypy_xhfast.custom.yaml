@@ -76,18 +76,18 @@ patch:
       week: "^(/wk|week)$"
       time: "^(/wt|time)$"
       date: "^(/wd|date)$"
-      timestamp: "^/uts$"
-      chinese_lunar: "^/nl$"
-      history: "^(/hs|hisz)$"
-      shortcuts: "^/fj[a-z]*$"
-      easy_en: "^/oe[a-zA-Z]*$"
-      flypy_help: "^/(oh|help)$"
-      flypy_key_help: "^/ok[a-z]*$"
-      switch_options: "^(/so|sopt)$"
-      LaTeX: "^/lt(.*)$"
-      calculator: "^/vs(.*)$"
-      chinese_number: "^/cn[0-9.]*$"
-      radical_lookup: "~[a-z]+$"                # ~ 引导部件拆字, 使用小鹤双拼编码
+      timestamp: "^/uts$"                       # 时间戳
+      chinese_lunar: "^/nl$"                    # 农历
+      history: "^(/hs|hisz)$"                   # 上屏历史
+      shortcuts: "^/fj[a-z]*$"                  # 快捷指令
+      easy_en: "^/oe[a-zA-Z]*$"                 # 英文输入方案
+      flypy_help: "^/(oh|help)$"                # 本方案帮助菜单
+      flypy_key_help: "^/ok[a-z]*$"             # 小鹤双拼键位帮助
+      switch_options: "^(/so|sopt)$"            # 热切换配置选项
+      LaTeX: "^/lt(.*)$"                        # LaTeX 公式
+      calculator: "^/vs(.*)$"                   # 简易计算器
+      chinese_number: "^/cn[0-9.]*$"            # 中文大写数字
+      radical_lookup: "~[a-z]+$"                # ~ 部件拆字
 
   punctuator/+:
     full_shape/+:
