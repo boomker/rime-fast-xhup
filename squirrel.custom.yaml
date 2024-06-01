@@ -25,6 +25,7 @@ patch:
     font_point: 20
     label_font_point: 16
     comment_font_point: 14
+    candidate_list_layout: stacked              # 候选排布: 层叠 stacked | 行 linear
     label_font_face: 'Lucida Grande'
     font_face: "MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei"
 
@@ -80,7 +81,6 @@ patch:
       hilited_candidate_back_color: 0xC73262
       hilited_candidate_label_color: 0x606cff      # 第一候选项编号颜色 Surface0
       hilited_candidate_shadow_color: 0x303546     # 高亮候选阴影
-      candidate_list_layout: stacked               # 候选排布: 层叠 stacked | 行 linear
 
     catppuccin_macchiato:
       name: Catppuccin Macchiato

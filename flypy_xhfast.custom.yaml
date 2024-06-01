@@ -13,10 +13,11 @@ patch:
 
   # 候选菜单布局样式
   style/+:
-    horizontal: false                 # 横向(true)/纵向(默认false)
+    font_point: 20                    # 候选字大小
+    line_spacing: 8                   # 行间距大小
     inline_preedit: false             # 编码位于是否嵌入候选框
-    font_point: 20                    # 候选字体大小
-    line_spacing: 8                   # 行间距
+    candidate_list_layout: stacked    # 横向(linear)/纵向(stacked)
+    text_orientation: horizontal      # 横向(horizontal)/纵向(vertical)
 
   switches/+:
     # - name: prediction
