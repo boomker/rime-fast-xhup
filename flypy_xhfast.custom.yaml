@@ -13,10 +13,11 @@ patch:
 
   # 候选菜单布局样式
   style/+:
-    horizontal: false                 # 横向(true)/纵向(默认false)
+    font_point: 20                    # 候选字大小
+    line_spacing: 8                   # 行间距大小
     inline_preedit: false             # 编码位于是否嵌入候选框
-    font_point: 20                    # 候选字体大小
-    line_spacing: 5                   # 行间距
+    candidate_list_layout: stacked    # 横向(linear)/纵向(stacked)
+    text_orientation: horizontal      # 横向(horizontal)/纵向(vertical)
 
   switches/+:
     # - name: prediction
@@ -79,20 +80,21 @@ patch:
       chinese_lunar: "^/nl$"
       history: "^(/hs|hisz)$"
       shortcuts: "^/fj[a-z]*$"
+      easy_en: "^/oe[a-zA-Z]*$"
       flypy_help: "^/(oh|help)$"
       flypy_key_help: "^/ok[a-z]*$"
       switch_options: "^(/so|sopt)$"
       LaTeX: "^/lt(.*)$"
-      easy_en: "^/oe[a-zA-Z]*$"
+      calculator: "^/vs(.*)$"
       chinese_number: "^/cn[0-9.]*$"
-      radical_lookup: "~[a-z]+$"              # ~ 引导部件拆字, 使用小鹤双拼编码
+      radical_lookup: "~[a-z]+$"                # ~ 引导部件拆字, 使用小鹤双拼编码
 
   punctuator/+:
     full_shape/+:
     half_shape/+:
       # '"': {pair: ['‘', '’']}
       # "'": {pair: ['“', '”']}
-      # ";": {commit: "；"}                  ## 取消注释后, 下行添加注释, 以恢复默认分号
+      # ";": {commit: "；"}                     # 取消注释后, 下行添加注释, 以恢复默认分号
       ";": [";", "；"]
       "@":
         - "@"
@@ -153,10 +155,25 @@ patch:
     overwrite_comment: false
     dictionary: kMandarin
 
+  LaTeX:                             # LaTeX 公式输入
+    tag: LaTeX
+    prefix: "/lt"
+    tips: "LaTeX 公式"
+
+  calculator:                        # 计算器
+    tag: calculator
+    prefix: "/vs"
+    tips: "计算器"
+
+  chinese_number:                    # 中文数字
+    tag: chinese_number
+    prefix: "/cn"
+    tips: "中文数字"
+
   history:                            # 上屏历史记录
-    tips: "上屏历史"
     tag: history
     prefix: "/hs"
+    tips: "上屏历史"
     size: 30
     history_num_max: 30
     initial_quality: 1000
