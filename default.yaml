@@ -45,10 +45,10 @@ ascii_composer:
   good_old_caps_lock: true    # true | false
   switch_key:     # commit_code | commit_text | inline_ascii | clear | noop
     Caps_Lock: clear          # commit_code | commit_text | clear
-    Shift_L: inline_ascii
-    Shift_R: noop
     Control_L: noop
     Control_R: noop
+    Shift_L: noop
+    Shift_R: inline_ascii
 ###################################################################################
 
 # 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。

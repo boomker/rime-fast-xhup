@@ -111,11 +111,11 @@ function processor.func(key, env)
         if spec_keys[keyValue] then
             if (inputCode ~= favorCmdPrefix) and (keyValue == "BackSpace") then
                 context:pop_input(1)
-                context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-            elseif (inputCode == favorCmdPrefix) and (keyValue == "BackSpace") and (segment.prompt:match("快捷指令")) then
+            elseif (inputCode == favorCmdPrefix) and (keyValue == "BackSpace")
+                and (segment.prompt:match("快捷指令")) then
                 return 2
             elseif (inputCode == favorCmdPrefix) and (keyValue == "BackSpace") then
-                context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+                context:pop_input(1)
             else
                 context:clear()
             end
@@ -346,7 +346,8 @@ function filter.init(env)
 end
 
 function filter.func(input, env)
-    local input_code = env.engine.context:get_commit_text():gsub(" ", "")
+    local context = env.engine.context
+    local input_code = context.input:gsub(" ", "")
     local favorCmdPrefix = env.favor_cmd_prefix
     local appLaunchPrefix = env.app_launch_prefix
     local fav_items = env.favor_items
@@ -354,8 +355,8 @@ function filter.func(input, env)
     local command_cands = {}
     local other_cands = {}
     for cand in input:iter() do
-        if input_code:match("^" .. favorCmdPrefix) and cand.text:match("[1-9]$") then
-            local pos = tostring(cand.text:sub(-1))
+        if input_code:match("^" .. favorCmdPrefix) and cand.text:match("[0-9]+$") then
+            local pos = tostring(cand.text:sub(-2):match("[0-9]+$"))
             command_cands[pos] = cand
         elseif input_code:match("^" .. appLaunchPrefix) and cand.comment:match("应用闪切") then
             yield(cand)
@@ -400,7 +401,7 @@ function filter.func(input, env)
         end
 
         for _, cand in ipairs(sorted_command_cands) do
-            local cand_text = cand.text:gsub("[1-9]$", "")
+            local cand_text = cand.text:gsub("[0-9]+$", "")
             yield(ShadowCandidate(cand, cand.type, cand_text))
         end
     end

@@ -116,7 +116,7 @@ patch:
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
-      - derive/^u([h])/s$1/                     # uh => sh
+      - derive/^u(h)/s$1/                       # uh => sh
       - derive/^(i)g/$1f/                       # c[h]eng => c[h]en
       - derive/^([ypbn])b/$1k/                  # in => ing
       - derive/^z([^acdefghijklmnsu])/v$1/      # z => zh
@@ -156,17 +156,17 @@ patch:
     overwrite_comment: false
     dictionary: kMandarin
 
-  LaTeX:                             # LaTeX 公式输入
+  LaTeX:                              # LaTeX 公式输入
     tag: LaTeX
     prefix: "/lt"
     tips: "LaTeX 公式"
 
-  calculator:                        # 计算器
+  calculator:                         # 计算器
     tag: calculator
     prefix: "/vs"
     tips: "计算器"
 
-  chinese_number:                    # 中文数字
+  chinese_number:                     # 中文数字
     tag: chinese_number
     prefix: "/cn"
     tips: "中文数字"
@@ -182,7 +182,7 @@ patch:
 
   pin_word:                           # 词条置顶配置
     word_quality: 1000
-    comment_mark: " 🔝"
+    comment_mark: " 🔝"               # 置顶词标记
     excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
 
   cold_wold_reduce:                   # 生僻词条降频到第 idx 个位置
