@@ -81,25 +81,23 @@ local commands = {
 		["tc终端命令4"] = {
 			["action"] = "exec",
 			["items"] = {
-			["部署Rime1"] = "/Library/Input Methods/Squirrel.app/Contents/MacOS/squirrel --reload",
-                ["r同步Rime2"] = "/Library/Input Methods/Squirrel.app/Contents/MacOS/squirrel --sync",
-                ["s立即屏保3"] = [[osascript -e 'tell application "System Events" to start current screen saver']],
-                ["l系统明暗模式4"] = [[osascript -e \
+				["部署Rime1"] = "/Library/Input Methods/Squirrel.app/Contents/MacOS/squirrel --reload",
+				["r同步Rime2"] = "/Library/Input Methods/Squirrel.app/Contents/MacOS/squirrel --sync",
+				["s立即屏保3"] = [[osascript -e 'tell application "System Events" to start current screen saver']],
+				["l系统明暗模式4"] = [[osascript -e \
                 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode']],
-                ["b部署Fcitx5"] =
-                "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/deploy -X POST -d '{}'",
-                ["f同步Fcitx6"] =
-                "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/sync -X POST -d '{}'",
-                ["h隐藏桌面图标7"] = "defaults write com.apple.finder CreateDesktop false && killall Finder",
-                ["i显示桌面图标8"] = "defaults write com.apple.finder CreateDesktop true && killall Finder",
-                ["x立即熄屏9"] = "pmset displaysleepnow",
-                ["w窗口智能拖拽10"] = "defaults write -g NSWindowShouldDragOnGesture -bool true",
-                ["ODock栏隐藏11"] = "defaults write com.apple.dock autohide -int 1 && killall Dock",
-                ["Dock栏显示12"] = "defaults write com.apple.dock autohide -int 0 && killall Dock",
-                ["a显示所有文件13"] = "defaults write com.apple.finder AppleShowAllFiles -bool true",
-                ["m鼠标自然滚动14"] = "defaults write com.apple.AppleMultitouchMouse MouseWheels -int 1",
-                ["t触控板自然滚动15"] = "defaults write com.apple.AppleMultitouchTrackpad MouseWheels -int 1",
-                ["c刷新DNS缓存16"] = "dscacheutil -flushcache"
+				["b部署Fcitx5"] = "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/deploy -X POST -d '{}'",
+				["f同步Fcitx6"] = "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/sync -X POST -d '{}'",
+				["h隐藏桌面图标7"] = "defaults write com.apple.finder CreateDesktop false && killall Finder",
+				["i显示桌面图标8"] = "defaults write com.apple.finder CreateDesktop true && killall Finder",
+				["x立即熄屏9"] = "pmset displaysleepnow",
+				["w窗口智能拖拽10"] = "defaults write -g NSWindowShouldDragOnGesture -bool true",
+				["ODock栏隐藏11"] = "defaults write com.apple.dock autohide -int 1 && killall Dock",
+				["Dock栏显示12"] = "defaults write com.apple.dock autohide -int 0 && killall Dock",
+				["a显示所有文件13"] = "defaults write com.apple.finder AppleShowAllFiles -bool true",
+				["m鼠标自然滚动14"] = "defaults write com.apple.AppleMultitouchMouse MouseWheels -int 1",
+				["t触控板自然滚动15"] = "defaults write com.apple.AppleMultitouchTrackpad MouseWheels -int 1",
+				["c刷新DNS缓存16"] = "dscacheutil -flushcache",
 			},
 		},
 		["fp常用文件夹5"] = {
