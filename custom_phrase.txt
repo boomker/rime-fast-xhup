@@ -83,6 +83,7 @@
 什么鬼	umg	1
 是不是	ubu	1
 怎样的	zyd	1
+为什么	wum	2
 怎么样了	zmyl
 怎么样了	zmwl
 截图看看	jtkk

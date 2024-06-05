@@ -84,3 +84,4 @@ OpenCore	opencore	100000
 vmstat	vmstat	100000
 Baidu	baidu	100000
 userdb	userdb	100000
+tooltip	tooltip	100000
