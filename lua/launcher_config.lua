@@ -86,8 +86,8 @@ local commands = {
 				["s立即屏保3"] = [[osascript -e 'tell application "System Events" to start current screen saver']],
 				["l系统明暗模式4"] = [[osascript -e \
                 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode']],
-				["b部署Fcitx5"] = "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/deploy -X POST -d '{}'",
-				["f同步Fcitx6"] = "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/sync -X POST -d '{}'",
+				["b部署Fcitx5"] = "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/deploy -X POST -d '{}' &",
+				["f同步Fcitx6"] = "/Library/Input Methods/Fcitx5.app/Contents/bin/fcitx5-curl /config/addon/rime/sync -X POST -d '{}' &",
 				["h隐藏桌面图标7"] = "defaults write com.apple.finder CreateDesktop false && killall Finder",
 				["i显示桌面图标8"] = "defaults write com.apple.finder CreateDesktop true && killall Finder",
 				["x立即熄屏9"] = "pmset displaysleepnow",
