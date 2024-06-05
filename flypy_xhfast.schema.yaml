@@ -123,6 +123,7 @@ translator:
   # always_show_comments: true
   # enable_encoder: true
   # max_homophones: 7
+  # disable_user_dict_for_patterns:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
@@ -145,7 +146,7 @@ melt_eng:                           # 英文输入
   encode_commit_history: false
   initial_quality: 1.1
   comment_format:
-    - xform/.*// # 清空提示码
+    - xform/.*//                    # 清空提示码
 
 # 自定义短语
 custom_phrase:                      # 自定义短语, 包含固顶字
@@ -193,7 +194,7 @@ emoji:                              # Emoji转换
   opencc_config: emoji.json
   tag: emoji
   tips: all
-  tags: [ abc ]
+  tags: [abc]
   inherit_comment: false
 
 # 简体转繁体
@@ -225,7 +226,7 @@ radical_reverse_lookup:
     - xform/^(\w+)[[].*$/$1/
     - xform/^/~/
 
-#英文输入方案
+# 英文输入方案
 easy_en:
   tag: easy_en
   dictionary: easy_en
@@ -236,7 +237,7 @@ easy_en:
   suffix: "'"
   tips: "英文输入"
 
-#英文反查释意
+# 英文反查释意
 ecdict_reverse_lookup:
   tags: [easy_en]
   overwrite_comment: true     # 是否开启中文释意注解
@@ -275,7 +276,7 @@ punctuator:
     "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
     "(": ["(", （]
     ")": [")", ）]
-    "[": ['[',「, 【, 〔, ［, 〚, 〘]
+    "[": ['[', 「, 【, 〔, ［, 〚, 〘]
     "]": [']', 」, 】, 〕, ］, 〛, 〙]
     "{": [『, 〖, ｛]
     "}": [』, 〗, ｝]
