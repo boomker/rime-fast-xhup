@@ -14,34 +14,31 @@ local processor = {}
 local filter = {}
 
 local function get_record_filername(record_type)
-    local user_distribute_name = rime_api:get_distribution_name()
-    if user_distribute_name == "小狼毫" then
-        return string.format("%s\\Rime\\lua\\cold_word_record\\%s_words.lua", os.getenv("APPDATA"), record_type)
-    end
-    local system = io.popen("uname -s"):read("*l")
-    local filename = nil
-    -- body
-    if system == "Darwin" then
-        filename = string.format("%s/Library/Rime/lua/cold_word_record/%s_words.lua", os.getenv("HOME"), record_type)
-    elseif system == "Linux" then
-        local gtk_env = os.getenv("GTK_IM_MODULE")
-        filename = string.format(
-            "%s/%s/rime/lua/cold_word_drop/%s_words.lua",
-            os.getenv("HOME"),
-            gtk_env and (string.find(gtk_env, "fcitx") and ".local/share/fcitx5" or ".config/ibus"),
-            record_type
+    local user_distribute_name = rime_api:get_distribution_code_name()
+    if user_distribute_name:lower():match("weasel") then
+        return string.format("%s\\lua\\cold_word_record\\%s_words.lua",
+            rime_api:get_user_data_dir(), record_type
+        )
+    elseif user_distribute_name:lower():match("squirrel") then
+        return string.format("%s/lua/cold_word_record/%s_words.lua",
+            rime_api:get_user_data_dir(), record_type
+        )
+    elseif user_distribute_name:lower():match("fcitx") then
+        return string.format("%s/lua/cold_word_record/%s_words.lua",
+            rime_api:get_user_data_dir(), record_type
+        )
+    elseif user_distribute_name:lower():match("ibus") then
+        return string.format("%s/rime/lua/cold_word_record/%s_words.lua",
+            os.getenv("HOME") .. "/.config/ibus", record_type
         )
     end
-    return filename
 end
 
 local function write_word_to_file(record_type)
     local filename = get_record_filername(record_type)
     local record_header = string.format("local %s_words =\n", record_type)
     local record_tailer = string.format("\nreturn %s_words", record_type)
-    if not filename then
-        return false
-    end
+    if not filename then return false end
     local fd = assert(io.open(filename, "w")) --打开
     fd:setvbuf("line")
     fd:write(record_header)                   --写入文件头部
