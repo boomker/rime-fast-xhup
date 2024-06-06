@@ -94,7 +94,7 @@ function processor.func(key, env)
     end
     local page_pos = (selected_candidate_index // page_size) + 1
     selected_cand_idx = ((keyValue ~= -1) and (page_pos > 1))
-        and (keyValue + (page_pos - 1) * page_size) or selected_cand_idx
+        and ((keyValue - 1) + (page_pos - 1) * page_size) or selected_cand_idx
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
@@ -170,35 +170,44 @@ function processor.func(key, env)
         end
     end
 
-    if context:has_menu() and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j")) then
-        if (selected_cand_idx >= 0) and (preeditCodeLength > appLaunchPrefix:len()) then
-            local items = app_command_items[system_name][inputCode]
-            if appLaunchPrefix ~= "/j" and inputCode:sub(1, appLaunchPrefix:len()) == appLaunchPrefix then
-                local appTriggerKey = "/j" .. inputCode:gsub(appLaunchPrefix, "", 1)
-                items = app_command_items[system_name][appTriggerKey]
-            end
+    if (selected_cand_idx >= 0)
+        and (preeditCodeLength >= appLaunchPrefix:len())
+        and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j")) then
+        local selected_items = app_command_items[system_name][inputCode]
+        if (appLaunchPrefix ~= "/j") and (inputCode:sub(1, appLaunchPrefix:len()) == appLaunchPrefix) then
+            local appTriggerKey = "/j" .. inputCode:gsub(appLaunchPrefix, "", 1)
+            selected_items = app_command_items[system_name][appTriggerKey]
+        end
+        if not selected_items then
+            selected_items = app_command_items[system_name]
+        end
 
-            local candidateText = segment:get_candidate_at(selected_cand_idx).text
-            local appId = nil
-            if items and type(items[1]) == "table" then
-                for _, val in pairs(items) do
-                    if val[1] == candidateText then
-                        appId = val[2]
-                    end
+        local appId = nil
+        local candidateText = segment:get_candidate_at(selected_cand_idx).text
+        if selected_items and table.len(selected_items) > 2 then
+            for _, val in pairs(selected_items) do
+                if val[1] == candidateText then
+                    appId = val[2]
                 end
-            elseif items and type(items[1]) == "string" then
-                appId = items[2]
             end
+        elseif type(selected_items[1]) == "table" then
+            for _, v in pairs(selected_items) do
+                if v[1] == candidateText then
+                    appId = v[2]
+                end
+            end
+        elseif selected_items and (selected_items[1] == candidateText) then
+            appId = selected_items[2]
+        end
 
-            if items and candidateText and segment.prompt:match("应用闪切") then
-                context:clear()
-                cmd(system_name, "-b ", appId)
-                return 1 -- kAccepted 收下此key
-            else
-                engine:commit_text(candidateText)
-                context:clear()
-                return 1 -- kAccepted 收下此key
-            end
+        if appId and selected_items and candidateText and segment.prompt:match("应用闪切") then
+            context:clear()
+            cmd(system_name, "-b ", appId)
+            return 1 -- kAccepted 收下此key
+        else
+            engine:commit_text(candidateText)
+            context:clear()
+            return 1 -- kAccepted 收下此key
         end
     end
 
@@ -221,7 +230,7 @@ function translator.func(input, seg, env)
     local system_name = env.system_name
     local app_items = app_command_items[system_name][input]
 
-    if appLaunchPrefix ~= "/j" and input:sub(1, appLaunchPrefix:len()) == appLaunchPrefix then
+    if (appLaunchPrefix ~= "/j") and (input:sub(1, appLaunchPrefix:len()) == appLaunchPrefix) then
         local appTriggerKey = "/j" .. input:gsub(appLaunchPrefix, "", 1)
         app_items = app_command_items[system_name][appTriggerKey]
     end
@@ -241,6 +250,13 @@ function translator.func(input, seg, env)
         local cand = Candidate("shortcut", seg.start, seg._end, app_items[1], "")
         cand.quality = 999
         yield(cand)
+    elseif input:match("^" .. appLaunchPrefix) then
+        segment.prompt = "〔应用闪切〕"
+        for _, val in pairs(app_command_items[system_name]) do
+            local cand = Candidate("shortcut", seg.start, seg._end, val[1], "")
+            cand.quality = 999
+            yield(cand)
+        end
     end
 
     if
@@ -290,6 +306,10 @@ function translator.func(input, seg, env)
             end
             favor_items = app_command_items["Favors"]
             first_menu_selected_text = matchMenuKey
+        else
+            local cand = Candidate("unknown", seg.start, seg._end, "未匹配到一级菜单", "")
+            cand.quality = 999
+            yield(cand)
         end
     end
 
