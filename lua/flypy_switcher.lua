@@ -1,8 +1,7 @@
-local reload_env = require("tools/env_api")
-
-local flypy_switcher = {}
 local processor = {}
 local translator = {}
+local flypy_switcher = {}
+local reload_env = require("tools/env_api")
 
 function flypy_switcher.init(env)
     reload_env(env)
@@ -68,7 +67,7 @@ function processor.func(key, env)
     local context = engine.context
     local config = schema.config
     local composition = context.composition
-    if (composition:empty()) then return end
+    if composition:empty() then return 2 end
     local segment = composition:back()
     local preedit_code = context:get_script_text():gsub(" ", "")
 
@@ -76,7 +75,7 @@ function processor.func(key, env)
         if preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited then
             config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
         elseif preedit_code:match("^" .. env.easy_en_prefix) and (not env.en_comment_overwrited) then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true) -- 重写英文注释为中文
+            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true)  -- 重写英文注释为中文
         elseif (not env.cn_comment_overwrited) and (env.comment_hints > 0) then
             config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
         elseif env.cn_comment_overwrited and (env.comment_hints > 0) then
@@ -91,7 +90,7 @@ function processor.func(key, env)
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1                              -- kAccept
+        return 1                                    -- kAccept
     end
 
     if context:has_menu() and (key:repr() == env.commit_comment_key) then
@@ -114,7 +113,7 @@ function processor.func(key, env)
         env.engine:apply_schema(Schema("easy_en"))
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1                              -- kAccept
+        return 1                                    -- kAccept
     end
 
     if segment.prompt:match("切换配置选项") and (env.cand_select_kyes[key:repr()]) then
@@ -144,7 +143,7 @@ function processor.func(key, env)
             config:set_string("style/text_orientation", switch_to_val) -- 重写 horizontal
         elseif (cand_text == "切换编码区位样式") then
             local switch_to_val = not env.inline_preedit_style
-            config:set_bool("style/inline_preedit", switch_to_val)          -- 重写 inline_preedit
+            config:set_bool("style/inline_preedit", switch_to_val) -- 重写 inline_preedit
         elseif (cand_text == "切换候选序号样式") then
             if env:Config_get("menu/alternative_select_labels")[1] == 1 then
                 env:Config_set("menu/alternative_select_labels", env.alter_labels)
@@ -212,7 +211,7 @@ function processor.func(key, env)
         engine:apply_schema(Schema(schema.schema_id))
         return 1 -- kAccept
     end
-    return 2 -- kNoop, 不做任何操作, 交给下个组件处理
+    return 2     -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
 function translator.func(input, seg, env)
