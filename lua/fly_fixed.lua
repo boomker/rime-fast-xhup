@@ -37,6 +37,9 @@ function fly_fixed.func(input, env)
             else
                 table.insert(cands, cand)
             end
+        elseif cand_text:match("<br>") then
+            local candTxt = cand_text:gsub("<br>", "\r\t")
+            yield(Candidate("word", cand.start, cand._end, candTxt, ""))
         elseif
             (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
             or (
