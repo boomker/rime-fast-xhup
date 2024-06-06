@@ -106,6 +106,7 @@ function translator.func(input, seg, env)
 
     -- 自定义短语的置顶字词加标记
     env.custom_tran = env.custom_phrase_tran:query(input, seg)
+    if not env.custom_tran then return end
     for cand in env.custom_tran:iter() do
         if not cand.text:match("<br>") then
             cand.comment = custom_mark

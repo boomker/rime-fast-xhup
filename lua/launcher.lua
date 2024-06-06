@@ -7,39 +7,42 @@ local number_selected = false
 local first_menu_selected_text = nil
 local second_menu_selected_text = nil
 local reload_env = require("tools/env_api")
+local logger = require("tools/logger")
 
-local function cmd(system, cmdArgs, objId)
+local function cmd(system, cmdArgs, appId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
-        local osascript = objId
+        local osascript = appId
         os.execute(osascript)
     elseif system:lower():match("ios") and (cmdArgs == "exec") then
-        local osascript = objId
+        local osascript = appId
         os.execute(osascript)
     elseif system:lower():match("macos") then
-        local osascript = "open " .. cmdArgs .. objId
+        local osascript = "open " .. cmdArgs .. appId
         os.execute(osascript)
     elseif system:lower():match("ios") then
-        local osascript = "open " .. cmdArgs .. objId
+        local osascript = "open " .. cmdArgs .. appId
         os.execute(osascript)
     elseif system:lower():match("windows") then
-        local script = "start " .. "" .. objId
+        local script = "start " .. "" .. appId
         os.execute(script)
     end
 end
 
 local function detect_os()
-    local system = ""
     local user_distribute_name = rime_api:get_distribution_code_name()
     if user_distribute_name:lower():match("weasel") then
-        system = "Windows"
+        return "Windows"
     elseif user_distribute_name:lower():match("squirrel") then
-        system = "MacOS"
-    elseif user_distribute_name:lower():match("ibus-rime") then
-        system = "Linux"
+        return "MacOS"
+    elseif user_distribute_name:lower():match("fcitx%-rime") then -- fcitx-rime
+        return "MacOS"
+    elseif user_distribute_name:lower():match("^fcitx$") then
+        return "Linux"
+    elseif user_distribute_name:lower():match("ibus") then
+        return "Linux"
     else
-        system = "iOS"
+        return "iOS"
     end
-    return system
 end
 
 function processor.init(env)
@@ -77,24 +80,27 @@ function processor.func(key, env)
         return 2
     end
 
+    local _idx = -1
     local selected_cand_idx = -1
-    local selected_candidate_index = (not composition:empty()) and segment.selected_index or -1
+    local selected_candidate_index = segment.selected_index or -1
     if keyValue == "space" then
-        selected_cand_idx = selected_candidate_index
+        _idx = selected_candidate_index
     elseif keyValue == "Return" then
-        selected_cand_idx = selected_candidate_index
+        _idx = selected_candidate_index
     elseif keyValue == "semicolon" then
-        selected_cand_idx = 1
+        _idx = 1
     elseif keyValue == "apostrophe" then
-        selected_cand_idx = 2
+        _idx = 2
     elseif string.find(keyValue, "^[1-9]$") then
-        selected_cand_idx = tonumber(keyValue) - 1
+        _idx = tonumber(keyValue) - 1
     elseif keyValue == "0" then
-        selected_cand_idx = 9
+        _idx = 9
     end
     local page_pos = (selected_candidate_index // page_size) + 1
+    -- logger.writeLog("**1** keyValue: " .. tostring(keyValue) .. ", pos: " .. tostring(page_pos))
     selected_cand_idx = ((keyValue ~= -1) and (page_pos > 1))
-        and ((keyValue - 1) + (page_pos - 1) * page_size) or selected_cand_idx
+        and ((keyValue - 1) + (page_pos - 1) * page_size) or _idx
+    -- logger.writeLog("**2** selected_cand_idx: " .. tostring(selected_cand_idx))
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
@@ -170,14 +176,17 @@ function processor.func(key, env)
         end
     end
 
+    -- logger.writeLog("**3** selected_cand_idx: " .. tostring(selected_cand_idx))
     if (selected_cand_idx >= 0)
         and (preeditCodeLength >= appLaunchPrefix:len())
-        and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j")) then
+        and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j"))
+    then
         local selected_items = app_command_items[system_name][inputCode]
         if (appLaunchPrefix ~= "/j") and (inputCode:sub(1, appLaunchPrefix:len()) == appLaunchPrefix) then
             local appTriggerKey = "/j" .. inputCode:gsub(appLaunchPrefix, "", 1)
             selected_items = app_command_items[system_name][appTriggerKey]
         end
+
         if not selected_items then
             selected_items = app_command_items[system_name]
         end
@@ -186,9 +195,7 @@ function processor.func(key, env)
         local candidateText = segment:get_candidate_at(selected_cand_idx).text
         if selected_items and table.len(selected_items) > 2 then
             for _, val in pairs(selected_items) do
-                if val[1] == candidateText then
-                    appId = val[2]
-                end
+                if val[1] == candidateText then appId = val[2] end
             end
         elseif type(selected_items[1]) == "table" then
             for _, v in pairs(selected_items) do
@@ -200,7 +207,7 @@ function processor.func(key, env)
             appId = selected_items[2]
         end
 
-        if appId and selected_items and candidateText and segment.prompt:match("应用闪切") then
+        if appId and segment.prompt:match("应用闪切") then
             context:clear()
             cmd(system_name, "-b ", appId)
             return 1 -- kAccepted 收下此key
@@ -253,9 +260,17 @@ function translator.func(input, seg, env)
     elseif input:match("^" .. appLaunchPrefix) then
         segment.prompt = "〔应用闪切〕"
         for _, val in pairs(app_command_items[system_name]) do
-            local cand = Candidate("shortcut", seg.start, seg._end, val[1], "")
-            cand.quality = 999
-            yield(cand)
+            if type(val[1]) == "string" then
+                local cand = Candidate("shortcut", seg.start, seg._end, val[1], "")
+                cand.quality = 999
+                yield(cand)
+            else
+                for _, v in pairs(val) do
+                    local cand = Candidate("shortcut", seg.start, seg._end, v[1], "")
+                    cand.quality = 999
+                    yield(cand)
+                end
+            end
         end
     end
 
