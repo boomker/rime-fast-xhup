@@ -79,8 +79,7 @@ local function space_leader_word(key, env)
         return 1 -- kAccepted
     end
 
-    if cand_select_kyes[key_value] and (#input_code >= 1) and (segment.prompt == "")
-    then
+    if cand_select_kyes[key_value] and (#input_code >= 1) and (segment.prompt == "") then
         local index = cand_select_kyes[key_value]
         local selected_cand_idx = (index == -1) and segment.selected_index or index
         local selected_cand = segment:get_candidate_at(selected_cand_idx)

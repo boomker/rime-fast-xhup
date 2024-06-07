@@ -38,18 +38,20 @@ local pairTable = {
 }
 
 local function detect_os()
-    local system = ""
     local user_distribute_name = rime_api:get_distribution_code_name()
     if user_distribute_name:lower():match("weasel") then
-        system = "Windows"
+        return "Windows"
     elseif user_distribute_name:lower():match("squirrel") then
-        system = "MacOS"
-    elseif user_distribute_name:lower():match("ibus-rime") then
-        system = "Linux"
+        return "MacOS"
+    elseif user_distribute_name:lower():match("fcitx%-rime") then -- fcitx-rime
+        return "MacOS"
+    elseif user_distribute_name:lower():match("^fcitx$") then
+        return "Linux"
+    elseif user_distribute_name:lower():match("ibus") then
+        return "Linux"
     else
-        system = "iOS"
+        return "iOS"
     end
-    return system
 end
 
 local function pair_symbols(key, env)
