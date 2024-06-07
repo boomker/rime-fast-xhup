@@ -2,6 +2,7 @@
 set -eu
 
 files=("base" "ext" "tencent" "emoji" "en_ext")
+# iceRepoPath="${HOME}/gitrepos/rime-frost"
 iceRepoPath="${HOME}/gitrepos/rime-ice"
 repoRoot="$(git rev-parse --show-toplevel)"
 scriptPath=$(dirname "$(realpath "$0")")
@@ -9,10 +10,11 @@ pyScrPath="${scriptPath}/flypy_dict_generator_new.py"
 # rimeUserPath="${HOME}/Library/Rime"
 # rimeDeployer="/Library/Input Methods/Squirrel.app/Contents/MacOS/rime_deployer"
 prevCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
-git -C "${iceRepoPath}" pull
-
+[[ -z $(git status --short) ]] && git -C "${iceRepoPath}" pull
 curCommit=$(git -C "${iceRepoPath}" rev-parse --short HEAD)
-[[ ${curCommit} == "${prevCommit}" ]] && exit
+
+diffCommits="${prevCommit}..HEAD"
+[[ ${curCommit} == "${prevCommit}" ]] && diffCommits="HEAD"
 
 gcp -aR "${iceRepoPath}"/en_dicts/*.dict.yaml "${repoRoot}/en_dicts/"
 
@@ -25,12 +27,12 @@ for f in "${files[@]}"; do
 	[[ "$f" == "emoji" ]] && src_file="${iceRepoPath}/opencc/emoji.txt"
 	[[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji_word.txt"
 
-	git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |
+	git -C "${iceRepoPath}" diff "${diffCommits}" -- "${src_file}" |
 		/usr/local/bin/rg "^\-" | \rg -v "\-#|\+v|\---" | tr -d "-" >"${f}_min.diff"
 	gcut -f1 "${f}_min.diff" | xargs -I % -n 1 ambr --no-interactive --no-parent-ignore --regex '^%\t.*' '' "${tgt_file}"
 	gsed -i -r '12,${/^$/d}' "${tgt_file}"
 
-	git -C "${iceRepoPath}" diff "${prevCommit}"..HEAD -- "${src_file}" |
+	git -C "${iceRepoPath}" diff "${diffCommits}" -- "${src_file}" |
 		/usr/local/bin/rg "^\+" | \rg -v "\+#|\+v|\+\+" | tr -d "+" >"${f}_add.diff"
 
 	[[ "$f" =~ emoji|en_ext ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >>"${tgt_file}"
