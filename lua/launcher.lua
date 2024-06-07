@@ -99,8 +99,9 @@ function processor.func(key, env)
 
     local page_pos = (selected_index // page_size) + 1
     local idx = (key_value == -1) and selected_index or key_value
-    selected_cand_idx = ((key_value ~= -1) and (page_pos > 1))
-        and (key_value + (page_pos - 1) * page_size) or idx
+    selected_cand_idx = (
+        (type(key_value) == "number") and (key_value ~= -1) and (page_pos > 1)
+    ) and (key_value + (page_pos - 1) * page_size) or idx
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
@@ -120,7 +121,8 @@ function processor.func(key, env)
 
     if
         context:has_menu()
-        and (selected_cand_idx >= 0)
+        and (type(selected_cand_idx) == "number")
+        and (tonumber(selected_cand_idx) >= 0)
         and (inputCode:match("^" .. favorCmdPrefix))
     then
         if (selected_cand_idx >= 0) and (inputCode == favorCmdPrefix) and segment.prompt:match("快捷指令") then
@@ -176,7 +178,9 @@ function processor.func(key, env)
         end
     end
 
-    if (selected_cand_idx >= 0)
+    if context:has_menu()
+        and (type(selected_cand_idx) == "number")
+        and (tonumber(selected_cand_idx) >= 0)
         and (preeditCodeLength >= appLaunchPrefix:len())
         and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j"))
     then
