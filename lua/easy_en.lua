@@ -6,10 +6,10 @@ local easy_en = {}
 
 local function truncate_comment(comment)
     local MAX_LENGTH = 20
-    local comment_res = comment:gsub(" | ", "; "):gsub("[;,.( ]+$", "")
+    local comment_res = comment:gsub(" |", "; "):gsub("[;,.=( ]+$", "")
     if #comment > MAX_LENGTH then
         comment_res = string.utf8_sub(comment_res, 1, MAX_LENGTH)
-        return comment_res and comment_res:gsub("[%a;,.( ]+$", "")
+        return comment_res and comment_res:gsub("[;,.=( ]+$", "")
     end
     return comment_res
 end
