@@ -7,7 +7,7 @@ local number_selected = false
 local first_menu_selected_text = nil
 local second_menu_selected_text = nil
 local reload_env = require("tools/env_api")
-local logger = require("tools/logger")
+-- local logger = require("tools/logger")
 
 local function cmd(system, cmdArgs, appId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
@@ -80,27 +80,27 @@ function processor.func(key, env)
         return 2
     end
 
-    local _idx = -1
+    local key_value = keyValue
     local selected_cand_idx = -1
-    local selected_candidate_index = segment.selected_index or -1
+    local selected_index = segment.selected_index or -1
     if keyValue == "space" then
-        _idx = selected_candidate_index
+        key_value = -1
     elseif keyValue == "Return" then
-        _idx = selected_candidate_index
+        key_value = -1
     elseif keyValue == "semicolon" then
-        _idx = 1
+        key_value = 1
     elseif keyValue == "apostrophe" then
-        _idx = 2
+        key_value = 2
     elseif string.find(keyValue, "^[1-9]$") then
-        _idx = tonumber(keyValue) - 1
+        key_value = tonumber(keyValue) - 1
     elseif keyValue == "0" then
-        _idx = 9
+        key_value = 9
     end
-    local page_pos = (selected_candidate_index // page_size) + 1
-    -- logger.writeLog("**1** keyValue: " .. tostring(keyValue) .. ", pos: " .. tostring(page_pos))
-    selected_cand_idx = ((keyValue ~= -1) and (page_pos > 1))
-        and ((keyValue - 1) + (page_pos - 1) * page_size) or _idx
-    -- logger.writeLog("**2** selected_cand_idx: " .. tostring(selected_cand_idx))
+
+    local page_pos = (selected_index // page_size) + 1
+    local idx = (key_value == -1) and selected_index or key_value
+    selected_cand_idx = ((key_value ~= -1) and (page_pos > 1))
+        and (key_value + (page_pos - 1) * page_size) or idx
 
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
@@ -176,7 +176,6 @@ function processor.func(key, env)
         end
     end
 
-    -- logger.writeLog("**3** selected_cand_idx: " .. tostring(selected_cand_idx))
     if (selected_cand_idx >= 0)
         and (preeditCodeLength >= appLaunchPrefix:len())
         and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j"))
