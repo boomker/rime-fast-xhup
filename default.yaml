@@ -152,7 +152,7 @@ key_binder:
   # select_last_character: "bracketright"     # 右中括号 ]
   bindings:
     - {when: has_menu,  accept: semicolon, send: 2}
-    - {when: has_menu,  accept: apostrophe, send: 3}       ## 单引号用于第3候选
+    # - {when: has_menu,  accept: apostrophe, send: 3}       ## 单引号用于第3候选
     # Tab / Shift+Tab 切换光标至下/上一个拼音
     - {when: composing, accept: Shift+Tab, send: Shift+Left}
     - {when: composing, accept: Tab, send: Shift+Right}

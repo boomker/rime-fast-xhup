@@ -1,6 +1,8 @@
 -- 自动补全配对的符号, 并把光标左移到符号对内部
 -- ref: https://github.com/hchunhui/librime-lua/issues/84
 
+local rime_api_helper = require("tools/rime_api_helper")
+
 local function moveCursorToLeft()
     local osascript = [[osascript -e '
       tell application "System Events" to tell front process
@@ -10,51 +12,39 @@ local function moveCursorToLeft()
     os.execute(osascript)
 end
 
-local pairTable = {
-    ['"'] = '"',
-    ["“"] = "”",
-    ["'"] = "'",
-    ["‘"] = "’",
-    ["`"] = "`",
-    ["("] = ")",
-    ["（"] = "）",
-    ["「"] = "」",
-    ["["] = "]",
-    ["【"] = "】",
-    ["〔"] = "〕",
-    ["［"] = "］",
-    ["〚"] = "〛",
-    ["〘"] = "〙",
-    ["{"] = "}",
-    ["｛"] = "｝",
-    ["『"] = "』",
-    ["〖"] = "〗",
-    ["<"] = ">",
-    ["《"] = "》",
-    ["quotedbl"] = { "“”", '""' },
-    ["apostrophe"] = { "‘’", "''" },
-    -- ["apostrophe"] = { "“”", '""' },
-    -- ["quotedbl"] = { "‘’", "''" },
-}
+local P = {}
 
-local function detect_os()
-    local user_distribute_name = rime_api:get_distribution_code_name()
-    if user_distribute_name:lower():match("weasel") then
-        return "Windows"
-    elseif user_distribute_name:lower():match("squirrel") then
-        return "MacOS"
-    elseif user_distribute_name:lower():match("fcitx%-rime") then -- fcitx-rime
-        return "MacOS"
-    elseif user_distribute_name:lower():match("^fcitx$") then
-        return "Linux"
-    elseif user_distribute_name:lower():match("ibus") then
-        return "Linux"
-    else
-        return "iOS"
-    end
+function P.init(env)
+    env.system_name = rime_api_helper.detect_os()
+    env.pairTable = {
+        ['"'] = '"',
+        ["“"] = "”",
+        ["'"] = "'",
+        ["‘"] = "’",
+        ["`"] = "`",
+        ["("] = ")",
+        ["（"] = "）",
+        ["「"] = "」",
+        ["["] = "]",
+        ["【"] = "】",
+        ["〔"] = "〕",
+        ["［"] = "］",
+        ["〚"] = "〛",
+        ["〘"] = "〙",
+        ["{"] = "}",
+        ["｛"] = "｝",
+        ["『"] = "』",
+        ["〖"] = "〗",
+        ["<"] = ">",
+        ["《"] = "》",
+        ["quotedbl"] = { "“”", '""' },
+        ["apostrophe"] = { "‘’", "''" },
+        -- ["apostrophe"] = { "“”", '""' },
+        -- ["quotedbl"] = { "‘’", "''" },
+    }
 end
 
-local function pair_symbols(key, env)
+function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local composition = context.composition
@@ -69,20 +59,20 @@ local function pair_symbols(key, env)
     end
 
     if ((key_name == "quotedbl") or (key_name == "apostrophe"))
-        and (detect_os() == "iOS")
+        and (env.system_name == "iOS")
     then
         return 2
     end
 
     local prev_ascii_mode = context:get_option("ascii_mode")
-    if pairTable[key_name] and (not context:is_composing()) then
+    if env.pairTable[key_name] and (not context:is_composing()) then
         if prev_ascii_mode then
-            engine:commit_text(pairTable[key_name][2])
+            engine:commit_text(env.pairTable[key_name][2])
         else
-            engine:commit_text(pairTable[key_name][1])
+            engine:commit_text(env.pairTable[key_name][1])
         end
 
-        if (detect_os() == "MacOS") or (detect_os() == "iOS") then
+        if (env.system_name == "MacOS") or (env.system_name == "iOS") then
             moveCursorToLeft()
         end
         context:clear()
@@ -103,13 +93,13 @@ local function pair_symbols(key, env)
 
         if (index >= 0) and (index < segment.menu:candidate_count()) then
             local candidateText = segment:get_candidate_at(index).text -- 获取指定项 从0起
-            local pairedText = pairTable[candidateText]
+            local pairedText = env.pairTable[candidateText]
             if pairedText then
                 engine:commit_text(candidateText)
                 engine:commit_text(pairedText)
                 context:clear()
 
-                if (detect_os() == "MacOS") or (detect_os() == "iOS") then
+                if (env.system_name == "MacOS") or (env.system_name == "iOS") then
                     moveCursorToLeft()
                 end
 
@@ -121,4 +111,4 @@ local function pair_symbols(key, env)
     return 2 -- kNoop 此processor 不處理
 end
 
-return { processor = pair_symbols }
+return P

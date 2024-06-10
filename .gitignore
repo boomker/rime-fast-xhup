@@ -1,10 +1,12 @@
-__pycache__/
+sync/
 build/
 *.userdb/
-sync/
+__pycache__/
 user.yaml
 .DS_Store
+**/runLog.txt
 installation.yaml
+lua/cold_word_record/
+lua/pin_word_record.lua
 lua/launcher_config.lua
 zh-hans-t-huayu-v7-bgw.gram
-**/runLog.txt

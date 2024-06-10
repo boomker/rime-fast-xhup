@@ -1,6 +1,6 @@
 
 local reload_env = require("tools/env_api")
-local translator = {}
+local T = {}
 local history_list = {}
 
 local function is_candidate_in_type(cand, excluded_types)
@@ -13,7 +13,7 @@ local function is_candidate_in_type(cand, excluded_types)
     return false
 end
 
-function translator.init(env)
+function T.init(env)
     reload_env(env)
     local config = env.engine.schema.config
     local history_num_max = config:get_string("history" .. "/history_num_max") or 30
@@ -29,11 +29,11 @@ function translator.init(env)
     end)
 end
 
-function translator.fini(env)
+function T.fini(env)
     env.notifier_commit_history:disconnect()
 end
 
-function translator.func(input, seg, env)
+function T.func(input, seg, env)
     local config = env.engine.schema.config
     local composition = env.engine.context.composition
     if (composition:empty()) then return end
@@ -51,6 +51,4 @@ function translator.func(input, seg, env)
     end
 end
 
-return {
-    translator = { init = translator.init, func = translator.func, fini = translator.fini },
-}
+return T

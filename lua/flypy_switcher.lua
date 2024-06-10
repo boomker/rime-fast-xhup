@@ -2,6 +2,7 @@ local processor = {}
 local translator = {}
 local flypy_switcher = {}
 local reload_env = require("tools/env_api")
+local rime_api_helper = require("tools/rime_api_helper")
 
 function flypy_switcher.init(env)
     reload_env(env)
@@ -21,19 +22,6 @@ function flypy_switcher.init(env)
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
     env.easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
     env.switch_options = config:get_string("recognizer/patterns/switch_options"):match("[a-z/]+") or "/so"
-    env.cand_select_kyes = {
-        ["space"] = -1,
-        ["Return"] = -1,
-        ["1"] = 0,
-        ["2"] = 1,
-        ["3"] = 2,
-        ["4"] = 3,
-        ["5"] = 4,
-        ["6"] = 5,
-        ["7"] = 6,
-        ["8"] = 7,
-        ["9"] = 8,
-    }
     env.alter_labels = { '①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⓪' }
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }
     env.switch_options_menu = {
@@ -116,13 +104,12 @@ function processor.func(key, env)
         return 1                                    -- kAccept
     end
 
-    if segment.prompt:match("切换配置选项") and (env.cand_select_kyes[key:repr()]) then
-        local key_value = env.cand_select_kyes[key:repr()]
-        local index = segment.selected_index
-        local idx = (key_value == -1) and index or key_value
-        local page_pos = (index // page_size) + 1
-        idx = ((key_value ~= -1) and (page_pos > 1)) and (key_value + (page_pos - 1) * page_size) or idx
-        local selected_cand = segment:get_candidate_at(idx)
+    if segment.prompt:match("切换配置选项") then
+        local key_value = key:repr()
+        local idx = segment.selected_index
+        local index = rime_api_helper.get_selected_candidate_index(key_value, idx, page_size)
+        if index < 0 then return 2 end
+        local selected_cand = segment:get_candidate_at(index)
         local cand_text = selected_cand.text:gsub(" ", "")
 
         if (cand_text == "切换纵横布局样式") then
@@ -191,7 +178,7 @@ function processor.func(key, env)
             env:Config_set("switches/@last/reset", switch_to_val)
         elseif (cand_text == "开关中英词条空格") then
             local filters = env:Config_get("engine/filters")
-            local target_filter = "lua_filter@cn_space_en_filter"
+            local target_filter = "lua_filter@*word_append_space*filter"
             local filter_idx = table.find_index(filters, target_filter)
             if filter_idx then
                 table.remove(filters, filter_idx)
@@ -201,7 +188,7 @@ function processor.func(key, env)
             env:Config_set("engine/filters", filters)
         elseif (cand_text == "禁用中英前置空格") then
             local processors = env:Config_get("engine/processors")
-            local target_processor = "lua_processor@space_leader_word"
+            local target_processor = "lua_processor@*word_append_space*processor"
             local processor_idx = table.find_index(processors, target_processor)
             if processor_idx then
                 table.remove(processors, processor_idx)

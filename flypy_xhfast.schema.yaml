@@ -5,18 +5,18 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "2024.05.16"
+  version: "2024.06.10"
   author:
     - boomker
   description: |
     小鹤双拼+辅助码
     github.com:boomker/rime-fast-xhup
   dependencies:
-    - melt_eng          # 英文单词&词组 - 简明英汉词典(增强版)
-    - easy_en
-    - ecdict_reverse
-    - flypy_radical
-    - flypy_phrase      # 中文词库 - 现代汉语词典 & 清华开源词库
+    - easy_en           # 英文输入方案
+    - melt_eng          # 中英混合,副翻译器
+    - ecdict_reverse    # 英文反查中文释义
+    - flypy_radical     # 部件组字
+    - flypy_phrase      # 自动上屏短语
 
 # 选项开关
 switches:
@@ -35,14 +35,14 @@ switches:
 # 输入引擎
 engine:
   processors:
-    - lua_processor@pin_word_processor
-    - lua_processor@launcher_processor
-    - lua_processor@select_char_processor
-    - lua_processor@flypy_switch_processor
-    - lua_processor@pair_symbols_processor
-    - lua_processor@idiom_expand_processor
-    - lua_processor@cold_word_drop_processor
-    - lua_processor@word_autocommit_processor
+    - lua_processor@*pin_word*processor
+    - lua_processor@*launcher*processor
+    - lua_processor@*select_char
+    - lua_processor@*flypy_switcher*processor
+    - lua_processor@*pair_symbols
+    - lua_processor@*idiom_abbr_expand
+    - lua_processor@*cold_word_drop*processor
+    - lua_processor@*word_autocommit*processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -74,35 +74,35 @@ engine:
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
-    - lua_translator@pin_word_translator              # 自定义置顶词
-    - lua_translator@flypy_help_translator            # /oh 触发进入帮助菜单
-    - lua_translator@flypy_switch_translator          # /so 触发进入选项切换菜单
-    - lua_translator@lunar_translator                 # /nl 触发显示农历
-    - lua_translator@datetime_translator              # date, week, time, /wd, /wk, /wt 触发
-    - lua_translator@launcher_translator              # /jj, /fj 触发快捷命令(可改触发前缀)
-    - lua_translator@calc_translator                  # /vs 触发计算器
-    - lua_translator@laTex_translator                 # /lt 触发 LaTeX 输入
-    - lua_translator@number_translator                # /cn 触发繁体大写金额数字
-    - lua_translator@history_translator               # /hs 触发显示上屏历史
-    - lua_translator@word_custom_translator           # ] 置于输入码末尾触发自定义单词入库
-    - lua_translator@word_autocaps_translator         # A-Z 大写字母开头触发单词自动大写
-    - lua_translator@word_autocommit_translator       # [ 单字全码和部分成语短语自动触发
+    - lua_translator@*pin_word*translator             # 自定义置顶词
+    - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
+    - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
+    - lua_translator@*chinese_lunar                   # /nl 触发显示农历
+    - lua_translator@*date_time                       # date, week, time, /wd, /wk, /wt 触发
+    - lua_translator@*launcher*translator             # /jj, /fj 触发快捷命令(可改触发前缀)
+    - lua_translator@*calculator                      # /vs 触发计算器
+    - lua_translator@*laTex                           # /lt 触发 LaTeX 输入
+    - lua_translator@*chinese_number                  # /cn 触发繁体大写金额数字
+    - lua_translator@*commit_history                  # /hs 触发显示上屏历史
+    - lua_translator@*en_custom                       # ] 置于输入码末尾触发自定义单词入库
+    - lua_translator@*word_autocaps*translator        # A-Z 大写字母开头触发单词自动大写
+    - lua_translator@*word_autocommit*translator      # [ 单字全码和部分成语短语自动触发
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
     - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
     - simplifier@emoji
     - simplifier@traditionalize                       # 简繁切换
-    - lua_filter@easy_en_filter
-    - lua_filter@charset_filter
-    - lua_filter@fly_fixed_filter
-    - lua_filter@emoji_reduce_filter
-    - lua_filter@charset_comment_hint
-    - lua_filter@word_autocaps_filter
-    - lua_filter@cold_word_drop_filter
-    - lua_filter@word_autocommit_filter
-    - lua_filter@pin_word_filter
-    - lua_filter@launcher_filter
+    - lua_filter@*easy_en*filter
+    - lua_filter@*charset*filter
+    - lua_filter@*fly_fixed
+    - lua_filter@*reduce_emoji
+    - lua_filter@*charset*comment_hint
+    - lua_filter@*word_autocaps*filter
+    - lua_filter@*cold_word_drop*filter
+    - lua_filter@*word_autocommit*filter
+    - lua_filter@*pin_word*filter
+    - lua_filter@*launcher*filter
     - uniquifier                                      #  只能放到最后!
 
 # 八股文

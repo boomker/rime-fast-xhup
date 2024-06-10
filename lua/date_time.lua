@@ -276,7 +276,7 @@ local function getTimeStr(str)
     return str
 end
 
-local translator = {}
+local T = {}
 local input_prefixs = {
     ["/wqt"] = { -2, "前天" },
     ["/wzt"] = { -1, "昨天" },
@@ -294,7 +294,7 @@ local input_prefixs = {
     ["/wnm"] = { get_month_sameday("after"), "下个月今天" },
 }
 
-function translator.func(input, seg, env)
+function T.func(input, seg, env)
     local composition = env.engine.context.composition
     local config = env.engine.schema.config
     local pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
@@ -374,4 +374,4 @@ function translator.func(input, seg, env)
     end
 end
 
-return { translator = translator }
+return T

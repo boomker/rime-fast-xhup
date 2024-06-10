@@ -1,23 +1,18 @@
 -- author: https://github.com/ChaosAlphard
 -- 说明 https://github.com/gaboolic/rime-shuangpin-fuzhuma/pull/41
-local M = {}
+local T = {}
 
-function M.init(env)
+function T.init(env)
     local config = env.engine.schema.config
     --   env.name_space = env.name_space:gsub('^*', '')
-    M.prefix = config:get_string("recognizer/patterns/calculator"):match("%^([a-z/]+).*") or '/vs'
-    M.tips = config:get_string("calculator/tips") or "计算器"
+    T.prefix = config:get_string("recognizer/patterns/calculator"):match("%^([a-z/]+).*") or '/vs'
+    T.tips = config:get_string("calculator/tips") or "计算器"
 end
 
 local function startsWith(str, start)
     return string.sub(str, 1, string.len(start)) == start
 end
 
---[[
-local function truncateFromStart(str, truncateStr)
-    return string.sub(str, string.len(truncateStr) + 1)
-end
---]]
 
 -- 函数表
 local calc_methods = {
@@ -237,15 +232,14 @@ local function replaceToFactorial(str)
 end
 
 -- 简单计算器
-function M.func(input, seg, env)
+function T.func(input, seg, env)
     local composition = env.engine.context.composition
-    if (composition:empty()) then return end
-    local segment = composition:back()
+    -- if (composition:empty()) then return end
+    -- local segment = composition:back()
 
-    if startsWith(input, M.prefix) or (seg:has_tag("calculator")) then
+    if startsWith(input, T.prefix) or (seg:has_tag("calculator")) then
+        -- segment.prompt = "〔" .. M.tips .. "〕"
         -- 提取算式
-        -- local express = truncateFromStart(input, M.prefix)
-        segment.prompt = "〔" .. M.tips .. "〕"
         local express = input
         -- 算式长度 < 2 直接终止(没有计算意义)
         if (string.len(express) < 2) then return end
@@ -264,4 +258,4 @@ function M.func(input, seg, env)
     end
 end
 
-return M
+return T

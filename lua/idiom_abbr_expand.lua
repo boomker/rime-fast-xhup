@@ -1,11 +1,11 @@
-local idiom_abbr_expand = {}
+local P = {}
 
-function idiom_abbr_expand.init(env)
+function P.init(env)
     local config = env.engine.schema.config
     env.expand_simp_key = config:get_string("key_binder/expand_abbr_py") or "Control+0"
 end
 
-function idiom_abbr_expand.func(key, env)
+function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local input_code = context.input:gsub("%s", "")
@@ -29,6 +29,4 @@ function idiom_abbr_expand.func(key, env)
     return 2                                        -- kNoop
 end
 
-return {
-    processor = { init = idiom_abbr_expand.init, func = idiom_abbr_expand.func },
-}
+return P

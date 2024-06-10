@@ -39,9 +39,9 @@ patch:
     translators/+:
     filters/+:
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  'engine/processors/@after 1': lua_processor@space_leader_word
+  'engine/processors/@after 1': lua_processor@*word_append_space*processor
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
-  'engine/filters/@before last': lua_filter@cn_space_en_filter
+  'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 'engine/processors/@before 0': predictor
   # "engine/translators/@before 0": predict_translator
 
@@ -51,7 +51,7 @@ patch:
     pin_cand: "Control+t"             # 候选词置顶
     drop_cand: "Control+d"            # 强制删词, 无视输入的编码
     hide_cand: "Control+x"            # 匹配当前输入码后隐藏指定的候选字词
-    turn_down_cand: "Control+j"       # 匹配当前输入码后降频指定的候选字词
+    reduce_fq_cand: "Control+j"       # 匹配当前输入码后降频指定的候选字词
     switch_comment: "Control+n"       # 切换注释(小鹤形码 / 带调拼音 / 无)
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
@@ -111,7 +111,7 @@ patch:
 
   speller/+:
     algebra/+:
-      - derive/[[]//                            # 注释后，间接辅码
+      # - derive/[[]//                          # 取消注释后，直接接辅码
 
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
@@ -185,7 +185,7 @@ patch:
     comment_mark: " 🔝"               # 置顶词标记
     excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
 
-  cold_wold_reduce:                   # 生僻词条降频到第 idx 个位置
+  cold_word_reduce:                   # 生僻词条降频到第 idx 个位置
     idx: 4
     excluded_types: ["easy_en"]
 

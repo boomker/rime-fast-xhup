@@ -1,4 +1,4 @@
-local processor = {}
+local P = {}
 
 local function reset_cand_property(env)
     local context = env.engine.context
@@ -8,11 +8,11 @@ local function reset_cand_property(env)
     context:set_property('prev_cand_is_preedit', "0")
 end
 
-function processor.init(env)
+function P.init(env)
     reset_cand_property(env)
 end
 
-function processor.func(key, env)
+function P.func(key, env)
     local engine               = env.engine
     local context              = engine.context
     local input_code           = context.input
@@ -181,6 +181,4 @@ function processor.func(key, env)
     return 2 -- kNoop
 end
 
-return {
-    processor = { init = processor.init, func = processor.func }
-}
+return P

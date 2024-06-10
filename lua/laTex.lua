@@ -135,7 +135,8 @@ local snip_charmap = {
     ["."] = "_",
 }
 
-local function tex_translator(input, seg, env)
+local T = {}
+function T.func(input, seg, env)
     local config = env.engine.schema.config
     local composition = env.engine.context.composition
     if (composition:empty()) then return end
@@ -158,9 +159,9 @@ local function tex_translator(input, seg, env)
         expr = "$" .. expr .. "$"
         expr = string.gsub(expr, " (%W)", "%1")
         --- Candidate(type, start, end, text, comment)
-        segment.prompt = "〔 .. " .. tips .. "〕"
+        segment.prompt = "〔" .. tips .. "〕"
         yield(Candidate("math", seg.start, seg._end, expr, " "))
     end
 end
 
-return { translator = tex_translator }
+return T
