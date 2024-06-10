@@ -104,6 +104,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - `/fj` 前缀: 用于输入常用短语(邮箱/手机号/银行卡号/收件地址); 和打开常用网站网址,
   本地文件路径; 执行常见指令(开关系统设置) 等等, 可自行在 [配置文件](https://github.com/boomker/rime-fast-xhup/blob/4493152dfee01f4a49c961180b25ca73a6555dea/lua/launcher_config.lua)里添加。
 - `/hs` 前缀: 历史上屏记录, 充当简易输入记录器, 聊天记录回溯😈, 不会记录 Emoji 表情。
+- `/vs` 前缀: 计算器, 支持加减乘除法, 开方、幂次方、阶乘、正弦余弦函数等多种运算。
 - `/so` 前缀: 选项切换功能菜单, 实现了方案中个性化配置与选项实时切换或更改, 某些配置会延迟生效。
 - `/cn` 前缀: 用于输入中文数字, 例如: 输入 `/cn` `123` 得到 “一百二十三”, “壹佰贰拾叁”, 等。
 - `/lt` 前缀: 简易 LaTeX 公式。例如：敲 `/lt` `ff>>ooc` 空格，即可输出 `$\phi\rangle\propto$`。
@@ -179,7 +180,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 4. * Q: 中英混合输出自动添加空格功能, 有时会在编辑区起始位置添加空格
    * A:  这个功能目前还不够完善, 可以将 [这行](https://github.com/boomker/rime-fast-xhup/blob/4493152dfee01f4a49c961180b25ca73a6555dea/flypy_xhfast.custom.yaml#L36) 注释掉
 5. * Q: 形码辅助引导符可以去掉吗? 想直接使用辅助码, 不用引导符
-   * A: 默认就是直接辅助. 如若喜欢词组优先, 轻度使用辅助码, 取消 [这行](https://github.com/boomker/rime-fast-xhup/blob/4493152dfee01f4a49c961180b25ca73a6555dea/flypy_xhfast.custom.yaml#L103) 注释即可
+   * A:  可以的,  取消 [这行](https://github.com/boomker/rime-fast-xhup/blob/4493152dfee01f4a49c961180b25ca73a6555dea/flypy_xhfast.custom.yaml#L103) 注释即可
 6. * Q: 快捷指令功能能在移动端支持触控点击吗?
    * A: 目前暂不支持
 7. * Q: 符号配对功能有时会有光标居中动作的滞后现象
