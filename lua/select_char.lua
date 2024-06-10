@@ -3,7 +3,7 @@
 -- 删除了默认按键，需要在 key_binder（default.custom.yaml）下设置
 -- http://lua-users.org/lists/lua-l/2014-04/msg00590.html
 
-local select_char = {}
+local P = {}
 
 local function first_character(s)
     return string.utf8_sub(s, 1, 1)
@@ -32,14 +32,14 @@ local function reset_cand_property(env)
     context:set_property("prev_cand_is_preedit", "0")
 end
 
-function select_char.init(env)
+function P.init(env)
     local engine = env.engine
     local config = engine.schema.config
     env.first_key = config:get_string("key_binder/select_first_character")
     env.last_key = config:get_string("key_binder/select_last_character")
 end
 
-function select_char.func(key, env)
+function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local input_code = context.input
@@ -69,4 +69,4 @@ function select_char.func(key, env)
     return 2 -- kNoop
 end
 
-return { processor = { init = select_char.init, func = select_char.func } }
+return P

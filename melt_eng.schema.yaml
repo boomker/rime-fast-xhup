@@ -10,16 +10,11 @@ schema:
     - Patrick <ipatrickmac@gmail.com>
     - tumuyan <tumuyan@21cn.com>
   description:
-    Easy English Nano,只包含少量常用词汇,方便中英文混合输入度方案调用。
-
-switches:
-  - name: ascii_mode
-    reset: 0
-    states: [ ASCII-OFF, ASCII-ON ]
+    只包含少量常用词汇,方便中英文混合输入度方案调用
 
 engine:
   processors:
-    - lua_processor@engword_append_space_processor
+    - lua_processor@*engword_append_space
     - ascii_composer
     - key_binder
     - speller
@@ -36,9 +31,9 @@ engine:
   translators:
     - table_translator
     - punct_translator
-    - lua_translator@word_autocaps_translator
+    - lua_translator@*word_autocaps*translator
   filters:
-    - lua_filter@word_autocaps_filter
+    - lua_filter@*word_autocaps*filter
     - uniquifier
 
 speller:
@@ -78,7 +73,6 @@ algebra_common:
   - derive/-/hyphen/
   - derive/#/hash/
   - derive/#/sharp/
-  # - derive/#/number/
   # - derive/♯/sharp/
   - derive / slash
   - derive/&/and/
@@ -112,7 +106,6 @@ algebra_common:
 
 translator:
   dictionary: melt_eng
-  spelling_hints: 9
 
 key_binder:
   import_preset: default

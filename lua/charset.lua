@@ -124,4 +124,4 @@ local function charset_comment_filter(input, env)
 end
 
 -- 本例中定义了两个 filter，故使用一个表将两者导出
-return { filter = charset_filter, comment_filter = charset_comment_filter }
+return { filter = charset_filter, comment_hint = charset_comment_filter }

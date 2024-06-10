@@ -73,6 +73,6 @@ function easy_en.filter(input, env)
 end
 
 return {
-    translator = { init = easy_en.init, func = easy_en.translator },
+    -- translator = { init = easy_en.init, func = easy_en.translator },
     filter = { init = easy_en.init, func = easy_en.filter }
 }

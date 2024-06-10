@@ -1,12 +1,12 @@
+local filter = {}
 local processor = {}
 local translator = {}
-local filter = {}
 local favor_items = nil
 local second_menu_items = nil
-local number_selected = false
 local first_menu_selected_text = nil
 local second_menu_selected_text = nil
 local reload_env = require("tools/env_api")
+local rime_api_helper = require("tools/rime_api_helper")
 -- local logger = require("tools/logger")
 
 local function cmd(system, cmdArgs, appId)
@@ -28,47 +28,30 @@ local function cmd(system, cmdArgs, appId)
     end
 end
 
-local function detect_os()
-    local user_distribute_name = rime_api:get_distribution_code_name()
-    if user_distribute_name:lower():match("weasel") then
-        return "Windows"
-    elseif user_distribute_name:lower():match("squirrel") then
-        return "MacOS"
-    elseif user_distribute_name:lower():match("fcitx%-rime") then -- fcitx-rime
-        return "MacOS"
-    elseif user_distribute_name:lower():match("^fcitx$") then
-        return "Linux"
-    elseif user_distribute_name:lower():match("ibus") then
-        return "Linux"
-    else
-        return "iOS"
-    end
-end
-
 function processor.init(env)
     reload_env(env)
     env.launcher_config = require("launcher_config")
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
-    env.app_command_items = env.launcher_config[3]
-    env.system_name = detect_os()
+    env.all_command_items = env.launcher_config[3]
+    env.system_name = rime_api_helper.detect_os()
+    env.filters = env:Config_get("engine/filters")
+    env.spacer_filter = "lua_filter@*word_append_space*filter"
 end
 
 function processor.func(key, env)
     local engine = env.engine
-    local page_size = engine.schema.page_size
-    local app_command_items = env.app_command_items
-    local appLaunchPrefix = env.app_launch_prefix
-    local favorCmdPrefix = env.favor_cmd_prefix
     local system_name = env.system_name
+    local favorCmdPrefix = env.favor_cmd_prefix
+    local appLaunchPrefix = env.app_launch_prefix
+    local allCommandItems = env.all_command_items
     local context = engine.context
+    local page_size = engine.schema.page_size
     local composition = context.composition
-    local segment = composition:back()
     local inputCode = context.input
     local preeditCodeLength = #inputCode
     local keyValue = key:repr()
-    local filters = env:Config_get("engine/filters")
-    local spacer_filter = "lua_filter@cn_space_en_filter"
+    local segment = composition:back()
 
     if
         not (
@@ -80,33 +63,19 @@ function processor.func(key, env)
         return 2
     end
 
-    local key_value = keyValue
-    local selected_cand_idx = -1
-    local selected_index = segment.selected_index or -1
-    if keyValue == "space" then
-        key_value = -1
-    elseif keyValue == "Return" then
-        key_value = -1
-    elseif keyValue == "semicolon" then
-        key_value = 1
-    elseif keyValue == "apostrophe" then
-        key_value = 2
-    elseif string.find(keyValue, "^[1-9]$") then
-        key_value = tonumber(keyValue) - 1
-    elseif keyValue == "0" then
-        key_value = 9
-    end
-
-    local page_pos = (selected_index // page_size) + 1
-    local idx = (key_value == -1) and selected_index or key_value
-    selected_cand_idx = (
-        (type(key_value) == "number") and (key_value ~= -1) and (page_pos > 1)
-    ) and (key_value + (page_pos - 1) * page_size) or idx
-
     local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
     if spec_keys[keyValue] then
-        if (keyValue == "BackSpace") then
+        if (keyValue == "BackSpace")
+            and (inputCode == env.favor_cmd_prefix)
+            and (not segment.prompt:match("快捷指令"))
+        then
+            second_menu_items = nil
+            first_menu_selected_text = nil
+            second_menu_selected_text = nil
+            context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+            return 1                                    -- kAccepted 收下此key
+        elseif (keyValue == "BackSpace") then
             context:pop_input(1)
         else
             context:clear()
@@ -118,6 +87,10 @@ function processor.func(key, env)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccepted 收下此key
     end
+
+    local selected_index = segment.selected_index or -1
+    local selected_cand_idx = rime_api_helper.get_selected_candidate_index(keyValue, selected_index, page_size)
+    if selected_cand_idx < 0 then return 2 end
 
     if
         context:has_menu()
@@ -131,8 +104,7 @@ function processor.func(key, env)
             first_menu_selected_text = candidateText:gsub(" ", "") .. tostring(selected_cand_idx + 1)
             local prompt = first_menu_selected_text:gsub("[%a%d]", "")
             if first_menu_selected_text then
-                number_selected = true
-                second_menu_items = app_command_items["Favors"][first_menu_selected_text]["items"]
+                second_menu_items = allCommandItems["Favors"][first_menu_selected_text]["items"]
                 context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
                 segment.prompt = "〔" .. prompt .. "〕"
                 return 1
@@ -141,11 +113,11 @@ function processor.func(key, env)
 
         if selected_cand_idx >= 0 then
             local candidateText = segment:get_candidate_at(selected_cand_idx).text
-            if table.find_index(filters, spacer_filter) then
+            if table.find_index(env.filters, env.spacer_filter) then
                 candidateText = candidateText:gsub(" ", "")
             end
-            local action = app_command_items["Favors"][first_menu_selected_text]["action"]
-            local items = app_command_items["Favors"][first_menu_selected_text]["items"]
+            local action = allCommandItems["Favors"][first_menu_selected_text]["action"]
+            local items = allCommandItems["Favors"][first_menu_selected_text]["items"]
             if type(items[1]) ~= "string" then
                 candidateText = candidateText .. tostring(selected_cand_idx + 1)
             end
@@ -154,16 +126,16 @@ function processor.func(key, env)
             end
 
             if (action == "commit") and type(items[1]) ~= "string" then
-                local commitText = app_command_items["Favors"][first_menu_selected_text]["items"][candidateText]
+                local commitText = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
                 engine:commit_text(commitText)
             elseif action == "open" and type(items[1]) == "string" then
                 cmd(system_name, "", candidateText)
             elseif action == "open" then
-                local _path = app_command_items["Favors"][first_menu_selected_text]["items"][candidateText]
+                local _path = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
                 local path = _path:gsub(" ", "\\ ")
                 cmd(system_name, "", path)
             elseif action == "exec" then
-                local _cmdString = app_command_items["Favors"][first_menu_selected_text]["items"][candidateText]
+                local _cmdString = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
                 local cmdString = _cmdString:match("^/") and _cmdString:gsub(" ", "\\ ", 1) or _cmdString
                 cmd(system_name, "exec", cmdString)
             else
@@ -184,14 +156,14 @@ function processor.func(key, env)
         and (preeditCodeLength >= appLaunchPrefix:len())
         and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j"))
     then
-        local selected_items = app_command_items[system_name][inputCode]
+        local selected_items = allCommandItems[system_name][inputCode]
         if (appLaunchPrefix ~= "/j") and (inputCode:sub(1, appLaunchPrefix:len()) == appLaunchPrefix) then
             local appTriggerKey = "/j" .. inputCode:gsub(appLaunchPrefix, "", 1)
-            selected_items = app_command_items[system_name][appTriggerKey]
+            selected_items = allCommandItems[system_name][appTriggerKey]
         end
 
         if not selected_items then
-            selected_items = app_command_items[system_name]
+            selected_items = allCommandItems[system_name]
         end
 
         local appId = nil
@@ -229,7 +201,7 @@ function translator.init(env)
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
     env.app_command_items = env.launcher_config[3]
-    env.system_name = detect_os()
+    env.system_name = rime_api_helper.detect_os()
 end
 
 function translator.func(input, seg, env)
@@ -333,21 +305,13 @@ function translator.func(input, seg, env)
 
     if first_menu_selected_text and second_menu_items
         and input:match("^" .. favorCmdPrefix .. "$")
-        and number_selected
     then
-        number_selected = false
         for k, v in pairs(second_menu_items) do
             local item = type(k) == "number" and v or k
             local cand = Candidate("favor", seg.start, seg._end, item, "")
             cand.quality = 999
             yield(cand)
         end
-    elseif first_menu_selected_text and second_menu_items
-        and input:match("^" .. favorCmdPrefix .. "$")
-        and not number_selected
-    then
-        first_menu_selected_text = nil
-        second_menu_items = nil
     end
 
     if
@@ -402,7 +366,7 @@ function filter.init(env)
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
     env.favor_items = env.launcher_config[3]["Favors"]
-    env.system_name = detect_os()
+    env.system_name = rime_api_helper.detect_os()
 end
 
 function filter.func(input, env)

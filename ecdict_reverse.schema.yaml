@@ -7,7 +7,7 @@ schema:
   name: ecdict_reverse
   version: "0.2"
   description:
-    英文单词(释意)输入法
+    英文单词(释意)
 
 engine:
   processors:

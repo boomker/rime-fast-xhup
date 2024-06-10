@@ -1,11 +1,11 @@
 require("tools/string")
-local fly_fixed = {}
+local F = {}
 
 local function last_character(s)
     return string.utf8_sub(s, -1, -1)
 end
 
-function fly_fixed.init(env)
+function F.init(env)
     local config = env.engine.schema.config
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
@@ -13,7 +13,7 @@ function fly_fixed.init(env)
     collectgarbage("step")
 end
 
-function fly_fixed.func(input, env)
+function F.func(input, env)
     local cands = {}
     local cand_drop = false
     local context = env.engine.context
@@ -70,4 +70,4 @@ function fly_fixed.func(input, env)
     if math.random() < 0.1 then collectgarbage() end
 end
 
-return { filter = { init = fly_fixed.init, func = fly_fixed.func } }
+return F

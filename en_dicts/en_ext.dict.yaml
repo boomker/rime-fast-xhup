@@ -3,16 +3,17 @@
 #
 #
 # https://github.com/iDvel/rime-ice
-# ------- 补充的英文词汇 -------
+# ------- 补充的英文词汇 Lite -------
 #
 ---
 name: en_ext
-version: "2024-04-16"
+version: "2024-06-08"
 sort: by_weight
 ...
-
+# 按键
 Fn	Fn
 cmd	cmd
+cmdline	cmdline
 command	command
 Ctrl	Ctrl
 control	control
@@ -30,6 +31,7 @@ Del	Del
 delete	delete
 Esc	Esc
 eject	eject
+# 月份
 January	January
 February	February
 March	March
@@ -42,6 +44,7 @@ September	September
 October	October
 November	November
 December	December
+# 星期
 Monday	Monday
 Tuesday	Tuesday
 Wednesday	Wednesday
@@ -49,6 +52,7 @@ Thursday	Thursday
 Friday	Friday
 Saturday	Saturday
 Sunday	Sunday
+# 生活大爆炸 & 老友记
 Sheldon	Sheldon
 Leonard	Leonard
 Howard	Howard
@@ -62,6 +66,7 @@ Joey	Joey
 Ross	Ross
 Chandler	Chandler
 Phoebe	Phoebe
+# 特定的排序，为了每组的排序，code 必须保持一致
 hell	hell	2
 shell	shell	2
 well	well	2
@@ -69,9 +74,12 @@ ill	ill	2
 ID	id	2
 shed	shed	2
 net	net	2
+# 带权重的系列
 iPhone	iPhone	999
 macOS	macOS	999
+macOS Sonoma	macOS
 Windows	Windows	999
+Windows 11	Windows	11
 cheetah	cheetah
 mavericks	mavericks
 Mojave	Mojave
@@ -131,6 +139,7 @@ Braun	Braun
 Bayes	Bayes
 Saul	Saul
 Wick	Wick
+wick	wick
 RPG	RPG
 ADC	ADC
 APC	APC
@@ -180,6 +189,7 @@ Tesla	Tesla
 Polo	Polo
 AfterShokz	AfterShokz
 Aeropex	Aeropex
+X11	X11
 Xnip	Xnip
 Workspace	Workspace
 WYSIWYG	WYSIWYG
@@ -222,6 +232,7 @@ Notion	Notion
 DOM	DOM
 IPv4	IPv4
 IPv6	IPv6
+uTools	uTool
 uTools	uTools
 AirPods	AirPods
 CallKit	CallKit
@@ -240,6 +251,7 @@ ClashX	ClashX
 tracker	tracker
 trackers	trackers
 qBittorrent	qBittorrent
+qBittorrent	qBit
 YAML	YAML
 TOML	TOML
 Hexo	Hexo
@@ -284,6 +296,7 @@ Pornhub	Pornhub
 Postgres	Postgres
 PowerPoint	PowerPoint
 PPT	PPT
+PowerPoint	PPT
 PyCharm	PyCharm
 roguelike	roguelike
 Redis	Redis
@@ -331,6 +344,7 @@ Brackets	Brackets
 BundleHunt	BundleHunt
 Byword	Byword
 Btitish	Btitish
+Btrfs	Btrfs
 Caffeine	Caffeine
 Calcbot	Calcbot
 Calibre	Calibre
@@ -381,6 +395,7 @@ iExplorer	iExplorer
 iFFmpeg	iFFmpeg
 IFTTT	IFTTT
 iMac	iMac
+IME	IME
 iMessage	iMessage
 iMore	iMore
 Inboard	Inboard
@@ -389,6 +404,9 @@ Instashare	Instashare
 Intensify	Intensify
 IP	IP
 iPack	iPack
+iPad Air	iPadAir
+iPad mini	iPadmini
+iPad Pro	iPadPro
 IPN	IPN
 IPTV	IPTV
 iTerm	iTerm
@@ -406,6 +424,9 @@ LiveReload	LiveReload
 LockScreen	LockScreen
 MacAppDeals	MacAppDeals
 MacBook	MacBook
+MacBook Air	MacBookAir
+MacBook Pro	MacBookPro
+Mac Pro	MacPro
 MacID	MacID
 MacTips	MacTips
 Mailbox	Mailbox
@@ -460,6 +481,7 @@ ScreenFlow	ScreenFlow
 scribble	scribble
 Scrivener	Scrivener
 SDK	SDK
+SDDM	SDDM
 Simplenote	Simplenote
 Siri	Siri
 Slicy	Slicy
@@ -478,6 +500,7 @@ Textastic	Textastic
 TextExpander	TextExpander
 TextWrangler	TextWrangler
 TinkerTool	TinkerTool
+Touch ID	TouchID
 Trello	Trello
 Tumblr	Tumblr
 tvOS	tvOS
@@ -505,12 +528,14 @@ YouTube	YouTube
 YouTuber	YouTuber
 ZEALER	ZEALER
 Rosetta	Rosetta
+Face ID	FaceID
 URL	URL
 URI	URI
 HTTP	HTTP
 HTTPS	HTTPS
 WSGI	WSGI
 BTC	BTC
+Bitcoin	BTC
 Bitcoin	Bitcoin
 Blockchain	Blockchain
 gank	gank
@@ -557,7 +582,6 @@ OCR	OCR
 FFmpeg	FFmpeg
 DMCA	DMCA
 PUA	PUA
-docker	docker
 Darcula	Darcula
 CNAME	CNAME
 Darwin	Darwin
@@ -568,9 +592,11 @@ blackFriday	blackFriday
 Raycast	Raycast
 CloudFront	CloudFront
 RSS	RSS
+rsync	rsync
 gosh	gosh
 CocoaPods	CocoaPods
 Zsh	Zsh
+Oh My Zsh	OhMyZsh
 deploy	deploy
 ProxyChains	ProxyChains
 AdSense	AdSense
@@ -637,7 +663,10 @@ Uno	Uno
 gopher	gopher
 GDPR	GDPR
 Netlify	Netlify
+Mac Studio	MacStudio
+Studio Display	StudioDisplay
 OC	OC
+Mac mini	Macmini
 Garena	Garena
 WonderCV	WonderCV
 WebKit	WebKit
@@ -674,7 +703,6 @@ Celsius	Celsius
 Fahrenheit	Fahrenheit
 nil	nil
 Mojito	Mojito
-weasel	weasel
 Niconico	Niconico
 TickTick	TickTick
 CHDBits	CHDBits
@@ -682,7 +710,6 @@ Vim	Vim
 Workers	Workers
 PlayStation	PlayStation
 AVIF	AVIF
-IE	IE
 PowerShell	PowerShell
 Surface	Surface
 MSN	MSN
@@ -723,6 +750,7 @@ UFO	UFO
 Copyright	Copyright
 Registered	Registered
 TM	TM
+tmux	tmux
 SOS	SOS
 abcd	abcd
 ABCD	ABCD
@@ -731,6 +759,7 @@ ABC	ABC
 Starbucks	Starbucks
 ZZZ	ZZZ
 PS	PS
+Photoshop	PS
 Photoshop	Photoshop
 dashboard	dashboard
 McCafe	McCafe
@@ -821,6 +850,12 @@ whack	whack
 encore	encore
 suffix	suffix
 prefix	prefix
+Type-A	TypeA
+Type-B	TypeB
+Type-C	TypeC
+USB-A	USBA
+USB-B	USBB
+USB-C	USBC
 vex	vex
 tempest	tempest
 impostor	impostor
@@ -856,6 +891,7 @@ annotated	annotated
 GFW	GFW
 departed	departed
 GeoIP	GeoIP
+gVim	gVim
 Vimium	Vimium
 Nvim	Nvim
 Neovim	Neovim
@@ -869,6 +905,7 @@ LunarVim	LunarVim
 IdeaVim	IdeaVim
 unfo	unfo
 timestamp	timestamp
+timeshift	timeshift
 ChatGPT	ChatGPT
 OpenAI	OpenAI
 VoIP	VoIP
@@ -927,6 +964,7 @@ DIY	DIY
 DNA	DNA
 RNA	RNA
 mRNA	mRNA
+C++	Cpp
 Python	Python
 MIT	MIT
 LGPL	LGPL
@@ -1099,13 +1137,10 @@ redirect	redirect
 redirects	redirects
 shells	shells
 Zaraz	Zaraz
-waitlist	waitlist
-diffusion	diffusion
 Lenovo	Lenovo
 Adios	Adios
 EMS	EMS
 IPFS	IPFS
-interplanetary	interplanetary
 Noria	Noria
 DHCP	DHCP
 PPPoE	PPPoE
@@ -1113,26 +1148,23 @@ IPoE	IPoE
 VLAN	VLAN
 WLAN	WLAN
 GPT	GPT
-bard	bard
 LaMDA	LaMDA
-tokens	tokens
-roadmap	roadmap
 MetaMask	MetaMask
 favicon	favicon
 Discord	Discord
-memos	memos
+New Bing	NewBing
+Notion AI	NotionAI
 flomo	flomo
 arabica	Arabica
 robusta	robusta
 HanLP	HanLP
+Arch Linux	ArchLinux
 AlmaLinux	AlmaLinux
 CoreOS	CoreOS
 OpenBSD	OpenBSD
 Vultr	Vultr
 GoFrame	GoFrame
 ORM	ORM
-iris	iris
-burnt	burnt
 KPI	KPI
 mutex	mutex
 TIOBE	TIOBE
@@ -1155,22 +1187,16 @@ Sagittarius	Sagittarius
 Capricorn	Capricorn
 Aquarius	Aquarius
 Pisces	Pisces
-tailwind	tailwind
 Fcitx	Fcitx
 Fcitx5	Fcitx5
 openSUSE	openSUSE
 defer	defer
 FOMO	FOMO
-rune	rune
-wick	wick
 meow	meow
 woof	woof
 bromite	bromite
 hutch	hutch
 Laotian	Laotian
-mitigation	mitigation
-transformer	transformer
-mayonnaise	mayonnaise
 orz	orz
 parametric	parametric
 SpongeBob	SpongeBob
@@ -1196,28 +1222,19 @@ WWI	WWI
 WWII	WWII
 WWIII	WWIII
 IQ	IQ
-quotient	quotient
 BTW	BTW
 QUIC	QUIC
-trending	trending
 Nexitally	Nexitally
 AGI	AGI
 UUID	UUID
-stargazer	stargazer
-stargazers	stargazers
-fallback	fallback
 Fyne	Fyne
 Claude	Claude
 Anthropic	Anthropic
-overdue	overdue
 Cinderella	Cinderella
 WebGPU	WebGPU
 Mailfence	Mailfence
-gimme	gimme
 CodeWhisperer	CodeWhisperer
 Heisenberg	Heisenberg
-codex	codex
-storyteller	storyteller
 troublemaker	troublemaker
 troublemaking	troublemaking
 espanso	espanso
@@ -1265,119 +1282,84 @@ Braavos	Braavos
 OneKey	OneKey
 hamster	hamster
 hamsters	hamsters
+Hackintosh	Hackintosh
 DYOR	DYOR
 Noita	Noita
 Norah	Norah
 floccus	floccus
 Wappalyzer	Wappalyzer
-phony	phony
 noop	noop
-prefixes	prefixes
-suffixes	suffixes
+Kung Fu	KungFu
 DeepMind	DeepMind
 TL;DR	TL;DR
 ungoogled	ungoogled
-taxman	taxman
 RouterOS	RouterOS
 Sumatra	Sumatra
 sideload	sideload
 sideloading	sideloading
-misdirection	misdirection
 librime	librime
 JRPG	JRPG
 Kuromis	Kuromis
-sorcerer	sorcerer
-sorcerers	sorcerers
-werewolf	werewolf
-disjunction	disjunction
 heil	heil
-maintainers	maintainers
 AmyTelecom	AmyTelecom
 Patreon	Patreon
 Anaconda	Anaconda
 LLaMA	LLaMA
-fellatio	fellatio
-silo	silo
-requiescat	requiescat
 AIGC	AIGC
 Presto	Presto
 presto	presto
 Upscayl	Upscayl
-firetruck	firetruck
-prankster	prankster
-pranksters	pranksters
 npm	npm
-shithead	shithead
 a11y	a11y
+accessibility	a11y
 i18n	i18n
+internationalization	i18n
 internationalization	internationalization
 l10n	l10n
+localization	l10n
 g11n	g11n
+globalization	g11n
 m17n	m17n
+multilingualization	m17n
 multilingualization	multilingualization
 t9n	t9n
 p13n	p13n
+personalization	p13n
 personalization	personalization
 K8s	K8s
+Kubernetes	K8s
 Kubernetes	Kubernetes
 Kubeadm	Kubeadm
 Minikube	Minikube
-containerized	containerized
 shitty	shitty
 shitwork	shitwork
 A4	A4
 3D	3D
-polyphone	polyphone
-traditionalization	traditionalization
-traditionalize	traditionalize
-traditionalist	traditionalist
-traditionalistic	traditionalistic
-simplification	simplification
-simplifier	simplifier
 Loki	Loki
-panzer	panzer
-hardened	hardened
-motherfucker	motherfucker
-motherfuckers	motherfuckers
-motherfucking	motherfucking
 dict	dict
-latte	latte
 Hughie	Hughie
 Maeve	Maeve
-hyphen	hyphen
 Oppenheimer	Oppenheimer
 UltraEdit	UltraEdit
 GoldenDict	GoldenDict
 tokenizer	tokenizer
+Stable Diffusion	StableDiffusion
 x86	x86
+x86-64	x86-64
 x64	x64
 amd64	amd64
 arm64	arm64
 keysym	keysym
 keysyms	keysyms
 PotPlayer	PotPlayer
-passkey	passkey
 protobuf	protobuf
-interstellar	interstellar
-weirdo	weirdo
 beyatch	beyatch
-perplexity	perplexity
-masturbate	masturbate
-thorium	thorium
 iBus	iBus
 BT	BT
-corrector	corrector
 hashtag	hashtag
 ProtonMail	ProtonMail
 Elasticsearch	Elasticsearch
-mantis	mantis
-strongbox	strongbox
-tabby	tabby
-subtext	subtext
-homophone	homophone
-homophones	homophones
 JDK	JDK
-polyphony	polyphony
 iota	iota
 mu	mu
 rho	rho
@@ -1385,21 +1367,12 @@ upsilon	upsilon
 DnD	DnD
 Minecraft	Minecraft
 LSP	LSP
-medallion	medallion
 decode	decode
 KeyCastr	KeyCastr
-gotcha	gotcha
-wombat	wombat
-prank	prank
 RustRover	RustRover
 bilibili	bilibili
 Terraria	Terraria
 Unihan	Unihan
-adrift	adrift
-joker	joker
-cannibalistic	cannibalistic
-micrometer	micrometer
-nanometer	nanometer
 DLsite	DLsite
 picosecond	picosecond
 femtosecond	femtosecond
@@ -1415,20 +1388,12 @@ Musk	Musk
 Logseq	Logseq
 WPS	WPS
 Morty	Morty
-destructible	destructible
-indestructible	indestructible
 Frundles	Frundles
 Brotato	Brotato
-homie	homie
-homey	homey
-cynical	cynical
-seduce	seduce
-pinky	pinky
 engineman	engineman
 unhuman	unhuman
 unhumified	unhumified
 unhumanize	unhumanize
-flares	flares
 P2P	P2P
 F2A	F2A
 B2B	B2B
@@ -1436,32 +1401,23 @@ C2C	C2C
 B2C	B2C
 C2B	C2B
 O2O	O2O
-tempting	tempting
 WebCatalog	WebCatalog
 pixiv	pixiv
 M4A1	M4A1
-shogun	shogun
-wail	wail
-wails	wails
-wailed	wailed
-wailing	wailing
 PK	PK
 WireGuard	WireGuard
 AdGuard	AdGuard
 Altman	Altman
 Ultraman	Ultraman
-silicones	silicones
 GPTs	GPTs
 sider	sider
 keychain	keychain
 keychains	keychains
-guile	guile
 Zettlr	Zettlr
 Codium	Codium
 CodiumAI	CodiumAI
 SaaS	SaaS
 gitignore	gitignore
-humankind	humankind
 Alita	Alita
 epoll	epoll
 kqueue	kqueue
@@ -1471,8 +1427,6 @@ LangSmith	LangSmith
 runc	runc
 containerd	containerd
 Melvor	Melvor
-paradise	paradise
-ketchup	ketchup
 pinning	pinning
 WebSocket	WebSocket
 systemctl	systemctl
@@ -1487,67 +1441,54 @@ bin	bin
 AUR	AUR
 pacman	pacman
 eBPF	eBPF
-livid	livid
 DevOps	DevOps
 Zippo	Zippo
-goddamn	goddamn
-punctuator	punctuator
-punctuators	punctuators
-sentry	sentry
 Prometheus	Prometheus
 Grafana	Grafana
 Mirtle	Mirtle
 Hadoop	Hadoop
 HBase	HBase
-hive	hive
+Hive	Hive
+Apache Hive	ApacheHive
 Flink	Flink
 Palworld	Palworld
-lark	lark
 submodule	submodule
 submodules	submodules
 Writerside	Writerside
-groundhog	groundhog
-groundhogs	groundhogs
 Writerside	Writerside
-copycat	copycat
-infuse	infuse
-headless	headless
 IMBA	IMBA
-imbalance	imbalance
-imbalanced	imbalanced
 GitButler	GitButler
 Sora	Sora
 WinNAS	WinNAS
-prune	prune
 Wireshark	Wireshark
 Theseus	Theseus
 Laravel	Laravel
-monolith	monolith
 Chiikawa	Chiikawa
-trudge	trudge
 LibreOffice	LibreOffice
 Asics	Asics
-dubbing	dubbing
+Saucony	Saucony
 nvm	nvm
 Prettier	Prettier
 ESLint	ESLint
 Hibernate	Hibernate
 MyBatis	MyBatis
-cmdline	cmdline 
-wick	wick 
-X11	X11 
-AMDgpu	AMDgpu 
-Btrfs	Btrfs 
-IME	IME 
-SDDM	SDDM 
-rsync	rsync 
-tmux	tmux 
-gVim	gVim 
-timeshift	timeshift 
-Tailwind	Tailwind 
-Hackintosh	Hackintosh 
-Wayland	Wayland 
-Hive	Hive 
-Terraform	Terraform 
-systemd	systemd 
-FPGA	FPGA 
+
+Flameshot	Flameshot
+Flatpak	Flatpak
+Salesforce	Salesforce
+Wasm	Wasm
+WebAssembly	WebAssembly
+Feign	Feign
+OpenFeign	OpenFeign
+IMF	IMF
+Terraform	Terraform
+systemd	systemd
+FPGA	FPGA
+Samsung	Samsung
+VimL	VimL
+Vimscript	Vimscript
+Vimscripts	Vimscripts
+kubectl	kubectl
+mvn	mvn
+mvnd	mvnd
+maven	maven

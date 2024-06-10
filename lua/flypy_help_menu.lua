@@ -1,7 +1,8 @@
 ﻿-- helper.lua
 -- List features and usage of the schema.
+local T = {}
 
-local function translator(input, seg, env)
+function T.func(input, seg, env)
     local composition = env.engine.context.composition
     local segment = composition:back()
     if seg:has_tag("flypy_help") or (input == "/oh") or (input == "/help") then
@@ -15,6 +16,7 @@ local function translator(input, seg, env)
             { '应用闪切', '→ /jk' },
             { '选项切换', '→ /so' },
             { '历史上屏', '→ /hs' },
+            { '计算器🆚', '→ /vs' },
             { '二三候选', "→ ;'号键" },
             { '上下翻页', "→ ,.号键" },
             { '以词定字', '→ -=号键' },
@@ -51,4 +53,4 @@ local function translator(input, seg, env)
     end
 end
 
-return { translator = translator }
+return T

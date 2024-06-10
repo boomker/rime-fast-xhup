@@ -1,12 +1,12 @@
-local reduce_emoji = {}
+local F = {}
 
-function reduce_emoji.init(env)
+function F.init(env)
     local config = env.engine.schema.config
     env.emoji_pos = config:get_int("emoji_reduce/idx") or 6
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 end
 
-function reduce_emoji.func(input, env)
+function F.func(input, env)
     local emoji_cands = {}
     local other_cands = {}
     local top_cand_cnt = 0
@@ -60,6 +60,4 @@ function reduce_emoji.func(input, env)
     end
 end
 
-return {
-    filter = { init = reduce_emoji.init, func = reduce_emoji.func },
-}
+return F
