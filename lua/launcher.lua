@@ -138,6 +138,9 @@ function processor.func(key, env)
                 local _cmdString = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
                 local cmdString = _cmdString:match("^/") and _cmdString:gsub(" ", "\\ ", 1) or _cmdString
                 cmd(system_name, "exec", cmdString)
+            elseif (system_name == "ios") and type(items[1]) ~= "string" then
+                local commitText = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
+                engine:commit_text(commitText)
             else
                 engine:commit_text(candidateText)
             end
