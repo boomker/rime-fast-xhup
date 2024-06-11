@@ -1,14 +1,6 @@
 require("tools/string")
 require("tools/metatable")
 
-local drop_list = require("cold_word_record/drop_words")
-local hide_list = require("cold_word_record/hide_words")
-local turndown_freq_list = require("cold_word_record/turndown_freq_words")
-local tbls = {
-    ["drop_list"] = drop_list,
-    ["hide_list"] = hide_list,
-    ["turndown_freq_list"] = turndown_freq_list,
-}
 local cold_word_drop = {}
 local processor = {}
 local filter = {}
@@ -34,7 +26,7 @@ local function get_record_filername(record_type)
     end
 end
 
-local function write_word_to_file(record_type)
+local function write_word_to_file(env, record_type)
     local filename = get_record_filername(record_type)
     local record_header = string.format("local %s_words =\n", record_type)
     local record_tailer = string.format("\nreturn %s_words", record_type)
@@ -43,92 +35,64 @@ local function write_word_to_file(record_type)
     fd:setvbuf("line")
     fd:write(record_header)                   --写入文件头部
     -- fd:flush() --刷新
-    local x = string.format("%s_list", record_type)
-    local record = table.serialize(tbls[x]) -- lua 的 table 对象 序列化为字符串
-    fd:write(record)                        --写入 序列化的字符串
-    fd:write(record_tailer)                 --写入文件尾部, 结束记录
-    fd:close()                              --关闭
+    local words_obj = string.format("%s_list", record_type)
+    local records = table.serialize(env.words_tbl[words_obj]) -- lua 的 table 对象 序列化为字符串
+    fd:write(records)                                         --写入 序列化的字符串
+    fd:write(record_tailer)                                   --写入文件尾部, 结束记录
+    fd:close()                                                --关闭
 end
 
-local function check_encode_matched(cand_code, word, input_code_tbl, reversedb)
-    if #cand_code < 1 and utf8.len(word) > 1 then -- 二字词以上的词条反查, 需要逐个字去反查
-        local word_cand_code = string.split(word, "")
-        for i, v in ipairs(word_cand_code) do
-            -- 如有 `[` 引导的辅助码情况,  去掉引导符及之后的所有形码字符
-            local char_code = string.gsub(reversedb:lookup(v), "%[%l%l", "")
-            local _char_preedit_code = input_code_tbl[i] or " "
-            -- 如有 `[` 引导的辅助码情况,  同上, 去掉之
-            local char_preedit_code = string.gsub(_char_preedit_code, "%[%l+", "")
-            if not string.match(char_code, char_preedit_code) then
-                -- 输入编码串和词条反查结果不匹配(考虑到多音字, 开启了模糊音, 纠错音), 返回false, 表示隐藏这个词条
-                return false
-            end
-        end
-    end
-    -- 输入编码串和词条反查结果匹配, 返回true, 表示对这个词条降频
-    return true
-end
-
-local function append_word_to_droplist(ctx, action_type, reversedb)
+local function append_word_to_droplist(env, ctx, action_type)
     local word = ctx.word
-    local input_code = ctx.code
-    local input_code_tbl = string.split(input_code, " ")
-    local input_code_str = table.concat(input_code_tbl, "")
+    local input_code = ctx.code:gsub(" ", "")
+
     if action_type == "drop" then
-        table.insert(drop_list, word) -- 高亮选中的词条插入到 drop_list
+        table.insert(env.drop_words, word) -- 高亮选中的词条插入到 drop_list
         return true
     end
 
     if action_type == "hide" then
-        -- 单字和二字词 如果不匹配 就隐藏
-        if not hide_list[word] then
-            hide_list[word] = { input_code_str }
-            return true
-        else
+        if not env.hide_words[word] then
+            env.hide_words[word] = { input_code }
             -- 隐藏的词条如果已经在 hide_list 中, 则将输入串追加到 值表中, 如: ['藏'] = {'chang', 'zhang'}
-            if not table.find_index(hide_list[word], input_code_str) then
-                table.insert(hide_list[word], input_code_str)
-                return true
-            else
-                return false
-            end
+        elseif not table.find_index(env.hide_words[word], input_code) then
+            table.insert(env.hide_words[word], input_code)
         end
+        return true
     end
 
-    local cand_code = reversedb:lookup(word) or "" -- 反查候选字编码
-    -- 二字词 的匹配检查, 匹配返回true, 不匹配返回false
-    local match_result = check_encode_matched(cand_code, word, input_code_tbl, reversedb)
-    local ccand_code = string.gsub(cand_code, "%[%l%l", "")
-    -- 如有 `[` 引导的辅助码情况,  去掉引导符及之后的所有形码字符
-    local input_str = string.gsub(input_code, "%[%l+", "")
-    -- 单字和二字词 的匹配检查, 如果匹配, 降频
-    if string.match(ccand_code, input_str) or match_result then
-        if turndown_freq_list[word] then
-            table.insert(turndown_freq_list[word], input_code_str)
+    if action_type == "reduce_freq" then
+        if env.reduce_freq_words[word] then
+            table.insert(env.reduce_freq_words[word], input_code)
         else
-            turndown_freq_list[word] = { input_code_str }
+            env.reduce_freq_words[word] = { input_code }
         end
-        return "turndown_freq"
-    else
-        if append_word_to_droplist(ctx, "hide", reversedb) then
-            return "hide"
-        end
+        return true
     end
 end
 
 function cold_word_drop.init(env)
     local engine = env.engine
-    local schema = engine.schema
     local config = engine.schema.config
     local easy_en_pattern = "recognizer/patterns/easy_en"
-
-    env.wold_reduce_idx = config:get_int("cold_wold_reduce/idx") or 4
-    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    local _sd, drop_words = pcall(require, "cold_word_record/drop_words")
+    local _sh, hide_words = pcall(require, "cold_word_record/hide_words")
+    local _sr, reduce_freq_words = pcall(require, "cold_word_record/reduce_freq_words")
     env.easy_en_prefix = config:get_string(easy_en_pattern):match("%^([a-z/]+).*") or "/oe"
+
+    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    env.word_reduce_idx = config:get_int("cold_word_reduce/idx") or 4
     env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
     env.hide_cand_key = config:get_string("key_binder/hide_cand") or "Control+x"
-    env.turndown_cand_key = config:get_string("key_binder/turn_down_cand") or "Control+j"
-    env.reversedb = ReverseLookup(schema.schema_id)
+    env.reduce_cand_key = config:get_string("key_binder/reduce_fq_cand") or "Control+j"
+    env.drop_words = _sd and drop_words or {}
+    env.hide_words = _sh and hide_words or {}
+    env.reduce_freq_words = _sr and reduce_freq_words or {}
+    env.words_tbl = {
+        ["drop_list"] = env.drop_words or {},
+        ["hide_list"] = env.hide_words or {},
+        ["reduce_freq_list"] = env.reduce_freq_words or {},
+    }
 end
 
 function processor.func(key, env)
@@ -138,7 +102,7 @@ function processor.func(key, env)
     local action_map = {
         [env.drop_cand_key] = "drop",
         [env.hide_cand_key] = "hide",
-        [env.turndown_cand_key] = "turn_down",
+        [env.reduce_cand_key] = "reduce_freq",
     }
 
     if context:has_menu() and action_map[key:repr()] then
@@ -149,19 +113,14 @@ function processor.func(key, env)
             ["word"] = cand.text,
             ["code"] = preedit_code,
         }
-        local res = append_word_to_droplist(ctx_map, action_type, env.reversedb)
+        local res = append_word_to_droplist(env, ctx_map, action_type)
 
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         if not res then return 2 end
 
-        if res == "hide" then action_type = "hide" end
-
-        if type(res) == "boolean" or res == "hide" then
+        if res then
             -- 期望被删的词和隐藏的词条写入文件(drop_words.lua, hide_words.lua)
-            write_word_to_file(action_type)
-        else
-            -- 期望 要调整词频的词条写入 turndown_freq_words.lua 文件
-            write_word_to_file(res)
+            write_word_to_file(env, action_type)
         end
 
         return 1 -- kAccept
@@ -173,18 +132,21 @@ end
 function filter.func(input, env)
     local engine = env.engine
     local context = engine.context
-    local wold_reduce_idx = env.wold_reduce_idx
-    local preedit_code = context.input:gsub(" ", "")
     local cands = {}
     local prev_cand_text = nil
+    local drop_words = env.drop_words
+    local hide_words = env.hide_words
+    local word_reduce_idx = env.word_reduce_idx
+    local reduce_freq_words = env.reduce_freq_words
+    local preedit_code = context.input:gsub(" ", "")
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
 
-        local tfl = turndown_freq_list[cand_text] or nil
-        if wold_reduce_idx > 1 then
+        local reduce_freq_list = reduce_freq_words[cand_text] or {}
+        if word_reduce_idx > 1 then
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
-            if tfl and table.find_index(tfl, preedit_code) then
+            if reduce_freq_list and table.find_index(reduce_freq_list, preedit_code) then
                 table.insert(cands, cand)
             elseif (
                     cand_text:match("^[%a][%a%d][%a%d]?%.?$")
@@ -216,19 +178,19 @@ function filter.func(input, env)
                 end
             elseif
                 not (
-                    table.find_index(drop_list, cand_text)
-                    or (hide_list[cand_text] and table.find_index(hide_list[cand_text], preedit_code))
+                    table.find_index(drop_words, cand_text)
+                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
                     or (string.find(cand.comment, "☯")) -- cand.quality == 0.0
                 )
             then
                 yield(cand)
-                wold_reduce_idx = wold_reduce_idx - 1
+                word_reduce_idx = word_reduce_idx - 1
             end
         else
             if
                 not (
-                    table.find_index(drop_list, cand.text)
-                    or (hide_list[cand.text] and table.find_index(hide_list[cand.text], preedit_code))
+                    table.find_index(drop_words, cand_text)
+                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
                 )
             then
                 table.insert(cands, cand)
