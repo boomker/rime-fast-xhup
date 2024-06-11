@@ -13,15 +13,15 @@ local function cmd(system, cmdArgs, appId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
         local osascript = appId
         os.execute(osascript)
-    elseif system:lower():match("ios") and (cmdArgs == "exec") then
-        local osascript = appId
-        os.execute(osascript)
+    -- elseif system:lower():match("ios") and (cmdArgs == "exec") then
+    --     local osascript = appId
+    --     os.execute(osascript)
     elseif system:lower():match("macos") then
         local osascript = "open " .. cmdArgs .. appId
         os.execute(osascript)
-    elseif system:lower():match("ios") then
-        local osascript = "open " .. cmdArgs .. appId
-        os.execute(osascript)
+        -- elseif system:lower():match("ios") then
+        -- local osascript = "open " .. cmdArgs .. appId
+        -- os.execute(osascript)
     elseif system:lower():match("windows") then
         local script = "start " .. "" .. appId
         os.execute(script)
@@ -128,13 +128,13 @@ function processor.func(key, env)
             if (action == "commit") and type(items[1]) ~= "string" then
                 local commitText = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
                 engine:commit_text(commitText)
-            elseif action == "open" and type(items[1]) == "string" then
+            elseif action == "open" and type(items[1]) == "string" and (system_name ~= "ios") then
                 cmd(system_name, "", candidateText)
-            elseif action == "open" then
+            elseif (action == "open") and (system_name ~= "ios") then
                 local _path = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
                 local path = _path:gsub(" ", "\\ ")
                 cmd(system_name, "", path)
-            elseif action == "exec" then
+            elseif (action == "exec") and (system_name ~= "ios") then
                 local _cmdString = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
                 local cmdString = _cmdString:match("^/") and _cmdString:gsub(" ", "\\ ", 1) or _cmdString
                 cmd(system_name, "exec", cmdString)

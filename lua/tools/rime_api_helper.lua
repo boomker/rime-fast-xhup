@@ -13,6 +13,8 @@ function M.detect_os()
         return "Linux"
     elseif user_distribute_name:lower():match("ibus") then
         return "Linux"
+    elseif user_distribute_name:lower():match("hamster") then
+        return "iOS"
     else
         return "iOS"
     end
