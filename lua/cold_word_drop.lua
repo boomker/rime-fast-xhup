@@ -37,9 +37,9 @@ local function write_word_to_file(env, record_type)
     -- fd:flush() --刷新
     local words_obj = string.format("%s_list", record_type)
     local records = table.serialize(env.words_tbl[words_obj]) -- lua 的 table 对象 序列化为字符串
-    fd:write(records)                          --写入 序列化的字符串
-    fd:write(record_tailer)                    --写入文件尾部, 结束记录
-    fd:close()                                 --关闭
+    fd:write(records)                                         --写入 序列化的字符串
+    fd:write(record_tailer)                                   --写入文件尾部, 结束记录
+    fd:close()                                                --关闭
 end
 
 local function append_word_to_droplist(env, ctx, action_type)
@@ -73,9 +73,11 @@ end
 
 function cold_word_drop.init(env)
     local engine = env.engine
-    -- local schema = engine.schema
     local config = engine.schema.config
     local easy_en_pattern = "recognizer/patterns/easy_en"
+    local _sd, drop_words = pcall(require, "cold_word_record/drop_words")
+    local _sh, hide_words = pcall(require, "cold_word_record/hide_words")
+    local _sr, reduce_freq_words = pcall(require, "cold_word_record/reduce_freq_words")
     env.easy_en_prefix = config:get_string(easy_en_pattern):match("%^([a-z/]+).*") or "/oe"
 
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
@@ -83,14 +85,13 @@ function cold_word_drop.init(env)
     env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
     env.hide_cand_key = config:get_string("key_binder/hide_cand") or "Control+x"
     env.reduce_cand_key = config:get_string("key_binder/reduce_fq_cand") or "Control+j"
-    -- env.reversedb = ReverseLookup(schema.schema_id)
-    env.drop_words = require("cold_word_record/drop_words")
-    env.hide_words = require("cold_word_record/hide_words")
-    env.reduce_freq_words = require("cold_word_record/reduce_freq_words")
+    env.drop_words = _sd and drop_words or {}
+    env.hide_words = _sh and hide_words or {}
+    env.reduce_freq_words = _sr and reduce_freq_words or {}
     env.words_tbl = {
-        ["drop_list"] = env.drop_words,
-        ["hide_list"] = env.hide_words,
-        ["reduce_freq_list"] = env.reduce_freq_words,
+        ["drop_list"] = env.drop_words or {},
+        ["hide_list"] = env.hide_words or {},
+        ["reduce_freq_list"] = env.reduce_freq_words or {},
     }
 end
 
@@ -131,18 +132,18 @@ end
 function filter.func(input, env)
     local engine = env.engine
     local context = engine.context
-    local preedit_code = context.input:gsub(" ", "")
-    local word_reduce_idx = env.word_reduce_idx
     local cands = {}
     local prev_cand_text = nil
     local drop_words = env.drop_words
     local hide_words = env.hide_words
+    local word_reduce_idx = env.word_reduce_idx
     local reduce_freq_words = env.reduce_freq_words
+    local preedit_code = context.input:gsub(" ", "")
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
 
-        local reduce_freq_list = reduce_freq_words[cand_text] or nil
+        local reduce_freq_list = reduce_freq_words[cand_text] or {}
         if word_reduce_idx > 1 then
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
             if reduce_freq_list and table.find_index(reduce_freq_list, preedit_code) then

@@ -1,11 +1,9 @@
 local pin_word_records =
 {
     ["zd"] = { "在", "再", },
-    ["yv"] = { "与", },
-    ["yu"] = { "与", "于", },
+    ["yv"] = { "与", "于", },
     ["youtu"] = { "YouTube", },
     ["xhnf"] = { "心花怒放", },
-    ["worl"] = { "world", },
     ["wm"] = { "眼", },
     ["wk"] = { "应", },
     ["windo"] = { "window", "Windows", },

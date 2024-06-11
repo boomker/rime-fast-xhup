@@ -1,5 +1,5 @@
-local pin_word_records = require("pin_word_record")
 local reload_env = require("tools/env_api")
+local pin_word_records = require("pin_word_record")
 
 local pin_word = {}
 local processor = {}

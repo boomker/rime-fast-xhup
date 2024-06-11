@@ -1,5 +1,5 @@
-local drop_words = {
-	"倭坠髻",
+local drop_words =
+{ 	"倭坠髻",
 	"冰淇林",
 	"冰蘖",
 	"嘉慧世人",

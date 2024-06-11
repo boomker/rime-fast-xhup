@@ -13,14 +13,15 @@ function F.func(input, env)
     local engine = env.engine
     local emoji_toggle = engine.context:get_option("emoji")
     local preedit_code = engine.context.input:gsub(" ", "")
+    local wechatFlg = env.engine.context:get_option("wechat_flag")
 
     for cand in input:iter() do
         if (top_cand_cnt <= env.emoji_pos) then
             if
                 emoji_toggle
                 and (cand:get_dynamic_type() == "Shadow")
-                and (not preedit_code:match("^%l+[%[`]%l?%l?$"))
                 and (not cand.comment:match(env.pin_mark))
+                and (not preedit_code:match("^%l+[%[`]%l?%l?$"))
                 and (not (
                     cand.text:find("([\228-\233][\128-\191]-)")
                     and cand.text:lower():match("^" .. preedit_code)
@@ -46,7 +47,6 @@ function F.func(input, env)
     end
 
     for _, emoji_cand in ipairs(emoji_cands) do
-        local wechatFlg = env.engine.context:get_option("wechat_flag")
         local cand_text = emoji_cand.text
         if wechatFlg then
             yield(emoji_cand)
@@ -56,7 +56,11 @@ function F.func(input, env)
     end
 
     for _, cand in ipairs(other_cands) do
-        yield(cand)
+        local cand_text = cand.text
+        if wechatFlg then yield(cand)
+        elseif not cand_text:match("^%[.*%]$") then
+            yield(cand)
+        end
     end
 end
 
