@@ -13,9 +13,9 @@ local function cmd(system, cmdArgs, appId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
         local osascript = appId
         os.execute(osascript)
-    -- elseif system:lower():match("ios") and (cmdArgs == "exec") then
-    --     local osascript = appId
-    --     os.execute(osascript)
+        -- elseif system:lower():match("ios") and (cmdArgs == "exec") then
+        --     local osascript = appId
+        --     os.execute(osascript)
     elseif system:lower():match("macos") then
         local osascript = "open " .. cmdArgs .. appId
         os.execute(osascript)
@@ -41,7 +41,7 @@ end
 
 function processor.func(key, env)
     local engine = env.engine
-    local system_name = env.system_name
+    local system_name = env.system_name:lower()
     local favorCmdPrefix = env.favor_cmd_prefix
     local appLaunchPrefix = env.app_launch_prefix
     local allCommandItems = env.all_command_items
