@@ -43,7 +43,7 @@ local function write_word_to_file(env, record_type)
 end
 
 local function append_word_to_droplist(env, ctx, action_type)
-    local word = ctx.word
+    local word = ctx.word:gsub(" ", "")
     local input_code = ctx.code:gsub(" ", "")
 
     if action_type == "drop" then
