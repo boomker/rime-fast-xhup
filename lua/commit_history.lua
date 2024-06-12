@@ -1,7 +1,7 @@
-require("tools/metatable")
-local reload_env = require("tools/env_api")
 local T = {}
 local history_list = {}
+require("tools/metatable")
+local reload_env = require("tools/env_api")
 
 local function is_candidate_in_type(cand, excluded_types)
     local cs = cand:get_genuines()
@@ -37,6 +37,7 @@ function T.func(input, seg, env)
     local config = env.engine.schema.config
     local composition = env.engine.context.composition
     if (composition:empty()) then return end
+    if #history_list < 1 then return end
     local segment = composition:back()
     local trigger_prefix = config:get_string("history" .. "/prefix") or "/hs"
     local prompt = config:get_string("history" .. "/tips") or "上屏历史"
@@ -44,7 +45,7 @@ function T.func(input, seg, env)
         segment.prompt = "〔" .. prompt .. "〕"
         for i = #history_list, 1, -1 do
             local cand = Candidate("history", seg.start, seg._end, history_list[i].text, "")
-            local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, cand.comment)
+            local cand_uniq = cand:to_uniquified_candidate(cand.type, cand.text, cand.comment)
             cand_uniq.quality = 999
             yield(cand_uniq)
         end

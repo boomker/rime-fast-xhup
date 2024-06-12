@@ -429,7 +429,7 @@ function filter.func(input, env)
 
         for _, cand in ipairs(sorted_command_cands) do
             local cand_text = cand.text:gsub("[0-9]+$", "")
-            yield(ShadowCandidate(cand, cand.type, cand_text))
+            yield(ShadowCandidate(cand, cand.type, cand_text, ""))
         end
     end
 

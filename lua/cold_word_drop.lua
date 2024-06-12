@@ -74,11 +74,11 @@ end
 function cold_word_drop.init(env)
     local engine = env.engine
     local config = engine.schema.config
-    local easy_en_pattern = "recognizer/patterns/easy_en"
+    -- local easy_en_pattern_path = "recognizer/patterns/easy_en"
     local _sd, drop_words = pcall(require, "cold_word_record/drop_words")
     local _sh, hide_words = pcall(require, "cold_word_record/hide_words")
     local _sr, reduce_freq_words = pcall(require, "cold_word_record/reduce_freq_words")
-    env.easy_en_prefix = config:get_string(easy_en_pattern):match("%^([a-z/]+).*") or "/oe"
+    -- local env.easy_en_prefix = config:get_string(easy_en_pattern_path) or "/oe"
 
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.word_reduce_idx = config:get_int("cold_word_reduce/idx") or 4
@@ -167,10 +167,7 @@ function filter.func(input, env)
                         and (cand_text:match("[%a]+"):len() < 4)
                         and cand_text:find("([\228-\233][\128-\191]-)")
                     )
-                ) and not (
-                    preedit_code:match("^" .. env.easy_en_prefix)
-                    or cand.comment:match(env.pin_mark)
-                )
+                ) and not cand.comment:match(env.pin_mark)
             then
                 table.insert(cands, cand)
                 if cand_text:match("^[%a.]+$") and (not prev_cand_text) then
