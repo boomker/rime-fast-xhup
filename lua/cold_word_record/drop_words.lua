@@ -18,5 +18,7 @@ local drop_words =
 	"行政区画",
 	"转圜",
 	"镇赉",
+	"操女人",
+	"操妹子",
 }
 return drop_words

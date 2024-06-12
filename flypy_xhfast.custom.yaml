@@ -116,12 +116,12 @@ patch:
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
-      - derive/^u(h)/s$1/                       # uh => sh
+      - derive/^([bnpy])b/$1k/                  # in => ing
+      - derive/^z([rwyz])/v$1/                  # z => zh
+      - derive/^c([rvyz])/i$1/                  # c => ch
+      - derive/^s([rsz])/u$1/                   # s => sh
+      - derive/^u([hy])/s$1/                    # u[hy] => s[hy]
       - derive/^(i)g/$1f/                       # c[h]eng => c[h]en
-      - derive/^([ypbn])b/$1k/                  # in => ing
-      - derive/^z([^acdefghijklmnsu])/v$1/      # z => zh
-      - derive/^c([^acdefghijklmsuo])/i$1/      # c => ch
-      - derive/^s([^abcdefghijklmnu])/u$1/      # s => sh
       # - derive/^l(.*)$/n$1/                   # l => n
       # - derive/^n(.*)$/l$1/                   # n => l
       # - derive/^v(.*)/z$1/                    # zh => z
