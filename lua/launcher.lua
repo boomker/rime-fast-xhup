@@ -5,6 +5,7 @@ local favor_items = nil
 local second_menu_items = nil
 local first_menu_selected_text = nil
 local second_menu_selected_text = nil
+require("tools/metatable")
 local reload_env = require("tools/env_api")
 local rime_api_helper = require("tools/rime_api_helper")
 -- local logger = require("tools/logger")
@@ -94,7 +95,6 @@ function processor.func(key, env)
 
     if
         context:has_menu()
-        and (type(selected_cand_idx) == "number")
         and (tonumber(selected_cand_idx) >= 0)
         and (inputCode:match("^" .. favorCmdPrefix))
     then
@@ -154,19 +154,19 @@ function processor.func(key, env)
     end
 
     if context:has_menu()
-        and (type(selected_cand_idx) == "number")
         and (tonumber(selected_cand_idx) >= 0)
         and (preeditCodeLength >= appLaunchPrefix:len())
         and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j"))
     then
-        local selected_items = allCommandItems[system_name][inputCode]
+        local sys_name = env.system_name
+        local selected_items = allCommandItems[sys_name][inputCode]
         if (appLaunchPrefix ~= "/j") and (inputCode:sub(1, appLaunchPrefix:len()) == appLaunchPrefix) then
             local appTriggerKey = "/j" .. inputCode:gsub(appLaunchPrefix, "", 1)
-            selected_items = allCommandItems[system_name][appTriggerKey]
+            selected_items = allCommandItems[sys_name][appTriggerKey]
         end
 
         if not selected_items then
-            selected_items = allCommandItems[system_name]
+            selected_items = allCommandItems[sys_name]
         end
 
         local appId = nil
@@ -187,7 +187,7 @@ function processor.func(key, env)
 
         if appId and segment.prompt:match("应用闪切") then
             context:clear()
-            cmd(system_name, "-b ", appId)
+            cmd(sys_name, "-b ", appId)
             return 1 -- kAccepted 收下此key
         else
             engine:commit_text(candidateText)
