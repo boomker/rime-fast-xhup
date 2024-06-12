@@ -1,4 +1,4 @@
-
+require("tools/metatable")
 local reload_env = require("tools/env_api")
 local T = {}
 local history_list = {}
