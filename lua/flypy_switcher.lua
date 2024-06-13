@@ -43,6 +43,7 @@ function flypy_switcher.init(env)
         "恢复常规候选按键",
         "开关短语自动上屏",
         "开关字符码区提示",
+        "关闭候选注解提示",
         "开关中英词条空格",
         "禁用中英前置空格",
     }
@@ -90,15 +91,14 @@ function processor.func(key, env)
     end
 
     if (key:repr() == env.switch_english_key) and (schema.schema_id ~= "easy_en") then
-        --[[
-        context:clear()
-        context:push_input(env.easy_en_prefix .. preedit_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1                                    -- kAccept
-    elseif context:has_menu() and (key:repr() == env.switch_easy_en_key) then
-    --]]
         context:clear()
         env.engine:apply_schema(Schema("easy_en"))
+        context:push_input(preedit_code)
+        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+        return 1                                    -- kAccept
+    elseif (key:repr() == env.switch_english_key) and (schema.schema_id == "easy_en") then
+        context:clear()
+        env.engine:apply_schema(Schema("flypy_xhfast"))
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
@@ -186,6 +186,10 @@ function processor.func(key, env)
                 table.insert(filters, #filters, target_filter)
             end
             env:Config_set("engine/filters", filters)
+        elseif (cand_text == "关闭候选注解提示") then
+            config:set_int("translator/spelling_hints", 0)
+            config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
+            env:Config_set('radical_reverse_lookup/comment_format/@last', "xform/^.+$//")
         elseif (cand_text == "禁用中英前置空格") then
             local processors = env:Config_get("engine/processors")
             local target_processor = "lua_processor@*word_append_space*processor"

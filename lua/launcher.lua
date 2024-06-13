@@ -203,21 +203,22 @@ function translator.init(env)
     env.launcher_config = require("launcher_config")
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
-    env.app_command_items = env.launcher_config[3]
+    env.all_command_items = env.launcher_config[3]
     env.system_name = rime_api_helper.detect_os()
 end
 
 function translator.func(input, seg, env)
     local composition = env.engine.context.composition
-    local app_command_items = env.app_command_items
+    local allCommandItems = env.all_command_items
     local appLaunchPrefix = env.app_launch_prefix
     local favorCmdPrefix = env.favor_cmd_prefix
     local system_name = env.system_name
-    local app_items = app_command_items[system_name][input]
+    local all_app_items = allCommandItems[system_name] or nil
+    local app_items = all_app_items and all_app_items[input] or nil
 
     if (appLaunchPrefix ~= "/j") and (input:sub(1, appLaunchPrefix:len()) == appLaunchPrefix) then
         local appTriggerKey = "/j" .. input:gsub(appLaunchPrefix, "", 1)
-        app_items = app_command_items[system_name][appTriggerKey]
+        app_items = all_app_items and all_app_items[appTriggerKey]
     end
 
     if composition:empty() then return end
@@ -236,8 +237,9 @@ function translator.func(input, seg, env)
         cand.quality = 999
         yield(cand)
     elseif input:match("^" .. appLaunchPrefix) then
+        if not all_app_items then return end
         segment.prompt = "〔应用闪切〕"
-        for _, val in pairs(app_command_items[system_name]) do
+        for _, val in pairs(all_app_items) do
             if type(val[1]) == "string" then
                 local cand = Candidate("shortcut", seg.start, seg._end, val[1], "")
                 cand.quality = 999
@@ -261,12 +263,12 @@ function translator.func(input, seg, env)
         first_menu_selected_text = nil
         segment.prompt = "〔快捷指令〕"
 
-        for key, _ in pairs(app_command_items["Favors"]) do
+        for key, _ in pairs(allCommandItems["Favors"]) do
             local cand = Candidate("favor", seg.start, seg._end, key, "")
             cand.quality = 999
             yield(cand)
         end
-        favor_items = app_command_items["Favors"]
+        favor_items = allCommandItems["Favors"]
     end
 
     if
@@ -279,7 +281,7 @@ function translator.func(input, seg, env)
         local matchCount = 0
         local matchMenuKey = ""
         local matchMenuItems = nil
-        for key, val in pairs(app_command_items["Favors"]) do
+        for key, val in pairs(allCommandItems["Favors"]) do
             if key:match("^" .. first_menu_prefix) then
                 matchCount = matchCount + 1
                 matchMenuKey = key
@@ -297,7 +299,7 @@ function translator.func(input, seg, env)
                 cand.quality = 999
                 yield(cand)
             end
-            favor_items = app_command_items["Favors"]
+            favor_items = allCommandItems["Favors"]
             first_menu_selected_text = matchMenuKey
         else
             local cand = Candidate("unknown", seg.start, seg._end, "未匹配到一级菜单", "")
@@ -429,6 +431,7 @@ function filter.func(input, env)
 
         for _, cand in ipairs(sorted_command_cands) do
             local cand_text = cand.text:gsub("[0-9]+$", "")
+            ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand_text, ""))
         end
     end

@@ -45,6 +45,7 @@ function T.func(input, seg, env)
         segment.prompt = "〔" .. prompt .. "〕"
         for i = #history_list, 1, -1 do
             local cand = Candidate("history", seg.start, seg._end, history_list[i].text, "")
+            ---@diagnostic disable-next-line: redundant-parameter
             local cand_uniq = cand:to_uniquified_candidate(cand.type, cand.text, cand.comment)
             cand_uniq.quality = 999
             yield(cand_uniq)

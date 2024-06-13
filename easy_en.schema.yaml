@@ -16,6 +16,7 @@ schema:
 engine:
   processors:
     - lua_processor@*engword_append_space
+    - lua_processor@*flypy_switcher*processor
     - ascii_composer
     - key_binder
     - speller
@@ -34,6 +35,7 @@ engine:
     - table_translator
     - punct_translator
     - lua_translator@*word_autocaps*translator
+    - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
   filters:
     - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
     - lua_filter@*easy_en*filter
@@ -41,8 +43,8 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/_-'
-  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/_'
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
   delimiter: " "
   algebra:
     - xform/^a/!/

@@ -204,6 +204,7 @@ function filter.func(input, env)
             if overwrite_comment then
                 comment = env.radical_reversedb:lookup(cand.text) or comment
             end
+            ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
 
             if (#single_char_cands == 1) then
@@ -227,6 +228,7 @@ function filter.func(input, env)
                 string.gsub(current_cand_shape_code, input_shape_code, '', 1)
             local comment = (string.len(remain_shape_code) > 0) and
                 string.format('~%s', remain_shape_code) or "~"
+            ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
             if (#tchars_word_cands == 1) and (tchars_word_cands[cand.text]) and
                 (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) then
