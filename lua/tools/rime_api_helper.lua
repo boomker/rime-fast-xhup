@@ -7,8 +7,11 @@ function M.detect_os()
         return "Windows"
     elseif user_distribute_name:lower():match("squirrel") then
         return "MacOS"
-    elseif user_distribute_name:lower():match("fcitx%-rime") then -- fcitx-rime
+    elseif (user_distribute_name:lower():match("fcitx%-rime")
+        and io.popen("uname -s"):read("*l"):lower():match("darwin")) then
         return "MacOS"
+    elseif user_distribute_name:lower():match("fcitx%-rime") then
+        return "Android"
     elseif user_distribute_name:lower():match("^fcitx$") then
         return "Linux"
     elseif user_distribute_name:lower():match("ibus") then
