@@ -177,7 +177,7 @@ function filter.func(input, env)
                 not (
                     table.find_index(drop_words, cand_text)
                     or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
-                    or (string.find(cand.comment, "☯")) -- cand.quality == 0.0
+                    -- or (string.find(cand.comment, "☯")) -- cand.quality == 0.0
                 )
             then
                 yield(cand)

@@ -3,6 +3,8 @@
 -- 示例：`VIP中P` → `VIP 中 P`
 -- local logger = require('tools/logger')
 local rime_api_helper = require('tools/rime_api_helper')
+-- local logger = require("tools/logger")
+local space_leader_word = {}
 
 local function reset_cand_property(env)
     local context = env.engine.context
@@ -10,11 +12,11 @@ local function reset_cand_property(env)
     context:set_property("prev_cand_is_word", "0")
     context:set_property("prev_cand_is_hanzi", "0")
     context:set_property("prev_cand_is_preedit", "0")
+    context:set_property("prev_commit_is_comma", "0")
 end
 
-local space_leader_word = {}
-
 function space_leader_word.init(env)
+    env.page_turn_count = 0
     env.spec_keys = {
         ["apostrophe"] = true,
         ["grave"] = true,
@@ -58,6 +60,7 @@ function space_leader_word.func(key, env)
     local prev_cand_is_word = context:get_property("prev_cand_is_word")
     local prev_cand_is_hanzi = context:get_property("prev_cand_is_hanzi")
     local prev_cand_is_preedit = context:get_property("prev_cand_is_preedit")
+    local prev_commit_is_comma = context:get_property("prev_commit_is_comma")
 
     if current_focus_app_id ~= context:get_property("prev_focus_app_id") then
         reset_cand_property(env)
@@ -72,10 +75,14 @@ function space_leader_word.func(key, env)
         reset_cand_property(env)
     end
 
-    if (#input_code >= 1) and (key_value == "Return") and (segment.prompt == "") then
+    if (#input_code >= 1) and (key_value == "Return") then
         local cand_text = input_code
-        if (prev_cand_is_null ~= "1") and (
-                (prev_cand_is_hanzi == "1") or (prev_cand_is_word == "1")
+        if (prev_commit_is_comma == "1") then
+            engine:commit_text(cand_text)
+        elseif (prev_cand_is_null ~= "1") and (#cand_text > 2)
+            and (
+                (prev_cand_is_hanzi == "1")
+                or (prev_cand_is_word == "1")
             )
         then
             cand_text = " " .. input_code
@@ -89,13 +96,56 @@ function space_leader_word.func(key, env)
         return 1 -- kAccepted
     end
 
-    if (#input_code >= 1) and (segment.prompt == "") then
+    if (key_value == "Next") then
+        env.page_turn_count = env.page_turn_count + 1
+    elseif (key_value == "Page_Up") then
+        env.page_turn_count = env.page_turn_count - 1
+    end
+
+    -- logger.writeLog("key_value: " .. key_value .. ", page_turn_count: " .. page_turn_count)
+    if (#input_code >= 1) and (key_value == "comma") and (env.page_turn_count == 0) then
+        local index = segment.selected_index
+        local selected_cand = segment:get_candidate_at(index)
+        if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
+            local cand_text = " " .. selected_cand.text .. "，"
+            engine:commit_text(cand_text)
+            context:set_property("prev_commit_is_comma", "1")
+        elseif (prev_cand_is_hanzi == "1") and selected_cand.text:match("^%a+") then
+            local cand_text = " " .. selected_cand.text .. "，"
+            engine:commit_text(cand_text)
+            reset_cand_property(env)
+            context:set_property("prev_commit_is_comma", "1")
+        else
+            local cand_text = selected_cand.text .. "，"
+            engine:commit_text(cand_text)
+            reset_cand_property(env)
+            context:set_property("prev_commit_is_comma", "1")
+        end
+        context:set_property("prev_focus_app_id", current_focus_app_id)
+        context:clear()
+        return 1 -- kAccepted
+    end
+
+    if (#input_code >= 1) then
         local index = segment.selected_index
         local selected_cand_idx = rime_api_helper.get_selected_candidate_index(key_value, index, page_size)
         if selected_cand_idx < 0 then return 2 end
         local selected_cand = segment:get_candidate_at(selected_cand_idx)
         if not selected_cand then return 2 end
         local cand_text = selected_cand.text
+
+        if (prev_commit_is_comma == "1") then
+            engine:commit_text(cand_text)
+            reset_cand_property(env)
+            if cand_text:match("^%a+") then
+                context:set_property("prev_cand_is_word", "1")
+            else
+                context:set_property("prev_cand_is_hanzi", "1")
+            end
+            context:set_property("prev_focus_app_id", current_focus_app_id)
+            context:clear()
+            return 1
+        end
 
         if (prev_cand_is_null ~= "1") and ((prev_cand_is_preedit == "1") or (prev_cand_is_word == "1")) then
             if (tonumber(utf8.codepoint(cand_text, 1)) >= 19968) and (#input_code == pos) then
@@ -114,35 +164,39 @@ function space_leader_word.func(key, env)
                 context:set_property("prev_focus_app_id", current_focus_app_id)
                 context:clear()
                 return 1 -- kAccepted
-            else
-                context:confirm_previous_selection()
+                -- else
+                --     context:confirm_previous_selection()
             end
-            return 2 -- kAccepted
+            return 2
         end
 
         if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
             reset_cand_property(env)
             context:set_property("prev_cand_is_hanzi", "1")
             context:set_property("prev_focus_app_id", current_focus_app_id)
-            context:confirm_previous_selection()
+            -- context:confirm_previous_selection()
+            return 2
         end
 
         if string.match(cand_text, "^[%l%u]+") then
             if (prev_cand_is_null ~= "1") and ((prev_cand_is_hanzi == "1") or (prev_cand_is_word == "1")) then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
+                reset_cand_property(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app_id", current_focus_app_id)
                 context:clear()
                 return 1 -- kAccepted
             elseif (prev_cand_is_null == "1") or (prev_cand_is_hanzi ~= "1") then
                 engine:commit_text(cand_text)
+                reset_cand_property(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_cand_is_null", "0")
                 context:set_property("prev_focus_app_id", current_focus_app_id)
                 context:clear()
                 return 1 -- kAccepted
             else
+                reset_cand_property(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app_id", current_focus_app_id)
             end
@@ -167,4 +221,7 @@ local function cn_en_spacer(input, env)
     end
 end
 
-return { processor = { init = space_leader_word.init, func = space_leader_word.func }, filter = cn_en_spacer }
+return {
+    processor = { init = space_leader_word.init, func = space_leader_word.func },
+    filter = cn_en_spacer,
+}
