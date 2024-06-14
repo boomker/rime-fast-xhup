@@ -28,8 +28,9 @@ local function reset_cand_property(env)
     local context = env.engine.context
     context:set_property("prev_cand_is_null", "0")
     context:set_property("prev_cand_is_word", "0")
-    context:set_property("prev_cand_is_hanzi", "1")
+    context:set_property("prev_cand_is_hanzi", "0")
     context:set_property("prev_cand_is_preedit", "0")
+    context:set_property("prev_commit_is_comma", "0")
 end
 
 function P.init(env)

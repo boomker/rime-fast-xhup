@@ -8,9 +8,9 @@ function M.detect_os()
     elseif user_distribute_name:lower():match("squirrel") then
         return "MacOS"
     elseif (user_distribute_name:lower():match("fcitx%-rime")
-        and io.popen("uname -s"):read("*l"):lower():match("darwin")) then
+            and io.popen("uname -s"):read("*l"):lower():match("darwin")) then
         return "MacOS"
-    elseif user_distribute_name:lower():match("fcitx%-rime") then
+    elseif user_distribute_name:lower():match("^fcitx%-rime$") then
         return "Android"
     elseif user_distribute_name:lower():match("^fcitx$") then
         return "Linux"
@@ -23,30 +23,30 @@ function M.detect_os()
     end
 end
 
-function M.get_selected_candidate_index(keyValue, selected_index, page_size)
-    local key_value = keyValue
+function M.get_selected_candidate_index(key_value, selected_index, page_size)
+    local keyValue = key_value
     local selected_cand_idx = -1
     if keyValue == "space" then
-        key_value = -1
+        keyValue = -1
     elseif keyValue == "Return" then
-        key_value = -1
+        keyValue = -1
     elseif keyValue == "semicolon" then
-        key_value = 1
+        keyValue = 1
     elseif keyValue == "apostrophe" then
-        key_value = 2
-    elseif string.find(keyValue, "^[1-9]$") then
-        key_value = tonumber(keyValue) - 1
+        keyValue = 2
+    elseif keyValue:match("^[1-9]$") then
+        keyValue = tonumber(keyValue) - 1
     elseif keyValue == "0" then
-        key_value = 9
+        keyValue = 9
     else
         return -1
     end
 
     local page_pos = (selected_index // page_size) + 1
-    local idx = (key_value == -1) and selected_index or key_value
+    local idx = (keyValue == -1) and selected_index or keyValue
     selected_cand_idx = (
-        (type(key_value) == "number") and (key_value ~= -1) and (page_pos > 1)
-    ) and (key_value + (page_pos - 1) * page_size) or idx
+        (type(keyValue) == "number") and (keyValue ~= -1) and (page_pos > 1)
+    ) and (keyValue + (page_pos - 1) * page_size) or idx
     return selected_cand_idx
 end
 
