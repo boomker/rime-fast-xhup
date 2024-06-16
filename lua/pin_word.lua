@@ -146,7 +146,7 @@ function filter.func(input, env)
         else
             table.insert(other_cands, cand)
         end
-        if #other_cands >= 80 then break end
+        if #other_cands >= 100 then break end
     end
 
     if #pin_cands > 0 then

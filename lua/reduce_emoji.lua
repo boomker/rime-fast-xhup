@@ -1,9 +1,24 @@
 local F = {}
 
 function F.init(env)
-    local config = env.engine.schema.config
+    local engine = env.engine
+    local config = engine.schema.config
+    -- env.mem = Memory(engine, engine.schema)
     env.emoji_pos = config:get_int("emoji_reduce/idx") or 6
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    --[[
+    env.notifier_commit = env.engine.context.commit_notifier:connect(function(ctx)
+        local cand = ctx:get_selected_candidate()
+        if (cand:get_dynamic_type() == "Shadow") then
+            local userdict_entry = DictEntry()
+            userdict_entry.text = cand.text
+            userdict_entry.custom_code = cand.preedit
+            if env.mem.start_session then env.mem:start_session() end             -- new on librime 2024.05
+            env.mem:update_userdict(userdict_entry, 0, '')
+            if env.mem.finish_session then env.mem:finish_session() end           -- new on librime 2024.05
+        end
+    end)
+    --]]
 end
 
 function F.func(input, env)
@@ -12,8 +27,8 @@ function F.func(input, env)
     local top_cand_cnt = 0
     local engine = env.engine
     local emoji_toggle = engine.context:get_option("emoji")
+    local wechat_flag  = engine.context:get_option("wechat_flag")
     local preedit_code = engine.context.input:gsub(" ", "")
-    local wechatFlg = env.engine.context:get_option("wechat_flag")
 
     for cand in input:iter() do
         if (top_cand_cnt <= env.emoji_pos) then
@@ -48,7 +63,7 @@ function F.func(input, env)
 
     for _, emoji_cand in ipairs(emoji_cands) do
         local cand_text = emoji_cand.text
-        if wechatFlg then
+        if wechat_flag then
             yield(emoji_cand)
         elseif not cand_text:match("^%[.*%]$") then
             yield(emoji_cand)
@@ -57,11 +72,15 @@ function F.func(input, env)
 
     for _, cand in ipairs(other_cands) do
         local cand_text = cand.text
-        if wechatFlg then yield(cand)
+        if wechat_flag then yield(cand)
         elseif not cand_text:match("^%[.*%]$") then
             yield(cand)
         end
     end
 end
 
+-- function F.fini(env)
+--     env.notifier_commit:disconnect()
+--     env.mem = nil
+-- end
 return F

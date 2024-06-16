@@ -27,7 +27,7 @@ local function autocap_filter(input, env)
 		else
 			yield(cand)
 		end
-        if #u_cands >= 80 then
+        if #u_cands >= 100 then
             break
         end
 	end
