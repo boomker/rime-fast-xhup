@@ -22,6 +22,8 @@
         "ConfigList",
         "Set",
         "Component",
-        "Translator"
+        "Translator",
+        "Memory",
+        "DictEntry"
 	]
 }
