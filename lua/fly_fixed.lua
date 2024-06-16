@@ -62,7 +62,7 @@ function F.func(input, env)
             yield(cand)
         end
 
-        if #cands >= 80 then break end
+        if #cands >= 100 then break end
     end
 
     for _, cand in ipairs(cands) do yield(cand) end

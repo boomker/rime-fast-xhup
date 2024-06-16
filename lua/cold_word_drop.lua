@@ -138,10 +138,11 @@ function filter.func(input, env)
     local hide_words = env.hide_words
     local word_reduce_idx = env.word_reduce_idx
     local reduce_freq_words = env.reduce_freq_words
-    local preedit_code = context.input:gsub(" ", "")
+    local preedit_str = context.input:gsub(" ", "")
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
+        local preedit_code = cand.preedit:gsub(" ", "") or preedit_str
 
         local reduce_freq_list = reduce_freq_words[cand_text] or {}
         if word_reduce_idx > 1 then
@@ -194,7 +195,7 @@ function filter.func(input, env)
             end
         end
 
-        if #cands >= 80 then break end
+        if #cands >= 100 then break end
     end
 
     for _, cand in ipairs(cands) do yield(cand) end

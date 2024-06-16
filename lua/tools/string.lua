@@ -11,6 +11,11 @@ function string.split(str, sp, sp1)
     end
 
     local tab = {}
+    if not str:match(sp) then
+        table.insert(tab, str)
+        return tab
+    end
+
     for v in str:gmatch(sp) do table.insert(tab, v) end
     return tab
 end

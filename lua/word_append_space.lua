@@ -3,7 +3,6 @@
 -- 示例：`VIP中P` → `VIP 中 P`
 -- local logger = require('tools/logger')
 local rime_api_helper = require('tools/rime_api_helper')
--- local logger = require("tools/logger")
 local space_leader_word = {}
 
 local function reset_cand_property(env)
@@ -40,6 +39,12 @@ function space_leader_word.init(env)
         ["Control+Return"] = true,
     }
     reset_cand_property(env)
+
+    -- env.client_app_notifier = env.engine.context.property_update_notifier:connect(function(ctx, name)
+    --     if name == "client_app" then
+    --         env.current_focus_app_id = ctx:get_property("client_app")
+    --     end
+    -- end)
 end
 
 function space_leader_word.func(key, env)
@@ -55,6 +60,7 @@ function space_leader_word.func(key, env)
     -- if composition:empty() then return 2 end
     if input_code:match("^/.*") then return 2 end
 
+    -- local current_focus_app_id = env.current_focus_app_id
     local current_focus_app_id = context:get_property("client_app")
     local prev_cand_is_null = context:get_property("prev_cand_is_null")
     local prev_cand_is_word = context:get_property("prev_cand_is_word")
@@ -102,7 +108,6 @@ function space_leader_word.func(key, env)
         env.page_turn_count = env.page_turn_count - 1
     end
 
-    -- logger.writeLog("key_value: " .. key_value .. ", page_turn_count: " .. page_turn_count)
     if (#input_code >= 1) and (key_value == "comma") and (env.page_turn_count == 0) then
         local index = segment.selected_index
         local selected_cand = segment:get_candidate_at(index)
@@ -221,7 +226,15 @@ local function cn_en_spacer(input, env)
     end
 end
 
+-- function space_leader_word.fini(env)
+--     env.client_app_notifier:disconnect()
+-- end
+
 return {
-    processor = { init = space_leader_word.init, func = space_leader_word.func },
+    processor = {
+        init = space_leader_word.init,
+        func = space_leader_word.func,
+        -- fini = space_leader_word.fini,
+    },
     filter = cn_en_spacer,
 }

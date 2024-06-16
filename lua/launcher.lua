@@ -59,7 +59,7 @@ function processor.func(key, env)
             inputCode:match("^" .. favorCmdPrefix)
             or inputCode:match("^" .. appLaunchPrefix)
             or inputCode:match("^/j%l+")
-        )
+        ) or composition:empty()
     then
         return 2
     end
@@ -91,13 +91,9 @@ function processor.func(key, env)
 
     local selected_index = segment.selected_index or -1
     local selected_cand_idx = rime_api_helper.get_selected_candidate_index(keyValue, selected_index, page_size)
-    if selected_cand_idx < 0 then return 2 end
+    if (selected_cand_idx < 0) then return 2 end
 
-    if
-        context:has_menu()
-        and (tonumber(selected_cand_idx) >= 0)
-        and (inputCode:match("^" .. favorCmdPrefix))
-    then
+    if (inputCode:match("^" .. favorCmdPrefix)) then
         if (selected_cand_idx >= 0) and (inputCode == favorCmdPrefix) and segment.prompt:match("快捷指令") then
             local cand = segment:get_candidate_at(selected_cand_idx)
             local candidateText = cand.text
@@ -153,9 +149,7 @@ function processor.func(key, env)
         end
     end
 
-    if context:has_menu()
-        and (tonumber(selected_cand_idx) >= 0)
-        and (preeditCodeLength >= appLaunchPrefix:len())
+    if (preeditCodeLength >= appLaunchPrefix:len())
         and (inputCode:match("^" .. appLaunchPrefix) or inputCode:match("^/j"))
     then
         local sys_name = env.system_name
@@ -170,6 +164,7 @@ function processor.func(key, env)
         end
 
         local appId = nil
+        -- local candidateText = nil
         local candidateText = segment:get_candidate_at(selected_cand_idx).text
         if selected_items and table.len(selected_items) > 2 then
             for _, val in pairs(selected_items) do
@@ -198,6 +193,10 @@ function processor.func(key, env)
 
     return 2
 end
+
+-- function processor.fini(env)
+--     env.notifier_commit_launcher:disconnect()
+-- end
 
 function translator.init(env)
     env.launcher_config = require("launcher_config")

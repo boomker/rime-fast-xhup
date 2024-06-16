@@ -116,7 +116,7 @@ translator:
   spelling_hints: 1                 # `0`: 关闭单字编码提示
   initial_quality: 1.3
   max_phrase_length: 5
-  enable_encoder: true
+  # enable_encoder: true
   enable_user_dict: true
   encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启八股文, 上下文联想

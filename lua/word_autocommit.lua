@@ -1,4 +1,5 @@
 require("tools/string")
+-- local logger = require("tools/logger")
 
 local word_shape_char_tbl = {}
 local word_auto_commit = {}
@@ -59,13 +60,36 @@ function processor.func(key, env)
         ["10"] = 9
     }
 
+    local composition = context.composition
+    if (composition:empty()) then return 2 end
+    local segment = composition:back()
+
+    if (input_code:match("^%l%l%l%l$")) and (key:repr() == "slash") and (caret_pos == 4) then
+        local char_code_matched_tbl = {}
+        for i = 1, 100, 1 do
+            local char_cand = segment:get_candidate_at(i)
+            if not char_cand then goto check_matched_tbl end
+            local char_cand_text = char_cand.text
+            if (utf8.len(char_cand_text) ~= 1) then goto skip_char_cand end
+            local reverse_char_code = env.reversedb:lookup(char_cand_text):gsub("%[", "")
+            local char_code_tbl = string.split(reverse_char_code, " ")
+            if table.find_index(char_code_tbl, input_code) then
+                table.insert(char_code_matched_tbl, char_cand_text)
+            end
+            ::skip_char_cand::
+        end
+        ::check_matched_tbl::
+        if #char_code_matched_tbl == 1 then
+            engine:commit_text(char_code_matched_tbl[1])
+            context:clear()
+            return 1
+        end
+    end
+
     -- 四码二字词时, 按下 '['  生成辅助码提示注解
     if ((preedit_code_length == 4) and (key:repr() == "bracketleft")
             and (caret_pos == 4) and (#word_shape_char_tbl < 1))
     then
-        local composition = context.composition
-        if (composition:empty()) then return 2 end
-        local segment = composition:back()
         for i = 1, 50, 1 do
             local word_cand = segment:get_candidate_at(i)
             if not word_cand then return 2 end
@@ -148,8 +172,7 @@ function filter.func(input, env)
     local overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
 
     for cand in input:iter() do
-        if preedit_code:match("^;%l+$") and (not symbol_cands[cand.text])
-        then
+        if preedit_code:match("^;%l+$") and (not symbol_cands[cand.text]) then
             symbol_cands[cand.text] = cand
             table.insert(symbol_cands, cand)
         end
@@ -179,10 +202,11 @@ function filter.func(input, env)
             fchars_word_cands[cand.text] = cand
         end
 
-        if #cands > 80 then break end
+        if #cands >= 100 then break end
         table.insert(cands, cand)
     end
 
+    -- 符号自动上屏
     if preedit_code:match("^;%l+$") and (#symbol_cands == 1) then
         env.engine:commit_text(symbol_cands[1].text)
         context:clear()
