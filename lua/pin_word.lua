@@ -1,5 +1,6 @@
 local reload_env = require("tools/env_api")
 local pin_word_records = require("pin_word_record")
+local rime_api_helper = require("tools/rime_api_helper")
 
 local pin_word = {}
 local processor = {}
@@ -8,32 +9,20 @@ local filter = {}
 local custom_phrase_cands = {}
 
 local function get_record_filername()
-    local user_distribute_name = rime_api:get_distribution_name()
-    if user_distribute_name == "小狼毫" then
-        return string.format("%s\\Rime\\lua\\pin_word_record.lua", os.getenv("APPDATA"))
+    local system_name = rime_api_helper.detect_os()
+    local user_data_dir = rime_api:get_user_data_dir()
+    if system_name:lower():match("windows") then
+        return string.format("%s\\lua\\pin_word_record.lua", user_data_dir)
+    else
+        return string.format("%s/lua/pin_word_record.lua", user_data_dir)
     end
-    local system = io.popen("uname -s"):read("*l")
-    local filename = nil
-    if system == "Darwin" then
-        filename = string.format("%s/Library/Rime/lua/pin_word_record.lua", os.getenv("HOME"))
-    elseif system == "Linux" then
-        local gtk_env = os.getenv("GTK_IM_MODULE")
-        filename = string.format(
-            "%s/%s/rime/lua/%pin_word_record.lua",
-            os.getenv("HOME"),
-            gtk_env and (string.find(gtk_env, "fcitx") and ".local/share/fcitx5" or ".config/ibus")
-        )
-    end
-    return filename
 end
 
 local function write_word_to_file()
     local filename = get_record_filername()
     local record_header = string.format("local pin_word_records =\n")
     local record_tailer = string.format("\nreturn pin_word_records")
-    if not filename then
-        return false
-    end
+    if not filename then return false end
     local fd = assert(io.open(filename, "w"))        --打开
     fd:setvbuf("line")
     fd:write(record_header)                          --写入文件头部
@@ -44,9 +33,6 @@ local function write_word_to_file()
     fd:close()                                       --关闭
 end
 
-local function is_excluded_type(seg)
-    return function(type) return seg:has_tag(type) end
-end
 
 function pin_word.init(env)
     reload_env(env)
@@ -54,9 +40,6 @@ function pin_word.init(env)
     env.word_quality = env:Config_get("pin_word/word_quality") or 999
     env.pin_mark = env:Config_get("pin_word/comment_mark") or " 🔝"
     env.comment_mark = env:Config_get("custom_phrase/comment_mark") or " 📌"
-    env.excluded_types = env:Config_get("pin_word/excluded_types")
-    local flypy_help_pat = "recognizer/patterns/flypy_key_help"
-    env.key_help_prefix = env:Config_get(flypy_help_pat):match("%^([a-z/]+).*") or "/ok"
     env.custom_phrase_tran = Component.Translator(env.engine, "", "table_translator@custom_phrase")
 end
 
@@ -88,11 +71,10 @@ end
 function translator.func(input, seg, env)
     local comment_text = env.pin_mark
     local custom_mark = env.comment_mark
-    local excluded_types = env.excluded_types
     local input_code = input:gsub(" ", "")
     local pin_word_tab = pin_word_records[input_code] or nil
 
-    if pin_word_tab and not (table.any(excluded_types, is_excluded_type(seg))) then
+    if pin_word_tab and seg:has_tag('abc') then
         for _, w in ipairs(pin_word_tab) do
             -- Fix: 一个置顶字词可能对应多个不同长度的编码(如: "字" -> `zi`, `zi[bz`)
             if string.utf8_len(input_code) / string.utf8_len(w) ~= 2 then

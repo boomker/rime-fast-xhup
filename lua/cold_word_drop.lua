@@ -74,12 +74,11 @@ end
 function cold_word_drop.init(env)
     local engine = env.engine
     local config = engine.schema.config
-    -- local easy_en_pattern_path = "recognizer/patterns/easy_en"
     local _sd, drop_words = pcall(require, "cold_word_record/drop_words")
     local _sh, hide_words = pcall(require, "cold_word_record/hide_words")
     local _sr, reduce_freq_words = pcall(require, "cold_word_record/reduce_freq_words")
-    -- local env.easy_en_prefix = config:get_string(easy_en_pattern_path) or "/oe"
 
+    env.tag = "abc"
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.word_reduce_idx = config:get_int("cold_word_reduce/idx") or 4
     env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
@@ -178,7 +177,7 @@ function filter.func(input, env)
                 not (
                     table.find_index(drop_words, cand_text)
                     or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
-                    -- or (string.find(cand.comment, "☯")) -- cand.quality == 0.0
+                    -- or (string.find(cand.comment, "☯"))
                 )
             then
                 yield(cand)
@@ -201,7 +200,12 @@ function filter.func(input, env)
     for _, cand in ipairs(cands) do yield(cand) end
 end
 
+function filter.tags_match(seg, env)
+    if seg.tags[env.tag] then return true end
+    return false
+end
+
 return {
     processor = { init = cold_word_drop.init, func = processor.func },
-    filter = { init = cold_word_drop.init, func = filter.func },
+    filter = { init = cold_word_drop.init, func = filter.func, tags_match = filter.tags_match },
 }

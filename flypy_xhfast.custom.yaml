@@ -183,7 +183,6 @@ patch:
   pin_word:                           # 词条置顶配置
     word_quality: 1000
     comment_mark: " 🔝"               # 置顶词标记
-    excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
 
   cold_word_reduce:                   # 生僻词条降频到第 idx 个位置
     idx: 4
