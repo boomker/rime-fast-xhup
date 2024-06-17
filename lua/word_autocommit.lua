@@ -1,4 +1,5 @@
 require("tools/string")
+local rime_api_helper = require("tools/rime_api_helper")
 -- local logger = require("tools/logger")
 
 local word_shape_char_tbl = {}
@@ -39,26 +40,13 @@ end
 
 function processor.func(key, env)
     local engine = env.engine
+    local key_value = key:repr()
+    local schema = engine.schema
     local context = engine.context
     local input_code = context.input
+    local page_size = schema.page_size
     local caret_pos = context.caret_pos
     local preedit_code_length = #input_code
-
-    local seleted_cand_kyes = {
-        ["space"] = 0,
-        ["semicolon"] = 1,
-        ["apostrophe"] = 2,
-        ["1"] = 0,
-        ["2"] = 1,
-        ["3"] = 2,
-        ["4"] = 3,
-        ["5"] = 4,
-        ["6"] = 5,
-        ["7"] = 6,
-        ["8"] = 7,
-        ["9"] = 8,
-        ["10"] = 9
-    }
 
     local composition = context.composition
     if (composition:empty()) then return 2 end
@@ -103,16 +91,18 @@ function processor.func(key, env)
         end
     end
 
-    -- 按下 '[' 后, 数字键或符号键选单字时, 形码自动填充
-    if (seleted_cand_kyes[key:repr()]) and input_code:match("^%l+%[[%l%[]*") then
-        if ((caret_pos == 3) or (caret_pos == 7)) and (input_code:match("%[$")) then
-            context:select(seleted_cand_kyes[key:repr()])
+    -- 按下 '[' 后, 数字键或符号键选单字时, 自动上屏
+    local idx = segment.selected_index
+    local seleted_cand_index = rime_api_helper.get_selected_candidate_index(key_value, idx, page_size)
+    if (seleted_cand_index > 0) and input_code:match("^%l+%[[%l%[]*") then
+        if (table.find({ 3, 5 }, caret_pos)) and (input_code:match("%[$")) then
+            context:select(seleted_cand_index)
             local cand_text = context:get_commit_text():utf8_sub(1, -2)
             engine:commit_text(cand_text)
             context:clear()
             return 1
-        else
-            context:confirm_previous_selection()
+        -- else
+        --     context:confirm_previous_selection()
         end
         word_shape_char_tbl = {}
 
@@ -213,7 +203,7 @@ function filter.func(input, env)
         return 1 -- kAccepted
     end
 
-    if (caret_pos >= 4) and (table.find_index({ 4, 5 }, #preedit_code))
+    if (caret_pos >= 4) and (table.find({ 4, 5 }, #preedit_code))
         and preedit_code:match("^%l+%[%l%l?$")
     then
         for _, cand in ipairs(single_char_cands) do
@@ -244,8 +234,9 @@ function filter.func(input, env)
         end
     end
 
-    if (caret_pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
-        string.find(preedit_code, "^%l+%[%l+$") then
+    if (caret_pos >= 6) and (table.find({ 6, 7 }, #preedit_code))
+        and string.find(preedit_code, "^%l+%[%l+$")
+    then
         for _, cand in ipairs(tchars_word_cands) do
             local input_shape_code = string.sub(preedit_code, 6)
             local current_cand_shape_code = cand.comment:match('[%a]') and cand.comment:sub(2):gsub('%[', '')
