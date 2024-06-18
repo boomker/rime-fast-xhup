@@ -56,6 +56,7 @@ patch:
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
     expand_abbr_py: "Control+0"       # 展开超级简拼
+    remove_user_word: "Control+q"     # 删除用户词典里的单字 / 二三字词
     select_first_character: "minus"   # `-` 以词定字(第一个字)
     select_last_character:  "equal"   # `=` 以词定字(最后一个字)
     bindings/+:
@@ -175,7 +176,6 @@ patch:
     tag: history
     prefix: "/hs"
     tips: "上屏历史"
-    size: 30
     history_num_max: 30
     initial_quality: 1000
     excluded_types: ["punct"]

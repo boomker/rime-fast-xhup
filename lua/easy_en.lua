@@ -16,7 +16,8 @@ end
 
 function easy_en.init(env)
     local config = env.engine.schema.config
-    env.easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
+    local _easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
+    env.easy_en_prefix = _easy_en_pat and _easy_en_pat:match("%^([a-z/]+).*") or "/oe"
     env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
 end
 

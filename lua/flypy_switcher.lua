@@ -20,8 +20,10 @@ function flypy_switcher.init(env)
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
-    env.easy_en_prefix = config:get_string("recognizer/patterns/easy_en"):match("%^([a-z/]+).*") or "/oe"
-    env.switch_options = config:get_string("recognizer/patterns/switch_options"):match("[a-z/]+") or "/so"
+    local _easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
+    local _so_pat = config:get_string("recognizer/patterns/switch_options") or nil
+    env.easy_en_prefix = _easy_en_pat and _easy_en_pat:match("%^([a-z/]+).*") or "/oe"
+    env.switch_options = _so_pat and _so_pat:match("[a-z/]+") or "/so"
     env.alter_labels = { '①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⓪' }
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }
     env.switch_options_menu = {
