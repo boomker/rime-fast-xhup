@@ -78,7 +78,7 @@ function cold_word_drop.init(env)
     local _sh, hide_words = pcall(require, "cold_word_record/hide_words")
     local _sr, reduce_freq_words = pcall(require, "cold_word_record/reduce_freq_words")
 
-    env.tag = "abc"
+    env.tag = "easy_en"
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.word_reduce_idx = config:get_int("cold_word_reduce/idx") or 4
     env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
@@ -167,6 +167,7 @@ function filter.func(input, env)
                         and (cand_text:match("[%a]+"):len() < 4)
                         and cand_text:find("([\228-\233][\128-\191]-)")
                     )
+                    or (string.find(cand.comment, "☯"))
                 ) and not cand.comment:match(env.pin_mark)
             then
                 table.insert(cands, cand)
@@ -177,7 +178,6 @@ function filter.func(input, env)
                 not (
                     table.find_index(drop_words, cand_text)
                     or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
-                    -- or (string.find(cand.comment, "☯"))
                 )
             then
                 yield(cand)
@@ -201,11 +201,11 @@ function filter.func(input, env)
 end
 
 function filter.tags_match(seg, env)
-    if seg.tags[env.tag] then return true end
-    return false
+    if seg.tags[env.tag] then return false end
 end
 
 return {
     processor = { init = cold_word_drop.init, func = processor.func },
-    filter = { init = cold_word_drop.init, func = filter.func, tags_match = filter.tags_match },
+    filter = { init = cold_word_drop.init, func = filter.func },
+    -- filter = { init = cold_word_drop.init, func = filter.func, tags_match = filter.tags_match },
 }

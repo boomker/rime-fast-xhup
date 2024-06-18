@@ -5,7 +5,8 @@ local T = {}
 function T.init(env)
     local config = env.engine.schema.config
     --   env.name_space = env.name_space:gsub('^*', '')
-    T.prefix = config:get_string("recognizer/patterns/calculator"):match("%^([a-z/]+).*") or '/vs'
+    local _calc_pat = config:get_string("recognizer/patterns/calculator") or nil
+    T.prefix = _calc_pat and _calc_pat:match("%^([a-z/]+).*") or '/vs'
     T.tips = config:get_string("calculator/tips") or "计算器"
 end
 

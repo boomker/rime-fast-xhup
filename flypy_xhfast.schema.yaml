@@ -42,6 +42,7 @@ engine:
     - lua_processor@*idiom_abbr_expand
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
+    - lua_processor@*commit_history*processor
     - lua_processor@*word_autocommit*processor
     - ascii_composer
     - recognizer
@@ -81,8 +82,8 @@ engine:
     - lua_translator@*laTex                           # /lt 触发 LaTeX 输入
     - lua_translator@*calculator                      # /vs 触发计算器
     - lua_translator@*chinese_number                  # /cn 触发繁体大写金额数字
-    - lua_translator@*commit_history                  # /hs 触发显示上屏历史
     - lua_translator@*launcher*translator             # /jj, /fj 触发快捷命令(可改触发前缀)
+    - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
     - lua_translator@*en_custom                       # ] 置于输入码末尾触发自定义单词入库
     - lua_translator@*word_autocaps*translator        # A-Z 大写字母开头触发单词自动大写
@@ -115,14 +116,14 @@ translator:
   dictionary: flypy_xhfast
   spelling_hints: 1                 # `0`: 关闭单字编码提示
   initial_quality: 1.3
-  max_phrase_length: 5
-  # enable_encoder: true
   enable_user_dict: true
   encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启八股文, 上下文联想
   sentence_over_completion: true
-  # always_show_comments: true
   # max_homophones: 7
+  # max_phrase_length: 5
+  # enable_encoder: true
+  # always_show_comments: true
   # disable_user_dict_for_patterns:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
@@ -130,7 +131,7 @@ translator:
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
-  __include: /translator            # 复用上面的翻译器, 日志 warning 可忽略
+  __include: /translator
   enable_sentence: true
   prefix: "`"
   tips: "〔精准造词〕"

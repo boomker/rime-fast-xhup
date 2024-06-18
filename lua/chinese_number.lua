@@ -305,7 +305,8 @@ function T.func(input, seg, env)
     local str, numberPart
     local config = env.engine.schema.config
     local chinese_number_pattern = "recognizer/patterns/chinese_number"
-    local trigger_prefix = config:get_string(chinese_number_pattern):match("%^([a-z/]+).*") or "/cn"
+    local _cn_pat = config:get_string(chinese_number_pattern) or nil
+    local trigger_prefix = _cn_pat and _cn_pat:match("%^([a-z/]+).*") or "/cn"
     if seg:has_tag("chinese_number") or string.match(input, "^" .. trigger_prefix) then
         str = string.gsub(input, "^" .. trigger_prefix, "")
         if str:match("[%a]") then
