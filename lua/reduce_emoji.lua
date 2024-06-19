@@ -1,5 +1,4 @@
 local F = {}
--- local logger = require("tools/logger")
 
 function F.init(env)
     local engine = env.engine

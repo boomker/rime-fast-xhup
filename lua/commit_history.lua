@@ -52,8 +52,9 @@ function T.init(env)
     env.tag = config:get_string("history" .. "/tag") or "history"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
     env.trigger_prefix = config:get_string("history" .. "/prefix") or "/hs"
+    local history_num_max = config:get_string("history" .. "/max_count") or 30
     env.initial_quality = config:get_int("history" .. "/initial_quality") or 1000
-    local history_num_max = config:get_string("history" .. "/history_num_max") or 30
+    env.comment_max_length = config:get_int("history" .. "/comment_max_length") or 20
     local excluded_types = env:Config_get("history" .. "/excluded_types") or {}
     if #env.history_list >= tonumber(history_num_max) then
         table.remove(env.history_list, 1)
@@ -74,9 +75,10 @@ function T.func(input, seg, env)
     if seg:has_tag(env.tag) or (input == env.trigger_prefix) then
         segment.prompt = "〔" .. env.prompt .. "〕"
         local his_cands = env.history_list
+        local comment_max_length = env.comment_max_length
         for i = #his_cands, 1, -1 do
             local cand = Candidate("history", seg.start, seg._end, his_cands[i].text, his_cands[i].preedit)
-            local cand_uniq = cand:to_uniquified_candidate(cand.type, cand.text, cand.comment:sub(1, 11))
+            local cand_uniq = cand:to_uniquified_candidate(cand.type, cand.text, cand.comment:sub(1, comment_max_length))
             cand_uniq.quality = env.initial_quality
             yield(cand_uniq)
         end
