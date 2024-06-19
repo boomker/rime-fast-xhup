@@ -176,8 +176,9 @@ patch:
     tag: history
     prefix: "/hs"
     tips: "上屏历史"
-    history_num_max: 30
+    max_count: 30
     initial_quality: 1000
+    comment_max_length: 20
     excluded_types: ["punct"]
 
   pin_word:                           # 词条置顶配置

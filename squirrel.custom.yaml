@@ -127,11 +127,14 @@ patch:
     org.alacritty:                    # alacritty 终端
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
+      symbol_unpair_flag: true
     com.apple.Terminal:               # 终端
       ascii_mode: true
+      symbol_unpair_flag: true
     com.googlecode.iterm2:            # iterm2
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
+      symbol_unpair_flag: true
     com.apple.Stickies:
       ascii_mode: false
     com.apple.TextEdit:
@@ -142,10 +145,12 @@ patch:
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
       vim_mode: true
+      symbol_unpair_flag: true
     com.neovide.neovide:
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
       vim_mode: true
+      symbol_unpair_flag: true
     com.microsoft.edgemac:
       ascii_mode: false
     com.google.Chrome:

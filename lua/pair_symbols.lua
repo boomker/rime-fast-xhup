@@ -2,6 +2,7 @@
 -- ref: https://github.com/hchunhui/librime-lua/issues/84
 
 local rime_api_helper = require("tools/rime_api_helper")
+-- local logger = require("tools/logger")
 
 local function moveCursorToLeft(env)
     --     local osascript = [[osascript -e '
@@ -51,6 +52,15 @@ function P.func(key, env)
     local context = engine.context
     local composition = context.composition
     local segment = composition:back()
+    local focus_app_id = context:get_property("client_app")
+    local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
+    if symbol_unpair_flag then
+        return 2
+    elseif focus_app_id:match("alacritty")
+        or focus_app_id:match("VSCode")
+    then
+        return 2
+    end
 
     local key_name
 
@@ -113,7 +123,7 @@ function P.func(key, env)
         end
     end
 
-    return 2 -- kNoop 此processor 不處理
+    return 2 -- kNoop
 end
 
 return P
