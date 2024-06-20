@@ -16,26 +16,39 @@ end
 
 function easy_en.init(env)
     local config = env.engine.schema.config
+    local schema = Schema("easy_en") -- schema_id
     local _easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
+    env.wildcard = '*'
+    env.mem = Memory(env.engine, schema, "translator")
     env.easy_en_prefix = _easy_en_pat and _easy_en_pat:match("%^([a-z/]+).*") or "/oe"
     env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
 end
 
---[[
 function easy_en.translator(input, seg, env)
-    if input:match("^%l+%*%l+$") then
-        local input_code, fuzz_str = input:match("(.*)%*(.*)")
-        local patter_str = string.format("^%s.*%s", input_code, fuzz_str)
-        local easy_en_tran = env.easy_en_translator:query(input_code, seg)
-        for cand in easy_en_tran:iter() do
-            if cand.text:match(patter_str) then
-                -- table.insert(easy_en_cands, cand)
-                yield(cand)
+    if string.match(input, env.wildcard) then
+        local tailer = string.match(input, '[^' .. env.wildcard .. ']+$') or ''
+        local header = string.match(input, '^[^' .. env.wildcard .. ']+')
+        env.mem:dict_lookup(header, true, 100) -- expand_search
+        for dictentry in env.mem:iter_dict() do
+            local codetail = string.match(dictentry.comment, tailer .. '$') or ''
+            if tailer and (codetail == tailer) then
+                local code = env.mem:decode(dictentry.code)
+                local codeComment = table.concat(code, ",")
+                local ph = Phrase(env.mem, "expand_en_word", seg.start, seg._end, dictentry)
+                ph.comment = codeComment
+                yield(ph:toCandidate())
+                -- yield(Candidate("type",seg.start,seg.end,dictentry.text, codeComment	))
             end
         end
     end
 end
---]]
+
+function easy_en.fini(env)
+    if env.mem then
+        env.mem:disconnect()
+        env.mem = nil
+    end
+end
 
 function easy_en.filter(input, env)
     local en_cands = {}
@@ -74,6 +87,6 @@ function easy_en.filter(input, env)
 end
 
 return {
-    -- translator = { init = easy_en.init, func = easy_en.translator },
+    translator = { init = easy_en.init, func = easy_en.translator },
     filter = { init = easy_en.init, func = easy_en.filter }
 }

@@ -2,7 +2,6 @@
 -- ref: https://github.com/hchunhui/librime-lua/issues/84
 
 local rime_api_helper = require("tools/rime_api_helper")
--- local logger = require("tools/logger")
 
 local function moveCursorToLeft(env)
     --     local osascript = [[osascript -e '

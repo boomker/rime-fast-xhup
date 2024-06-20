@@ -24,6 +24,7 @@
         "Component",
         "Translator",
         "Memory",
-        "DictEntry"
+        "DictEntry",
+        "Phrase"
 	]
 }

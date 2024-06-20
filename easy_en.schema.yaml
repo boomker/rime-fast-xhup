@@ -34,6 +34,7 @@ engine:
   translators:
     - table_translator
     - punct_translator
+    - lua_translator@*easy_en*translator
     - lua_translator@*word_autocaps*translator
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
   filters:
@@ -43,7 +44,7 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/_'
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/_*'
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
   delimiter: " "
   algebra:

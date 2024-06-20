@@ -1,6 +1,5 @@
 require("tools/string")
 local rime_api_helper = require("tools/rime_api_helper")
--- local logger = require("tools/logger")
 
 local word_shape_char_tbl = {}
 local word_auto_commit = {}
@@ -128,7 +127,6 @@ function translator.func(input, seg, env)
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
             local cand = Candidate("custom", seg.start, seg._end, val[1], comment)
-            -- local cand_uniq = UniquifiedCandidate(cand, cand.type, cand.text, comment)
             yield(cand)
         end
     end

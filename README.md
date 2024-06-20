@@ -92,14 +92,15 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - `/` 前缀：符号模式，具体见本方案的 [`symbols.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/57bb5b093ae164f46ffac52df47b18addf89c2b1/symbols.custom.yaml) 文件。例如：敲 `/jt` 按 3，即可输入箭头“←”。
 - `/oh` 前缀：本方案帮助菜单, 输入 `/help` 效果等同, 可查看方案中的快捷键, 功能触发前缀字符串等。
 - `/ok` 前缀：小鹤双拼键位查询，该功能为双拼初学者提供。例如：敲 `okian`，可看到韵母 `ian` 对应的按键是 `m`。
-- `/oe` 前缀：单词模式，允许“简写”，可省略掉除了首字母以外的所有元音字母（`aeiou`）。
+- `/oe` 前缀：单词模式，允许「简写」**、**「略写」，可省略掉除了首字母以外的所有元音字母（`aeiou`）。
   例如：敲 `/oe` `elevation `或者 `/oe ` `elvtn` 再加空格，即可输入“elevation”。
 
   - 该功能基于 [easy-en](https://github.com/BlindingDark/rime-easy-en) 项目，简写特性由 `easy_en.schema.yaml` 文件中设置的拼写运算实现。
     作者对字典文件进行了精简处理以加快部署速度。如果用户希望使用更完整的字典文件，
     而同时保留简写特性，可以尝试将 `easy_en.dict.yaml` 文件更换为原项目的版本。
-  - Tips：单词第一次输入时用简写，Rime 会将它的词频记录进用户词典。
-    之后的输入只需要敲完整单词的前半部分，它作为输入过的单词就会排在靠前的位置。
+  - Tips：
+    单词第一次输入时用简写，Rime 记录它的词频进用户词典, 之后的输入就会排在靠前的位置。
+    单词中输入 `*` 可以模糊输入，比如：敲 `bea*l` 就可以看到 `beautiful` 这个单词。
 - /`jk` 前缀: 用于快速启动或切换程序, 目前只在 macOS 上测试过。
 - `/fj` 前缀: 用于输入常用短语(邮箱/手机号/银行卡号/收件地址); 和打开常用网站网址,
   本地文件路径; 执行常见指令(开关系统设置) 等等, 可自行在 [配置文件](https://github.com/boomker/rime-fast-xhup/blob/4493152dfee01f4a49c961180b25ca73a6555dea/lua/launcher_config.lua)里添加。
@@ -192,7 +193,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 10. * Q: 词库中存在注音错误的词条
     * A: 因为采用开源的 [`pypinyin`](https://github.com/mozillazg/python-pinyin) 项目，存在词组中多音字返回了另外一个注音
 11. * Q: 有一些字打不出来, 字表中的字不全或形码错误
-    * A: 生僻字可以通过上述的 `~` 反查功能来输入, 还可以启用 [扩展字表](https://github.com/boomker/rime-fast-xhup/blob/79c0256ae8b892ef5f4045bc875accf77ae0835d/flypy_xhfast.dict.yaml#L10); 形码错误或可能是容错码, 可自行修改
+    * A: 生僻字可以通过上述的 `~` 反查功能来输入, 还可以启用 [扩展字表](https://github.com/boomker/rime-fast-xhup/blob/79c0256ae8b892ef5f4045bc875accf77ae0835d/flypy_xhfast.dict.yaml#L10) ; 形码错误或可能是容错码, 可自行修改
 12. * Q: 候选菜单里有无法显示的像「问号」一样的候选字
     * A: 在 [`squirrel.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/84e5314dfd70a3286587164233a9576d8d188ee4/squirrel.custom.yaml) 或 [`weasel.yaml`](https://github.com/boomker/rime-fast-xhup/blob/84e5314dfd70a3286587164233a9576d8d188ee4/weasel.yaml) 配置可以正常显示的字体, 推荐 [`MiSans`](https://hyperos.mi.com/font/download)
 13. * Q: `~` 反查出来在字没有注音, 部署日志中提示缺少 `kMandarin` 反查词典文件
