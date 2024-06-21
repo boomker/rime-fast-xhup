@@ -20,6 +20,7 @@ function easy_en.init(env)
     local _easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
     env.wildcard = '*'
     env.mem = Memory(env.engine, schema, "translator")
+    env.expan_word_count = config:get_int("expan_word_count") or 150
     env.easy_en_prefix = _easy_en_pat and _easy_en_pat:match("%^([a-z/]+).*") or "/oe"
     env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
 end
@@ -28,16 +29,15 @@ function easy_en.translator(input, seg, env)
     if string.match(input, env.wildcard) then
         local tailer = string.match(input, '[^' .. env.wildcard .. ']+$') or ''
         local header = string.match(input, '^[^' .. env.wildcard .. ']+')
-        env.mem:dict_lookup(header, true, 100) -- expand_search
+        env.mem:dict_lookup(header, true, env.expan_word_count) -- expand_search
         for dictentry in env.mem:iter_dict() do
-            local codetail = string.match(dictentry.comment, tailer .. '$') or ''
+            local codetail = string.match(dictentry.comment:lower(), tailer .. '$') or ''
             if tailer and (codetail == tailer) then
                 local code = env.mem:decode(dictentry.code)
                 local codeComment = table.concat(code, ",")
                 local ph = Phrase(env.mem, "expand_en_word", seg.start, seg._end, dictentry)
                 ph.comment = codeComment
                 yield(ph:toCandidate())
-                -- yield(Candidate("type",seg.start,seg.end,dictentry.text, codeComment	))
             end
         end
     end
