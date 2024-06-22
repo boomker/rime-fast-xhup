@@ -71,7 +71,7 @@ function easy_en.filter(input, env)
                 table.insert(en_cands, cand)
             else
                 local preedit_code = input_code:lower():gsub(env.easy_en_prefix, "")
-                if (preedit_code == cand.text:lower()) then cand.comment = "" end
+                if (cand.text:lower():match(preedit_code)) then cand.comment = "" end
                 table.insert(en_cands, cand) -- 防止候选太多, 输入卡顿
             end
         else
