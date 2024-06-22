@@ -194,5 +194,5 @@ patch:
 
   predictor:
     db: predict.db
-    max_candidates: 2
-    max_iterations: 2
+    max_candidates: 7
+    max_iterations: 1

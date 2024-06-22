@@ -1,4 +1,5 @@
 require("tools/string")
+-- local logger = require("tools/logger")
 local F = {}
 
 local function last_character(s)
@@ -19,11 +20,12 @@ function F.func(input, env)
     local preedit_code = context.input:gsub(" ", "")
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
+        local cand_type = cand:get_dynamic_type()
         if -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
             (cand.type ~= "user_table")
+            and (cand_type ~= "Shadow")
             and (not cand_text:match("[a-zA-Z]"))
             and (not preedit_code:match("[%u%p]"))
-            and (not cand:get_dynamic_type() == "Shadow")
             and (string.utf8_len(cand_text) <= #preedit_code)
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
             and (not cand.comment:match("^" .. env.pin_mark .. "$"))
@@ -40,7 +42,7 @@ function F.func(input, env)
             local candTxt = cand_text:gsub("<br>", "\r\t")
             yield(Candidate("word", cand.start, cand._end, candTxt, ""))
         elseif -- 丢弃一些候选结果
-            -- 开头大写的预编辑编码, 去掉只有单字母的候选
+        -- 开头大写的预编辑编码, 去掉只有单字母的候选
             (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
             or (
             -- V模式下, 过滤掉中英混合词条
