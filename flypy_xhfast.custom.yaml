@@ -56,6 +56,7 @@ patch:
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
     expand_abbr_py: "Control+0"       # 展开超级简拼
+    remove_user_word: "Control+q"     # 删除用户词典里的单字 / 二三字词
     select_first_character: "minus"   # `-` 以词定字(第一个字)
     select_last_character:  "equal"   # `=` 以词定字(最后一个字)
     bindings/+:
@@ -116,12 +117,12 @@ patch:
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
-      - derive/^u(h)/s$1/                       # uh => sh
+      - derive/^([bnpy])b/$1k/                  # in => ing
+      - derive/^z([rwyz])/v$1/                  # z => zh
+      - derive/^c([rvyz])/i$1/                  # c => ch
+      - derive/^s([rsz])/u$1/                   # s => sh
+      - derive/^u([hy])/s$1/                    # u[hy] => s[hy]
       - derive/^(i)g/$1f/                       # c[h]eng => c[h]en
-      - derive/^([ypbn])b/$1k/                  # in => ing
-      - derive/^z([^acdefghijklmnsu])/v$1/      # z => zh
-      - derive/^c([^acdefghijklmsuo])/i$1/      # c => ch
-      - derive/^s([^abcdefghijklmnu])/u$1/      # s => sh
       # - derive/^l(.*)$/n$1/                   # l => n
       # - derive/^n(.*)$/l$1/                   # n => l
       # - derive/^v(.*)/z$1/                    # zh => z
@@ -175,15 +176,14 @@ patch:
     tag: history
     prefix: "/hs"
     tips: "上屏历史"
-    size: 30
-    history_num_max: 30
+    max_count: 30
     initial_quality: 1000
+    comment_max_length: 20
     excluded_types: ["punct"]
 
   pin_word:                           # 词条置顶配置
     word_quality: 1000
     comment_mark: " 🔝"               # 置顶词标记
-    excluded_types: ["flypy_key_help", "easy_en", "radical_lookup"]
 
   cold_word_reduce:                   # 生僻词条降频到第 idx 个位置
     idx: 4
@@ -194,5 +194,5 @@ patch:
 
   predictor:
     db: predict.db
-    max_candidates: 2
-    max_iterations: 2
+    max_candidates: 7
+    max_iterations: 1
