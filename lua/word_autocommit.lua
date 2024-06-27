@@ -1,4 +1,5 @@
 require("tools/string")
+require("tools/metatable")
 local rime_api_helper = require("tools/rime_api_helper")
 
 local word_shape_char_tbl = {}
@@ -32,6 +33,8 @@ function word_auto_commit.init(env)
     local phrase_dict     = config:get_string("flypy_phrase/dictionary")
     local reverse_dict    = config:get_string("radical_reverse_lookup/dictionary")
     env.autocommit_on     = config:get_bool("flypy_phrase/auto_commit")
+    env.spelling_hints    = config:get_int("translator/spelling_hints")
+    env.overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
     env.reversedb         = ReverseLookup(schema_id)
     env.reversedb_phrase  = ReverseLookup(phrase_dict)
     env.radical_reversedb = ReverseLookup(reverse_dict)
@@ -146,7 +149,6 @@ function T.func(input, seg, env)
 end
 
 function F.func(input, env)
-    local done = 0
     local cands = {}
     local symbol_cands = {}
     local single_char_cands = {}
@@ -155,9 +157,8 @@ function F.func(input, env)
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
-    local config = env.engine.schema.config
-    local spelling_hints = config:get_int("translator/spelling_hints")
-    local overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
+    local spelling_hints = env.spelling_hints
+    local overwrite_comment = env.overwrite_comment
 
     for cand in input:iter() do
         if preedit_code:match("^;%l+$") and (not symbol_cands[cand.text]) then
@@ -215,7 +216,6 @@ function F.func(input, env)
             if overwrite_comment then
                 comment = env.radical_reversedb:lookup(cand.text) or comment
             end
-            ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
 
             if (#single_char_cands == 1) then
@@ -255,7 +255,7 @@ function F.func(input, env)
     end
 
     if (#preedit_code == 8) and preedit_code:match("^%l+") and (env.autocommit_on) then
-        local i, when_done, commit_text = 1, 0, ""
+        local i, done, when_done, commit_text = 1, 0, 0, ""
         for _, cand in pairs(fchars_word_cands) do
             local reverse_code = env.reversedb_phrase:lookup(cand.text)
 
