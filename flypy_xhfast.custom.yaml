@@ -20,13 +20,13 @@ patch:
     text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
 
   switches/+:
-    # - name: prediction
-    #   states: [联想关, 联想开]
-    #   reset: 0
     - name: emoji
       states: [🈚️, 😄]
       reset: 1
-    - name: extended_charset
+    - name: prediction
+      states: [联想关, 联想开]
+      reset: 0
+    - name: extend_charset
       states: [通用, 增廣]
       reset: 1
     - name: charset_comment
@@ -38,12 +38,12 @@ patch:
     segmentors/+:
     translators/+:
     filters/+:
-  # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  'engine/processors/@after 1': lua_processor@*word_append_space*processor
+  'engine/processors/@next': predictor
+  'engine/translators/@before 0': predict_translator
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
-  # 'engine/processors/@before 0': predictor
-  # "engine/translators/@before 0": predict_translator
+  # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
+  'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
