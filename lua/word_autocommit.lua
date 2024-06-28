@@ -1,11 +1,12 @@
 require("tools/string")
+require("tools/metatable")
 local rime_api_helper = require("tools/rime_api_helper")
 
 local word_shape_char_tbl = {}
 local word_auto_commit = {}
-local processor = {}
-local translator = {}
-local filter = {}
+local P = {}
+local T = {}
+local F = {}
 
 local function append_space_to_cand(env, cand_text)
     local context = env.engine.context
@@ -31,13 +32,15 @@ function word_auto_commit.init(env)
     local schema_id       = config:get_string("schema/schema_id")
     local phrase_dict     = config:get_string("flypy_phrase/dictionary")
     local reverse_dict    = config:get_string("radical_reverse_lookup/dictionary")
-    env.autocommit_on     = config:get_bool("flypy_phrase/auto_commit")
+    env.autocommit_on     = config:get_bool("flypy_phrase/auto_commit") or false
+    env.spelling_hints    = config:get_int("translator/spelling_hints") or 0
+    env.overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
     env.reversedb         = ReverseLookup(schema_id)
     env.reversedb_phrase  = ReverseLookup(phrase_dict)
     env.radical_reversedb = ReverseLookup(reverse_dict)
 end
 
-function processor.func(key, env)
+function P.func(key, env)
     local engine = env.engine
     local key_value = key:repr()
     local schema = engine.schema
@@ -100,8 +103,8 @@ function processor.func(key, env)
             engine:commit_text(cand_text)
             context:clear()
             return 1
-        -- else
-        --     context:confirm_previous_selection()
+            -- else
+            --     context:confirm_previous_selection()
         end
         word_shape_char_tbl = {}
 
@@ -114,7 +117,7 @@ function processor.func(key, env)
     return 2 -- kNoop
 end
 
-function translator.func(input, seg, env)
+function T.func(input, seg, env)
     local context = env.engine.context
     local caret_pos = context.caret_pos
     local composition = context.composition
@@ -145,8 +148,7 @@ function translator.func(input, seg, env)
     end
 end
 
-function filter.func(input, env)
-    local done = 0
+function F.func(input, env)
     local cands = {}
     local symbol_cands = {}
     local single_char_cands = {}
@@ -155,9 +157,8 @@ function filter.func(input, env)
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
-    local config = env.engine.schema.config
-    local spelling_hints = config:get_int("translator/spelling_hints")
-    local overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
+    local spelling_hints = env.spelling_hints
+    local overwrite_comment = env.overwrite_comment
 
     for cand in input:iter() do
         if preedit_code:match("^;%l+$") and (not symbol_cands[cand.text]) then
@@ -173,20 +174,18 @@ function filter.func(input, env)
             table.insert(single_char_cands, cand)
         end
 
-        if (caret_pos >= 6) and (table.find({ 6, 7 }, #preedit_code)) and
-            string.find(preedit_code, "^%l+%[%l+$") and
-            (utf8.len(cand.text) == 2) and
-            (string.sub(preedit_code, 5, 5) == "[") and
-            (tonumber(utf8.codepoint(cand.text, 1)) >= 19968) and
-            (not tchars_word_cands[cand.text]) then
+        if (utf8.len(cand.text) == 2) and (table.find({ 6, 7 }, #preedit_code))
+            and string.find(preedit_code, "^%l+%[%l+$")
+            and (string.sub(preedit_code, 5, 5) == "[")
+            and (not tchars_word_cands[cand.text])
+        then
             tchars_word_cands[cand.text] = cand
             table.insert(tchars_word_cands, cand)
         end
 
-        if table.find({ 6, 8 }, #preedit_code) and
-            string.find(preedit_code, "^[%l]+$") and
-            (table.len(fchars_word_cands) < 6) and
-            (not fchars_word_cands[cand.text]) then
+        if (#preedit_code == 8) and preedit_code:match("^%l+$")
+            and (not fchars_word_cands[cand.text])
+        then
             fchars_word_cands[cand.text] = cand
         end
 
@@ -217,7 +216,6 @@ function filter.func(input, env)
             if overwrite_comment then
                 comment = env.radical_reversedb:lookup(cand.text) or comment
             end
-            ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
 
             if (#single_char_cands == 1) then
@@ -257,7 +255,7 @@ function filter.func(input, env)
     end
 
     if (#preedit_code == 8) and preedit_code:match("^%l+") and (env.autocommit_on) then
-        local i, when_done, commit_text = 1, 0, ""
+        local i, done, when_done, commit_text = 1, 0, 0, ""
         for _, cand in pairs(fchars_word_cands) do
             local reverse_code = env.reversedb_phrase:lookup(cand.text)
 
@@ -270,7 +268,8 @@ function filter.func(input, env)
 
             if (i >= 5) and (done == 1) and (caret_pos >= 6) and (when_done == 1) and
                 ((#preedit_code / 2 == utf8.len(commit_text)) or
-                    (#preedit_code / 3 == utf8.len(commit_text))) then
+                    (#preedit_code / 3 == utf8.len(commit_text)))
+            then
                 local cand_txt = append_space_to_cand(env, commit_text)
                 env.engine:commit_text(cand_txt)
                 context:clear()
@@ -285,7 +284,7 @@ function filter.func(input, env)
 end
 
 return {
-    processor = { init = word_auto_commit.init, func = processor.func },
-    translator = { func = translator.func },
-    filter = { init = word_auto_commit.init, func = filter.func },
+    processor = { init = word_auto_commit.init, func = P.func },
+    translator = { func = T.func },
+    filter = { init = word_auto_commit.init, func = F.func },
 }
