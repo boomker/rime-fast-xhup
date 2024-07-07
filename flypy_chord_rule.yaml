@@ -1,4 +1,3 @@
-
 patch:
   speller:
     algebra:
@@ -20,6 +19,7 @@ patch:
       - derive/^yh/wn/
       - derive/^yj/wm/
       - derive/^hy/hw/
+      - derive/^uj/ux/                # uj --> ux
       - derive/^ty/ud/                # ty --> ud
       - derive/^tw/dw/                # tw --> dw
       - derive/^te/df/                # te --> df
@@ -57,9 +57,12 @@ patch:
       - derive/^mk/me/
       - derive/^mo/mr/
       - derive/^mu/mv/
-      - derive/^b([hju])/a$1/
-      - derive/^b([fgknm])/s$1/
-      - derive/^ce/ck/
+      - derive/^b([hjku])/a$1/
+      - derive/^b([fgnm])/s$1/
+      - derive/^s([ar])/sr/
+      - derive/^cs/ck/
       - derive/^cd/cl/
+      - derive/^ce/cn/
       - derive/^cr/cm/
       - derive/^ik/ix/
+

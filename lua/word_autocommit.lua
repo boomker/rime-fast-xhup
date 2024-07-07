@@ -2,8 +2,9 @@ require("tools/string")
 require("tools/metatable")
 local rime_api_helper = require("tools/rime_api_helper")
 
-local word_shape_char_tbl = {}
 local word_auto_commit = {}
+local schar_matched_tbl = {}
+local word_shape_char_tbl = {}
 local P = {}
 local T = {}
 local F = {}
@@ -32,8 +33,10 @@ function word_auto_commit.init(env)
     local schema_id       = config:get_string("schema/schema_id")
     local phrase_dict     = config:get_string("flypy_phrase/dictionary")
     local reverse_dict    = config:get_string("radical_reverse_lookup/dictionary")
-    env.autocommit_on     = config:get_bool("flypy_phrase/auto_commit")
-    env.spelling_hints    = config:get_int("translator/spelling_hints")
+    local schema          = Schema("flypy_xhfast") -- schema_id
+    env.mem               = Memory(env.engine, schema, "translator")
+    env.autocommit_on     = config:get_bool("flypy_phrase/auto_commit") or false
+    env.spelling_hints    = config:get_int("translator/spelling_hints") or 0
     env.overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
     env.reversedb         = ReverseLookup(schema_id)
     env.reversedb_phrase  = ReverseLookup(phrase_dict)
@@ -53,28 +56,6 @@ function P.func(key, env)
     local composition = context.composition
     if (composition:empty()) then return 2 end
     local segment = composition:back()
-
-    if (input_code:match("^%l%l%l%l$")) and (key:repr() == "slash") and (caret_pos == 4) then
-        local char_code_matched_tbl = {}
-        for i = 1, 100, 1 do
-            local char_cand = segment:get_candidate_at(i)
-            if not char_cand then goto check_matched_tbl end
-            local char_cand_text = char_cand.text
-            if (utf8.len(char_cand_text) ~= 1) then goto skip_char_cand end
-            local reverse_char_code = env.reversedb:lookup(char_cand_text):gsub("%[", "")
-            local char_code_tbl = string.split(reverse_char_code, " ")
-            if table.find_index(char_code_tbl, input_code) then
-                table.insert(char_code_matched_tbl, char_cand_text)
-            end
-            ::skip_char_cand::
-        end
-        ::check_matched_tbl::
-        if #char_code_matched_tbl == 1 then
-            engine:commit_text(char_code_matched_tbl[1])
-            context:clear()
-            return 1
-        end
-    end
 
     -- 四码二字词时, 按下 '['  生成辅助码提示注解
     if ((preedit_code_length == 4) and (key:repr() == "bracketleft")
@@ -112,6 +93,7 @@ function P.func(key, env)
     end
 
     if key:repr() == "Escape" then
+        schar_matched_tbl = {}
         word_shape_char_tbl = {}
     end
     return 2 -- kNoop
@@ -122,6 +104,33 @@ function T.func(input, seg, env)
     local caret_pos = context.caret_pos
     local composition = context.composition
     if (composition:empty()) then return end
+
+    -- 四码时, 按下'/', 单字优先
+    if input:match("^%l%l%l%l?/$") and table.find_index({ 4, 5 }, caret_pos) then
+        schar_matched_tbl = {}
+        local entry_matched_tbl = {}
+        local yin_code = input:sub(1, 2)
+        env.mem:dict_lookup(yin_code, true, 100) -- expand_search
+        for dictentry in env.mem:iter_dict() do
+            local entry_text = dictentry.text
+
+            if utf8.len(entry_text) == 1 then
+                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
+                local char_code_tbl = string.split(reverse_char_code, " ")
+                if table.find_index(char_code_tbl, input:gsub("/", "")) then
+                    table.insert(entry_matched_tbl, dictentry)
+                    table.insert(schar_matched_tbl, dictentry.text)
+                elseif reverse_char_code:match("^" .. input:gsub("/", "")) then
+                    table.insert(entry_matched_tbl, dictentry)
+                end
+            end
+        end
+
+        for _, de in ipairs(entry_matched_tbl) do
+            local ph = Phrase(env.mem, "single_char", seg.start, seg._end, de)
+            yield(ph:toCandidate())
+        end
+    end
 
     if table.len(word_shape_char_tbl) < 1 then return end
     -- 四码二字词, 按下'['时, 生成辅助码提示
@@ -198,6 +207,14 @@ function F.func(input, env)
         env.engine:commit_text(symbol_cands[1].text)
         context:clear()
         return 1 -- kAccepted
+    end
+
+    if table.len(Set(schar_matched_tbl)) == 1 then
+        local cand_text = schar_matched_tbl[1]
+        env.engine:commit_text(cand_text)
+        schar_matched_tbl = {}
+        context:clear()
+        return 1
     end
 
     if (caret_pos >= 4) and (table.find({ 4, 5 }, #preedit_code))
@@ -285,6 +302,6 @@ end
 
 return {
     processor = { init = word_auto_commit.init, func = P.func },
-    translator = { func = T.func },
+    translator = { init = word_auto_commit.init, func = T.func },
     filter = { init = word_auto_commit.init, func = F.func },
 }

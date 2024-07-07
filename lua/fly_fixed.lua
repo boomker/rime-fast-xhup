@@ -1,5 +1,4 @@
 require("tools/string")
--- local logger = require("tools/logger")
 local F = {}
 
 local function last_character(s)
@@ -39,7 +38,7 @@ function F.func(input, env)
                 table.insert(cands, cand)
             end
         elseif cand_text:match("<br>") then -- 词条有<br>标签, 将其转为换行符
-            local candTxt = cand_text:gsub("<br>", "\r\t")
+            local candTxt = cand_text:gsub("<br>", "\n")
             yield(Candidate("word", cand.start, cand._end, candTxt, ""))
         elseif -- 丢弃一些候选结果
         -- 开头大写的预编辑编码, 去掉只有单字母的候选

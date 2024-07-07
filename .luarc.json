@@ -25,6 +25,7 @@
         "Translator",
         "Memory",
         "DictEntry",
-        "Phrase"
+        "Phrase",
+        "utf8"
 	]
 }

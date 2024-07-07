@@ -87,7 +87,7 @@ engine:
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
     - lua_translator@*en_custom                       # ] 置于输入码末尾触发自定义单词入库
     - lua_translator@*word_autocaps*translator        # A-Z 大写字母开头触发单词自动大写
-    - lua_translator@*word_autocommit*translator      # [ 单字全码和部分成语短语自动触发
+    - lua_translator@*word_autocommit*translator      # /[ 单字优先和成语短语自动触发上屏
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -290,12 +290,12 @@ punctuator:
 key_binder:
   bindings:
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
-    - { when: composing, accept: Control+e, send: End }
-    - { when: composing, accept: Control+m, send: Return }
-    - { when: composing, accept: Control+k, send: Shift+Delete }
-    - { when: composing, accept: Control+w, send: Control+BackSpace }
-    - { when: has_menu,  accept: Control+period, toggle: ascii_punct }
-    - { when: has_menu,  accept: Control+slash, toggle: simplification }
+    - {when: composing, accept: Control+e, send: End}
+    - {when: composing, accept: Control+m, send: Return}
+    - {when: composing, accept: Control+k, send: Shift+Delete}
+    - {when: composing, accept: Control+w, send: Control+BackSpace}
+    - {when: has_menu,  accept: Control+period, toggle: ascii_punct}
+    - {when: has_menu,  accept: Control+slash, toggle: simplification}
 
 # 拼写设定
 speller:
