@@ -41,7 +41,7 @@ function F.func(input, env)
             local candTxt = cand_text:gsub("<br>", "\n")
             yield(Candidate("word", cand.start, cand._end, candTxt, ""))
         elseif -- 丢弃一些候选结果
-        -- 开头大写的预编辑编码, 去掉只有单字母的候选
+            -- 开头大写的预编辑编码, 去掉只有单字母的候选
             (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
             or (
             -- V模式下, 过滤掉中英混合词条

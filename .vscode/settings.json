@@ -1,7 +1,12 @@
 {
-    "editor.fontFamily": "'JetBrainsMono Nerd Font Mono'",
-    "yaml.schemas": 
-        {
-            "./rime-yaml-schema.json": "*.schema.yaml"
-        }
+	"editor.fontFamily": "'JetBrainsMono Nerd Font Mono'",
+	"yaml.schemas": {
+		"./rime-yaml-schema.json": "*.schema.yaml"
+	},
+	"files.associations": {
+		"*.yaml": "yaml"
+	},
+	"yaml": {
+		"editor.maxLineLength": 100
+	}
 }
