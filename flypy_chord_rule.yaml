@@ -60,9 +60,8 @@ patch:
       - derive/^b([hjku])/a$1/
       - derive/^b([fgnm])/s$1/
       - derive/^s([ar])/sr/
+      - derive/^i([ok])/ix/
       - derive/^cs/ck/
       - derive/^cd/cl/
       - derive/^ce/cn/
       - derive/^cr/cm/
-      - derive/^ik/ix/
-

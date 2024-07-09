@@ -125,12 +125,10 @@ function T.func(input, seg, env)
 
 			if utf8.len(entry_text) == 1 then
 				local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
-				local char_code_tbl = string.split(reverse_char_code, " ")
-				if table.find_index(char_code_tbl, input:gsub("/", "")) then
+				local pattern = "%f[%a](" .. input:gsub("/", "") .. "%a*)"
+				if reverse_char_code:match(pattern) then
 					table.insert(entry_matched_tbl, dictentry)
 					table.insert(schar_matched_tbl, dictentry.text)
-				elseif reverse_char_code:match("^" .. input:gsub("/", "")) then
-					table.insert(entry_matched_tbl, dictentry)
 				end
 			end
 		end
