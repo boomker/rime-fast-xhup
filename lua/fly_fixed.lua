@@ -37,12 +37,13 @@ function F.func(input, env)
             else
                 table.insert(cands, cand)
             end
-        elseif cand_text:match("<br>") then -- 词条有<br>标签, 将其转为换行符
-            local candTxt = cand_text:gsub("<br>", "\n")
-            yield(Candidate("word", cand.start, cand._end, candTxt, ""))
+        -- elseif cand_text:match("<br>") then -- 词条有<br>标签, 将其转为换行符
+        --     local candTxt = cand_text:gsub("<br>", "\n")
+        --     yield(Candidate("word", cand.start, cand._end, candTxt, ""))
         elseif -- 丢弃一些候选结果
+            cand_text:match("<br>") -- 去除重复候选
             -- 开头大写的预编辑编码, 去掉只有单字母的候选
-            (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
+            or (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
             or (
             -- V模式下, 过滤掉中英混合词条
                 preedit_code:match("^[%u][%a]+$")
