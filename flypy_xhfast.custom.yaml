@@ -20,13 +20,13 @@ patch:
     text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
 
   switches/+:
-    # - name: prediction
-    #   states: [联想关, 联想开]
-    #   reset: 0
     - name: emoji
       states: [🈚️, 😄]
       reset: 1
-    - name: extended_charset
+    - name: prediction
+      states: [联想关, 联想开]
+      reset: 0
+    - name: extend_charset
       states: [通用, 增廣]
       reset: 1
     - name: charset_comment
@@ -38,17 +38,18 @@ patch:
     segmentors/+:
     translators/+:
     filters/+:
-  # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  'engine/processors/@after 1': lua_processor@*word_append_space*processor
+  'engine/processors/@next': predictor
+  'engine/translators/@before 0': predict_translator
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
-  # 'engine/processors/@before 0': predictor
-  # "engine/translators/@before 0": predict_translator
+  # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
+  'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
     # search: "`"                     # 辅码引导符
     pin_cand: "Control+t"             # 候选词置顶
+    unpin_cand: "Control+t"           # 候选词取消置顶
     drop_cand: "Control+d"            # 强制删词, 无视输入的编码
     hide_cand: "Control+x"            # 匹配当前输入码后隐藏指定的候选字词
     reduce_fq_cand: "Control+j"       # 匹配当前输入码后降频指定的候选字词
@@ -118,10 +119,10 @@ patch:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
       - derive/^([bnpy])b/$1k/                  # in => ing
-      - derive/^z([rwyz])/v$1/                  # z => zh
-      - derive/^c([rvyz])/i$1/                  # c => ch
       - derive/^s([rsz])/u$1/                   # s => sh
-      - derive/^u([hy])/s$1/                    # u[hy] => s[hy]
+      - derive/^z([rwyz])/v$1/                  # z => zh
+      - derive/^c([arvyz])/i$1/                 # c => ch
+      - derive/^u([hky])/s$1/                   # u[hky] => s[hky]
       - derive/^(i)g/$1f/                       # c[h]eng => c[h]en
       # - derive/^l(.*)$/n$1/                   # l => n
       # - derive/^n(.*)$/l$1/                   # n => l
