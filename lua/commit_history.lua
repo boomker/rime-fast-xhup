@@ -68,7 +68,8 @@ function T.init(env)
 end
 
 function T.func(input, seg, env)
-    local composition = env.engine.context.composition
+    local context = env.engine.context
+    local composition = context.composition
     if (composition:empty()) then return end
     if #env.history_list < 1 then return end
     local segment = composition:back()
@@ -77,8 +78,12 @@ function T.func(input, seg, env)
         local his_cands = env.history_list
         local comment_max_length = env.comment_max_length
         for i = #his_cands, 1, -1 do
-            local cand = Candidate("history", seg.start, seg._end, his_cands[i].text, his_cands[i].preedit)
-            local cand_uniq = cand:to_uniquified_candidate(cand.type, cand.text, cand.comment:sub(1, comment_max_length))
+            local cand = Candidate(
+                "history", seg.start, seg._end, his_cands[i].text, his_cands[i].preedit
+            )
+            local cand_uniq = cand:to_uniquified_candidate(
+                cand.type, cand.text, cand.comment:sub(1, comment_max_length)
+            )
             cand_uniq.quality = env.initial_quality
             yield(cand_uniq)
         end

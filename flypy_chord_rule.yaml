@@ -6,14 +6,16 @@ patch:
       - derive/^([jyn])t/$1d/         # t --> d
       - derive/^([bjlmn])p/$1e/       # p --> e
       - derive/^([djlnx])q/$1f/       # q --> f
-      - derive/^q([biklmnpsxy])/f$1/
+      - derive/^q([bikmnsxy])/f$1/
       - derive/^qt/fd/
       - derive/^qu/fe/
       - derive/^qr/fo/
       - derive/^qq/fz/
-      - derive/^p([okifuhjbnmg])/e$1/
-      - derive/^pp/el/                # pp --> el
+      - derive/^ql/wl/                # ql --> wl
+      - derive/^qp/fl/                # qp --> fl
       - derive/^dp/dl/                # dp --> dl
+      - derive/^pp/el/                # pp --> el
+      - derive/^p([okifuhjbnmg])/e$1/
       - derive/^([jkiu])y/$1w/        # [jkiu]y --> [jkiu]w
       - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
       - derive/^yh/wn/
@@ -27,7 +29,7 @@ patch:
       - derive/^tp/rl/                # tp --> rl
       - derive/^rf/rn/                # rf --> rn
       - derive/^tr/rm/                # tr --> rm
-      - derive/^ti/ri/                # tr --> rm
+      - derive/^ti/ri/                # ti --> ri
       - derive/^t([gv])/db/           # t[gv] --> db
       - derive/^r([gv])/rb/           # r[gv] --> rb
       - derive/^g([fv])/gn/           # g[fv] --> gn
@@ -59,7 +61,6 @@ patch:
       - derive/^mu/mv/
       - derive/^b([hjku])/a$1/
       - derive/^b([fgnm])/s$1/
-      - derive/^s([ar])/sr/
       - derive/^i([ok])/ix/
       - derive/^cs/ck/
       - derive/^cd/cl/

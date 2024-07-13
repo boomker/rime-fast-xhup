@@ -15,6 +15,7 @@ end
 function F.func(input, env)
     local cands = {}
     local cand_drop = false
+    local rdb = env.reversedb
     local context = env.engine.context
     local preedit_code = context.input:gsub(" ", "")
     for cand in input:iter() do
@@ -25,22 +26,19 @@ function F.func(input, env)
             and (cand_type ~= "Shadow")
             and (not cand_text:match("[a-zA-Z]"))
             and (not preedit_code:match("[%u%p]"))
-            and (string.utf8_len(cand_text) <= #preedit_code)
+            and (utf8.len(cand_text) <= #preedit_code)
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
             and (not cand.comment:match("^" .. env.pin_mark .. "$"))
         then
             local last_char = last_character(cand_text)
-            local yin_code = env.reversedb:lookup(last_char):gsub("%l%[%l%l", "")
             local preedit_last_code = preedit_code:sub(-1, -1)
+            local yin_code = rdb:lookup(last_char):gsub("%l%[%l%l", "")
             if yin_code and (yin_code:match(preedit_last_code)) then
                 yield(cand)
             else
                 table.insert(cands, cand)
             end
-        -- elseif cand_text:match("<br>") then -- 词条有<br>标签, 将其转为换行符
-        --     local candTxt = cand_text:gsub("<br>", "\n")
-        --     yield(Candidate("word", cand.start, cand._end, candTxt, ""))
-        elseif -- 丢弃一些候选结果
+        elseif                      -- 丢弃一些候选结果
             cand_text:match("<br>") -- 去除重复候选
             -- 开头大写的预编辑编码, 去掉只有单字母的候选
             or (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
@@ -56,7 +54,7 @@ function F.func(input, env)
             -- 候选词长度大于预编辑长度
                 (cand.type == "completion") and
                 (not cand_text:match("[%a%p]")) and
-                (string.utf8_len(cand_text) - #preedit_code > 1)
+                (utf8.len(cand_text) - #preedit_code > 1)
             )
         then
             cand_drop = true

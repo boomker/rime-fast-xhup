@@ -1,6 +1,7 @@
 -- 为交替输出中英情况加空格
 -- 为中英混输词条（cn_en.dict.yaml）自动空格
 -- 示例：`VIP中P` → `VIP 中 P`
+
 -- local logger = require('tools/logger')
 local rime_api_helper = require('tools/rime_api_helper')
 local space_leader_word = {}
@@ -114,18 +115,25 @@ function space_leader_word.func(key, env)
         if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
             local cand_text = " " .. selected_cand.text .. "，"
             engine:commit_text(cand_text)
-            context:set_property("prev_commit_is_comma", "1")
         elseif (prev_cand_is_hanzi == "1") and selected_cand.text:match("^%a+") then
             local cand_text = " " .. selected_cand.text .. "，"
             engine:commit_text(cand_text)
             reset_cand_property(env)
-            context:set_property("prev_commit_is_comma", "1")
         else
-            local cand_text = selected_cand.text .. "，"
+            local cand_text = ""
+            local preedit_text = context:get_preedit().text
+            local segmentation = composition:toSegmentation()
+            local confirm_pos = segmentation:get_confirmed_position()
+            if confirm_pos > 0 then
+                local confirm_text = preedit_text:sub(1, (confirm_pos / 2 * 3))
+                cand_text = confirm_text .. selected_cand.text .. "，"
+            else
+                cand_text = selected_cand.text .. "，"
+            end
             engine:commit_text(cand_text)
             reset_cand_property(env)
-            context:set_property("prev_commit_is_comma", "1")
         end
+        context:set_property("prev_commit_is_comma", "1")
         context:set_property("prev_focus_app_id", current_focus_app_id)
         context:clear()
         return 1 -- kAccepted

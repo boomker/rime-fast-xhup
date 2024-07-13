@@ -5,7 +5,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "2024.06.08"
+  version: "2024.07.13"
   author:
     - boomker
   description: |
@@ -35,11 +35,11 @@ switches:
 # 输入引擎
 engine:
   processors:
-    - lua_processor@*pin_word*processor
-    - lua_processor@*launcher*processor
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
     - lua_processor@*idiom_abbr_expand
+    - lua_processor@*pin_word*processor
+    - lua_processor@*launcher*processor
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
     - lua_processor@*commit_history*processor
