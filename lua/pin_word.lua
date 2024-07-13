@@ -37,6 +37,7 @@ end
 function pin_word.init(env)
 	reload_env(env)
 	env.pin_cand_key = env:Config_get("key_binder/pin_cand") or "Control+t"
+	env.unpin_cand_key = env:Config_get("key_binder/unpin_cand") or "Control+t"
 	env.word_quality = env:Config_get("pin_word/word_quality") or 999
 	env.pin_mark = env:Config_get("pin_word/comment_mark") or " 🔝"
 	env.comment_mark = env:Config_get("custom_phrase/comment_mark") or " 📌"
@@ -49,8 +50,7 @@ function processor.func(key, env)
 	local context = engine.context
 	local preedit_code = context:get_script_text():gsub(" ", "")
 
-	local pin_cand_key = env.pin_cand_key or "Control+t"
-	if context:has_menu() and (key:repr() == pin_cand_key) then
+	if context:has_menu() then
 		local cand = context:get_selected_candidate()
 		local cand_text = cand.text:gsub(" ", "")
 		if not cand then
@@ -60,13 +60,35 @@ function processor.func(key, env)
 		if not pin_word_records[preedit_code] then
 			pin_word_records[preedit_code] = {}
 		end
-		if not table.find_index(pin_word_records[preedit_code], cand_text) then
-			table.insert(pin_word_records[preedit_code], cand_text)
+
+		local key_accepted = false
+		local candidate_changed = false
+		local idx = table.find_index(pin_word_records[preedit_code], cand_text)
+
+		if key:repr() == env.pin_cand_key then
+			key_accepted = true
+			if not idx then
+				table.insert(pin_word_records[preedit_code], cand_text)
+				candidate_changed = true
+			end
 		end
 
-		context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-		write_word_to_file()
-		return 1                              -- kAccept
+		if key:repr() == env.unpin_cand_key then
+			key_accepted = true
+			if idx then
+				table.remove(pin_word_records[preedit_code], idx)
+				candidate_changed = true
+			end
+		end
+
+		if candidate_changed then
+			context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+			write_word_to_file()
+		end
+
+		if key_accepted then
+			return 1                              -- kAccept
+		end
 	end
 
 	return 2 -- kNoop, 不做任何操作, 交给下个组件处理

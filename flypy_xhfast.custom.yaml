@@ -49,6 +49,7 @@ patch:
     import_preset: default            # 从 default.yaml 继承通用的
     # search: "`"                     # 辅码引导符
     pin_cand: "Control+t"             # 候选词置顶
+    unpin_cand: "Control+t"           # 候选词取消置顶
     drop_cand: "Control+d"            # 强制删词, 无视输入的编码
     hide_cand: "Control+x"            # 匹配当前输入码后隐藏指定的候选字词
     reduce_fq_cand: "Control+j"       # 匹配当前输入码后降频指定的候选字词
