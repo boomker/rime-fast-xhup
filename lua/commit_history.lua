@@ -82,6 +82,7 @@ function T.func(input, seg, env)
                 "history", seg.start, seg._end, his_cands[i].text, his_cands[i].preedit
             )
             local cand_uniq = cand:to_uniquified_candidate(
+            ---@diagnostic disable-next-line: redundant-parameter
                 cand.type, cand.text, cand.comment:sub(1, comment_max_length)
             )
             cand_uniq.quality = env.initial_quality

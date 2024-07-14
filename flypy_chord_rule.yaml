@@ -4,7 +4,7 @@ patch:
       ## 左右并击飞键音码规则
       - derive/^(j)n/$1c/
       - derive/^([jyn])t/$1d/         # t --> d
-      - derive/^([bjlmn])p/$1e/       # p --> e
+      - derive/^([jlmn])p/$1e/        # p --> e
       - derive/^([djlnx])q/$1f/       # q --> f
       - derive/^q([bikmnsxy])/f$1/
       - derive/^qt/fd/
@@ -35,6 +35,7 @@ patch:
       - derive/^g([fv])/gn/           # g[fv] --> gn
       - derive/^g([wy])/gi/           # g[wy] --> gi
       - derive/^gr/gm/                # gr --> gm
+      - derive/^bp/bl/
       - derive/^xp/sl/
       - derive/^xt/sb/
       - derive/^xy/xo/

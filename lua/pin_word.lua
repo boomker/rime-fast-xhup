@@ -2,10 +2,10 @@ local reload_env = require("tools/env_api")
 local pin_word_records = require("pin_word_record")
 local rime_api_helper = require("tools/rime_api_helper")
 
+local P = {}
+local T = {}
+local F = {}
 local pin_word = {}
-local processor = {}
-local translator = {}
-local filter = {}
 local custom_phrase_cands = {}
 
 local function get_record_filername()
@@ -44,18 +44,19 @@ function pin_word.init(env)
 	env.custom_phrase_tran = Component.Translator(env.engine, "", "table_translator@custom_phrase")
 end
 
-function processor.func(key, env)
+function P.func(key, env)
 	local engine = env.engine
-	-- local config = engine.schema.config
 	local context = engine.context
 	local preedit_code = context:get_script_text():gsub(" ", "")
+	local pin_unpin_keymap = {
+		[env.pin_cand_key] = "pin",
+		[env.unpin_cand_key] = "unpin"
+	}
 
-	if context:has_menu() then
+	if context:has_menu() and pin_unpin_keymap[key:repr()] then
 		local cand = context:get_selected_candidate()
 		local cand_text = cand.text:gsub(" ", "")
-		if not cand then
-			return 2
-		end
+		if not cand then return 2 end
 
 		if not pin_word_records[preedit_code] then
 			pin_word_records[preedit_code] = {}
@@ -87,14 +88,14 @@ function processor.func(key, env)
 		end
 
 		if key_accepted then
-			return 1                              -- kAccept
+			return 1 -- kAccept
 		end
 	end
 
 	return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
-function translator.func(input, seg, env)
+function T.func(input, seg, env)
 	local comment_text = env.pin_mark
 	local custom_mark = env.comment_mark
 	local input_code = input:gsub(" ", "")
@@ -121,7 +122,7 @@ function translator.func(input, seg, env)
 	end
 end
 
-function filter.func(input, env)
+function F.func(input, env)
 	local pin_cands = {}
 	local other_cands = {}
 	local pin_mark = env.pin_mark
@@ -179,7 +180,7 @@ function filter.func(input, env)
 end
 
 return {
-	processor = { init = pin_word.init, func = processor.func },
-	translator = { init = pin_word.init, func = translator.func },
-	filter = { init = pin_word.init, func = filter.func },
+	processor = { init = pin_word.init, func = P.func },
+	translator = { init = pin_word.init, func = T.func },
+	filter = { init = pin_word.init, func = F.func },
 }
