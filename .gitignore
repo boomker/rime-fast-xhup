@@ -1,5 +1,6 @@
 sync/
 build/
+.venv/
 *.userdb/
 __pycache__/
 user.yaml
