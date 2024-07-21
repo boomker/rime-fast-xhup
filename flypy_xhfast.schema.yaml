@@ -5,7 +5,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "2024.07.13"
+  version: "2024.07.07"
   author:
     - boomker
   description: |
@@ -108,8 +108,8 @@ engine:
 
 # 八股文
 grammar:
-  language: zh-hans-t-essay-bgw
-  # language: zh-hans-t-huayu-v7-bgw
+  # language: zh-hans-t-essay-bgw
+  language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
 translator:
@@ -308,9 +308,9 @@ speller:
     __include: algebra_common
 
   # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
-  # __patch:
-  #   algebra/+:
-  #     __include: flypy_chord_rule:/patch/speller/algebra
+  __patch:
+    algebra/+:
+      __include: flypy_chord_rule:/patch/speller/algebra
 
 algebra_common:
   - erase/^ng\[kk$/            # 取消「唔 ng」的独占
