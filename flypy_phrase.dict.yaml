@@ -1,0 +1,10 @@
+# Rime dictionary
+# encoding: utf-8
+
+---
+name: flypy_phrase
+version: "2024-05-05"
+
+import_tables:
+  - cn_dicts/flypy_chars         # 字表
+  - cn_dicts/flypy_phrase        # 短语词库
