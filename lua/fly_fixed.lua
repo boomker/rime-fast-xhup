@@ -40,14 +40,16 @@ function F.func(input, env)
             ) or (
             -- 候选词长度超出预确认音节长度 2 个以上的候选
                 (cand.type == "completion") and
-                (not cand_text:match("%a")) and
+                (not cand_text:match("[%a%p]")) and
+                (not preedit_code:match("[%a%p]")) and
                 (utf8.len(cand_text) - confirmed_syllable_len > 2)
             )
         then
             cand_drop = true
         elseif -- 候选词长度超出预确认音节长度 1 个以上的候选
             (cand.type == "completion") and
-            (not cand_text:match("%a")) and
+            (not cand_text:match("[%a%p]")) and
+            (not preedit_code:match("[%a%p]")) and
             (utf8.len(cand_text) - confirmed_syllable_len > 1)
         then
             cmp_cand_count = cmp_cand_count + 1
@@ -59,7 +61,8 @@ function F.func(input, env)
         elseif -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
             (cand.type ~= "user_table")
             and (cand_type ~= "Shadow")
-            and (not cand_text:match("%a"))
+            and (not cand_text:match("[%a%p]"))
+            and (not preedit_code:match("[%a%p]"))
             and (utf8.len(cand_text) <= #preedit_code)
             and (utf8.len(cand_text) >= confirmed_syllable_len)
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
