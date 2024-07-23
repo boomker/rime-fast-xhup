@@ -7,26 +7,61 @@ end
 
 function F.init(env)
     local config = env.engine.schema.config
-    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
-    local schema_id = config:get_string("translator/dictionary") -- 多方案共用字典取主方案名称
+    local schema_id = config:get_string("translator/dictionary")
     env.reversedb = ReverseLookup(schema_id)
+    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 end
 
 function F.func(input, env)
     local cands = {}
     local cand_drop = false
+    local cmp_cand_count = 0
     local rdb = env.reversedb
     local context = env.engine.context
     local preedit_code = context.input:gsub(" ", "")
+    local confirmed_syllable_len = math.floor(#preedit_code / 2)
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
         local cand_type = cand:get_dynamic_type()
-        if -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
+        if                          -- 丢弃一些候选结果
+            cand_text:match("<br>") -- 去除'<br>'重复候选
+            -- 开头大写的预编辑编码, 去掉只有单字母的候选
+            or (
+                preedit_code:match("^[%u][%a]+")
+                and cand_text:match("^[A-Z]$")
+            ) or (
+            -- 辅码筛字时, 过滤掉 emoji
+                preedit_code:match("^%l+[%[`]%l?%l?$")
+                and (cand:get_dynamic_type() == "Shadow")
+            ) or (
+            -- V模式下, 过滤掉中英混合词条
+                preedit_code:match("^[%u][%a]+$") and
+                cand_text:find("([\228-\233][\128-\191]-)")
+            ) or (
+            -- 候选词长度超出预确认音节长度 2 个以上的候选
+                (cand.type == "completion") and
+                (not cand_text:match("%a")) and
+                (utf8.len(cand_text) - confirmed_syllable_len > 2)
+            )
+        then
+            cand_drop = true
+        elseif -- 候选词长度超出预确认音节长度 1 个以上的候选
+            (cand.type == "completion") and
+            (not cand_text:match("%a")) and
+            (utf8.len(cand_text) - confirmed_syllable_len > 1)
+        then
+            cmp_cand_count = cmp_cand_count + 1
+            if cmp_cand_count >= 3 then
+                cand_drop = true
+            else
+                yield(cand)
+            end
+        elseif -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
             (cand.type ~= "user_table")
             and (cand_type ~= "Shadow")
-            and (not cand_text:match("[a-zA-Z]"))
-            and (not preedit_code:match("[%u%p]"))
+            and (not cand_text:match("%a"))
             and (utf8.len(cand_text) <= #preedit_code)
+            and (utf8.len(cand_text) >= confirmed_syllable_len)
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
             and (not cand.comment:match("^" .. env.pin_mark .. "$"))
         then
@@ -38,26 +73,6 @@ function F.func(input, env)
             else
                 table.insert(cands, cand)
             end
-        elseif                      -- 丢弃一些候选结果
-            cand_text:match("<br>") -- 去除重复候选
-            -- 开头大写的预编辑编码, 去掉只有单字母的候选
-            or (preedit_code:match("^[%u][%a]+") and cand_text:match("^[A-Z]$"))
-            or (
-            -- V模式下, 过滤掉中英混合词条
-                preedit_code:match("^[%u][%a]+$")
-                and cand_text:find("([\228-\233][\128-\191]-)")
-            ) or (
-            -- 辅码筛字时, 过滤掉 emoji
-                preedit_code:match("^%l+[%[`]%l?%l?$")
-                and (cand:get_dynamic_type() == "Shadow")
-            ) or (
-            -- 候选词长度大于预编辑长度
-                (cand.type == "completion") and
-                (not cand_text:match("[%a%p]")) and
-                (utf8.len(cand_text) - #preedit_code > 1)
-            )
-        then
-            cand_drop = true
         else
             yield(cand)
         end
@@ -65,12 +80,10 @@ function F.func(input, env)
         if #cands >= 100 then break end
     end
 
+    if cand_drop then cand_drop = false end
     for _, cand in ipairs(cands) do yield(cand) end
     -- GC
-    if cand_drop then
-        collectgarbage()
-        cand_drop = false
-    end
+    -- collectgarbage()
 end
 
 return F
