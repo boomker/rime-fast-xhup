@@ -18,14 +18,14 @@
 		"metatable",
 		"ConfigValue",
 		"Schema",
-        "ConfigMap",
-        "ConfigList",
-        "Set",
-        "Component",
-        "Translator",
-        "Memory",
-        "DictEntry",
-        "Phrase",
-        "utf8"
+		"ConfigMap",
+		"ConfigList",
+		"Set",
+		"Component",
+		"Translator",
+		"Memory",
+		"DictEntry",
+		"Phrase",
+		"utf8"
 	]
 }
