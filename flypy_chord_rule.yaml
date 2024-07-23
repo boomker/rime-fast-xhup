@@ -15,7 +15,7 @@ patch:
       - derive/^qp/fl/                # qp --> fl
       - derive/^dp/dl/                # dp --> dl
       - derive/^pp/el/                # pp --> el
-      - derive/^p([okifuhjbnmg])/e$1/
+      - derive/^p([okiuhjbnm])/e$1/
       - derive/^([jkiu])y/$1w/        # [jkiu]y --> [jkiu]w
       - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
       - derive/^yh/wn/
@@ -46,6 +46,7 @@ patch:
       - derive/^no/nr/
       - derive/^ly/nw/
       - derive/^lm/nz/
+      - derive/^lo/ng/
       - derive/^li/lx/
       - derive/^jm/jz/
       - derive/^jb/ja/
