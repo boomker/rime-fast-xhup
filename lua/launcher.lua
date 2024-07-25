@@ -8,7 +8,6 @@ local second_menu_selected_text = nil
 require("tools/metatable")
 local reload_env = require("tools/env_api")
 local rime_api_helper = require("tools/rime_api_helper")
--- local logger = require("tools/logger")
 
 local function cmd(system, cmdArgs, appId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
@@ -56,9 +55,9 @@ function processor.func(key, env)
 
     if
         not (
-            inputCode:match("^" .. favorCmdPrefix)
+            inputCode:match("^/j%l+")
+            or inputCode:match("^" .. favorCmdPrefix)
             or inputCode:match("^" .. appLaunchPrefix)
-            or inputCode:match("^/j%l+")
         ) or composition:empty()
     then
         return 2
@@ -121,22 +120,22 @@ function processor.func(key, env)
                 candidateText = second_menu_selected_text
             end
 
-            if (action == "commit") and type(items[1]) ~= "string" then
-                local commitText = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
+            if (action == "commit") and (type(items[1]) ~= "string") then
+                local commitText = items[candidateText]
                 engine:commit_text(commitText)
-            elseif action == "open" and type(items[1]) == "string" and (system_name ~= "ios") then
+            elseif (system_name == "ios") and (type(items[1]) ~= "string") then
+                local commitText = items[candidateText]
+                engine:commit_text(commitText)
+            elseif (action == "open") and (type(items[1]) == "string") then
                 cmd(system_name, "", candidateText)
             elseif (action == "open") and (system_name ~= "ios") then
-                local _path = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
-                local path = _path:gsub(" ", "\\ ")
+                local _path = items[candidateText]
+                local path = _path:match("^[~/].* ") and _path:gsub(" ", "\\ ") or _path
                 cmd(system_name, "", path)
             elseif (action == "exec") and (system_name ~= "ios") then
-                local _cmdString = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
-                local cmdString = _cmdString:match("^/") and _cmdString:gsub(" ", "\\ ", 1) or _cmdString
+                local _cmdString = items[candidateText]
+                local cmdString = _cmdString:match("^[~/].* ") and _cmdString:gsub(" ", "\\ ", 1) or _cmdString
                 cmd(system_name, "exec", cmdString)
-            elseif (system_name == "ios") and type(items[1]) ~= "string" then
-                local commitText = allCommandItems["Favors"][first_menu_selected_text]["items"][candidateText]
-                engine:commit_text(commitText)
             else
                 engine:commit_text(candidateText)
             end
