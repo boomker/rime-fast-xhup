@@ -89,6 +89,6 @@ tooltip	tooltip	100000
 netspace	netspace	100000
 vswitch	vswitch	100000
 vSwitch	vswitch	100000
-I/O	io	100000
-
 SR-IOV	sriov	100000
+I/O	io	100000
+I/O	i/o	100000
