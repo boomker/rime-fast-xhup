@@ -27,7 +27,7 @@ end
 function T.func(input, seg, env)
     if input:match("^%a[%a%p]+%]$") then           -- 输入末尾必须是]
         local inp = input:sub(1, -2):gsub(" ", "") -- -3对应两个末尾符号,-2对应一个
-        local record = inp .. "\t" .. inp:gsub("[^%a]+", ""):lower() .. "\t100000"
+        local record = inp .. "\t" .. inp:gsub("[^%a-_/]+", ""):lower() .. "\t100000"
         if not user_dict_exist(record, env.dict_path) then
             yield(Candidate("en_custom", seg.start, seg._end, inp, "✅"))
             local file = assert(io.open(env.dict_path, "a"))
