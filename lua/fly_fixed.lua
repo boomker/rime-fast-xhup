@@ -13,16 +13,18 @@ function F.init(env)
 end
 
 function F.func(input, env)
-    local cands = {}
     local cand_drop = false
     local cmp_cand_count = 0
     local rdb = env.reversedb
+    local low_priority_texts = {}
+    local low_priority_cands = {}
     local context = env.engine.context
     local preedit_code = context.input:gsub(" ", "")
     local confirmed_syllable_len = math.floor(#preedit_code / 2)
     for cand in input:iter() do
-        local cand_text = cand.text:gsub(" ", "")
         local cand_type = cand:get_dynamic_type()
+        local cand_text = cand.text:gsub(" ", "")
+        local cand_comment = cand.comment:gsub("[〔〕]", "")
         if                          -- 丢弃一些候选结果
             cand_text:match("<br>") -- 去除'<br>'重复候选
             -- 开头大写的预编辑编码, 去掉只有单字母的候选
@@ -43,7 +45,8 @@ function F.func(input, env)
                 (not preedit_code:match("%p")) and
                 (not cand_text:match("[%a%p]")) and
                 (utf8.len(cand_text) - confirmed_syllable_len > 2)
-            )
+            -- 候选词是 不匹配的 Emoji 时则丢弃
+            ) or (table.find_index(low_priority_texts, cand_comment))
         then
             cand_drop = true
         elseif -- 候选词长度超出预确认音节长度 1 个以上的候选
@@ -74,17 +77,18 @@ function F.func(input, env)
             if yin_code and (yin_code:match(preedit_last_code)) then
                 yield(cand)
             else
-                table.insert(cands, cand)
+                table.insert(low_priority_cands, cand)
+                table.insert(low_priority_texts, cand.text)
             end
         else
             yield(cand)
         end
 
-        if #cands >= 100 then break end
+        if #low_priority_cands >= 100 then break end
     end
 
     if cand_drop then cand_drop = false end
-    for _, cand in ipairs(cands) do yield(cand) end
+    for _, cand in ipairs(low_priority_cands) do yield(cand) end
     -- GC
     -- collectgarbage()
 end
