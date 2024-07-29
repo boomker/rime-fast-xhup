@@ -82,7 +82,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - `cn_dicts/*.dict.yaml`, 为中文词库词典文件。
 - `en_dicts/*.dict.yaml`, 为英文词库词典文件。
 - `rime.lua` 文件用于涉及 Lua 的相关功能。
-- `scripts/flypy_dict_generator_new.py` 双拼词库转换程序，实现了汉字转小鹤双拼，小鹤音形码，简拼, 支持
+- `scripts/flypy_dict_generator.py` 双拼词库转换程序，实现了汉字转小鹤双拼，小鹤音形码，简拼, 支持
   输出到 `yaml` 字典和 `txt` 自定义短语文件，可指定词库内容追加输出，可指定初始词频，或默认源词库的词频。
 - 方案自带 emoji 输出，提供了 `emoji_word.txt` 文件, 通过 OpenCC 来转换得来。
 - `easy_en.schema.yaml` 和 `easy_en.dict.yaml` 为作者基于 [easy-en](https://github.com/BlindingDark/rime-easy-en) 项目的英文输入方案修改得到的版本。
