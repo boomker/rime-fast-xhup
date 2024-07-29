@@ -1,0 +1,199 @@
+##  一些常用的设置项, 找到需要进行的设置所在的行,
+##  取消注释 (删除行开头的单个 # 符号) 即可启用该设置项.
+##  注意不要删除前面的空格, YAML 文件的缩进比较严格, 缩进不对容易报错.
+
+patch:
+
+  # 候选菜单
+  menu/+:
+    # 注释掉下行以恢复常规候选标签序号
+    alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
+    # alternative_select_keys: 1234890      # 候选项选中快捷键
+    page_size: 7                            # 自定义候选项个数
+
+  # 候选菜单布局样式
+  style/+:
+    font_point: 20                    # 候选字大小
+    line_spacing: 8                   # 行间距大小
+    inline_preedit: false             # 编码位于是否嵌入候选框
+    candidate_list_layout: stacked    # 候选菜单横向(linear)/纵向(stacked)
+    text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
+
+  switches/+:
+    - name: emoji
+      states: [🈚️, 😄]
+      reset: 1
+    - name: prediction
+      states: [联想关, 联想开]
+      reset: 0
+    - name: extend_charset
+      states: [通用, 增廣]
+      reset: 1
+    - name: charset_comment
+      states: [码区提示关, 码区提示开]
+      reset: 0
+
+  engine/+:
+    processors/+:
+    segmentors/+:
+    translators/+:
+    filters/+:
+  'engine/processors/@next': predictor
+  'engine/translators/@before 0': predict_translator
+  # 注释下行, 以取消中英混合的候选词条里自动添加的空格
+  'engine/filters/@before last': lua_filter@*word_append_space*filter
+  # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
+  'engine/processors/@after 1': lua_processor@*word_append_space*processor
+
+  key_binder/+:
+    import_preset: default            # 从 default.yaml 继承通用的
+    # search: "`"                     # 辅码引导符
+    pin_cand: "Control+t"             # 候选词置顶
+    unpin_cand: "Control+t"           # 候选词取消置顶
+    drop_cand: "Control+d"            # 强制删词, 无视输入的编码
+    hide_cand: "Control+x"            # 匹配当前输入码后隐藏指定的候选字词
+    reduce_fq_cand: "Control+j"       # 匹配当前输入码后降频指定的候选字词
+    switch_comment: "Control+n"       # 切换注释(小鹤形码 / 带调拼音 / 无)
+    commit_comment: "Control+p"       # 注释上屏
+    switch_english: "Control+g"       # 切换到英文输入方案
+    expand_abbr_py: "Control+0"       # 展开超级简拼
+    remove_user_word: "Control+q"     # 删除用户词典里的单字 / 二三字词
+    select_first_character: "minus"   # `-` 以词定字(第一个字)
+    select_last_character:  "equal"   # `=` 以词定字(最后一个字)
+    bindings/+:
+      - { when: composing, accept: grave,  send: "`" }      # `键 逐字追加辅码
+      - { when: has_menu,  accept: semicolon,  send: 2 }    # 分号用于第2候选
+      - { when: has_menu,  accept: apostrophe, send: 3 }    # 单引号用于第3候选
+      - { when: paging,    accept: comma,  send: Page_Up }  # 逗号返回上一页
+      - { when: has_menu,  accept: period, send: Page_Down }
+      - { when: composing, accept: Tab,    send: Shift+Right }
+      - { when: composing, accept: Shift+Tab, send: Shift+Left }
+      - { when: composing, accept: Control+i, send: Shift+Left }
+      - { when: composing, accept: Control+o, send: Shift+Right }
+      - { when: has_menu,  accept: Control+Shift+slash, toggle: emoji }
+      - { when: has_menu,  accept: Control+Shift+comma, toggle: charset_comment }
+
+  recognizer/+:
+    patterns/+:
+      week: "^(/wk|week)$"
+      time: "^(/wt|time)$"
+      date: "^(/wd|date)$"
+      timestamp: "^/uts$"                       # 时间戳
+      chinese_lunar: "^/nl$"                    # 农历
+      history: "^(/hs|hisz)$"                   # 上屏历史
+      shortcuts: "^/fj[a-z]*$"                  # 快捷指令
+      easy_en: "^/oe[a-zA-Z]*$"                 # 英文输入方案
+      flypy_help: "^/(oh|help)$"                # 本方案帮助菜单
+      flypy_key_help: "^/ok[a-z]*$"             # 小鹤双拼键位帮助
+      switch_options: "^(/so|sopt)$"            # 热切换配置选项
+      LaTeX: "^/lt(.*)$"                        # LaTeX 公式
+      calculator: "^/vs(.*)$"                   # 简易计算器
+      chinese_number: "^/cn[0-9.]*$"            # 中文大写数字
+      radical_lookup: "~[a-z]+$"                # ~ 部件拆字
+
+  punctuator/+:
+    full_shape/+:
+    half_shape/+:
+      # '"': {pair: ['‘', '’']}
+      # "'": {pair: ['“', '”']}
+      # ";": {commit: "；"}                     # 取消注释后, 下行添加注释, 以恢复默认分号
+      ";": [";", "；"]
+      '\': [、, '\', '\r', '\n', '\t', ＼]
+      "@":
+        - "@"
+        # - "@xxx.com"
+        - "@gmail.com"
+        - "@foxmail.com"
+        - "@outlook.com"
+        - "@hotmail.com"
+        - "@qq.com"
+        - "@163.com"
+        - "@139.com"
+    symbols/+:
+
+  speller/+:
+    algebra/+:
+      # - derive/[[]//                          # 取消注释，直接辅码
+
+      ## 模糊音:
+      - derive/^([jqxy])v/$1u/
+      - derive/^([jqxy])u/$1v/
+      - derive/^([bnpy])b/$1k/                  # in => ing
+      - derive/^s([rsz])/u$1/                   # s => sh
+      - derive/^z([rwyz])/v$1/                  # z => zh
+      - derive/^c([arvyz])/i$1/                 # c => ch
+      - derive/^u([hky])/s$1/                   # u[hky] => s[hky]
+      - derive/^(i)g/$1f/                       # c[h]eng => c[h]en
+      # - derive/^l(.*)$/n$1/                   # l => n
+      # - derive/^n(.*)$/l$1/                   # n => l
+      # - derive/^v(.*)/z$1/                    # zh => z
+      # - derive/^i(.*)/c$1/                    # ch => c
+      # - derive/^u(.*)/s$1/                    # sh => s
+      # - derive/^([viu])g/$1f/                 # [zcs][h]eng => [zcs][h]en
+      # - derive/^([viu])f/$1g/                 # [zcs][h]en => [zcs][h]eng
+      # - derive/^([typdjxbm])k/$1b/            # ing => in
+
+  custom_phrase/+:
+    comment_mark: " 📌"               # 自定义短语注解标记
+
+  flypy_phrase/+:                     # 自动上屏短语
+    auto_commit: false                # 词条自动上屏开关
+
+  flypy_key_help/+:                   # 小鹤双拼键位帮助
+    prefix: "/ok"
+    tips: "小鹤双拼查键"
+
+  emoji/+:                            # Emoji转换
+    tips: all
+
+  easy_en/+:                          # 英文输入方案
+    prefix: "/oe"
+    tips: "英文输入"
+
+  radical_lookup/+:                   # 部件组字
+    prefix: "~"
+    tips: 〔部件组字〕
+
+  radical_reverse_lookup/+:           # 部件组字反查
+    overwrite_comment: false
+    dictionary: kMandarin             # 可自行更换反查词典
+
+  LaTeX:                              # LaTeX 公式输入
+    tag: LaTeX
+    prefix: "/lt"
+    tips: "LaTeX 公式"
+
+  calculator:                         # 计算器
+    tag: calculator
+    prefix: "/vs"
+    tips: "计算器"
+
+  chinese_number:                     # 中文数字
+    tag: chinese_number
+    prefix: "/cn"
+    tips: "中文数字"
+
+  history:                            # 上屏历史记录
+    tag: history
+    prefix: "/hs"
+    tips: "上屏历史"
+    max_count: 30
+    initial_quality: 1000
+    comment_max_length: 20
+    excluded_types: ["punct"]
+
+  pin_word:                           # 词条置顶配置
+    word_quality: 1000
+    comment_mark: " 🔝"               # 置顶词标记
+
+  cold_word_reduce:                   # 生僻词条降频到第 idx 个位置
+    idx: 4
+    excluded_types: ["easy_en"]
+
+  emoji_reduce:                       # Emoji 降频到第 idx 个位置
+    idx: 6
+
+  predictor:
+    db: predict.db
+    max_candidates: 7
+    max_iterations: 1
