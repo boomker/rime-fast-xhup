@@ -6,6 +6,7 @@ __pycache__/
 user.yaml
 .DS_Store
 **/runLog.txt
+**/.ropeproject
 installation.yaml
 lua/cold_word_records/*
 lua/pin_word_record.lua
