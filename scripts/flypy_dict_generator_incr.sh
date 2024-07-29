@@ -27,12 +27,12 @@ for f in "${files[@]}"; do
 	[[ "$f" == "emoji" ]] && tgt_file="${repoRoot}/opencc/emoji_word.txt"
 
 	git -C "${iceRepoPath}" diff "${diffCommits}" -- "${src_file}" |
-		/usr/local/bin/rg "^\-" | \rg -v "\-#|\+v|\---" | tr -d "-" >"${f}_min.diff"
+		/usr/local/bin/rg "^\-" | rg -v "\-#|\+v|\---" | tr -d "-" >"${f}_min.diff"
 	gcut -f1 "${f}_min.diff" | xargs -I % -n 1 ambr --no-interactive --no-parent-ignore --regex '^%\t.*' '' "${tgt_file}"
 	gsed -i -r '12,${/^$/d}' "${tgt_file}"
 
 	git -C "${iceRepoPath}" diff "${diffCommits}" -- "${src_file}" |
-		/usr/local/bin/rg "^\+" | \rg -v "\+#|\+v|\+\+" | tr -d "+" >"${f}_add.diff"
+		/usr/local/bin/rg "^\+" | rg -v "\+#|\+v|\+\+" | tr -d "+" >"${f}_add.diff"
 
 	[[ "$f" =~ emoji ]] && awk '{print $1"\t"$2,$3}' "${f}_add.diff" >>"${tgt_file}"
 	[[ "$f" =~ emoji ]] && sort -u "${tgt_file}" -o tmp_emoji && mv tmp_emoji "${tgt_file}"
