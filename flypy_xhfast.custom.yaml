@@ -156,7 +156,7 @@ patch:
 
   radical_reverse_lookup/+:           # 部件组字反查
     overwrite_comment: false
-    dictionary: kMandarin
+    dictionary: kMandarin             # 可自行更换反查词典
 
   LaTeX:                              # LaTeX 公式输入
     tag: LaTeX
