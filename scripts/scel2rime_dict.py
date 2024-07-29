@@ -118,62 +118,59 @@ def get_translated_record(records):
     return records_translated
 
 
-def main():
-    dict_merge_content = []
-    scels_dir = "./scels"
-    dict_dir = "./cn_dicts"
-    dict_file = "sougou.dict.yaml"
+def write_date_to_file(tgt_file, body_data):
     version_today = datetime.now().strftime("%Y.%m%d")
-
-    if not os.path.exists(dict_dir):
-        os.mkdir(dict_dir)
-
-    if not os.path.exists(scels_dir):
-        os.mkdir(dict_dir)
-
     dict_file_header = f"""
         # Rime dictionary
         # encoding: utf-8
 
         ---
-        name: sougou
+        name: sougou_pop
         version: "{version_today}"
         sort: by_weight
         ...
 
     """
 
-    dict_file_head_content = "\n".join(
-        [c.lstrip() for c in dict_file_header.splitlines()]
-    )
+    header_data = "\n".join([c.lstrip() for c in dict_file_header.splitlines()])
+    dict_merge_content = list(set(body_data))
 
-    # 将要转换的词库添加在 scel 目录下
-    scel_files = list(
-        filter(lambda x: x.endswith(".scel"), [i for i in os.listdir(scels_dir)])
-    )
-    for scel_file in scel_files:
-        try:
-            records = get_words_from_sogou_cell_dict(os.path.join(scels_dir, scel_file))
-
-            print("%s: %s 个词" % (scel_file, len(records)))
-            dict_merge_content.extend(get_translated_record(records))
-            print("-" * 80)
-            os.remove(os.path.join(scels_dir, scel_file))
-            # 删除生成的 txt
-            os.remove(os.path.join(dict_dir, scel_file.replace(".scel", ".txt")))
-        except Exception as e:
-            print("词库 %s 转换失败，跳过该词库: %s" % (scel_file, e))
-            continue
-
-    print("合并后 %s: %s 个词" % (dict_file, len(dict_merge_content) - 1))
-    dict_merge_content = list(set(dict_merge_content))
-    print("去重后 %s: %s 个词" % (dict_file, len(dict_merge_content) - 1))
-
-    with open(os.path.join(dict_dir, dict_file), "w") as dictfout:
+    with open(tgt_file, "w") as dictfout:
         # 写入头部
-        dictfout.write(dict_file_head_content)
+        dictfout.write(header_data)
         # 写入合并后内容
         dictfout.write("\n".join(dict_merge_content))
+
+
+def main():
+    dict_merge_content = []
+    scel_file = sys.argv[1] if len(sys.argv) > 1 else "./sougou_pop.scel"
+    target_file = (
+        sys.argv[2] if len(sys.argv) > 2 else "./cn_dicts/sougou_pop.dict.yaml"
+    )
+
+    if os.path.exists(target_file):
+        os.remove(target_file)
+
+    # if not os.path.exists("./scels"):
+    #     os.mkdir(./scels)
+
+    # # 将要转换的词库添加在 scel 目录下
+    # scel_files = list(
+    #     filter(lambda x: x.endswith(".scel"), [i for i in os.listdir(scels_dir)])
+    # )
+    # for scel_file in scel_files:
+    try:
+        # records = get_words_from_sogou_cell_dict(os.path.join(scels_dir, scel_file))
+        records = get_words_from_sogou_cell_dict(scel_file)
+        dict_merge_content.extend(get_translated_record(records))
+    except Exception as e:
+        print("词库 %s 转换失败，跳过该词库: %s" % (scel_file, e))
+        os.exit()
+    else:
+        write_date_to_file(target_file, dict_merge_content)
+    finally:
+        os.remove(scel_file)
 
 
 if __name__ == "__main__":
