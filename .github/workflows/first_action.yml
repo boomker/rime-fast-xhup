@@ -1,0 +1,13 @@
+   name: Your Workflow Name
+   on:
+     push:
+       branches:
+         - main
+   jobs:
+     your_job_name:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout code
+           uses: actions/checkout@v2
+         - name: Run a command
+           run: echo "Hello, GitHub Actions!"
