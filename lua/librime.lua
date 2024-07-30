@@ -29,33 +29,33 @@ function yield(cand) end
 
 ---@enum ConfigType
 config_types = {
-  kNull = "kNull",
-  kScalar = "kScalar",
-  kList = "kList",
-  kMap = "kMap",
+    kNull = "kNull",
+    kScalar = "kScalar",
+    kList = "kList",
+    kMap = "kMap",
 }
 
 ---@enum SegmentType
 segment_types = {
-  kVoid = "kVoid",
-  kGuess = "kGuess",
-  kSelected = "kSelected",
-  kConfirmed = "kConfirmed",
+    kVoid = "kVoid",
+    kGuess = "kGuess",
+    kSelected = "kSelected",
+    kConfirmed = "kConfirmed",
 }
 
 ---@enum ProcessResult
 process_results = {
-  kRejected = 0,
-  kAccepted = 1,
-  kNoop = 2,
+    kRejected = 0,
+    kAccepted = 1,
+    kNoop = 2,
 }
 
 ---@enum ModifierMask
 modifier_masks = {
-  kShift = 0x1,
-  kLock = 0x2,
-  kControl = 0x4,
-  kAlt = 0x8,
+    kShift = 0x1,
+    kLock = 0x2,
+    kControl = 0x4,
+    kAlt = 0x8,
 }
 
 --- 对象接口及构造函数
