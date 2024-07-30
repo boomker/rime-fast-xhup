@@ -2,9 +2,10 @@
 name: auto_update_sougou_dict
 
 on:
+  repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"   # 设置定时任务
+    - cron: "10 0 * * *"   # 设置定时任务
 
 jobs:
   update_sogou_dict:
