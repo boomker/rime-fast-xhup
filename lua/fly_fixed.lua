@@ -25,7 +25,9 @@ function F.func(input, env)
         local cand_type = cand:get_dynamic_type()
         local cand_text = cand.text:gsub(" ", "")
         local cand_comment = cand.comment:gsub("[〔〕]", "")
-        if                          -- 丢弃一些候选结果
+        if cand.comment:match("^" .. env.pin_mark .. "$") then
+            yield(cand)
+        elseif                      -- 丢弃一些候选结果
             cand_text:match("<br>") -- 去除'<br>'重复候选
             -- 开头大写的预编辑编码, 去掉只有单字母的候选
             or (
@@ -69,7 +71,6 @@ function F.func(input, env)
             and (utf8.len(cand_text) <= #preedit_code)
             and (utf8.len(cand_text) >= confirmed_syllable_len)
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 7))
-            and (not cand.comment:match("^" .. env.pin_mark .. "$"))
         then
             local last_char = last_character(cand_text)
             local preedit_last_code = preedit_code:sub(-1, -1)
