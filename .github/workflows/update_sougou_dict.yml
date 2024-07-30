@@ -12,14 +12,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        # uses: actions/checkout@v2
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
-        # uses: actions/setup-python@v2
-        uses: actions/setup-python@v5.1.1
+        uses: actions/setup-python@v2
         with:
           python-version: "3.11" # 你可以根据需要选择 Python 版本
           cache: pip
