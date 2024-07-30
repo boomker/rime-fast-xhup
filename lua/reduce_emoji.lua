@@ -40,8 +40,7 @@ function F.func(input, env)
         if (top_cand_count <= env.emoji_pos) then
             if cand.comment:match(env.pin_mark) then
                 yield(cand)
-            end
-            if
+            elseif
                 emoji_toggle
                 and (cand:get_dynamic_type() == "Shadow")
                 and (not preedit_code:match("^%l+[%[`]%l?%l?$"))
