@@ -1,13 +1,11 @@
-local reduce_freq_words =
-{
-    ["捉对"] = { "vodv", },
-    ["颜射"] = { "yjue", },
-    ["托德斯"] = { "todes", },
-    ["爬船"] = { "pair", },
-    ["目无余子"] = { "mwyz", },
-    ["结社"] = { "jpue", },
-    ["官婢"] = { "grbi", },
-    ["佛莱尔"] = { "folder", },
-    ["恩特"] = { "ente", },
+local reduce_freq_words = {
+	["佛莱尔"] = { "folder", },
+	["vivid"] = { "vivid", },
+	["萨法"] = { "safa", },
+	["恩特"] = { "ente", },
+	["颜射"] = { "yjue", },
+	["爬船"] = { "pair", },
+	["官婢"] = { "grbi", },
+	["圈X"] = { "qrx", },
 }
 return reduce_freq_words

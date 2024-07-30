@@ -10,7 +10,7 @@ local function reset_cand_property(env)
     local context = env.engine.context
     context:set_property("prev_cand_is_null", "0")
     context:set_property("prev_cand_is_word", "0")
-    context:set_property("prev_cand_is_hanzi", "0")
+    context:set_property("prev_cand_is_chinese", "0")
     context:set_property("prev_cand_is_preedit", "0")
     context:set_property("prev_commit_is_comma", "0")
 end
@@ -65,7 +65,7 @@ function space_leader_word.func(key, env)
     local current_focus_app_id = context:get_property("client_app")
     local prev_cand_is_null = context:get_property("prev_cand_is_null")
     local prev_cand_is_word = context:get_property("prev_cand_is_word")
-    local prev_cand_is_hanzi = context:get_property("prev_cand_is_hanzi")
+    local prev_cand_is_chinese = context:get_property("prev_cand_is_chinese")
     local prev_cand_is_preedit = context:get_property("prev_cand_is_preedit")
     local prev_commit_is_comma = context:get_property("prev_commit_is_comma")
 
@@ -88,7 +88,7 @@ function space_leader_word.func(key, env)
             engine:commit_text(cand_text)
         elseif (prev_cand_is_null ~= "1") and (#cand_text > 2)
             and (
-                (prev_cand_is_hanzi == "1")
+                (prev_cand_is_chinese == "1")
                 or (prev_cand_is_word == "1")
             )
         then
@@ -115,7 +115,7 @@ function space_leader_word.func(key, env)
         if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
             local cand_text = " " .. selected_cand.text .. "，"
             engine:commit_text(cand_text)
-        elseif (prev_cand_is_hanzi == "1") and selected_cand.text:match("^%a+") then
+        elseif (prev_cand_is_chinese == "1") and selected_cand.text:match("^%a+") then
             local cand_text = " " .. selected_cand.text .. "，"
             engine:commit_text(cand_text)
             reset_cand_property(env)
@@ -153,7 +153,7 @@ function space_leader_word.func(key, env)
             if cand_text:match("^%a+") then
                 context:set_property("prev_cand_is_word", "1")
             else
-                context:set_property("prev_cand_is_hanzi", "1")
+                context:set_property("prev_cand_is_chinese", "1")
             end
             context:set_property("prev_focus_app_id", current_focus_app_id)
             context:clear()
@@ -165,7 +165,7 @@ function space_leader_word.func(key, env)
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 reset_cand_property(env)
-                context:set_property("prev_cand_is_hanzi", "1")
+                context:set_property("prev_cand_is_chinese", "1")
                 context:set_property("prev_focus_app_id", current_focus_app_id)
                 context:clear()
                 return 1 -- kAccepted
@@ -185,14 +185,14 @@ function space_leader_word.func(key, env)
 
         if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
             reset_cand_property(env)
-            context:set_property("prev_cand_is_hanzi", "1")
+            context:set_property("prev_cand_is_chinese", "1")
             context:set_property("prev_focus_app_id", current_focus_app_id)
             -- context:confirm_previous_selection()
             return 2
         end
 
         if string.match(cand_text, "^[%l%u]+") then
-            if (prev_cand_is_null ~= "1") and ((prev_cand_is_hanzi == "1") or (prev_cand_is_word == "1")) then
+            if (prev_cand_is_null ~= "1") and ((prev_cand_is_chinese == "1") or (prev_cand_is_word == "1")) then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
                 reset_cand_property(env)
@@ -200,7 +200,7 @@ function space_leader_word.func(key, env)
                 context:set_property("prev_focus_app_id", current_focus_app_id)
                 context:clear()
                 return 1 -- kAccepted
-            elseif (prev_cand_is_null == "1") or (prev_cand_is_hanzi ~= "1") then
+            elseif (prev_cand_is_null == "1") or (prev_cand_is_chinese ~= "1") then
                 engine:commit_text(cand_text)
                 reset_cand_property(env)
                 context:set_property("prev_cand_is_word", "1")
