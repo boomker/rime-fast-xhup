@@ -338,15 +338,15 @@ preedit_convert_rules:
   - xform/(\w)g/$1eng/
   - xform/([nl])v/$1ü/
   - xform/([jqxy])v/$1u/
-  - xform/([jqx])s/$1iong/
   - xform/([gkhvui])x/$1ua/
   - xform/([gkhvui])k/$1uai/
   - xform/([jqxnlb])l/$1iang/
   - xform/([aoe])\1(\w)/$1$2/
+  - xform/([^abefmpow])r/$1uan/
   - xform/([bpmdtnljqx])n/$1iao/
   - xform/([dtgkhvuirzcs])v/$1ui/
-  - xform/([dtnlgkhvuirzcs])o/$1uo/
-  - xform/([dtnlgkhjqxyvuirzcs])r/$1uan/
+  - xform/([^abefjmopqxyw])o/$1uo/
+  - xform/([jqx])s/$1iong/
   - xform/(\w)b/$1in/
   - xform/(\w)c/$1ao/
   - xform/(\w)d/$1ai/
