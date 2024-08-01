@@ -2,10 +2,9 @@
 name: auto_update_sougou_dict
 
 on:
-  repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron: "10 0 * * *"   # 设置定时任务
+    - cron: "0 0 * * *"   # 设置定时任务
 
 jobs:
   update_sogou_dict:
@@ -30,7 +29,7 @@ jobs:
 
       - name: Download sogou scel file
         run: |
-          curl -fsL -o sogou_net_pop.scel 'https://pinyin.sogou.com/d/dict/download_cell.php?id=4&name=%E7%BD%91%E7%BB%9C%E6%B5%81%E8%A1%8C%E6%96%B0%E8%AF%8D%E3%80%90%E5%AE%98%E6%96%B9%E6%8E%A8%E8%8D%90%E3%80%91'
+          curl -fsL -o sogou_net_pop.scel 'https://pinyin.sogou.com/d/dict/download_cell.php?id=4&name=网络流行新词【官方推荐】&f=detail'
 
       - name: Convert sogou scel to rime quanpin_dict
         run: |
