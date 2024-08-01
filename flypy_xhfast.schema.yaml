@@ -128,6 +128,8 @@ translator:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
+  # preedit_format:                 ## 解开注释, 编码串显示为全拼
+    # __include: preedit_convert_rules
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
@@ -331,3 +333,37 @@ algebra_common:
   # 超级简拼, 开启后可能性能不佳, 视情况开启
   # 输入3个及以上编码字符, 按下`Ctrl+0`展开超级简拼
   - abbrev/^(.).+$/$1/
+
+preedit_convert_rules:
+  - xform/(\w)g/$1eng/
+  - xform/([nl])v/$1ü/
+  - xform/([jqxy])v/$1u/
+  - xform/([jqx])s/$1iong/
+  - xform/([gkhvui])x/$1ua/
+  - xform/([gkhvui])k/$1uai/
+  - xform/([jqxnlb])l/$1iang/
+  - xform/([aoe])\1(\w)/$1$2/
+  - xform/([bpmdtnljqx])n/$1iao/
+  - xform/([dtgkhvuirzcs])v/$1ui/
+  - xform/([dtnlgkhvuirzcs])o/$1uo/
+  - xform/([dtnlgkhjqxyvuirzcs])r/$1uan/
+  - xform/(\w)b/$1in/
+  - xform/(\w)c/$1ao/
+  - xform/(\w)d/$1ai/
+  - xform/(\w)f/$1en/
+  - xform/(\w)h/$1ang/
+  - xform/(\w)j/$1an/
+  - xform/(\w)k/$1ing/
+  - xform/(\w)l/$1uang/
+  - xform/(\w)m/$1ian/
+  - xform/(\w)p/$1ie/
+  - xform/(\w)q/$1iu/
+  - xform/(\w)s/$1ong/
+  - xform/(\w)t/$1ue/
+  - xform/(\w)w/$1ei/
+  - xform/(\w)x/$1ia/
+  - xform/(\w)y/$1un/
+  - xform/(\w)z/$1ou/
+  - "xform/(^|[ '])v/$1zh/"
+  - "xform/(^|[ '])i/$1ch/"
+  - "xform/(^|[ '])u/$1sh/"

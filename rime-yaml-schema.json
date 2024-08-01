@@ -672,13 +672,28 @@
                     "description": "指定的用户词典类型。文本（tabledb）或二进制（userdb）。"
                 },
                 "preedit_format": {
-                    "type": "array",
                     "description": "自定义的一组上屏码规则。",
                     "additionalItems": false,
-                    "items": {
-                        "type": "string",
-                        "description": "自定义上屏码规则"
-                    }
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "examples": [
+                                    "xform/(\\w)g/$1eng/"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "__include": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
                 },
                 "comment_format": {
                     "type": "array",
