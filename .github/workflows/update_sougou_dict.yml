@@ -37,7 +37,7 @@ jobs:
 
       - name: Gen diff file
         run: |
-          awk -F'\t' 'FNR==NR&&NR>=10{a[$1]++;w[$1]=$0};FNR!=NR&&FNR>=10{b[$1]++}END{for(i in a){if(b[i]<1)print w[i]}}' cn_dicts/sougou_pop.dict.yaml cn_dicts/flypy_sogou.dict.yaml >diff_sg.txt
+          awk -F'\t' 'FNR==NR&&NR>=10{a[$1]++;w[$1]=$0};FNR!=NR&&FNR>=10{b[$1]++}END{for(i in a){if(b[i]<1)print w[i]}}' ./cn_dicts/sougou_pop.dict.yaml ./cn_dicts/flypy_sogou.dict.yaml >diff_sg.txt
 
       - name: Incremental update rime quanpin_dict to shuangpin_dict
         run: |
@@ -46,11 +46,15 @@ jobs:
       - name: change version for flypy_sogou.dict.yaml
         run: |
           today="$(date '+%F')"
-          sed -i "s/version: .*/version: $today/" cn_dicts/flypy_sogou.dict.yaml
+          sed -i "s/version: .*/version: $today/" ./cn_dicts/flypy_sogou.dict.yaml
+
+      - name: Remove spam entries for flypy_sogou.dict.yaml
+        run: |
+          bash ./scripts/purge_words.sh
 
       - name: Remove intermediate file
         run: |
-          rm -f diff_sg.txt cn_dicts/sougou_pop.dict.yaml
+          rm -f ./diff_sg.txt ./cn_dicts/sougou_pop.dict.yaml
 
       - name: Set env
         run: |
