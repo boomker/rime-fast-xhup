@@ -342,10 +342,10 @@ preedit_convert_rules:
   - xform/([gkhvui])k/$1uai/
   - xform/([jqxnlb])l/$1iang/
   - xform/([aoe])\1(\w)/$1$2/
-  - xform/([^abefmpow])r/$1uan/
   - xform/([bpmdtnljqx])n/$1iao/
   - xform/([dtgkhvuirzcs])v/$1ui/
-  - xform/([^abefjmopqxyw])o/$1uo/
+  - xform/([dtnlgkhvuirzcs])o/$1uo/
+  - xform/([dtnlgkhjqxyvuirzcs])r/$1uan/
   - xform/([jqx])s/$1iong/
   - xform/(\w)b/$1in/
   - xform/(\w)c/$1ao/
