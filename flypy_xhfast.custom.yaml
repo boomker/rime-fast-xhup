@@ -58,6 +58,7 @@ patch:
     switch_english: "Control+g"       # 切换到英文输入方案
     expand_abbr_py: "Control+0"       # 展开超级简拼
     remove_user_word: "Control+q"     # 删除用户词典里的单字 / 二三字词
+    easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮候选字词
     select_first_character: "minus"   # `-` 以词定字(第一个字)
     select_last_character:  "equal"   # `=` 以词定字(最后一个字)
     bindings/+:
