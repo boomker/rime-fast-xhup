@@ -38,6 +38,7 @@ engine:
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
     - lua_processor@*idiom_abbr_expand
+    - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
     - lua_processor@*launcher*processor
     - lua_processor@*flypy_switcher*processor
