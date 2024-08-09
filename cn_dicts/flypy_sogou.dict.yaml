@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2024-08-08
+version: 2024-08-09
 sort: by_weight
 ...
 
@@ -3997,7 +3997,6 @@ sort: by_weight
 今天立秋了	jb tm li qq le	1
 今天下三分	jb tm xx sj ff	1
 金鹰奖片单	jb yk jl pm dj	1
-积分夺宝卷	ji ff do bc jr	1
 积分夺宝券	ji ff do bc qr	1
 寂寞独角戏	ji mo du jn xi	1
 机器人之梦	ji qi rf vi mg	1
@@ -4692,3 +4691,115 @@ sort: by_weight
 有没有一种可能	yz mw yz yi vs ke ng	1
 古巨基一直看提词器	gu ju ji yi vi kj ti ci qi	1
 张杰凡希亚强强联合	vh jp fj xi ya ql ql lm he	1
+周正不嘻嘻	vz vg bu xi xi	1
+被逆转	bw ni vr	1
+美国运动员	mw go yy ds yr	1
+你蛐蛐我	ni qu qu wo	1
+求团卡	qq tr ka	1
+米麻薯	mi ma uu	1
+电妹	dm mw	1
+开放的大门	kd fh de da mf	1
+王俊凯嘻嘻	wh jy kd xi xi	1
+也是喝上了	ye ui he uh le	1
+巩立姣	gs li jn	1
+爆款好人	bc kr hc rf	1
+龙头暴力美学	ls tz bc li mw xt	1
+王楚钦这三球	wh iu qb ve sj qq	1
+鳗鱼好帅	mj yu hc uk	1
+似火流年	si ho lq nm	1
+一和多	yi he do	1
+环大陆	hr da lu	1
+潮流季	ic lq ji	1
+坂口健太郎	bj kz jm td lh	1
+玩到真小丑了	wj dc vf xn iz le	1
+闵玧其撒谎	mb mf qi sa hl	1
+漫画版莎头	mj hx bj ua tz	1
+王森旭	wh sf xu	1
+张雨绮腰身比	vh yu qi yc uf bi	1
+李发斌	li fa bb	1
+喵喵晒照大赛	mn mn ud vc da sd	1
+智能生活家	vi ng ug ho jx	1
+茶姬	ia ji	1
+牛蛙下锅	nq wa xx go	1
+重走西游	is zz xi yz	1
+澈哩	ie li	1
+三号种子	sj hc vs zi	1
+女曲	nv qu	1
+入殓师的日常	ru lm ui de ri ih	1
+前备箱	qm bw xl	1
+苏芙比	su fu bi	1
+我还没喝	wo hd mw he	1
+覃海洋好帅	qb hd yh hc uk	1
+樱桃琥珀官宣	yk tc hu po gr xr	1
+草莓啵啵	cc mw bo bo	1
+游科	yz ke	1
+刷羽毛	ux yu mc	1
+全民健身节	qr mb jm uf jp	1
+还我妈生龙	hd wo ma ug ls	1
+昌雅妮失误	ih ya ni ui wu	1
+江渡	jl du	1
+吕小军举重鞋	lv xn jy ju vs xp	1
+诉讼离婚困局	su ss li hy ky ju	1
+失速问题	ui su wf ti	1
+欧钰珊	ou yu uj	1
+误踩油门防碰撞	wu cd yz mf fh pg vl	1
+火老师	ho lc ui	1
+爷爷不泡茶	ye ye bu pc ia	1
+被偷走的金牌	bw tz zz de jb pd	1
+定密	dk mi	1
+钮祜禄高压锅	nq hu lu gc ya go	1
+收视率打法	uz ui lv da fa	1
+卡尔伯格	ka er bo ge	1
+刘高阳	lq gc yh	1
+治安官	vi an gr	1
+茶主张	ia vu vh	1
+蒋峤西	jl qn xi	1
+侯志慧	hz vi hv	1
+柳舟记定档	lq vz ji dk dh	1
+会很帅	hv hf uk	1
+情感消费	qk gj xn fw	1
+歌名没听过	ge mk mw tk go	1
+追分的神	vv ff de uf	1
+见春天	jm iy tm	1
+孙颖莎	sy yb ua	1
+樊振东	fj vg ds	1
+汇呆	hv dd	1
+航平	hh pk	1
+为我们加油	ww wo mf jx yz	1
+乒乓球女团	pk ph qq nv tr	1
+谁请我喝	uv qk wo he	1
+路温	lu wf	1
+竞技荣光	jk ji rs gl	1
+梦鱼含泪打破	mg yu hj lw da po	1
+王楚钦杀疯了	wh iu qb ua fg le	1
+东道主更吵了	ds dc vu gg ic le	1
+汪顺跳水	wh uy tn uv	1
+缔造传奇	di zc ir qi	1
+肃声	su ug	1
+莽夫与蛇	mh fu yu ue	1
+社工成绩公布	ue gs ig ji gs bu	1
+来铲	ld ij	1
+奖励局	jl li ju	1
+马拉松游泳	ma la ss yz ys	1
+结果歪了	jp go wd le	1
+曲棍球回放	qu gy qq hv fh	1
+螺旋跑酷塔	lo xr pc ku ta	1
+欢笑与泪水	hr xn yu lw uv	1
+此生从此分明了	ci ug cs ci ff mk le	1
+十注	ui vu	1
+最终预告	zv vs yu gc	1
+李发彬	li fa bb	1
+异体骨	yi ti gu	1
+兵立王	bk li wh	1
+蛋币	dj bi	1
+猴打墙	hz da ql	1
+阿尔古斯	aa er gu si	1
+武燕妮	wu yj ni	1
+邵思源	uc si yr	1
+张博恒小拇指	vh bo hg xn mu vi	1
+昌雅妮稳住了	ih ya ni wf vu le	1
+梦鱼	mg yu	1
+徐锦江复出	xu jb jl fu iu	1
+齐司礼画师	qi si li hx ui	1
+蜜城之恋	mi ig vi lm	1
+通往奴役之路	ts wh nu yi vi lu	1
