@@ -1,6 +1,10 @@
-sed -i '/糖分手/d' cn_dicts/flypy_sogou.dict.yaml
-sed -i '/中国第金/d' cn_dicts/flypy_sogou.dict.yaml
-sed -i '/崔宸曦第/d' cn_dicts/flypy_sogou.dict.yaml
-sed -i '/积分夺宝卷/d' cn_dicts/flypy_sogou.dict.yaml
-sed -i '/樊正东/s/正/振/1' cn_dicts/flypy_sogou.dict.yaml
-sed -i 's/孙银沙/孙颖莎/1' cn_dicts/flypy_sogou.dict.yaml
+[[ "$(uname -s)" == Darwin ]] && SCMD="gsed" || SCMD="sed"
+${SCMD} -i -e '/糖分手/d' \
+	-e '/中国第金/d' \
+	-e '/崔宸曦第/d' \
+	-e '/泸上阿姨/d' \
+	-e '/晚安安安/d' \
+	-e '/积分夺宝卷/d' \
+	-e '/还我妈/s/hd/hr/1' \
+	-e '/樊正东/s/正/振/1' \
+	-e 's/孙银沙/孙颖莎/1' cn_dicts/flypy_sogou.dict.yaml
