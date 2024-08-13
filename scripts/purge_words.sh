@@ -7,4 +7,5 @@ ${SCMD} -i -e '/糖分手/d' \
 	-e '/积分夺宝卷/d' \
 	-e '/还我妈/s/hd/hr/1' \
 	-e '/樊正东/s/正/振/1' \
-	-e 's/孙银沙/孙颖莎/1' cn_dicts/flypy_sogou.dict.yaml
+	-e 's/孙银沙/孙颖莎/1' \
+	-r -e '/^曾[^经几用]/s/\tcg/\tzg/1' cn_dicts/flypy_sogou.dict.yaml
