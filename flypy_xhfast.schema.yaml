@@ -38,6 +38,7 @@ engine:
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
     - lua_processor@*idiom_abbr_expand
+    - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
     - lua_processor@*launcher*processor
     - lua_processor@*flypy_switcher*processor
@@ -128,8 +129,8 @@ translator:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
-  preedit_format:
-    __include: preedit_convert_rules
+  # preedit_format:
+  #   __include: preedit_convert_rules
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
