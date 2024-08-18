@@ -44,8 +44,11 @@ function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local input_code = context.input
+	local composition = env.engine.context.composition
+	if composition:empty() then return end
+	local segment = composition:back()
 
-    if (key:repr() == env.first_key) and (input_code ~= "") and context:has_menu() then
+    if (key:repr() == env.first_key) and (input_code ~= "") and (not segment.prompt:match('计算器')) then
         local _cand_text, _commit_txt = context:get_selected_candidate().text, nil
         if _cand_text then _commit_txt = first_character(_cand_text) end
         local cand_txt = append_space_to_cand(env, _commit_txt)
@@ -56,7 +59,7 @@ function P.func(key, env)
         return 1 -- kAccepted
     end
 
-    if (key:repr() == env.last_key) and (input_code ~= "") and context:has_menu() then
+    if (key:repr() == env.last_key) and (input_code ~= "") and (not segment.prompt:match('计算器')) then
         local _cand_text, _commit_txt = context:get_selected_candidate().text, nil
         if _cand_text then _commit_txt = last_character(_cand_text) end
         local cand_txt = append_space_to_cand(env, _commit_txt)
