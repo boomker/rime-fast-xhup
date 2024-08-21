@@ -31,13 +31,13 @@ local function write_word_to_file(env, record_type)
 	end
 	local fd = assert(io.open(filename, "w")) --打开
 	fd:setvbuf("line")
-	fd:write(record_header) --写入文件头部
+	fd:write(record_header)                --写入文件头部
 	-- fd:flush() --刷新
 	local words_obj = string.format("%s_list", record_type)
 	local records = table.serialize(env.words_tbl[words_obj]) -- lua 的 table 对象 序列化为字符串
-	fd:write(records) --写入 序列化的字符串
-	fd:write(record_tailer) --写入文件尾部, 结束记录
-	fd:close() --关闭
+	fd:write(records)                                      --写入 序列化的字符串
+	fd:write(record_tailer)                                --写入文件尾部, 结束记录
+	fd:close()                                             --关闭
 end
 
 local function append_word_to_droplist(env, ctx, action_type)
@@ -76,7 +76,6 @@ function cold_word_drop.init(env)
 	local _sh, hide_words = pcall(require, "cold_word_records/hide_words")
 	local _sr, reduce_freq_words = pcall(require, "cold_word_records/reduce_freq_words")
 
-	env.tag = "easy_en"
 	env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 	env.word_reduce_idx = config:get_int("cold_word_reduce/idx") or 4
 	env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
@@ -131,15 +130,15 @@ function processor.func(key, env)
 end
 
 function filter.func(input, env)
-	local engine = env.engine
-	local context = engine.context
-	local cands = {}
-	local prev_cand_text = nil
-	local drop_words = env.drop_words
-	local hide_words = env.hide_words
-	local word_reduce_idx = env.word_reduce_idx
+	local cands             = {}
+	local prev_cand_text    = nil
+	local engine            = env.engine
+	local context           = engine.context
+	local drop_words        = env.drop_words
+	local hide_words        = env.hide_words
+	local word_reduce_idx   = env.word_reduce_idx
 	local reduce_freq_words = env.reduce_freq_words
-	local preedit_str = context.input:gsub(" ", "")
+	local preedit_str       = context.input:gsub(" ", "")
 
 	for cand in input:iter() do
 		local cand_text = cand.text:gsub(" ", "")
@@ -153,15 +152,17 @@ function filter.func(input, env)
 			elseif
 				(
 					cand_text:match("^[%a][%a%d][%a%d]?%.?$")
-					or (preedit_code:match("^%u") and (cand:get_dynamic_type() == "Shadow"))
-					or (cand_text:match("^[%u][%a][%a]?$") and (cand_text:lower() == preedit_code:lower()))
-					or (cand_text:match("^[%u][%a][%a]%.?") and prev_cand_text and cand_text
-						:lower()
-						:match("^" .. prev_cand_text))
-					or (cand_text:match("^[%u][%a]?[%a]?") and (cand_text:match("[%a]+"):len() < 4) and cand_text:find(
-						"([\228-\233][\128-\191]-)"
-					))
-					or (string.find(cand.comment, "☯"))
+					or (preedit_code:match("^%u")
+						and (cand:get_dynamic_type() == "Shadow")
+					) or (cand_text:match("^[%u][%a][%a]?$")
+						and (cand_text:lower() == preedit_code:lower())
+					)
+					or (cand_text:match("^[%u][%a][%a]%.?") and prev_cand_text
+						and cand_text:lower():match("^" .. prev_cand_text)
+					) or (cand_text:match("^[%u][%a]?[%a]?")
+						and (cand_text:match("[%a]+"):len() < 4)
+						and cand_text:find("([\228-\233][\128-\191]-)")
+					) or (string.find(cand.comment, "☯"))
 				) and not cand.comment:match(env.pin_mark)
 			then
 				table.insert(cands, cand)
@@ -171,7 +172,10 @@ function filter.func(input, env)
 			elseif
 				not (
 					table.find_index(drop_words, cand_text)
-					or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+					or (
+						hide_words[cand_text] and
+						table.find_index(hide_words[cand_text], preedit_code)
+					)
 				)
 			then
 				yield(cand)
@@ -181,31 +185,23 @@ function filter.func(input, env)
 			if
 				not (
 					table.find_index(drop_words, cand_text)
-					or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+					or (hide_words[cand_text] and
+						table.find_index(hide_words[cand_text], preedit_code)
+					)
 				)
 			then
 				table.insert(cands, cand)
 			end
 		end
 
-		if #cands >= 100 then
-			break
-		end
+		if #cands >= 120 then break end
 	end
 
-	for _, cand in ipairs(cands) do
-		yield(cand)
-	end
+	for _, cand in ipairs(cands) do yield(cand) end
 end
 
-function filter.tags_match(seg, env)
-	if seg.tags[env.tag] then
-		return false
-	end
-end
 
 return {
 	processor = { init = cold_word_drop.init, func = processor.func },
 	filter = { init = cold_word_drop.init, func = filter.func },
-	-- filter = { init = cold_word_drop.init, func = filter.func, tags_match = filter.tags_match },
 }
