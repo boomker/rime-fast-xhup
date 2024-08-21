@@ -92,7 +92,7 @@ engine:
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
-    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
+    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词的中文释义
     - simplifier@emoji
     - simplifier@traditionalize                       # 简繁切换
     - lua_filter@*fly_fixed
