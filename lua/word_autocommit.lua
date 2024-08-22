@@ -208,7 +208,7 @@ function F.func(input, env)
             fchars_word_cands[cand.text] = cand
         end
 
-        if #cands >= 100 then
+        if #cands >= 120 then
             break
         end
         table.insert(cands, cand)

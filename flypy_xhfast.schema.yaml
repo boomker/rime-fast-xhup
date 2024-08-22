@@ -92,7 +92,7 @@ engine:
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
-    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
+    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词的中文释义
     - simplifier@emoji
     - simplifier@traditionalize                       # 简繁切换
     - lua_filter@*fly_fixed
@@ -109,8 +109,8 @@ engine:
 
 # 八股文
 grammar:
-  language: zh-hans-t-essay-bgw
-  # language: zh-hans-t-huayu-v7-bgw
+  # language: zh-hans-t-essay-bgw
+  language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
 translator:
@@ -129,8 +129,8 @@ translator:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
-  preedit_format:
-    __include: preedit_convert_rules
+  # preedit_format:
+  #   __include: preedit_convert_rules
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
@@ -311,9 +311,9 @@ speller:
     __include: algebra_common
 
   # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
-  # __patch:
-  #   algebra/+:
-  #     __include: flypy_chord_rule:/patch/speller/algebra
+  __patch:
+    algebra/+:
+      __include: flypy_chord_rule:/patch/speller/algebra
 
 algebra_common:
   - erase/^ng\[kk$/            # 取消「唔 ng」的独占

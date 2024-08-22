@@ -1,0 +1,46 @@
+# Fcitx5 settings
+# encoding: utf-8
+
+config_version: "0.22"
+
+# set app options based on app name
+# e.g.
+# "app_options/kwrite":
+#   - ascii_mode: true
+# You may obtain the app name via
+# dbus-send --print-reply=literal --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.DebugInfo
+app_options:
+  com.apple.Spotlight:           # 聚焦搜索
+    ascii_mode: true             # true默认英文,false默认中文
+  com.raycast.macos:             # Raycast
+    ascii_mode: true
+  org.alacritty:                 # alacritty 终端
+    ascii_mode: true
+    ascii_punct: true            # 中文状态输出英文标点(半角)
+  com.apple.Terminal:            # 终端
+    ascii_mode: true
+  com.googlecode.iterm2:         # iterm2
+    ascii_mode: true
+    ascii_punct: true            # 中文状态输出英文标点(半角)
+  com.apple.Stickies:
+    ascii_mode: false
+  com.apple.TextEdit:
+    ascii_mode: false
+  md.obsidian:
+    ascii_mode: true
+  com.microsoft.VSCode:          # Visual Studio Code
+    ascii_mode: true
+    ascii_punct: true            # 中文状态输出英文标点(半角)
+    vim_mode: true
+  com.neovide.neovide:
+    ascii_mode: true
+    ascii_punct: true            # 中文状态输出英文标点(半角)
+    vim_mode: true
+  com.microsoft.edgemac:
+    ascii_mode: false
+  com.google.Chrome:
+    inline: true
+  com.tencent.xinWeChat:
+    wechat_flag: true
+  com.runningwithcrayons.Alfred:
+    ascii_mode: true
