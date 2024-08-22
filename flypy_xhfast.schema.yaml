@@ -129,8 +129,8 @@ translator:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
-  # preedit_format:
-  #   __include: preedit_convert_rules
+  preedit_format:
+    __include: preedit_convert_rules
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
@@ -292,13 +292,13 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   bindings:
-    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
     - {when: composing, accept: Control+e, send: End}
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
     - {when: has_menu,  accept: Control+period, toggle: ascii_punct}
     - {when: has_menu,  accept: Control+slash, toggle: simplification}
+    # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
 speller:
@@ -311,9 +311,9 @@ speller:
     __include: algebra_common
 
   # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
-  __patch:
-    algebra/+:
-      __include: flypy_chord_rule:/patch/speller/algebra
+  # __patch:
+  #   algebra/+:
+  #     __include: flypy_chord_rule:/patch/speller/algebra
 
 algebra_common:
   - erase/^ng\[kk$/            # 取消「唔 ng」的独占
