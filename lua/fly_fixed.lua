@@ -13,10 +13,10 @@ function F.init(env)
 end
 
 function F.func(input, env)
-    local cand_drop = false
+	local drop_cand = false
     local cmp_cand_count = 0
     local rdb = env.reversedb
-    local low_priority_texts = {}
+	local untimely_emojis = {}
     local low_priority_cands = {}
     local context = env.engine.context
     local preedit_code = context.input:gsub(" ", "")
@@ -29,7 +29,7 @@ function F.func(input, env)
             yield(cand)
         elseif                      -- 丢弃一些候选结果
             cand_text:match("<br>") -- 去除'<br>'重复候选
-            -- 开头大写的预编辑编码, 去掉只有单字母的候选
+            -- 开头大写的输入编码, 去掉只有单字母的候选
             or (
                 preedit_code:match("^[%u][%a]+")
                 and cand_text:match("^[A-Z]$")
@@ -48,9 +48,9 @@ function F.func(input, env)
                 (not cand_text:match("[%a%p]")) and
                 (utf8.len(cand_text) - confirmed_syllable_len > 2)
             -- 候选词是 不匹配的 Emoji 时则丢弃
-            ) or (table.find_index(low_priority_texts, cand_comment))
+            ) or (table.find_index(untimely_emojis, cand_comment))
         then
-            cand_drop = true
+			drop_cand = true
         elseif -- 候选词长度超出预确认音节长度 1 个以上的候选
             (cand.type == "completion") and
             (not preedit_code:match("%p")) and
@@ -59,7 +59,7 @@ function F.func(input, env)
         then
             cmp_cand_count = cmp_cand_count + 1
             if cmp_cand_count >= 3 then
-                cand_drop = true
+				drop_cand = true
             else
                 yield(cand)
             end
@@ -79,16 +79,16 @@ function F.func(input, env)
                 yield(cand)
             else
                 table.insert(low_priority_cands, cand)
-                table.insert(low_priority_texts, cand.text)
+				table.insert(untimely_emojis, cand.text)
             end
         else
             yield(cand)
         end
 
-        if #low_priority_cands >= 100 then break end
+        if #low_priority_cands >= 120 then break end
     end
 
-    if cand_drop then cand_drop = false end
+	if drop_cand then drop_cand = false end
     for _, cand in ipairs(low_priority_cands) do yield(cand) end
     -- GC
     -- collectgarbage()
