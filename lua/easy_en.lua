@@ -37,9 +37,7 @@ function easy_en.processor(key, env)
 	local engine = env.engine
 	local context = engine.context
 	local composition = context.composition
-	if composition:empty() then
-		return 2
-	end
+	if composition:empty() then return 2 end
 
 	if context:has_menu() and (key:repr() == env.easydict_translate_key) then
 		local cand = context:get_selected_candidate()
@@ -91,23 +89,17 @@ function easy_en.filter(input, env)
 				table.insert(en_cands, cand)
 			else
 				local preedit_code = input_code:lower():gsub(env.easy_en_prefix, "")
-				if cand.text:lower():match(preedit_code) then
-					cand.comment = ""
-				end
+				if cand.text:lower():match(preedit_code) then cand.comment = "" end
 				table.insert(en_cands, cand) -- 防止候选太多, 输入卡顿
 			end
 		else
 			yield(cand)
 		end
 
-		if #en_cands >= 100 then
-			break
-		end -- 防止候选太多, 输入卡顿
+		if #en_cands >= 120 then break end -- 防止候选太多, 输入卡顿
 	end
 
-	for _, cand in ipairs(en_cands) do
-		yield(cand)
-	end
+	for _, cand in ipairs(en_cands) do yield(cand) end
 end
 
 return {

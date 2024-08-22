@@ -1,0 +1,17 @@
+
+[tool.ruff]
+line-length = 108
+
+[project]
+name = "flypy_dict_generator"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "zhuchunyan", email = "gmboomker@gmail.com"},
+]
+dependencies = [
+    "pypinyin>= 0.48.0 ",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}

@@ -16,5 +16,5 @@ import_tables:
   - cn_dicts/flypy_ext_misc     # 大写字母和数字派生, V开头Emoji
   - cn_dicts/flypy_super_ext1   # 扩展词库(大词库, 部署时间较长)
   - cn_dicts/flypy_super_ext2   # 扩展词库(大词库, 部署时间较长)
-  # - cn_dicts/flypy_super_ext3   # 扩展词库(大词库, 部署时间较长)
-  # - cn_dicts/flypy_super_ext4   # 扩展词库(大词库, 部署时间较长)
+  - cn_dicts/flypy_super_ext3   # 扩展词库(大词库, 部署时间较长)
+  - cn_dicts/flypy_super_ext4   # 扩展词库(大词库, 部署时间较长)
