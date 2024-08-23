@@ -1,6 +1,7 @@
 ##  一些常用的设置项, 找到需要进行的设置所在的行,
 ##  取消注释 (删除行开头的单个 # 符号) 即可启用该设置项.
 ##  注意不要删除前面的空格, YAML 文件的缩进比较严格, 缩进不对容易报错.
+---
 
 patch:
 
@@ -120,19 +121,19 @@ patch:
       - derive/^([jqxy])v/$1u/
       - derive/^([jqxy])u/$1v/
       - derive/^([bnpy])b/$1k/                  # in => ing
-      - derive/^s([rsz])/u$1/                   # s => sh
-      - derive/^z([rwyz])/v$1/                  # z => zh
-      - derive/^c([arvyz])/i$1/                 # c => ch
-      - derive/^u([hky])/s$1/                   # u[hky] => s[hky]
-      - derive/^(i)g/$1f/                       # c[h]eng => c[h]en
-      # - derive/^l(.*)$/n$1/                   # l => n
-      # - derive/^n(.*)$/l$1/                   # n => l
+      - derive/^(i)g/$1f/                       # eng => en
+      - derive/^z([ry])/v$1/                    # z => zh
+      - derive/^c([az])/i$1/                    # c => ch
+      - derive/^s([rz])/u$1/                    # s => sh
+      - derive/^u([hky])/s$1/                   # sh => s
+      # - derive/^l(.*)/n$1/                    # l => n
+      # - derive/^n(.*)/l$1/                    # n => l
       # - derive/^v(.*)/z$1/                    # zh => z
       # - derive/^i(.*)/c$1/                    # ch => c
       # - derive/^u(.*)/s$1/                    # sh => s
-      # - derive/^([viu])g/$1f/                 # [zcs][h]eng => [zcs][h]en
-      # - derive/^([viu])f/$1g/                 # [zcs][h]en => [zcs][h]eng
-      # - derive/^([typdjxbm])k/$1b/            # ing => in
+      # - derive/^(.*)k/$1b/                    # ing => in
+      # - derive/^(.*)g/$1f/                    # [zcs][h]eng => [zcs][h]en
+      # - derive/^(.*)f/$1g/                    # [zcs][h]en => [zcs][h]eng
 
   custom_phrase/+:
     comment_mark: " 📌"               # 自定义短语注解标记
