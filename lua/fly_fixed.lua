@@ -1,5 +1,4 @@
 require("tools/string")
--- local logger = require "tools.logger"
 local F = {}
 
 local function last_character(s)
