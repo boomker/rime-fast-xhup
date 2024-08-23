@@ -42,7 +42,7 @@ function M.get_selected_candidate_index(key_value, selected_index, page_size)
         return -1
     end
 
-    local page_pos = (selected_index // page_size) + 1
+	local page_pos = math.floor(selected_index / page_size) + 1
     local idx = (keyValue == -1) and selected_index or keyValue
     selected_cand_idx = (
         (type(keyValue) == "number") and (keyValue ~= -1) and (page_pos > 1)

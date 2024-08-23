@@ -1,11 +1,12 @@
 # Rime schema
 # encoding: utf-8
+---
 
 # 方案说明
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "2024.07.07"
+  version: "2024.08.23"
   author:
     - boomker
   description: |
@@ -21,7 +22,7 @@ schema:
 # 选项开关
 switches:
   - name: ascii_mode
-    states: [中, E]
+    states: [中, En]
   - name: ascii_punct
     states: [。, .]
     reset: 0
@@ -69,26 +70,26 @@ engine:
   translators:
     - punct_translator
     - reverse_lookup_translator
+    - table_translator@melt_eng
     - table_translator@idiom_phrase
     - table_translator@custom_phrase
-    - table_translator@melt_eng
     - table_translator@make_sentence                  # ` 精准造词
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
-    - lua_translator@*pin_word*translator             # 自定义置顶词
+    - lua_translator@*en_custom                       # ] 触发自定义单词入库
+    - lua_translator@*pin_word*translator             # ctrl-t 自定义置顶词
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
-    - lua_translator@*chinese_lunar                   # /nl 触发显示农历
-    - lua_translator@*date_time                       # date, week, time, /wd, /wk, /wt 触发
+    - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
+    - lua_translator@*date_time                       # date, week, time 触发
     - lua_translator@*laTex                           # /lt 触发 LaTeX 输入
-    - lua_translator@*calculator                      # /vs 触发计算器
+    - lua_translator@*calculator                      # /vs 触发简易计算器
     - lua_translator@*chinese_number                  # /cn 触发繁体大写金额数字
-    - lua_translator@*launcher*translator             # /jj, /fj 触发快捷命令(可改触发前缀)
+    - lua_translator@*launcher*translator             # /jj, /fj 触发快捷命令
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
-    - lua_translator@*en_custom                       # ] 置于输入码末尾触发自定义单词入库
     - lua_translator@*word_autocaps*translator        # A-Z 大写字母开头触发单词自动大写
-    - lua_translator@*word_autocommit*translator      # /[ 单字优先和成语短语自动触发上屏
+    - lua_translator@*word_autocommit*translator      # / [ 单字优先和成语短语自动触发上屏
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -126,120 +127,120 @@ translator:
   # enable_encoder: true
   # always_show_comments: true
   # disable_user_dict_for_patterns:
+  # preedit_format:
+  #   __include: preedit_convert_rules
   comment_format:
-    - xform/^\w+[[](\w+)$/~$1/      ## 单字编码提示只显示辅助码部分
-    - xform/^~\w+\s.*$//            ## 单字编码提示只显示辅助码部分
-  preedit_format:
-    __include: preedit_convert_rules
+    - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
+    - xform/^~\w+\s.*$//            # 单字编码提示只显示辅助码部分
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
-  __include: /translator
-  enable_sentence: true
   prefix: "`"
-  tips: "〔精准造词〕"
   tag: make_sentence
+  tips: "〔精准造词〕"
+  enable_sentence: true
+  __include: /translator
 
 # 次翻译器, 英文
 melt_eng:                           # 英文输入
   dictionary: melt_eng
+  initial_quality: 1.1
   enable_encoder: false
   enable_sentence: false
   enable_user_dict: false
   enable_completion: true           # 是否启用英文输入联想补全
   encode_commit_history: false
-  initial_quality: 1.1
   comment_format:
     - xform/.*//                    # 清空提示码
 
 # 自定义短语
 custom_phrase:                      # 自定义短语, 包含固顶字
-  dictionary: ""
-  user_dict: custom_phrase
   db_class: stabledb
-  enable_completion: false
-  enable_sentence: false
+  user_dict: custom_phrase
+  dictionary: ""
   initial_quality: 99
+  enable_sentence: false
+  enable_completion: false
 
 # 成语短语
 idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
-  dictionary: ""
-  user_dict: idiom_phrase
   db_class: stabledb
-  enable_completion: false
-  enable_sentence: false
+  user_dict: idiom_phrase
+  dictionary: ""
   initial_quality: 0.8
+  enable_sentence: false
+  enable_completion: false
 
 # 自动上屏短语
 flypy_phrase:                       # 自动上屏短语
   dictionary: flypy_phrase
+  initial_quality: -1
   enable_encoder: false
   enable_sentence: false
   enable_completion: true
   enable_user_dict: false
   encode_commit_history: false
-  initial_quality: -1
 
 # 键位帮助
 flypy_key_help:                     # 小鹤双拼键位帮助
-  tag: flypy_key_help
-  dictionary: ""
-  user_dict: flypy_keymap
   prefix: "/ok"
+  dictionary: ""
+  tag: flypy_key_help
   tips: "小鹤双拼查键"
   db_class: stabledb
-  enable_completion: true
-  enable_sentence: false
+  user_dict: flypy_keymap
   initial_quality: 1
+  enable_sentence: false
+  enable_completion: true
 
 # Emoji
 emoji:                              # Emoji转换
+  tag: emoji
+  tags: [abc]
+  tips: all
   option_name: emoji
   opencc_config: emoji.json
-  tag: emoji
-  tips: all
-  tags: [abc]
   inherit_comment: false
 
 # 简体转繁体
-traditionalize:                     # 简体转繁体
+traditionalize:                     # 简繁转换
+  tips: none                    # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  opencc_config: s2t.json       # s2t.json | s2hk.json | s2tw.json | s2twp.json
   option_name: simplification
-  opencc_config: s2t.json   # s2t.json | s2hk.json | s2tw.json | s2twp.json
-  tips: none                # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
-  tags: [abc]               # 限制在对应 tag，不对其他如反查的内容做简繁转换
 
 # 部件拆字反查
 radical_lookup:
+  prefix: "~"
+  suffix: "'"
+  tips: 〔部件组字〕
   tag: radical_lookup
   dictionary: flypy_radical
   enable_sentence: false
   enable_user_dict: false
   # enable_completion: true
-  prefix: "~"
-  suffix: "'"
-  tips: 〔部件组字〕
   comment_format:
     - erase/^.*$//
 
 # 部件拆字滤镜
 radical_reverse_lookup:
+  dictionary: kMandarin
   tags: [abc, radical_lookup]
   overwrite_comment: false
-  dictionary: kMandarin
   comment_format:
     - xform/^(\w+)[[].*$/$1/
     - xform/^/~/
 
 # 英文输入方案
 easy_en:
-  tag: easy_en
-  dictionary: easy_en
-  enable_user_dict: true
-  enable_completion: true
-  enable_sentence: false
   prefix: "/oe"
   suffix: "'"
+  tag: easy_en
   tips: "英文输入"
+  dictionary: easy_en
+  enable_user_dict: true
+  enable_sentence: false
+  enable_completion: true
 
 # 英文反查释意
 ecdict_reverse_lookup:
@@ -297,7 +298,7 @@ key_binder:
     - {when: composing, accept: Control+k, send: Shift+Delete}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
     - {when: has_menu,  accept: Control+period, toggle: ascii_punct}
-    - {when: has_menu,  accept: Control+slash, toggle: simplification}
+    - {when: has_menu,  accept: Control+slash,  toggle: simplification}
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
