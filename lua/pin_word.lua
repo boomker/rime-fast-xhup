@@ -5,7 +5,6 @@ local P = {}
 local T = {}
 local F = {}
 local pin_word = {}
-local custom_phrase_cands = {}
 
 local function get_record_filename()
     local system_name = rime_api_helper.detect_os()
@@ -35,13 +34,13 @@ end
 
 function pin_word.init(env)
     reload_env(env)
-    local _sp, pin_word_records = pcall(require, "pin_word_record")
-    env.pin_word_records = _sp and pin_word_records or {}
-    env.pin_cand_key = env:Config_get("key_binder/pin_cand") or "Control+t"
-    env.unpin_cand_key = env:Config_get("key_binder/unpin_cand") or "Control+t"
-    env.word_quality = env:Config_get("pin_word/word_quality") or 999
-    env.pin_mark = env:Config_get("pin_word/comment_mark") or " 🔝"
-    env.comment_mark = env:Config_get("custom_phrase/comment_mark") or " 📌"
+	local _ok, pin_word_records = pcall(require, "pin_word_record")
+	env.pin_word_records  = _ok and pin_word_records or {}
+    env.word_quality    = env:Config_get("pin_word/word_quality") or 999
+    env.pin_mark         = env:Config_get("pin_word/comment_mark") or " 🔝"
+    env.comment_mark     = env:Config_get("custom_phrase/comment_mark") or " 📌"
+	env.pin_cand_key     = env:Config_get("key_binder/pin_cand") or "Control+t"
+	env.unpin_cand_key   = env:Config_get("key_binder/unpin_cand") or "Control+t"
     env.custom_phrase_tran = Component.Translator(env.engine, "", "table_translator@custom_phrase")
 end
 
@@ -98,7 +97,6 @@ end
 
 function T.func(input, seg, env)
     local comment_text = env.pin_mark
-    local custom_mark  = env.comment_mark
     local input_code   = input:gsub(" ", "")
     local pin_word_tab = env.pin_word_records[input_code] or nil
 
@@ -118,8 +116,8 @@ function T.func(input, seg, env)
     env.custom_tran = env.custom_phrase_tran:query(input, seg)
     if not env.custom_tran then return end
     for cand in env.custom_tran:iter() do
-        cand.comment = custom_mark
-        table.insert(custom_phrase_cands, cand)
+        cand.type = "custom_phrase_" .. cand.type
+		yield(cand)
     end
 end
 
@@ -132,6 +130,10 @@ function F.func(input, env)
 
     for cand in input:iter() do
         local cand_text = cand.text
+		if cand.type:match("^custom_phrase") then
+			yield(Candidate(cand.type, cand.start, cand._end, cand_text, custom_mark))
+		end
+
         local pin_word_tab = env.pin_word_records[input_code] or nil
         if pin_word_tab and table.find_index(pin_word_tab, cand_text) then
             if #pin_cands < #pin_word_tab then
@@ -162,19 +164,6 @@ function F.func(input, env)
         for _, cand in ipairs(pin_cands) do
             yield(cand)
         end
-    end
-
-    if #custom_phrase_cands > 0 then
-        for _, ccand in ipairs(custom_phrase_cands) do
-            if ccand.text:match("<br>") then
-                -- 词条有<br>标签, 将其转为换行符
-                local cand_text = ccand.text:gsub("<br>", "\n")
-                yield(Candidate("cpc", ccand.start, ccand._end, cand_text, custom_mark))
-            else
-                yield(ccand)
-            end
-        end
-        custom_phrase_cands = {}
     end
 
     for _, cand in ipairs(other_cands) do yield(cand) end
