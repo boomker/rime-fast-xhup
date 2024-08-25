@@ -1,0 +1,215 @@
+# Squirrel settings
+# encoding: utf-8
+#
+# 内置皮肤展示： https://github.com/NavisLab/rime-pifu
+# 鼠须管配置指南： https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/鼠鬚管介面配置指南.md
+# 鼠须管作者写的图形化的皮肤设计器： https://github.com/LEOYoon-Tsaw/Squirrel-Designer
+
+config_version: "2024-04-03"
+
+# options: last | default | _custom_
+# last: the last used latin keyboard layout
+# default: US (ABC) keyboard layout
+# _custom_: keyboard layout of your choice,
+# e.g. 'com.apple.keylayout.USExtended' or simply 'USExtended'
+keyboard_layout: default
+
+# for veteran chord-typist
+chord_duration: 0.1   # seconds
+
+# options: always | never | appropriate
+show_notifications_when: appropriate
+
+# ascii_mode、inline、no_inline、vim_mode 等等设定,
+# 可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
+
+style:
+  # 选择皮肤，亮色与暗色主题
+  color_scheme: dracula
+  color_scheme_dark: purity_of_form
+
+  # 预设选项：（可被皮肤覆盖；如果皮肤没写，则默认使用这些属性。）
+  text_orientation: horizontal                      # horizontal | vertical
+  show_paging: true
+  inline_preedit: false
+  mutual_exclusive: false                           # 色不叠加: false | true
+  corner_radius: 10
+  hilited_corner_radius: 0
+  border_height: 0
+  border_width: 0
+  line_spacing: 5
+  spacing: 10
+  font_point: 22
+  label_font_point: 18
+  comment_font_point: 18
+  font_face: "MiSans, MiSans L3, LXGWNeoXiHei"    # 候选词编号字体
+  # candidate_format: '%c. %@'
+  # base_offset: 6
+
+# 皮肤列表
+preset_color_schemes:
+  # 对 purity_of_form 略微调整颜色，让色彩更柔和点，补全其他选项和注释
+  purity_of_form:
+    name: "純粹的形式/Purity of Form"
+    author: 雨過之後、佛振
+    candidate_format: "%c.\u2005%@ \u2005"
+    font_face: ""
+    font_point: 21
+    label_font_face: "Helvetica"                # 序号字体及大小
+    label_font_point: 18
+    comment_font_face: "Helvetica"              # 注字体及大小
+    comment_font_point: 18
+    candidate_list_layout: stacked              # 候选排布: 层叠 stacked | 行 linear
+    text_orientation: horizontal                # 行文向: 横 horizontal | 纵 vertical
+    inline_preedit: false                       # 拼音位于: 候选框 false | 行内 true
+    translucency: false                         # 磨砂: false | true
+    border_height: 0                            # 外边框 高
+    border_width: 0                             # 外边框 宽
+    corner_radius: 10                           # 外边框 圆角半径
+    hilited_corner_radius: 0                    # 选中框 圆角半径
+    surrounding_extra_expansion: 0              # 候选项背景相对大小?
+    shadow_size: 0                              # 阴影大小
+    line_spacing: 5                             # 行间距
+    base_offset: 0                              # 字基高
+    alpha: 0.93                                 # 透明度，0~1
+    spacing: 10                                 # 拼音与候选项的间距
+    color_space: display_p3                     # 色彩空间: srgb | display_p3
+    back_color: 0x545554                        # 底色
+    label_color: 0xBBBBBB                       # 序号颜色
+    hilited_candidate_back_color: 0x333333      # 第一候选项背景 选中底色
+    hilited_candidate_label_color: 0x4C4C4C     # 选中序号颜色
+    candidate_text_color: 0xEEEEEE              # 文字颜色
+    hilited_candidate_text_color: 0x4ddcbb      # 选中文字颜色
+    comment_text_color: 0x808080                # 注释颜色
+    hilited_comment_text_color: 0x606cff        # 选中注解颜色
+    text_color: 0xa0c179                        # 拼音颜色 (inline_preedit: false)
+    hilited_text_color: 0xa0c179                # 选中拼音颜色 (inline_preedit: false)
+    # candidate_back_color:                     # 候选项底色
+    # preedit_back_color:                       # 拼音底色 (inline_preedit: false)
+    # hilited_back_color:                       # 选中拼音底色 (inline_preedit: false)
+    # border_color:                             # 外边框颜色
+
+  frosy_teal:
+    name: "霜青／Frosty Teal"                   # 配色取自 Alfred 自带主题 Frosty Teal
+    author: Dvel
+    font_face: ""                               # 字体及大小
+    font_point: 18.0
+    label_font_face: "Helvetica"                # 序号字体及大小
+    label_font_point: 12.0
+    comment_font_face: "Helvetica"              # 注字体及大小
+    comment_font_point: 16.0
+    inline_preedit: false                       # 拼音位于： 候选框 false | 行内 true
+    candidate_list_layout: stacked              # 候选排布：层叠 stacked | 行 linear
+    text_orientation: horizontal                # 行文向： 横 horizontal | 纵 vertical
+    translucency: true                          # 磨砂： false | true
+    alpha: 0.95                                 # 透明度，0~1
+    back_color: 0xB5806410                      # 底色
+    hilited_candidate_back_color: 0x1E000000    # 选中项底色
+    candidate_text_color: 0xADFFFFFF            # 文字颜色
+    hilited_candidate_text_color: 0xFFFFFF      # 选中文字颜色
+    comment_text_color: 0x6FFFFFFF              # 注颜色
+    hilited_comment_text_color: 0x6FFFFFFF      # 选中注颜色
+    label_color: 0xADFFFFFF                     # 序号颜色
+    hilited_candidate_label_color: 0xFFFFFF     # 选中序号颜色
+    text_color: 0x808080                        # 拼音颜色 （inline_preedit: false）
+    hilited_text_color: 0xEEEEEE                # 选中拼音颜色 （inline_preedit: false）
+
+  scomper_blue:
+    name: "系统蓝／System Blue"
+    author: "scomper <scomper@gmail.com>"       # 作者信息
+    color_space: display_p3                     # Only macOS 10.12+
+    back_color: 0xFFFFFF                        # 候选条背景色, 24位色值, 16进制, BGR顺序
+    border_color: 0xFFFFFF                      # 边框色
+    candidate_text_color: 0x000000              # 预选项文字颜色
+    comment_text_color: 0x999999                # 拼音等提示文字颜色
+    hilited_back_color: 0xF8AA4D                # 第一候选项背景背景色
+    hilited_candidate_text_color: 0xFFFFFF      # 第一候选项文字颜色
+    hilited_candidate_label_color: 0xFFFFFF     # 第一候选项编号颜色
+    hilited_comment_text_color: 0x999999        # 注解文字高亮
+    hilited_text_color: 0x999999                # 高亮拼音 (需要开启内嵌编码)
+    text_color: 0x424242                        # 拼音行文字颜色
+    label_color: 0x999999                       # 预选栏编号颜色
+    candidate_list_layout: linear               # 水平排列 linear | stacked
+    text_orientation: horizontal                # horizontal | vertical
+    inline_preedit: false                       # 单行显示, false双行显示
+    candidate_format: "%c.\u2005%@ \u2005"      # 控制编号 %c 和候选词 %@ 前后的空间
+    font_face: "MiSans"                         # 候选词编号字体
+    font_point: 22
+    label_font_point: 17                        # 候选编号大小
+    label_font_face: "SFCompactText-Regular"    # 候选词编号字体
+    corner_radius: 6                            # 候选条圆角
+    hilited_corner_radius: 4                    # 高亮圆角
+    border_height: 4                            # 窗口边界高度, 大于圆角半径才生效
+    border_width: 4                             # 窗口边界宽度, 大于圆角半径才生效
+
+  dracula:
+    name: dracula
+    horizontal: false
+    show_paging: true
+    inline_preedit: false
+    candidate_format: "%c.\u2005%@ \u2005"
+    font_point: 20
+    label_font_point: 18
+    corner_radius: 8
+    line_spacing: 10
+    translucency: 0.98
+    alpha: 0.92                               # 透明度, 0~1
+    color_space: display_p3                   # 色彩空间: srgb | display_p3
+    candidate_list_layout: stacked            # 候选排布: 层叠 stacked | 行 linear
+    back_color: 0x362A28
+    border_color: 0x362A28
+    text_color: 0x6CB8FF
+    candidate_text_color: 0xF993BD
+    comment_text_color: 0x808080
+    hilited_text_color: 0x5A4744
+    hilited_back_color: 0xF2F8F8
+    hilited_candidate_label_color: 0xfafafa
+    hilited_candidate_text_color: 0xF2F8F8
+    hilited_candidate_back_color: 0x333333    # 第一候选项背景 选中底色
+    hilited_comment_text_color: 0x606cff      # 选中注解颜色
+
+  dracula_light:
+    name: dracula_light
+    horizontal: false
+    candidate_format: "%c %@ "
+    font_point: 22
+    label_font_point: 16
+    corner_radius: 5
+    line_spacing: 10
+    back_color: 0xF2F8F8
+    border_color: 0xF2F8F8
+    text_color: 0x362A28
+    hilited_text_color: 0x362A28
+    hilited_back_color: 0xF2F8F8
+    hilited_candidate_label_color: 0xF2F8F8
+    hilited_candidate_text_color: 0xF2F8F8
+    hilited_candidate_back_color: 0xC679FF
+    hilited_comment_text_color: 0x362b00
+    candidate_text_color: 0x362A28
+    comment_text_color: 0x5A4744
+    inline_preedit: false
+
+# 特定App默认中/英文输入
+app_options:
+  com.apple.Spotlight:              # 聚焦搜索
+    ascii_mode: true                # true默认英文,false默认中文
+  com.runningwithcrayons.Alfred:    # alfred
+    ascii_mode: true
+  com.apple.Terminal:               # 终端
+    ascii_mode: true
+  com.googlecode.iterm2:            # iterm2
+    ascii_mode: true
+    ascii_punct: true               # 中文状态输出英文标点(半角)
+  com.microsoft.VSCode:             # Visual Studio Code
+    ascii_mode: true
+    ascii_punct: true               # 中文状态输出英文标点(半角)
+  com.raycast.macos:                # Raycast
+    ascii_mode: true
+  com.neovide.neovide:
+    ascii_mode: true
+    ascii_punct: true               # 中文状态输出英文标点(半角)
+  org.alacritty:
+    ascii_mode: true
+    ascii_punct: true               # 中文状态输出英文标点(半角)
+  com.microsoft.edgemac:
+    ascii_mode: false

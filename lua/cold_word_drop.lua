@@ -6,19 +6,18 @@ local processor = {}
 local filter = {}
 
 local function get_record_filername(record_type)
+	local path_sep = "/"
+	local user_data_dir = rime_api:get_user_data_dir()
 	local user_distribute_name = rime_api:get_distribution_code_name()
-	if user_distribute_name:lower():match("weasel") then
-		return string.format("%s\\lua\\cold_word_records\\%s_words.lua", rime_api:get_user_data_dir(), record_type)
-	elseif user_distribute_name:lower():match("squirrel") then
-		return string.format("%s/lua/cold_word_records/%s_words.lua", rime_api:get_user_data_dir(), record_type)
-	elseif user_distribute_name:lower():match("fcitx") then
-		return string.format("%s/lua/cold_word_records/%s_words.lua", rime_api:get_user_data_dir(), record_type)
-	elseif user_distribute_name:lower():match("ibus") then
-		return string.format(
-			"%s/rime/lua/cold_word_records/%s_words.lua",
+	if user_distribute_name:lower():match("weasel") then path_sep = "\\" end
+	if user_distribute_name:lower():match("ibus") then
+		return string.format("%s/rime/lua/cold_word_records/%s_words.lua",
 			os.getenv("HOME") .. "/.config/ibus",
 			record_type
 		)
+	else
+		local file_path = string.format("%s/lua/cold_word_records/%s_words.lua", user_data_dir, record_type)
+		return file_path:gsub("/", path_sep)
 	end
 end
 
@@ -199,7 +198,6 @@ function filter.func(input, env)
 
 	for _, cand in ipairs(cands) do yield(cand) end
 end
-
 
 return {
 	processor = { init = cold_word_drop.init, func = processor.func },
