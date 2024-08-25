@@ -15,12 +15,12 @@ local function user_dict_exist(word_record, path)
 end
 
 function T.init(env)
-    env.user_data_dir = rime_api:get_user_data_dir()
-    local dict_name = "/en_dicts/en_custom.dict.yaml"
-    if rime_api_helper.detect_os() ~= "Windows" then
-        env.dict_path = string.format("%s%s", env.user_data_dir, dict_name)
+    local user_data_dir = rime_api:get_user_data_dir()
+    local dict_name = "en_dicts/en_custom.dict.yaml"
+    if rime_api_helper.detect_os():lower() ~= "windows" then
+        env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
     else
-        env.dict_path = string.format("%s%s", env.user_data_dir, dict_name):gsub("/", "\\")
+        env.dict_path = string.format("%s/%s", user_data_dir, dict_name):gsub("/", "\\")
     end
 end
 
