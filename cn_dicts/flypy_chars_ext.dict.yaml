@@ -5,7 +5,6 @@
 name: flypy_chars_ext
 version: 2024-04-27
 sort: by_weight
-# use_preset_vocabulary: true  # 導入八股文字頻
 # max_phrase_length: 1         # 不生成词条
 ...
 
