@@ -7,8 +7,10 @@ function M.detect_os()
         return "Windows"
     elseif user_distribute_name:lower():match("squirrel") then
         return "MacOS"
-    elseif (user_distribute_name:lower():match("fcitx%-rime")
-            and io.popen("uname -s"):read("*l"):lower():match("darwin")) then
+    elseif (
+            user_distribute_name:lower():match("fcitx%-rime")
+            and io.popen("uname -s"):read("*l"):lower():match("darwin")
+        ) then
         return "MacOS"
     elseif user_distribute_name:lower():match("^fcitx%-rime$") then
         return "Android"
@@ -19,7 +21,7 @@ function M.detect_os()
     elseif user_distribute_name:lower():match("hamster") then
         return "iOS"
     else
-        return "iOS"
+        return "Unknow"
     end
 end
 
@@ -42,7 +44,7 @@ function M.get_selected_candidate_index(key_value, selected_index, page_size)
         return -1
     end
 
-	local page_pos = math.floor(selected_index / page_size) + 1
+    local page_pos = math.floor(selected_index / page_size) + 1
     local idx = (keyValue == -1) and selected_index or keyValue
     selected_cand_idx = (
         (type(keyValue) == "number") and (keyValue ~= -1) and (page_pos > 1)
