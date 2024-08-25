@@ -15,23 +15,24 @@ local function user_dict_exist(word_record, path)
 end
 
 function T.init(env)
-    env.user_data_dir = rime_api:get_user_data_dir()
-    local dict_name = "/en_dicts/en_custom.dict.yaml"
-    if rime_api_helper.detect_os() ~= "Windows" then
-        env.dict_path = string.format("%s%s", env.user_data_dir, dict_name)
+    local user_data_dir = rime_api:get_user_data_dir()
+    local dict_name = "en_dicts/en_custom.dict.yaml"
+    if rime_api_helper.detect_os():lower() ~= "windows" then
+        env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
     else
-        env.dict_path = string.format("%s%s", env.user_data_dir, dict_name):gsub("/", "\\")
+        env.dict_path = string.format("%s/%s", user_data_dir, dict_name):gsub("/", "\\")
     end
 end
 
 function T.func(input, seg, env)
-    if input:match("^%a[%a%p]+%]$") then           -- 输入末尾必须是]
-        local inp = input:sub(1, -2):gsub(" ", "") -- -3对应两个末尾符号,-2对应一个
-        local record = inp .. "\t" .. inp:gsub("[^%a-_/]+", ""):lower() .. "\t100000"
+    if input:match("^%a[%a%p]+%]$") then           -- 输入末尾必须是 `]`
+        local inp = input:sub(1, -2):gsub(" ", "") -- -3对应两个末尾符号, -2对应一个
+        -- local record = inp .. "\t" .. inp:gsub("[^%a-_/]+", ""):lower() .. "\t100000"
+        local record = inp .. "\t" .. inp:gsub("]+", "") .. "\t100000"
         if not user_dict_exist(record, env.dict_path) then
             yield(Candidate("en_custom", seg.start, seg._end, inp, "✅"))
             local file = assert(io.open(env.dict_path, "a"))
-            file:write("\n" .. record):close()
+            file:write(record .. "\n"):close()
         end
     end
 end
