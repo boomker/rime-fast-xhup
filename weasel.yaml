@@ -42,15 +42,15 @@ style:
   font_face: "Segoe UI Emoji:30:39, Segoe UI Emoji:23:23, Segoe UI Emoji:2a:2a, Segoe UI Emoji:fe0f:fe0f, Segoe UI Emoji:20e3:20e3, Microsoft YaHei, MiSans, Segoe UI Emoji, Noto Color Emoji"
   label_font_face: "Microsoft YaHei"       # 标签字体
   comment_font_face: "Microsoft YaHei"     # 注释字体
-  font_point: 12                           # 全局字体字号
-  label_font_point: 12                     # 标签字体字号，不设定 fallback 到 font_point
+  font_point: 11                           # 全局字体字号
+  label_font_point: 11                     # 标签字体字号，不设定 fallback 到 font_point
   comment_font_point: 10                   # 注释字体字号，不设定 fallback 到 font_point
 
-  inline_preedit: false                    # 行内显示预编辑区：true；false
+  inline_preedit: true                     # 行内显示预编辑区：true；false
   preedit_type: composition                # 预编辑区内容：composition（编码）； preview（选中的候选）；preview_all（全部候选）
   
   fullscreen: false                        # 候选窗口全屏显示：true；false
-  horizontal: false                        # 候选项水平排列
+  horizontal: true                         # 候选项水平排列
   vertical_text: false                     # 竖排文本：true；false
   vertical_auto_reverse: false             # 文本竖排模式下，候选窗口位于光标上方时倒序排列：true；false
   vertical_text_with_wrap: false           # 文本竖排模式下，自动换行：true；false
@@ -76,19 +76,20 @@ style:
     min_height: 0                          # 候选框最小高度
     min_width: 145                         # 候选框最小宽度
     border_width: 0                        # 边框宽度；又名 border
+    # border_height: 0                     # 边框高度；又名 border
     margin_x: 8                            # 主体元素和候选框的左右边距；为负值时，不显示候选框
     margin_y: 8                            # 主体元素的上下边距；为负值时，不显示候选框
     spacing: 10                            # inline_preedit 为否时，编码区域和候选区域的间距
-    candidate_spacing: 22                  # 候选项之间的间距
-    hilite_spacing: 6                      # 候选项和相应标签的间距
+    candidate_spacing: 11                  # 候选项之间的间距
+    hilite_spacing: 5                      # 候选项和相应标签的间距
     hilite_padding: 8                      # 高亮区域和内部文字的间距，影响高亮区域大小
     # hilite_padding_x: 8                  # 高亮区域和内部文字的左右间距，如无特殊指定则依 hilite_padding 设置
     # hilite_padding_y: 8                  # 高亮区域和内部文字的上下间距，如无特殊指定则依 hilite_padding 设置
     shadow_radius: 0                       # 阴影区域半径，为 0 不显示阴影；需要同时在配色方案中指定非透明的阴影颜色
     shadow_offset_x: 4                     # 阴影左右偏移距离
     shadow_offset_y: 4                     # 阴影上下偏移距离
-    corner_radius: 8                       # 候选窗口圆角半径
-    round_corner: 8                        # 候选背景色块圆角半径，又名 hilited_corner_radius
+    corner_radius: 12                       # 候选窗口圆角半径
+    round_corner: 12                        # 候选背景色块圆角半径，又名 hilited_corner_radius
     # type: vertical                       # 布局设置，效果和 style 下的设置相同：
     # horizontal（横向）；vertical（竖向） ; vertical_text（竖排文本） ;
     #vertical+fullscreen（全屏） ; horizontal+fullscreen（横向全屏）
@@ -714,4 +715,109 @@ preset_color_schemes:
     hilited_candidate_back_color: 0xd8bf00
     comment_text_color: 0x808080
     hilited_comment_text_color: 0x444444
+  
+  mint_light_blue:
+    name: "蓝水鸭／Mint Light Blue"
+    author: Mintimate <"Mintimate's Blog">
+    # 拼音串
+    text_color: 0x6495ed 
+    # 背景
+    back_color: 0xefefef 
+    # 预选栏编号颜色
+    label_color: 0xcac9c8 
+    # 边框
+    border_color: 0xefefef 
+    shadow_color: 0xb4000000
+    # 注解文字
+    comment_text_color: 0xcac9c8 
+    # 非第一候选项
+    candidate_text_color: 0x424242 
+    # 拼音串高亮
+    hilited_text_color: 0xed9564 
+    # 拼音串高亮背景
+    hilited_back_color: 0xefefef 
+    # 第一候选项背景
+    hilited_candidate_back_color: 0xed9564 
+    # 第一候选项
+    hilited_candidate_text_color: 0xefefef
+    # 第一候选项编号颜色
+    hilited_candidate_label_color: 0xcac9c8
+    # 第一候选项编号颜色
+    hilited_label_color: 0xcac9c8
+    # 注解文字高亮
+    hilited_comment_text_color: 0xefefef 
+    
+
+  mint_dark_blue:
+    name: "黑水鸭／Mint Dark Blue"
+    author: Mintimate <"Mintimate's Blog">
+    # 拼音串
+    text_color: 0x6495ed 
+    # 背景
+    back_color: 0x424242 
+    # 预选栏编号颜色
+    label_color: 0xefefef 
+    # 边框
+    border_color: 0x424242 
+    shadow_color: 0xb4000000
+    # 注解文字
+    comment_text_color: 0xefefef 
+    # 非第一候选项
+    candidate_text_color: 0xefefef
+    # 拼音串高亮
+    hilited_text_color: 0xc6c01a 
+    # 拼音串高亮背景
+    hilited_back_color: 0x424242
+    # 第一候选项背景 
+    hilited_candidate_back_color: 0xc6c01a 
+    # 第一候选项
+    hilited_candidate_text_color: 0xefefef
+    # 第一候选项编号颜色
+    hilited_candidate_label_color: 0xffffff
+    # 第一候选项编号颜色
+    hilited_label_color: 0xffffff
+    # 注解文字高亮
+    hilited_comment_text_color: 0xffffff
+    
+    
+  mint_light_green:
+    name: "碧皓青／Mint Light Green"
+    author: Mintimate <"Mintimate's Blog">
+    translucency: true                      # 磨砂： false | true
+    mutual_exclusive: false                 # 色不叠加： false | true
+    candidate_list_layout: stacked
+    text_orientation: horizontal
+    color_space: srgb
+    back_color: 0xEFEFEF                    # 底色
+    candidate_text_color: 0x323232          # 文字颜色
+    comment_text_color: 0x878787            # 注颜色
+    label_color: 0x323232                   # 序号颜色
+    hilited_candidate_back_color: 0x7BAE4F  # 选中底色
+    hilited_candidate_text_color: 0xFFFFFF  # 选中文字颜色
+    hilited_comment_text_color: 0xDFF0EE    # 选中注颜色
+    hilited_candidate_label_color: 0xEFEFEF # 选中序号颜色
+    hilited_label_color: 0xEFEFEF           # 选中序号颜色
+    text_color: 0x7BAE4F                    # 拼音颜色 （inline_preedit: false）
+    hilited_text_color: 0xed9564            # 选中拼音颜色 （inline_preedit: false）
+
+    
+  mint_dark_green:
+    name: "碧月青／Mint Dark Green"
+    author: Mintimate <"Mintimate's Blog">
+    translucency: true                      # 磨砂： false | true
+    mutual_exclusive: false                 # 色不叠加： false | true
+    candidate_list_layout: stacked
+    text_orientation: horizontal
+    color_space: srgb
+    back_color: 0x323232                    # 底色
+    candidate_text_color: 0xE8E8E8          # 文字颜色
+    comment_text_color: 0xBEBEBE            # 注颜色
+    label_color: 0xB0B0B0                   # 序号颜色
+    hilited_candidate_back_color: 0x83C81C  # 选中底色
+    hilited_candidate_text_color: 0xEFEFEF  # 选中文字颜色
+    hilited_comment_text_color: 0xF4FAF8    # 选中注颜色
+    hilited_candidate_label_color: 0xEFEFEF # 选中序号颜色
+    hilited_label_color: 0xEFEFEF           # 选中序号颜色
+    text_color: 0x83C81C                    # 拼音颜色 （inline_preedit: false）
+    hilited_text_color: 0xed9564            # 选中拼音颜色 （inline_preedit: false）
 # [End of <preset_color_schemes>]
