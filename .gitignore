@@ -9,14 +9,11 @@ __pycache__/
 custom_phrase.txt
 default.yaml
 default.custom.yaml
-easy_en.dict.yaml
 flypy_xhfast.custom.yaml
 weasel.yaml
 weasel.custom.yaml
 lua/cold_word_records/*
 lua/pin_word_record.lua
-lua/word_autocommit.lua
 lua/launcher_config.lua
 en_dicts/en_custom.dict.yaml
 zh-hans-t-huayu-v7-bgw.gram
-
