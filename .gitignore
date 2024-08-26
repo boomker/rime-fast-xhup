@@ -6,7 +6,11 @@ __pycache__/
 .DS_Store
 **/runLog.txt
 **/.ropeproject
+**/runLog.txt
+**/.ropeproject
+user.yaml
 custom_phrase.txt
+installation.yaml
 default.yaml
 default.custom.yaml
 flypy_xhfast.custom.yaml
