@@ -6,8 +6,6 @@ __pycache__/
 .DS_Store
 **/runLog.txt
 **/.ropeproject
-user.yaml
-installation.yaml
 custom_phrase.txt
 default.yaml
 default.custom.yaml
