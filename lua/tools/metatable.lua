@@ -151,11 +151,11 @@ function table:unshift(elm)
 end
 
 function table.len(t)
-    local leng = 0
+    local len = 0
     for _, _ in pairs(t) do
-        leng = leng + 1
+        len = len + 1
     end
-    return leng
+    return len
 end
 
 -- table to string 序列化

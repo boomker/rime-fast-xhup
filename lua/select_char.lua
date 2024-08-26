@@ -13,7 +13,7 @@ local function last_character(s)
     return string.utf8_sub(s, -1, -1)
 end
 
-local function append_space_to_cand(env, cand_text)
+local function insert_space_to_candText(env, cand_text)
     local context = env.engine.context
     local ccand_text = cand_text
     if (context:get_property("prev_cand_is_preedit") == "1")
@@ -24,11 +24,11 @@ local function append_space_to_cand(env, cand_text)
     return ccand_text
 end
 
-local function reset_cand_property(env)
+local function reset_commited_cand_state(env)
     local context = env.engine.context
     context:set_property("prev_cand_is_null", "0")
     context:set_property("prev_cand_is_word", "0")
-    context:set_property("prev_cand_is_chinese", "0")
+	context:set_property("prev_cand_is_chinese", "1")
     context:set_property("prev_cand_is_preedit", "0")
     context:set_property("prev_commit_is_comma", "0")
 end
@@ -51,22 +51,22 @@ function P.func(key, env)
     if (key:repr() == env.first_key) and (input_code ~= "") and (not segment.prompt:match('计算器')) then
         local _cand_text, _commit_txt = context:get_selected_candidate().text, nil
         if _cand_text then _commit_txt = first_character(_cand_text) end
-        local cand_txt = append_space_to_cand(env, _commit_txt)
+        local cand_txt = insert_space_to_candText(env, _commit_txt)
         engine:commit_text(cand_txt)
         context:clear()
 
-        reset_cand_property(env)
+        reset_commited_cand_state(env)
         return 1 -- kAccepted
     end
 
     if (key:repr() == env.last_key) and (input_code ~= "") and (not segment.prompt:match('计算器')) then
         local _cand_text, _commit_txt = context:get_selected_candidate().text, nil
         if _cand_text then _commit_txt = last_character(_cand_text) end
-        local cand_txt = append_space_to_cand(env, _commit_txt)
+        local cand_txt = insert_space_to_candText(env, _commit_txt)
         engine:commit_text(cand_txt)
         context:clear()
 
-        reset_cand_property(env)
+        reset_commited_cand_state(env)
         return 1 -- kAccepted
     end
 
