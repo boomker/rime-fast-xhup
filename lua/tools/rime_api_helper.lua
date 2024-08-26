@@ -21,13 +21,14 @@ function M.detect_os()
     elseif user_distribute_name:lower():match("hamster") then
         return "iOS"
     else
-        return "Unknow"
+        return "Unknown"
     end
 end
 
 function M.get_selected_candidate_index(key_value, selected_index, page_size)
     local keyValue = key_value
     local selected_cand_idx = -1
+	local page_cand_size = page_size or 7
     if keyValue == "space" then
         keyValue = -1
     elseif keyValue == "Return" then
@@ -44,11 +45,11 @@ function M.get_selected_candidate_index(key_value, selected_index, page_size)
         return -1
     end
 
-    local page_pos = math.floor(selected_index / page_size) + 1
+    local page_pos = math.floor(selected_index / page_cand_size) + 1
     local idx = (keyValue == -1) and selected_index or keyValue
     selected_cand_idx = (
         (type(keyValue) == "number") and (keyValue ~= -1) and (page_pos > 1)
-    ) and (keyValue + (page_pos - 1) * page_size) or idx
+    ) and (keyValue + (page_pos - 1) * page_cand_size) or idx
     return selected_cand_idx
 end
 
