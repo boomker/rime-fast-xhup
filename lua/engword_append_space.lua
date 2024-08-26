@@ -1,6 +1,6 @@
 local P = {}
 
-local function reset_cand_property(env)
+local function reset_commited_cand_state(env)
     local context = env.engine.context
     context:set_property('prev_cand_is_spec', "0")
     context:set_property('prev_cand_is_word', "0")
@@ -9,7 +9,7 @@ local function reset_cand_property(env)
 end
 
 function P.init(env)
-    reset_cand_property(env)
+    reset_commited_cand_state(env)
 end
 
 function P.func(key, env)
@@ -83,7 +83,7 @@ function P.func(key, env)
     end
 
     if (#input_code == 0) and (symbol_keys[key:repr()]) then
-        reset_cand_property(env)
+        reset_commited_cand_state(env)
         context:set_property('prev_cand_is_spec', '1')
     end
 
@@ -144,7 +144,7 @@ function P.func(key, env)
         then
             local ccand_txt = " " .. cand_text
             engine:commit_text(ccand_txt)
-            reset_cand_property(env)
+            reset_commited_cand_state(env)
             context:set_property('prev_cand_is_word', "1")
             context:clear()
             return 1 -- kAccepted
@@ -163,13 +163,13 @@ function P.func(key, env)
             elseif (prev_cand_is_spec ~= '1') then
                 local ccand_text = " " .. cand_text
                 engine:commit_text(ccand_text)
-                reset_cand_property(env)
+                reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:clear()
                 return 1 -- kAccepted
             elseif (prev_cand_is_spec == "1") then
                 engine:commit_text(cand_text)
-                reset_cand_property(env)
+                reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:clear()
                 return 1 -- kAccepted
