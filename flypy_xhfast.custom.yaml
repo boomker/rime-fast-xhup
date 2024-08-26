@@ -14,10 +14,10 @@ patch:
 
   # 候选菜单布局样式
   style/+:
-    font_point: 20                    # 候选字大小
-    line_spacing: 8                   # 行间距大小
-    inline_preedit: false             # 编码位于是否嵌入候选框
-    candidate_list_layout: stacked    # 候选菜单横向(linear)/纵向(stacked)
+    font_point: 12                    # 候选字大小
+    line_spacing: 6                   # 行间距大小
+    inline_preedit: true              # 编码位于是否嵌入候选框
+    candidate_list_layout: linear     # 候选菜单横向(linear)/纵向(stacked)
     text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
 
   switches/+:
@@ -44,7 +44,7 @@ patch:
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  'engine/processors/@after 1': lua_processor@*word_append_space*processor
+  # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
@@ -60,14 +60,18 @@ patch:
     expand_abbr_py: "Control+0"       # 展开超级简拼
     remove_user_word: "Control+q"     # 删除用户词典里的单字 / 二三字词
     easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮候选字词
-    select_first_character: "minus"   # `-` 以词定字(第一个字)
-    select_last_character:  "equal"   # `=` 以词定字(最后一个字)
+    select_first_character: "bracketleft"   # 左中括号 [以词定字(第一个字)
+    select_last_character:  "bracketright"  # 右中括号 ]以词定字(最后一个字)
     bindings/+:
-      - { when: composing, accept: grave,  send: "`" }      # `键 逐字追加辅码
-      - { when: has_menu,  accept: semicolon,  send: 2 }    # 分号用于第2候选
-      - { when: has_menu,  accept: apostrophe, send: 3 }    # 单引号用于第3候选
-      - { when: paging,    accept: comma,  send: Page_Up }  # 逗号返回上一页
-      - { when: has_menu,  accept: period, send: Page_Down }
+      - { when: composing, accept: KP_Enter, send: Return }   # 上屏小键盘enter=Return(回车键)
+      - { when: has_menu, accept: KP_Enter, send: Return }    # 上屏小键盘enter=Return(回车键)
+      - { when: has_menu,  accept: semicolon,  send: 2 }      # 分号；用于第2候选
+      - { when: has_menu,  accept: apostrophe, send: 3 }      # 单引号‘用于第3候选
+      - { when: has_menu, accept: minus, send: Page_Up }      # 上翻页
+      - { when: has_menu, accept: equal, send: Page_Down }    # 下翻页
+      - { when: paging,    accept: comma,  send: Page_Up }    # 逗号返回上一页
+      - { when: paging,    accept: comma,  send: Page_Up }    # 逗号返回上一页
+      - { when: composing, accept: grave,  send: "`" }        # `键 逐字追加辅码
       - { when: composing, accept: Tab,    send: Shift+Right }
       - { when: composing, accept: Shift+Tab, send: Shift+Left }
       - { when: composing, accept: Control+i, send: Shift+Left }
@@ -115,17 +119,17 @@ patch:
 
   speller/+:
     algebra/+:
-      # - derive/[[]//                          # 取消注释，直接辅码
+      - derive/[[]//                          # 取消注释，直接辅码
 
       ## 模糊音:
-      - derive/^([jqxy])v/$1u/
-      - derive/^([jqxy])u/$1v/
-      - derive/^([bnpy])b/$1k/                  # in => ing
-      - derive/^(i)g/$1f/                       # eng => en
-      - derive/^z([ry])/v$1/                    # z => zh
-      - derive/^c([az])/i$1/                    # c => ch
-      - derive/^s([rz])/u$1/                    # s => sh
-      - derive/^u([hky])/s$1/                   # sh => s
+      # - derive/^([jqxy])v/$1u/
+      # - derive/^([jqxy])u/$1v/
+      # - derive/^([bnpy])b/$1k/                  # in => ing
+      # - derive/^(i)g/$1f/                       # eng => en
+      # - derive/^z([ry])/v$1/                    # z => zh
+      # - derive/^c([az])/i$1/                    # c => ch
+      # - derive/^s([rz])/u$1/                    # s => sh
+      # - derive/^u([hky])/s$1/                   # sh => s
       # - derive/^l(.*)/n$1/                    # l => n
       # - derive/^n(.*)/l$1/                    # n => l
       # - derive/^v(.*)/z$1/                    # zh => z
