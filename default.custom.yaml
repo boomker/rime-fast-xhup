@@ -8,3 +8,4 @@ patch:
   schema_list:
     - schema: flypy_xhfast
     - schema: easy_en
+    - {schema: luna_pinyin_simp}
