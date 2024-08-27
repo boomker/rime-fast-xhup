@@ -3,10 +3,11 @@ build/
 .venv/
 *.userdb/
 __pycache__/
-user.yaml
+.envrc
 .DS_Store
 **/runLog.txt
 **/.ropeproject
+user.yaml
 installation.yaml
 lua/cold_word_records/*
 lua/pin_word_record.lua
