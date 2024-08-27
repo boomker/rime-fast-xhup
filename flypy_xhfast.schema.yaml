@@ -128,7 +128,7 @@ translator:
   # always_show_comments: true
   # disable_user_dict_for_patterns:
   # preedit_format:
-  #   __include: preedit_convert_rules
+  #   __include: preedit_convert_rules    # 编辑器输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            # 单字编码提示只显示辅助码部分
