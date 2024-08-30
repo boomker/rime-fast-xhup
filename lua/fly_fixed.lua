@@ -48,7 +48,7 @@ function F.func(input, env)
             ) or (
             -- 候选词长度超出预确认音节长度 2 个以上的候选
                 (cand.type == "completion") and
-                (not preedit_code:match("%p")) and
+                -- (not preedit_code:match("%p")) and
                 (not cand_text:match("[%a%p]")) and
                 (utf8.len(cand_text) - confirmed_syllable_len > 2)
             )
@@ -56,7 +56,7 @@ function F.func(input, env)
             drop_cand = true
         elseif -- 候选词长度超出预确认音节长度 1 个以上的候选
             (cand.type == "completion") and
-            (not preedit_code:match("%p")) and
+            -- (not preedit_code:match("%p")) and
             (not cand_text:match("[%a%p]")) and
             (utf8.len(cand_text) - confirmed_syllable_len > 1)
         then
