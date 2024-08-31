@@ -16,8 +16,8 @@ end
 function P.init(env)
     local config = env.engine.schema.config
     env.mem = Memory(env.engine, env.engine.schema)
-    env.remove_user_word_key = config:get_string("key_binder/remove_user_word") or "Control+q"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
+    env.remove_user_word_key = config:get_string("key_binder/remove_user_word") or "Control+q"
 end
 
 function P.func(key, env)
@@ -49,16 +49,18 @@ function T.init(env)
     reload_env(env)
     env.history_list = {}
     local config = env.engine.schema.config
+    local excluded_types = env:Config_get("history" .. "/excluded_types") or {}
     env.tag = config:get_string("history" .. "/tag") or "history"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
     env.trigger_prefix = config:get_string("history" .. "/prefix") or "/hs"
-    local history_num_max = config:get_string("history" .. "/max_count") or 30
     env.initial_quality = config:get_int("history" .. "/initial_quality") or 1000
     env.comment_max_length = config:get_int("history" .. "/comment_max_length") or 20
-    local excluded_types = env:Config_get("history" .. "/excluded_types") or {}
+
+    local history_num_max = config:get_string("history" .. "/max_count") or 30
     if #env.history_list >= tonumber(history_num_max) then
         table.remove(env.history_list, 1)
     end
+
     env.notifier_commit_history = env.engine.context.commit_notifier:connect(function(ctx)
         local cand = ctx:get_selected_candidate()
         if cand and not is_candidate_in_type(cand, excluded_types) then

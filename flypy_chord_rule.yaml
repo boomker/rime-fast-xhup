@@ -1,3 +1,5 @@
+---
+
 patch:
   speller:
     algebra:
@@ -36,9 +38,9 @@ patch:
       - derive/^g([wy])/gi/           # g[wy] --> gi
       - derive/^gr/gm/                # gr --> gm
       - derive/^bp/bl/
+      - derive/^sv/sb/
       - derive/^xp/sl/
-      - derive/^xt/sb/
-      - derive/^xb/xo/
+      - derive/^xt/xo/
       - derive/^xs/xh/
       - derive/^nj/xj/
       - derive/^nu/nx/
