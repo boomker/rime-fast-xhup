@@ -3,7 +3,6 @@ build/
 .venv/
 *.userdb/
 __pycache__/
-.envrc
 .DS_Store
 **/runLog.txt
 **/.ropeproject

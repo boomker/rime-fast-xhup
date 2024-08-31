@@ -37,4 +37,5 @@ ${SCMD} -i \
 	-e '/还我妈/s/hd/hr/1' \
 	-e '/真还传/s/hd/hr/1' \
 	-e '/藏海花/s/ch/zh/1' \
+	-e '/听调不听/s/tn/dn/1' \
 	-r -e '/^曾[^经几用]/s/\tcg/\tzg/1' cn_dicts/flypy_sogou.dict.yaml
