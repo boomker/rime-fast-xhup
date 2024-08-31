@@ -6,19 +6,21 @@ function F.init(env)
     env.emoji_pos = config:get_int("emoji_reduce/idx") or 6
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     --[[
-    -- env.mem = Memory(engine, engine.schema)
+    local logger = require "tools.logger"
+    env.mem = Memory(engine, engine.schema)
     env.notifier_commit = env.engine.context.commit_notifier:connect(function(ctx)
         local cand = ctx:get_selected_candidate()
         if (cand:get_dynamic_type() == "Shadow") then
             local preedit = cand.preedit
-            local cand_text = cand.comment:gsub("[〔〕]", "")
-            env.mem:user_lookup(preedit, true)
+            local cand_comment = cand.comment
             if env.mem.start_session then env.mem:start_session() end             -- new on librime 2024.05
+            env.mem:user_lookup(preedit, true)
             for entry in env.mem:iter_user() do
-                if entry.text == cand_text then
-                    entry.weight = -1
-                    entry.commit_count = entry.commit_count - 1
-                    env.mem:update_userdict(entry, 0, '')
+                logger.writeLog("ccand: " .. cand_comment .. ", " .. entry.text .. ", " .. preedit)
+                if cand_comment:match(entry.text) then
+                    local commit_count = entry.commit_count - 1
+                    env.mem:update_userdict(entry, commit_count, '')
+                    logger.writeLog("update_userdict: " .. entry.text .. ", " .. commit_count )
                 end
             end
             if env.mem.finish_session then env.mem:finish_session() end           -- new on librime 2024.05
