@@ -11776,7 +11776,6 @@
 河东狮吼	hduh	3660
 横倒竖歪	hduw	20
 横倒竖卧	hduw	5
-河东狮子	hduz	10
 黑貂之裘	hdvq	3
 环堵之室	hdvu	7
 秽德彰闻	hdvw	3
@@ -33156,7 +33155,6 @@
 狗咬吕洞宾	gyldb	800
 工欲善其事	gyuqu	5585
 赶鸭子上架	gyzuj	1890
-河东狮子吼	hduzh	12
 行行出状元	hhivy	3680
 海阔凭鱼跃	hkpyy	3715
 后浪催前浪	hlcql	100
