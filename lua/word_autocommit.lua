@@ -22,12 +22,14 @@ local function insert_space_to_candText(env, cand_text)
     return ccand_text
 end
 
-local function reset_commited_cand_state(context)
+local function reset_commited_cand_state(env)
+	local context = env.engine.context
     context:set_property("prev_cand_is_null", "0")
     context:set_property("prev_cand_is_word", "0")
 	context:set_property("prev_cand_is_chinese", "1")
     context:set_property("prev_cand_is_preedit", "0")
     context:set_property("prev_commit_is_comma", "0")
+	context:set_property("prev_commit_is_symbol", "0")
 end
 
 function word_auto_commit.init(env)
@@ -44,10 +46,11 @@ function word_auto_commit.init(env)
     env.reversedb_phrase = ReverseLookup(phrase_dict)
     env.radical_reversedb = ReverseLookup(reverse_dict)
 
+	---@diagnostic disable-next-line: unused-local
 	env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
 		char_shape_code_tbl = {}
 		fcode_matched_text_tbl = {}
-		reset_commited_cand_state(ctx)
+		-- reset_commited_cand_state(ctx)
 	end)
 end
 
@@ -109,6 +112,7 @@ function P.func(key, env)
 		context:select(seleted_cand_index)
 		local cand_text = context:get_commit_text():utf8_sub(1, -2)
 		engine:commit_text(cand_text)
+		reset_commited_cand_state(env)
 		context:clear()
 		return 1
     end
@@ -244,6 +248,7 @@ function F.func(input, env)
     if table.len(Set(fcode_matched_text_tbl)) == 1 then
 		local cand_text = fcode_matched_text_tbl[1]
         env.engine:commit_text(cand_text)
+		reset_commited_cand_state(env)
 		fcode_matched_text_tbl = {}
         context:clear()
         return 1
@@ -257,6 +262,7 @@ function F.func(input, env)
 		if #single_char_cands == 1 then
 			local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
 			env.engine:commit_text(cand_txt)
+			reset_commited_cand_state(env)
 			context:clear()
 			return 1 -- kAccepted
 		end
@@ -279,6 +285,7 @@ function F.func(input, env)
 		if (#tchars_word_cands == 1) or (candidate_count == 1) then
 			local cand_txt = insert_space_to_candText(env, tchars_word_cands[1].text)
 			env.engine:commit_text(cand_txt)
+			reset_commited_cand_state(env)
 			char_shape_code_tbl = {}
 			context:clear()
 			return 1 -- kAccepted
@@ -319,6 +326,7 @@ function F.func(input, env)
             then
 				local cand_txt = insert_space_to_candText(env, commit_text)
                 env.engine:commit_text(cand_txt)
+				reset_commited_cand_state(env)
                 context:clear()
                 return 1 -- kAccepted
             end
