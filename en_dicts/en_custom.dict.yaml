@@ -100,3 +100,5 @@ websocket	websocket	100000
 uvicorn	uvicorn	100000
 untimely	untimely	100000
 sogou	sogou	100000
+frontend	frontend	100000
+Pinia	Pinia	100000

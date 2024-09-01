@@ -31,6 +31,7 @@ local function reset_commited_cand_state(env)
 	context:set_property("prev_cand_is_chinese", "1")
     context:set_property("prev_cand_is_preedit", "0")
     context:set_property("prev_commit_is_comma", "0")
+	context:set_property("prev_commit_is_symbol", "0")
 end
 
 function P.init(env)
