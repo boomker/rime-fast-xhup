@@ -18,21 +18,27 @@ patch:
       - derive/^dp/dl/                # dp --> dl
       - derive/^pp/el/                # pp --> el
       - derive/^p([okiuhjbnm])/e$1/
-      - derive/^([jkiu])y/$1w/        # [jkiu]y --> [jkiu]w
+      - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
       - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
       - derive/^yh/wn/
       - derive/^yj/wm/
       - derive/^hy/hw/
-      - derive/^uj/ux/                # uj --> ux
-      - derive/^ty/ud/                # ty --> ud
-      - derive/^tw/dw/                # tw --> dw
-      - derive/^te/df/                # te --> df
+      - derive/^uy/uw/                # uy --> uw
+      - derive/^vx/ux/                # vx --> ux
+      - derive/^vs/us/                # vs --> us
+      - derive/^vd/ud/                # vd --> ud
+      - derive/^vf/vn/                # vf --> vn
+      - derive/^vg/vk/                # vg --> vk
+      - derive/^vr/vm/                # vr --> vm
+      - derive/^tr/rm/                # tr --> rm
+      - derive/^ty/ry/                # ty --> ry
+      - derive/^ti/ri/                # ti --> ri
       - derive/^tk/rk/                # tk --> rk
       - derive/^tp/rl/                # tp --> rl
-      - derive/^rf/rn/                # rf --> rn
-      - derive/^tr/rm/                # tr --> rm
-      - derive/^ti/ri/                # ti --> ri
+      - derive/^tw/dw/                # tw --> dw
+      - derive/^te/df/                # te --> df
       - derive/^t([gv])/db/           # t[gv] --> db
+      - derive/^rf/rn/                # rf --> rn
       - derive/^r([gv])/rb/           # r[gv] --> rb
       - derive/^g([fv])/gn/           # g[fv] --> gn
       - derive/^g([wy])/gi/           # g[wy] --> gi
@@ -56,9 +62,6 @@ patch:
       - derive/^za/zl/
       - derive/^ze/zn/
       - derive/^zr/zm/
-      - derive/^vr/vm/                # vr --> vm
-      - derive/^vf/vn/                # vf --> vn
-      - derive/^vg/vk/
       - derive/^mb/ms/
       - derive/^mh/mx/
       - derive/^mk/me/

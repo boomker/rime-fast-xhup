@@ -1,6 +1,7 @@
 [[ "$(uname -s)" == Darwin ]] && SCMD="gsed" || SCMD="sed"
 ${SCMD} -i \
 	-e '/月癌/d' \
+	-e '/模版/d' \
 	-e '/糖分手/d' \
 	-e '/早上坏/d' \
 	-e '/下拉如/d' \
