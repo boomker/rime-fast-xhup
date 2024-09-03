@@ -15,51 +15,50 @@ local function insert_space_to_candText(env, cand_text)
     local context = env.engine.context
     local ccand_text = cand_text
     if (context:get_property("prev_cand_is_preedit") == "1")
-		or (context:get_property("prev_cand_is_word") == "1")
-	then
+        or (context:get_property("prev_cand_is_word") == "1")
+    then
         ccand_text = " " .. cand_text
     end
     return ccand_text
 end
 
 local function reset_commited_cand_state(env)
-	local context = env.engine.context
+    local context = env.engine.context
     context:set_property("prev_cand_is_null", "0")
     context:set_property("prev_cand_is_word", "0")
-	context:set_property("prev_cand_is_chinese", "1")
+    context:set_property("prev_cand_is_chinese", "1")
     context:set_property("prev_cand_is_preedit", "0")
     context:set_property("prev_commit_is_comma", "0")
-	context:set_property("prev_commit_is_symbol", "0")
+    context:set_property("prev_commit_is_symbol", "0")
 end
 
 function word_auto_commit.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
-	local schema = Schema("flypy_xhfast") -- schema_id
+    local schema = Schema("flypy_xhfast") -- schema_id
     local phrase_dict = config:get_string("flypy_phrase/dictionary")
     local reverse_dict = config:get_string("radical_reverse_lookup/dictionary")
-	env.spelling_hints = config:get_int("translator/spelling_hints") or 0
+    env.spelling_hints = config:get_int("translator/spelling_hints") or 0
     env.autocommit_on = config:get_bool("flypy_phrase/auto_commit") or false
     env.overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
-	env.mem = Memory(env.engine, schema, "translator")
+    env.mem = Memory(env.engine, schema, "translator")
     env.reversedb = ReverseLookup(schema_id)
     env.reversedb_phrase = ReverseLookup(phrase_dict)
     env.radical_reversedb = ReverseLookup(reverse_dict)
 
-	---@diagnostic disable-next-line: unused-local
-	env.commit_notifier = env.engine.context.commit_notifier:connect(function(ctx)
-		char_shape_code_tbl = {}
-		fcode_matched_text_tbl = {}
-		-- reset_commited_cand_state(ctx)
-	end)
+    env.commit_notifier = env.engine.context.commit_notifier:connect(function()
+        char_shape_code_tbl = {}
+        fcode_matched_text_tbl = {}
+        -- reset_commited_cand_state(env)
+    end)
 end
 
 function word_auto_commit.fini(env)
-	if env.mem then
-		env.mem:disconnect()
-		env.mem = nil
-	end
-	env.commit_notifier:disconnect()
+    if env.mem then
+        env.mem:disconnect()
+        env.mem = nil
+    end
+    env.commit_notifier:disconnect()
 end
 
 function P.func(key, env)
@@ -70,30 +69,30 @@ function P.func(key, env)
     local input_code = context.input
     local page_size = schema.page_size
     local caret_pos = context.caret_pos
-	local preedit_code_len = #input_code
+    local preedit_code_len = #input_code
 
     local composition = context.composition
-	if composition:empty() then
-		return 2
-	end
+    if composition:empty() then
+        return 2
+    end
     local segment = composition:back()
 
     -- 四码二字词时, 按下 '['  生成辅助码提示注解
     if
         (caret_pos == 4)
-		and (preedit_code_len == 4)
+        and (preedit_code_len == 4)
         and (#char_shape_code_tbl < 1)
-		and (key:repr() == "bracketleft")
+        and (key:repr() == "bracketleft")
     then
         for i = 1, 50, 1 do
             local word_cand = segment:get_candidate_at(i)
-			if not word_cand then
-				return 2
-			end
+            if not word_cand then
+                return 2
+            end
             local word_cand_text = word_cand.text
-			if utf8.len(word_cand_text) ~= 2 then
-				goto skip_cand
-			end
+            if utf8.len(word_cand_text) ~= 2 then
+                goto skip_cand
+            end
             local cand_tail_text = string.utf8_sub(word_cand_text, 2)
             table.insert(char_shape_code_tbl, {
                 word_cand_text,
@@ -105,21 +104,21 @@ function P.func(key, env)
 
     -- 按下 '[' 后, 数字键或符号键选单字时, 自动上屏
     local idx = segment.selected_index
-	local seleted_cand_index = rime_api_helper.get_selected_candidate_index(key_value, idx, page_size)
+    local seleted_cand_index = rime_api_helper.get_selected_candidate_index(key_value, idx, page_size)
     if (seleted_cand_index >= 0) and input_code:match("^%l+%[$")
         and (table.find({ 3, 5 }, caret_pos))
-	then
-		context:select(seleted_cand_index)
-		local cand_text = context:get_commit_text():utf8_sub(1, -2)
-		engine:commit_text(cand_text)
-		reset_commited_cand_state(env)
-		context:clear()
-		return 1
+    then
+        context:select(seleted_cand_index)
+        local cand_text = context:get_commit_text():utf8_sub(1, -2)
+        engine:commit_text(cand_text)
+        reset_commited_cand_state(env)
+        context:clear()
+        return 1
     end
 
     if key:repr() == "Escape" then
-		char_shape_code_tbl = {}
-		fcode_matched_text_tbl = {}
+        char_shape_code_tbl = {}
+        fcode_matched_text_tbl = {}
     end
     return 2 -- kNoop
 end
@@ -132,7 +131,7 @@ function T.func(input, seg, env)
 
     -- 四码时, 按下'/', 单字优先, 若唯一则自动上屏
     if input:match("^%l%l%l%l?/$") and table.find_index({ 4, 5 }, caret_pos) then
-		fcode_matched_text_tbl = {}
+        fcode_matched_text_tbl = {}
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         env.mem:dict_lookup(yin_code, true, 50) -- expand_search
@@ -144,7 +143,7 @@ function T.func(input, seg, env)
                 local pattern = "%f[%a](" .. input:gsub("/", "") .. "%a*)"
                 if reverse_char_code:match(pattern) then
                     table.insert(entry_matched_tbl, dictentry)
-					table.insert(fcode_matched_text_tbl, dictentry.text)
+                    table.insert(fcode_matched_text_tbl, dictentry.text)
                 end
             end
         end
@@ -155,41 +154,41 @@ function T.func(input, seg, env)
         end
     end
 
-	if table.len(char_shape_code_tbl) < 1 then
-		return
-	end
+    if table.len(char_shape_code_tbl) < 1 then
+        return
+    end
 
     -- 四码二字词, 按下'['时, 生成辅助码提示
     if string.match(input, "^%l+%[$") and (#input == 5) and (caret_pos == 5) then
         for _, val in ipairs(char_shape_code_tbl) do
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
-			local cand = Candidate("wac", seg.start, seg._end, val[1], comment)
+            local cand = Candidate("wac", seg.start, seg._end, val[1], comment)
             yield(cand)
         end
     end
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
     if string.match(input, "^%l+%[%l+$") and (#input > 5) and (caret_pos > 5) then
-		local count = 0
+        local count = 0
         for i, val in ipairs(char_shape_code_tbl) do
             local tail_char_hxm = string.sub(val[2], 4, 5)
             local comment = string.format("~%s", tail_char_hxm)
             if string.match(tail_char_hxm, input:sub(6)) then
-				local cand = Candidate("wac", seg.start, seg._end, val[1], comment)
+                local cand = Candidate("wac", seg.start, seg._end, val[1], comment)
                 cand.quality = 999
                 yield(cand)
-				count = count + 1
+                count = count + 1
             end
-			if i == #char_shape_code_tbl then
-				candidate_count = count
-			end
+            if i == #char_shape_code_tbl then
+                candidate_count = count
+            end
         end
     end
 end
 
 function F.func(input, env)
-	local normal_cands = {}
+    local normal_cands = {}
     local symbol_cands = {}
     local single_char_cands = {}
     local tchars_word_cands = {}
@@ -218,23 +217,23 @@ function F.func(input, env)
             (utf8.len(cand.text) == 2)
             and (not tchars_word_cands[cand])
             and (table.find({ 6, 7 }, #preedit_code))
-			and (string.sub(preedit_code, 5, 5) == "[")
+            and (string.sub(preedit_code, 5, 5) == "[")
             and string.find(preedit_code, "^%l+%[%l+$")
         then
             table.insert(tchars_word_cands, cand)
         end
 
         if (#preedit_code == 8)
-			and preedit_code:match("^%l+$")
-			and (not fchars_word_cands[cand.text])
-		then
+            and preedit_code:match("^%l+$")
+            and (not fchars_word_cands[cand.text])
+        then
             fchars_word_cands[cand.text] = cand
         end
 
-		if #normal_cands >= 120 then
-			break
-		end
-		table.insert(normal_cands, cand)
+        if #normal_cands >= 120 then
+            break
+        end
+        table.insert(normal_cands, cand)
     end
 
     -- 符号自动上屏(;[a-z])
@@ -244,64 +243,64 @@ function F.func(input, env)
         return 1 -- kAccepted
     end
 
-	-- 单字全码唯一自动上屏(xyab/)
+    -- 单字全码唯一自动上屏(xyab/)
     if table.len(Set(fcode_matched_text_tbl)) == 1 then
-		local cand_text = fcode_matched_text_tbl[1]
+        local cand_text = fcode_matched_text_tbl[1]
         env.engine:commit_text(cand_text)
-		reset_commited_cand_state(env)
-		fcode_matched_text_tbl = {}
+        reset_commited_cand_state(env)
+        fcode_matched_text_tbl = {}
         context:clear()
         return 1
     end
 
-	-- 单字全码唯一自动上屏(xy[ab?)
+    -- 单字全码唯一自动上屏(xy[ab?)
     if (caret_pos >= 4)
-		and preedit_code:match("^%l+%[%l%l?$")
-		and (table.find({ 4, 5 }, #preedit_code))
-	then
-		if #single_char_cands == 1 then
-			local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
-			env.engine:commit_text(cand_txt)
-			reset_commited_cand_state(env)
-			context:clear()
-			return 1 -- kAccepted
-		end
+        and preedit_code:match("^%l+%[%l%l?$")
+        and (table.find({ 4, 5 }, #preedit_code))
+    then
+        if #single_char_cands == 1 then
+            local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
+            env.engine:commit_text(cand_txt)
+            reset_commited_cand_state(env)
+            context:clear()
+            return 1 -- kAccepted
+        end
 
         for _, cand in ipairs(single_char_cands) do
-			local input_shape_code = string.sub(preedit_code, 4):gsub("%[", "")
-			local current_cand_shape_code = cand.comment:match("[%l]") and cand.comment:sub(2):gsub("%[", "")
-			local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, "", 1)
-			local comment = (string.len(remain_shape_code) > 0) and string.format("~%s", remain_shape_code) or " "
+            local input_shape_code = string.sub(preedit_code, 4):gsub("%[", "")
+            local current_cand_shape_code = cand.comment:match("[%l]") and cand.comment:sub(2):gsub("%[", "")
+            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, "", 1)
+            local comment = (string.len(remain_shape_code) > 0) and string.format("~%s", remain_shape_code) or " "
             ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
         end
     end
 
-	-- 二字词全码唯一自动上屏(XxYy[ab?)
+    -- 二字词全码唯一自动上屏(XxYy[ab?)
     if (caret_pos >= 6)
-		and preedit_code:find("^%l+%[%l+$")
-		and (table.find({ 6, 7 }, #preedit_code))
-	then
-		if (#tchars_word_cands == 1) or (candidate_count == 1) then
-			local cand_txt = insert_space_to_candText(env, tchars_word_cands[1].text)
-			env.engine:commit_text(cand_txt)
-			reset_commited_cand_state(env)
-			char_shape_code_tbl = {}
-			context:clear()
-			return 1 -- kAccepted
-		end
+        and preedit_code:find("^%l+%[%l+$")
+        and (table.find({ 6, 7 }, #preedit_code))
+    then
+        if (#tchars_word_cands == 1) or (candidate_count == 1) then
+            local cand_txt = insert_space_to_candText(env, tchars_word_cands[1].text)
+            env.engine:commit_text(cand_txt)
+            reset_commited_cand_state(env)
+            char_shape_code_tbl = {}
+            context:clear()
+            return 1 -- kAccepted
+        end
 
-		for _, cand in ipairs(tchars_word_cands) do
-			local input_shape_code = string.sub(preedit_code, 6)
-			local current_cand_shape_code = cand.comment:match("[%a]") and cand.comment:sub(2):gsub("%[", "")
-			local remain_shape_code, _ = current_cand_shape_code:gsub(input_shape_code, "", 1)
-			local comment = (remain_shape_code:len() > 0) and string.format("~%s", remain_shape_code) or " "
-			---@diagnostic disable-next-line: missing-parameter
-			yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-		end
+        for _, cand in ipairs(tchars_word_cands) do
+            local input_shape_code = string.sub(preedit_code, 6)
+            local current_cand_shape_code = cand.comment:match("[%a]") and cand.comment:sub(2):gsub("%[", "")
+            local remain_shape_code, _ = current_cand_shape_code:gsub(input_shape_code, "", 1)
+            local comment = (remain_shape_code:len() > 0) and string.format("~%s", remain_shape_code) or " "
+            ---@diagnostic disable-next-line: missing-parameter
+            yield(ShadowCandidate(cand, cand.type, cand.text, comment))
+        end
     end
 
-	-- 四字短语自动上屏
+    -- 四字短语自动上屏
     if (#preedit_code == 8) and preedit_code:match("^%l+") and env.autocommit_on then
         local i, done, when_done, commit_text = 1, 0, 0, ""
         for _, cand in pairs(fchars_word_cands) do
@@ -321,12 +320,12 @@ function F.func(input, env)
                 and (done == 1)
                 and (caret_pos >= 6)
                 and (when_done == 1)
-                and ( (#preedit_code / 2 == utf8.len(commit_text))
-				or (#preedit_code / 3 == utf8.len(commit_text)) )
+                and ((#preedit_code / 2 == utf8.len(commit_text))
+                    or (#preedit_code / 3 == utf8.len(commit_text)))
             then
-				local cand_txt = insert_space_to_candText(env, commit_text)
+                local cand_txt = insert_space_to_candText(env, commit_text)
                 env.engine:commit_text(cand_txt)
-				reset_commited_cand_state(env)
+                reset_commited_cand_state(env)
                 context:clear()
                 return 1 -- kAccepted
             end
@@ -334,9 +333,9 @@ function F.func(input, env)
         end
     end
 
-	for _, cand in ipairs(normal_cands) do
-		yield(cand)
-	end
+    for _, cand in ipairs(normal_cands) do
+        yield(cand)
+    end
 end
 
 return {
