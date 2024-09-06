@@ -60,7 +60,7 @@ todesk	todesk	100000
 tooltip	tooltip	100000
 trime	trime	100000
 ucloud	ucloud	100000
-uni-app	uniappp	100000
+uni-app	uniapp	100000
 userdb	userdb	100000
 vSwitch	vswitch	100000
 vimgrep	vimgrep	100000
@@ -102,3 +102,6 @@ untimely	untimely	100000
 sogou	sogou	100000
 frontend	frontend	100000
 Pinia	Pinia	100000
+NFV	NFV	100000
+NFVO	NFVO	100000
+purge	purge	100000
