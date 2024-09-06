@@ -1,10 +1,6 @@
 require("tools/string")
 local F = {}
 
-local function last_character(s)
-    return string.utf8_sub(s, -1, -1)
-end
-
 function F.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("translator/dictionary")
@@ -18,18 +14,20 @@ function F.func(input, env)
     local cmp_cand_count = 0
     local hide_emoji_texts = {}
     local low_priority_cands = {}
-	local reversedb = env.reversedb
+    local reversedb = env.reversedb
     local context = env.engine.context
-    local preedit_code = context.input:gsub(" ", "")
-    local confirmed_syllable_len = math.floor(#preedit_code / 2)
+    local preedit_code = context.input
+    local _, symbol_count = preedit_code:gsub("[`']", "")
+    local _syllable_count = math.floor(#preedit_code / 2)
+    local confirmed_syllable_len = _syllable_count - symbol_count
     for cand in input:iter() do
         local cand_type = cand:get_dynamic_type()
         local cand_text = cand.text:gsub(" ", "")
-		local _, sp_count = cand.preedit:gsub(" ", "")
+        local _, sp_count = cand.preedit:gsub(" ", "")
         -- local cand_comment = cand.comment:gsub("[〔〕]", "")
 
         if cand.comment:match("^" .. env.pin_mark .. "$") then
-			yield(cand) -- 带有 pin_mark 标记的候选词条, 优先显示
+            yield(cand) -- 带有 pin_mark 标记的候选词条, 优先显示
         elseif cand_text:match("<br>") then
             local ccand_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
             yield(Candidate(cand.type, cand.start, cand._end, ccand_text, env.custom_mark))
@@ -60,8 +58,8 @@ function F.func(input, env)
         then
             drop_cand = true
         elseif preedit_code:match("^%l+`%l+") and cand.comment:match("^~[ %l]+") then
-			-- 辅码模式下, 覆写注解(太长了)为空
-			yield(Candidate(cand.type, cand.start, cand._end, cand.text, ""))
+            -- 辅码模式下, 覆写注解(太长了)为空
+            yield(Candidate(cand.type, cand.start, cand._end, cand.text, ""))
         elseif -- 候选词长度超出预确认音节长度 1 个以上的候选, 保留2个
             (cand.type == "completion") and
             (not cand_text:match("[%a%p]")) and
@@ -83,12 +81,12 @@ function F.func(input, env)
             and (utf8.len(cand_text) >= confirmed_syllable_len)
             and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 9))
         then
-			local first_char = cand_text:utf8_sub(1, 1)
-			local last_char = cand_text:utf8_sub(-1, -1)
-			local first_syllable_code = preedit_code:sub(1, 2)
+            local first_char = cand_text:utf8_sub(1, 1)
+            local last_char = cand_text:utf8_sub(-1, -1)
+            local first_syllable_code = preedit_code:sub(1, 2)
             local preedit_last_code = preedit_code:sub(-1, -1)
-			local first_char_ycode = reversedb:lookup(first_char):gsub("%[%l%l", "")
-			local last_char_ycode = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
+            local first_char_ycode = reversedb:lookup(first_char):gsub("%[%l%l", "")
+            local last_char_ycode = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
             if last_char_ycode
                 and first_char_ycode
                 and (last_char_ycode:match(preedit_last_code))
