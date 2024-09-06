@@ -5,7 +5,6 @@
 name: flypy_phrase
 version: 2023-09-12
 sort: by_weight
-# use_preset_vocabulary: true  # 導入八股文字頻
 ...
 
 门户网站	mfhuwhvj	709334
@@ -14380,7 +14379,6 @@ sort: by_weight
 斗智斗勇	dzvidzys	8370
 各大高校	gedagcxn	8370
 花花草草	hxhxcccc	8370
-计算技术	jisrjiuu	8370
 模拟电路	monidmlu	8370
 饲料原料	silnyrln	8370
 万紫千红	wjziqmhs	8370
@@ -14709,7 +14707,6 @@ sort: by_weight
 会计报告	kkjibcgc	8165
 平遥古城	pkycguig	8165
 三国时期	sjgouiqi	8165
-他山之石	taujviui	8165
 性情中人	xkqkvsrf	8165
 操作电脑	cczodmnc	8160
 关注民生	grvumbug	8160
