@@ -500,7 +500,6 @@ symbols:
   ';fxk' : ["[破涕为笑]"]
   ';fnl' : ['🔔'] # bell
   ';frl' : ['📅'] # clendar
-  ';fcd' : ['👎'] # down
   ';fyj' : ['👀'] # eye
   ';fho' : ['🔥'] # fire
   ';fhj' : ['🚀'] # huojian
@@ -510,10 +509,17 @@ symbols:
   ';ftd' : ['📌'] # pushpin
   ';fqz' : ['🚩'] # qizi
   ';fyz' : ['👉'] # right
-  ';fmz' : ['👍'] # up
-  ';fxx' : ['⭐'] # star
+  ';fzr' : ['👉'] # right
+  ';fzl' : ['👈'] # left
+  ';fzu' : ['👆'] # up
+  ';fzd' : ['👇'] # down
+  ';fcd' : ['👎'] # down
+  ';fdc' : ['👎'] # down
+  ';fdz' : ['👍'] # up
+  ';fup' : ['👍'] # up
   ';fth' : ['❗'] # ！
   ';fwh' : ['❓'] # ?
   ';fdv' : ['✅'] # todo
   ';fco' : ['❌'] # xx
   ';fzz' : ['💤'] # zz
+  ';fxx' : ['⭐'] # star
