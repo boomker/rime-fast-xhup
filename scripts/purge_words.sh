@@ -38,6 +38,7 @@ ${SCMD} -i \
     -e '/吗喽/s/ge/lz/1' \
     -e '/乐华/s/le/yt/1' \
     -e '/得救/s/dw/de/1' \
+    -e '/重八\t/s/vs/is/1' \
     -e '/还我妈/s/hd/hr/1' \
     -e '/真还传/s/hd/hr/1' \
     -e '/藏海花/s/ch/zh/1' \
