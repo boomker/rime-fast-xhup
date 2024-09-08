@@ -8,7 +8,7 @@ patch:
   # 候选菜单
   menu/+:
     # 注释掉下行以恢复常规候选标签序号
-    alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
+    alternative_select_labels: [①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪]
     # alternative_select_keys: 1234890      # 候选项选中快捷键
     page_size: 7                            # 自定义候选项个数
 
@@ -51,8 +51,8 @@ patch:
     # search: "`"                     # 辅码引导符
     pin_cand:   "Control+t"           # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
-    drop_cand: "Control+d"            # 强制删词, 无视输入的编码
-    hide_cand: "Control+x"            # 匹配当前输入码后隐藏指定的候选字词
+    drop_cand:  "Control+d"           # 强制删词, 无视输入的编码
+    hide_cand:  "Control+x"           # 匹配当前输入码后隐藏指定的候选字词
     reduce_fq_cand: "Control+j"       # 匹配当前输入码后降频指定的候选字词
     switch_comment: "Control+n"       # 切换注释(小鹤形码 / 带调拼音 / 无)
     commit_comment: "Control+p"       # 注释上屏
@@ -69,13 +69,13 @@ patch:
       # - { when: has_menu, accept: equal, send: Page_Down }  # 下翻页
       - { when: paging,    accept: comma,  send: Page_Up }    # 逗号, 上一页
       - { when: has_menu,  accept: period, send: Page_Down }  # 句号. 下一页
-      - { when: has_menu,  accept: KP_Enter,  send: Return }  # 上屏小键盘enter=Return(回车键)
-      - { when: composing, accept: KP_Enter,  send: Return }  # 上屏小键盘enter=Return(回车键)
+      - { when: has_menu,  accept: KP_Enter,  send: Return }  # 小键盘Return(回车键)
+      - { when: composing, accept: KP_Enter,  send: Return }  # 小键盘Return(回车键)
       - { when: composing, accept: grave,     send: "`" }     # `键 逐字追加辅码
-      - { when: composing, accept: Tab,       send: Shift+Right }
+      - { when: composing, accept: Tab,       send: Shift+Right}
       - { when: composing, accept: Shift+Tab, send: Shift+Left }
       - { when: composing, accept: Control+i, send: Shift+Left }
-      - { when: composing, accept: Control+o, send: Shift+Right }
+      - { when: composing, accept: Control+o, send: Shift+Right}
       - { when: has_menu,  accept: Control+Shift+slash, toggle: emoji }
       - { when: has_menu,  accept: Control+Shift+comma, toggle: charset_comment }
 
@@ -119,17 +119,17 @@ patch:
 
   speller/+:
     algebra/+:
-      - derive/[[]//                          # 取消注释，直接辅码
+      - derive/[[]//                            # 取消注释 直接辅码
 
       ## 模糊音:
       # - derive/^([jqxy])v/$1u/
       # - derive/^([jqxy])u/$1v/
-      # - derive/^([bnpy])b/$1k/                  # in => ing
-      # - derive/^(i)g/$1f/                       # eng => en
-      # - derive/^z([ry])/v$1/                    # z => zh
-      # - derive/^c([az])/i$1/                    # c => ch
-      # - derive/^s([rz])/u$1/                    # s => sh
-      # - derive/^u([hky])/s$1/                   # sh => s
+      # - derive/^([bnpy])b/$1k/                # in => ing
+      # - derive/^(i)g/$1f/                     # eng => en
+      # - derive/^z([ry])/v$1/                  # z => zh
+      # - derive/^c([az])/i$1/                  # c => ch
+      # - derive/^s([rz])/u$1/                  # s => sh
+      # - derive/^u([hky])/s$1/                 # sh => s
       # - derive/^l(.*)/n$1/                    # l => n
       # - derive/^n(.*)/l$1/                    # n => l
       # - derive/^v(.*)/z$1/                    # zh => z
@@ -202,4 +202,4 @@ patch:
   predictor:
     db: predict.db
     max_candidates: 7
-    max_iterations: 1
+    max_iterations: 2
