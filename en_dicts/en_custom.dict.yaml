@@ -107,3 +107,5 @@ NFVO	NFVO	100000
 purge	purge	100000
 ZeroMQ	ZeroMQ	100000
 Coser	Coser	100000
+iostat	iostat	100000
+WAF	WAF	100000
