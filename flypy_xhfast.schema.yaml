@@ -77,7 +77,7 @@ engine:
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
-    - lua_translator@*en_custom                       # ] 触发自定义单词入库
+    - lua_translator@*en_custom                       # \ 触发自定义单词入库
     - lua_translator@*pin_word*translator             # ctrl-t 自定义置顶词
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
@@ -306,14 +306,14 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[`_/]
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_/`\
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
     __include: algebra_common
 
-  # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+  # 飞键音码规则, 注释以下三行使用原版小鹤双拼
   # __patch:
   #   algebra/+:
   #     __include: flypy_chord_rule:/patch/speller/algebra

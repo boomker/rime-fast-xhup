@@ -82,7 +82,7 @@ function P.func(key, env)
         (caret_pos == 4)
         and (preedit_code_len == 4)
         and (#char_shape_code_tbl < 1)
-        and (key:repr() == "bracketleft")
+        and (key:repr() == "grave")
     then
         for i = 1, 50, 1 do
             local word_cand = segment:get_candidate_at(i)
