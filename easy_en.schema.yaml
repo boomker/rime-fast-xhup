@@ -1,6 +1,7 @@
 # Rime schema
 # vim: set sw=2 sts=2 et:
 # encoding: utf-8
+---
 
 schema:
   schema_id: easy_en
@@ -71,7 +72,7 @@ translator:
   comment_format:
     - erase/^.$/
 
-#英文反查释意
+# 英文反查释意
 ecdict_reverse_lookup:
   overwrite_comment: true     # 是否开启中文释意注解
   dictionary: ecdict_reverse
@@ -125,3 +126,4 @@ recognizer:
     uppercase: ""
 
 expan_word_count: 150
+
