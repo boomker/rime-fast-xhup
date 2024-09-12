@@ -1,6 +1,7 @@
 # Rime schema
 # vim: set sw=2 sts=2 et:
 # encoding: utf-8
+---
 
 schema:
   schema_id: melt_eng
@@ -40,7 +41,7 @@ speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
-  # 拼写规则的本质，是把字典按照规则改写，而不是把输入的按键码转写。
+    # 拼写规则的本质，是把字典按照规则改写，而不是把输入的按键码转写
     __include: algebra_flypy
 
 algebra_common:
@@ -51,7 +52,7 @@ algebra_common:
   - derive/13/thirteen/
   - derive/15/fifteen/
   - derive/18/eighteen/
-  - derive/0/o/ # 如 1000 -> oneooo
+  - derive/0/o/       # 如 1000 -> oneooo
   - derive/0/O/
   - derive/0/zero/
   - derive/1/one/
@@ -139,3 +140,4 @@ algebra_flypy:
     - derive/#/jk/
     - derive/\./dm/
     - derive/\+/jx/
+
