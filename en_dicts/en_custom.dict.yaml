@@ -109,3 +109,5 @@ ZeroMQ	ZeroMQ	100000
 Coser	Coser	100000
 iostat	iostat	100000
 WAF	WAF	100000
+keymap	keymap	100000
+blob	blob	100000
