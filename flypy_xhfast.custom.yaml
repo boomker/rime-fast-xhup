@@ -49,35 +49,37 @@ patch:
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
     # search: "`"                     # 辅码引导符
-    pin_cand:   "Control+t"           # 候选词置顶
+    pin_cand: "Control+t"             # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
-    drop_cand:  "Control+d"           # 强制删词, 无视输入的编码
-    hide_cand:  "Control+x"           # 匹配当前输入码后隐藏指定的候选字词
+    drop_cand: "Control+d"            # 强制删词, 无视输入的编码
+    hide_cand: "Control+x"            # 匹配当前输入码后隐藏指定的候选字词
     reduce_fq_cand: "Control+j"       # 匹配当前输入码后降频指定的候选字词
     switch_comment: "Control+n"       # 切换注释(小鹤形码 / 带调拼音 / 无)
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
     expand_abbr_py: "Control+0"       # 展开超级简拼
-    remove_user_word: "Control+q"     # 删除用户词典里的单字 二三字词
+    remove_user_word: "Control+q"     # 删除用户词典里的单字 / 二三字词
     easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮候选字词
-    select_first_character: "bracketleft"   # 左中括号 [以词定字(第一个字)
-    select_last_character:  "bracketright"  # 右中括号 ]以词定字(最后一个字)
+    # select_first_character: "minus"   # `-` 以词定字(第一个字)
+    # select_last_character:  "equal"   # `=` 以词定字(最后一个字)
+    select_first_character: "bracketleft"    # `[` 以词定字(第一个字)
+    select_last_character:  "bracketright"   # `]` 以词定字(最后一个字)
     bindings/+:
-      - { when: has_menu,  accept: semicolon,  send: 2 }      # 分号;   用于第2候选
-      - { when: has_menu,  accept: apostrophe, send: 3 }      # 单引号' 用于第3候选
-      # - { when: has_menu, accept: minus, send: Page_Up }    # 上翻页
-      # - { when: has_menu, accept: equal, send: Page_Down }  # 下翻页
-      - { when: paging,    accept: comma,  send: Page_Up }    # 逗号, 上一页
-      - { when: has_menu,  accept: period, send: Page_Down }  # 句号. 下一页
-      - { when: has_menu,  accept: KP_Enter,  send: Return }  # 小键盘Return(回车键)
-      - { when: composing, accept: KP_Enter,  send: Return }  # 小键盘Return(回车键)
-      - { when: composing, accept: grave,     send: "`" }     # `键 逐字追加辅码
-      - { when: composing, accept: Tab,       send: Shift+Right}
-      - { when: composing, accept: Shift+Tab, send: Shift+Left }
-      - { when: composing, accept: Control+i, send: Shift+Left }
-      - { when: composing, accept: Control+o, send: Shift+Right}
-      - { when: has_menu,  accept: Control+Shift+slash, toggle: emoji }
-      - { when: has_menu,  accept: Control+Shift+comma, toggle: charset_comment }
+      - {when: composing, accept: grave, send: "`"}        # `键 逐字追加辅码
+      - {when: has_menu,  accept: semicolon,  send: 2}     # 分号用于第2候选
+      - {when: has_menu,  accept: apostrophe, send: 3}     # 单引号用于第3候选
+      - {when: paging,    accept: comma,  send: Page_Up}   # 逗号, 返回上一页
+      - {when: has_menu,  accept: period, send: Page_Down} # 句号. 下一页
+      # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 返回上一页
+      # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
+      - {when: has_menu,  accept: Tab, send: Control+Right}
+      - {when: composing, accept: Tab, send: Control+Right}
+      - {when: composing, accept: Shift+Tab, send: Control+Left}
+      - {when: composing, accept: Control+i, send: Control+Left}
+      - {when: composing, accept: Control+o, send: Control+Right}
+      - {when: composing, accept: Control+w, send: Control+BackSpace}
+      - {when: has_menu,  accept: Control+Shift+slash, toggle: emoji}
+      - {when: has_menu,  accept: Control+Shift+comma, toggle: charset_comment}
 
   recognizer/+:
     patterns/+:

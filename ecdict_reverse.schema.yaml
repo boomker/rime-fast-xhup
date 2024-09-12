@@ -1,6 +1,7 @@
 # english.schema.yaml
 # Rime schema
 # encoding: utf-8
+---
 
 schema:
   schema_id: ecdict_reverse
