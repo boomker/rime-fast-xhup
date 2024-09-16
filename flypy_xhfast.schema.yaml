@@ -89,7 +89,7 @@ engine:
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
     - lua_translator@*word_autocaps*translator        # A-Z 大写字母开头触发单词自动大写
-    - lua_translator@*word_autocommit*translator      # / [ 单字优先和成语短语自动触发上屏
+    - lua_translator@*word_autocommit*translator      # / 单字优先 [ 成语短语自动触发上屏
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -137,6 +137,7 @@ translator:
 # "`" 精准造词
 make_sentence:                      # 精准造词
   prefix: "`"
+  suffix: "'"
   tag: make_sentence
   tips: "〔精准造词〕"
   enable_sentence: true
@@ -257,7 +258,7 @@ ecdict_reverse_lookup:
 recognizer:
   import_preset: default
   patterns:
-    make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导精准造词
+    make_sentence: "^`?[a-z]+[`][a-z`]*$"     # ` 引导精准造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
