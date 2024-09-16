@@ -137,6 +137,7 @@ translator:
 # "`" 精准造词
 make_sentence:                      # 精准造词
   prefix: "`"
+  suffix: "'"
   tag: make_sentence
   tips: "〔精准造词〕"
   enable_sentence: true
@@ -257,7 +258,7 @@ ecdict_reverse_lookup:
 recognizer:
   import_preset: default
   patterns:
-    make_sentence: "^[a-z]+[`][a-z`]*$"     # ` 引导精准造词
+    make_sentence: "^`?[a-z]+[`][a-z`]*$"     # ` 引导精准造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
@@ -271,8 +272,8 @@ punctuator:
     ",": {commit: "，"}
     ".": {commit: "。"}
     ";": {commit: "；"}
-    "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
-    ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
+    "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
+    ">": [">", 》, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
     "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
     "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
@@ -301,12 +302,13 @@ key_binder:
     - {when: always, accept: "Control+period", toggle: ascii_punct}
     - {when: always, accept: "Control+slash", toggle: simplification}
     - {when: always, accept: "Control+backslash", toggle: full_shape}
+    - {when: always, accept: Control+Shift+semicolon, select: easy_en}
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[89`_/]
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[89/_-`\]
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"

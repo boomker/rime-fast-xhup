@@ -111,3 +111,6 @@ iostat	iostat	100000
 WAF	WAF	100000
 keymap	keymap	100000
 blob	blob	100000
+glyph	glyph	100000
+WindowServer	WindowServer	100000
+Sequoia	Sequoia	100000
