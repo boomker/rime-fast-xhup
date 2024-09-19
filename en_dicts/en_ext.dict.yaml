@@ -77,7 +77,8 @@ net	net	2
 # 带权重的系列
 iPhone	iPhone	999
 macOS	macOS	999
-macOS Sonoma	macOS
+macOS Sequoia	macOS	998
+macOS Sonoma	macOS	997
 Windows	Windows	999
 Windows 11	Windows	11
 cheetah	cheetah
