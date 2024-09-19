@@ -1,22 +1,23 @@
 # 適用於【鼠鬚管】0.9.13+
-# 位置：~/Library/Rime/squirrel.custom.yaml
-# 用法：想要哪項生效，就刪去該行行首的#字符，但注意保留用於縮進的空格
+# 位置: ~/Library/Rime/squirrel.custom.yaml
+# 用法: 想要哪項生效, 就刪去該行行首的#字符, 但注意保留用於縮進的空格
+---
 
 patch:
-  #  us_keyboard_layout: true      # 鍵盤選項：應用美式鍵盤佈局
+  #  us_keyboard_layout: true      # 鍵盤選項: 應用美式鍵盤佈局
   #  show_notifications_when: growl_is_running
-  # 狀態通知，默認裝有Growl時顯示，也可設爲全開（always）全關（never）
+  # 狀態通知, 默認裝有Growl時顯示, 也可設爲全開(always)全關(never)
 
   style:
     # layout:
     #   max_width: 0
-    # 註：預設的配色方案及代碼（指定爲 style/color_scheme 系統默認色系 - native）
+    # 註: 預設的配色方案及代碼(指定爲 style/color_scheme 系統默認色系 - native)
     color_scheme: songhe                        # macos明亮主题
     color_scheme_dark: catppuccin_frappe        # macos黑暗主题
     # color_scheme_dark: catppuccin_macchiato   # macos黑暗主题
 
     inline_preedit: false
-    mutual_exclusive: false                     # 色不叠加： false | true
+    mutual_exclusive: false                     # 色不叠加: false | true
     alpha: 0.95                                 # 透明度, 0~1
     border_width: 1
     border_height: 1
@@ -74,8 +75,8 @@ patch:
       preedit_back_color: 0x3C2C2B
       comment_text_color: 0xDFBDBC
       candidate_text_color: 0xD68381
-      candidate_back_color: 0x3C2C2B 
-      hilited_text_color: 0x806862 
+      candidate_back_color: 0x3C2C2B
+      hilited_text_color: 0x806862
       hilited_back_color: 0xDFBDBC
       hilited_shadow_color: 0x303546               # 高亮编码阴影
       hilited_comment_text_color: 0x8EAF7D         # 选中注解颜色
@@ -103,12 +104,12 @@ patch:
     songhe:
       name: 松鹤
       author: 空山明月 <sqqlove123@163.com>
-      text_color: 0xB2CECC 
+      text_color: 0xB2CECC
       back_color: 0x4E7160
       label_color: 0xB2CECC
       border_color: 0x38667D
       comment_text_color: 0xB2CECC
-      candidate_back_color: 0x4E7160 
+      candidate_back_color: 0x4E7160
       hilited_mark_color: 0x4ddcbb
       hilited_text_color: 0xB2CECC
       hilited_back_color: 0x26332C
@@ -144,6 +145,11 @@ patch:
     md.obsidian:
       ascii_mode: true
     com.microsoft.VSCode:             # Visual Studio Code
+      ascii_mode: true
+      ascii_punct: true               # 中文状态输出英文标点(半角)
+      vim_mode: true
+      symbol_unpair_flag: true
+    com.todesktop.230313mzl4w4u92:    # Cursor
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
       vim_mode: true
