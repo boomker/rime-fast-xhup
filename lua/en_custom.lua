@@ -25,14 +25,22 @@ function T.init(env)
 end
 
 function T.func(input, seg, env)
-    if input:match("^%a[%a%p]+\\$") or input:match("^%a[%a%p]+%]$") then           -- 输入末尾必须是 `\`
-        local inp = input:sub(1, -2):gsub(" ", "") -- -3对应两个末尾符号, -2对应一个
+    local has_menu = env.engine.context:has_menu()
+    if input:match("^%a[%a%p]+\\$") or input:match("^%a[%a%p]+%]$") then  -- 输入末尾必须是 `\`
+        local inp = input:sub(1, -2):gsub(" ", "")
         local record = inp .. "\t" .. inp:gsub("]+", "") .. "\t100000"
         if not user_dict_exist(record, env.dict_path) then
             yield(Candidate("en_custom", seg.start, seg._end, inp, "✅"))
             local file = assert(io.open(env.dict_path, "a"))
             file:write(record .. "\n"):close()
         end
+    end
+    if input:match("^%u%l%l?$") then
+        local cand = Candidate("Word", seg.start, seg._end, input, "")
+        cand.quality = 999
+        yield(cand)
+    elseif input:match("^%u%a+") and (not has_menu) then
+        yield(Candidate("en_custom", seg.start, seg._end, input, ""))
     end
 end
 
