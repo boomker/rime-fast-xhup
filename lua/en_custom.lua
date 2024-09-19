@@ -35,7 +35,11 @@ function T.func(input, seg, env)
             file:write(record .. "\n"):close()
         end
     end
-    if input:match("^%u%a+") and (not has_menu) then
+    if input:match("^%u%l%l?$") then
+        local cand = Candidate("Word", seg.start, seg._end, input, "")
+        cand.quality = 999
+        yield(cand)
+    elseif input:match("^%u%a+") and (not has_menu) then
         yield(Candidate("en_custom", seg.start, seg._end, input, ""))
     end
 end
