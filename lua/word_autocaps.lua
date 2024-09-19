@@ -12,13 +12,11 @@ local function autocap_filter(input, env)
 			else
 				local cand_u = Candidate("cap", 0, string.len(preedit_code), string.upper(text), "+AU")
                 table.insert(u_cands, cand_u)
-				-- yield(cand_u)
 			end
 		elseif string.find(text, "^%l+$") and string.find(preedit_code, "^%u+") then
 			local suffix = string.sub(text, string.len(preedit_code) + 1)
 			local cand_t = Candidate("cap", 0, string.len(preedit_code), preedit_code .. suffix, "~AT")
             table.insert(u_cands, cand_t)
-			-- yield(cand_t)
 		else
 			yield(cand)
 		end
