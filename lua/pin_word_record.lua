@@ -40,7 +40,6 @@ local pin_word_records =
 	["fo"] = { "佛", },
 	["ap"] = { "安排", },
 	["ho"] = { "或", },
-	["bvj"] = { "B站", },
 	["sl"] = { "些", },
 	["ios"] = { "iOS", },
 	["help"] = { "help", },
