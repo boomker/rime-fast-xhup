@@ -152,15 +152,10 @@ function filter.func(input, env)
 				table.insert(cands, cand)
 			elseif
 				(
-					(cand_text:match("^[%a][%a%d][%a%d]?%.?$"))
-					or (preedit_code:match("^%u.+%a$") and (cand:get_dynamic_type() == "Shadow"))
-					or (cand_text:match("^[%u][%a][%a]?$") and (cand_text:match(preedit_code:lower())))
-					or (cand_text:match("^[%u][%a][%a]%.?") and prev_cand_text and cand_text
+					(cand_text:match("^%l%l%l?%p?$") == preedit_code)
+					or (cand_text:match("^%u[%a%d]%a?%p?$") and preedit_code:match("^%l%l%l?$"))
+					or (cand_text:match("^%u%a%a?%.?") and prev_cand_text and cand_text
 						:lower():match("^" .. prev_cand_text))
-					--[[or (
-						(cand_text:match("^[%u][%a]?[%a]?"):len() < 4)
-						and cand_text:find("([\228-\233][\128-\191]-)")
-					)--]]
 				) and not (cand.comment:match(env.pin_mark) or preedit_str:match(env.easy_en_prefix))
 			then
 				table.insert(cands, cand)
