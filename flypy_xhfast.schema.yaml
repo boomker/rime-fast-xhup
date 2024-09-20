@@ -38,6 +38,7 @@ engine:
   processors:
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
+    - lua_processor@*smart_apostrophe
     - lua_processor@*idiom_abbr_expand
     - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
@@ -258,7 +259,7 @@ ecdict_reverse_lookup:
 recognizer:
   import_preset: default
   patterns:
-    make_sentence: "^`?[a-z]+[`][a-z`]*$"     # ` 引导精准造词
+    make_sentence: "`?[a-z]+[`][a-z`]*'?$"    # ` 引导精准造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
@@ -272,8 +273,8 @@ punctuator:
     ",": {commit: "，"}
     ".": {commit: "。"}
     ";": {commit: "；"}
-    "<": [《, "<", ‹, 〈, «, ⟨, ˂, ˱]
-    ">": [》, ">", ›, 〉, », ⟩, ˃, ˲]
+    "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
+    ">": [">", 》, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
     "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
     "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
@@ -302,6 +303,7 @@ key_binder:
     - {when: always, accept: "Control+period", toggle: ascii_punct}
     - {when: always, accept: "Control+slash", toggle: simplification}
     - {when: always, accept: "Control+backslash", toggle: full_shape}
+    - {when: always, accept: Control+Shift+semicolon, select: easy_en}
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
 # 拼写设定
