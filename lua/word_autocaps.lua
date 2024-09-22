@@ -34,7 +34,8 @@ local function autocap_translator(input, seg, env)
 		cand.quality = 999
 		yield(cand)
 	elseif input:match("^%u%u%a+") then
-		yield(Candidate("word_caps", seg.start, seg._end, input:upper(), "~AU"))
+        local new_txt = input:upper()
+		yield(Candidate("word_caps", seg.start, seg._end, new_txt, "~AU"))
 	elseif input:match("^%u%l+%u%a?") then
 		yield(Candidate("en_custom", seg.start, seg._end, input, "~AC"))
 	elseif input:match("^%a+[.:_-]%/?%/?%/?%a+") then
