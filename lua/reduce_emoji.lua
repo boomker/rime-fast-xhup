@@ -47,7 +47,7 @@ function F.func(input, env)
 			elseif
 				emoji_toggle
 				and (cand:get_dynamic_type() == "Shadow")
-				and (not preedit_code:match("^%l+[%[`]%l?%l?$"))
+				and (not preedit_code:match("^%l+[`/]%l?%l?$"))
 			then
 				table.insert(emoji_cands, cand)
 			else

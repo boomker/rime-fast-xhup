@@ -147,7 +147,6 @@ function space_leader_word.func(key, env)
         return 1 -- kAccepted
     end
 
-
     if (#input_code >= 1) then
         local index = segment.selected_index
         local selected_cand_idx = rime_api_helper.get_selected_candidate_index(key_value, index, page_size)
@@ -164,8 +163,6 @@ function space_leader_word.func(key, env)
                 context:set_property("prev_cand_is_chinese", "1")
             end
             context:set_property("prev_focus_app", current_focus_app)
-            -- engine:commit_text(cand_text)
-            -- context:clear()
             return 2
         end
 
@@ -179,8 +176,6 @@ function space_leader_word.func(key, env)
                 context:set_property("prev_cand_is_chinese", "1")
             end
             context:set_property("prev_focus_app", current_focus_app)
-            -- engine:commit_text(cand_text)
-            -- context:clear()
             return 2
         end
 
@@ -201,8 +196,6 @@ function space_leader_word.func(key, env)
                 engine:commit_text(ccand_text)
                 context:clear()
                 return 1 -- kAccepted
-                -- else
-                --     context:confirm_previous_selection()
             end
             return 2
         end
@@ -211,7 +204,6 @@ function space_leader_word.func(key, env)
             reset_commited_cand_state(env)
             context:set_property("prev_cand_is_chinese", "1")
             context:set_property("prev_focus_app", current_focus_app)
-            -- context:confirm_previous_selection()
             return 2
         end
 
@@ -230,8 +222,6 @@ function space_leader_word.func(key, env)
                 reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app", current_focus_app)
-                -- engine:commit_text(cand_text)
-                -- context:clear()
                 return 2
             else
                 reset_commited_cand_state(env)

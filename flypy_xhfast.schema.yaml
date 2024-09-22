@@ -90,7 +90,7 @@ engine:
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
     - lua_translator@*word_autocaps*translator        # A-Z 大写字母开头触发单词自动大写
-    - lua_translator@*word_autocommit*translator      # / 单字优先 [ 成语短语自动触发上屏
+    - lua_translator@*word_autocommit*translator      # / 单字优先和成语短语自动触发上屏
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -300,9 +300,9 @@ key_binder:
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
     - {when: always, accept: "Shift+space", toggle: ascii_mode}
-    - {when: always, accept: "Control+period", toggle: ascii_punct}
+    - {when: always, accept: "Control+comma", toggle: ascii_punct}
+    - {when: always, accept: "Control+period", toggle: full_shape}
     - {when: always, accept: "Control+slash", toggle: simplification}
-    - {when: always, accept: "Control+backslash", toggle: full_shape}
     - {when: always, accept: Control+Shift+semicolon, select: easy_en}
     # - { when: always, accept: Control+1, send_sequence: 'HelloWorld' }
 
@@ -329,16 +329,18 @@ algebra_common:
   - erase/^m\[\w+$/            # 取消「呣 m」的独占
 
   ## 字表编码到输入码的转换规则
-  - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/       # Flypy: AB[CD
-  - derive/^(\w+)\[(\w)(\w)$/$1\[$2/         # Flypy: AB[C
-  - derive/^(\w+)\[(\w)(\w)$/$1/             # Flypy: AB
+  # - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/       # Flypy: AB[CD
+  # - derive/^(\w+)\[(\w)(\w)$/$1\[$2/         # Flypy: AB[C
+  - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|         # Flypy: AB/CD
+  - derive|^(\w+)\[(\w)(\w)$|$1/$2|           # Flypy: AB/C
+  - derive/^(\w+)\[(\w)(\w)$/$1/              # Flypy: AB
 
   # 响应 ` 造词
   - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
   - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
 
   # 超级简拼, 开启后可能性能不佳, 视情况开启
-  # 输入3个及以上编码字符, 按下`Ctrl+0`展开超级简拼
+  # 输入3+个编码字符, 按下`Ctrl+0`展开超级简拼
   - abbrev/^(.).+$/$1/
 
 preedit_convert_rules:
