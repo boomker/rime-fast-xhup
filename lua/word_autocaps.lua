@@ -10,12 +10,12 @@ local function autocap_filter(input, env)
 				local cand_2 = Candidate("cap", 0, 2, preedit_code, "+")
 				yield(cand_2)
 			else
-				local cand_u = Candidate("cap", 0, string.len(preedit_code), string.upper(text), "+AU")
+				local cand_u = Candidate("cap", 0, preedit_code:len(), text:upper(), "+AU")
 				table.insert(u_cands, cand_u)
 			end
 		elseif string.find(text, "^%l+$") and string.find(preedit_code, "^%u+") then
 			local suffix = string.sub(text, string.len(preedit_code) + 1)
-			local cand_t = Candidate("cap", 0, string.len(preedit_code), preedit_code .. suffix, "~AT")
+			local cand_t = Candidate("cap", 0, preedit_code:len(), preedit_code .. suffix, "~AT")
 			table.insert(u_cands, cand_t)
 		else
 			yield(cand)
@@ -29,7 +29,7 @@ end
 
 ---@diagnostic disable-next-line: unused-local
 local function autocap_translator(input, seg, env)
-	if input:match("^%u%l%l?%l?%l?%l?%l?%l?$") then
+	if input:match("^%u%l%l?%l?%l?%l?%l?%l?$") and input:match("^[^V].*") then
 		local cand = Candidate("Word", seg.start, seg._end, input, "")
 		cand.quality = 999
 		yield(cand)
