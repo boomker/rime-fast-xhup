@@ -30,9 +30,9 @@ function F.init(env)
 end
 
 function F.func(input, env)
-	local top_cand_count = 0
 	local emoji_cands = {}
 	local other_cands = {}
+    local top_cand_count = 0
 	local engine = env.engine
 	local preedit_code = engine.context.input:gsub(" ", "")
 	local emoji_toggle = engine.context:get_option("emoji")
@@ -47,7 +47,7 @@ function F.func(input, env)
 			elseif
 				emoji_toggle
 				and (cand:get_dynamic_type() == "Shadow")
-				and (not preedit_code:match("^%l+[`/]%l?%l?$"))
+				and (not preedit_code:match("^%l+[`/][%l`/]*$"))
 			then
 				table.insert(emoji_cands, cand)
 			else
