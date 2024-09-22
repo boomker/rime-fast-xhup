@@ -50,8 +50,6 @@
 ## 常用短语
 🐮🍺	nei
 微信	wx
-一个	yg
-有个	yg
 哪里	nl	1
 因为	yw	1
 查询	ix	4
@@ -67,8 +65,6 @@
 身体	ut	3
 视图	ut	2
 渗透	ut	1
-好吧	hb	1
-这边	vb	1
 哦哦	oo	3
 噢噢	oo	2
 喔喔	oo	1
@@ -102,7 +98,7 @@ WTF	wtf	3
 Rime	rime	3
 开源输入法引擎	rime	2
 http://rime.im	rime	1
-正在开会，一会儿回复你	meet
+正在开会，一会儿回复你	mndm
 换行词条<br>第二行	hhctest
 # 其他换行词条<br>我是下一行	hhct
 
