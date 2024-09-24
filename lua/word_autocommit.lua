@@ -10,27 +10,6 @@ local candidate_count = 0
 local word_auto_commit = {}
 local char_shape_code_tbl = {}
 
-local function insert_space_to_candText(env, cand_text)
-    local context = env.engine.context
-    local ccand_text = cand_text
-    if (context:get_property("prev_cand_is_preedit") == "1")
-        or (context:get_property("prev_cand_is_word") == "1")
-    then
-        ccand_text = " " .. cand_text
-    end
-    return ccand_text
-end
-
-local function reset_commited_cand_state(env)
-    local context = env.engine.context
-    context:set_property("prev_cand_is_null", "0")
-    context:set_property("prev_cand_is_word", "0")
-    context:set_property("prev_cand_is_chinese", "1")
-    context:set_property("prev_cand_is_preedit", "0")
-    context:set_property("prev_commit_is_comma", "0")
-    context:set_property("prev_commit_is_symbol", "0")
-end
-
 function word_auto_commit.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
@@ -104,7 +83,7 @@ function P.func(key, env)
         context:select(seleted_cand_index)
         local cand_text = context:get_commit_text():utf8_sub(1, -2)
         engine:commit_text(cand_text)
-        reset_commited_cand_state(env)
+        rime_api_helper.reset_commited_cand_state(env)
         context:clear()
         return 1
     end
@@ -214,9 +193,9 @@ function F.func(input, env)
         and (table.find({ 4, 5 }, #preedit_code))
     then
         if #single_char_cands == 1 then
-            local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
+            local cand_txt = rime_api_helper.insert_space_to_candText(env, single_char_cands[1].text)
             env.engine:commit_text(cand_txt)
-            reset_commited_cand_state(env)
+            rime_api_helper.reset_commited_cand_state(env)
             context:clear()
             return 1 -- kAccepted
         end
@@ -237,9 +216,9 @@ function F.func(input, env)
         and (table.find({ 6, 7 }, #preedit_code))
     then
         if (#tchars_word_cands == 1) or (candidate_count == 1) then
-            local cand_txt = insert_space_to_candText(env, tchars_word_cands[1].text)
+            local cand_txt = rime_api_helper.insert_space_to_candText(env, tchars_word_cands[1].text)
             env.engine:commit_text(cand_txt)
-            reset_commited_cand_state(env)
+            rime_api_helper.reset_commited_cand_state(env)
             char_shape_code_tbl = {}
             context:clear()
             return 1 -- kAccepted
@@ -278,9 +257,9 @@ function F.func(input, env)
                     or (#preedit_code / 3 == utf8.len(commit_text))
                 )
             then
-                local cand_txt = insert_space_to_candText(env, commit_text)
+                local cand_txt = rime_api_helper.insert_space_to_candText(env, commit_text)
                 env.engine:commit_text(cand_txt)
-                reset_commited_cand_state(env)
+                rime_api_helper.reset_commited_cand_state(env)
                 context:clear()
                 return 1 -- kAccepted
             end
