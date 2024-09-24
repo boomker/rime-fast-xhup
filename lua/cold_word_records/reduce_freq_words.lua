@@ -1,13 +1,14 @@
 local reduce_freq_words =
-{ 	["爬船"] = { "pair", },
+{ 	["vivid"] = { "vivid", },
 	["颜射"] = { "yjue", },
-	["肏屄"] = { "ccbi", },
-	["vivid"] = { "vivid", },
-	["圈X"] = { "qrx", },
-	["官婢"] = { "grbi", },
-	["恩特"] = { "ente", },
+	["x64"] = { "xlf", },
+	["书裙"] = { "uuqy", },
+	["爬船"] = { "pair", },
 	["萨法"] = { "safa", },
 	["佛莱尔"] = { "folder", },
-	["书裙"] = { "uuqy", },
+	["官婢"] = { "grbi", },
+	["圈X"] = { "qrx", },
+	["恩特"] = { "ente", },
+	["肏屄"] = { "ccbi", },
 }
 return reduce_freq_words
