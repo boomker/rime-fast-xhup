@@ -38,7 +38,7 @@ engine:
   processors:
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
-    - lua_processor@*smart_apostrophe
+    - lua_processor@*smart_commit_cand
     - lua_processor@*idiom_abbr_expand
     - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
@@ -78,7 +78,7 @@ engine:
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - table_translator@easy_en                        # /oe 触发进入英文输入模式
-    - lua_translator@*en_custom                       # \] 触发自定义单词入库
+    - lua_translator@*en_custom                       # \ 触发自定义单词入库
     - lua_translator@*pin_word*translator             # ctrl-t 自定义置顶词
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
@@ -130,7 +130,7 @@ translator:
   # always_show_comments: true
   # disable_user_dict_for_patterns:
   # preedit_format:
-  #   __include: preedit_convert_rules
+  #   __include: preedit_convert_rules    # 编辑器输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
     - xform/^~\w+\s.*$//            # 单字编码提示只显示辅助码部分
@@ -334,7 +334,6 @@ algebra_common:
   - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|         # Flypy: AB/CD
   - derive|^(\w+)\[(\w)(\w)$|$1/$2|           # Flypy: AB/C
   - derive/^(\w+)\[(\w)(\w)$/$1/              # Flypy: AB
-
 
   # 响应 ` 造词
   - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
