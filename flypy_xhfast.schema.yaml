@@ -38,7 +38,7 @@ engine:
   processors:
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
-    - lua_processor@*smart_apostrophe
+    - lua_processor@*smart_commit_cand
     - lua_processor@*idiom_abbr_expand
     - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
