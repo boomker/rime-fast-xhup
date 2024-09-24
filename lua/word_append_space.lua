@@ -2,7 +2,6 @@
 -- 为中英混输词条（cn_en.dict.yaml）自动空格
 -- 示例：`VIP中P` → `VIP 中 P`
 
--- local logger = require('tools/logger')
 local rime_api_helper = require('tools/rime_api_helper')
 local space_leader_word = {}
 
@@ -13,11 +12,11 @@ local function reset_commited_cand_state(env)
     context:set_property("prev_cand_is_chinese", "0")
     context:set_property("prev_cand_is_preedit", "0")
     context:set_property("prev_commit_is_comma", "0")
+    context:set_property("prev_commit_is_period", "0")
     context:set_property("prev_commit_is_symbol", "0")
 end
 
 function space_leader_word.init(env)
-    env.page_turn_count = 0
     env.symbol_keys = {
         ["comma"] = true,
         ["equal"] = true,
@@ -58,11 +57,13 @@ function space_leader_word.func(key, env)
     local context = engine.context
     local input_code = context.input
     local caret_pos = context.caret_pos
-    local page_size = engine.schema.page_size
     local composition = context.composition
-    local segment = composition:back()
 
     if input_code:match("^/.*") then return 2 end
+
+    local segment = composition:back()
+    local page_size = engine.schema.page_size
+	local selected_index = segment.selected_index or 7
 
     -- local current_focus_app  = env.current_focus_app
     local current_focus_app     = context:get_property("client_app")
@@ -71,6 +72,7 @@ function space_leader_word.func(key, env)
     local prev_cand_is_chinese  = context:get_property("prev_cand_is_chinese")
     local prev_cand_is_preedit  = context:get_property("prev_cand_is_preedit")
     local prev_commit_is_comma  = context:get_property("prev_commit_is_comma")
+    local prev_commit_is_period = context:get_property("prev_commit_is_period")
     local prev_commit_is_symbol = context:get_property("prev_commit_is_symbol")
 
     if current_focus_app ~= context:get_property("prev_focus_app") then
@@ -78,8 +80,7 @@ function space_leader_word.func(key, env)
     end
 
     if env.symbol_keys[key_value] and (
-        (#input_code == 0) or (
-        (#input_code == 1) and input_code:match("^%p$"))
+        (#input_code == 0) or ( (#input_code == 1) and input_code:match("^%p$") )
     )
     then
         reset_commited_cand_state(env)
@@ -93,7 +94,7 @@ function space_leader_word.func(key, env)
 
     if (#input_code >= 1) and (key_value == "Return") then
         local cand_text = input_code
-        if (prev_commit_is_comma == "1") then
+        if (prev_commit_is_comma == "1") or (prev_commit_is_period == "1") then
             engine:commit_text(cand_text)
         elseif (prev_cand_is_null ~= "1") and (#cand_text > 2)
             and (
@@ -112,34 +113,27 @@ function space_leader_word.func(key, env)
         return 1 -- kAccepted
     end
 
-    if (key_value == "Next") then
-        env.page_turn_count = env.page_turn_count + 1
-    elseif (key_value == "Page_Up") then
-        env.page_turn_count = env.page_turn_count - 1
-    end
-
-    if (#input_code >= 1) and (key_value == "comma") and (env.page_turn_count == 0) then
-        local cand_text = ""
-        local index = segment.selected_index
-        local selected_cand = segment:get_candidate_at(index)
-        if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
-            cand_text = " " .. selected_cand.text .. "，"
-            reset_commited_cand_state(env)
-        elseif (prev_cand_is_chinese == "1") and selected_cand.text:match("^%a+") then
-            cand_text = " " .. selected_cand.text .. "，"
-            reset_commited_cand_state(env)
+    if (#input_code >= 1) and (key_value == "comma") and (selected_index < page_size) then
+        local selected_cand = segment:get_candidate_at(selected_index)
+        local cand_text = selected_cand.text
+        if (prev_commit_is_comma == "1") or (prev_commit_is_period == "1") then
+            cand_text =  cand_text .. "，"
+        elseif (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
+            cand_text = " " .. cand_text .. "，"
+        elseif (prev_cand_is_chinese == "1") and cand_text:match("^%a+") then
+            cand_text = " " .. cand_text .. "，"
         else
             local preedit_text = context:get_preedit().text
             local segmentation = composition:toSegmentation()
-            local confirm_pos = segmentation:get_confirmed_position()
+            local confirm_pos  = segmentation:get_confirmed_position()
             if confirm_pos > 0 then
                 local confirm_text = preedit_text:sub(1, (confirm_pos / 2 * 3))
-                cand_text = confirm_text .. selected_cand.text .. "，"
+                cand_text = confirm_text .. cand_text .. "，"
             else
-                cand_text = selected_cand.text .. "，"
+                cand_text = cand_text .. "，"
             end
-            reset_commited_cand_state(env)
         end
+        reset_commited_cand_state(env)
         context:set_property("prev_commit_is_comma", "1")
         context:set_property("prev_focus_app", current_focus_app)
         engine:commit_text(cand_text)
@@ -148,14 +142,13 @@ function space_leader_word.func(key, env)
     end
 
     if (#input_code >= 1) then
-        local index = segment.selected_index
-        local selected_cand_idx = rime_api_helper.get_selected_candidate_index(key_value, index, page_size)
+        local selected_cand_idx = rime_api_helper.get_selected_candidate_index(key_value, selected_index, page_size)
         if selected_cand_idx < 0 then return 2 end
         local selected_cand = segment:get_candidate_at(selected_cand_idx)
         if not selected_cand then return 2 end
         local cand_text = selected_cand.text
 
-        if (prev_commit_is_comma == "1") then
+        if (prev_commit_is_comma == "1") or (prev_commit_is_period == "1") then
             reset_commited_cand_state(env)
             if cand_text:match("^%a+") then
                 context:set_property("prev_cand_is_word", "1")
