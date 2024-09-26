@@ -49,6 +49,7 @@ patch:
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
     # search: "`"                     # 辅码引导符
+    char_mode: "|"                    # 单字模式(四码词组->四码单字)
     pin_cand: "Control+t"             # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
     drop_cand: "Control+d"            # 强制删词, 无视输入的编码
@@ -173,7 +174,7 @@ patch:
 
   calculator:                         # 计算器
     tag: calculator
-    prefix: "/vs"
+    prefix: "/="
     tips: "计算器"
 
   chinese_number:                     # 中文数字
