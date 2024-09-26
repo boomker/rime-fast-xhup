@@ -49,6 +49,7 @@ patch:
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
     # search: "`"                     # 辅码引导符
+    char_mode: "|"                    # 单字模式(四码词组->四码单字)
     pin_cand: "Control+t"             # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
     drop_cand: "Control+d"            # 强制删词, 无视输入的编码
@@ -58,7 +59,7 @@ patch:
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
     expand_abbr_py: "Control+0"       # 展开超级简拼
-    remove_user_word: "Control+r"     # 删除用户词典里的单字 二三字词
+    remove_user_word: "Control+r"     # 删除用户词典里的单字 / 二三字词
     easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮候选字词
     # select_first_character: "minus" # `-` 以词定字(第一个字)
     # select_last_character:  "equal" # `=` 以词定字(最后一个字)
@@ -173,7 +174,7 @@ patch:
 
   calculator:                         # 计算器
     tag: calculator
-    prefix: "/vs"
+    prefix: "/="
     tips: "计算器"
 
   chinese_number:                     # 中文数字

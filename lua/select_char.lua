@@ -36,7 +36,7 @@ function P.func(key, env)
         engine:commit_text(cand_txt)
         context:clear()
 
-        rime_api_helper.reset_commited_cand_state(env)
+        rime_api_helper.set_commited_cand_is_chinese(env)
         return 1 -- kAccepted
     end
 
@@ -47,7 +47,7 @@ function P.func(key, env)
         engine:commit_text(cand_txt)
         context:clear()
 
-        rime_api_helper.reset_commited_cand_state(env)
+        rime_api_helper.set_commited_cand_is_chinese(env)
         return 1 -- kAccepted
     end
 
