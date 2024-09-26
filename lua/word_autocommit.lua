@@ -16,9 +16,10 @@ function word_auto_commit.init(env)
     local schema = Schema("flypy_xhfast") -- schema_id
     local phrase_dict = config:get_string("flypy_phrase/dictionary")
     local reverse_dict = config:get_string("radical_reverse_lookup/dictionary")
-    env.spelling_hints = config:get_int("translator/spelling_hints") or 0
+    -- env.spelling_hints = config:get_int("translator/spelling_hints") or 0
+    -- env.overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
+    env.char_mode_suffix = config:get_string("key_binder/char_mode") or "|"
     env.autocommit_on = config:get_bool("flypy_phrase/auto_commit") or false
-    env.overwrite_comment = config:get_bool("radical_reverse_lookup/overwrite_comment")
     env.mem = Memory(env.engine, schema, "translator")
     env.reversedb = ReverseLookup(schema_id)
     env.reversedb_phrase = ReverseLookup(phrase_dict)
@@ -26,7 +27,6 @@ function word_auto_commit.init(env)
 
     env.commit_notifier = env.engine.context.commit_notifier:connect(function()
         char_shape_code_tbl = {}
-        -- reset_commited_cand_state(env)
     end)
 end
 
@@ -83,7 +83,7 @@ function P.func(key, env)
         context:select(seleted_cand_index)
         local cand_text = context:get_commit_text():utf8_sub(1, -2)
         engine:commit_text(cand_text)
-        rime_api_helper.reset_commited_cand_state(env)
+        rime_api_helper.set_commited_cand_is_chinese(env)
         context:clear()
         return 1
     end
@@ -97,6 +97,29 @@ function T.func(input, seg, env)
     local caret_pos = context.caret_pos
     local composition = context.composition
     if composition:empty() then return end
+
+    -- 四码时, 按下'|', 单字优先
+    if input:match("^%l%l%l%l?%" .. env.char_mode_suffix .. "$") and table.find_index({ 4, 5 }, caret_pos) then
+        local entry_matched_tbl = {}
+        local yin_code = input:sub(1, 2)
+        env.mem:dict_lookup(yin_code, true, 50) -- expand_search
+        for dictentry in env.mem:iter_dict() do
+            local entry_text = dictentry.text
+
+            if utf8.len(entry_text) == 1 then
+                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
+                local pattern = "%f[%a](" .. input:gsub("%" .. env.char_mode_suffix, "") .. "%a*)"
+                if reverse_char_code:match(pattern) then
+                    table.insert(entry_matched_tbl, dictentry)
+                end
+            end
+        end
+
+        for _, de in ipairs(entry_matched_tbl) do
+            local ph = Phrase(env.mem, "single_char", seg.start, seg._end, de)
+            yield(ph:toCandidate())
+        end
+    end
 
     if table.len(char_shape_code_tbl) < 1 then return end
 
@@ -138,8 +161,6 @@ function F.func(input, env)
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
-    -- local spelling_hints = env.spelling_hints
-    -- local overwrite_comment = env.overwrite_comment
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])
@@ -195,7 +216,7 @@ function F.func(input, env)
         if #single_char_cands == 1 then
             local cand_txt = rime_api_helper.insert_space_to_candText(env, single_char_cands[1].text)
             env.engine:commit_text(cand_txt)
-            rime_api_helper.reset_commited_cand_state(env)
+            rime_api_helper.set_commited_cand_is_chinese(env)
             context:clear()
             return 1 -- kAccepted
         end
@@ -218,7 +239,7 @@ function F.func(input, env)
         if (#tchars_word_cands == 1) or (candidate_count == 1) then
             local cand_txt = rime_api_helper.insert_space_to_candText(env, tchars_word_cands[1].text)
             env.engine:commit_text(cand_txt)
-            rime_api_helper.reset_commited_cand_state(env)
+            rime_api_helper.set_commited_cand_is_chinese(env)
             char_shape_code_tbl = {}
             context:clear()
             return 1 -- kAccepted
@@ -259,7 +280,7 @@ function F.func(input, env)
             then
                 local cand_txt = rime_api_helper.insert_space_to_candText(env, commit_text)
                 env.engine:commit_text(cand_txt)
-                rime_api_helper.reset_commited_cand_state(env)
+                rime_api_helper.set_commited_cand_is_chinese(env)
                 context:clear()
                 return 1 -- kAccepted
             end

@@ -5,17 +5,6 @@
 local rime_api_helper = require('tools/rime_api_helper')
 local space_leader_word = {}
 
-local function reset_commited_cand_state(env)
-    local context = env.engine.context
-    context:set_property("prev_cand_is_null", "0")
-    context:set_property("prev_cand_is_word", "0")
-    context:set_property("prev_cand_is_chinese", "0")
-    context:set_property("prev_cand_is_preedit", "0")
-    context:set_property("prev_commit_is_comma", "0")
-    context:set_property("prev_commit_is_period", "0")
-    context:set_property("prev_commit_is_symbol", "0")
-end
-
 function space_leader_word.init(env)
     env.symbol_keys = {
         ["comma"] = true,
@@ -42,7 +31,7 @@ function space_leader_word.init(env)
         ["Alt+Return"] = true,
         ["Control+Return"] = true,
     }
-    reset_commited_cand_state(env)
+    rime_api_helper.reset_commited_cand_state(env)
 
     -- env.client_app_notifier = env.engine.context.property_update_notifier:connect(function(ctx, name)
     --     if name == "client_app" then
@@ -76,19 +65,19 @@ function space_leader_word.func(key, env)
     local prev_commit_is_symbol = context:get_property("prev_commit_is_symbol")
 
     if current_focus_app ~= context:get_property("prev_focus_app") then
-        reset_commited_cand_state(env)
+        rime_api_helper.reset_commited_cand_state(env)
     end
 
     if env.symbol_keys[key_value] and (
         (#input_code == 0) or ( (#input_code == 1) and input_code:match("^%p$") )
     )
     then
-        reset_commited_cand_state(env)
+        rime_api_helper.reset_commited_cand_state(env)
         context:set_property("prev_commit_is_symbol", "1")
     end
 
     if (#input_code == 0) and env.return_keys[key_value] then
-        reset_commited_cand_state(env)
+        rime_api_helper.reset_commited_cand_state(env)
         context:set_property("prev_cand_is_null", "1")
     end
 
@@ -133,7 +122,7 @@ function space_leader_word.func(key, env)
                 cand_text = cand_text .. "，"
             end
         end
-        reset_commited_cand_state(env)
+        rime_api_helper.reset_commited_cand_state(env)
         context:set_property("prev_commit_is_comma", "1")
         context:set_property("prev_focus_app", current_focus_app)
         engine:commit_text(cand_text)
@@ -149,7 +138,7 @@ function space_leader_word.func(key, env)
         local cand_text = selected_cand.text
 
         if (prev_commit_is_comma == "1") or (prev_commit_is_period == "1") then
-            reset_commited_cand_state(env)
+            rime_api_helper.reset_commited_cand_state(env)
             if cand_text:match("^%a+") then
                 context:set_property("prev_cand_is_word", "1")
             else
@@ -160,7 +149,7 @@ function space_leader_word.func(key, env)
         end
 
         if prev_commit_is_symbol == "1" then
-            reset_commited_cand_state(env)
+            rime_api_helper.reset_commited_cand_state(env)
             if cand_text:match("^%a+") then
                 context:set_property("prev_cand_is_word", "1")
             elseif input_code:match("^%p$") then
@@ -175,7 +164,7 @@ function space_leader_word.func(key, env)
         if (prev_cand_is_null ~= "1") and ((prev_cand_is_preedit == "1") or (prev_cand_is_word == "1")) then
             if (tonumber(utf8.codepoint(cand_text, 1)) >= 19968) and (#input_code == caret_pos) then
                 local ccand_text = " " .. cand_text
-                reset_commited_cand_state(env)
+                rime_api_helper.reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_chinese", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 engine:commit_text(ccand_text)
@@ -183,7 +172,7 @@ function space_leader_word.func(key, env)
                 return 1 -- kAccepted
             elseif string.match(cand_text, "^[%l%u]+") then
                 local ccand_text = " " .. cand_text
-                reset_commited_cand_state(env)
+                rime_api_helper.reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 engine:commit_text(ccand_text)
@@ -194,7 +183,7 @@ function space_leader_word.func(key, env)
         end
 
         if tonumber(utf8.codepoint(cand_text, 1)) >= 19968 then
-            reset_commited_cand_state(env)
+            rime_api_helper.reset_commited_cand_state(env)
             context:set_property("prev_cand_is_chinese", "1")
             context:set_property("prev_focus_app", current_focus_app)
             return 2
@@ -205,19 +194,19 @@ function space_leader_word.func(key, env)
                 ((prev_cand_is_chinese == "1") or (prev_cand_is_word == "1"))
             then
                 local ccand_text = " " .. cand_text
-                reset_commited_cand_state(env)
+                rime_api_helper.reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 engine:commit_text(ccand_text)
                 context:clear()
                 return 1 -- kAccepted
             elseif (prev_cand_is_null == "1") or (prev_cand_is_chinese ~= "1") then
-                reset_commited_cand_state(env)
+                rime_api_helper.reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 return 2
             else
-                reset_commited_cand_state(env)
+                rime_api_helper.reset_commited_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app", current_focus_app)
             end
