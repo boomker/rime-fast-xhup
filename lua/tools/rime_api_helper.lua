@@ -73,7 +73,7 @@ end
 function M.set_commited_cand_is_chinese(env)
 	local context = env.engine.context
 	M.reset_commited_cand_state(env)
-	context:set_property("prev_cand_is_chinese", "0")
+	context:set_property("prev_cand_is_chinese", "1")
 end
 
 return M
