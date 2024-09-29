@@ -77,7 +77,6 @@ function P.func(key_event, env)
 			local _cand_text = selected_cand.text .. "。"
 			local cand_text = rime_api_helper.insert_space_to_candText(env, _cand_text)
 			rime_api_helper.reset_commited_cand_state(env)
-			context:set_property("prev_commit_is_period", "1")
 			env.engine:commit_text(cand_text)
 			reset_state(env)
 			context:clear()
