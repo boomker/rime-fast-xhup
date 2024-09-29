@@ -39,7 +39,7 @@ function F.func(input, env)
                 and cand_text:match("^[A-Z]$")
             ) or (
             -- 辅码筛字时, 过滤掉 emoji
-				preedit_code:match("^%l+[`/][%l`/]*$")
+                preedit_code:match("^%l+[`/][%l`/]*$")
                 and (cand:get_dynamic_type() == "Shadow")
             ) or (
             -- 辅码模式下, 过滤掉长度超出预确认音节长度的候选
