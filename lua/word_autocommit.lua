@@ -84,7 +84,7 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     -- 四码时, 按下'|', 单字优先
-    if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$") and (caret_pos > 4) then
+    if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$") and (caret_pos >= 4) then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local ok = env.mem:dict_lookup(yin_code, true, 50) -- expand_search
