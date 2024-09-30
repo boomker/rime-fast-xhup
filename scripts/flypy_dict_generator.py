@@ -37,7 +37,7 @@ zdic_cibs.load()
 zdic_cybs.load()
 
 """
-usage: flypy_dict_generator_new.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
+usage: flypy_dict_generator.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
                                    [--convert] [--shape] --input_files
                                    [INPUT_FILES ...]
                                    [--word_frequency WORD_FREQUENCY] [--mode]
@@ -61,12 +61,12 @@ options:
                         spec generate filename for output.
 
 example:
-    python3 flypy_dict_generator_new.py -i a.dict.yaml
-    python3 flypy_dict_generator_new.py -i b.txt -t txt
-    python3 flypy_dict_generator_new.py -i bb.txt -t txt -w 0
-    python3 flypy_dict_generator_new.py -i ab.dict.yaml -c
-    python3 flypy_dict_generator_new.py -i abc.dict.yaml -c -x -w 100
-    python3 flypy_dict_generator_new.py -i c.dict.yaml d.dict.yaml -o nc.dict.yaml nd.dict.yaml -m
+    python3 flypy_dict_generator.py -i a.dict.yaml
+    python3 flypy_dict_generator.py -i b.txt -t txt
+    python3 flypy_dict_generator.py -i bb.txt -t txt -w 0
+    python3 flypy_dict_generator.py -i ab.dict.yaml -c
+    python3 flypy_dict_generator.py -i abc.dict.yaml -c -x -w 100
+    python3 flypy_dict_generator.py -i c.dict.yaml d.dict.yaml -o nc.dict.yaml nd.dict.yaml -m
 """
 
 
