@@ -10,10 +10,11 @@ patch:
       - derive/^([djlnx])q/$1f/       # q --> f
       - derive/^q([bikmnsxy])/f$1/
       - derive/^qt/fd/
+      - derive/^qu/fe/
       - derive/^qr/fo/
-      - derive/^qq/fz/
       - derive/^qp/fp/
-      - derive/^qv/fl/                # qv --> fl
+      - derive/^qq/fz/
+      - derive/^ql/fl/                # ql --> fl
       - derive/^pp/el/                # pp --> el
       - derive/^p([okiuhjbnm])/e$1/
       - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
