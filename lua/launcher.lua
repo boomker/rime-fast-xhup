@@ -261,9 +261,9 @@ function translator.func(input, seg, env)
     end
 
     if
-        input:match("^" .. favorCmdPrefix .. "$") and not (
-            favor_items or second_menu_items or first_menu_selected_text
-        ) and not segment.prompt:match("快捷指令")
+        input:match("^" .. favorCmdPrefix .. "$")
+        and (not segment.prompt:match("快捷指令"))
+        and (not favor_items)
     then
         second_menu_items = nil
         first_menu_selected_text = nil
