@@ -1,6 +1,7 @@
 -- 自动补全配对的符号, 并把光标左移到符号对内部
 -- ref: https://github.com/hchunhui/librime-lua/issues/84
 
+-- local logger = require("tools/logger")
 local rime_api_helper = require("tools/rime_api_helper")
 
 local function moveCursorToLeft(env)
@@ -41,8 +42,6 @@ function P.init(env)
         ["《"] = "》",
         ["quotedbl"] = { "“”", '""' },
         ["apostrophe"] = { "‘’", "''" },
-        -- ["apostrophe"] = { "“”", '""' },
-        -- ["quotedbl"] = { "‘’", "''" },
     }
 end
 
@@ -51,15 +50,10 @@ function P.func(key, env)
     local context = engine.context
     local composition = context.composition
     local segment = composition:back()
-    local focus_app_id = context:get_property("client_app")
+    -- local focus_app_id = context:get_property("client_app")
     local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
-    if symbol_unpair_flag then
-        return 2
-    elseif focus_app_id:match("alacritty")
-        or focus_app_id:match("VSCode")
-    then
-        return 2
-    end
+    if symbol_unpair_flag then return 2 end
+    -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
     local key_name
 
@@ -76,7 +70,7 @@ function P.func(key, env)
     end
 
     local prev_ascii_mode = context:get_option("ascii_mode")
-    if env.pairTable[key_name] and (not context:is_composing()) then
+    if env.pairTable[key_name] and composition:empty() then
         if prev_ascii_mode then
             engine:commit_text(env.pairTable[key_name][2])
         else
@@ -93,7 +87,7 @@ function P.func(key, env)
         return 1 -- kAccepted 收下此key
     end
 
-    if context:has_menu() and context:is_composing() then
+    if context:has_menu() or context:is_composing() then
         local keyvalue = key:repr()
         local index = -1
         -- 获得选中的候选词下标
@@ -105,6 +99,7 @@ function P.func(key, env)
             index = 9
         end
 
+        -- logger.writeLog("kv: " .. keyvalue .. ", index: " .. index)
         if (index >= 0) and (index < segment.menu:candidate_count()) then
             local candidateText = segment:get_candidate_at(index).text -- 获取指定项 从0起
             local pairedText = env.pairTable[candidateText]
