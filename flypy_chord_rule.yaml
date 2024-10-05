@@ -12,10 +12,9 @@ patch:
       - derive/^qt/fd/
       - derive/^qu/fe/
       - derive/^qr/fo/
+      - derive/^qp/fp/
       - derive/^qq/fz/
-      - derive/^ql/wl/                # ql --> wl
-      - derive/^qp/fl/                # qp --> fl
-      - derive/^dp/dl/                # dp --> dl
+      - derive/^ql/fl/                # ql --> fl
       - derive/^pp/el/                # pp --> el
       - derive/^p([okiuhjbnm])/e$1/
       - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
@@ -30,19 +29,17 @@ patch:
       - derive/^vf/vn/                # vf --> vn
       - derive/^vg/vk/                # vg --> vk
       - derive/^vr/vm/                # vr --> vm
-      - derive/^tr/rm/                # tr --> rm
-      - derive/^ty/ry/                # ty --> ry
-      - derive/^ti/ri/                # ti --> ri
-      - derive/^tk/rk/                # tk --> rk
-      - derive/^tp/rl/                # tp --> rl
-      - derive/^tw/dw/                # tw --> dw
       - derive/^te/df/                # te --> df
-      - derive/^t([gv])/db/           # t[gv] --> db
+      - derive/^tw/dw/                # tw --> dw
+      - derive/^tg/db/                # tg --> db
+      - derive/^tv/tl/                # tv --> tl
+      - derive/^tr/rm/                # tr --> rm
       - derive/^rf/rn/                # rf --> rn
-      - derive/^r([gv])/rb/           # r[gv] --> rb
-      - derive/^g([fv])/gn/           # g[fv] --> gn
-      - derive/^g([wy])/gi/           # g[wy] --> gi
+      - derive/^rg/rb/                # rg --> rb
+      - derive/^rv/rl/                # rv --> rl
+      - derive/^gf/gn/                # gf --> gn
       - derive/^gr/gm/                # gr --> gm
+      - derive/^g([wyv])/gi/          # g[wyv] --> gi
       - derive/^bp/bl/
       - derive/^sv/sb/
       - derive/^xp/sl/
@@ -71,7 +68,7 @@ patch:
       - derive/^bc/bs/
       - derive/^b([hjku])/a$1/
       - derive/^b([fgnm])/s$1/
-      - derive/^i([ok])/ix/
+      - derive/^ik/ix/
       - derive/^cs/ck/
       - derive/^cd/cl/
       - derive/^ce/cn/
