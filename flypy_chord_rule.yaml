@@ -39,7 +39,7 @@ patch:
       - derive/^rv/rl/                # rv --> rl
       - derive/^gf/gn/                # gf --> gn
       - derive/^gr/gm/                # gr --> gm
-      - derive/^g([wy])/gi/           # g[wy] --> gi
+      - derive/^g([wyv])/gi/          # g[wyv] --> gi
       - derive/^bp/bl/
       - derive/^sv/sb/
       - derive/^xp/sl/
