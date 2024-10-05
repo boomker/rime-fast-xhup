@@ -1,10 +1,9 @@
 local rime_api_helper = require("tools/rime_api_helper")
--- local logger = require('tools/logger')
 
 local P = {}
--- local kReject = 0
-local kAccepted = 1
 local kNoop = 2
+local kReject = 0
+local kAccepted = 1
 
 local function reset_state(env)
 	env.prev_input_code = nil
@@ -44,7 +43,6 @@ function P.func(key_event, env)
 	if composition:empty() then return kNoop end
 
 	local segment = composition:back()
-	if segment.prompt then return kNoop end
     if segment:has_tag("url") then return kNoop end
     if segment:has_tag("calculator") then return kNoop end
     if segment:has_tag("chinese_number") then return kNoop end
