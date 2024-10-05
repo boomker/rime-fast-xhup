@@ -44,18 +44,18 @@ function P.func(key_event, env)
 	if composition:empty() then return kNoop end
 
 	local segment = composition:back()
+    if segment:has_tag("url") then return kNoop end
+    if segment:has_tag("calculator") then return kNoop end
+    if segment:has_tag("chinese_number") then return kNoop end
+
 	local menu = segment.menu
 	local page_size = env.engine.schema.page_size or 7
 
 	if key_event:repr() == "apostrophe" then
-		if menu:candidate_count() < 3 then
+		if (input_code:match('^[^~]'))
+            and segment:has_tag("radical_lookup")
+        then
 			env.engine:process_key(KeyEvent("'"))
-			return kAccepted
-		end
-
-		local selected_index = segment.selected_index
-		if selected_index >= page_size then
-			env.engine:process_key(KeyEvent("3"))
 			return kAccepted
 		end
 
