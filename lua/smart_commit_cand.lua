@@ -44,6 +44,7 @@ function P.func(key_event, env)
 	if composition:empty() then return kNoop end
 
 	local segment = composition:back()
+	if segment.prompt then return kNoop end
     if segment:has_tag("url") then return kNoop end
     if segment:has_tag("calculator") then return kNoop end
     if segment:has_tag("chinese_number") then return kNoop end
