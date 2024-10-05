@@ -89,7 +89,6 @@ patch:
       date: "^(/wd|date)$"
       timestamp: "^/uts$"                       # 时间戳
       chinese_lunar: "^/nl$"                    # 中国农历
-      chinese_number: "^/cn[0-9.]*$"            # 中文数字
       LaTeX: "^/lt(.*)$"                        # LaTeX 公式
       history: "^(/hs|hisz)$"                   # 上屏历史
       easy_en: "/oe[a-zA-Z]+'?$"                # 英文输入
@@ -97,6 +96,7 @@ patch:
       calculator: "^/=(.*)$"                    # 简易计算器
       flypy_help: "^/(oh|help)$"                # 方案帮助菜单
       radical_lookup: "~[a-z]+'?$"              # 部件拆字组字
+      chinese_number: "^/cn[0-9.]*$"            # 中文大写数字
       flypy_key_help: "^/ok[a-z]*$"             # 小鹤双拼键位帮助
       switch_options: "^(/so|sopt)$"            # 快速切换配置选项
 
