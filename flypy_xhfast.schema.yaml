@@ -84,7 +84,7 @@ engine:
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
     - lua_translator@*date_time                       # date, week, time 触发
     - lua_translator@*laTex                           # /lt 触发 LaTeX 输入
-    - lua_translator@*calculator                      # /vs 触发简易计算器
+    - lua_translator@*calculator                      # /= 触发简易计算器
     - lua_translator@*chinese_number                  # /cn 触发繁体大写金额数字
     - lua_translator@*launcher*translator             # /jj, /fj 触发快捷命令
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
