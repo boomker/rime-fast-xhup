@@ -28,6 +28,14 @@ local function cmd(system, cmdArgs, appId)
     end
 end
 
+local function wrap_path(path_type, path)
+    if path_type == "file" then
+        return path:gsub(" ", "\\ "):gsub("~([%a]+)", "\\~%1")
+    elseif path_type == "command" then
+        return path:gsub(" ", "\\ ", 1):gsub("~([%a]+)", "\\~%1")
+    end
+end
+
 function processor.init(env)
     reload_env(env)
     env.launcher_config = require("launcher_config")
@@ -130,11 +138,11 @@ function processor.func(key, env)
                 cmd(system_name, "", candidateText)
             elseif (action == "open") and (system_name ~= "ios") then
                 local _path = items[candidateText]
-                local path = _path:match("^[~/].* ") and _path:gsub(" ", "\\ ") or _path
+                local path = _path:match("[~ ]+") and wrap_path("file", _path) or _path
                 cmd(system_name, "", path)
             elseif (action == "exec") and (system_name ~= "ios") then
                 local _cmdString = items[candidateText]
-                local cmdString = _cmdString:match("^[~/].* ") and _cmdString:gsub(" ", "\\ ", 1) or _cmdString
+                local cmdString = _cmdString:match("^/.*[~ ]+") and wrap_path("command", _cmdString) or _cmdString
                 cmd(system_name, "exec", cmdString)
             else
                 engine:commit_text(candidateText)
@@ -396,9 +404,10 @@ function filter.func(input, env)
         local commitText = fav_items[first_menu_selected_text]["items"][second_menu_selected_text]
         local action = fav_items[first_menu_selected_text]["action"]
         if action == "open" then
-            cmd(system_name, "", commitText)
+            local path = wrap_path("file", commitText)
+            cmd(system_name, "", path)
         elseif action == "exec" then
-            local cmdString = commitText:match("^/") and commitText:gsub(" ", "\\ ", 1) or commitText
+            local cmdString = commitText:match("^/.*[~ ]+") and wrap_path("command", commitText) or commitText
             cmd(system_name, "exec", cmdString)
         else
             env.engine:commit_text(commitText)
