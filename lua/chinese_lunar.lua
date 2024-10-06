@@ -431,7 +431,6 @@ local function diffDate(date1, date2)
                 + leaveDate(tonumber(string.sub(date2, 1, 8)))
         else
             total = leaveDate(tonumber(string.sub(date2, 1, 8))) - leaveDate(tonumber(string.sub(date1, 1, 8)))
-            -- print(date1 .. "-" .. date2)
         end
     elseif tonumber(date2) == tonumber(date1) then
         return 0
@@ -549,14 +548,16 @@ function T.func(input, seg, env)
     local segment = composition:back()
 
     local date1, date2 = Date2LunarDate(os.date("%Y%m%d"))
-    if (seg.tag == "chinese_lunar") or (input == "/nl") or (input == "lunar") then
+    if seg:has_tag("lunar") or (input == "/nl") or (input == "lunar") then
         segment.prompt = "〔" .. "农历" .. "〕"
-        local lunar_date = Candidate("lunar", seg.start, seg._end, date1, "")
-        lunar_date.quality = 999
-        yield(lunar_date)
-        local lunar_ymd = (Candidate("lunar", seg.start, seg._end, date2, ""))
-        lunar_ymd.quality = 999
-        yield(lunar_ymd)
+        local lunar_date = date1 and Candidate("lunar", seg.start, seg._end, date1, "") or nil
+        local lunar_ymd = date2 and Candidate("lunar", seg.start, seg._end, date2, "") or nil
+        if lunar_date and lunar_ymd then
+            lunar_date.quality = 999
+            lunar_ymd.quality = 999
+            yield(lunar_date)
+            yield(lunar_ymd)
+        end
     end
 end
 
