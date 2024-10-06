@@ -84,20 +84,20 @@ patch:
 
   recognizer/+:
     patterns/+:
+      timestamp: "^/uts$"                       # 时间戳
       week: "^(/wk|week)$"
       time: "^(/wt|time)$"
       date: "^(/wd|date)$"
-      timestamp: "^/uts$"                       # 时间戳
-      chinese_lunar: "^/nl$"                    # 中国农历
-      chinese_number: "^/cn[0-9.]*$"            # 中文数字
+      lunar: "^(/nl|lunar)$"                    # 中国农历
+      LaTeX: "^/(lt|LT)(.*)$"                   # LaTeX 公式
       history: "^(/hs|hisz)$"                   # 上屏历史
-      shortcuts: "^/fj[a-z]*$"                  # 快捷指令
-      LaTeX: "^/lt(.*)$"                        # LaTeX 公式
-      calculator: "^/=(.*)$"                    # 简易计算器
-      radical_lookup: "~[a-z]+'?$"              # ~ 部件拆字
-      easy_en: "/oe[a-zA-Z]*'?$"                # 英文输入方案
-      flypy_help: "^/(oh|help)$"                # 本方案帮助菜单
-      flypy_key_help: "^/ok[a-z]*$"             # 小鹤双拼键位帮助
+      easy_en: "/oe[a-zA-Z]+'?$"                # 英文输入
+      shortcuts:  "^/fj[a-z]*$"                 # 快捷指令
+      flypy_help: "^/(oh|help)$"                # 方案帮助菜单
+      calculator: "^(/=|/vs)(.*)$"              # 简易计算器
+      radical_lookup: "~[a-z]+'?$"              # 部件拆字组字
+      flypy_key_help: "^/ok[a-z]*$"             # 双拼键位帮助
+      chinese_number: "^/cn[0-9.]*$"            # 中文大写数字
       switch_options: "^(/so|sopt)$"            # 快速切换配置选项
 
   punctuator/+:
@@ -161,7 +161,7 @@ patch:
 
   radical_lookup/+:                   # 部件组字
     prefix: "~"
-    tips: 〔部件组字〕
+    tips: 部件组字
 
   radical_reverse_lookup/+:           # 部件组字反查
     overwrite_comment: false
@@ -174,6 +174,7 @@ patch:
 
   calculator:                         # 计算器
     tag: calculator
+    # prefix: "/vs"
     prefix: "/="
     tips: "计算器"
 
