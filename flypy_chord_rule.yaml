@@ -32,7 +32,7 @@ patch:
       - derive/^te/df/                # te --> df
       - derive/^tw/dw/                # tw --> dw
       - derive/^tg/db/                # tg --> db
-      - derive/^tv/tl/                # tv --> tl
+      - derive/^tv/dl/                # tv --> dl
       - derive/^tr/rm/                # tr --> rm
       - derive/^rf/rn/                # rf --> rn
       - derive/^rg/rb/                # rg --> rb
@@ -41,11 +41,10 @@ patch:
       - derive/^gr/gm/                # gr --> gm
       - derive/^g([wyv])/gi/          # g[wyv] --> gi
       - derive/^bp/bl/
-      - derive/^sv/sb/
-      - derive/^xp/sl/
+      - derive/^sv/sl/
+      - derive/^xp/xj/
       - derive/^xt/xo/
       - derive/^xs/xh/
-      - derive/^nj/xj/
       - derive/^nu/nx/
       - derive/^nh/nv/
       - derive/^no/nr/
