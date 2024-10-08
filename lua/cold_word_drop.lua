@@ -182,7 +182,7 @@ function filter.func(input, env)
 			end
 		end
 
-		if #cands >= 120 then break end
+		if #cands >= 150 then break end
 	end
 
 	for _, cand in ipairs(cands) do yield(cand) end

@@ -49,7 +49,7 @@ function P.func(key, env)
     -- 四码二字词时, 按下 '/'  生成辅助码提示注解
     if (key:repr() == "slash") and (caret_pos == 4) and (input_code:match("^%l+")) then
         char_shape_code_tbl = {}
-        for i = 1, 50, 1 do
+        for i = 1, 100, 1 do
             local word_cand = segment:get_candidate_at(i)
             if not word_cand then return 2 end
             local word_cand_text = word_cand.text
@@ -87,7 +87,7 @@ function T.func(input, seg, env)
     if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$") and (caret_pos >= 4) then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
-        local ok = env.mem:dict_lookup(yin_code, true, 50) -- expand_search
+        local ok = env.mem:dict_lookup(yin_code, true, 150) -- expand_search
         if not ok then return end
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
@@ -172,7 +172,7 @@ function F.func(input, env)
             fchars_word_cands[cand.text] = cand
         end
 
-        if #normal_cands >= 120 then break end
+        if #normal_cands >= 150 then break end
         table.insert(normal_cands, cand)
     end
 
