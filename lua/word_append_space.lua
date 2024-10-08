@@ -23,15 +23,15 @@ function space_leader_word.func(key, env)
 	local input_code = context.input
 	local caret_pos = context.caret_pos
 	local composition = context.composition
+    local page_size = engine.schema.page_size
 	local segment = composition:back()
-	local page_size = engine.schema.page_size
-	local selected_index = segment.selected_index or 7
 
     if input_code:match("^/.*") then return 2 end
 
 	local current_focus_app = context:get_property("client_app")
 	local prev_cand_is_null = context:get_property("prev_cand_is_null")
 	local prev_cand_is_word = context:get_property("prev_cand_is_word")
+    local prev_cand_is_symbol  = context:get_property("prev_cand_is_symbol")
 	local prev_cand_is_chinese = context:get_property("prev_cand_is_chinese")
 	local prev_cand_is_preedit = context:get_property("prev_cand_is_preedit")
 
@@ -44,6 +44,19 @@ function space_leader_word.func(key, env)
 		context:set_property("prev_cand_is_null", "1")
 	end
 
+	local index = segment.selected_index or 7
+	local selected_cand_idx = rime_api_helper.get_selected_candidate_index(key_value, index, page_size)
+    if (#input_code >= 1 ) and (prev_cand_is_symbol == "1") and (selected_cand_idx >= 0) then
+		local selected_cand = segment:get_candidate_at(selected_cand_idx)
+		if not selected_cand then return 2 end
+		local cand_text = selected_cand.text
+		engine:commit_text(cand_text)
+		rime_api_helper.set_commited_cand_is_chinese(env)
+		context:set_property("prev_focus_app", current_focus_app)
+		context:clear()
+		return 1 -- kAccepted
+    end
+
 	if (#input_code >= 1) and env.return_keys[key_value] then
 		local cand_text = input_code
 		if (prev_cand_is_chinese == "1") or (prev_cand_is_word == "1") then
@@ -52,14 +65,15 @@ function space_leader_word.func(key, env)
 		else
 			engine:commit_text(cand_text)
 		end
+		rime_api_helper.reset_commited_cand_state(env)
 		context:set_property("prev_cand_is_preedit", "1")
 		context:set_property("prev_focus_app", current_focus_app)
 		context:clear()
 		return 1 -- kAccepted
 	end
 
-	if (#input_code >= 1) and (key_value == "comma") and (selected_index < page_size) then
-		local selected_cand = segment:get_candidate_at(selected_index)
+	if (#input_code >= 1) and (key_value == "comma") and (index < page_size) then
+		local selected_cand = segment:get_candidate_at(index)
 		local cand_text = selected_cand.text
 		if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
 			cand_text = " " .. cand_text .. "，"
@@ -83,9 +97,7 @@ function space_leader_word.func(key, env)
 		return 1 -- kAccepted
 	end
 
-	if #input_code >= 1 then
-		local selected_cand_idx = rime_api_helper.get_selected_candidate_index(key_value, selected_index, page_size)
-		if selected_cand_idx < 0 then return 2 end
+	if #input_code >= 1 and (selected_cand_idx >= 0) then
 		local selected_cand = segment:get_candidate_at(selected_cand_idx)
 		if not selected_cand then return 2 end
 		local cand_text = selected_cand.text

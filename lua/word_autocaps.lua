@@ -21,7 +21,7 @@ local function autocap_filter(input, env)
 			yield(cand)
 		end
 
-        if #u_cands >= 120 then break end
+        if #u_cands >= 150 then break end
 	end
 
 	for _, cand in ipairs(u_cands) do yield(cand) end

@@ -1,0 +1,10 @@
+﻿
+#Requires AutoHotkey v2
+#SingleInstance Force
+;搭配 飛鶴快拼方案的光標移位。
+;2024-10-08 
+; tooltip 及 settimer 是測試用，可以刪掉，不影響.
+; ToolTip "光標移位 left 了`nThis will be displayed for 5 seconds."
+; SetTimer () => ToolTip(), -5000
+
+Send "{Left}"
