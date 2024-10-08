@@ -113,7 +113,7 @@ function F.func(input, env)
             ::END_DROP::
         end
 
-        if #low_priority_cands >= 120 then break end
+        if #low_priority_cands >= 150 then break end
     end
 
     if drop_cand then drop_cand = false end

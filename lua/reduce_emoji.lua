@@ -57,7 +57,7 @@ function F.func(input, env)
 		else
 			table.insert(other_cands, cand)
 		end
-        if #other_cands >= 120 then break end
+        if #other_cands >= 150 then break end
 	end
 
 	for _, emoji_cand in ipairs(emoji_cands) do
