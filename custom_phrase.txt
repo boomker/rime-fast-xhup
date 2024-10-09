@@ -65,6 +65,8 @@
 身体	ut	3
 视图	ut	2
 渗透	ut	1
+有吗	um	1
+什么	um	2
 哦哦	oo	3
 噢噢	oo	2
 喔喔	oo	1
@@ -75,20 +77,18 @@
 你那边	nnb	2
 您那边	nnb	1
 手机号	sjh	1
-什么鬼	umg	1
 是不是	ubu	1
 怎样的	zyd	1
 为什么	wum	2
+什么鬼	umg	1
+什么情况	umqk
+什么情况	umfk
+什么意思	umys
 怎么样了	zmyl
 怎么样了	zmwl
 截图看看	jtkk
 截图看下	jtkx
 又双叒叕	yyyy
-有吗	um	1
-什么	um	2
-什么情况	umqk
-什么情况	umfk
-什么意思	umys
 什么玩意儿	umwy
 什么玩意儿!	wtf	2
 What the fuck!	wtf	1
@@ -98,12 +98,11 @@ WTF	wtf	3
 Rime	rime	3
 开源输入法引擎	rime	2
 http://rime.im	rime	1
-正在开会，一会儿回复你	mndm
+正在开会，一会儿回复你	melr
 换行词条<br>第二行	hhctest
 # 其他换行词条<br>我是下一行	hhct
 
 ## 简单单词
-Hugo	hugo
 TODO	todo
 DevOps	devo	2
 Django	djan	2
