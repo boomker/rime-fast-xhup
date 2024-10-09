@@ -24,7 +24,6 @@ function F.func(input, env)
         local cand_type = cand:get_dynamic_type()
         local cand_text = cand.text:gsub(" ", "")
         local _, sp_count = cand.preedit:gsub(" ", "")
-        -- local cand_comment = cand.comment:gsub("[〔〕]", "")
 
         if cand.comment:match("^" .. env.pin_mark .. "$") then
             yield(cand) -- 带有 pin_mark 标记的候选词条, 优先显示
@@ -73,8 +72,8 @@ function F.func(input, env)
             end
         elseif -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
             (cand_type ~= "Shadow")
-            and (not preedit_code:match("%p"))
             and (#preedit_code - sp_count > 1)
+            and (not preedit_code:match("%p"))
             and (not cand_text:match("[%a%p]"))
             and (not cand.type:match("user_table"))
             and (utf8.len(cand_text) <= #preedit_code)
@@ -87,8 +86,7 @@ function F.func(input, env)
             local preedit_last_code = preedit_code:sub(-1, -1)
             local first_char_ycode = reversedb:lookup(first_char):gsub("%[%l%l", "")
             local last_char_ycode = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
-            if last_char_ycode
-                and first_char_ycode
+            if last_char_ycode and first_char_ycode
                 and (last_char_ycode:match(preedit_last_code))
                 and (first_char_ycode:match(first_syllable_code))
             then

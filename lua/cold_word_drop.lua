@@ -9,7 +9,10 @@ local function get_record_filername(record_type)
 	local path_sep = "/"
 	local user_data_dir = rime_api:get_user_data_dir()
 	local user_distribute_name = rime_api:get_distribution_code_name()
-	if user_distribute_name:lower():match("weasel") then path_sep = "\\" end
+	if user_distribute_name:lower():match("weasel") then path_sep = [[\]] end
+    if user_distribute_name:lower():match("hamster") then
+        user_data_dir = "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+    end
 	if user_distribute_name:lower():match("ibus") then
 		return string.format(
 			"%s/rime/lua/cold_word_records/%s_words.lua",
