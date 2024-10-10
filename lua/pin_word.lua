@@ -91,6 +91,9 @@ function P.func(key, env)
 				table.remove(env.pin_word_records[preedit_code], idx)
 				candidate_changed = true
 			end
+			if table.len(env.pin_word_records[preedit_code]) == 0 then
+				env.pin_word_records[preedit_code] = nil
+			end
 		end
 
 		if candidate_changed then
@@ -160,19 +163,10 @@ function F.func(input, env)
 				table.insert(pin_cands, cand)
 			end
 			if #pin_cands == #pin_word_tab then
-				for i, word in ipairs(pin_word_tab) do
-					if pin_cands[i].text ~= word then
-						for j, pcand in ipairs(pin_cands) do
-							if pcand.text == word then
-								table.insert(pin_cands, i, pcand)
-								table.remove(pin_cands, j + 1)
-							end
-						end
-					end
-				end
+				table.sort(pin_cands, function(a, b)
+					return table.find_index(pin_word_tab, a.text) < table.find_index(pin_word_tab, b.text)
+				end)
 			end
-		elseif cand.comment:match(pin_mark) then
-			table.insert(pin_cands, cand)
 		else
 			table.insert(other_cands, cand)
 		end

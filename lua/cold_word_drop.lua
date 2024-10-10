@@ -10,9 +10,10 @@ local function get_record_filername(record_type)
 	local user_data_dir = rime_api:get_user_data_dir()
 	local user_distribute_name = rime_api:get_distribution_code_name()
 	if user_distribute_name:lower():match("weasel") then path_sep = [[\]] end
-    if user_distribute_name:lower():match("hamster") then
-        user_data_dir = "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
-    end
+	if user_distribute_name:lower():match("hamster") then
+		user_data_dir =
+			"/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+	end
 	if user_distribute_name:lower():match("ibus") then
 		return string.format(
 			"%s/rime/lua/cold_word_records/%s_words.lua",
@@ -38,7 +39,7 @@ local function write_word_to_file(env, record_type)
 	-- fd:flush() --刷新
 	local words_obj = string.format("%s_list", record_type)
 	local records = table.serialize(env.words_tbl[words_obj]) -- lua 的 table 对象 序列化为字符串
-	fd:write(records)       --写入 序列化的字符串
+	fd:write(records) --写入 序列化的字符串
 	fd:write(record_tailer) --写入文件尾部, 结束记录
 	fd:close() --关闭
 end
@@ -138,7 +139,7 @@ function filter.func(input, env)
 	local prev_cand_text = nil
 	local engine = env.engine
 	local context = engine.context
-    local preedit_str = context.input
+	local preedit_str = context.input
 	local drop_words = env.drop_words
 	local hide_words = env.hide_words
 	local word_reduce_idx = env.word_reduce_idx
@@ -157,8 +158,10 @@ function filter.func(input, env)
 				(
 					(cand_text:match("^%l%l%l?%p?$") == preedit_code)
 					or (cand_text:match("^%u[%a%d]%a?%p?$") and preedit_code:match("^%l%l%l?$"))
-					or (cand_text:match("^%u%a%a?%.?") and prev_cand_text and cand_text
-						:lower():match("^" .. prev_cand_text))
+					or (
+						cand_text:match("^%u%a%a?%.?")
+						and prev_cand_text and cand_text:lower():match("^" .. prev_cand_text)
+					)
 				) and not (cand.comment:match(env.pin_mark) or preedit_str:match(env.easy_en_prefix))
 			then
 				table.insert(cands, cand)
