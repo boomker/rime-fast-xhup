@@ -74,7 +74,6 @@ sort: by_weight
 搬位	bj ww	1
 班味	bj ww	1
 冰萃	bk cv	1
-兵乓	bk ph	1
 冰胖	bk ph	1
 病亡	bk wh	1
 边吧	bm ba	1
@@ -127,8 +126,7 @@ sort: by_weight
 打铲	da ij	1
 大蜡	da la	1
 大麓	da lu	1
-哒咩	da mp	1
-达咩	da mp	1
+打咩	da mp	1
 大嬢	da nl	1
 大如	da ru	1
 大赛	da sd	1
@@ -181,11 +179,11 @@ sort: by_weight
 钉崎	dk qi	1
 定缺	dk qt	1
 丁真	dk vf	1
+丁蟹	dk xp	1
 顶雨	dk yu	1
 电队	dm dv	1
 颠锅	dm go	1
 癫公	dm gs	1
-颠公	dm gs	1
 癫火	dm ho	1
 电掣	dm ie	1
 电妹	dm mw	1
@@ -208,6 +206,7 @@ sort: by_weight
 断卡	dr ka	1
 短炮	dr pc	1
 锻造	dr zc	1
+东迪	ds di	1
 董奉	ds fg	1
 东梯	ds ti	1
 动星	ds xk	1
@@ -298,13 +297,11 @@ sort: by_weight
 飞索	fw so	1
 非中	fw vs	1
 妃咲	fw xn	1
-飞宵	fw xn	1
 飞霄	fw xn	1
 非侠	fw xx	1
 费祎	fw yi	1
 肺源	fw yr	1
 肥宗	fw zs	1
-肥鯮	fw zs	1
 高芙	gc fu	1
 膏膏	gc gc	1
 高合	gc he	1
@@ -338,7 +335,6 @@ sort: by_weight
 光猎	gl lp	1
 广谋	gl mz	1
 光追	gl vv	1
-光锥	gl vv	1
 光夜	gl ye	1
 光渊	gl yr	1
 广子	gl zi	1
@@ -384,7 +380,6 @@ sort: by_weight
 棍反	gy fj	1
 棍花	gy hx	1
 棍铲	gy ij	1
-棍丝	gy si	1
 棍势	gy ui	1
 棍式	gy ui	1
 狗卷	gz jr	1
@@ -577,7 +572,6 @@ sort: by_weight
 今屿	jb yu	1
 禁娱	jb yu	1
 缉盗	ji dc	1
-辑盗	ji dc	1
 技攻	ji gs	1
 极轨	ji gv	1
 极核	ji he	1
@@ -641,14 +635,12 @@ sort: by_weight
 酵色	jn se	1
 焦香	jn xl	1
 解斑	jp bj	1
-解班	jp bj	1
 捷风	jp fg	1
 杰青	jp qk	1
 街式	jp ui	1
 解限	jp xm	1
 接园	jp yr	1
 借月	jp yt	1
-接仔	jp zd	1
 接崽	jp zd	1
 久酷	jq ku	1
 九擒	jq qb	1
@@ -700,7 +692,7 @@ sort: by_weight
 刻魔	ke mo	1
 客妹	ke mw	1
 柯冉	ke rj	1
-柯然	ke rj	1
+科软	ke rr	1
 可肉	ke rz	1
 铿仔	kg zd	1
 康娘	kh nl	1
@@ -709,6 +701,7 @@ sort: by_weight
 旷野	kl ye	1
 阔刀	ko dc	1
 扩图	ko tu	1
+宽福	kr fu	1
 空刻	ks ke	1
 空签	ks qm	1
 空摘	ks vd	1
@@ -736,7 +729,6 @@ sort: by_weight
 林尼	lb ni	1
 林准	lb vy	1
 劳大	lc da	1
-劳弟	lc di	1
 牢弟	lc di	1
 牢芬	lc ff	1
 牢火	lc ho	1
@@ -747,7 +739,6 @@ sort: by_weight
 老玛	lc ma	1
 老莫	lc mo	1
 牢鸟	lc nn	1
-劳帕	lc pa	1
 牢帕	lc pa	1
 老帕	lc pa	1
 牢求	lc qq	1
@@ -765,6 +756,7 @@ sort: by_weight
 狼星	lh xk	1
 礼册	li ce	1
 里芙	li fu	1
+理记	li ji	1
 锂矿	li kl	1
 立库	li ku	1
 里梅	li mw	1
@@ -953,14 +945,12 @@ sort: by_weight
 尼达	ni da	1
 妮芙	ni fu	1
 妮姬	ni ji	1
-尼拉	ni la	1
 尼菈	ni la	1
 泥们	ni mf	1
 妮怒	ni nu	1
 你善	ni uj	1
-难崩	nj bg	1
 难绷	nj bg	1
-南蚌	nj bh	1
+南绷	nj bh	1
 难蚌	nj bh	1
 男德	nj de	1
 男豆	nj dz	1
@@ -1004,6 +994,7 @@ sort: by_weight
 拍地	pd di	1
 排发	pd fa	1
 牌皇	pd hl	1
+排口	pd kz	1
 喷色	pf se	1
 胖皇	ph hl	1
 滂臭	ph iz	1
@@ -1103,6 +1094,7 @@ sort: by_weight
 秋肃	qq su	1
 拳补	qr bu	1
 全低	qr di	1
+全跌	qr dp	1
 全锦	qr jb	1
 全卡	qr ka	1
 全盲	qr mh	1
@@ -1820,7 +1812,6 @@ sort: by_weight
 安东森	an ds sf	1
 暗河传	an he vr	1
 安卿鱼	an qk yu	1
-安塞龙	an sd ls	1
 安赛龙	an sd ls	1
 安三胖	an sj ph	1
 安身法	an uf fa	1
@@ -1903,6 +1894,7 @@ sort: by_weight
 白幼瘦	bd yz uz	1
 白泽玉	bd ze yu	1
 笨宝宝	bf bc bc	1
+本地推	bf di tv	1
 笨萝卜	bf lo bo	1
 本命甲	bf mk jx	1
 本命年	bf mk nm	1
@@ -1935,6 +1927,7 @@ sort: by_weight
 冰雪谣	bk xt yc	1
 边界感	bm jp gj	1
 变卖物	bm md wu	1
+边松景	bm ss jk	1
 边佑锡	bm yz xi	1
 标准糖	bn vy th	1
 表演季	bn yj ji	1
@@ -2056,6 +2049,7 @@ sort: by_weight
 大词条	da ci tn	1
 打地铁	da di tp	1
 大单元	da dj yr	1
+大跌了	da dp le	1
 大饭包	da fj bc	1
 大反派	da fj pd	1
 大哥远	da ge yr	1
@@ -2128,7 +2122,6 @@ sort: by_weight
 等节后	dg jp hz	1
 登临意	dg lb yi	1
 灯笼怪	dg ls gk	1
-登录日	dg lu ri	1
 登陆日	dg lu ri	1
 等月亮	dg yt ll	1
 挡风被	dh fg bw	1
@@ -2175,8 +2168,8 @@ sort: by_weight
 定身术	dk uf uu	1
 定身咒	dk uf vz	1
 碇真嗣	dk vf si	1
-定校服	dk xn fu	1
 订校服	dk xn fu	1
+陆校服	dk xn fu	1
 淀粉肠	dm ff ih	1
 店管家	dm gr jx	1
 电工钳	dm gs qm	1
@@ -2276,6 +2269,7 @@ sort: by_weight
 风是风	fg ui fg	1
 风小了	fg xn le	1
 封印石	fg yb ui	1
+封阳君	fg yh jy	1
 放菜鸟	fh cd nn	1
 放的早	fh de zc	1
 防风邶	fh fg bw	1
@@ -2299,7 +2293,6 @@ sort: by_weight
 反手刀	fj uz dc	1
 反炸鱼	fj va yu	1
 樊振东	fj vg ds	1
-凡希亚	fj xi ya	1
 梵希雅	fj xi ya	1
 佛目珠	fo mu vu	1
 佛耶戈	fo ye ge	1
@@ -2324,13 +2317,11 @@ sort: by_weight
 负其他	fu qi ta	1
 福瑞控	fu rv ks	1
 浮屠界	fu tu jp	1
-浮屠街	fu tu jp	1
 浮屠塔	fu tu ta	1
 辐射板	fu ue bj	1
 辐射区	fu ue qu	1
 服饰券	fu ui qr	1
 赴山海	fu uj hd	1
-副温度	fu wf du	1
 负温度	fu wf du	1
 赋完分	fu wj ff	1
 富逸城	fu yi ig	1
@@ -2387,6 +2378,7 @@ sort: by_weight
 光栅卡	gl uj ka	1
 国安部	go an bu	1
 过保了	go bc le	1
+国博文	go bo wf	1
 国才杯	go cd bw	1
 过节后	go jp hz	1
 过节里	go jp li	1
@@ -2516,6 +2508,7 @@ sort: by_weight
 旱死了	hj si le	1
 韩维辰	hj ww if	1
 坏杀手	hk ua uz	1
+黄阿丽	hl aa li	1
 黄博凯	hl bo kd	1
 晃动了	hl ds le	1
 黄东萍	hl ds pk	1
@@ -2538,6 +2531,7 @@ sort: by_weight
 火炉旁	ho lu ph	1
 霍启山	ho qi uj	1
 霍震霆	ho vf tk	1
+藿香菇	ho xl gu	1
 环大陆	hr da lu	1
 幻海流	hr hd lq	1
 换乘了	hr ig le	1
@@ -2555,7 +2549,6 @@ sort: by_weight
 红牌了	hs pd le	1
 洪胜汉	hs ug hj	1
 红温了	hs wf le	1
-红问了	hs wf le	1
 红衣人	hs yi rf	1
 户晨风	hu if fg	1
 虎将军	hu jl jy	1
@@ -2616,6 +2609,7 @@ sort: by_weight
 茶主张	ia vu vh	1
 茶香鸡	ia xl ji	1
 超采样	ic cd yh	1
+抄底了	ic di le	1
 超击破	ic ji po	1
 超级球	ic ji qq	1
 超级圆	ic ji yr	1
@@ -2733,7 +2727,6 @@ sort: by_weight
 基建组	ji jm zu	1
 集卡社	ji ka ue	1
 基尼奇	ji ni qi	1
-基尼齐	ji ni qi	1
 济南车	ji nj ie	1
 纪念币	ji nm bi	1
 击破队	ji po dv	1
@@ -2774,6 +2767,7 @@ sort: by_weight
 捡板栗	jm bj li	1
 捡彩带	jm cd dd	1
 减仓了	jm ch le	1
+建队日	jm dv ri	1
 健儿们	jm er mf	1
 见春天	jm iy tm	1
 捡金币	jm jb bi	1
@@ -2975,6 +2969,7 @@ sort: by_weight
 李爱笑	li ai xn	1
 离不掉	li bu dn	1
 离大谱	li da pu	1
+李定豪	li dk hc	1
 李发彬	li fa bb	1
 李发斌	li fa bb	1
 里夫斯	li fu si	1
@@ -3055,7 +3050,6 @@ sort: by_weight
 落地醒	lo di xk	1
 洛恩佐	lo en zo	1
 逻各斯	lo ge si	1
-骆健佑	lo jm yz	1
 骆建佑	lo jm yz	1
 萝莉池	lo li ii	1
 洛伦佐	lo ly zo	1
@@ -3136,7 +3130,6 @@ sort: by_weight
 马嘉祺	ma jx qi	1
 玛克辛	ma ke xb	1
 玛拉妮	ma la ni	1
-马拉尼	ma la ni	1
 马莱莱	ma ld ld	1
 马立奥	ma li ao	1
 玛丽卡	ma li ka	1
@@ -3254,7 +3247,6 @@ sort: by_weight
 纳塔鲨	na ta ua	1
 哪张卡	na vh ka	1
 娜维娅	na ww ya	1
-纳维亚	na ww ya	1
 纳西妲	na xi da	1
 拿一份	na yi ff	1
 那艺娜	na yi na	1
@@ -3285,6 +3277,7 @@ sort: by_weight
 男儿歌	nj er ge	1
 楠火锅	nj ho go	1
 南川楼	nj ir lz	1
+男解说	nj jp uo	1
 男乒乓	nj pk ph	1
 楠山禅	nj uj ij	1
 男选手	nj xr uz	1
@@ -3432,6 +3425,7 @@ sort: by_weight
 清渭楼	qk ww lz	1
 青衣杀	qk yi ua	1
 庆余年	qk yu nm	1
+抢考点	ql kc dm	1
 抢秋膘	ql qq bn	1
 抢宿舍	ql su ue	1
 抢摊位	ql tj ww	1
@@ -3499,6 +3493,7 @@ sort: by_weight
 任运杰	rf yy jp	1
 若月亮	ro yt ll	1
 阮富仲	rr fu vs	1
+阮小咪	rr xn mi	1
 容金珍	rs jb vf	1
 荣一鸣	rs yi mk	1
 如果我	ru go wo	1
@@ -3530,6 +3525,7 @@ sort: by_weight
 私人机	si rf ji	1
 斯泰拉	si td la	1
 斯特勒	si te le	1
+斯坦德	si tj de	1
 四条路	si tn lu	1
 四选三	si xr sj	1
 四巡见	si xy jm	1
@@ -3611,7 +3607,6 @@ sort: by_weight
 台风云	td fg yy	1
 太荒谬	td hl mq	1
 太焦灼	td jn vo	1
-泰裤辣	td ku la	1
 泰酷辣	td ku la	1
 泰拉饭	td la fj	1
 太拉了	td la le	1
@@ -3803,7 +3798,6 @@ sort: by_weight
 石洵瑶	ui xy yc	1
 十一代	ui yi dd	1
 世一决	ui yi jt	1
-世一绝	ui yi jt	1
 十一前	ui yi qm	1
 试验室	ui yj ui	1
 十月了	ui yt le	1
@@ -3840,6 +3834,7 @@ sort: by_weight
 蜀道挤	uu dc ji	1
 蜀道热	uu dc re	1
 蜀道山	uu dc uj	1
+数电票	uu dm pn	1
 输给谁	uu gw uv	1
 数据坞	uu ju wu	1
 树莓红	uu mw hs	1
@@ -4014,6 +4009,7 @@ sort: by_weight
 朱光玉	vu gl yu	1
 主攻区	vu gs qu	1
 主火炬	vu ho ju	1
+朱成竹	vu ig vu	1
 猪重八	vu is ba	1
 朱荣杰	vu rs jp	1
 助上了	vu uh le	1
@@ -4107,7 +4103,7 @@ sort: by_weight
 玩原神	wj yr uf	1
 我基金	wo ji jb	1
 我嘞豆	wo le dz	1
-我勒个	wo le ge	1
+我嘞个	wo le ge	1
 我累了	wo lw le	1
 窝囊费	wo nh fw	1
 我同门	wo ts mf	1
@@ -4115,6 +4111,7 @@ sort: by_weight
 我主队	wo vu dv	1
 我早八	wo zc ba	1
 五百八	wu bd ba	1
+吴邦刚	wu bh gh	1
 五等装	wu dg vl	1
 五滴血	wu di xt	1
 武斗赛	wu dz sd	1
@@ -4127,6 +4124,7 @@ sort: by_weight
 无加速	wu jx su	1
 乌加特	wu jx te	1
 五灵王	wu lk wh	1
+乌龙香	wu ls xl	1
 乌梅汤	wu mw th	1
 婺女洲	wu nv vz	1
 武器池	wu qi ii	1
@@ -4417,6 +4415,7 @@ sort: by_weight
 已到岗	yi dc gh	1
 已返校	yi fj xn	1
 伊芙珑	yi fu ls	1
+伊菲丹	yi fw dj	1
 一和多	yi he do	1
 已核销	yi he xn	1
 医惠保	yi hv bc	1
@@ -4654,6 +4653,7 @@ sort: by_weight
 奥运预言	ao yy yu yj	1
 爸爸当家	ba ba dh jx	1
 八宝罗盘	ba bc lo pj	1
+八份作业	ba ff zo ye	1
 八方来财	ba fh ld cd	1
 巴勒斯坦	ba le si tj	1
 巴黎奥运	ba li ao yy	1
@@ -4684,6 +4684,9 @@ sort: by_weight
 报废补贴	bc fw bu tp	1
 包好看的	bc hc kj de	1
 保价协议	bc jx xp yi	1
+报考单位	bc kc dj ww	1
+报考类别	bc kc lw bp	1
+报考信息	bc kc xb xi	1
 爆款好人	bc kr hc rf	1
 宝了个贝	bc le ge bw	1
 爆冷出局	bc lg iu ju	1
@@ -4785,6 +4788,7 @@ sort: by_weight
 北体军训	bw ti jy xy	1
 被制裁了	bw vi cd le	1
 北舞严选	bw wu yj xr	1
+备用信息	bw ys xb xi	1
 草莓啵啵	cc mw bo bo	1
 菜菜淘汰	cd cd tc td	1
 才二十三	cd er ui sj	1
@@ -4796,6 +4800,7 @@ sort: by_weight
 财政厅长	cd vg tk vh	1
 策子没了	ce zi mw le	1
 岑锋科技	cf fg ke ji	1
+刺痛减肥	ci ts jm fw	1
 此生必驾	ci ug bi jx	1
 刺猬路演	ci ww lu yj	1
 刺猬票房	ci ww pn fh	1
@@ -4860,7 +4865,6 @@ sort: by_weight
 德育原则	de yu yr ze	1
 邓超红发	dg ic hs fa	1
 登陆计划	dg lu ji hx	1
-登录少年	dg lu uc nm	1
 登陆少年	dg lu uc nm	1
 邓为直播	dg ww vi bo	1
 档案状态	dh an vl td	1
@@ -4897,6 +4901,7 @@ sort: by_weight
 丁捷致歉	dk jp vi qm	1
 丁宁解说	dk nk jp uo	1
 定制冠军	dk vi gr jy	1
+定向就业	dk xl jq ye	1
 定向士官	dk xl ui gr	1
 电动尾翼	dm ds ww yi	1
 巅峰极速	dm fg ji su	1
@@ -5094,6 +5099,7 @@ sort: by_weight
 过教师节	go jn ui jp	1
 过节期间	go jp qi jm	1
 国家反诈	go jx fj va	1
+国民技术	go mb ji uu	1
 国民美食	go mb mw ui	1
 国内航线	go nw hh xm	1
 国乒德华	go pk de hx	1
@@ -5126,6 +5132,7 @@ sort: by_weight
 关注度低	gr vu du di	1
 观音禅院	gr yb ij yr	1
 公共地图	gs gs di tu	1
+公共数据	gs gs uu ju	1
 巩固发展	gs gu fa vj	1
 宫候以酒	gs hz yi jq	1
 攻击特效	gs ji te xn	1
@@ -5282,6 +5289,7 @@ sort: by_weight
 黑风大王	hw fg da wh	1
 黑吗喽好	hw ma lz hc	1
 黑色大地	hw se da di	1
+黑色月光	hw se yt gl	1
 黑兔致歉	hw tu vi qm	1
 黑羽盗一	hw yu dc yi	1
 黑云压城	hw yy ya ig	1
@@ -5293,6 +5301,7 @@ sort: by_weight
 花海受伤	hx hd uz uh	1
 花花挠心	hx hx nc xb	1
 花间丽影	hx jm li yk	1
+花开如梦	hx kd ru mg	1
 花洛莉亚	hx lo li ya	1
 华南师大	hx nj ui da	1
 花田乌龙	hx tm wu ls	1
@@ -5395,6 +5404,7 @@ sort: by_weight
 出道仪式	iu dc yi ui	1
 处闺蜜吗	iu gv mi ma	1
 初入职场	iu ru vi ih	1
+出现下跌	iu xm xx dp	1
 吹牛老爹	iv nq lc dp	1
 纯爱爸妈	iy ai ba ma	1
 纯爱设定	iy ai ue dk	1
@@ -5420,6 +5430,7 @@ sort: by_weight
 今年七夕	jb nm qi xi	1
 今年中秋	jb nm vs qq	1
 近期最油	jb qi zv yz	1
+今日寒露	jb ri hj lu	1
 今日处暑	jb ri iu uu	1
 今日立秋	jb ri li qq	1
 今日秋分	jb ri qq ff	1
@@ -5488,6 +5499,7 @@ sort: by_weight
 杰出女性	jp iu nv xk	1
 解禁壁纸	jp jb bi vi	1
 接接接接	jp jp jp jp	1
+捷捷微电	jp jp ww dm	1
 姐姐友谊	jp jp yz yi	1
 捷尼赛思	jp ni sd si	1
 解散重组	jp sj is zu	1
@@ -5560,7 +5572,6 @@ sort: by_weight
 咖啡甜心	ka fw tm xb	1
 卡卡尼亚	ka ka ni ya	1
 卡卡瓦夏	ka ka wa xx	1
-卡拉彼丘	ka la bi qq	1
 卡拉比丘	ka la bi qq	1
 卡皮巴拉	ka pi ba la	1
 考公典范	kc gs dm fj	1
@@ -5610,6 +5621,7 @@ sort: by_weight
 枯木龙吟	ku mu ls yb	1
 跨界任务	kx jp rf wu	1
 跨年狂欢	kx nm kl hr	1
+昆虫学者	ky is xt ve	1
 昆拉武特	ky la wu te	1
 困住了我	ky vu le wo	1
 蜡笔小莎	la bi xn ua	1
@@ -5730,7 +5742,6 @@ sort: by_weight
 旅游搭子	lv yz da zi	1
 雷电将军	lw dm jl jy	1
 雷犁热刀	lw li re dc	1
-雷犂热刀	lw li re dc	1
 累死三军	lw si sj jy	1
 楼都在晃	lz dz zd hl	1
 马杜埃凯	ma du ai kd	1
@@ -5948,6 +5959,7 @@ sort: by_weight
 拍的月亮	pd de yt ll	1
 拍个月亮	pd ge yt ll	1
 派出所长	pd iu so vh	1
+排球女将	pd qq nv jl	1
 排位珍宝	pd ww vf bc	1
 磅礴力量	ph bo li ll	1
 披哥后期	pi ge hz qi	1
@@ -5974,6 +5986,7 @@ sort: by_weight
 破框而出	po kl er iu	1
 普洱地震	pu er di vf	1
 普拉蒂尼	pu la di ni	1
+普通计划	pu ts ji hx	1
 浦项制铁	pu xl vi tp	1
 佩佩退役	pw pw tv yi	1
 配享太庙	pw xl td mn	1
@@ -6042,12 +6055,14 @@ sort: by_weight
 强强对决	ql ql dv jt	1
 强者天下	ql ve tm xx	1
 千帆星座	qm fj xk zo	1
+千股跌停	qm gu dp tk	1
 千股涨停	qm gu vh tk	1
 千湖之国	qm hu vi go	1
 钱锟相机	qm ky xl ji	1
 千里邀月	qm li yc yt	1
 千切豹马	qm qp bc ma	1
 钱色交易	qm se jn yi	1
+茜特菈莉	qm te la li	1
 钱塘风云	qm th fg yy	1
 千与千寻	qm yu qm xy	1
 千早爱音	qm zc ai yb	1
@@ -6206,7 +6221,6 @@ sort: by_weight
 台风中心	td fg vs xb	1
 台风走了	td fg zz le	1
 太过完美	td go wj mw	1
-泰国丸美	td go wj mw	1
 太关键了	td gr jm le	1
 太焦灼了	td jn vo le	1
 太空歌剧	td ks ge ju	1
@@ -6377,6 +6391,7 @@ sort: by_weight
 试炼之塔	ui lm vi ta	1
 十米跳台	ui mi tn td	1
 十年老友	ui nm lc yz	1
+视频码率	ui pb ma lv	1
 诗情画奕	ui qk hx yi	1
 十日终焉	ui ri vs yj	1
 失速问题	ui su wf ti	1
@@ -6441,6 +6456,7 @@ sort: by_weight
 炸鱼薯条	va yu uu tn	1
 召唤清风	vc hr qk fg	1
 赵雷现场	vc lw xm ih	1
+招生单位	vc ug dj ww	1
 朝朝夕夕	vc vc xi xi	1
 遮挡发球	ve dh fa qq	1
 折叠键盘	ve dp jm pj	1
@@ -6481,6 +6497,7 @@ sort: by_weight
 张淇唱跳	vh qi ih tn	1
 张若昀帅	vh ro yy uk	1
 掌中之弈	vh vs vi yi	1
+张远直播	vh yr vi bo	1
 章宇演技	vh yu yj ji	1
 直播经济	vi bo jk ji	1
 值此佳节	vi ci jx jp	1
@@ -6507,7 +6524,6 @@ sort: by_weight
 展开讲讲	vj kd jl jl	1
 展开说说	vj kd uo uo	1
 战术小队	vj uu xn dv	1
-战之巅峰	vj vi dm fg	1
 战至巅峰	vj vi dm fg	1
 拽哥你好	vk ge ni hc	1
 卓世科技	vo ui ke ji	1
@@ -6521,6 +6537,7 @@ sort: by_weight
 中非论坛	vs fw ly tj	1
 中国步伐	vs go bu fa	1
 中国队的	vs go dv de	1
+中国国足	vs go go zu	1
 中国海油	vs go hd yz	1
 中国金牌	vs go jb pd	1
 中国女篮	vs go nv lj	1
@@ -6627,6 +6644,7 @@ sort: by_weight
 网球决赛	wh qq jt sd	1
 网球女单	wh qq nv dj	1
 往日之影	wh ri vi yk	1
+网上确认	wh uh qt rf	1
 汪顺告白	wh uy gc bd	1
 汪顺跳水	wh uy tn uv	1
 王炸储备	wh va iu bw	1
@@ -6660,7 +6678,6 @@ sort: by_weight
 我会出手	wo hv iu uz	1
 我嫉妒了	wo ji du le	1
 我来助你	wo ld vu ni	1
-我勒个豆	wo le ge dz	1
 我嘞个豆	wo le ge dz	1
 我嘞个雷	wo le ge lw	1
 我免费啦	wo mm fw la	1
@@ -6674,6 +6691,7 @@ sort: by_weight
 我太帅喽	wo td uk lz	1
 我上早八	wo uh zc ba	1
 我是茶茶	wo ui ia ia	1
+我是神呐	wo ui uf na	1
 我真笑死	wo vf xn si	1
 我要门票	wo yc mf pn	1
 我也社恐	wo ye ue ks	1
@@ -6797,6 +6815,7 @@ sort: by_weight
 喜剧天赋	xi ju tm fu	1
 溪砾科技	xi li ke ji	1
 西楼儿女	xi lz er nv	1
+西特拉利	xi te la li	1
 西施新传	xi ui xb vr	1
 戏影对视	xi yk dv ui	1
 星布谷地	xk bu gu di	1
@@ -6830,6 +6849,7 @@ sort: by_weight
 香水宝石	xl uv bc ui	1
 香水喷泉	xl uv pf qr	1
 享受比赛	xl uz bi sd	1
+向佐打戏	xl zo da xi	1
 向佐淘汰	xl zo tc td	1
 现场求婚	xm ih qq hy	1
 仙台有树	xm td yz uu	1
@@ -7052,6 +7072,7 @@ sort: by_weight
 元梦之星	yr mg vi xk	1
 元气甜妹	yr qi tm mw	1
 原图直出	yr tu vi iu	1
+院线试毒	yr xm ui du	1
 拥抱此刻	ys bc ci ke	1
 拥抱自然	ys bc zi rj	1
 永不独行	ys bu du xk	1
@@ -7086,6 +7107,7 @@ sort: by_weight
 宇露君沾	yu lu jy vj	1
 宇日俱曾	yu ri ju cg	1
 于适武戏	yu ui wu xi	1
+于正报警	yu vg bc jk	1
 于正老粉	yu vg lc ff	1
 雨夜瓶邪	yu ye pk xp	1
 欲言难止	yu yj nj vi	1
@@ -7112,7 +7134,6 @@ sort: by_weight
 优漫卡通	yz mj ka ts	1
 有你真好	yz ni vf hc	1
 有所广益	yz so gl yi	1
-幽邃地库	yz sv di ku	1
 幽邃地窟	yz sv di ku	1
 优势项目	yz ui xl mu	1
 游戏搭子	yz xi da zi	1
@@ -7138,6 +7159,7 @@ sort: by_weight
 再见有时	zd jm yz ui	1
 再增两场	zd zg ll ih	1
 泽连斯基	ze lm si ji	1
+自卑心态	zi bw xb td	1
 自动去壳	zi ds qu ke	1
 自己包的	zi ji bc de	1
 自律的妈	zi lv de ma	1
@@ -7315,6 +7337,7 @@ sort: by_weight
 邓亚萍来了	dg ya pk ld le	1
 邓紫棋抢票	dg zi qi ql pn	1
 邓紫棋武汉	dg zi qi wu hj	1
+档案所在地	dh an so zd di	1
 地瓜机器人	di gx ji qi rf	1
 第四代住宅	di si dd vu vd	1
 第五人格黯	di wu rf ge an	1
@@ -7396,7 +7419,7 @@ sort: by_weight
 樊振东一单	fj vf ds yi dj	1
 樊振东眼神	fj vf ds yj uf	1
 樊振东杂志	fj vf ds za vi	1
-凡希亚第四	fj xi ya di si	1
+梵希雅第四	fj xi ya di si	1
 福冈总决赛	fu gh zs jt sd	1
 付航好好笑	fu hh hc hc xn	1
 付航吃法餐	fu hh ii fa cj	1
@@ -7564,7 +7587,9 @@ sort: by_weight
 超级红人节	ic ji hs rf jp	1
 超级全满贯	ic ji qr mj gr	1
 朝着圆月走	ic ve yr yt zz	1
+超修小黑瓶	ic xq xn hw pk	1
 超雄综合征	ic xs zs he vg	1
+柴西西游记	id xi xi yz ji	1
 陈艾森解说	if ai sf jp uo	1
 陈都灵路透	if du lk lu tz	1
 陈都灵旗袍	if du lk qi pc	1
@@ -7646,13 +7671,13 @@ sort: by_weight
 金在中女团	jb zd vs nv tr	1
 金子涵瘦了	jb zi hj uz le	1
 积分夺宝券	ji ff do bc qr	1
-积分夺宝卷	ji ff do bc qr	1
 纪梵希代言	ji fj xi dd yj	1
 极氪已报警	ji ke yi bc jk	1
 记录这一刻	ji lu ve yi ke	1
 寂寞独角戏	ji mo du jn xi	1
 极品木灵根	ji pb mu lk gf	1
 机器人之梦	ji qi rf vi mg	1
+技术性调整	ji uu xk tn vg	1
 记忆消失前	ji yi xn ui qm	1
 警方已介入	jk fh yi jp ru	1
 鲸落全过程	jk lo qr go ig	1
@@ -7709,6 +7734,7 @@ sort: by_weight
 卡卡公会赛	ka ka gs hv sd	1
 靠近维米尔	kc jb ww mi er	1
 考了多少分	kc le do uc ff	1
+考研预报名	kc yj yu bc mk	1
 凯恩大四喜	kd en da si xi	1
 开放的大门	kd fh de da mf	1
 开国宴风云	kd go yj fg yy	1
@@ -8015,7 +8041,9 @@ sort: by_weight
 七夕吃什么	qi xi ii uf me	1
 七夕奇妙游	qi xi qi mn yz	1
 气象科普团	qi xl ke pu tr	1
+七夜雪包场	qi ye xt bc ih	1
 七夜雪定档	qi ye xt dk dh	1
+七夜雪开播	qi ye xt kd bo	1
 祁煜画琳琅	qi yu hx lb lh	1
 青春大讲堂	qk iy da jl th	1
 青春旅行团	qk iy lv xk tr	1
@@ -8331,7 +8359,7 @@ sort: by_weight
 张极迪士尼	vh ji di ui ni	1
 张继科直播	vh ji ke vi bo	1
 张婧仪高定	vh jk yi gc dk	1
-张杰凡希亚	vh jp fj xi ya	1
+张杰梵希雅	vh jp fj xi ya	1
 张家朗卫冕	vh jx lh ww mm	1
 张佳宁哭戏	vh jx nk ku xi	1
 张凌赫新剧	vh lk he xb ju	1
@@ -8344,6 +8372,7 @@ sort: by_weight
 张镇麟发博	vh vf lb fa bo	1
 张真源白发	vh vf yr bd fa	1
 张真源音频	vh vf yr yb pb	1
+张婉莹回应	vh wj yk hv yk	1
 张伟是混蛋	vh ww ui hy dj	1
 张小斐好美	vh xn fw hc mw	1
 张小斐造型	vh xn fw zc xk	1
@@ -8769,6 +8798,7 @@ sort: by_weight
 袁山青编剧	yr uj qk bm ju	1
 袁娅维身材	yr ya ww uf cd	1
 袁一琦第一	yr yi qi di yi	1
+用一根香蕉	ys yi gf xl jn	1
 月饼大测评	yt bk da ce pk	1
 月饼初体验	yt bk iu ti yj	1
 月亮爬上来	yt ll pa uh ld	1
@@ -9002,6 +9032,7 @@ sort: by_weight
 东道主更吵了	ds dc vu gg ic le	1
 动画哑舍开播	ds hx ya ue kd bo	1
 东平佛山中学	ds pk fo uj vs xt	1
+动作配音挑战	ds zo pw yb tn vj	1
 度华年庆功宴	du hx nm qk gs yj	1
 毒液空降北京	du ye ks jl bw jk	1
 对方要价畸高	dv fh yc jx ji gc	1
@@ -9109,6 +9140,7 @@ sort: by_weight
 顾漫骄阳似我	gu mj jn yh si wo	1
 古偶新鲜血液	gu ou xb xm xt ye	1
 古一法师换脸	gu yi fa ui hr lm	1
+鬼才喜欢上班	gv cd xi hr uh bj	1
 桂花酒酿冰奶	gv hx jq nl bk nd	1
 桂花柿子冰茶	gv hx ui zi bk ia	1
 给吕布加穿透	gw lv bu jx ir tz	1
@@ -9142,6 +9174,7 @@ sort: by_weight
 韩国不吃月饼	hj go bu ii yt bk	1
 韩国混双好猛	hj go hy ul hc mg	1
 韩林也是拼了	hj lb ye ui pb le	1
+韩娱四大墙头	hj yu si da ql tz	1
 皇冠上的明珠	hl gr uh de mk vu	1
 黄龄成伴唱了	hl lk ig bj ih le	1
 黄明昊全开麦	hl mk hc qr kd md	1
@@ -9155,6 +9188,7 @@ sort: by_weight
 黄宣巡演抢票	hl xr xy yj ql pn	1
 黄杨钿甜哭戏	hl yh dm tm ku xi	1
 谎言之躯开机	hl yj vi qu kd ji	1
+黄油小熊咖啡	hl yz xn xs ka fw	1
 黄子弘凡杂志	hl zi hs fj za vi	1
 活到老唱到老	ho dc lc ih dc lc	1
 火朗正式退团	ho lh vg ui tv tr	1
@@ -9360,6 +9394,7 @@ sort: by_weight
 李昊寄居舞台	li hc ji ju wu td	1
 李娟一坨声明	li jr yi to ug mk	1
 李佳琦初舞台	li jx qi iu wu td	1
+李兰迪骨相美	li lj di gu xl mw	1
 李兰迪好真诚	li lj di hc vf ig	1
 李佩霞被双开	li pw xx bw ul kd	1
 里斯本丸沉没	li si bf wj if mo	1
@@ -9386,6 +9421,7 @@ sort: by_weight
 罗云熙晒腹肌	lo yy xi ud fu ji	1
 刘德华我爱你	lq de hx wo ai ni	1
 刘国梁捧脸杀	lq go ll pg lm ua	1
+刘浩存灵感妆	lq hc cy lk gj vl	1
 刘浩存学院风	lq hc cy xt yr fg	1
 刘老根式穿搭	lq lc gf ui ir da	1
 榴莲芒芒麻薯	lq lm mh mh ma uu	1
@@ -9509,6 +9545,7 @@ sort: by_weight
 南方日报声明	nj fh ri bc ug mk	1
 南极正在变绿	nj ji vg zd bm lv	1
 男明星流量大	nj mk xk lq ll da	1
+男女思维差异	nj nv si ww ia yi	1
 男生校内坠亡	nj ug xn nw vv wh	1
 南野拓实破门	nj ye to ui po mf	1
 男子持刀闹事	nj zi ii dc nc ui	1
@@ -9516,6 +9553,7 @@ sort: by_weight
 男子跳高决赛	nj zi tn gc jt sd	1
 男子跳远决赛	nj zi tn yr jt sd	1
 年度最亮彗星	nm du zv ll hv xk	1
+诺贝尔化学奖	no bw er hx xt jl	1
 诺米讲脱口秀	no mi jl to kz xq	1
 钮祜禄高压锅	nq hu lu gc ya go	1
 牛会哞马会叫	nq hv mz ma hv jn	1
@@ -9543,7 +9581,6 @@ sort: by_weight
 匹诺康尼事变	pi no kh ni ui bm	1
 痞幼方圆同框	pi yz fh yr ts kl	1
 盘古库里皮肤	pj gu ku li pi fu	1
-潘展乐双纪录	pj vj le ul ji lu	1
 潘展乐双记录	pj vj le ul ji lu	1
 潘玮柏评论区	pj ww bo pk ly qu	1
 攀岩比赛重赛	pj yj bi sd is sd	1
@@ -9688,6 +9725,7 @@ sort: by_weight
 台风摩羯路径	td fg mo jp lu jk	1
 台风苏力生成	td fg su li ug ig	1
 太阳逆转湖人	td yh ni vr hu rf	1
+太阳轻取活塞	td yh qk qu ho sd	1
 特别版红旗颂	te bp bj hs qi ss	1
 特别军事行动	te bp jy ui xk ds	1
 特朗普一句话	te lh pu yi ju hx	1
@@ -9822,6 +9860,7 @@ sort: by_weight
 正常她不会赢	vg ih ta bu hv yk	1
 郑钦文回国了	vg qb wf hv go le	1
 郑钦文前教练	vg qb wf qm jn lm	1
+郑钦文生日会	vg qb wf ug ri hv	1
 郑钦文失首盘	vg qb wf ui uz pj	1
 郑钦文咬金牌	vg qb wf yc jb pd	1
 郑棋元签唱会	vg qi yr qm ih hv	1
@@ -9871,6 +9910,7 @@ sort: by_weight
 张艺兴上海站	vh yi xk uh hd vj	1
 张艺兴音乐剧	vh yi xk yb yt ju	1
 张远三巡官宣	vh yr sj xy gr xr	1
+张元英式说话	vh yr yk ui uo hx	1
 张雨霏好霸气	vh yu fw hc ba qi	1
 张雨霏进决赛	vh yu fw jb jt sd	1
 张雨霏体能王	vh yu fw ti ng wh	1
@@ -10022,6 +10062,8 @@ sort: by_weight
 我的宝藏家乡	wo de bc zh jx xl	1
 我的备胎手机	wo de bw td uz ji	1
 我的电子榨菜	wo de dm zi va cd	1
+我的黄金时刻	wo de hl jb ui ke	1
+我的会员报告	wo de hv yr bc gc	1
 我的超人爸爸	wo de ic rf ba ba	1
 我的朝鲜之旅	wo de ic xm vi lv	1
 我的假日美味	wo de jx ri mw ww	1
@@ -10380,6 +10422,7 @@ sort: by_weight
 肥牛虾滑响铃卷	fw nq xx hx xl lk jr	1
 盖追先帝之殊遇	gd vv xm di vi uu yu	1
 国际原子能机构	go ji yr zi ng ji gz	1
+国家励志奖学金	go jx li vi jl xt jb	1
 国家医学考试网	go jx yi xt kc ui wh	1
 关关难过关关过	gr gr nj go gr gr go	1
 公开审计全行业	gs kd uf ji qr hh ye	1
@@ -10421,7 +10464,6 @@ sort: by_weight
 巧克力和酥油花	qn ke li he su yz hx	1
 秋天第一杯奶茶	qq tm di yi bw nd ia	1
 全自动红糖水器	qr zi ds hs th uv qi	1
-荣华与炎日之途	rs hx yu yj ri vi tu	1
 荣花与炎日之途	rs hx yu yj ri vi tu	1
 丧失校园择偶权	sh ui xn yr ze ou qr	1
 死神千年血战篇	si uf qm nm xt vj pm	1
@@ -10492,113 +10534,5 @@ sort: by_weight
 新加坡人民行动党	xb jx po rf mb xk ds dh	1
 古巨基一直看提词器	gu ju ji yi vi kj ti ci qi	1
 尼日利亚联邦共和国	ni ri li ya lm bh gs he go	1
-张杰凡希亚强强联合	vh jp fj xi ya ql ql lm he	1
+张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	1
 中华人民共和国政府	vs hx rf mb gs he go vg fu	1
-藿香菇	ho xl gu	1
-张婉莹回应	vh wj yk hv yk	1
-宽福	kr fu	1
-云璃	yy li	1
-花开如梦	hx kd ru mg	1
-斯坦德	si tj de	1
-黑色月光	hw se yt gl	1
-郑钦文生日会	vg qb wf ug ri hv	1
-国博文	go bo wf	1
-动作配音挑战	ds zo pw yb tn vj	1
-招生单位	vc ug dj ww	1
-黄阿丽	hl aa li	1
-封阳君	fg yh jy	1
-考研预报名	kc yj yu bc mk	1
-排口	pd kz	1
-刘浩存灵感妆	lq hc cy lk gj vl	1
-丁蟹	dk xp	1
-香缇莫	xl ti mo	1
-定向就业	dk xl jq ye	1
-诺贝尔化学奖	no bw er hx xt jl	1
-朱成竹	vu ig vu	1
-吗喽	ma lz	1
-于正报警	yu vg bc jk	1
-茜特菈莉	qm te la li	1
-技术性调整	ji uu xk tn vg	1
-黑吗喽	hw ma lz	1
-蒋圣龙	jl ug ls	1
-李兰迪骨相美	li lj di gu xl mw	1
-七夜雪包场	qi ye xt bc ih	1
-备用信息	bw ys xb xi	1
-伊内丝	yi nw si	1
-网上确认	wh uh qt rf	1
-捷捷微电	jp jp ww dm	1
-显眼包	xm yj bc	1
-自卑心态	zi bw xb td	1
-光追	gl vv	1
-中国国足	vs go go zu	1
-张远直播	vh yr vi bo	1
-黄油小熊咖啡	hl yz xn xs ka fw	1
-排球女将	pd qq nv jl	1
-李定豪	li dk hc	1
-档案所在地	dh an so zd di	1
-报考单位	bc kc dj ww	1
-饿了么订单	ee le me dk dj	1
-我的黄金时刻	wo de hl jb ui ke	1
-公共数据	gs gs uu ju	1
-韩娱四大墙头	hj yu si da ql tz	1
-科软	ke rr	1
-蒜苔	sr td	1
-西特拉利	xi te la li	1
-黑吗喽	hw ma lz	1
-男解说	nj jp uo	1
-卡膜	ka mo	1
-余宇涵	yu yu hj	1
-出现下跌	iu xm xx dp	1
-全跌	qr dp	1
-我的会员报告	wo de hv yr bc gc	1
-西格玛男人	ma ge xi nj rf	1
-八份作业	ba ff zo ye	1
-吴邦刚	wu bh gh	1
-吗喽	ma lz	1
-超修小黑瓶	ic xq xn hw pk	1
-七夜雪开播	qi ye xt kd bo	1
-大跌了	da dp le	1
-东迪	ds di	1
-国家励志奖学金	go jx li vi jl xt jb	1
-蒜苔	sr td	1
-男女思维差异	nj nv si ww ia yi	1
-张万森下雪了	vh wj sf xx xt le	1
-抄底了	ic di le	1
-孙颖莎	sy yb ua	1
-迪希雅	di xi ya	1
-数电票	uu dm pn	1
-敖隐	ao yb	1
-樊振东	fj vg ds	1
-伊菲丹	yi fw dj	1
-昆虫学者	ky is xt ve	1
-今日寒露	jb ri hj lu	1
-院线试毒	yr xm ui du	1
-柴西西游记	id xi xi yz ji	1
-抢考点	ql kc dm	1
-太阳轻取活塞	td yh qk qu ho sd	1
-卡齐娜	ka qi na	1
-雪迷宫	xt mi gs	1
-本地推	bf di tv	1
-视频码率	ui pb ma lv	1
-刺痛减肥	ci ts jm fw	1
-理记	li ji	1
-用一根香蕉	ys yi gf xl jn	1
-报考类别	bc kc lw bp	1
-普通计划	pu ts ji hx	1
-边松景	bm ss jk	1
-千股跌停	qm gu dp tk	1
-向佐打戏	xl zo da xi	1
-我是神呐	wo ui uf na	1
-鬼才喜欢上班	gv cd xi hr uh bj	1
-凌虚子怎么打	lk xu zi zf me da	1
-国民技术	go mb ji uu	1
-小骊龙	xn li ls	1
-晦月魔君	hv yt mo jy	1
-凌虚子	lk xu zi	1
-张元英式说话	vh yr yk ui uo hx	1
-阮小咪	rr xn mi	1
-乌龙香	wu ls xl	1
-报考信息	bc kc xb xi	1
-阿米诺斯	aa mi no si	1
-杨绍辉	yh uc hv	1
-建队日	jm dv ri	1

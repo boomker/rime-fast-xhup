@@ -28,13 +28,6 @@ function metatable_chk(tab)
     end
 end
 
-table.eachi = function(tab, func)
-    for i = 1, #tab do
-        func(tab[i], i)
-    end
-    return tab
-end
-
 table.all = function(tab, func)
     local res_tab = {}
     for i = 1, #tab do
@@ -61,13 +54,6 @@ table.any = function(tab, func)
     return false
 end
 
-table.eacha = function(tab, func)
-    for i, v in ipairs(tab) do
-        func(v, i)
-    end
-    return tab
-end
-
 table.each = function(tab, func)
     for k, v in pairs(tab) do
         func(v, k)
@@ -75,9 +61,18 @@ table.each = function(tab, func)
     return tab
 end
 
-table.find_index = function(tab, elm, ...)
-    local _, i = table.find(tab, elm, ...)
-    return i
+table.eachi = function(tab, func)
+    for i = 1, #tab do
+        func(tab[i], i)
+    end
+    return tab
+end
+
+table.eacha = function(tab, func)
+    for i, v in ipairs(tab) do
+        func(v, i)
+    end
+    return tab
 end
 
 table.find = function(tab, elm, func)
@@ -88,14 +83,14 @@ table.find = function(tab, elm, func)
     end
 end
 
-table.delete = function(tab, elm, ...)
-    local index = table.find_index(tab, elm)
-    return index and table.remove(tab, index)
+table.find_index = function(tab, elm, ...)
+    local _, i = table.find(tab, elm, ...)
+    return i
 end
 
 table.find_all = function(tab, elm, ...)
     local tmptab = setmetatable({}, { __index = table })
-    local _func = (type(elm) == "function" and elm) or function(v, k, ...)
+    local _func = (type(elm) == "function" and elm) or function(v, _, ...)
         return v == elm
     end
     for k, v in pairs(tab) do
@@ -108,10 +103,19 @@ end
 
 table.select = table.find_all
 
+table.delete = function(tab, elm, ...)
+    local index = table.find_index(tab, elm)
+    if type(tab[elm]) == "table" then
+        tab[elm] = nil
+        return tab
+    end
+    return index and table.remove(tab, index)
+end
+
 table.reduce = function(tab, func, arg)
-    local new, old = arg, arg
-    for i, v in ipairs(tab) do
-        new, old = func(v, new)
+    local new, _ = arg, arg
+    for _, v in ipairs(tab) do
+        new, _ = func(v, new)
     end
     return new, arg
 end
