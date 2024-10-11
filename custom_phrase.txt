@@ -57,6 +57,7 @@
 成本	ib	3
 差别	ib	2
 初步	ib	1
+好吧	hb	1
 是吧	ub	4
 失败	ub	3
 上班	ub	2
@@ -81,6 +82,7 @@
 怎样的	zyd	1
 为什么	wum	2
 什么鬼	umg	1
+什么鬼	smg	1
 什么情况	umqk
 什么情况	umfk
 什么意思	umys
