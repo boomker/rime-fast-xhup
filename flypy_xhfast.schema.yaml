@@ -105,8 +105,8 @@ engine:
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
     - lua_filter@*word_autocommit*filter
-    - lua_filter@*pin_word*filter
     - lua_filter@*launcher*filter
+    - lua_filter@*pin_word*filter
     - uniquifier                                      #  只能放到最后!
 
 # 八股文
