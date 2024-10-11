@@ -70,7 +70,8 @@ function F.func(input, env)
             else
                 yield(cand)
             end
-        elseif -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
+        elseif -- [[ 如果你没有用模糊音和飞键, 下面这些都可以注释掉
+            -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
             (cand_type ~= "Shadow")
             and (#preedit_code - sp_count > 1)
             and (not preedit_code:match("%p"))
@@ -87,9 +88,11 @@ function F.func(input, env)
             local first_char_ycode = reversedb:lookup(first_char):gsub("%[%l%l", "")
             local last_char_ycode = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
             if last_char_ycode and first_char_ycode
-                and (last_char_ycode:match(preedit_last_code))
-                and (first_char_ycode:match(first_syllable_code))
+                and last_char_ycode:match(preedit_last_code)
+                and first_char_ycode:match(first_syllable_code)
             then
+                yield(cand)
+            elseif last_char_ycode and last_char_ycode:match(preedit_last_code) then
                 yield(cand)
             else
                 table.insert(low_priority_cands, cand)
@@ -109,6 +112,7 @@ function F.func(input, env)
                 yield(cand)
             end
             ::END_DROP::
+        -- 如果你没有用模糊音和飞键, 上面这些都可以注释掉]]
         end
 
         if #low_priority_cands >= 150 then break end
