@@ -54,8 +54,13 @@ function P.func(key, env)
             if not word_cand then return 2 end
             local word_cand_text = word_cand.text
             if utf8.len(word_cand_text) ~= 2 then goto skip_cand end
-            local cand_tail_text = string.utf8_sub(word_cand_text, 2)
-            char_shape_code_tbl[word_cand_text] = env.reversedb:lookup(cand_tail_text)
+            if word_cand:get_dynamic_type() == "Shadow" then goto skip_cand end
+            local _cand_header_text = string.utf8_sub(word_cand_text, 1, 1)
+            local _cand_tailer_text = string.utf8_sub(word_cand_text, 2, 2)
+            local cand_header_code = _cand_header_text and env.reversedb:lookup(_cand_header_text):sub(4,4)
+            local cand_tailer_code = _cand_tailer_text and env.reversedb:lookup(_cand_tailer_text):sub(4,5)
+            local cand_shape_code = cand_tailer_code .. cand_header_code
+            char_shape_code_tbl[word_cand_text] = (cand_shape_code)
             ::skip_cand::
         end
     end
@@ -81,6 +86,7 @@ function T.func(input, seg, env)
     local context = env.engine.context
     local caret_pos = context.caret_pos
     local composition = context.composition
+    local preedit_code = context:get_preedit().text
     if composition:empty() then return end
 
     -- 四码时, 按下'|', 单字优先
@@ -115,11 +121,13 @@ function T.func(input, seg, env)
         local filtered_cand_count = 0
 
         for key, val in pairs(char_shape_code_tbl) do
-            local tail_char_shape_code = string.sub(val, 4, 5)
             local input_shape_code = string.sub(input, 6)
-            local remain_shape_code = tail_char_shape_code:gsub(input_shape_code, "", 1)
+            local _p1 = input_shape_code and input_shape_code:sub(1,1) or ""
+            local _p2 = (input_shape_code:len() == 2) and (input_shape_code:sub(2)) or ""
+            local match_pattern = "^" .. _p1 .. ".?" .. _p2
+            local remain_shape_code = val:gsub(_p1, "", 1):gsub(_p2, "", 1)
             local comment = (remain_shape_code:len() > 0) and string.format("~%s", remain_shape_code) or " "
-            if tail_char_shape_code:match(input:sub(6)) then
+            if val:match(match_pattern) then
                 local cand = Candidate("wac", seg.start, seg._end, key, comment)
                 filtered_cand_count = filtered_cand_count + 1
                 filtered_cand_text = key
@@ -130,7 +138,8 @@ function T.func(input, seg, env)
                 yield(cand)
             end
         end
-        if (filtered_cand_count == 1) and (utf8.len(filtered_cand_text) == 2) then
+
+        if (filtered_cand_count == 1) and (utf8.len(filtered_cand_text) == 2) and (utf8.len(preedit_code) <= 8 ) then
             local cand_text = rime_api_helper.insert_space_to_candText(env, filtered_cand_text)
             rime_api_helper.set_commited_cand_is_chinese(env)
             env.engine:commit_text(cand_text)
