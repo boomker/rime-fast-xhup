@@ -92,8 +92,8 @@ function F.func(input, env)
                 and first_char_ycode:match(first_syllable_code)
             then
                 yield(cand)
-            elseif last_char_ycode and last_char_ycode:match(preedit_last_code) then
-                yield(cand)
+            -- elseif last_char_ycode and last_char_ycode:match(preedit_last_code) then
+            --     yield(cand)
             else
                 table.insert(low_priority_cands, cand)
                 table.insert(hide_emoji_texts, cand_text)
