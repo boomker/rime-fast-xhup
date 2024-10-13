@@ -26,30 +26,28 @@ function F.func(input, env)
         local _, sp_count = cand.preedit:gsub(" ", "")
 
         if cand.comment:match("^" .. env.pin_mark .. "$") then
-            yield(cand) -- 带有 pin_mark 标记的候选词条, 优先显示
+            -- 带有 pin_mark 标记的候选词条, 优先显示
+            yield(cand)
         elseif cand_text:match("<br>") then
-            local ccand_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
+             -- 词条有<br>标签, 将其转为换行符
+            local ccand_text = cand_text:gsub("<br>", "\n")
             yield(Candidate(cand.type, cand.start, cand._end, ccand_text, env.custom_mark))
         elseif -- 丢弃一些候选结果
-            string.find(cand.comment, "☯") -- 去掉候选注解包含`太极️`的候选项
-            or (
-            -- 开头大写的输入编码, 去掉只有单字母的候选
+               -- 去掉候选注解包含`太极️`的候选项
+            string.find(cand.comment, "☯")
+            or ( -- 开头大写的输入编码, 去掉只有单字母的候选
                 preedit_code:match("^[%u][%a]+")
                 and cand_text:match("^[A-Z]$")
-            ) or (
-            -- 辅码筛字时, 过滤掉 emoji
+            ) or ( -- 辅码筛字时, 过滤掉 emoji
                 preedit_code:match("^%l+[`/][%l`/]*$")
                 and (cand:get_dynamic_type() == "Shadow")
-            ) or (
-            -- 辅码模式下, 过滤掉长度超出预确认音节长度的候选
+            ) or ( -- 辅码模式下, 过滤掉长度超出预确认音节长度的候选
                 preedit_code:match("^%l+`%l+") and
                 (cand_text:utf8_len() > confirmed_syllable_len)
-            ) or (
-            -- V模式下, 过滤掉中英混合词条
+            ) or ( -- V模式下, 过滤掉中英混合词条
                 preedit_code:match("^%u%a+$") and
                 cand_text:find("([\228-\233][\128-\191]-)")
-            ) or (
-            -- 候选词长度超出预确认音节长度 2 个以上的候选
+            ) or ( -- 候选词长度超出预确认音节长度 2 个以上的候选
                 (cand.type == "completion") and
                 (not cand_text:match("[%a%p]")) and
                 (utf8.len(cand_text) - confirmed_syllable_len > 2)
@@ -70,7 +68,8 @@ function F.func(input, env)
             else
                 yield(cand)
             end
-        elseif -- [[ 如果你没有用模糊音和飞键, 下面这些都可以注释掉
+         -- [[ 如果你没有用模糊音和飞键, 下面这些都可以注释掉
+        elseif
             -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
             (cand_type ~= "Shadow")
             and (#preedit_code - sp_count > 1)
@@ -92,7 +91,10 @@ function F.func(input, env)
                 and first_char_ycode:match(first_syllable_code)
             then
                 yield(cand)
-            elseif last_char_ycode and last_char_ycode:match(preedit_last_code) then
+            elseif last_char_ycode
+                and (cand.preedit:find(" ") % 2 ~= 0 )
+                and last_char_ycode:match(preedit_last_code)
+            then
                 yield(cand)
             else
                 table.insert(low_priority_cands, cand)
