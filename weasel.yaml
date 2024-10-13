@@ -14,7 +14,7 @@ config_version: "2024-04-19"
 # 针对特定应用的设置
 app_options:
   firefox.exe:
-    inline_preedit: true    # 行内显示预编辑区: 规避 <https://github.com/rime/weasel/issues/946>
+    inline_preedit: true        # 行内显示预编辑区: 规避 <https://github.com/rime/weasel/issues/946>
   code.exe:
     ascii_mode: true
   conhost.exe:
@@ -27,9 +27,9 @@ app_options:
     wechat_flag: true
 
 # [global settings]
-global_ascii: false                        # 切换为 ascii 模式时, 是否影响所有窗口: true; false
-show_notifications: true                   # 是否显示状态变化的通知: true; false; option_list(方案内的开头 option)
-show_notifications_time: 1200              # 通知显示的时间, 单位 ms
+global_ascii: false             # 切换为 ascii 模式时, 是否影响所有窗口: true; false
+show_notifications: true        # 是否显示状态变化的通知: true; false; option_list(方案内的开头 option)
+show_notifications_time: 1200   # 通知显示的时间, 单位 ms
 # [End of <global settings>]
 
 # 字体; 候选项、候选窗口的行为、布局及样式
@@ -40,7 +40,7 @@ style:
   # 全局字体
   # 格式: 字体1:起始码位:结束码位:字重:字形,字体2……, 字体会依次 fallback
   # 详细设定请参考 <https://github.com/rime/weasel/wiki/字體設定>
-  font_face: "Segoe UI Emoji:30:39, Segoe UI Emoji:23:23, Segoe UI Emoji:2a:2a, Segoe UI Emoji:fe0f:fe0f, Segoe UI Emoji:20e3:20e3, Microsoft YaHei, MiSans, Segoe UI Emoji, Noto Color Emoji"
+  font_face: "Segoe UI Emoji:30:39, Segoe UI Emoji:23:23, Segoe UI Emoji:2a:2a, Segoe UI Emoji:fe0f:fe0f, Segoe UI Emoji:20e3:20e3, Microsoft YaHei, MiSans, MiSans L3, Segoe UI Emoji, Noto Color Emoji"
   label_font_face: "Microsoft YaHei"       # 标签字体
   comment_font_face: "Microsoft YaHei"     # 注释字体
   font_point: 11                           # 全局字体字号
