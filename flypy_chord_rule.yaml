@@ -41,7 +41,6 @@ patch:
       - derive/^gr/gm/                # gr --> gm
       - derive/^g([wyv])/gi/          # g[wyv] --> gi
       - derive/^bp/bl/
-      - derive/^sv/sl/
       - derive/^xp/xj/
       - derive/^xt/xo/
       - derive/^xs/xh/
@@ -63,12 +62,12 @@ patch:
       - derive/^mk/me/
       - derive/^mo/mr/
       - derive/^mu/mv/
-      - derive/^bi/be/
+      - derive/^ik/ix/
+      - derive/^sz/sl/
       - derive/^bc/bs/
       - derive/^b([hjku])/a$1/
       - derive/^b([fgnm])/s$1/
-      - derive/^ik/ix/
+      - derive/^c([dz])/cl/
       - derive/^cs/ck/
-      - derive/^cd/cl/
       - derive/^ce/cn/
       - derive/^cr/cm/
