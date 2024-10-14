@@ -11,9 +11,9 @@ function flypy_switcher.init(env)
     env.font_point = config:get_int("style/font_point") or 20
     env.line_spacing = config:get_int("style/line_spacing") or 5
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
-    env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_list_layout = config:get_string("style/candidate_list_layout") or "stacked"
+    env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
     env.word_auto_commit_enabled = config:get_bool("flypy_phrase/auto_commit") or false
     env.cn_comment_overwrited = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
     env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
