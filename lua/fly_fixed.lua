@@ -12,7 +12,6 @@ end
 function F.func(input, env)
     local drop_cand = false
     local cmp_cand_count = 0
-    local hide_emoji_texts = {}
     local low_priority_cands = {}
     local reversedb = env.reversedb
     local context = env.engine.context
@@ -21,8 +20,8 @@ function F.func(input, env)
     local _syllable_count = math.floor(#preedit_code / 2)
     local confirmed_syllable_len = _syllable_count - symbol_count
     for cand in input:iter() do
-        local cand_type = cand:get_dynamic_type()
         local cand_text = cand.text:gsub(" ", "")
+        local cand_type = cand:get_dynamic_type()
         local _, sp_count = cand.preedit:gsub(" ", "")
 
         if cand.comment:match("^" .. env.pin_mark .. "$") then
@@ -32,10 +31,10 @@ function F.func(input, env)
              -- 词条有<br>标签, 将其转为换行符
             local ccand_text = cand_text:gsub("<br>", "\n")
             yield(Candidate(cand.type, cand.start, cand._end, ccand_text, env.custom_mark))
-        elseif -- 丢弃一些候选结果
-               -- 去掉候选注解包含`太极️`的候选项
+        elseif  -- 丢弃一些候选结果
+                -- 去掉候选注解包含`太极️`的候选项
             string.find(cand.comment, "☯")
-            or ( -- 开头大写的输入编码, 去掉只有单字母的候选
+            or (   -- 开头大写的输入编码, 去掉只有单字母的候选
                 preedit_code:match("^[%u][%a]+")
                 and cand_text:match("^[A-Z]$")
             ) or ( -- 辅码筛字时, 过滤掉 emoji
@@ -56,7 +55,7 @@ function F.func(input, env)
             drop_cand = true
         elseif preedit_code:match("^%l+`%l+") and cand.comment:match("^~[ %l]+") then
             -- 辅码模式下, 覆写注解(太长了)为空
-            yield(Candidate(cand.type, cand.start, cand._end, cand.text, ""))
+            yield(Candidate(cand.type, cand.start, cand._end, cand_text, ""))
         elseif -- 候选词长度超出预确认音节长度 1 个以上的候选, 保留2个
             (cand.type == "completion") and
             (not cand_text:match("[%a%p]")) and
@@ -68,17 +67,15 @@ function F.func(input, env)
             else
                 yield(cand)
             end
-         -- [[ 如果你没有用模糊音和飞键, 下面这些都可以注释掉
+        -- [[ 如果你没有用超级简拼, 下面这些都可以注释掉
         elseif
-            -- 将非原始小鹤双拼编码规则产生的候选词条结果降频, 置于最后输出
+            -- 将超级简拼产生的候选结果降频, 置于最后输出
             (cand_type ~= "Shadow")
-            and (#preedit_code - sp_count > 1)
             and (not preedit_code:match("%p"))
             and (not cand_text:match("[%a%p]"))
             and (not cand.type:match("user_table"))
-            and (utf8.len(cand_text) <= #preedit_code)
-            and (utf8.len(cand_text) >= confirmed_syllable_len)
-            and ((#preedit_code % 2 ~= 0) and (#preedit_code <= 9))
+            and (utf8.len(cand_text) < #preedit_code)
+            and (sp_count >= 1) and (#preedit_code % 2 ~= 0)
         then
             local first_char = cand_text:utf8_sub(1, 1)
             local last_char = cand_text:utf8_sub(-1, -1)
@@ -98,23 +95,10 @@ function F.func(input, env)
                 yield(cand)
             else
                 table.insert(low_priority_cands, cand)
-                table.insert(hide_emoji_texts, cand_text)
             end
+            -- 如果你没有启用超级简拼, 上面这些都可以注释掉 ]]
         else
-            if cand.comment and (#hide_emoji_texts > 0) then
-                -- 候选词是 不匹配的 Emoji 时则丢弃
-                for _, text in ipairs(hide_emoji_texts) do
-                    if cand.comment:match(text) then
-                        drop_cand = true
-                        goto END_DROP
-                    end
-                end
-                yield(cand)
-            else
-                yield(cand)
-            end
-            ::END_DROP::
-        -- 如果你没有用模糊音和飞键, 上面这些都可以注释掉]]
+            yield(cand)
         end
 
         if #low_priority_cands >= 150 then break end
