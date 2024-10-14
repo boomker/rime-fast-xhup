@@ -32,9 +32,7 @@ function space_leader_word.func(key, env)
 	local page_size = engine.schema.page_size
 	local segment = composition:back()
 
-	if input_code:match("^/.*") then
-		return 2
-	end
+	if input_code:match("^/.*") then return 2 end
 
 	local current_focus_app = context:get_property("client_app")
 	local prev_cand_is_null = context:get_property("prev_cand_is_null")
@@ -84,9 +82,7 @@ function space_leader_word.func(key, env)
 	local selected_cand_idx = rime_api_helper.get_selected_candidate_index(key_value, index, page_size)
 	if (#input_code >= 1) and (prev_cand_is_symbol == "1") and (selected_cand_idx >= 0) then
 		local selected_cand = segment:get_candidate_at(selected_cand_idx)
-		if not selected_cand then
-			return 2
-		end
+		if not selected_cand then return 2 end
 		local cand_text = selected_cand.text
 		engine:commit_text(cand_text)
 		if input_code:match("^[%p]+$") then
@@ -126,9 +122,7 @@ function space_leader_word.func(key, env)
 
 	if #input_code >= 1 and (selected_cand_idx >= 0) then
 		local selected_cand = segment:get_candidate_at(selected_cand_idx)
-		if not selected_cand then
-			return 2
-		end
+		if not selected_cand then return 2 end
 		local cand_text = selected_cand.text
 
 		if (prev_cand_is_null ~= "1") and ((prev_cand_is_preedit == "1") or (prev_cand_is_word == "1")) then
