@@ -90,7 +90,7 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     -- 四码时, 按下'|', 单字优先
-    if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$") and (caret_pos >= 4) then
+    if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$") and (caret_pos >= 3) then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local ok = env.mem:dict_lookup(yin_code, true, 150) -- expand_search
@@ -98,7 +98,7 @@ function T.func(input, seg, env)
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
 
-            if utf8.len(entry_text) == 1 then
+            if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
                 local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
                 local pattern = "%f[%a](" .. input:gsub("%" .. env.char_mode_suffix, "") .. "%a*)"
                 if reverse_char_code:match(pattern) then
