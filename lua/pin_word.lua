@@ -24,9 +24,7 @@ local function write_word_to_file(env)
 	local filename = get_record_filename()
 	local record_header = string.format("local pin_word_records =\n")
 	local record_tailer = string.format("\nreturn pin_word_records")
-	if not filename then
-		return false
-	end
+	if not filename then return false end
 
 	local fd = assert(io.open(filename, "w")) --打开
 	fd:setvbuf("line")
@@ -120,7 +118,7 @@ function T.func(input, seg, env)
 			if
 				w:match("[%a%d%p]")
 				or (string.utf8_len(input_code) / string.utf8_len(w) ~= 2)
-				or (reversedb:lookup(w):gsub("%[%l%l", "") ~= input_code)
+				or (not reversedb:lookup(w):gsub("%[%l%l", ""):match(input_code))
 			then
 				-- 只对非完整编码的字词或不在码表里的字进行置顶, 否则会导致造词失效
 				local cand = Candidate("pin_word", seg.start, seg._end, w, comment_text)
@@ -132,9 +130,7 @@ function T.func(input, seg, env)
 
 	-- 自定义短语的置顶字词加类型标记
 	env.custom_tran = env.custom_phrase_tran:query(input, seg)
-	if not env.custom_tran then
-		return
-	end
+	if not env.custom_tran then return end
 	for cand in env.custom_tran:iter() do
 		cand.type = "custom_phrase_" .. cand.type
 		yield(cand)
@@ -171,9 +167,7 @@ function F.func(input, env)
 			table.insert(other_cands, cand)
 		end
 
-		if #other_cands >= 150 then
-			break
-		end
+		if #other_cands >= 150 then break end
 	end
 
 	if #pin_cands > 0 then
