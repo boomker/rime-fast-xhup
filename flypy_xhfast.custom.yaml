@@ -30,7 +30,7 @@ patch:
     - name: extend_charset
       states: [通用, 增廣]
       reset: 1
-    - name: charset_comment
+    - name: charset_hint
       states: [码区提示关, 码区提示开]
       reset: 0
 
@@ -44,7 +44,7 @@ patch:
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  'engine/processors/@after 1': lua_processor@*word_append_space*processor
+  # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
@@ -75,12 +75,12 @@ patch:
       # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
       - {when: has_menu,  accept: Tab, send: Control+Right}
       - {when: composing, accept: Tab, send: Control+Right}
-      - {when: composing, accept: Shift+Tab, send: Control+Left}
       - {when: composing, accept: Control+i, send: Control+Left}
       - {when: composing, accept: Control+o, send: Control+Right}
+      - {when: composing, accept: Shift+Tab, send: 'Control+Left'}
       - {when: composing, accept: Control+w, send: Control+BackSpace}
       - {when: has_menu,  accept: Control+Shift+slash, toggle: emoji}
-      - {when: has_menu,  accept: Control+Shift+comma, toggle: charset_comment}
+      - {when: has_menu,  accept: Control+Shift+comma, toggle: charset_hint}
 
   recognizer/+:
     patterns/+:
