@@ -24,13 +24,16 @@ patch:
     - name: emoji
       states: [🈚️, 😄]
       reset: 1
+    - name: charset
+      states: [通用, 增廣]
+      reset: 1
     - name: prediction
       states: [联想关, 联想开]
       reset: 0
-    - name: extend_charset
-      states: [通用, 增廣]
-      reset: 1
-    - name: charset_comment
+    - name: char_mode
+      states: [单字模式关, 单字模式开]
+      # reset: 0
+    - name: charset_hint
       states: [码区提示关, 码区提示开]
       reset: 0
 
@@ -49,7 +52,8 @@ patch:
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
     # search: "`"                     # 辅码引导符
-    char_mode: "|"                    # 单字模式(四码词组->四码单字)
+    char_mode_suffix: "|"             # 单字优先触发后缀(四码词组->四码单字)
+    char_mode: "Control+s"            # 单字模式
     pin_cand: "Control+t"             # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
     drop_cand: "Control+d"            # 强制删词, 无视输入的编码
@@ -80,7 +84,7 @@ patch:
       - {when: composing, accept: Control+o, send: Control+Right}
       - {when: composing, accept: Control+w, send: Control+BackSpace}
       - {when: has_menu,  accept: Control+Shift+slash, toggle: emoji}
-      - {when: has_menu,  accept: Control+Shift+comma, toggle: charset_comment}
+      - {when: has_menu,  accept: Control+Shift+comma, toggle: charset_hint}
 
   recognizer/+:
     patterns/+:
