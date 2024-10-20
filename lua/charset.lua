@@ -75,7 +75,7 @@ filter 的输出与 translator 相同，也是若干候选项，也要求您使�
 --]]
 local function charset_filter(input, env)
 	-- 使用 `iter()` 遍历所有输入候选项
-	local extended = env.engine.context:get_option("extend_charset")
+	local extended = env.engine.context:get_option("charset")
 
 	if extended then
 		for cand in input:iter() do
@@ -100,7 +100,7 @@ end
 --]]
 local function charset_comment_filter(input, env)
 	-- 使用 `iter()` 遍历所有输入候选项
-	local comment_toggle = env.engine.context:get_option("charset_comment")
+	local comment_toggle = env.engine.context:get_option("charset_hint")
 	for cand in input:iter() do
 		-- 判断当前候选内容 `cand.text` 中文字属哪个字符集
 		if comment_toggle then
