@@ -88,7 +88,7 @@ style:
     shadow_offset_x: 4                     # 阴影左右偏移距离
     shadow_offset_y: 4                     # 阴影上下偏移距离
     corner_radius: 12                      # 候选窗口圆角半径
-    round_corner: 12                       # 候选背景色块圆角半径, 又名 hilited_corner_radius
+    round_corner: 12                       # 候选背景色块圆角半径
     # type: vertical                       # 布局设置, 效果和 style 下的设置相同:
     # horizontal(横向); vertical(竖向) ; vertical_text(竖排文本) ;
     # vertical+fullscreen(全屏) ; horizontal+fullscreen(横向全屏)
