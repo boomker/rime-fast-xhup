@@ -16,18 +16,20 @@ patch:
     color_scheme_dark: catppuccin_frappe        # macos黑暗主题
     # color_scheme_dark: catppuccin_macchiato   # macos黑暗主题
 
-    inline_preedit: false
+    inline_preedit: false                       # 是否行內編輯
+    inline_candidate: false                     # 是否行內顯示第一候選
     mutual_exclusive: false                     # 色不叠加: false | true
     alpha: 0.95                                 # 透明度, 0~1
+    spacing: 10
+    font_point: 20
+    shadow_size: 5                              # 高亮候選詞增添陰影
+    line_spacing: 5
     border_width: 1
     border_height: 1
-    spacing: 10
-    line_spacing: 5
-    corner_radius: 8
-    hilited_corner_radius: 6
-    font_point: 20
-    label_font_point: 16
+    corner_radius: 10
+    label_font_point: 15
     comment_font_point: 14
+    hilited_corner_radius: 8
     candidate_list_layout: stacked              # 候选排布: 层叠 stacked | 行 linear
     label_font_face: 'Lucida Grande'
     font_face: "MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei"
@@ -57,12 +59,12 @@ patch:
       text_color: 0xDEC2BA                         # 拼音行文字颜色 Subtext1
       label_color: 0xC8ADA6                        # 预选栏编号颜色 Subtext0
       candidate_text_color: 0xF4D6CD               # 预选项文字颜色 Text
+      comment_text_color: 0x705B58                 # 拼音等提示文字颜色 Surface2
       hilited_back_color: 0xF7A6CB                 # 第一候选项背景背景色 Mauve
-      hilited_candidate_text_color: 0x2E1E1E       # 第一候选项文字颜色 Base
-      hilited_candidate_label_color: 0x443231      # 第一候选项编号颜色 Surface0
       hilited_text_color: 0x705B58                 # 高亮拼音 (需要开启内嵌编码) Surface2
       hilited_comment_text_color: 0x443231         # 注解文字高亮 Surface0
-      comment_text_color: 0x705B58                 # 拼音等提示文字颜色 Surface2
+      hilited_candidate_text_color: 0x2E1E1E       # 第一候选项文字颜色 Base
+      hilited_candidate_label_color: 0x443231      # 第一候选项编号颜色 Surface0
 
     catppuccin_frappe:
       name: Catppuccin Frappe
@@ -104,19 +106,20 @@ patch:
     songhe:
       name: 松鹤
       author: 空山明月 <sqqlove123@163.com>
+      color_format: rgba                         # 颜色格式: argb; rgba; abgr
       text_color: 0xB2CECC
       back_color: 0x4E7160
       label_color: 0xB2CECC
       border_color: 0x38667D
       comment_text_color: 0xB2CECC
-      candidate_back_color: 0x4E7160
       hilited_mark_color: 0x4ddcbb
       hilited_text_color: 0xB2CECC
       hilited_back_color: 0x26332C
+      candidate_back_color: 0x4E7160
       hilited_comment_text_color: 0x38667D
       hilited_candidate_text_color: 0x263030
       hilited_candidate_back_color: 0xC0D9D7
-      hilited_candidate_label_color: 0x606cff
+      hilited_candidate_label_color: 0x377BB5
       hilited_candidate_border_color: 0x434C50
 
   # 特定App默认中/英文输入
