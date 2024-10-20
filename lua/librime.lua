@@ -511,7 +511,7 @@ function Projection() end
 
 ---@class Component
 ---@field Processor fun(engine: Engine, namespace: string, klass: string): Processor
----@field Translator fun(engine: Engine, namespace: string, klass: string): Translator
+---@field Translator fun(engine: Engine, schema, namespace: string, klass: string): Translator
 ---@field Segmentor fun(engine: Engine, namespace: string, klass: string): Segmentor
 ---@field Filter fun(engine: Engine, namespace: string, klass: string): Filter
 Component = {}

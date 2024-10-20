@@ -40,15 +40,16 @@ function pin_word.init(env)
 	reload_env(env)
 	local config = env.engine.schema.config
 	local schema_id = config:get_string("translator/dictionary")
-	local _ok, pin_word_records = pcall(require, "pin_word_record")
-	env.pin_word_records = _ok and pin_word_records or {}
+	local ok, pin_word_records = pcall(require, "pin_word_record")
+    local schema = Schema(schema_id)
 	env.reversedb = ReverseLookup(schema_id)
+	env.pin_word_records = ok and pin_word_records or {}
 	env.word_quality = env:Config_get("pin_word/word_quality") or 999
 	env.pin_mark = env:Config_get("pin_word/comment_mark") or " 🔝"
 	env.comment_mark = env:Config_get("custom_phrase/comment_mark") or " 📌"
 	env.pin_cand_key = env:Config_get("key_binder/pin_cand") or "Control+t"
 	env.unpin_cand_key = env:Config_get("key_binder/unpin_cand") or "Control+t"
-	env.custom_phrase_tran = Component.Translator(env.engine, "", "table_translator@custom_phrase")
+	env.custom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@custom_phrase")
 end
 
 function P.func(key, env)
@@ -99,9 +100,7 @@ function P.func(key, env)
 			write_word_to_file(env)
 		end
 
-		if key_accepted then
-			return 1
-		end
+		if key_accepted then return 1 end
 	end
 
 	return 2 -- kNoop, 不做任何操作, 交给下个组件处理

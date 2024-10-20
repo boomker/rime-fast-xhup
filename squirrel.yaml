@@ -34,15 +34,15 @@ style:
   show_paging: true
   inline_preedit: false
   mutual_exclusive: false                           # 色不叠加: false | true
-  corner_radius: 10
-  hilited_corner_radius: 0
-  border_height: 0
-  border_width: 0
-  line_spacing: 5
   spacing: 10
   font_point: 22
+  line_spacing: 5
+  border_width: 0
+  border_height: 0
+  corner_radius: 10
   label_font_point: 18
   comment_font_point: 18
+  hilited_corner_radius: 0
   font_face: "MiSans, MiSans L3, LXGWNeoXiHei"    # 候选词编号字体
   # candidate_format: '%c. %@'
   # base_offset: 6
@@ -76,15 +76,15 @@ preset_color_schemes:
     spacing: 10                                 # 拼音与候选项的间距
     color_space: display_p3                     # 色彩空间: srgb | display_p3
     back_color: 0x545554                        # 底色
+    text_color: 0xa0c179                        # 拼音颜色 (inline_preedit: false)
     label_color: 0xBBBBBB                       # 序号颜色
+    hilited_text_color: 0xa0c179                # 选中拼音颜色 (inline_preedit: false)
+    comment_text_color: 0x808080                # 注释颜色
+    candidate_text_color: 0xEEEEEE              # 文字颜色
+    hilited_comment_text_color: 0x606cff        # 选中注解颜色
+    hilited_candidate_text_color: 0x4ddcbb      # 选中文字颜色
     hilited_candidate_back_color: 0x333333      # 第一候选项背景 选中底色
     hilited_candidate_label_color: 0x4C4C4C     # 选中序号颜色
-    candidate_text_color: 0xEEEEEE              # 文字颜色
-    hilited_candidate_text_color: 0x4ddcbb      # 选中文字颜色
-    comment_text_color: 0x808080                # 注释颜色
-    hilited_comment_text_color: 0x606cff        # 选中注解颜色
-    text_color: 0xa0c179                        # 拼音颜色 (inline_preedit: false)
-    hilited_text_color: 0xa0c179                # 选中拼音颜色 (inline_preedit: false)
     # candidate_back_color:                     # 候选项底色
     # preedit_back_color:                       # 拼音底色 (inline_preedit: false)
     # hilited_back_color:                       # 选中拼音底色 (inline_preedit: false)
