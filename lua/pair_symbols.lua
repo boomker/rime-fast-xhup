@@ -8,7 +8,7 @@ local function moveCursorToLeft(env)
     if rime_api_helper.detect_os() == "MacOS" then
         move_cursor = env.user_data_dir .. "/lua/tools/move_cursor"
     -- else
-        -- move_cursor = [[cmd /c  start "" /B ]] .. env.user_data_dir .. [[\lua\tools\move_cursor.exe]]
+        -- move_cursor = [[cmd /c start "" /B ]] .. env.user_data_dir .. [[\lua\tools\move_cursor.exe]]
         os.execute(move_cursor)
     end
 end
