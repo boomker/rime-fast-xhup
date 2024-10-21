@@ -6,8 +6,8 @@ local second_menu_items = nil
 local first_menu_selected_text = nil
 local second_menu_selected_text = nil
 require("tools/metatable")
+require("tools/rime_helper")
 local reload_env = require("tools/env_api")
-local rime_api_helper = require("tools/rime_api_helper")
 
 local function cmd(system, cmdArgs, appId)
     if system:lower():match("macos") and (cmdArgs == "exec") then
@@ -42,7 +42,7 @@ function processor.init(env)
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
     env.all_command_items = env.launcher_config[3]
-    env.system_name = rime_api_helper.detect_os()
+    env.system_name = detect_os()
     env.filters = env:Config_get("engine/filters")
     env.spacer_filter = "lua_filter@*word_append_space*filter"
 end
@@ -97,7 +97,7 @@ function processor.func(key, env)
     end
 
     local selected_index = segment.selected_index or -1
-    local selected_cand_idx = rime_api_helper.get_selected_candidate_index(keyValue, selected_index, page_size)
+    local selected_cand_idx = get_selected_candidate_index(keyValue, selected_index, page_size)
     if (selected_cand_idx < 0) then return 2 end
 
     if (inputCode:match("^" .. favorCmdPrefix)) then
@@ -210,7 +210,7 @@ function translator.init(env)
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
     env.all_command_items = env.launcher_config[3]
-    env.system_name = rime_api_helper.detect_os()
+    env.system_name = detect_os()
 end
 
 function translator.func(input, seg, env)
@@ -377,7 +377,7 @@ function filter.init(env)
     env.app_launch_prefix = env.launcher_config[1]
     env.favor_cmd_prefix = env.launcher_config[2]
     env.favor_items = env.launcher_config[3]["Favors"]
-    env.system_name = rime_api_helper.detect_os()
+    env.system_name = detect_os()
 end
 
 function filter.func(input, env)

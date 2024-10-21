@@ -29,13 +29,11 @@ patch:
       reset: 1
     - name: prediction
       states: [联想关, 联想开]
-      reset: 0
     - name: char_mode
       states: [单字模式关, 单字模式开]
       # reset: 0
     - name: charset_hint
       states: [码区提示关, 码区提示开]
-      reset: 0
 
   engine/+:
     processors/+:
