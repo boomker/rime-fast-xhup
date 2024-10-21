@@ -1,5 +1,5 @@
+require("tools/rime_helper")
 local reload_env = require("tools/env_api")
-local rime_api_helper = require("tools/rime_api_helper")
 
 local P = {}
 local T = {}
@@ -7,7 +7,7 @@ local F = {}
 local pin_word = {}
 
 local function get_record_filename()
-	local system_name = rime_api_helper.detect_os()
+	local system_name = detect_os()
 	local user_data_dir = rime_api:get_user_data_dir()
 	if system_name:lower():match("windows") then
 		return string.format("%s\\lua\\pin_word_record.lua", user_data_dir)
