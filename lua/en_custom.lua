@@ -1,6 +1,6 @@
-local T = {}
+require("tools/rime_helper")
 
-local rime_api_helper = require("tools/rime_api_helper")
+local T = {}
 
 local function user_dict_exist(word_record, path)
 	local file = assert(io.open(path, "r")) --打开
@@ -17,9 +17,9 @@ end
 function T.init(env)
 	local user_data_dir = rime_api:get_user_data_dir()
 	local dict_name = "en_dicts/en_custom.dict.yaml"
-	if rime_api_helper.detect_os():lower() == "windows" then
+	if detect_os():lower() == "windows" then
 		env.dict_path = string.format("%s/%s", user_data_dir, dict_name):gsub("/", "\\")
-	elseif rime_api_helper.detect_os():lower() == "ios" then
+	elseif detect_os():lower() == "ios" then
 		user_data_dir =
 			"/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
 		env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
