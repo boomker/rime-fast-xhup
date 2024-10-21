@@ -99,14 +99,16 @@
                             "name": {
                                 "type": "string",
                                 "enum": [
-                                    "ascii_mode",
-                                    "full_shape",
-                                    "extended_charset",
-                                    "ascii_punct",
-                                    "simplification",
                                     "gbk",
                                     "emoji",
-                                    "charset_comment"
+                                    "charset",
+                                    "ascii_mode",
+                                    "full_shape",
+                                    "ascii_punct",
+                                    "charset_hint",
+                                    "simplification",
+                                    "traditionalize",
+                                    "extended_charset"
                                 ],
                                 "description": "定义一个二值开关，其内部名称。"
                             },

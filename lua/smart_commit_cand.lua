@@ -1,4 +1,4 @@
-local rime_api_helper = require("tools/rime_api_helper")
+require("tools/rime_helper")
 
 local P = {}
 local kNoop = 2
@@ -74,8 +74,8 @@ function P.func(key_event, env)
 			local selected_index = segment.selected_index
 			local selected_cand = segment:get_candidate_at(selected_index)
 			local _cand_text = selected_cand.text .. "。"
-			local cand_text = rime_api_helper.insert_space_to_candText(env, _cand_text)
-			rime_api_helper.reset_commited_cand_state(env)
+			local cand_text = insert_space_to_candText(env, _cand_text)
+			reset_commited_cand_state(env)
 			env.engine:commit_text(cand_text)
 			reset_state(env)
 			context:clear()
