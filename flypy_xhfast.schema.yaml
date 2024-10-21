@@ -26,9 +26,8 @@ switches:
   - name: ascii_punct
     states: [。, .]
   - name: full_shape
-    states: [半角, 全角]
-    reset: 0
-  - name: simplification
+    states: [半, 全]
+  - name: traditionalize
     states: [简, 繁]
 
 # 输入引擎
@@ -209,7 +208,7 @@ tradition:                          # 简繁转换
   tips: none                    # 转换提示: all | char 仅单字显示 | none 不显示
   tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
   opencc_config: s2t.json       # s2t.json | s2hk.json | s2tw.json | s2twp.json
-  option_name: simplification
+  option_name: traditionalize
 
 # 部件拆字反查
 radical_lookup:
@@ -301,7 +300,7 @@ key_binder:
     - {when: always, accept: "Shift+space", toggle: ascii_mode}
     - {when: always, accept: "Control+comma", toggle: ascii_punct}
     - {when: always, accept: "Control+period", toggle: full_shape}
-    - {when: always, accept: "Control+slash", toggle: simplification}
+    - {when: always, accept: "Control+slash", toggle: traditionalize}
     - {when: always, accept: "Control+Shift+semicolon", select: easy_en}
 
 # 拼写设定
