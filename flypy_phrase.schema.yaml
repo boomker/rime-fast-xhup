@@ -1,5 +1,6 @@
 # Rime schema
 # encoding: utf-8
+---
 
 schema:
   schema_id: flypy_phrase
@@ -9,17 +10,6 @@ schema:
     - boomker
   description: |
     飞鹤短语
-
-switches:
-  - name: ascii_mode
-    states: [中, En]
-  - name: full_shape
-    states: [◖, ●]
-  - name: simplification
-    reset: 1
-    states: [繁, 简]
-  - name: ascii_punct
-    states: [。, ．]
 
 engine:
   processors:
@@ -52,7 +42,7 @@ speller:
   auto_select: true
   max_code_length: 8
   algebra:
-    - erase/^(\w+)\[(\w)(\w)$/ # erase single chars
+    - erase/^(\w+)\[(\w)(\w)$/    # erase single chars
     - xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/
 
 translator:
@@ -68,26 +58,6 @@ punctuator:
 
 key_binder:
   import_preset: default
-  bindings:
-    - { when: has_menu, accept: semicolon, send: 2 }
-    - { when: has_menu, accept: apostrophe, send: 3 }
-    - { when: composing, accept: Control+i, send: Shift+Left }
-    - { when: composing, accept: Control+o, send: Shift+Right }
-    - { when: composing, accept: Control+m, send: Return }
-    - { when: composing, accept: Control+w, send: Control+BackSpace }
 
 recognizer:
   import_preset: default
-
-menu:
-  page_size: 7 # 候选项数
-
-style:
-  horizontal: false # 竖排为false
-
-simplification:
-  option_name: simplification
-  opencc_config: s2t.json
-  tags: abc
-  tips: all
-  excluded_types: [reverse_lookup]
