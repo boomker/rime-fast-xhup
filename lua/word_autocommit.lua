@@ -1,7 +1,6 @@
 require("tools/string")
 require("tools/metatable")
-
-local rime_api_helper = require("tools/rime_api_helper")
+require("tools/rime_helper")
 
 local P = {}
 local T = {}
@@ -13,14 +12,12 @@ function word_auto_commit.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local phrase_dict = config:get_string("flypy_phrase/dictionary")
-    local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
     env.phrase_reversedb = ReverseLookup(phrase_dict)
-    -- env.memory = Memory(env.engine, schema, "translator")
     env.autocommit_on = config:get_bool("flypy_phrase/auto_commit") or false
 end
 
--- [[
+--[[
 function word_auto_commit.fini(env)
     if env.memory then
         env.memory:disconnect()
@@ -63,12 +60,12 @@ function P.func(key, env)
 
     -- 按下 '/' 后, 数字键或符号键选单字时, 自动上屏
     local idx = segment.selected_index
-    local seleted_cand_index = rime_api_helper.get_selected_candidate_index(key_value, idx, page_size)
+    local seleted_cand_index = get_selected_candidate_index(key_value, idx, page_size)
     if (seleted_cand_index >= 0) and input_code:match("^%l+/$") and (caret_pos >= 3) then
         context:select(seleted_cand_index)
         local _cand_text = context:get_commit_text():utf8_sub(1, -2)
-        local cand_txt = rime_api_helper.insert_space_to_candText(env, _cand_text)
-        rime_api_helper.set_commited_cand_is_chinese(env)
+        local cand_txt = insert_space_to_candText(env, _cand_text)
+        set_commited_cand_is_chinese(env)
         engine:commit_text(cand_txt)
         context:clear()
         return 1
@@ -135,8 +132,8 @@ function T.func(input, seg, env)
         end
 
         if (filtered_cand_count == 1) and (utf8.len(filtered_cand_text) == 2) and (utf8.len(preedit_code) <= 8) then
-            local cand_text = rime_api_helper.insert_space_to_candText(env, filtered_cand_text)
-            rime_api_helper.set_commited_cand_is_chinese(env)
+            local cand_text = insert_space_to_candText(env, filtered_cand_text)
+            set_commited_cand_is_chinese(env)
             env.engine:commit_text(cand_text)
             context:clear()
             return
@@ -183,8 +180,8 @@ function F.func(input, env)
     -- 单字全码唯一自动上屏(xy/ab?)
     if (caret_pos >= 4) and preedit_code:match("^%l%l/%l%l?$") then
         if #single_char_cands == 1 then
-            local cand_txt = rime_api_helper.insert_space_to_candText(env, single_char_cands[1].text)
-            rime_api_helper.set_commited_cand_is_chinese(env)
+            local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
+            set_commited_cand_is_chinese(env)
             env.engine:commit_text(cand_txt)
             context:clear()
             return 1 -- kAccepted
@@ -214,8 +211,8 @@ function F.func(input, env)
 
         end
         if (done == 1) and (caret_pos == 8) and (#commit_text >= 4) then
-            local cand_txt = rime_api_helper.insert_space_to_candText(env, commit_text)
-            rime_api_helper.set_commited_cand_is_chinese(env)
+            local cand_txt = insert_space_to_candText(env, commit_text)
+            set_commited_cand_is_chinese(env)
             env.engine:commit_text(cand_txt)
             context:clear()
             return 1 -- kAccepted
