@@ -1,277 +1,294 @@
-local filter = {}
+-- local filter = {}
 local processor = {}
 local translator = {}
 local flypy_switcher = {}
 require("tools/metatable")
+require("tools/rime_helper")
 local reload_env = require("tools/env_api")
-local rime_api_helper = require("tools/rime_api_helper")
 
 function flypy_switcher.init(env)
-    local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
-    local _en_pat = config:get_string("recognizer/patterns/easy_en") or nil
-    local _so_pat = config:get_string("recognizer/patterns/switch_options") or nil
-    local schema = Schema(schema_id)
-    env.reversedb = ReverseLookup(schema_id)
-    env.mem = Memory(env.engine, schema, "translator")
-    env.page_size = config:get_int("menu/page_size") or 7
-    env.font_point = config:get_int("style/font_point") or 20
-    env.line_spacing = config:get_int("style/line_spacing") or 5
-    env.comment_hints = config:get_int("translator/spelling_hints") or 1
-    env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
-    env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
-    env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
-    env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
-    env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
-    env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
-    env.switch_options = _so_pat and _so_pat:match("[a-z/]+") or "/so"
-    env.easy_en_prefix = _en_pat and _en_pat:match("%^([a-z/]+).*") or "/oe"
-    env.char_mode_suffix = config:get_string("key_binder/char_mode_suffix") or "|"
-    env.normal_labels = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
-    env.alter_labels = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪"}
-    env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
-    env.word_auto_commit_enabled = config:get_bool("flypy_phrase/auto_commit") or false
-    env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
-    env.cn_comment_overwrited = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
-    env.switch_options_menu = {"切换纵横布局样式", "切换候选文字方向", "切换编码区位样式",
-                               "切换候选序号样式", "切换Emoji😂显隐", "切换中英标点输出",
-                               "切换半角全角符号", "切换简体繁体显示", "增加候选字体大小",
-                               "减少候选字体大小", "增加行间距的大小", "减少行间距的大小",
-                               "增加单页候选项数", "减少单页候选项数", "恢复分号自动上屏",
-                               "恢复常规候选按键", "关闭候选注解提示", "开关短语自动上屏",
-                               "开关字符码区提示", "开关中英词条空格", "禁用中英前置空格"}
+	local config = env.engine.schema.config
+	local schema_id = config:get_string("schema/schema_id")
+	local _en_pat = config:get_string("recognizer/patterns/easy_en") or nil
+	local _so_pat = config:get_string("recognizer/patterns/switch_options") or nil
+	local schema = Schema(schema_id)
+	env.reversedb = ReverseLookup(schema_id)
+	env.mem = Memory(env.engine, schema, "translator")
+	env.page_size = config:get_int("menu/page_size") or 7
+	env.font_point = config:get_int("style/font_point") or 20
+	env.line_spacing = config:get_int("style/line_spacing") or 5
+	env.comment_hints = config:get_int("translator/spelling_hints") or 1
+	env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
+	env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
+	env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
+	env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
+	env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
+	env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
+	env.switch_options = _so_pat and _so_pat:match("[a-z/]+") or "/so"
+	env.easy_en_prefix = _en_pat and _en_pat:match("%^([a-z/]+).*") or "/oe"
+	env.char_mode_suffix = config:get_string("key_binder/char_mode_suffix") or "|"
+	env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }
+	env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪" }
+	env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
+	env.word_auto_commit_enabled = config:get_bool("flypy_phrase/auto_commit") or false
+	env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
+	env.cn_comment_overwrited = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
+	env.switch_options_menu = {
+		"切换纵横布局样式",
+		"切换候选文字方向",
+		"切换编码区位样式",
+		"切换候选序号样式",
+		"切换Emoji😂显隐",
+		"切换中英标点输出",
+		"切换半角全角符号",
+		"切换简体繁体显示",
+		"增加候选字体大小",
+		"减少候选字体大小",
+		"增加行间距的大小",
+		"减少行间距的大小",
+		"增加单页候选项数",
+		"减少单页候选项数",
+		"恢复分号自动上屏",
+		"恢复常规候选按键",
+		"关闭候选注解提示",
+		"开关短语自动上屏",
+		"开关字符码区提示",
+		"开关中英词条空格",
+		"禁用中英前置空格",
+	}
 end
 
 function flypy_switcher.fini(env)
-    if env.mem then
-        env.mem:disconnect()
-        env.mem = nil
-    end
+	if env.mem then
+		env.mem:disconnect()
+		env.mem = nil
+	end
 end
 
 function processor.func(key, env)
-    reload_env(env)
-    local engine = env.engine
-    local schema = engine.schema
-    local config = schema.config
-    local context = engine.context
-    local page_size = schema.page_size
-    local composition = context.composition
-    if composition:empty() then return 2 end
-    local segment = composition:back()
-    local preedit_code = context:get_script_text():gsub(" ", "")
+	reload_env(env)
+	local engine = env.engine
+	local schema = engine.schema
+	local config = schema.config
+	local context = engine.context
+	local page_size = schema.page_size
+	local composition = context.composition
+	if composition:empty() then return 2 end
+	local segment = composition:back()
+	local preedit_code = context:get_script_text():gsub(" ", "")
 
-    if context:has_menu() and (key:repr() == env.switch_comment_key) then
-        if preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
-        elseif preedit_code:match("^" .. env.easy_en_prefix) and not env.en_comment_overwrited then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true) -- 重写英文注释为中文
-        elseif (not env.cn_comment_overwrited) and (env.comment_hints > 0) then
-            config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
-        elseif env.cn_comment_overwrited and (env.comment_hints > 0) then
-            config:set_int("translator/spelling_hints", 0)
-            config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
-            env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
-        else
-            config:set_int("translator/spelling_hints", 1) -- 重写注释为小鹤形码
-            config:set_bool("radical_reverse_lookup/overwrite_comment", false)
-            env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^/~/")
-        end
-        engine:apply_schema(Schema(schema.schema_id))
-        context:push_input(preedit_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1 -- kAccept
-    end
+	if context:has_menu() and (key:repr() == env.switch_comment_key) then
+		if preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited then
+			config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
+		elseif preedit_code:match("^" .. env.easy_en_prefix) and not env.en_comment_overwrited then
+			config:set_bool("ecdict_reverse_lookup/overwrite_comment", true) -- 重写英文注释为中文
+		elseif (not env.cn_comment_overwrited) and (env.comment_hints > 0) then
+			config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
+		elseif env.cn_comment_overwrited and (env.comment_hints > 0) then
+			config:set_int("translator/spelling_hints", 0)
+			config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
+			env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
+		else
+			config:set_int("translator/spelling_hints", 1) -- 重写注释为小鹤形码
+			config:set_bool("radical_reverse_lookup/overwrite_comment", false)
+			env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^/~/")
+		end
+		engine:apply_schema(Schema(schema.schema_id))
+		context:push_input(preedit_code)
+		context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+		return 1 -- kAccept
+	end
 
-    if context:has_menu() and (key:repr() == env.commit_comment_key) then
-        local cand = context:get_selected_candidate()
-        local cand_comment = cand.comment:gsub("%p", "")
-        engine:commit_text(cand_comment)
-        context:clear()
-        return 1
-    end
+	if context:has_menu() and (key:repr() == env.commit_comment_key) then
+		local cand = context:get_selected_candidate()
+		local cand_comment = cand.comment:gsub("%p", "")
+		engine:commit_text(cand_comment)
+		context:clear()
+		return 1
+	end
 
-    if (key:repr() == env.switch_english_key) and (schema.schema_id ~= "easy_en") then
-        context:clear()
-        env.engine:apply_schema(Schema("easy_en"))
-        context:push_input(preedit_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1 -- kAccept
-    elseif (key:repr() == env.switch_english_key) and (schema.schema_id == "easy_en") then
-        context:clear()
-        env.engine:apply_schema(Schema("flypy_xhfast"))
-        context:push_input(preedit_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1 -- kAccept
-    end
+	if (key:repr() == env.switch_english_key) and (schema.schema_id ~= "easy_en") then
+		context:clear()
+		env.engine:apply_schema(Schema("easy_en"))
+		context:push_input(preedit_code)
+		context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+		return 1 -- kAccept
+	elseif (key:repr() == env.switch_english_key) and (schema.schema_id == "easy_en") then
+		context:clear()
+		env.engine:apply_schema(Schema("flypy_xhfast"))
+		context:push_input(preedit_code)
+		context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+		return 1 -- kAccept
+	end
 
-    if segment.prompt:match("切换配置选项") then
-        local key_value = key:repr()
-        local idx = segment.selected_index
-        local index = rime_api_helper.get_selected_candidate_index(key_value, idx, page_size)
-        if index < 0 then return 2 end
-        local selected_cand = segment:get_candidate_at(index)
-        local cand_text = selected_cand.text:gsub(" ", "")
+	if segment.prompt:match("切换配置选项") then
+		local key_value = key:repr()
+		local idx = segment.selected_index
+		local index = get_selected_candidate_index(key_value, idx, page_size)
+		if index < 0 then return 2 end
+		local selected_cand = segment:get_candidate_at(index)
+		local cand_text = selected_cand.text:gsub(" ", "")
 
-        if cand_text == "切换纵横布局样式" then
-            local switch_to_val = ""
-            if env.candidate_layout == "stacked" then
-                switch_to_val = "linear"
-            else
-                switch_to_val = "stacked"
-            end
-            config:set_string("style/candidate_list_layout", switch_to_val) -- 重写 horizontal
-        elseif cand_text == "切换候选文字方向" then
-            local switch_to_val = ""
-            if env.text_orientation == "horizontal" then
-                switch_to_val = "vertical"
-            else
-                switch_to_val = "horizontal"
-            end
-            config:set_string("style/text_orientation", switch_to_val) -- 重写 horizontal
-        elseif cand_text == "切换编码区位样式" then
-            local switch_to_val = not env.inline_preedit_style
-            config:set_bool("style/inline_preedit", switch_to_val) -- 重写 inline_preedit
-        elseif cand_text == "切换候选序号样式" then
-            if env:Config_get("menu/alternative_select_labels")[1] == 1 then
-                env:Config_set("menu/alternative_select_labels", env.alter_labels)
-            else
-                env:Config_set("menu/alternative_select_labels", env.normal_labels)
-            end
-        elseif cand_text == "切换Emoji😂显隐" then
-            local emoji_visible = env:Config_get("switches/@4/reset")
-            local switch_to_val = (emoji_visible > 0) and 0 or 1
-            env:Config_set("switches/@4/reset", switch_to_val)
-        elseif cand_text == "切换中英标点输出" then
+		if cand_text == "切换纵横布局样式" then
+			local switch_to_val = ""
+			if env.candidate_layout == "stacked" then
+				switch_to_val = "linear"
+			else
+				switch_to_val = "stacked"
+			end
+			config:set_string("style/candidate_list_layout", switch_to_val) -- 重写 horizontal
+		elseif cand_text == "切换候选文字方向" then
+			local switch_to_val = ""
+			if env.text_orientation == "horizontal" then
+				switch_to_val = "vertical"
+			else
+				switch_to_val = "horizontal"
+			end
+			config:set_string("style/text_orientation", switch_to_val) -- 重写 horizontal
+		elseif cand_text == "切换编码区位样式" then
+			local switch_to_val = not env.inline_preedit_style
+			config:set_bool("style/inline_preedit", switch_to_val) -- 重写 inline_preedit
+		elseif cand_text == "切换候选序号样式" then
+			if env:Config_get("menu/alternative_select_labels")[1] == 1 then
+				env:Config_set("menu/alternative_select_labels", env.alter_labels)
+			else
+				env:Config_set("menu/alternative_select_labels", env.normal_labels)
+			end
+		elseif cand_text == "切换Emoji😂显隐" then
+			local emoji_visible = env:Config_get("switches/@4/reset")
+			local switch_to_val = (emoji_visible > 0) and 0 or 1
+			env:Config_set("switches/@4/reset", switch_to_val)
+		elseif cand_text == "切换中英标点输出" then
 			local ascii_punct_state = context:get_option("ascii_punct")
-			local switch_to_val = (not ascii_punct_state)
+			local switch_to_val = not ascii_punct_state
 			context:set_option("ascii_punct", switch_to_val)
-        elseif cand_text == "切换半角全角符号" then
-            local full_shape_state = env:Config_get("switches/@2/reset")
-            local switch_to_val = (full_shape_state > 0) and 0 or 1
-            env:Config_set("switches/@2/reset", switch_to_val)
-        elseif cand_text == "切换简体繁体显示" then
-			local simp_tran_state = context:get_option("simplification")
-			local switch_to_val = (not simp_tran_state)
-			context:set_option("simplification", switch_to_val)
-        elseif cand_text == "增加候选字体大小" then
-            config:set_int("style/font_point", (env.font_point + 1))
-        elseif cand_text == "减少候选字体大小" then
-            config:set_int("style/font_point", (env.font_point - 1))
-        elseif cand_text == "增加行间距的大小" then
-            config:set_int("style/line_spacing", (env.line_spacing + 1))
-        elseif cand_text == "减少行间距的大小" then
-            config:set_int("style/line_spacing", (env.line_spacing - 1))
-        elseif cand_text == "增加单页候选项数" then
-            config:set_int("menu/page_size", (env.page_size + 1))
-        elseif cand_text == "减少单页候选项数" then
-            config:set_int("menu/page_size", (env.page_size - 1))
-        elseif cand_text == "恢复分号自动上屏" then
-            env:Config_set("punctuator/half_shape/;", "；")
-        elseif cand_text == "恢复常规候选按键" then
-            config:set_int("menu/alternative_select_keys", 1234567890)
-        elseif cand_text == "关闭候选注解提示" then
-            config:set_int("translator/spelling_hints", 0)
-            config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
-            env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
-        elseif cand_text == "开关短语自动上屏" then
-            local switch_to_val = not env.word_auto_commit_enabled
-            config:set_bool("flypy_phrase/auto_commit", switch_to_val)
-        elseif cand_text == "开关字符码区提示" then
-            local charset_hint = env:Config_get("switches/@last/reset")
-            local switch_to_val = (charset_hint > 0) and 0 or 1
-            env:Config_set("switches/@last/reset", switch_to_val)
-        elseif cand_text == "开关中英词条空格" then
-            local filters = env:Config_get("engine/filters")
-            local target_filter = "lua_filter@*word_append_space*filter"
-            local filter_idx = table.find_index(filters, target_filter)
-            if filter_idx then
-                table.remove(filters, filter_idx)
-            else
-                table.insert(filters, #filters, target_filter)
-            end
-            env:Config_set("engine/filters", filters)
-        elseif cand_text == "禁用中英前置空格" then
-            local processors = env:Config_get("engine/processors")
-            local target_processor = "lua_processor@*word_append_space*processor"
-            local processor_idx = table.find_index(processors, target_processor)
-            if processor_idx then
-                table.remove(processors, processor_idx)
-            end
-            env:Config_set("engine/processors", processors)
-        end
-        engine:apply_schema(Schema(schema.schema_id))
-        return 1 -- kAccept
-    end
+		elseif cand_text == "切换半角全角符号" then
+			local full_shape_state = context:get_option("full_shape")
+			local switch_to_val = not full_shape_state
+			context:set_option("full_shape", switch_to_val)
+		elseif cand_text == "切换简体繁体显示" then
+			local simp_tran_state = context:get_option("traditionalize")
+			local switch_to_val = not simp_tran_state
+			context:set_option("traditionalize", switch_to_val)
+		elseif cand_text == "增加候选字体大小" then
+			config:set_int("style/font_point", (env.font_point + 1))
+		elseif cand_text == "减少候选字体大小" then
+			config:set_int("style/font_point", (env.font_point - 1))
+		elseif cand_text == "增加行间距的大小" then
+			config:set_int("style/line_spacing", (env.line_spacing + 1))
+		elseif cand_text == "减少行间距的大小" then
+			config:set_int("style/line_spacing", (env.line_spacing - 1))
+		elseif cand_text == "增加单页候选项数" then
+			config:set_int("menu/page_size", (env.page_size + 1))
+		elseif cand_text == "减少单页候选项数" then
+			config:set_int("menu/page_size", (env.page_size - 1))
+		elseif cand_text == "恢复分号自动上屏" then
+			env:Config_set("punctuator/half_shape/;", "；")
+		elseif cand_text == "恢复常规候选按键" then
+			config:set_int("menu/alternative_select_keys", 1234567890)
+		elseif cand_text == "关闭候选注解提示" then
+			config:set_int("translator/spelling_hints", 0)
+			config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
+			env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
+		elseif cand_text == "开关短语自动上屏" then
+			local switch_to_val = not env.word_auto_commit_enabled
+			config:set_bool("flypy_phrase/auto_commit", switch_to_val)
+		elseif cand_text == "开关字符码区提示" then
+			local charset_hint_state = context:get_option("charset_hint")
+			local switch_to_val = not charset_hint_state
+			context:set_option("charset_hint", switch_to_val)
+		elseif cand_text == "开关中英词条空格" then
+			local filters = env:Config_get("engine/filters")
+			local target_filter = "lua_filter@*word_append_space*filter"
+			local filter_idx = table.find_index(filters, target_filter)
+			if filter_idx then
+				table.remove(filters, filter_idx)
+			else
+				table.insert(filters, #filters, target_filter)
+			end
+			env:Config_set("engine/filters", filters)
+		elseif cand_text == "禁用中英前置空格" then
+			local processors = env:Config_get("engine/processors")
+			local target_processor = "lua_processor@*word_append_space*processor"
+			local processor_idx = table.find_index(processors, target_processor)
+			if processor_idx then
+				table.remove(processors, processor_idx)
+			end
+			env:Config_set("engine/processors", processors)
+		end
+		engine:apply_schema(Schema(schema.schema_id))
+		return 1 -- kAccept
+	end
 
 	if (key:repr() == env.char_mode_switch_key) and (schema.schema_id ~= "easy_en") then
 		local char_mode_option = context:get_option("char_mode")
 		local char_mode_prop = context:get_property("char_mode") or "0"
 		local switch_to_prop = (char_mode_prop == "1") and "0" or "1"
-		local switch_to_val = (not char_mode_option)
+		local switch_to_val = not char_mode_option
 		context:set_option("char_mode", switch_to_val)
 		context:set_property("char_mode", switch_to_prop)
-        context:refresh_non_confirmed_composition()
-        return 1 -- kAccept
+		context:refresh_non_confirmed_composition()
+		return 1 -- kAccept
 	end
-    return 2 -- kNoop, 不做任何操作, 交给下个组件处理
+	return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
 function translator.func(input, seg, env)
-    local context = env.engine.context
-    local composition = context.composition
-    if composition:empty() then return end
-    local segment = composition:back()
+	local context = env.engine.context
+	local composition = context.composition
+	if composition:empty() then return end
+	local segment = composition:back()
 	local char_mode_prop = context:get_property("char_mode")
 
-    local trigger_prefix = env.switch_options or "/so" or "sopt"
+	local trigger_prefix = env.switch_options or "/so" or "sopt"
 
-    if seg:has_tag("switch_options") or (input == trigger_prefix) then
-        segment.prompt = "〔" .. "切换配置选项" .. "〕"
-        for _, text in ipairs(env.switch_options_menu) do
-            yield(Candidate("switch_options", seg.start, seg._end, text, ""))
-        end
-    end
+	if seg:has_tag("switch_options") or (input == trigger_prefix) then
+		segment.prompt = "〔" .. "切换配置选项" .. "〕"
+		for _, text in ipairs(env.switch_options_menu) do
+			yield(Candidate("switch_options", seg.start, seg._end, text, ""))
+		end
+	end
 
-    -- 四码时, 按下'|', 单字优先
-    if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$")
-        or (input:match("%l%l%l%l$") and (char_mode_prop == "1"))
+	-- 四码时, 按下'|', 单字优先
+	if
+		input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$")
+		or (input:match("%l%l%l%l$") and (char_mode_prop == "1"))
 	then
-        local entry_matched_tbl = {}
-        local yin_code = input:sub(1, 2)
-        local ok = env.mem:dict_lookup(yin_code, true, 150) -- expand_search
-        if not ok then return end
-        for dictentry in env.mem:iter_dict() do
-            local entry_text = dictentry.text
+		local entry_matched_tbl = {}
+		local yin_code = input:sub(1, 2)
+		local ok = env.mem:dict_lookup(yin_code, true, 150) -- expand_search
+		if not ok then return end
+		for dictentry in env.mem:iter_dict() do
+			local entry_text = dictentry.text
 
-            if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
-                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
-                local pattern = "%f[%a](" .. input:gsub("%" .. env.char_mode_suffix, "") .. "%a*)"
-                if reverse_char_code:match(pattern) then
+			if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
+				local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
+				local pattern = "%f[%a](" .. input:gsub("%" .. env.char_mode_suffix, "") .. "%a*)"
+				if reverse_char_code:match(pattern) then
 					table.insert(entry_matched_tbl, dictentry)
 				end
-            end
-        end
+			end
+		end
 
-        for _, de in ipairs(entry_matched_tbl) do
-            local ph = Phrase(env.mem, "single_char", seg.start, seg._end, de)
-            local cand = ph:toCandidate()
+		for _, de in ipairs(entry_matched_tbl) do
+			local ph = Phrase(env.mem, "single_char", seg.start, seg._end, de)
+			local cand = ph:toCandidate()
 			cand.quality = 9999
-            yield(cand)
-        end
-    end
+			yield(cand)
+		end
+	end
 end
 
 --[[
 function filter.func(input, env)
-    local single_char_cands = {}
-    local context = env.engine.context
-    local caret_pos = context.caret_pos
+	local single_char_cands = {}
+	local context = env.engine.context
+	local caret_pos = context.caret_pos
 	local preedit_code = context.input:gsub(" ", "")
 
 	if context:get_option("char_mode") then
 		for cand in input:iter() do yield(cand) end
-    else
+	else
 		for cand in input:iter() do
 			if (utf8.len(cand.text) == 1) and (#preedit_code > 3) then
 				table.insert(single_char_cands, cand)
@@ -287,21 +304,20 @@ function filter.func(input, env)
 end
 -- ]]
 
-
 return {
-    processor = {
-        init = flypy_switcher.init,
-        func = processor.func,
-        fini = flypy_switcher.fini
-    },
-    translator = {
-        init = flypy_switcher.init,
-        func = translator.func,
-        fini = flypy_switcher.fini
-    },
+	processor = {
+		init = flypy_switcher.init,
+		func = processor.func,
+		fini = flypy_switcher.fini,
+	},
+	translator = {
+		init = flypy_switcher.init,
+		func = translator.func,
+		fini = flypy_switcher.fini,
+	},
 	-- filter = {
 	-- 	init = flypy_switcher.init,
 	-- 	func = filter.func,
-    --     fini = flypy_switcher.fini
+	--     fini = flypy_switcher.fini
 	-- },
 }

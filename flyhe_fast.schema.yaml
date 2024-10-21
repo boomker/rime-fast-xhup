@@ -1,0 +1,243 @@
+# Rime schema
+# encoding: utf-8
+---
+
+# 方案说明
+style:
+  font_point: 18                    # 候选字大小
+  line_spacing: 6                   # 行间距大小
+  inline_preedit: true              # 编码位是否嵌入候选框
+  text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
+  candidate_list_layout: linear     # 候选菜单横向(linear)/纵向(stacked)
+menu:
+  page_size: 5                      # 自定义候选项个数
+
+schema:
+  schema_id: flyhe_fast
+  name: 飞鹤快码
+  version: "2024.10.20"
+  author:
+    - boomker
+  description: |
+    小鹤双拼+辅助码
+    github.com:boomker/rime-fast-xhup
+
+# 选项开关
+switches:
+  - name: ascii_mode
+    states: [中, En]
+  - name: ascii_punct
+    states: [。, .]
+  - name: traditionalize
+    states: [简, 繁]
+  - name: full_shape
+    states: [半, 全]
+  - name: extended_charset
+    states: [通用, 增廣]
+    reset: 1
+
+# 输入引擎
+engine:
+  processors:
+    - speller
+    - selector
+    - navigator
+    - key_binder
+    - recognizer
+    - punctuator
+    - ascii_composer
+    - express_editor
+  segmentors:
+    - matcher
+    - abc_segmentor
+    - ascii_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+    - reverse_lookup_translator
+    - table_translator@custom_phrase
+  filters:
+    - simplifier@tradition                            # 简繁切换
+    - uniquifier                                      #  只能放到最后!
+
+# 八股文
+grammar:
+  language: zh-hans-t-huayu-v7-bgw
+
+# 主翻译器, 小鹤双拼
+translator:
+  dictionary: flyhe_fast
+  spelling_hints: 1                 # `0`: 关闭单字编码提示
+  initial_quality: 1
+  enable_sentence: true
+  enable_user_dict: true            # 开启用户词库
+  enable_completion: true           # 启用输入补全
+  encode_commit_history: true       # 历史上屏自动编码成词
+  contextual_suggestions: true      # 开启语言模型优化候选
+  sentence_over_completion: true    # 逐鍵提示時啓智能組句
+  # max_homophones: 7
+  # max_phrase_length: 5
+  # enable_encoder: true
+  # always_show_comments: true
+  # disable_user_dict_for_patterns:
+  #   - '^[a-z][a-z]?$'             # 单字不调频
+  # preedit_format:
+  #   __include: preedit_convert_rules    # 编辑器输入码显示为全拼
+  comment_format:
+    - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
+    - xform/^~\w+\s.*$//            # 单字编码提示只显示辅助码部分
+
+# 自定义短语
+custom_phrase:                      # 自定义固顶字
+  db_class: stabledb
+  user_dict: custom_phrase
+  dictionary: ""
+  initial_quality: 99
+  enable_sentence: false
+  enable_completion: false
+
+# 简体转繁体
+
+tradition:                          # 简繁转换
+  tips: none                    # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  opencc_config: s2t.json       # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  option_name: traditionalize
+
+
+# 处理符合特定规则的输入码，如网址、反查
+recognizer:
+  import_preset: default
+  patterns:
+    punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
+    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
+
+# 标点符号
+punctuator:
+  import_preset: symbols
+  full_shape:
+    __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
+  half_shape:
+    # __include: default:/punctuator/half_shape       # 从 default.yaml 导入配置
+    # ",": {commit: "，"}
+    # ";": {commit: "；"}
+    ".": {commit: "。"}
+    "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
+    ">": [">", 》, 〉, », ⟩, ˃, ˲]
+    "/": ["/", ／, ÷]
+    "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
+    "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
+    "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
+    "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
+    "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
+    "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
+    "(": ["(", （]
+    ")": [")", ）]
+    "[": ['[', 「, 【, 〔, ［, 〚, 〘]
+    "]": [']', 」, 】, 〕, ］, 〛, 〙]
+    "{": [『, 〖, ｛]
+    "}": [』, 〗, ｝]
+    "#": "#"
+    "=": "="
+    ";": [";", "；"]
+    '\': ['､', '、', '\', '＼', '\r', '\n', '\t']
+    "@":
+      - "@"
+      # - "@xxx.com"
+      - "@gmail.com"
+      - "@foxmail.com"
+      - "@outlook.com"
+      - "@hotmail.com"
+      - "@qq.com"
+      - "@163.com"
+      - "@139.com"
+  symbols:
+    __include: symbols.custom:/symbols
+
+# 从 default 继承快捷键
+key_binder:
+  bindings:
+    - {when: paging, accept: comma, send: Page_Up}        # 逗号, 返回上一页
+    - {when: has_menu, accept: semicolon, send: 2}        # 分号用于第2候选
+    - {when: has_menu, accept: apostrophe, send: 3}       # 单引号用于第3候选
+    - {when: has_menu, accept: period, send: Page_Down}   # 句号. 下一页
+    - {when: composing, accept: Control+m, send: Return}
+    - {when: composing, accept: Control+k, send: Shift+Delete}
+    - {when: composing, accept: Control+w, send: Control+BackSpace}
+    - {when: has_menu, accept: Control+Shift+slash, toggle: emoji}
+    - {when: always, accept: "Control+comma", toggle: ascii_punct}
+    - {when: always, accept: "Control+period", toggle: full_shape}
+    - {when: always, accept: "Control+slash", toggle: traditionalize}
+
+# 拼写设定
+speller:
+  # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA890_-`&/|\
+  # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  delimiter: " '"
+  algebra:
+    __include: algebra_common
+
+    # __patch:
+    #   algebra/+:
+    #     __include: flypy_chord_rule:/patch/speller/algebra
+    # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+
+algebra_common:
+  - erase/^ng\[kk$/            # 取消「唔 ng」的独占
+  - erase/^ng\[kx$/            # 取消「嗯 ng」的独占
+  - erase/^n\[\w+$/            # 取消「嗯 n」的独占
+  - erase/^m\[\w+$/            # 取消「呒 m」的独占
+  - erase/^m\[\w+$/            # 取消「呣 m」的独占
+
+  ## 字表编码到输入码的转换规则
+  # - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/     # Flypy: AB[CD
+  # - derive/^(\w+)\[(\w)(\w)$/$1\[$2/       # Flypy: AB[C
+  - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|        # Flypy: AB/CD
+  - derive|^(\w+)\[(\w)(\w)$|$1/$2|          # Flypy: AB/C
+  - derive/^(\w+)\[(\w)(\w)$/$1/             # Flypy: AB
+
+  # 响应 ` 造词
+  # - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
+  # - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
+
+  # 超级简拼, 开启后可能性能不佳, 视情况开启
+  # 输入3+个编码字符, 按下`Ctrl+0`展开超级简拼
+  # - abbrev/^(.).+$/$1/
+
+preedit_convert_rules:
+  - xform/(\w)g/$1eng/
+  - xform/([nl])v/$1ü/
+  - xform/([jqxy])v/$1u/
+  - xform/([gkhvui])x/$1ua/
+  - xform/([gkhvui])k/$1uai/
+  - xform/([jqxnlb])l/$1iang/
+  - xform/([aoe])\1(\w)/$1$2/
+  - xform/([bpmdtnljqx])n/$1iao/
+  - xform/([dtgkhvuirzcs])v/$1ui/
+  - xform/([dtnlgkhvuirzcs])o/$1uo/
+  - xform/([dtnlgkhjqxyvuirzcs])r/$1uan/
+  - xform/([jqx])s/$1iong/
+  - xform/(\w)b/$1in/
+  - xform/(\w)c/$1ao/
+  - xform/(\w)d/$1ai/
+  - xform/(\w)f/$1en/
+  - xform/(\w)h/$1ang/
+  - xform/(\w)j/$1an/
+  - xform/(\w)k/$1ing/
+  - xform/(\w)l/$1uang/
+  - xform/(\w)m/$1ian/
+  - xform/(\w)p/$1ie/
+  - xform/(\w)q/$1iu/
+  - xform/(\w)s/$1ong/
+  - xform/(\w)t/$1ue/
+  - xform/(\w)w/$1ei/
+  - xform/(\w)x/$1ia/
+  - xform/(\w)y/$1un/
+  - xform/(\w)z/$1ou/
+  - "xform/(^|[ '])v/$1zh/"
+  - "xform/(^|[ '])i/$1ch/"
+  - "xform/(^|[ '])u/$1sh/"
