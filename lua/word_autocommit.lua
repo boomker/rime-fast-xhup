@@ -6,7 +6,6 @@ local P = {}
 local T = {}
 local F = {}
 local word_auto_commit = {}
-local word_shape_code_tbl = {}
 
 function word_auto_commit.init(env)
     local config = env.engine.schema.config
@@ -41,19 +40,18 @@ function P.func(key, env)
 
     -- 四码二字词时, 按下 '/'  生成辅助码提示注解
     if (key:repr() == "slash") and (caret_pos == 4) and (input_code:match("^%l+")) then
-        word_shape_code_tbl = {}
+        word_auto_commit.word_shape_code_tbl = {}
         for i = 1, 100, 1 do
             local word_cand = segment:get_candidate_at(i)
             if not word_cand then return 2 end
             local word_cand_text = word_cand.text
             if utf8.len(word_cand_text) ~= 2 then goto skip_cand end
-            if word_cand:get_dynamic_type() == "Shadow" then goto skip_cand end
             local _cand_header_text = string.utf8_sub(word_cand_text, 1, 1)
             local _cand_tailer_text = string.utf8_sub(word_cand_text, 2, 2)
             local cand_header_code = _cand_header_text and env.reversedb:lookup(_cand_header_text):sub(4, 4)
             local cand_tailer_code = _cand_tailer_text and env.reversedb:lookup(_cand_tailer_text):sub(4, 5)
             local cand_shape_code = cand_tailer_code .. cand_header_code
-            word_shape_code_tbl[i] = {word_cand_text, cand_shape_code}
+            word_auto_commit.word_shape_code_tbl[i] = {word_cand_text, cand_shape_code}
             ::skip_cand::
         end
     end
@@ -71,7 +69,7 @@ function P.func(key, env)
         return 1
     end
 
-    if key:repr() == "Escape" then word_shape_code_tbl = {} end
+    if key:repr() == "Escape" then word_auto_commit.word_shape_code_tbl = {} end
     return 2 -- kNoop
 end
 
@@ -110,9 +108,9 @@ function T.func(input, seg, env)
         end
         --]]
 
-        if table.len(word_shape_code_tbl) < 1 then return end
+        if table.len(word_auto_commit.word_shape_code_tbl) < 1 then return end
 
-        for _, val in ipairs(word_shape_code_tbl) do
+        for _, val in ipairs(word_auto_commit.word_shape_code_tbl) do
             local input_shape_code = string.sub(input, 6)
             local _p1 = input_shape_code and input_shape_code:sub(1, 1) or ""
             local _p2 = (input_shape_code:len() == 2) and (input_shape_code:sub(2)) or ""

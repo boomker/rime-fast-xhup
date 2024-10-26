@@ -71,5 +71,12 @@
 		"userdict",
 		"genuines",
 		"uniq"
+	],
+	"luahelper.base.ignoreFileOrDir": [
+		".vscode/",
+		"librime.lua"
+	],
+	"luahelper.base.ignoreFileOrDirError": [
+		".vscode/"
 	]
 }
