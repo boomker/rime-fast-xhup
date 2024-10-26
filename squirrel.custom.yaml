@@ -24,8 +24,8 @@ patch:
     font_point: 20
     shadow_size: 5                              # 高亮候選詞增添陰影
     line_spacing: 5
-    border_width: 1
-    border_height: 1
+    border_width: -1
+    border_height: -1
     corner_radius: 10
     label_font_point: 15
     comment_font_point: 14
@@ -147,20 +147,20 @@ patch:
       ascii_mode: false
     md.obsidian:
       ascii_mode: true
-    com.microsoft.VSCode:             # Visual Studio Code
-      ascii_mode: true
-      ascii_punct: true               # 中文状态输出英文标点(半角)
-      vim_mode: true
-      symbol_unpair_flag: true
-    com.todesktop.230313mzl4w4u92:    # Cursor
-      ascii_mode: true
-      ascii_punct: true               # 中文状态输出英文标点(半角)
-      vim_mode: true
-      symbol_unpair_flag: true
     com.neovide.neovide:
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
       vim_mode: true
+      symbol_unpair_flag: true
+    com.microsoft.VSCode:
+      ascii_mode: true
+      ascii_punct: true
+      vim_mode: true
+      symbol_unpair_flag: true
+    com.todesktop.230313mzl4w4u92:    # cursor
+      vim_mode: true
+      ascii_mode: true
+      ascii_punct: true
       symbol_unpair_flag: true
     com.microsoft.edgemac:
       ascii_mode: false

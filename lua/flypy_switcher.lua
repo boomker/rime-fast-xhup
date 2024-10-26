@@ -1,4 +1,3 @@
--- local filter = {}
 local processor = {}
 local translator = {}
 local flypy_switcher = {}
@@ -18,6 +17,7 @@ function flypy_switcher.init(env)
 	env.font_point = config:get_int("style/font_point") or 20
 	env.line_spacing = config:get_int("style/line_spacing") or 5
 	env.comment_hints = config:get_int("translator/spelling_hints") or 1
+	env.char_mode_state = config:get_string("char_mode/toggle") or "off"
 	env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
 	env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
 	env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
@@ -221,12 +221,10 @@ function processor.func(key, env)
 	end
 
 	if (key:repr() == env.char_mode_switch_key) and (schema.schema_id ~= "easy_en") then
-		local char_mode_option = context:get_option("char_mode")
-		local char_mode_prop = context:get_property("char_mode") or "0"
-		local switch_to_prop = (char_mode_prop == "1") and "0" or "1"
-		local switch_to_val = not char_mode_option
+		local char_mode_option = flypy_switcher.char_mode or (env.char_mode_state == "off") or 0 and 1
+		flypy_switcher.char_mode = (char_mode_option == 1) and 0 or 1
+		local switch_to_val = (flypy_switcher.char_mode == 1) and true or false
 		context:set_option("char_mode", switch_to_val)
-		context:set_property("char_mode", switch_to_prop)
 		context:refresh_non_confirmed_composition()
 		return 1 -- kAccept
 	end
@@ -238,7 +236,8 @@ function translator.func(input, seg, env)
 	local composition = context.composition
 	if composition:empty() then return end
 	local segment = composition:back()
-	local char_mode_prop = context:get_property("char_mode")
+	local char_mode_option = (env.char_mode_state == "off") or 0 and 1
+	local char_mode_state = flypy_switcher.char_mode or char_mode_option
 
 	local trigger_prefix = env.switch_options or "/so" or "sopt"
 
@@ -252,7 +251,7 @@ function translator.func(input, seg, env)
 	-- 四码时, 按下'|', 单字优先
 	if
 		input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$")
-		or (input:match("%l%l%l%l$") and (char_mode_prop == "1"))
+		or (input:match("%l%l%l%l$") and (char_mode_state == 1))
 	then
 		local entry_matched_tbl = {}
 		local yin_code = input:sub(1, 2)
@@ -279,30 +278,6 @@ function translator.func(input, seg, env)
 	end
 end
 
---[[
-function filter.func(input, env)
-	local single_char_cands = {}
-	local context = env.engine.context
-	local caret_pos = context.caret_pos
-	local preedit_code = context.input:gsub(" ", "")
-
-	if context:get_option("char_mode") then
-		for cand in input:iter() do yield(cand) end
-	else
-		for cand in input:iter() do
-			if (utf8.len(cand.text) == 1) and (#preedit_code > 3) then
-				table.insert(single_char_cands, cand)
-			else
-				yield(cand)
-			end
-			if #single_char_cands >= 150 then break end
-		end
-		for index, candidate in ipairs(single_char_cands) do
-			yield(candidate)
-		end
-	end
-end
--- ]]
 
 return {
 	processor = {
@@ -315,9 +290,4 @@ return {
 		func = translator.func,
 		fini = flypy_switcher.fini,
 	},
-	-- filter = {
-	-- 	init = flypy_switcher.init,
-	-- 	func = filter.func,
-	--     fini = flypy_switcher.fini
-	-- },
 }
