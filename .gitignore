@@ -6,8 +6,6 @@ __pycache__/
 .DS_Store
 **/runLog.txt
 **/.ropeproject
-**/runLog.txt
-**/.ropeproject
 user.yaml
 custom_phrase.txt
 installation.yaml
@@ -18,6 +16,6 @@ weasel.yaml
 weasel.custom.yaml
 lua/cold_word_records/*
 lua/pin_word_record.lua
-lua/launcher_config.lua
+lua/shortcut_config.lua
 en_dicts/en_custom.dict.yaml
 zh-hans-t-huayu-v7-bgw.gram
