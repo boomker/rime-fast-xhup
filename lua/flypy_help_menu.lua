@@ -28,6 +28,7 @@ function T.func(input, seg, env)
             { "删用户词", "→ Ctrl+r" },
 			{ "注解切换", "→ Ctrl+n" },
 			{ "注解上屏", "→ Ctrl+p" },
+			{ "单字优先", "→ Ctrl+s" },
 			{ "切换英打", "→ Ctrl+g" },
 			{ "Easydict", "→ Ctrl+y" },
 			{ "简拼展开", "→ Ctrl+0" },
