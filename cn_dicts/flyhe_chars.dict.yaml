@@ -3017,6 +3017,7 @@ sort: by_weight
 鸡	ji[yn	30
 基	ji[qt	29
 继	ji[sv	27
+继	ji[sm	27
 挤	ji[fl	26
 季	ji[hz	26
 吉	ji[uk	26
@@ -3034,6 +3035,7 @@ sort: by_weight
 忌	ji[jx	20
 肌	ji[oj	20
 祭	ji[px	19
+祭	ji[rx	19
 疾	ji[bu	18
 激	ji[dw	18
 辑	ji[ie	17
@@ -3053,6 +3055,7 @@ sort: by_weight
 汲	ji[dj	11
 骥	ji[mb	11
 绩	ji[sr	11
+绩	ji[sb	11
 髻	ji[ak	10
 蓟	ji[cd	10
 矶	ji[uj	10
@@ -3081,12 +3084,13 @@ sort: by_weight
 嵴	ji[eo	5
 麂	ji[gj	5
 戢	ji[ka	5
-戢	ji[kr	5
+戢	ji[kd	5
 楫	ji[me	5
 其	ji[qb	5
 期	ji[qo	5
 佶	ji[rk	5
 赍	ji[ur	5
+赍	ji[ub	5
 笈	ji[vj	5
 跻	ji[zl	5
 瘠	ji[bo	4
@@ -3096,9 +3100,11 @@ sort: by_weight
 给	ji[sk	4
 圾	ji[tj	4
 笄	ji[vk	4
+笄	ji[vc	4
 掎	ji[fk	3
 齑	ji[wl	3
 蕺	ji[ca	2
+蕺	ji[cd	2
 荠	ji[cl	2
 岌	ji[ej	2
 虮	ji[ij	2
@@ -3136,8 +3142,10 @@ sort: by_weight
 乩	ji[lv	0
 乩	ji[vv	0
 枅	ji[mk	0
+枅	ji[mc	0
 姞	ji[nk	0
 𫌀	ji[pr	0
+𫌀	ji[pb	0
 伋	ji[rj	0
 垍	ji[tz	0
 𫚖	ji[va	0
@@ -3297,6 +3305,7 @@ sort: by_weight
 毽	jm[mz	2
 牮	jm[rn	2
 趼	jm[zk	2
+趼	jm[zc	2
 鲣	jm[at	1
 鲣	jm[yt	1
 浅	jm[dj	1
@@ -3321,6 +3330,7 @@ sort: by_weight
 焦	jn[rh	22
 娇	jn[nl	20
 浇	jn[dw	19
+浇	jn[de	19
 觉	jn[xe	19
 搅	jn[fe	18
 缴	jn[sw	18
@@ -3346,6 +3356,7 @@ sort: by_weight
 鲛	jn[ax	6
 鲛	jn[yx	6
 侥	jn[rw	6
+侥	jn[re	6
 酵	jn[yz	6
 醮	jn[yh	5
 茭	jn[cx	4
@@ -3493,6 +3504,7 @@ sort: by_weight
 颎	js[br	0
 𬳶	js[mk	0
 䐃	js[oh	0
+䐃	js[om	0
 䌹	js[sk	0
 觉	jt[xe	27
 绝	jt[sb	26

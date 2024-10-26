@@ -162,6 +162,21 @@ function table.len(t)
     return len
 end
 
+function table.sorted_keys(t, compareFunc)
+    local keys = {}
+    for k in pairs(t) do
+        if type(k) == "number" then
+            table.insert(keys, k)
+        end
+    end
+
+    table.sort(keys, compareFunc or function(a, b)
+        return a < b
+    end)
+
+    return keys
+end
+
 -- table to string 序列化
 function table.serialize(obj)
     local serialize_str = ""
