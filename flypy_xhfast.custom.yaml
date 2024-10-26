@@ -31,7 +31,6 @@ patch:
       states: [联想关, 联想开]
     - name: char_mode
       states: [单字模式关, 单字模式开]
-      # reset: 0
     - name: charset_hint
       states: [码区提示关, 码区提示开]
 
@@ -134,56 +133,32 @@ patch:
       # - derive/^v(.*)/z$1/                    # zh => z
       # - derive/^i(.*)/c$1/                    # ch => c
       # - derive/^u(.*)/s$1/                    # sh => s
-      # - derive/^z([ry])/v$1/                  # z => zh
-      # - derive/^c([az])/i$1/                  # c => ch
-      # - derive/^s([rz])/u$1/                  # s => sh
-      # - derive/^u([hky])/s$1/                 # sh => s
-      # - derive/^(i)g/$1f/                     # eng => en
       # - derive/^(.*)k/$1b/                    # ing => in
       # - derive/^([bnpy])b/$1k/                # in => ing
       # - derive/^(.*)g/$1f/                    # [zcs][h]eng => [zcs][h]en
       # - derive/^(.*)f/$1g/                    # [zcs][h]en => [zcs][h]eng
 
-  custom_phrase/+:
-    comment_mark: " 📌"               # 自定义短语注解标记
-
-  flypy_phrase/+:                     # 自动上屏短语
-    auto_commit: false                # 词条自动上屏开关
-
-  flypy_key_help/+:                   # 小鹤双拼键位帮助
-    prefix: "/ok"
-    tips: "小鹤双拼查键"
-
-  emoji/+:                            # Emoji转换
-    tips: all
+  char_mode:                          # 单字模式开关
+    toggle: "off"
 
   easy_en/+:                          # 英文输入方案
     prefix: "/oe"
     tips: "英文输入"
 
-  radical_lookup/+:                   # 部件组字
-    prefix: "~"
-    tips: 部件组字
+  emoji/+:                            # Emoji转换
+    tips: all
 
-  radical_reverse_lookup/+:           # 部件组字反查
-    overwrite_comment: false
-    dictionary: kMandarin             # 可自行更换反查词典
+  emoji_reduce:                       # Emoji 降频到第 idx 个位置
+    idx: 6
+
+  cold_word_reduce:                   # 生僻词条降频到第 idx 个位置
+    idx: 4
+    excluded_types: ["easy_en"]
 
   LaTeX:                              # LaTeX 公式输入
     tag: LaTeX
     prefix: "/lt"
     tips: "LaTeX 公式"
-
-  calculator:                         # 计算器
-    tag: calculator
-    # prefix: "/vs"
-    prefix: "/="
-    tips: "计算器"
-
-  chinese_number:                     # 中文数字
-    tag: chinese_number
-    prefix: "/cn"
-    tips: "中文数字"
 
   history:                            # 上屏历史记录
     tag: history
@@ -198,14 +173,36 @@ patch:
     word_quality: 1000
     comment_mark: " 🔝"               # 置顶词标记
 
-  cold_word_reduce:                   # 生僻词条降频到第 idx 个位置
-    idx: 4
-    excluded_types: ["easy_en"]
+  calculator:                         # 计算器
+    tag: calculator
+    # prefix: "/vs"
+    prefix: "/="
+    tips: "计算器"
 
-  emoji_reduce:                       # Emoji 降频到第 idx 个位置
-    idx: 6
+  chinese_number:                     # 中文数字
+    tag: chinese_number
+    prefix: "/cn"
+    tips: "中文数字"
+
+  custom_phrase/+:                    # 自定义短语
+    comment_mark: " 📌"               # 自定义短语注解标记
+
+  flypy_phrase/+:                     # 自动上屏短语
+    auto_commit: false                # 词条自动上屏开关
+
+  flypy_key_help/+:                   # 小鹤双拼键位帮助
+    prefix: "/ok"
+    tips: "小鹤双拼查键"
+
+  radical_lookup/+:                   # 部件组字
+    prefix: "~"
+    tips: 部件组字
+
+  radical_reverse_lookup/+:           # 部件组字反查拼音
+    overwrite_comment: false
+    dictionary: kMandarin             # 可自行更换反查词典
 
   predictor:
     db: predict.db
     max_candidates: 7
-    max_iterations: 2
+    max_iterations: 1
