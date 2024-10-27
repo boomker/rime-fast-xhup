@@ -41,7 +41,7 @@ function set_commited_cand_is_chinese(env)
 	context:set_property("prev_cand_is_chinese", "1")
 end
 
-function set_commited_cand_is_pairSymbol(env)
+function set_commited_cand_is_symbol(env)
 	local context = env.engine.context
 	reset_commited_cand_state(env)
 	context:set_property("prev_cand_is_symbol", "1")
@@ -57,28 +57,28 @@ function insert_space_to_candText(env, cand_text)
 end
 
 function get_selected_candidate_index(key_value, selected_index, page_size)
-	local keyValue = key_value
+	local key_name = key_value
 	local selected_cand_idx = -1
 	local page_cand_size = page_size or 7
-	if keyValue == "space" then
-		keyValue = -1
-	elseif keyValue == "Return" then
-		keyValue = -1
-	elseif keyValue == "semicolon" then
-		keyValue = 1
-	elseif keyValue == "apostrophe" then
-		keyValue = 2
-	elseif keyValue:match("^[1-9]$") then
-		keyValue = tonumber(keyValue) - 1
-	elseif keyValue == "0" then
-		keyValue = 9
+	if key_name == "space" then
+		key_name = -1
+	elseif key_name == "Return" then
+		key_name = -1
+	elseif key_name == "semicolon" then
+		key_name = 1
+	elseif key_name == "apostrophe" then
+		key_name = 2
+	elseif key_name:match("^[1-9]$") then
+		key_name = tonumber(key_name) - 1
+	elseif key_name == "0" then
+		key_name = 9
 	else
 		return -1
 	end
 
 	local page_pos = math.floor(selected_index / page_cand_size) + 1
-	local idx = (keyValue == -1) and selected_index or keyValue
-	selected_cand_idx = ((type(keyValue) == "number") and (keyValue ~= -1) and (page_pos > 1))
-			and (keyValue + (page_pos - 1) * page_cand_size) or idx
+	local idx = (key_name == -1) and selected_index or key_name
+	selected_cand_idx = ((type(key_name) == "number") and (key_name ~= -1) and (page_pos > 1))
+			and (key_name + (page_pos - 1) * page_cand_size) or idx
 	return selected_cand_idx
 end
