@@ -5,7 +5,6 @@ local translator = {}
 require("tools/metatable")
 require("tools/rime_helper")
 local _ok_conf, shortcut_config = pcall(require, "shortcut_config")
--- local logger = require("tools.logger")
 
 local function cmd(system, cmdArgs, appId)
 	if system:lower():match("macos") and (cmdArgs == "exec") then
@@ -110,8 +109,6 @@ function processor.func(key, env)
 	then
 		return 2
 	end
-
-	local spec_keys = { ["Escape"] = true, ["BackSpace"] = true }
 
 	if (key_value == "Escape") then
 		context:clear()

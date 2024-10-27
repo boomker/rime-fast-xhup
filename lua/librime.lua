@@ -556,6 +556,7 @@ Component = {}
 ---@field refresh_menu fun(self: self)
 ---@field activate fun(self: self)
 ---@field deactivate fun(self: self)
+---@field process_key fun(self: self, key_event: KeyEvent): ProcessResult
 
 ---@param engine Engine
 ---@return Switcher
