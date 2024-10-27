@@ -86,7 +86,7 @@ function space_leader_word.func(key, env)
 		local cand_text = selected_cand.text
 		engine:commit_text(cand_text)
 		if input_code:match("^[%p]+$") then
-			set_commited_cand_is_pairSymbol(env)
+			set_commited_cand_is_symbol(env)
 		else
 			set_commited_cand_is_chinese(env)
 		end
