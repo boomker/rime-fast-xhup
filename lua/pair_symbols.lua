@@ -1,13 +1,12 @@
 -- 自动补全配对的符号, 并把光标左移到符号对内部
 -- ref: https://github.com/hchunhui/librime-lua/issues/84
-
 require("tools/rime_helper")
 
 local function moveCursorToLeft(env)
     local move_cursor = ""
     if detect_os() == "MacOS" then
         move_cursor = env.user_data_dir .. "/lua/tools/move_cursor"
-    -- else
+        -- else
         -- move_cursor = [[cmd /c start "" /B ]] .. env.user_data_dir .. [[\lua\tools\move_cursor.exe]]
         os.execute(move_cursor)
     end
@@ -39,14 +38,15 @@ function P.init(env)
         ["『"] = "』",
         ["〖"] = "〗",
         ["《"] = "》",
-        ["quotedbl"] = { "“”", '""' },
-        ["apostrophe"] = { "‘’", "''" },
+        ["quotedbl"] = {"“”", '""'},
+        ["apostrophe"] = {"‘’", "''"}
     }
 end
 
 function P.func(key, env)
     local engine = env.engine
     local context = engine.context
+    local page_size = engine.schema.page_size
     local composition = context.composition
     local segment = composition:back()
     local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
@@ -56,13 +56,9 @@ function P.func(key, env)
     -- local focus_app_id = context:get_property("client_app")
     -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
-    local key_name
+    local key_name = key:repr()
 
-    if (key:repr():match("quotedbl")) and (key.keycode == 34) then
-        key_name = "quotedbl"
-    else
-        key_name = key:repr()
-    end
+    if (key.keycode == 34) then key_name = "quotedbl" end
 
     local prev_ascii_mode = context:get_option("ascii_mode")
     if env.pairTable[key_name] and composition:empty() then
@@ -73,31 +69,48 @@ function P.func(key, env)
         end
 
         if (env.system_name == "MacOS") and (key_name == "quotedbl") then
-            os.execute("sleep 0.2")
+            os.execute("sleep 0.3") -- 等待按键被松开
             moveCursorToLeft(env)
         else
             moveCursorToLeft(env)
         end
         context:clear()
-        set_commited_cand_is_pairSymbol(env)
+        set_commited_cand_is_symbol(env)
         return 1 -- kAccepted 收下此key
     end
 
     if context:has_menu() or context:is_composing() then
-        local keyvalue = key:repr()
         local index = segment.selected_index
-        local selected_cand_idx = get_selected_candidate_index(keyvalue, index)
+        local cand = context:get_selected_candidate()
+        local selected_cand_idx = get_selected_candidate_index(key_name, index, page_size)
+        if cand.text and (key_name == "Shift+Control+9") then
+            engine:commit_text("【" .. cand.text .. "】")
+            context:clear()
+            return 1
+        elseif cand.text and (key_name == "Shift+Control+0") then
+            engine:commit_text("「" .. cand.text .. "」")
+            context:clear()
+            return 1
+        elseif cand.text and (key_name == "Shift+Control+8") then
+            engine:commit_text(" (" .. cand.text .. ") ")
+            context:clear()
+            return 1
+        -- elseif cand.text and (key_name == "Shift+Control+7") then
+        --     engine:commit_text(cand.text .. " 先生")
+        --     context:clear()
+        --     return 1
+        end
 
         if (selected_cand_idx >= 0) then
-            local candidateText = segment:get_candidate_at(selected_cand_idx).text -- 获取指定项 从0起
-            local pairedText = env.pairTable[candidateText]
-            if pairedText then
-                engine:commit_text(candidateText)
-                engine:commit_text(pairedText)
+            local candidate_text = segment:get_candidate_at(selected_cand_idx).text -- 获取指定项 从0起
+            local paired_text = env.pairTable[candidate_text]
+            if paired_text then
+                engine:commit_text(candidate_text)
+                engine:commit_text(paired_text)
                 context:clear()
 
                 moveCursorToLeft(env)
-                set_commited_cand_is_pairSymbol(env)
+                set_commited_cand_is_symbol(env)
 
                 return 1 -- kAccepted 收下此key
             end
