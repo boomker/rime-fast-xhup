@@ -35,8 +35,6 @@ librime-lua 样例
 可认为是载入 `lua/bar.lua` 中的例子，并起名为 `foo`。
 配方文件中的引用方法为：`...@foo`。
 
---]]
-
 -- I. translators:
 -- 本方案帮助菜单, `/oh`, `/help`
 flypy_help_menu      = require("flypy_help_menu")
@@ -145,3 +143,5 @@ idiom_expand         = require("idiom_abbr_expand")
 flypy_switcher       = require("flypy_switcher")
 -- flypy_switch_processor         = flypy_switcher.processor
 -- flypy_switch_translator        = flypy_switcher.translator
+
+--]]
