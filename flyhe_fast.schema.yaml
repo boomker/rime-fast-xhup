@@ -87,7 +87,6 @@ translator:
   #   __include: preedit_convert_rules    # 编辑器输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
-    - xform/^~\w+\s.*$//            # 单字编码提示只显示辅助码部分
 
 # 自定义短语
 custom_phrase:                      # 自定义固顶字
@@ -121,8 +120,8 @@ punctuator:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
   half_shape:
     # __include: default:/punctuator/half_shape       # 从 default.yaml 导入配置
-    # ",": {commit: "，"}
-    # ";": {commit: "；"}
+    ";": {commit: "；"}
+    ",": {commit: "，"}
     ".": {commit: "。"}
     "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
     ">": [">", 》, 〉, », ⟩, ˃, ˲]
@@ -141,7 +140,6 @@ punctuator:
     "}": [』, 〗, ｝]
     "#": "#"
     "=": "="
-    ";": [";", "；"]
     '\': ['､', '、', '\', '＼', '\r', '\n', '\t']
     "@":
       - "@"
@@ -163,8 +161,12 @@ key_binder:
     - {when: has_menu, accept: semicolon, send: 2}        # 分号用于第2候选
     - {when: has_menu, accept: apostrophe, send: 3}       # 单引号用于第3候选
     - {when: has_menu, accept: period, send: Page_Down}   # 句号. 下一页
-    - {when: composing, accept: Control+m, send: Return}
+    - {when: has_menu,  accept: Tab, send: Control+Right}
+    - {when: composing, accept: Tab, send: Control+Right}
+    - {when: composing, accept: Shift+Tab, send: Control+Left}
     - {when: composing, accept: Control+k, send: Shift+Delete}
+    - {when: composing, accept: Control+i, send: Control+Left}
+    - {when: composing, accept: Control+o, send: Control+Right}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
     - {when: has_menu, accept: Control+Shift+slash, toggle: emoji}
     - {when: always, accept: "Control+comma", toggle: ascii_punct}
@@ -174,10 +176,10 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA890_-`&/|\
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
-  delimiter: " '"
+  delimiter: " "
   algebra:
     __include: algebra_common
 
@@ -194,12 +196,15 @@ algebra_common:
   - erase/^m\[\w+$/            # 取消「呣 m」的独占
 
   ## 字表编码到输入码的转换规则
+  # - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|      # Flypy: AB/CD
+  # - derive|^(\w+)\[(\w)(\w)$|$1/$2|        # Flypy: AB/C
   # - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/     # Flypy: AB[CD
-  # - derive/^(\w+)\[(\w)(\w)$/$1\[$2/       # Flypy: AB[C
-  - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|        # Flypy: AB/CD
-  - derive|^(\w+)\[(\w)(\w)$|$1/$2|          # Flypy: AB/C
-  - derive/^(\w+)\[(\w)(\w)$/$1/             # Flypy: AB
+  - derive/^(\w+)\[(\w)(\w)$/$1\[$2/       # Flypy: AB[C
+  - derive/^(\w+)\[(\w)(\w)$/$1/           # Flypy: AB
+  - derive/[[]//                           # 取消注释，直接辅码
 
+  - derive/^([qx])v/$1u/
+  - derive/^([jy])u/$1v/
   # 响应 ` 造词
   # - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
   # - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
