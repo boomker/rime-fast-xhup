@@ -18,9 +18,9 @@ function easy_en.init(env)
 	local config = env.engine.schema.config
 	local easy_en_schema = Schema("easy_en") -- schema_id
 	local _easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
-	env.wildcard = "*"
+	env.wildcard = config:get_string("easy_en/wildcard") or "*"
+	env.expan_word_count = config:get_int("easy_en/expan_word_count") or 666
 	env.mem = Memory(env.engine, easy_en_schema, "translator")
-	env.expan_word_count = config:get_int("expan_word_count") or 150
 	env.easy_en_prefix = _easy_en_pat and _easy_en_pat:match("%^([a-z/]+).*") or "/oe"
 	env.easydict_translate_key = config:get_string("key_binder/easydict_translate") or "Control+y"
 	env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
@@ -61,7 +61,7 @@ function easy_en.translator(input, seg, env)
 				local code = env.mem:decode(dictentry.code)
 				local codeComment = table.concat(code, ",")
 				local ph = Phrase(env.mem, "expand_en_word", seg.start, seg._end, dictentry)
-				ph.comment = codeComment
+				ph.comment = dictentry.comment:lower()
 				yield(ph:toCandidate())
 			end
 		end
