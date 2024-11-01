@@ -91,7 +91,7 @@ patch:
       date: "^(/wd|date)$"
       LaTeX: "^/(lt|LT)(.*)$"                   # LaTeX 公式
       history: "^(/hs|hisz)$"                   # 上屏历史
-      easy_en: "/oe[a-zA-Z]+'?$"                # 英文输入
+      easy_en: "/oe[a-zA-Z*]+'?$"                # 英文输入
       flypy_help: "^/(oh|help)$"                # 方案帮助菜单
       shortcuts: "^/(f|k)j[a-z]*$"              # 快捷指令
       calculator: "^(/=|/vs)(.*)$"              # 简易计算器
@@ -134,7 +134,6 @@ patch:
       # - derive/^i(.*)/c$1/                    # ch => c
       # - derive/^u(.*)/s$1/                    # sh => s
       # - derive/^(.*)k/$1b/                    # ing => in
-      # - derive/^([bnpy])b/$1k/                # in => ing
       # - derive/^(.*)g/$1f/                    # [zcs][h]eng => [zcs][h]en
       # - derive/^(.*)f/$1g/                    # [zcs][h]en => [zcs][h]eng
 
@@ -144,6 +143,8 @@ patch:
   easy_en/+:                          # 英文输入方案
     prefix: "/oe"
     tips: "英文输入"
+    wildcard: '*'
+    expan_word_count: 666
 
   emoji/+:                            # Emoji转换
     tips: all

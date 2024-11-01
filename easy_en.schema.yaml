@@ -16,7 +16,7 @@ schema:
 
 engine:
   processors:
-    - lua_processor@*engword_append_space
+    # - lua_processor@*engword_append_space
     - lua_processor@*flypy_switcher*processor
     - ascii_composer
     - key_binder
@@ -125,4 +125,8 @@ recognizer:
   patterns:
     uppercase: ""
 
-expan_word_count: 150
+easy_en:                          # 英文输入方案
+  prefix: "/oe"
+  tips: "英文输入"
+  wildcard: '*'
+  expan_word_count: 666

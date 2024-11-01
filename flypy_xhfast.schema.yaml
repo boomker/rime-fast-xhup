@@ -83,6 +83,7 @@ engine:
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
     - lua_translator@*chinese_number                  # /cn 触发大写金额数字
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
+    - lua_translator@*easy_en*translator
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     - lua_translator@*word_autocaps*translator        # A-Z 大写字母开头触发单词自动大写
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
@@ -130,7 +131,6 @@ translator:
   #   __include: preedit_convert_rules    # 编辑器输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
-    - xform/^~\w+\s.*$//            # 单字编码提示只显示辅助码部分
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
@@ -305,7 +305,7 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_-`&/|\
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_-`*&/|\
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
