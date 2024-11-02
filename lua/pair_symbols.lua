@@ -15,8 +15,13 @@ end
 local P = {}
 
 function P.init(env)
-    env.user_data_dir = rime_api:get_user_data_dir()
+    local config = env.engine.schema.config
     env.system_name = detect_os()
+    env.user_data_dir = rime_api:get_user_data_dir()
+    env.enclosed_a = config:get_string("key_binder/enclosed_cand_chars_a") or nil
+    env.enclosed_b = config:get_string("key_binder/enclosed_cand_chars_b") or nil
+    env.enclosed_c = config:get_string("key_binder/enclosed_cand_chars_c") or nil
+    env.enclosed_d = config:get_string("key_binder/enclosed_cand_chars_d") or nil
     env.pairTable = {
         ['"'] = '"',
         ["“"] = "”",
@@ -38,8 +43,8 @@ function P.init(env)
         ["『"] = "』",
         ["〖"] = "〗",
         ["《"] = "》",
-        ["quotedbl"] = {"“”", '""'},
-        ["apostrophe"] = {"‘’", "''"}
+        ["quotedbl"] = { "“”", '""' },
+        ["apostrophe"] = { "‘’", "''" },
     }
 end
 
@@ -52,13 +57,13 @@ function P.func(key, env)
     local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
 
     if symbol_unpair_flag then return 2 end
-    if (env.system_name == "iOS") then return 2 end
+    if env.system_name == "iOS" then return 2 end
     -- local focus_app_id = context:get_property("client_app")
     -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
     local key_name = key:repr()
 
-    if (key.keycode == 34) then key_name = "quotedbl" end
+    if key.keycode == 34 then key_name = "quotedbl" end
 
     local prev_ascii_mode = context:get_option("ascii_mode")
     if env.pairTable[key_name] and composition:empty() then
@@ -83,25 +88,30 @@ function P.func(key, env)
         local index = segment.selected_index
         local cand = context:get_selected_candidate()
         local selected_cand_idx = get_selected_candidate_index(key_name, index, page_size)
-        if cand.text and (key_name == "Shift+Control+9") then
-            engine:commit_text("【" .. cand.text .. "】")
-            context:clear()
-            return 1
-        elseif cand.text and (key_name == "Shift+Control+0") then
-            engine:commit_text("「" .. cand.text .. "」")
-            context:clear()
-            return 1
-        elseif cand.text and (key_name == "Shift+Control+8") then
-            engine:commit_text(" (" .. cand.text .. ") ")
-            context:clear()
-            return 1
-        -- elseif cand.text and (key_name == "Shift+Control+7") then
-        --     engine:commit_text(cand.text .. " 先生")
-        --     context:clear()
-        --     return 1
+        if env.enclosed_a or env.enclosed_b or env.enclosed_c or env.enclosed_d then
+            local matched = false
+            if key_name == env.enclosed_a then
+                matched = true
+                engine:commit_text("「" .. cand.text .. "」")
+            elseif key_name == env.enclosed_b then
+                matched = true
+                engine:commit_text("【" .. cand.text .. "】")
+            elseif key_name == env.enclosed_c then
+                matched = true
+                engine:commit_text("（" .. cand.text .. "）")
+            elseif (key_name == env.enclosed_d) then
+                matched = true
+                engine:commit_text("〔" .. cand.text .. "〕")
+            -- elseif cand.text and (key_name == "Shift+Control+7") then
+            --     engine:commit_text(cand.text .. " 先生")
+            end
+            if matched then
+                context:clear()
+                return 1
+            end
         end
 
-        if (selected_cand_idx >= 0) then
+        if selected_cand_idx >= 0 then
             local candidate_text = segment:get_candidate_at(selected_cand_idx).text -- 获取指定项 从0起
             local paired_text = env.pairTable[candidate_text]
             if paired_text then
