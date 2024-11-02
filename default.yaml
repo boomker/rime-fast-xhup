@@ -153,11 +153,11 @@ key_binder:
   # select_first_character: "bracketleft"     # 左中括号 [
   # select_last_character: "bracketright"     # 右中括号 ]
   bindings:
-    # - {when: has_menu, accept: semicolon, send: 2}
+    - {when: has_menu, accept: semicolon, send: 2}
     # - {when: has_menu,  accept: apostrophe, send: 3}       ## 单引号用于第3候选
     # Tab / Shift+Tab 切换光标至下/上一个拼音
-    - {when: composing, accept: Shift+Tab, send: Control+Left}
-    - {when: composing, accept: Tab, send: Control+Right}
+    # - {when: composing, accept: Shift+Tab, send: Control+Left}
+    # - {when: composing, accept: Tab, send: Control+Right}
     # Tab / Shift+Tab 翻页
     # - { when: has_menu, accept: Shift+Tab, send: Page_Up }
     # - { when: has_menu, accept: Tab, send: Page_Down }
@@ -170,8 +170,8 @@ key_binder:
     # - {when: has_menu, accept: minus, send: Page_Up}
     # - {when: has_menu, accept: equal, send: Page_Down}
     # 翻页 , .
-    # - {when: paging, accept: comma, send: Page_Up}
-    # - {when: has_menu, accept: period, send: Page_Down}
+    - {when: paging, accept: comma, send: Page_Up}
+    - {when: has_menu, accept: period, send: Page_Down}
     # 翻页 [ ]
     # - { when: paging, accept: bracketleft, send: Page_Up }
     # - { when: has_menu, accept: bracketright, send: Page_Down }
