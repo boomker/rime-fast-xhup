@@ -1,0 +1,5 @@
+extends: default
+rules:
+  line-length:
+    max: 100  # 设置每行的最大长度为 80 个字符
+    # 其他规则配置
