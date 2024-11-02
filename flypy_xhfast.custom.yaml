@@ -67,6 +67,8 @@ patch:
     select_first_character: "bracketleft"   # `[` 以词定字(第一个字)
     select_last_character:  "bracketright"  # `]` 以词定字(最后一个字)
     bindings/+:
+      - {when: has_menu,  accept: Tab, send: Right}
+      - {when: composing, accept: Tab, send: Right}
       - {when: composing, accept: grave, send: "`"}          # `键 逐字追加辅码
       - {when: has_menu,  accept: semicolon,  send: 2}       # 分号用于第2候选
       - {when: has_menu,  accept: apostrophe, send: 3}       # 单引号用于第3候选
@@ -74,8 +76,8 @@ patch:
       - {when: has_menu,  accept: period, send: Page_Down}   # 句号. 下一页
       # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 返回上一页
       # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
-      - {when: has_menu,  accept: Tab, send: Control+Right}
-      - {when: composing, accept: Tab, send: Control+Right}
+      # - {when: has_menu,  accept: Tab, send: Control+Right}
+      # - {when: composing, accept: Tab, send: Control+Right}
       - {when: composing, accept: Shift+Tab, send: Control+Left}
       - {when: composing, accept: Control+i, send: Control+Left}
       - {when: composing, accept: Control+o, send: Control+Right}
