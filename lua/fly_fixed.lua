@@ -12,7 +12,7 @@ end
 function F.func(input, env)
     local drop_cand = false
     local cmp_cand_count = 0
-    local low_priority_cands = {}
+    -- local low_priority_cands = {}
     -- local reversedb = env.reversedb
     local context = env.engine.context
     local preedit_code = context.input
@@ -84,11 +84,6 @@ function F.func(input, env)
                 and first_char_ycode:match(first_syllable_code)
             then
                 yield(cand)
-            elseif last_char_ycode
-                and (cand.preedit:find(" ") % 2 ~= 0 )
-                and last_char_ycode:match(preedit_last_code)
-            then
-                yield(cand)
             else
                 table.insert(low_priority_cands, cand)
             end
@@ -97,11 +92,10 @@ function F.func(input, env)
             yield(cand)
         end
 
-        if #low_priority_cands >= 150 then break end
     end
 
     if drop_cand then drop_cand = false end
-    for _, cand in ipairs(low_priority_cands) do yield(cand) end
+    -- for _, cand in ipairs(low_priority_cands) do yield(cand) end
 end
 
 return F
