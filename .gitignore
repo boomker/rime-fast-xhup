@@ -12,4 +12,5 @@ lua/cold_word_records/*
 lua/pin_word_record.lua
 lua/shortcut_config.lua
 en_dicts/en_custom.dict.yaml
+amz-v1n3m2-zh-hans.gram
 zh-hans-t-huayu-v7-bgw.gram

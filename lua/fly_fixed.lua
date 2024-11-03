@@ -3,8 +3,8 @@ local F = {}
 
 function F.init(env)
     local config = env.engine.schema.config
-    local schema_id = config:get_string("translator/dictionary")
-    env.reversedb = ReverseLookup(schema_id)
+    -- local schema_id = config:get_string("translator/dictionary")
+    -- env.reversedb = ReverseLookup(schema_id)
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.custom_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
 end
@@ -13,7 +13,7 @@ function F.func(input, env)
     local drop_cand = false
     local cmp_cand_count = 0
     local low_priority_cands = {}
-    local reversedb = env.reversedb
+    -- local reversedb = env.reversedb
     local context = env.engine.context
     local preedit_code = context.input
     local _, symbol_count = preedit_code:gsub("[`']", "")
@@ -21,8 +21,6 @@ function F.func(input, env)
     local confirmed_syllable_len = _syllable_count - symbol_count
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
-        local cand_type = cand:get_dynamic_type()
-        local _, sp_count = cand.preedit:gsub(" ", "")
 
         if cand.comment:match("^" .. env.pin_mark .. "$") then
             -- 带有 pin_mark 标记的候选词条, 优先显示
@@ -67,15 +65,13 @@ function F.func(input, env)
             else
                 yield(cand)
             end
-        -- [[ 如果你没有用超级简拼, 下面这些都可以注释掉
+        --[[ 如果你没有用超级简拼, 下面这些都可以注释掉
         elseif
             -- 将超级简拼产生的候选结果降频, 置于最后输出
-            (cand_type ~= "Shadow")
-            and (not preedit_code:match("%p"))
+            (#preedit_code % 2 ~= 0)
             and (not cand_text:match("[%a%p]"))
             and (not cand.type:match("user_table"))
             and (utf8.len(cand_text) < #preedit_code)
-            and (sp_count >= 1) and (#preedit_code % 2 ~= 0)
         then
             local first_char = cand_text:utf8_sub(1, 1)
             local last_char = cand_text:utf8_sub(-1, -1)
