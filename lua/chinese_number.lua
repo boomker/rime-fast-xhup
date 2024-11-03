@@ -306,13 +306,9 @@ function T.func(input, seg, env)
     local config = env.engine.schema.config
     local chinese_number_pattern = "recognizer/patterns/chinese_number"
     local _cn_pat = config:get_string(chinese_number_pattern) or nil
-    local trigger_prefix = _cn_pat and _cn_pat:match("%^([a-z/]+).*") or "/cn"
+    local trigger_prefix = _cn_pat and _cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/cn"
     if seg:has_tag("chinese_number") or string.match(input, "^" .. trigger_prefix) then
-        str = string.gsub(input, "^" .. trigger_prefix, "")
-        if str:match("[%a]") then
-            yield(Candidate(input, seg.start, seg._end, "输入不合法!", ""))
-            yield(Candidate(input, seg.start, seg._end, "请输入数字!", ""))
-        end
+        str = input:gsub("^" .. trigger_prefix, ""):gsub("%a+", "")
         numberPart = number_translatorFunc(str)
         if #numberPart > 0 then
             for i = 1, #numberPart do
