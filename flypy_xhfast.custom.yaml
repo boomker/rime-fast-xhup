@@ -95,17 +95,17 @@ patch:
       week: "^(/wk|week)$"
       time: "^(/wt|time)$"
       date: "^(/wd|date)$"
-      LaTeX: "^/(lt|LT)(.*)$"                   # LaTeX 公式
+      LaTeX: "^(/lt|LT)(.*)$"                   # LaTeX 公式
       history: "^(/hs|hisz)$"                   # 上屏历史
-      easy_en: "/oe[a-zA-Z*]+'?$"                # 英文输入
+      easy_en: "/oe[a-zA-Z*]+'?$"               # 英文输入
       flypy_help: "^/(oh|help)$"                # 方案帮助菜单
-      shortcuts: "^/(f|k)j[a-z]*$"              # 快捷指令
+      shortcuts: "^/(fj|kj)[a-z]*$"             # 快捷指令
       calculator: "^(/=|/vs)(.*)$"              # 简易计算器
       radical_lookup: "~[a-z]+'?$"              # 部件拆字组字
       flypy_key_help: "^/ok[a-z]*$"             # 双拼键位帮助
       lunar: "^(/nl|lunar)[0-9]*$"              # 中国农历
-      chinese_number: "^/cn[0-9.]*$"            # 中文大写数字
       switch_options: "^(/so|sopt)$"            # 快速切换配置选项
+      chinese_number: "^(/cn|nN)[0-9.]+$"       # 中文大写数字(金额)
 
   punctuator/+:
     full_shape/+:
@@ -162,6 +162,10 @@ patch:
     idx: 4
     excluded_types: ["easy_en"]
 
+  pin_word:                           # 词条置顶配置
+    word_quality: 1000
+    comment_mark: " 🔝"               # 置顶词标记
+
   LaTeX:                              # LaTeX 公式输入
     tag: LaTeX
     prefix: "/lt"
@@ -175,10 +179,6 @@ patch:
     initial_quality: 1000
     comment_max_length: 20
     excluded_types: ["punct"]
-
-  pin_word:                           # 词条置顶配置
-    word_quality: 1000
-    comment_mark: " 🔝"               # 置顶词标记
 
   calculator:                         # 计算器
     tag: calculator
