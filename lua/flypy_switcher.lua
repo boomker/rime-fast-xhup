@@ -24,8 +24,8 @@ function flypy_switcher.init(env)
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
-    env.switch_options = _so_pat and _so_pat:match("[a-z/]+") or "/so"
-    env.easy_en_prefix = _en_pat and _en_pat:match("%^([a-z/]+).*") or "/oe"
+    env.switch_options = _so_pat and _so_pat:match("%^.?([a-zA-Z/]+).*") or "/so"
+    env.easy_en_prefix = _en_pat and _en_pat:match("%^.?([a-zA-Z/]+).*") or "/oe"
     env.char_mode_suffix = config:get_string("key_binder/char_mode_suffix") or "|"
     env.normal_labels = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
     env.alter_labels = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪"}
