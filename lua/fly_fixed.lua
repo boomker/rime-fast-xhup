@@ -1,19 +1,58 @@
 require("tools/string")
 local F = {}
+local T = {}
+local flypy_fixed = {}
 
-function F.init(env)
+function flypy_fixed.init(env)
     local config = env.engine.schema.config
-    -- local schema_id = config:get_string("translator/dictionary")
-    -- env.reversedb = ReverseLookup(schema_id)
+    local schema_id = config:get_string("schema/schema_id")
+    local schema = Schema(schema_id)
+    env.reversedb = ReverseLookup(schema_id)
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.custom_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
+    env.script_translator = Component.Translator(env.engine, schema, "", "script_translator@translator")
+end
+
+function T.func(input, seg, env)
+    local context = env.engine.context
+    local composition = context.composition
+    if composition:empty() then return end
+    if (#input <= 2) or input:match("%d%p") then return end
+    local word_cands = env.script_translator:query(input, seg)
+
+    if word_cands then
+        local count = 0
+        for cand in word_cands:iter() do
+            if count > 3 then break end
+            local entry_text = cand.text
+            if (utf8.len(entry_text) >= 2) and (not entry_text:match("%a%d%p")) then
+                local first_char = string.utf8_sub(entry_text, 1, 1)
+                local last_char = string.utf8_sub(entry_text, -1, -1)
+
+                local first_syllable_code = input:sub(1, 2)
+                local preedit_last_code = input:sub(-1, -1)
+                local first_char_ycode = env.reversedb:lookup(first_char):gsub("%[%l%l", "")
+                local last_char_ycode = env.reversedb:lookup(last_char):gsub("%l%[%l%l", "")
+                if last_char_ycode and first_char_ycode
+                    and last_char_ycode:match(preedit_last_code)
+                    and first_char_ycode:match(first_syllable_code)
+                then
+                    cand.quality = 999
+                    yield(cand)
+                    count = count + 1
+                elseif last_char_ycode and last_char_ycode:match(preedit_last_code) then
+                    cand.quality = 888
+                    yield(cand)
+                    count = count + 1
+                end
+            end
+        end
+    end
 end
 
 function F.func(input, env)
     local drop_cand = false
     local cmp_cand_count = 0
-    -- local low_priority_cands = {}
-    -- local reversedb = env.reversedb
     local context = env.engine.context
     local preedit_code = context.input
     local _, symbol_count = preedit_code:gsub("[`']", "")
@@ -65,29 +104,6 @@ function F.func(input, env)
             else
                 yield(cand)
             end
-        --[[ 如果你没有用超级简拼, 下面这些都可以注释掉
-        elseif
-            -- 将超级简拼产生的候选结果降频, 置于最后输出
-            (#preedit_code % 2 ~= 0)
-            and (not cand_text:match("[%a%p]"))
-            and (not cand.type:match("user_table"))
-            and (utf8.len(cand_text) < #preedit_code)
-        then
-            local first_char = cand_text:utf8_sub(1, 1)
-            local last_char = cand_text:utf8_sub(-1, -1)
-            local first_syllable_code = preedit_code:sub(1, 2)
-            local preedit_last_code = preedit_code:sub(-1, -1)
-            local first_char_ycode = reversedb:lookup(first_char):gsub("%[%l%l", "")
-            local last_char_ycode = reversedb:lookup(last_char):gsub("%l%[%l%l", "")
-            if last_char_ycode and first_char_ycode
-                and last_char_ycode:match(preedit_last_code)
-                and first_char_ycode:match(first_syllable_code)
-            then
-                yield(cand)
-            else
-                table.insert(low_priority_cands, cand)
-            end
-            -- 如果你没有启用超级简拼, 上面这些都可以注释掉 ]]
         else
             yield(cand)
         end
@@ -95,7 +111,15 @@ function F.func(input, env)
     end
 
     if drop_cand then drop_cand = false end
-    -- for _, cand in ipairs(low_priority_cands) do yield(cand) end
 end
 
-return F
+return {
+    translator = {
+        init = flypy_fixed.init,
+        func = T.func,
+    },
+    filter = {
+        init = flypy_fixed.init,
+        func = F.func,
+    },
+}
