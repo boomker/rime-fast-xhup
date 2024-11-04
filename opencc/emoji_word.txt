@@ -37,7 +37,7 @@ UFO	UFO 🛸
 VS	VS 🆚
 WC	WC 🚾
 Wi-Fi	Wi-Fi 🛜
-WiFi	WiFi 🛜
+WiFi	wifi 🛜
 X光	X光 🩻
 X光片	X光片 🩻
 X射线	X射线 🩻
