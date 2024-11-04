@@ -236,7 +236,7 @@ function translator.func(input, seg, env)
     if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$") or (input:match("%l%l%l%l$") and (char_mode_state == 1)) then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
-        local ok = env.mem:dict_lookup(yin_code, true, 150) -- expand_search
+        local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search
         if not ok then return end
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
