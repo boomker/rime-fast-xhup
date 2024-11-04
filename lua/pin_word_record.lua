@@ -67,7 +67,6 @@ local pin_word_records =
 	["xj"] = { "些", },
 	["beer"] = { "beer", },
 	["java"] = { "Java", },
-	["if"] = { "陈", },
 	["kbas"] = { "K8S", },
 	["some"] = { "some", "someone", },
 	["cpu"] = { "CPU", },
