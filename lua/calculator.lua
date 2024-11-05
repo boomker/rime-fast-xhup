@@ -275,7 +275,7 @@ function T.func(input, seg, env)
     if startsWith(input, T.prefix) or (seg:has_tag("calculator")) then
         segment.prompt = "〔" .. T.tips .. "〕"
         -- 提取算式
-        local express = input:gsub(T.prefix, "")
+        local express = input:gsub(T.prefix, ""):gsub("^/vs", "")
         -- 算式长度 < 2 直接终止(没有计算意义)
         if (string.len(express) < 2) and (not calc_methods[express]) then return end
         if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then return end

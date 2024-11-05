@@ -44,7 +44,7 @@ patch:
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
+  'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
@@ -130,7 +130,6 @@ patch:
   speller/+:
     algebra/+:
       # - derive|/||                            # 取消注释,直接辅码(新手不推荐)
-
 
       ## 模糊音:
       - derive/^([jqxy])v/$1u/
