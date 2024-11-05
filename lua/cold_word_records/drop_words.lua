@@ -1,5 +1,5 @@
-local drop_words = {
-	"冰蘖",
+local drop_words =
+{ 	"冰蘖",
 	"妆安",
 	"戢翼",
 	"提么",
@@ -20,5 +20,6 @@ local drop_words = {
 	"离经畔道",
 	"色情市场",
 	"行政区画",
+	"吗错送",
 }
 return drop_words
