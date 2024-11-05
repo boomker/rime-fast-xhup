@@ -9,11 +9,6 @@ __pycache__/
 user.yaml
 custom_phrase.txt
 installation.yaml
-default.yaml
-default.custom.yaml
-flypy_xhfast.custom.yaml
-weasel.yaml
-weasel.custom.yaml
 lua/cold_word_records/*
 lua/pin_word_record.lua
 lua/shortcut_config.lua
