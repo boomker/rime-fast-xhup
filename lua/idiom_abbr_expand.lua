@@ -12,6 +12,8 @@ function P.func(key, env)
     local caret_pos = context.caret_pos
     local input_code = context.input:gsub("%s", "")
     local preedit_code_length = #input_code
+    local composition = context.composition
+    if composition:empty() then return 2 end
 
     if
         context:has_menu()
