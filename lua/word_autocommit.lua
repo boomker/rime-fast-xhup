@@ -17,17 +17,19 @@ function word_auto_commit.init(env)
     env.reversedb = ReverseLookup(schema_id)
     env.phrase_reversedb = ReverseLookup(phrase_dict)
     env.autocommit_on = config:get_bool("flypy_phrase/auto_commit") or false
-    env.script_translator = Component.Translator(env.engine, schema, "", "script_translator@translator")
+    env.script_translator = Component.ScriptTranslator(env.engine, schema, "", "script_translator@translator")
 end
 
---[[
 function word_auto_commit.fini(env)
     if env.memory then
         env.memory:disconnect()
         env.memory = nil
     end
+    if env.script_translator then
+        env.script_translator:disconnect()
+        env.script_translator = nil
+    end
 end
---]]
 
 function P.func(key, env)
     local engine = env.engine
@@ -226,16 +228,16 @@ return {
     processor = {
         init = word_auto_commit.init,
         func = P.func,
-        -- fini = word_auto_commit.fini
+        fini = word_auto_commit.fini,
     },
     translator = {
         init = word_auto_commit.init,
         func = T.func,
-        -- fini = word_auto_commit.fini
+        fini = word_auto_commit.fini,
     },
     filter = {
         init = word_auto_commit.init,
         func = F.func,
-        -- fini = word_auto_commit.fini
+        fini = word_auto_commit.fini,
     },
 }

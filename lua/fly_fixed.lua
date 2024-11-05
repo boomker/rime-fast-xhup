@@ -10,7 +10,18 @@ function flypy_fixed.init(env)
     env.reversedb = ReverseLookup(schema_id)
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.custom_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
-    env.script_translator = Component.Translator(env.engine, schema, "", "script_translator@translator")
+    env.script_translator = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
+end
+
+function flypy_fixed.fini(env)
+    if env.memory then
+        env.memory:disconnect()
+        env.memory = nil
+    end
+    if env.script_translator then
+        env.script_translator:disconnect()
+        env.script_translator = nil
+    end
 end
 
 function T.func(input, seg, env)
@@ -25,6 +36,7 @@ function T.func(input, seg, env)
         for cand in word_cands:iter() do
             if count > 3 then break end
             local entry_text = cand.text
+            local input_code_len = ((#input % 2) ~= 0) and (#input + 1) or #input
             if (utf8.len(entry_text) >= 2) and (not entry_text:match("%a%d%p")) then
                 local first_char = string.utf8_sub(entry_text, 1, 1)
                 local last_char = string.utf8_sub(entry_text, -1, -1)
@@ -40,7 +52,10 @@ function T.func(input, seg, env)
                     cand.quality = 999
                     yield(cand)
                     count = count + 1
-                elseif last_char_ycode and last_char_ycode:match(preedit_last_code) then
+                elseif last_char_ycode
+                    and last_char_ycode:match(preedit_last_code)
+                    and ((input_code_len / 2 ) >= utf8.len(entry_text))
+                then
                     cand.quality = 888
                     yield(cand)
                     count = count + 1
@@ -117,9 +132,11 @@ return {
     translator = {
         init = flypy_fixed.init,
         func = T.func,
+        fini = flypy_fixed.fini
     },
     filter = {
         init = flypy_fixed.init,
         func = F.func,
+        fini = flypy_fixed.fini
     },
 }
