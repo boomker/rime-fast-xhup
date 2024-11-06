@@ -20,6 +20,5 @@ local drop_words =
 	"离经畔道",
 	"色情市场",
 	"行政区画",
-	"吗错送",
 }
 return drop_words
