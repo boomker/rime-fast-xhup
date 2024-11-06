@@ -64,6 +64,9 @@ engine:
 
 # 八股文
 grammar:
+  # collocation_min_length: 2
+  # collocation_max_length: 5
+  # language: amz-v2n3m1-zh-hans
   language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
@@ -78,6 +81,7 @@ translator:
   contextual_suggestions: true      # 开启语言模型优化候选
   sentence_over_completion: true    # 逐鍵提示時啓智能組句
   # max_homophones: 7
+  # max_homographs: 7
   # max_phrase_length: 5
   # enable_encoder: true
   # always_show_comments: true
