@@ -7,7 +7,7 @@ __pycache__/
 **/runLog.txt
 **/.ropeproject
 user.yaml
-custom_phrase.txt
+amz-v*.gram
 installation.yaml
 lua/cold_word_records/*
 lua/pin_word_record.lua
