@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2024-11-06
+version: 2024-11-07
 sort: by_weight
 ...
 
@@ -485,6 +485,7 @@ sort: by_weight
 红刃	hs rf	1
 弘石	hs ui	1
 弘昼	hs vz	1
+红州	hs vz	1
 红温	hs wf	1
 鸿雪	hs xt	1
 鸿音	hs yb	1
@@ -649,6 +650,7 @@ sort: by_weight
 叽米	ji mi	1
 几命	ji mk	1
 极难	ji nj	1
+计票	ji pn	1
 极清	ji qk	1
 急曲	ji qu	1
 积人	ji rf	1
@@ -854,6 +856,7 @@ sort: by_weight
 蓝潮	lj ic	1
 蓝锁	lj so	1
 岚图	lj tu	1
+蓝州	lj vz	1
 绫华	lk hx	1
 灵吉	lk ji	1
 灵君	lk jy	1
@@ -1099,6 +1102,7 @@ sort: by_weight
 帕美	pa mw	1
 趴睡	pa uv	1
 拼船	pb ir	1
+频遭	pb zc	1
 泡队	pc dv	1
 跑输	pc uu	1
 抛瓦	pc wa	1
@@ -1125,6 +1129,7 @@ sort: by_weight
 平修	pk xq	1
 片姐	pm jp	1
 偏信	pm xb	1
+票仓	pn ch	1
 票档	pn dh	1
 票来	pn ld	1
 破抵	po di	1
@@ -1268,6 +1273,7 @@ sort: by_weight
 芮克	rv ke	1
 芮娜	rv na	1
 锐评	rv pk	1
+润人	ry rf	1
 柔步	rz bu	1
 肉粽	rz zs	1
 萨那	sa na	1
@@ -1444,6 +1450,7 @@ sort: by_weight
 深学	uf xt	1
 神运	uf yy	1
 深作	uf zo	1
+圣猴	ug hz	1
 绳匠	ug jl	1
 胜决	ug jt	1
 生咖	ug ka	1
@@ -1660,140 +1667,70 @@ sort: by_weight
 汪水	wh uv	1
 王铸	wh vu	1
 完播	wj bo	1
-万杯	wj bw	1
 完蛋	wj dj	1
-晚二	wj er	1
-万粉	wj ff	1
-宛禾	wj he	1
 万疆	wj jl	1
 万舰	wj jm	1
-晚接	wj jp	1
 丸辣	wj la	1
-万楼	wj lz	1
 卧草	wo cc	1
 倭刀	wo dc	1
-我担	wo dj	1
-我雷	wo lw	1
-我趣	wo qu	1
 我善	wo uj	1
 误读	wu du	1
 五番	wu fj	1
-五费	wu fw	1
 五哈	wu ha	1
 五抽	wu iz	1
 悟空	wu ks	1
 武魁	wu kv	1
 芜拉	wu la	1
-舞萌	wu mg	1
-五命	wu mk	1
 唔姆	wu mu	1
 屋企	wu qi	1
 勿听	wu tk	1
-五上	wu uh	1
-无侦	wu vf	1
 无职	wu vi	1
 无网	wu wh	1
-午写	wu xp	1
-五夏	wu xx	1
-乌野	wu ye	1
-未半	ww bj	1
 未花	ww hx	1
 尾场	ww ih	1
 纬钧	ww jy	1
 未可	ww ke	1
-卫鲤	ww li	1
-魏轻	ww qk	1
-伪人	ww rf	1
 威飒	ww sa	1
-薇塔	ww ta	1
 维神	ww uf	1
-维亚	ww ya	1
-心锋	xb fg	1
 新梗	xb gg	1
 芯核	xb he	1
-心患	xb hr	1
-心超	xb ic	1
-新境	xb jk	1
-辛纳	xb na	1
 新胎	xb td	1
 昕雯	xb wf	1
-心夏	xb xx	1
-辛牙	xb ya	1
-辛焱	xb yj	1
-喜单	xi dj	1
-潟湖	xi hu	1
 细糠	xi kh	1
 席拉	xi la	1
-锡人	xi rf	1
-细悟	xi wu	1
 戏学	xi xt	1
 希音	xi yb	1
 喜悦	xi yt	1
-型格	xk ge	1
-星核	xk he	1
 星绘	xk hv	1
-星迹	xk ji	1
 星空	xk ks	1
-星谱	xk pu	1
-星琼	xk qs	1
-星锑	xk ti	1
-星铁	xk tp	1
-星推	xk tv	1
-星声	xk ug	1
 星闪	xk uj	1
-相赫	xl he	1
 相剑	xl jm	1
-享界	xl jp	1
 相卡	xl ka	1
 香柠	xl nk	1
-向鱼	xl yu	1
-仙宾	xm bb	1
 鲜葱	xm cs	1
-陷车	xm ie	1
-鲜朗	xm lh	1
 现切	xm qp	1
 咸甜	xm tm	1
 现炸	xm va	1
-仙舟	xm vz	1
 限一	xm yi	1
-仙陨	xm yy	1
-宵宫	xn gs	1
 小丑	xn iz	1
-小剧	xn ju	1
 小勒	xn le	1
 小芒	xn mh	1
 笑亖	xn si	1
-小提	xn ti	1
-笑鼠	xn uu	1
-小折	xn ve	1
-肖指	xn vi	1
 小芽	xn ya	1
-小咬	xn yc	1
 小夭	xn yc	1
 骁遥	xn yc	1
-谢回	xp hv	1
 谢苏	xp su	1
 写译	xp yi	1
-咻比	xq bi	1
 休二	xq er	1
 修勾	xq gz	1
 修狗	xq gz	1
-秀妹	xq mw	1
 休盘	xq pj	1
-秀神	xq uf	1
-秀士	xq ui	1
-休站	xq vj	1
 炫饭	xr fj	1
-玄骨	xr gu	1
 玄玑	xr ji	1
 炫了	xr le	1
-玄喵	xr mn	1
 旋球	xr qq	1
-轩染	xr rj	1
 炫完	xr wj	1
-玄血	xr xt	1
 熊生	xs ug	1
-血仆	xt pu	1
 削韧	xt rf	1
 雪吻	xt wf	1
 雪王	xt wh	1
@@ -1803,16 +1740,12 @@ sort: by_weight
 虚幻	xu hr	1
 虚环	xu hr	1
 许钧	xu jy	1
-虚恋	xu lm	1
 徐欧	xu ou	1
 徐神	xu uf	1
 许秀	xu xq	1
 下杠	xx gh	1
 下池	xx ii	1
-狭间	xx jm	1
 虾淘	xx tc	1
-吓鼠	xx uu	1
-侠隐	xx yb	1
 寻道	xy dc	1
 巡猎	xy lp	1
 寻子	xy zi	1
@@ -1820,153 +1753,74 @@ sort: by_weight
 鸦哥	ya ge	1
 亚锦	ya jb	1
 雅家	ya jx	1
-亚刻	ya ke	1
 鸦头	ya tz	1
 牙仙	ya xm	1
-银邦	yb bh	1
-音驹	yb ju	1
-吟霖	yb lb	1
 尹妹	yb mw	1
 音擎	yb qk	1
-隐囚	yb qq	1
 印太	yb td	1
 银十	yb ui	1
-银枝	yb vi	1
 尹仲	yb vs	1
-饮月	yb yt	1
 音综	yb zs	1
-妖崔	yc cv	1
-药二	yc er	1
-夭璟	yc jk	1
 药姐	yc jp	1
-妖兰	yc lj	1
-药萝	yc lo	1
-夭柳	yc lq	1
-药奶	yc nd	1
 邀评	yc pk	1
 腰王	yc wh	1
 药宗	yc zs	1
-药综	yc zs	1
-液断	ye dr	1
-夜魂	ye hy	1
 叶珂	ye ke	1
-夜兰	ye lj	1
 椰乳	ye ru	1
 野桃	ye tc	1
-野周	ye vz	1
-叶瑄	ye xr	1
 夜学	ye xt	1
-野洵	ye xy	1
 椰椰	ye ye	1
 耶咦	ye yi	1
 阳了	yh le	1
-羊守	yh uz	1
-秧秧	yh yh	1
 杨弋	yh yi	1
 杨议	yh yi	1
-异德	yi de	1
-一但	yi dj	1
 一耽	yi dj	1
 已调	yi dn	1
-一扶	yi fu	1
-异格	yi ge	1
-乙骨	yi gu	1
 异环	yi hr	1
-一灰	yi hv	1
 已吃	yi ii	1
 已缴	yi jn	1
 乙姐	yi jp	1
-壹决	yi jt	1
 异客	yi ke	1
-异拉	yi la	1
-以黎	yi li	1
-宜宁	yi nk	1
-奕派	yi pd	1
 已配	yi pw	1
 遗器	yi qi	1
 役前	yi qm	1
-一突	yi tu	1
-一笙	yi ug	1
-以闪	yi uj	1
-异网	yi wh	1
 移形	yi xk	1
-一卸	yi xp	1
-懿玄	yi xr	1
-一绪	yi xu	1
 已验	yi yj	1
 易遇	yi yu	1
 淹掉	yj dn	1
 岩盾	yj dy	1
-烟绯	yj fw	1
-言荒	yj hl	1
 烟卡	yj ka	1
-燕翎	yj lk	1
-烟男	yj nj	1
-宴宁	yj nk	1
 彦卿	yj qk	1
 验券	yj qr	1
-衍天	yj tm	1
 延退	yj tv	1
 颜少	yj uc	1
 岩系	yj xi	1
 彦子	yj zi	1
-影豹	yk bc	1
 硬广	yk gl	1
 迎春	yk iy	1
 赢喽	yk lz	1
 赢麻	yk ma	1
-英配	yk pw	1
-影日	yk ri	1
-影三	yk sj	1
 影煞	yk ua	1
-应星	yk xk	1
 赢下	yk xx	1
-远迪	yr di	1
-远单	yr dj	1
-沅儿	yr er	1
-袁基	yr ji	1
-源力	yr li	1
-元梦	yr mg	1
-元莫	yr mo	1
-院人	yr rf	1
-元坦	yr tj	1
 原神	yr uf	1
 猿神	yr uf	1
-渊上	yr uh	1
-远上	yr uh	1
 冤种	yr vs	1
-渊武	yr wu	1
 原箱	yr xl	1
-源轩	yr xr	1
 元瑶	yr yc	1
-园医	yr yi	1
 鸢子	yr zi	1
 泳队	ys dv	1
 俑坑	ys kg	1
-勇手	ys uz	1
 阅档	yt dh	1
 约尔	yt er	1
 月计	yt ji	1
-月日	yt ri	1
 约妆	yt vl	1
-悦也	yt ye	1
-语擦	yu ca	1
-喻繁	yu fj	1
-雨璠	yu fj	1
 育宠	yu is	1
 预充	yu is	1
 驭空	yu ks	1
 欲梦	yu mg	1
 预瞄	yu mn	1
-玉幕	yu mu	1
 予你	yu ni	1
-鱼推	yu tv	1
-御蛇	yu ue	1
-于适	yu ui	1
 遇袭	yu xi	1
-毓言	yu yj	1
-欲影	yu yk	1
-预组	yu zu	1
 云巴	yy ba	1
 云合	yy he	1
 云堇	yy jb	1
@@ -1978,46 +1832,27 @@ sort: by_weight
 有歌	yz ge	1
 祐禾	yz he	1
 釉瑚	yz hu	1
-佑灰	yz hv	1
 油混	yz hy	1
 游科	yz ke	1
 优菈	yz la	1
-由淼	yz mn	1
 油砂	yz ua	1
-优师	yz ui	1
 悠真	yz vf	1
-优香	yz xl	1
-优营	yz yk	1
-早接	zc jp	1
 早六	zc lq	1
 早七	zc qi	1
-早田	zc tm	1
 早十	zc ui	1
 早柚	zc yz	1
 栽蒜	zd sr	1
-在院	zd yr	1
-在阅	zd yt	1
-泽卡	ze ka	1
-泽禹	ze yu	1
 自访	zi fh	1
 紫盖	zi gd	1
-紫狗	zi gz	1
-紫海	zi hd	1
 自介	zi jp	1
 自接	zi jp	1
-紫萍	zi pk	1
 自染	zi rj	1
 梓神	zi uf	1
 自印	zi yb	1
-紫原	zi yr	1
-紫啧	zi ze	1
 自奏	zi zz	1
 座垫	zo dm	1
-总选	zs xr	1
 租电	zu dm	1
-组二	zu er	1
 租购	zu gz	1
-组一	zu yi	1
 最速	zv su	1
 最炸	zv va	1
 最圆	zv yr	1
@@ -2146,7 +1981,6 @@ sort: by_weight
 本子雷	bf zi lw	1
 蹦蹦吧	bg bg ba	1
 崩崩崩	bg bg bg	1
-蚌埠住	bg bu vu	1
 蹦迪版	bg di bj	1
 帮打工	bh da gs	1
 绑关系	bh gr xi	1
@@ -2187,6 +2021,7 @@ sort: by_weight
 标准糖	bn vy th	1
 表演季	bn yj ji	1
 表演球	bn yj qq	1
+表演性	bn yj xk	1
 波波夫	bo bo fu	1
 博博会	bo bo hv	1
 播播间	bo bo jm	1
@@ -2266,6 +2101,7 @@ sort: by_weight
 被吸入	bw xi ru	1
 备用板	bw ys bj	1
 备用拍	bw ys pd	1
+贝兹利	bw zi li	1
 擦机尾	ca ji ww	1
 擦网球	ca wh qq	1
 曹恩齐	cc en qi	1
@@ -2388,6 +2224,7 @@ sort: by_weight
 倒余额	dc yu ee	1
 待从头	dd cs tz	1
 代号鸢	dd hc yr	1
+待开售	dd kd uz	1
 待录取	dd lu qu	1
 代抢费	dd ql fw	1
 戴森球	dd sf qq	1
@@ -2407,6 +2244,7 @@ sort: by_weight
 挡风被	dh fg bw	1
 荡寇志	dh kz vi	1
 当头月	dh tz yt	1
+当选了	dh xr le	1
 第八金	di ba jb	1
 第二程	di er ig	1
 第二难	di er nj	1
@@ -2686,6 +2524,7 @@ sort: by_weight
 光博会	gl bo hv	1
 广陵王	gl lk wh	1
 光栅卡	gl uj ka	1
+广阳岛	gl yh dc	1
 国安部	go an bu	1
 过保了	go bc le	1
 国博文	go bo wf	1
@@ -2760,6 +2599,7 @@ sort: by_weight
 呱呱乐	gx gx le	1
 挂链接	gx lm jp	1
 沟槽的	gz cc de	1
+狗狗币	gz gz bi	1
 勾勾哒	gz gz da	1
 狗是狗	gz ui gz	1
 哈尔滨	ha er bb	1
@@ -2811,6 +2651,7 @@ sort: by_weight
 盒盒盒	he he he	1
 禾伙人	he ho rf	1
 合成台	he ig td	1
+贺锦丽	he jb li	1
 贺峻霖	he jy lb	1
 何可欣	he ke xb	1
 饸饹面	he le mm	1
@@ -2869,6 +2710,7 @@ sort: by_weight
 火龙魂	ho ls hy	1
 火炉旁	ho lu ph	1
 霍启山	ho qi uj	1
+获胜了	ho ug le	1
 霍震霆	ho vf tk	1
 藿香菇	ho xl gu	1
 环大陆	hr da lu	1
@@ -2953,6 +2795,7 @@ sort: by_weight
 厚礼蟹	hz li xp	1
 后两把	hz ll ba	1
 侯志慧	hz vi hv	1
+厚芋泥	hz yu ni	1
 茶杯狐	ia bw hu	1
 查的严	ia de yj	1
 茶话弄	ia hx ns	1
@@ -3020,6 +2863,7 @@ sort: by_weight
 窗户缝	il hu fg	1
 床在晃	il zd hl	1
 创作官	il zo gr	1
+川普王	ir pu wh	1
 传说卡	ir uo ka	1
 重生剧	is ug ju	1
 冲战神	is vj uf	1
@@ -3117,6 +2961,7 @@ sort: by_weight
 精华二	jk hx er	1
 精华一	jk hx yi	1
 精华紫	jk hx zi	1
+经济战	jk ji vj	1
 靖康耻	jk kh ii	1
 敬老节	jk lc jp	1
 敬老情	jk lc qk	1
@@ -3214,6 +3059,7 @@ sort: by_weight
 假赌黑	jx du hw	1
 加个急	jx ge ji	1
 加杠杆	jx gh gj	1
+加关税	jx gr uv	1
 佳和城	jx he ig	1
 驾长车	jx ih ie	1
 加金币	jx jb bi	1
@@ -3320,6 +3166,7 @@ sort: by_weight
 拉塔恩	la ta en	1
 拉维亚	la ww ya	1
 蜡像师	la xl ui	1
+拉选票	la xr pn	1
 拉椅子	la yi zi	1
 林博洋	lb bo yh	1
 林建平	lb jm pk	1
@@ -3539,6 +3386,7 @@ sort: by_weight
 累麻了	lw ma le	1
 镭射卡	lw ue ka	1
 镭射票	lw ue pn	1
+类星体	lw xk ti	1
 雷英琪	lw yk qi	1
 俩个月	lx ge yt	1
 俩口子	lx kz zi	1
@@ -3668,6 +3516,7 @@ sort: by_weight
 美加狮	mw jx ui	1
 梅拉布	mw la bu	1
 梅琳娜	mw lb na	1
+美丽国	mw li go	1
 美露莘	mw lu xb	1
 美美嘟	mw mw du	1
 没破音	mw po yb	1
@@ -3804,6 +3653,7 @@ sort: by_weight
 凭栏处	pk lj iu	1
 平行服	pk xk fu	1
 朴成训	pn ig xy	1
+漂亮国	pn ll go	1
 票星球	pn xk qq	1
 破败王	po bd wh	1
 破大防	po da fh	1
@@ -4116,6 +3966,7 @@ sort: by_weight
 太炸裂	td va lp	1
 太燥了	td zc le	1
 特典卡	te dm ka	1
+特离谱	te li pu	1
 特勤局	te qb ju	1
 特斯拉	te si la	1
 特殊场	te uu ih	1
@@ -4182,6 +4033,7 @@ sort: by_weight
 拓子哥	to zi ge	1
 铁寡妇	tp gx fu	1
 铁锤帮	tp iv bh	1
+铁票仓	tp pn ch	1
 团圆日	tr yr ri	1
 团圆夜	tr yr ye	1
 童锦程	ts jb ig	1
@@ -4277,6 +4129,7 @@ sort: by_weight
 生态日	ug td ri	1
 生万物	ug wj wu	1
 省心租	ug xb zu	1
+胜选了	ug xr le	1
 伤病连	uh bk lm	1
 赏不了	uh bu ln	1
 上大分	uh da ff	1
@@ -4386,6 +4239,7 @@ sort: by_weight
 术战者	uu vj ve	1
 数学界	uu xt jp	1
 水兵月	uv bk yt	1
+谁当选	uv dh xr	1
 水东街	uv ds jp	1
 谁敢看	uv gj kj	1
 水果桶	uv go ts	1
@@ -4394,6 +4248,7 @@ sort: by_weight
 睡懵了	uv mg le	1
 水泥猫	uv ni mc	1
 水捏捏	uv np np	1
+谁上台	uv uh td	1
 水阵壁	uv vf bi	1
 水先知	uv xm vi	1
 刷羽毛	ux yu mc	1
@@ -4417,6 +4272,7 @@ sort: by_weight
 收心会	uz xb hv	1
 扎比子	va bi zi	1
 炸弹妹	va dj mw	1
+炸火花	va ho hx	1
 炸金花	va jb hx	1
 扎完了	va wj le	1
 找宝箱	vc bc xl	1
@@ -4526,6 +4382,7 @@ sort: by_weight
 直新闻	vi xb wf	1
 芝小官	vi xn gr	1
 止咬器	vi yc qi	1
+支援位	vi yr ww	1
 詹杜库	vj du ku	1
 战斗爽	vj dz ul	1
 战国袍	vj go pc	1
@@ -4930,6 +4787,7 @@ sort: by_weight
 选考点	xr kc dm	1
 选皮肤	xr pi fu	1
 玄天岭	xr tm lk	1
+选总统	xr zs ts	1
 熊猫塑	xs mc su	1
 雪憨憨	xt hj hj	1
 雪迷宫	xt mi gs	1
@@ -5028,6 +4886,7 @@ sort: by_weight
 叶选平	ye xr pk	1
 也在晃	ye zd hl	1
 杨冰怡	yh bk yi	1
+养的好	yh de hc	1
 杨发森	yh fa sf	1
 央国企	yh go qi	1
 杨涵博	yh hj bo	1
@@ -5213,6 +5072,7 @@ sort: by_weight
 造城者	zc ig ve	1
 枣林湾	zc lb wj	1
 早立秋	zc li qq	1
+造手机	zc uz ji	1
 再安排	zd an pd	1
 再发声	zd fa ug	1
 在七夕	zd qi xi	1
@@ -5388,7 +5248,6 @@ sort: by_weight
 白宇演技	bd yu yj ji	1
 笨蛋宝宝	bf dj bc bc	1
 奔曜科技	bf yc ke ji	1
-蚌埠住了	bg bu vu le	1
 崩坏剧场	bg hk ju ih	1
 蹦床解说	bg il jp uo	1
 磅策医疗	bh ce yi ln	1
@@ -5496,6 +5355,8 @@ sort: by_weight
 刺猬票房	ci ww pn fh	1
 刺猬演技	ci ww yj ji	1
 次元术士	ci yr uu ui	1
+参众两院	cj vs ll yr	1
+从龙之功	cs ls vi gs	1
 存不住钱	cy bu vu qm	1
 存亡之战	cy wh vi vj	1
 大爱仙尊	da ai xm zy	1
@@ -5548,6 +5409,7 @@ sort: by_weight
 大众交通	da vs jn ts	1
 大中秋的	da vs qq de	1
 大小保底	da xn bc di	1
+大选结果	da xr jp go	1
 打训练赛	da xy lm sd	1
 大雨向下	da yu xl xx	1
 打造小北	da zc xn bw	1
@@ -5786,6 +5648,7 @@ sort: by_weight
 飞镝追星	fw di vv xk	1
 肥东地震	fw ds di vf	1
 非法创业	fw fa il ye	1
+非法移民	fw fa yi mb	1
 非凡大师	fw fj da ui	1
 飞机大厨	fw ji da iu	1
 非农数据	fw ns uu ju	1
@@ -5853,6 +5716,7 @@ sort: by_weight
 国服回归	go fu hv gv	1
 过个七夕	go ge qi xi	1
 过个中秋	go ge vs qq	1
+国产替代	go ij ti dd	1
 国产之光	go ij vi gl	1
 国际赛场	go ji sd ih	1
 过教师节	go jn ui jp	1
@@ -6213,16 +6077,20 @@ sort: by_weight
 床与早餐	il yu zc cj	1
 川发龙蟒	ir fa ls mh	1
 川江号子	ir jl hc zi	1
+川普赢了	ir pu yk le	1
+川崎前锋	ir qi qm fg	1
 穿梭外交	ir so wd jn	1
 传统美学	ir ts mw xt	1
 传说限定	ir uo xm dk	1
 穿外套了	ir wd tc le	1
+川影月评	ir yk yt pk	1
 重返未来	is fj ww ld	1
 冲焊涂总	is hj tu zs	1
 重庆高温	is qk gc wf	1
 重庆路演	is qk lu yj	1
 重庆下雨	is qk xx yu	1
 充值特惠	is vi te hv	1
+重新计票	is xb ji pn	1
 重新剪辑	is xb jm ji	1
 重阳安康	is yh an kh	1
 重阳佳节	is yh jx jp	1
@@ -6429,6 +6297,7 @@ sort: by_weight
 家就散了	jx jq sj le	1
 家具设计	jx ju ue ji	1
 贾玲胜诉	jx lk ug su	1
+加密货币	jx mi ho bi	1
 假期开始	jx qi kd ui	1
 假日快乐	jx ri kk le	1
 加速进化	jx su jb hx	1
@@ -6608,6 +6477,7 @@ sort: by_weight
 量大管饱	ll da gr bc	1
 亮哥大气	ll ge da qi	1
 两个杜华	ll ge du hx	1
+两个确立	ll ge qt li	1
 两个赛点	ll ge sd dm	1
 两个月饼	ll ge yt bk	1
 两荤一素	ll hy yi su	1
@@ -6759,6 +6629,7 @@ sort: by_weight
 明日重阳	mk ri is yh	1
 明日霜降	mk ri ul jl	1
 明天国庆	mk tm go qk	1
+明天立冬	mk tm li ds	1
 明天早八	mk tm zc ba	1
 明神亚贵	mk uf ya gv	1
 明侦团建	mk vf tr jm	1
@@ -6767,6 +6638,7 @@ sort: by_weight
 名校学历	mk xn xt li	1
 命运方舟	mk yy fh vz	1
 免高速费	mm gc su fw	1
+妙妙训狗	mn mn xy gz	1
 庙趣满堂	mn qu mj th	1
 魔道红叶	mo dc hs ye	1
 墨道烟雨	mo dc yj yu	1
@@ -6803,6 +6675,7 @@ sort: by_weight
 美国跳高	mw go tn gc	1
 美国摔跤	mw go uk jn	1
 美国制造	mw go vi zc	1
+美国选举	mw go xr ju	1
 美股暴跌	mw gu bc dp	1
 美股大跌	mw gu da dp	1
 美好新疆	mw hc xb jl	1
@@ -7086,6 +6959,7 @@ sort: by_weight
 群狼出击	qy lh iu ji	1
 群峦重生	qy lr is ug	1
 群像张力	qy xl vh li	1
+群演发言	qy yj fa yj	1
 热河去世	re he qu ui	1
 热辣滚烫	re la gy th	1
 热浪之外	re lh vi wd	1
@@ -7179,8 +7053,10 @@ sort: by_weight
 三比一了	sj bi yi le	1
 三代还姓	sj dd hd xk	1
 三号种子	sj hc vs zi	1
+三凯机电	sj kd ji dm	1
 三梦奇缘	sj mg qi yr	1
 三千宇宙	sj qm yu vz	1
+三权合一	sj qr he yi	1
 三人篮球	sj rf lj qq	1
 三人女篮	sj rf nv lj	1
 三岁道歉	sj sv dc qm	1
@@ -7307,6 +7183,7 @@ sort: by_weight
 停云立绘	tk yy li hv	1
 亭子码头	tk zi ma tz	1
 天崩开局	tm bg kd ju	1
+甜不甜嘛	tm bu tm ma	1
 天才门将	tm cd mf jl	1
 天地龙鳞	tm di ls lb	1
 天府机场	tm fu ji ih	1
@@ -7352,6 +7229,7 @@ sort: by_weight
 通识选修	ts ui xr xq	1
 通义千问	ts yi qm wf	1
 通用心态	ts ys xb td	1
+秃变孟中	tu bm mg vs	1
 图文直播	tu wf vi bo	1
 兔子苹果	tu zi pk go	1
 退休延迟	tv xq yj ii	1
@@ -7371,6 +7249,7 @@ sort: by_weight
 莎莎加油	ua ua jx yz	1
 沙溢肌肉	ua yi ji rz	1
 邵兵儿子	uc bk er zi	1
+涉密人员	ue mi rf yr	1
 社区盾杯	ue qu dy bw	1
 沈渡颜幸	uf du yj xk	1
 深海明珠	uf hd mk vu	1
@@ -7455,6 +7334,7 @@ sort: by_weight
 十五月亮	ui wu yt ll	1
 石星熠舞	ui xk yi wu	1
 失笑定档	ui xn dk dh	1
+石邑公主	ui yi gs vu	1
 十月初二	ui yt iu er	1
 十月快乐	ui yt kk le	1
 十月总结	ui yt zs jp	1
@@ -7477,6 +7357,7 @@ sort: by_weight
 山色已秋	uj se yi qq	1
 山西文旅	uj xi wf lv	1
 山野栀子	uj ye vi zi	1
+帅而不油	uk er bu yz	1
 帅哥你谁	uk ge ni uv	1
 双轨男主	ul gv nj vu	1
 双城之战	ul ig vi vj	1
@@ -7604,6 +7485,7 @@ sort: by_weight
 执行法官	vi xk fa gr	1
 致英格兰	vi yk ge lj	1
 智源深澜	vi yr uf lj	1
+治愈伤痛	vi yu uh ts	1
 制造焦虑	vi zc jn lv	1
 制造强国	vi zc ql go	1
 战队经理	vj dv jk li	1
@@ -7681,6 +7563,7 @@ sort: by_weight
 中式游戏	vs ui yz xi	1
 中网开赛	vs wh kd sd	1
 中网签表	vs wh qm bn	1
+中信海直	vs xb hd vi	1
 忠义天下	vs yi tm xx	1
 钟意状态	vs yi vl td	1
 中远海控	vs yr hd ks	1
@@ -7809,6 +7692,7 @@ sort: by_weight
 我是茶茶	wo ui ia ia	1
 我是神呐	wo ui uf na	1
 我真笑死	wo vf xn si	1
+我想进步	wo xl jb bu	1
 我要门票	wo yc mf pn	1
 我也社恐	wo ye ue ks	1
 我已知晓	wo yi vi xn	1
@@ -7837,6 +7721,7 @@ sort: by_weight
 悟空月饼	wu ks yt bk	1
 五菱星光	wu lk xk gl	1
 武磊伤退	wu lw uh tv	1
+吴磊演技	wu lw yj ji	1
 无论去哪	wu ly qu na	1
 无名的人	wu mk de rf	1
 无名之火	wu mk vi ho	1
@@ -7871,7 +7756,9 @@ sort: by_weight
 无用之人	wu ys vi rf	1
 无语住了	wu yu vu le	1
 无忧传媒	wu yz ir mw	1
+无字奖杯	wu zi jl bw	1
 仵作之死	wu zo vi si	1
+微埃智能	ww ai vi ng	1
 微博老祖	ww bo lc zu	1
 微博秒杀	ww bo mn ua	1
 微博实时	ww bo ui ui	1
@@ -7896,6 +7783,7 @@ sort: by_weight
 卫冕成功	ww mm ig gs	1
 维尼休斯	ww ni xq si	1
 维尼修斯	ww ni xq si	1
+威斯康辛	ww si kh xb	1
 未遂刺杀	ww sv ci ua	1
 维什戴尔	ww uf dd er	1
 蔚山现代	ww uj xm dd	1
@@ -7947,6 +7835,8 @@ sort: by_weight
 西安闪电	xi an uj dm	1
 西部建设	xi bu jm ue	1
 西部迁移	xi bu qm yi	1
+西北岁月	xi bw sv yt	1
+熹妃回宫	xi fw hv gs	1
 西瓜自由	xi gx zi yz	1
 西哈莫尼	xi ha mo ni	1
 喜欢切屏	xi hr qp pk	1
@@ -8057,6 +7947,7 @@ sort: by_weight
 谢瑜头像	xp yu tz xl	1
 写字练习	xp zi lm xi	1
 锈夜逐光	xq ye vu gl	1
+选举人票	xr ju rf pn	1
 选人环节	xr rf hr jp	1
 炫我嘴里	xr wo zv li	1
 喧嚣再起	xr xn zd qi	1
@@ -8145,6 +8036,7 @@ sort: by_weight
 液态大米	ye td da mi	1
 夜生白露	ye ug bd lu	1
 野生植物	ye ug vi wu	1
+夜袭开封	ye xi kd fg	1
 阳光分班	yh gl ff bj	1
 杨昊失误	yh hc ui wu	1
 阳江地震	yh jl di vf	1
@@ -8234,6 +8126,7 @@ sort: by_weight
 一夜入秋	yi ye ru qq	1
 一夜跳水	yi ye tn uv	1
 易烊千玺	yi yh qm xi	1
+艺洋训狗	yi yh xy gz	1
 一阳拥抱	yi yh ys bc	1
 一元一串	yi yr yi ir	1
 亦有差距	yi yz ia ju	1
@@ -8273,6 +8166,7 @@ sort: by_weight
 元流之子	yr lq vi zi	1
 圆梦巴黎	yr mg ba li	1
 元梦之星	yr mg vi xk	1
+缘起爱恋	yr qi ai lm	1
 元气甜妹	yr qi tm mw	1
 元素驱动	yr su qu ds	1
 原图直出	yr tu vi iu	1
@@ -8318,6 +8212,7 @@ sort: by_weight
 雨淋钢琴	yu lb gh qb	1
 盂兰盆节	yu lj pf jp	1
 宇露君沾	yu lu jy vj	1
+芋泥真厚	yu ni vf hz	1
 宇日俱曾	yu ri ju cg	1
 玉石美甲	yu ui mw jx	1
 于适武戏	yu ui wu xi	1
@@ -8341,6 +8236,7 @@ sort: by_weight
 有点火热	yz dm ho re	1
 有火麒麟	yz ho qi lb	1
 有偿代抢	yz ih dd ql	1
+邮寄选票	yz ji xr pn	1
 又见美合	yz jm mw he	1
 油价变了	yz jx bm le	1
 油价大跌	yz jx da dp	1
@@ -8375,10 +8271,12 @@ sort: by_weight
 早六晚十	zc lq wj ui	1
 早田希娜	zc tm xi na	1
 再次冒险	zd ci mc xm	1
+再次伟大	zd ci ww da	1
 在高铁上	zd gc tp uh	1
 再见巴黎	zd jm ba li	1
 再见绘梨	zd jm hv li	1
 再见有时	zd jm yz ui	1
+再探再报	zd tj zd bc	1
 再增两场	zd zg ll ih	1
 泽连斯基	ze lm si ji	1
 自卑心态	zi bw xb td	1
@@ -8393,6 +8291,7 @@ sort: by_weight
 自愿赠与	zi yr zg yu	1
 自由国度	zi yz go du	1
 咱就是说	zj jq ui uo	1
+暂时领先	zj ui lk xm	1
 作案嫌疑	zo an xm yi	1
 佐仓双叶	zo ch ul ye	1
 做对了饭	zo dv le fj	1
@@ -8403,6 +8302,7 @@ sort: by_weight
 左然侧脸	zo rj ce lm	1
 昨天七夕	zo tm qi xi	1
 左上右下	zo uh yz xx	1
+佐治亚州	zo vi ya vz	1
 坐夏读书	zo xx du uu	1
 纵燃行歌	zs rj xk ge	1
 宗申动力	zs uf ds li	1
@@ -8555,6 +8455,7 @@ sort: by_weight
 被拐的女孩	bw gk de nv hd	1
 北京大满贯	bw jk da mj gr	1
 北京马拉松	bw jk ma la ss	1
+北卡罗来纳	bw ka lo ld na	1
 被逆转的神	bw ni vr de uf	1
 背着明浩跑	bw ve mk hc pc	1
 背着善宰跑	bw ve uj zd pc	1
@@ -8595,6 +8496,7 @@ sort: by_weight
 大石碎胸口	da ui sv xs kz	1
 大震跑不掉	da vf pc bu dn	1
 大震跑不了	da vf pc bu ln	1
+大侦探团综	da vf tj tr zs	1
 答主评审团	da vu pk uf tr	1
 大熊猫盼青	da xs mc pj qk	1
 大侠立志传	da xx li vi vr	1
@@ -8626,6 +8528,7 @@ sort: by_weight
 第四代住宅	di si dd vu vd	1
 第五人格黯	di wu rf ge an	1
 第一杯咖啡	di yi bw ka fw	1
+第一季合集	di yi ji he ji	1
 第一局输了	di yi ju uu le	1
 第一条消息	di yi tn xn xi	1
 蛋宝大营救	dj bc da yk jq	1
@@ -8634,8 +8537,10 @@ sort: by_weight
 但愿梦长久	dj yr mg ih jq	1
 定风波杀青	dk fg bo ua qk	1
 钉崎野蔷薇	dk qi ye ql ww	1
+丁禹兮壁纸	dk yu xi bi vi	1
 丁禹兮古装	dk yu xi gu vl	1
 丁禹兮红发	dk yu xi hs fa	1
+丁禹兮考古	dk yu xi kc gu	1
 丁禹兮上桌	dk yu xi uh vo	1
 丁禹兮真帅	dk yu xi vf uk	1
 丁禹兮演技	dk yu xi yj ji	1
@@ -8779,6 +8684,7 @@ sort: by_weight
 甘肃博物馆	gj su bo wu gr	1
 感谢碧昂斯	gj xp bi ah si	1
 怪奇大法师	gk qi da fa ui	1
+怪奇物语日	gk qi wu yu ri	1
 光遇秋宵节	gl yu qq xn jp	1
 光与夜之恋	gl yu ye vi lm	1
 郭艾伦哭了	go ai ly ku le	1
@@ -8916,6 +8822,7 @@ sort: by_weight
 黑神话销量	hw uf hx xn ll	1
 黑神话优化	hw uf hx yz hx	1
 花傲天白发	hx ao tm bd fa	1
+花儿与中年	hx er yu vs nm	1
 华晨宇镜头	hx if yu jk tz	1
 华晨宇新歌	hx if yu xb ge	1
 花钱看不了	hx qm kj bu ln	1
@@ -8930,6 +8837,7 @@ sort: by_weight
 侯明昊直播	hz mk hc vi bo	1
 侯明昊吻戏	hz mk hc wf xi	1
 侯明昊演技	hz mk hc yj ji	1
+厚芋泥奶茶	hz yu ni nd ia	1
 后有文泰一	hz yz wf td yi	1
 差不多得了	ia bu do de le	1
 差的有点多	ia de yz dm do	1
@@ -9190,6 +9098,7 @@ sort: by_weight
 临沂音乐节	lb yi yb yt jp	1
 老百姓涨停	lc bd xk vh tk	1
 老君山彩霞	lc jy uj cd xx	1
+老实人痕迹	lc ui rf hf ji	1
 牢玩家定律	lc wj jx dk lv	1
 劳资蜀道山	lc zi uu dc uj	1
 来福大酒店	ld fu da jq dm	1
@@ -9457,6 +9366,7 @@ sort: by_weight
 女子高尔夫	nv zi gc er fu	1
 内塔尼亚胡	nw ta ni ya hu	1
 内战没教练	nw vj mw jn lm	1
+内娱花果山	nw yu hx go uj	1
 内娱花蝴蝶	nw yu hx hu dp	1
 内娱李胜利	nw yu li ug li	1
 内娱男菩萨	nw yu nj pu sa	1
@@ -9572,6 +9482,7 @@ sort: by_weight
 全跑出来了	qr pc iu ld le	1
 全球冠军赛	qr qq gr jy sd	1
 全球总冠军	qr qq zs gr jy	1
+权志龙偷感	qr vi ls tz gj	1
 权志龙直播	qr vi ls vi bo	1
 权志龙舞台	qr vi ls wu td	1
 权志龙综艺	qr vi ls zs yi	1
@@ -9651,7 +9562,9 @@ sort: by_weight
 宋伊人恋情	ss yi rf lm qk	1
 宋雨琦直播	ss yu qi vi bo	1
 苏打绿上海	su da lv uh hd	1
+夙读百万字	su du bd wj zi	1
 苏林将访华	su lb jl fh hx	1
+宿舍版知否	su ue bj vi fz	1
 苏州的结界	su vz de jp jp	1
 苏炜德替补	su ww de ti bu	1
 苏炜德稳住	su ww de wf vu	1
@@ -9694,6 +9607,7 @@ sort: by_weight
 太原马拉松	td yr ma la ss	1
 太有实力啦	td yz ui li la	1
 太有实力了	td yz ui li le	1
+特朗普赢了	te lh pu yk le	1
 藤井风巡演	tg jk fg xy yj	1
 唐诡啊唐诡	th gv aa th gv	1
 唐朝诡事录	th ic gv ui lu	1
@@ -9804,6 +9718,7 @@ sort: by_weight
 十一月快乐	ui yi yt kk le	1
 试用于昔日	ui ys yu xi ri	1
 十月第一天	ui yt di yi tm	1
+十月辟谣榜	ui yt pi yc bh	1
 十月行程图	ui yt xk ig tu	1
 石宇奇道歉	ui yu qi dc qm	1
 石宇奇退赛	ui yu qi tv sd	1
@@ -10491,6 +10406,7 @@ sort: by_weight
 遇事先拍照	yu ui xm pd vc	1
 虞书欣情商	yu uu xb qk uh	1
 虞书欣生图	yu uu xb ug tu	1
+虞书欣演技	yu uu xb yj ji	1
 虞书欣预告	yu uu xb yu gc	1
 虞书欣造型	yu uu xb zc xk	1
 预制朋友圈	yu vi pg yz qr	1
@@ -10548,6 +10464,7 @@ sort: by_weight
 自作多情版	zi zo do qk bj	1
 咱们买不起	zj mf md bu qi	1
 赞美中年人	zj mw vs nm rf	1
+左航贝雷帽	zo hh bw lw mc	1
 昨天才宣誓	zo tm cd xr ui	1
 左手秀麻了	zo uz xq ma le	1
 钻石限定版	zr ui xm dk bj	1
@@ -10655,6 +10572,7 @@ sort: by_weight
 不还手不是怕	bu hr uz bu ui pa	1
 布拉格斯巴达	bu la ge si ba da	1
 不求人单挑杯	bu qq rf dj tn bw	1
+不是一个瞬间	bu ui yi ge uy jm	1
 捕捉美好挑战	bu vo mw hc tn vj	1
 不玩大冰梗了	bu wj da bk gg le	1
 不秀等于没射	bu xq dg yu mw ue	1
@@ -10748,6 +10666,7 @@ sort: by_weight
 丁宁祝贺马龙	dk nk vu he ma ls	1
 丁禹兮不敢吻	dk yu xi bu gj wf	1
 丁禹兮高马尾	dk yu xi gc ma ww	1
+丁禹兮感情史	dk yu xi gj qk ui	1
 电影绑架游戏	dm yk bh jx yz xi	1
 电影刺猬定档	dm yk ci ww dk dh	1
 电影打黑上线	dm yk da hw uh xm	1
@@ -10838,6 +10757,7 @@ sort: by_weight
 富人扮演穷人	fu rf bj yj qs rf	1
 夫人小我十岁	fu rf xn wo ui sv	1
 飞鹤乳业声明	fw he ru ye ug mk	1
+废话付出闭嘴	fw hx fu iu bi zv	1
 飞车骆马大战	fw ie lo ma da vj	1
 费曼模仿向佐	fw mj mo fh xl zo	1
 非洲手机之王	fw vz uz ji vi wh	1
@@ -10888,6 +10808,7 @@ sort: by_weight
 国庆最后一天	go qk zv hz yi tm	1
 国铁集团客规	go tp ji tr ke gv	1
 过失致人死亡	go ui vi rf si wh	1
+国王绝杀热火	go wh jt ua re ho	1
 国新办发布会	go xb bj fa bu hv	1
 国羽打乒乓球	go yu da pk ph qq	1
 国足抵达大连	go zu di da da lm	1
@@ -11013,6 +10934,7 @@ sort: by_weight
 会唱歌的院子	hv ih ge de yr zi	1
 灰熊裁掉罗斯	hv xs cd dn lo si	1
 惠英红评论区	hv yk hs pk ly qu	1
+黑粉攻略手册	hw ff gs lt uz ce	1
 黑色月光定档	hw se yt gl dk dh	1
 黑糖珍珠牛乳	hw th vf vu nq ru	1
 黑田勇树离婚	hw tm ys uu li hy	1
@@ -11088,6 +11010,7 @@ sort: by_weight
 长安银行声明	ih an yb hh ug mk	1
 场地不太适应	ih di bu td ui yk	1
 长发敦煌仙子	ih fa dy hl xm zi	1
+长期社交缺失	ih qi ue jn qt ui	1
 长沙南站停电	ih ua nj vj tk dm	1
 昶式生活哲学	ih ui ug ho ve xt	1
 昌雅妮拍立得	ih ya ni pd li de	1
@@ -11262,6 +11185,7 @@ sort: by_weight
 李佳琦初舞台	li jx qi iu wu td	1
 李兰迪骨相美	li lj di gu xl mw	1
 李兰迪好真诚	li lj di hc vf ig	1
+李兰迪评论区	li lj di pk ly qu	1
 李娜现身武网	li na xm uf wu wh	1
 李佩霞被双开	li pw xx bw ul kd	1
 李沁提名视后	li qb ti mk ui hz	1
@@ -11282,6 +11206,7 @@ sort: by_weight
 令狐茂美疯了	lk hu mc mw fg le	1
 凌妙妙加油鸭	lk mn mn jx yz ya	1
 凌虚子怎么打	lk xu zi zf me da	1
+良田夜骑开封	ll tm ye qi kd fg	1
 梁王光速下班	ll wh gl su xx bj	1
 梁王机场接机	ll wh ji ih jp ji	1
 梁王教练好损	ll wh jn lm hc sy	1
@@ -11411,10 +11336,12 @@ sort: by_weight
 莫雷加德黄牌	mo lw jx de hl pd	1
 沫沫好友发声	mo mo hc yz fa ug	1
 末日清除计划	mo ri qk iu ji hx	1
+慕声怎么洗头	mu ug zf me xi tz	1
 穆祉丞救护车	mu vi ig jq hu ie	1
 慕胥辞将开机	mu xu ci jl kd ji	1
 美菲增兵南海	mw fw zg bk nj hd	1
 美感和力量感	mw gj he li ll gj	1
+美国大选乱象	mw go da xr lr xl	1
 美国大选时间	mw go da xr ui jm	1
 美国大选追踪	mw go da xr vv zs	1
 美国联邦政府	mw go lm bh vg fu	1
@@ -11422,6 +11349,7 @@ sort: by_weight
 美国女排银牌	mw go nv pd yb pd	1
 美国人游重庆	mw go rf yz is qk	1
 美力城代言人	mw li ig dd yj rf	1
+美民众谈大选	mw mb vs tj da xr	1
 美人不分性别	mw rf bu ff xk bp	1
 没认出来汪峰	mw rf iu ld wh fg	1
 美人鱼控鱼术	mw rf yu ks yu uu	1
@@ -11669,6 +11597,7 @@ sort: by_weight
 他单项也可以	ta dj xl ye ke yi	1
 她都是为了你	ta dz ui ww le ni	1
 踏破贺兰山缺	ta po he lj uj qt	1
+她手欠的没边	ta uz qm de mw bm	1
 他训练很努力	ta xy lm hf nu li	1
 她在闹他在笑	ta zd nc ta zd xn	1
 淘宝微信支付	tc bc ww xb vi fu	1
@@ -11817,6 +11746,7 @@ sort: by_weight
 帅是一种感觉	uk ui yi vs gj jt	1
 双成药业跌停	ul ig yc ye dp tk	1
 双鸟暂时离分	ul nn zj ui li ff	1
+双十一抢免单	ul ui yi ql mm dj	1
 书卷一梦预告	uu jr yi mg yu gc	1
 谁夺冠都有我	uv do gr dz yz wo	1
 谁来救救景甜	uv ld jq jq jk tm	1
@@ -12389,6 +12319,7 @@ sort: by_weight
 杨紫出发南京	yh zi iu fa nj jk	1
 杨紫猎毒定档	yh zi lp du dk dh	1
 杨紫美式辣妹	yh zi mw ui la mw	1
+杨紫生日高定	yh zi ug ri gc dk	1
 杨子是个懂王	yh zi ui ge ds wh	1
 杨紫中秋自拍	yh zi vs qq zi pd	1
 杨紫微博开屏	yh zi ww bo kd pk	1
@@ -12419,6 +12350,7 @@ sort: by_weight
 异人之下特效	yi rf vi xx te xn	1
 异人之下上映	yi rf vi xx uh yk	1
 翼若垂天之云	yi ro iv tm vi yy	1
+以色列国防部	yi se lp go fh bu	1
 疑似林墨恋情	yi si lb mo lm qk	1
 伊藤美诚心态	yi tg mw ig xb td	1
 艺术体操好美	yi uu ti cc hc mw	1
@@ -12484,6 +12416,7 @@ sort: by_weight
 永夜星河更新	ys ye xk he gg xb	1
 永夜星河过审	ys ye xk he go uf	1
 永夜星河开播	ys ye xk he kd bo	1
+永夜星河男二	ys ye xk he nj er	1
 永夜星河热度	ys ye xk he re du	1
 永夜星河特效	ys ye xk he te xn	1
 永夜星河时长	ys ye xk he ui ih	1
@@ -12615,6 +12548,7 @@ sort: by_weight
 就我一圆圆一年	jq wo yi yr yr yi nm	1
 九月对我好一点	jq yt dv wo hc yi dm	1
 卡拉马佐夫兄弟	ka la ma zo fu xs di	1
+客观存在的敌意	ke gr cy zd de di yi	1
 康熙与路易十四	kh xi yu lu yi ui si	1
 库尔斯克保卫战	ku er si ke bc ww vj	1
 亏钱卖车是倾销	kv qm md ie ui qk xn	1
