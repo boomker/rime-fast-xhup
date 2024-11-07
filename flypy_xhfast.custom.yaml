@@ -138,8 +138,8 @@ patch:
       - derive/^(i)g/$1f/                       # eng => en
       - derive/^z([ry])/v$1/                    # z => zh
       - derive/^c([az])/i$1/                    # c => ch
-      - derive/^s([rz])/u$1/                    # s => sh
-      - derive/^u([hky])/s$1/                   # sh => s
+      - derive/^u([hk])/s$1/                    # sh => s
+      # - derive/^s([rz])/u$1/                  # s => sh
       # - derive/^l(.*)/n$1/                    # l => n
       # - derive/^n(.*)/l$1/                    # n => l
       # - derive/^v(.*)/z$1/                    # zh => z
