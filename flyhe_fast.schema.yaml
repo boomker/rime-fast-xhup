@@ -66,7 +66,7 @@ engine:
 grammar:
   # collocation_min_length: 2
   # collocation_max_length: 5
-  # language: amz-v2n3m1-zh-hans
+  # language: zh-hans-amz-v2n3m1
   language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
