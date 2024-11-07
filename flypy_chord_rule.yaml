@@ -8,15 +8,11 @@ patch:
       - derive/^([jyn])t/$1d/         # t --> d
       - derive/^([jlmn])p/$1e/        # p --> e
       - derive/^([djlnx])q/$1f/       # q --> f
-      - derive/^q([bikmnsxy])/f$1/
+      - derive/^p([okibnmuhj])/e$1/
+      - derive/^q([pkibnmsxyl])/f$1/
       - derive/^qt/fd/
       - derive/^qu/fe/
       - derive/^qr/fo/
-      - derive/^qp/fp/
-      - derive/^qq/fz/
-      - derive/^ql/fl/                # ql --> fl
-      - derive/^pp/el/                # pp --> el
-      - derive/^p([okiuhjbnm])/e$1/
       - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
       - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
       - derive/^yh/wn/
@@ -33,29 +29,29 @@ patch:
       - derive/^tw/dw/                # tw --> dw
       - derive/^tg/db/                # tg --> db
       - derive/^tv/dl/                # tv --> dl
-      - derive/^tr/rm/                # tr --> rm
-      - derive/^rf/rn/                # rf --> rn
-      - derive/^rg/rb/                # rg --> rb
       - derive/^rv/rl/                # rv --> rl
+      - derive/^rg/rb/                # rg --> rb
+      - derive/^rz/rm/                # rz --> rm
+      - derive/^rf/rn/                # rf --> rn
       - derive/^gf/gn/                # gf --> gn
       - derive/^gr/gm/                # gr --> gm
-      - derive/^g([wyv])/gi/          # g[wyv] --> gi
+      - derive/^g([wv])/gi/           # g[wv] --> gi
       - derive/^xp/xj/
       - derive/^xt/xo/
       - derive/^xs/xh/
-      - derive/^nu/nx/
-      - derive/^nh/nv/
+      - derive/^li/lx/
+      - derive/^nu/nv/
+      - derive/^nh/nx/
       - derive/^no/nr/
       - derive/^lo/ng/
       - derive/^ly/nw/
       - derive/^lm/nz/
-      - derive/^li/lx/
       - derive/^jm/jz/
       - derive/^jb/ja/
-      - derive/^z([ws])/zk/
       - derive/^za/zl/
       - derive/^ze/zn/
       - derive/^zr/zm/
+      - derive/^z([ws])/zk/
       - derive/^mb/ms/
       - derive/^mh/mx/
       - derive/^mk/me/
@@ -63,8 +59,7 @@ patch:
       - derive/^mu/mv/
       - derive/^ik/ix/
       - derive/^sz/sl/
-      - derive/^bw/bl/
-      - derive/^bc/bs/
+      - derive/^bw/bs/
       - derive/^b([hjku])/a$1/
       - derive/^b([fgnm])/s$1/
       - derive/^c([dz])/cl/
