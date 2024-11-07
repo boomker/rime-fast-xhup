@@ -8,6 +8,7 @@ __pycache__/
 **/.ropeproject
 user.yaml
 amz-v*.gram
+zh-hans-amz*.gram
 installation.yaml
 lua/cold_word_records/*
 lua/pin_word_record.lua
