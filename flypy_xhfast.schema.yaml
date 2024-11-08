@@ -17,7 +17,6 @@ schema:
     - melt_eng          # 中英混合,副翻译器
     - ecdict_reverse    # 英文反查中文释义
     - flypy_radical     # 部件组字(反查)
-    # - flypy_phrase      # 自动上屏短语
 
 # 选项开关
 switches:
@@ -178,16 +177,6 @@ idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
   initial_quality: 0.8
   enable_sentence: false
   enable_completion: false
-
-# 自动上屏短语
-flypy_phrase:                       # 自动上屏短语
-  dictionary: flypy_phrase
-  initial_quality: -1
-  enable_encoder: false
-  enable_sentence: false
-  enable_completion: true
-  enable_user_dict: false
-  encode_commit_history: false
 
 # 键位帮助
 flypy_key_help:                     # 小鹤双拼键位帮助

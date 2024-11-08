@@ -199,9 +199,6 @@ patch:
   custom_phrase/+:                    # 自定义短语
     comment_mark: " 📌"               # 自定义短语注解标记
 
-  flypy_phrase/+:                     # 自动上屏短语
-    auto_commit: false                # 词条自动上屏开关
-
   flypy_key_help/+:                   # 小鹤双拼键位帮助
     prefix: "/ok"
     tips: "小鹤双拼查键"
