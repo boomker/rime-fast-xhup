@@ -1,7 +1,6 @@
 require("tools/string")
 require("tools/metatable")
 require("tools/rime_helper")
--- local logger = require("tools.logger")
 
 local P = {}
 local T = {}
@@ -16,7 +15,7 @@ function word_auto_commit.init(env)
     -- env.memory = Memory(env.engine, schema, "translator")
     env.reversedb = ReverseLookup(schema_id)
     env.phrase_reversedb = ReverseLookup(phrase_dict)
-    env.autocommit_on = config:get_bool("flypy_phrase/auto_commit") or false
+    -- env.autocommit_on = config:get_bool("flypy_phrase/auto_commit") or false
     env.script_translator = Component.ScriptTranslator(env.engine, schema, "", "script_translator@translator")
 end
 
@@ -134,7 +133,7 @@ function F.func(input, env)
     local normal_cands = {}
     local symbol_cands = {}
     local single_char_cands = {}
-    local fchars_word_cands = {}
+    -- local fchars_word_cands = {}
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
@@ -151,6 +150,7 @@ function F.func(input, env)
         end
 
         -- 四字短语自动上屏
+        --[[
         if
             (#preedit_code == 8)
             and preedit_code:match("^%l+$")
@@ -158,7 +158,7 @@ function F.func(input, env)
         then
             fchars_word_cands[cand.text] = cand
         end
-
+        --]]
         if #normal_cands >= 150 then break end
         table.insert(normal_cands, cand)
     end
@@ -194,6 +194,7 @@ function F.func(input, env)
     end
 
     -- 四字短语自动上屏
+    --[[
     if
         (#preedit_code == 8)
         and env.autocommit_on
@@ -218,7 +219,7 @@ function F.func(input, env)
             return 1 -- kAccepted
         end
     end
-
+    --]]
     for _, cand in ipairs(normal_cands) do
         yield(cand)
     end

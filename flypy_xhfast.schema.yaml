@@ -17,7 +17,6 @@ schema:
     - melt_eng          # 中英混合,副翻译器
     - ecdict_reverse    # 英文反查中文释义
     - flypy_radical     # 部件组字(反查)
-    # - flypy_phrase      # 自动上屏短语
 
 # 选项开关
 switches:
