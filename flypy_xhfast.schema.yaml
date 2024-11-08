@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "2024.11.07"
+  version: "2024.11.08"
   author:
     - boomker
   description: |
@@ -17,7 +17,7 @@ schema:
     - melt_eng          # 中英混合,副翻译器
     - ecdict_reverse    # 英文反查中文释义
     - flypy_radical     # 部件组字(反查)
-    # - flypy_phrase    # 自动上屏短语
+    # - flypy_phrase      # 自动上屏短语
 
 # 选项开关
 switches:
@@ -307,8 +307,6 @@ key_binder:
     - {when: always, accept: "Shift+space", toggle: ascii_mode}
     - {when: always, accept: "Control+comma", toggle: ascii_punct}
     - {when: always, accept: "Control+period", toggle: full_shape}
-    - {when: always, accept: "Control+slash", toggle: traditionalize}
-    - {when: always, accept: "Control+Shift+semicolon", select: easy_en}
 
 # 拼写设定
 speller:

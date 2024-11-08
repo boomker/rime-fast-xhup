@@ -18,6 +18,7 @@ function P.init(env)
     local config = env.engine.schema.config
     env.system_name = detect_os()
     env.user_data_dir = rime_api:get_user_data_dir()
+    env.pair_toggle = config:get_string("pair_symbol/toggle") or "off"
     env.enclosed_a = config:get_string("key_binder/enclosed_cand_chars_a") or nil
     env.enclosed_b = config:get_string("key_binder/enclosed_cand_chars_b") or nil
     env.enclosed_c = config:get_string("key_binder/enclosed_cand_chars_c") or nil
@@ -62,27 +63,8 @@ function P.func(key, env)
     -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
     local key_name = key:repr()
-
     if key.keycode == 34 then key_name = "quotedbl" end
-
     local prev_ascii_mode = context:get_option("ascii_mode")
-    if env.pairTable[key_name] and composition:empty() then
-        if prev_ascii_mode then
-            engine:commit_text(env.pairTable[key_name][2])
-        else
-            engine:commit_text(env.pairTable[key_name][1])
-        end
-
-        if (env.system_name == "MacOS") and (key_name == "quotedbl") then
-            os.execute("sleep 0.3") -- 等待按键被松开
-            moveCursorToLeft(env)
-        else
-            moveCursorToLeft(env)
-        end
-        context:clear()
-        set_commited_cand_is_symbol(env)
-        return 1 -- kAccepted 收下此key
-    end
 
     if context:has_menu() or context:is_composing() then
         local index = segment.selected_index
@@ -111,7 +93,7 @@ function P.func(key, env)
             end
         end
 
-        if selected_cand_idx >= 0 then
+        if (selected_cand_idx >= 0) and (env.pair_toggle == "on") then
             local candidate_text = segment:get_candidate_at(selected_cand_idx).text -- 获取指定项 从0起
             local paired_text = env.pairTable[candidate_text]
             if paired_text then
@@ -125,6 +107,25 @@ function P.func(key, env)
                 return 1 -- kAccepted 收下此key
             end
         end
+    end
+
+    if (env.pair_toggle == "off") then return 2 end
+    if env.pairTable[key_name] and composition:empty() then
+        if prev_ascii_mode then
+            engine:commit_text(env.pairTable[key_name][2])
+        else
+            engine:commit_text(env.pairTable[key_name][1])
+        end
+
+        if (env.system_name == "MacOS") and (key_name == "quotedbl") then
+            os.execute("sleep 0.3") -- 等待按键被松开
+            moveCursorToLeft(env)
+        else
+            moveCursorToLeft(env)
+        end
+        context:clear()
+        set_commited_cand_is_symbol(env)
+        return 1 -- kAccepted 收下此key
     end
 
     return 2 -- kNoop
