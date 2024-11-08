@@ -149,7 +149,7 @@ patch:
     toggle: "off"
 
   pair_symbol:                        # 符号配对开关
-    toggle: "on"
+    toggle: "off"
 
   easy_en/+:                          # 英文输入方案
     prefix: "/oe"
