@@ -3,8 +3,19 @@
 #   ~/.config/ibus/rime  (linux)
 #   ~/Library/Rime       (macos)
 #   %APPDATA%\Rime       (windows)
+---
 
 patch:
   schema_list:
     - schema: flypy_xhfast
+    - schema: flyhe_fast
     - schema: easy_en
+  switcher:
+    save_options:
+      - char_mode
+      - ascii_punct
+      - traditionalize
+    hotkeys:
+      - Alt+grave
+    caption: 「方案选单」
+    fold_options: false

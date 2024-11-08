@@ -1,3 +1,6 @@
+# Weasel settings
+# encoding: utf-8
 
+---
 patch:
   "style/color_scheme": mint_dark_blue
