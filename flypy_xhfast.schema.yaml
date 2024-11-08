@@ -307,8 +307,6 @@ key_binder:
     - {when: always, accept: "Shift+space", toggle: ascii_mode}
     - {when: always, accept: "Control+comma", toggle: ascii_punct}
     - {when: always, accept: "Control+period", toggle: full_shape}
-    - {when: always, accept: "Control+slash", toggle: traditionalize}
-    - {when: always, accept: "Control+Shift+semicolon", select: easy_en}
 
 # 拼写设定
 speller:
