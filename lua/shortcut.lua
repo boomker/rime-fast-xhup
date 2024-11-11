@@ -78,6 +78,23 @@ local function action_handler(env, action, system_type, fact_item)
     end
 end
 
+-- 生成随机字符串的函数
+local function generateRandomString(length)
+    -- 设置随机种子
+    math.randomseed(os.time())
+    -- 定义字符集
+    local charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#^()_+-=[]{}|:,.<>?"
+    local result = {}
+    local charsetLength = #charset
+    for i = 1, length do
+        -- 随机选择一个字符
+        local randIndex = math.random(charsetLength)
+        result[i] = charset:sub(randIndex, randIndex)
+    end
+    -- 将表转换为字符串并返回
+    return table.concat(result)
+end
+
 function launcher.init(env)
     env.system_name = detect_os()
     env.shortcut_config = _ok_conf and shortcut_config
@@ -156,7 +173,7 @@ function processor.func(key, env)
         if (input_code == favorcmd_prefix) and segment.prompt:match("快捷指令") then
             local cand = segment:get_candidate_at(selected_cand_idx)
             local candidate_text = cand.text
-            local prompt = candidate_text:gsub(" ", ""):gsub("[%a]", "")
+            local prompt = candidate_text:gsub(" ", ""):gsub("[%a%p]", "")
             launcher["main_menu_selected_text"] = candidate_text:gsub(" ", "")
             context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
             segment.prompt = "〔" .. prompt .. "〕"
@@ -289,7 +306,7 @@ function translator.func(input, seg, env)
         not segment.prompt:match("快捷指令") then
         launcher["second_menu_keys"] = {}
         launcher["second_menu_orders"] = {}
-        local prompt = launcher["main_menu_selected_text"]:gsub("[%a]", "")
+        local prompt = launcher["main_menu_selected_text"]:gsub("[%a%p]", "")
         local main_menu_selected_text = launcher["main_menu_selected_text"]
         local index = launcher["main_menu_keys"][main_menu_selected_text]
         launcher["main_menu_selected"] = all_command_items["Favors"][index]
@@ -304,6 +321,15 @@ function translator.func(input, seg, env)
             cand.quality = 999
             yield(cand)
         end
+        if segment.prompt:match("密码") then
+            local rpwd_submenu_itmes = launcher["main_menu_selected"]["submenus"]
+            launcher["main_menu_selected"]["submenu_items"] = {}
+            for _, key in ipairs(table.sorted_keys(rpwd_submenu_itmes)) do
+                local val = rpwd_submenu_itmes[key]:match("%d+")
+                local rpwd = generateRandomString(val)
+                table.insert(launcher["main_menu_selected"]["submenu_items"], rpwd)
+            end
+        end
         return
     end
 
@@ -312,7 +338,7 @@ function translator.func(input, seg, env)
         not launcher["second_menu_selected_text"] and not segment.prompt:match("快捷指令") then
         local match_count = 0
         local submenus = launcher["main_menu_selected"]["submenus"]
-        local prompt = launcher["main_menu_selected_text"]:gsub("[%a]", "")
+        local prompt = launcher["main_menu_selected_text"]:gsub("[%a%p]", "")
         segment.prompt = "〔" .. prompt .. "〕"
         for _, key in ipairs(table.sorted_keys(submenus)) do
             local sm_name = submenus[key]
