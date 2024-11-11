@@ -41,6 +41,12 @@ function set_commited_cand_is_chinese(env)
 	context:set_property("prev_cand_is_chinese", "1")
 end
 
+function set_commited_cand_is_word(env)
+	local context = env.engine.context
+	reset_commited_cand_state(env)
+	context:set_property("prev_cand_is_word", "1")
+end
+
 function set_commited_cand_is_symbol(env)
 	local context = env.engine.context
 	reset_commited_cand_state(env)
