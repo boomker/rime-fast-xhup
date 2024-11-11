@@ -7,7 +7,8 @@ local function autocap_filter(input, env)
         local preedit_code = env.engine.context:get_commit_text()
         if string.find(text, "^%l%l.*") and string.find(preedit_code, "^%u%u.*") then
             if string.len(text) == 2 then
-                local cand_2 = Candidate("cap", 0, 2, preedit_code, "+")
+                ---@diagnostic disable-next-line: missing-parameter
+                local cand_2 = ShadowCandidate(cand, cand.type, preedit_code, "+")
                 yield(cand_2)
             else
                 local cand_u = Candidate("cap", 0, preedit_code:len(), text:upper(), "+AU")
@@ -15,7 +16,8 @@ local function autocap_filter(input, env)
             end
         elseif string.find(text, "^%l+$") and string.find(preedit_code, "^%u+") then
             local suffix = string.sub(text, string.len(preedit_code) + 1)
-            local cand_t = Candidate("cap", 0, preedit_code:len(), preedit_code .. suffix, "~AT")
+            ---@diagnostic disable-next-line: missing-parameter
+            local cand_t = ShadowCandidate(cand, cand.type, preedit_code .. suffix, "~AT")
             table.insert(u_cands, cand_t)
         else
             yield(cand)
