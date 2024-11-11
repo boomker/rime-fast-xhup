@@ -90,6 +90,26 @@ local commands = {
 			},
 		},
 		[3] = {
+			["menu_name"] = "rp密码>",
+			["action"] = "commit",
+			["submenus"] = {
+				[1] = "a-6位随机密码",
+				[2] = "s-8位随机密码",
+				[3] = "c-10位随机密码",
+				[4] = "d-12位随机密码",
+				[5] = "e-14位随机密码",
+				[6] = "f-16位随机密码",
+			},
+            ["submenu_items"] = {
+				[1] = "6位随机密码",
+				[2] = "8位随机密码",
+				[3] = "10位随机密码",
+				[4] = "12位随机密码",
+				[5] = "14位随机密码",
+				[6] = "16位随机密码",
+			},
+		},
+		[4] = {
 			["menu_name"] = "bm书签",
 			["action"] = "open",
 			["submenus"] = {
@@ -103,7 +123,7 @@ local commands = {
 				[3] = "https://github.com",
 			},
 		},
-		[4] = {
+		[5] = {
 			["menu_name"] = "tc终端命令",
 			["action"] = "exec",
 			["submenus"] = {
@@ -141,7 +161,7 @@ local commands = {
 				[[osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode']],
 			},
 		},
-		[5] = {
+		[6] = {
 			["menu_name"] = "fd常用文件夹",
 			["action"] = "open",
 			["submenus"] = {
