@@ -52,13 +52,12 @@ function T.func(input, seg, env)
                     cand.quality = 999
                     yield(cand)
                     count = count + 1
-                elseif last_char_ycode
-                    and last_char_ycode:match(preedit_last_code)
+                elseif first_char_ycode
+                    and first_char_ycode:match(first_syllable_code)
                     and ((input_code_len / 2 ) >= utf8.len(entry_text))
                 then
                     cand.quality = 888
                     yield(cand)
-                    count = count + 1
                 end
             end
         end
@@ -82,7 +81,8 @@ function F.func(input, env)
         elseif cand_text:match("<br>") then
              -- 词条有<br>标签, 将其转为换行符
             local ccand_text = cand_text:gsub("<br>", "\n")
-            yield(Candidate(cand.type, cand.start, cand._end, ccand_text, env.custom_mark))
+            -- yield(Candidate(cand.type, cand.start, cand._end, ccand_text, env.custom_mark))
+            yield(cand:to_shadow_candidate(cand.type, ccand_text, env.custom_mark))
         elseif  -- 丢弃一些候选结果
                 -- 去掉候选注解包含`太极️`的候选项
             string.find(cand.comment, "☯")
@@ -107,7 +107,8 @@ function F.func(input, env)
             drop_cand = true
         elseif preedit_code:match("^%l+`%l+") and cand.comment:match("^~[ %l]+") then
             -- 辅码模式下, 覆写注解(太长了)为空
-            yield(Candidate(cand.type, cand.start, cand._end, cand_text, ""))
+            -- yield(Candidate(cand.type, cand.start, cand._end, cand_text, ""))
+            yield(cand:to_shadow_candidate(cand.type, cand_text, ""))
         elseif -- 候选词长度超出预确认音节长度 1 个以上的候选, 保留2个
             (cand.type == "completion") and
             (not cand_text:match("[%a%p]")) and

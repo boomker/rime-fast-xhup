@@ -627,6 +627,16 @@
                     "pattern": "(true|false)",
                     "description": "开关：自动补全输入码。仅对 table_translator 生效。"
                 },
+                "dynamic_model": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：动态模型。仅对 table_translator 生效。"
+                },
+                "prioritize_quality": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "启用优先质量选项"
+                },
                 "sentence_over_completion": {
                     "type": "boolean",
                     "pattern": "(true|false)",
