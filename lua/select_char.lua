@@ -29,13 +29,16 @@ function P.func(key, env)
 	if composition:empty() then return end
 	local segment = composition:back()
 
+	local commit_history = context.commit_history
 	if (key:repr() == env.first_key) and (input_code ~= "") and (not segment.prompt:match("计算器")) then
-		local _cand_text, _commit_txt = context:get_selected_candidate().text, nil
+		local cand = context:get_selected_candidate()
+		local _cand_text, _commit_txt = cand.text, nil
 		if _cand_text then
 			_commit_txt = first_character(_cand_text)
 		end
 		local cand_txt = insert_space_to_candText(env, _commit_txt)
 		engine:commit_text(cand_txt)
+		commit_history:push(cand.type, cand_txt)
 		context:clear()
 
 		set_commited_cand_is_chinese(env)
@@ -43,12 +46,14 @@ function P.func(key, env)
 	end
 
 	if (key:repr() == env.last_key) and (input_code ~= "") and (not segment.prompt:match("计算器")) then
-		local _cand_text, _commit_txt = context:get_selected_candidate().text, nil
+		local cand = context:get_selected_candidate()
+		local _cand_text, _commit_txt = cand.text, nil
 		if _cand_text then
 			_commit_txt = last_character(_cand_text)
 		end
 		local cand_txt = insert_space_to_candText(env, _commit_txt)
 		engine:commit_text(cand_txt)
+		commit_history:push(cand.type, cand_txt)
 		context:clear()
 
 		set_commited_cand_is_chinese(env)

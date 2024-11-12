@@ -60,6 +60,7 @@ function processor.func(key, env)
     if composition:empty() then return 2 end
     local segment = composition:back()
     local preedit_code = context:get_script_text():gsub(" ", "")
+    local commit_history = context.commit_history
 
     if context:has_menu() and (key:repr() == env.switch_comment_key) then
         if preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited then
@@ -87,6 +88,7 @@ function processor.func(key, env)
         local cand = context:get_selected_candidate()
         local cand_comment = cand.comment:gsub("%p", "")
         engine:commit_text(cand_comment)
+        commit_history:push("raw", cand_comment)
         context:clear()
         return 1
     end
