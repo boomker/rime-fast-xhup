@@ -31,8 +31,6 @@ function reset_commited_cand_state(env)
     context:set_property("prev_cand_is_symbol", "0")
 	context:set_property("prev_cand_is_chinese", "0")
 	context:set_property("prev_cand_is_preedit", "0")
-	-- context:set_property("prev_commit_is_comma", "0")
-	-- context:set_property("prev_commit_is_period", "0")
 end
 
 function set_commited_cand_is_chinese(env)
@@ -54,9 +52,11 @@ function set_commited_cand_is_symbol(env)
 end
 
 function insert_space_to_candText(env, cand_text)
-	local context = env.engine.context
 	local ccand_text = cand_text
-	if (context:get_property("prev_cand_is_preedit") == "1") or (context:get_property("prev_cand_is_word") == "1") then
+	local context = env.engine.context
+	local prev_cand_is_word = context:get_property("prev_cand_is_word")
+	local prev_cand_is_preedit = context:get_property("prev_cand_is_preedit")
+	if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
 		ccand_text = " " .. cand_text
 	end
 	return ccand_text

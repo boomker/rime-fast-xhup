@@ -42,6 +42,7 @@ function P.func(key, env)
     local composition = context.composition
     if composition:empty() then return 2 end
     local segment = composition:back()
+    local commit_history = context.commit_history
 
     -- 四码二字词时, 按下 '/'  生成辅助码提示注解
     if (key:repr() == "slash") and (caret_pos == 4) and (input_code:match("^%l+")) then
@@ -71,6 +72,7 @@ function P.func(key, env)
         local cand_txt = insert_space_to_candText(env, _cand_text)
         set_commited_cand_is_chinese(env)
         engine:commit_text(cand_txt)
+        commit_history:push("raw", cand_txt)
         context:clear()
         return 1
     end
@@ -84,6 +86,7 @@ function T.func(input, seg, env)
     local composition = context.composition
     local preedit_code = context:get_preedit().text
     if composition:empty() then return end
+    local commit_history = context.commit_history
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
     if input:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
@@ -144,6 +147,7 @@ function T.func(input, seg, env)
             local cand_text = insert_space_to_candText(env, filtered_cand_text)
             set_commited_cand_is_chinese(env)
             env.engine:commit_text(cand_text)
+            commit_history:push("raw", cand_text)
             context:clear()
             return
         end
@@ -158,6 +162,7 @@ function F.func(input, env)
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
+    local commit_history = context.commit_history
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])
@@ -197,6 +202,7 @@ function F.func(input, env)
             local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
             set_commited_cand_is_chinese(env)
             env.engine:commit_text(cand_txt)
+            commit_history:push('raw', cand_txt)
             context:clear()
             return 1 -- kAccepted
         end
