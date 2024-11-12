@@ -41,6 +41,7 @@ function P.func(key_event, env)
     if segment:has_tag("chinese_number") then return kNoop end
 
     local menu = segment.menu
+    local commit_history = context.commit_history
     local page_size = env.engine.schema.page_size or 7
     env.max_page_count = (env.prev_page_turn_count >= env.max_page_count)
         and env.prev_page_turn_count or env.max_page_count
@@ -70,6 +71,7 @@ function P.func(key_event, env)
             local selected_cand = segment:get_candidate_at(selected_index)
             local cand_text = selected_cand.text .. "。"
             env.engine:commit_text(cand_text)
+            commit_history:push(selected_cand.type, cand_text)
             -- local cand_text = insert_space_to_candText(env, _cand_text)
             -- reset_commited_cand_state(env)
             reset_state(env)
@@ -84,6 +86,7 @@ function P.func(key_event, env)
             local selected_cand = segment:get_candidate_at(selected_index)
             local cand_text = selected_cand.text .. "，"
             env.engine:commit_text(cand_text)
+            commit_history:push(selected_cand.type, cand_text)
             -- local cand_text = insert_space_to_candText(env, _cand_text)
             -- reset_commited_cand_state(env)
             reset_state(env)

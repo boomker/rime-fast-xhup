@@ -194,6 +194,7 @@ patch:
   chinese_number:                     # 中文数字
     tag: chinese_number
     prefix: "/cn"
+    suffix: "'"
     tips: "中文数字"
 
   custom_phrase/+:                    # 自定义短语

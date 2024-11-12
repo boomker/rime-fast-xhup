@@ -69,21 +69,26 @@ function P.func(key, env)
     if context:has_menu() or context:is_composing() then
         local index = segment.selected_index
         local cand = context:get_selected_candidate()
+        local commit_history = context.commit_history
         local selected_cand_idx = get_selected_candidate_index(key_name, index, page_size)
         if env.enclosed_a or env.enclosed_b or env.enclosed_c or env.enclosed_d then
             local matched = false
             if key_name == env.enclosed_a then
                 matched = true
                 engine:commit_text("「" .. cand.text .. "」")
+                commit_history:push("raw", "「" .. cand.text .. "」")
             elseif key_name == env.enclosed_b then
                 matched = true
                 engine:commit_text("【" .. cand.text .. "】")
+                commit_history:push("raw", "【" .. cand.text .. "】")
             elseif key_name == env.enclosed_c then
                 matched = true
                 engine:commit_text("（" .. cand.text .. "）")
+                commit_history:push("raw", "（" .. cand.text .. "）")
             elseif (key_name == env.enclosed_d) then
                 matched = true
                 engine:commit_text("〔" .. cand.text .. "〕")
+                commit_history:push("raw", "〔" .. cand.text .. "〕")
             -- elseif cand.text and (key_name == "Shift+Control+7") then
             --     engine:commit_text(cand.text .. " 先生")
             end
