@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "2024.11.11"
+  version: "2024.11.12"
   author:
     - boomker
   description: |
@@ -125,6 +125,7 @@ translator:
   prioritize_quality: true          # 启用优先质量选项
   encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启语言模型优化候选
+  enable_word_completion: true      # 4 音节以上的词条才补全
   # segment_length: 4                 # 设置分词长度
   # max_homophones: 7                 # 最大同音簇长度〔需配合 grammar 使用〕
   # max_homographs: 7                 # 最大同形簇长度〔需配合 grammar 使用〕

@@ -66,7 +66,7 @@ end
 
 function F.func(input, env)
     local drop_cand = false
-    local cmp_cand_count = 0
+    -- local cmp_cand_count = 0
     local context = env.engine.context
     local preedit_code = context.input
     local _, symbol_count = preedit_code:gsub("[`']", "")
@@ -109,7 +109,7 @@ function F.func(input, env)
             -- 辅码模式下, 覆写注解(太长了)为空
             -- yield(Candidate(cand.type, cand.start, cand._end, cand_text, ""))
             yield(cand:to_shadow_candidate(cand.type, cand_text, ""))
-        elseif -- 候选词长度超出预确认音节长度 1 个以上的候选, 保留2个
+        --[[ elseif -- 候选词长度超出预确认音节长度 1 个以上的候选, 保留2个
             (cand.type == "completion") and
             (not cand_text:match("[%a%p]")) and
             (utf8.len(cand_text) - confirmed_syllable_len > 1)
@@ -119,7 +119,7 @@ function F.func(input, env)
                 drop_cand = true
             else
                 yield(cand)
-            end
+            end ]]
         else
             yield(cand)
         end
