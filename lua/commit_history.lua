@@ -49,6 +49,7 @@ function T.init(env)
     reload_env(env)
     env.history_list = {}
     local config = env.engine.schema.config
+    local context = env.engine.context
     local excluded_types = env:Config_get("history" .. "/excluded_types") or {}
     env.tag = config:get_string("history" .. "/tag") or "history"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
@@ -61,7 +62,7 @@ function T.init(env)
         table.remove(env.history_list, 1)
     end
 
-    env.notifier_commit_history = env.engine.context.commit_notifier:connect(function(ctx)
+    env.notifier_commit_history = context.commit_notifier:connect(function(ctx)
         local cand = ctx:get_selected_candidate()
         if cand and not is_candidate_in_type(cand, excluded_types) then
             table.insert(env.history_list, cand)
@@ -75,16 +76,25 @@ function T.func(input, seg, env)
     if (composition:empty()) then return end
     if #env.history_list < 1 then return end
     local segment = composition:back()
+    local commit_history = context.commit_history
     if seg:has_tag(env.tag) or (input == env.trigger_prefix) then
         segment.prompt = "〔" .. env.prompt .. "〕"
         local his_cands = env.history_list
         local comment_max_length = env.comment_max_length
+        if (#his_cands > 0) and (not commit_history:empty()) then
+            local ch_text = commit_history:back().text
+            if (ch_text ~= his_cands[#his_cands].text) then
+                local cand = Candidate( "history", seg.start, seg._end, ch_text, "")
+                table.insert(env.history_list, cand)
+            end
+        end
         for i = #his_cands, 1, -1 do
-            local cand = Candidate(
-                "history", seg.start, seg._end, his_cands[i].text, his_cands[i].preedit
+            local cand = his_cands[i]
+            cand = Candidate(
+                "history", seg.start, seg._end, cand.text, cand.preedit
             )
             local cand_uniq = cand:to_uniquified_candidate(
-            ---@diagnostic disable-next-line: redundant-parameter
+                ---@diagnostic disable-next-line: redundant-parameter
                 cand.type, cand.text, cand.comment:sub(1, comment_max_length)
             )
             cand_uniq.quality = env.initial_quality

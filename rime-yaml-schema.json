@@ -637,6 +637,11 @@
                     "pattern": "(true|false)",
                     "description": "启用优先质量选项"
                 },
+                "enable_word_completion": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "4 音节以上的词条才补全"
+                },
                 "sentence_over_completion": {
                     "type": "boolean",
                     "pattern": "(true|false)",
