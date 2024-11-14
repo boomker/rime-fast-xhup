@@ -4,6 +4,7 @@ build/
 *.userdb/
 __pycache__/
 .DS_Store
+.stignore
 **/runLog.txt
 **/.ropeproject
 user.yaml
