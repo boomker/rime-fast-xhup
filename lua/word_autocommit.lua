@@ -10,13 +10,10 @@ local word_auto_commit = {}
 function word_auto_commit.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
-    local phrase_dict = config:get_string("flypy_phrase/dictionary")
-    -- local schema = Schema(schema_id)
-    -- env.memory = Memory(env.engine, schema, "translator")
+    local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
-    env.phrase_reversedb = ReverseLookup(phrase_dict)
-    -- env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator")
-     -- env.script_tran = Component.Translator(env.engine, schema, "translator", "script_translator")
+    -- env.memory = Memory(env.engine, schema, "translator")
+    env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
 function word_auto_commit.fini(env)
@@ -44,6 +41,7 @@ function P.func(key, env)
     local segment = composition:back()
     local commit_history = context.commit_history
 
+    --[[
     -- 四码二字词时, 按下 '/'  生成辅助码提示注解
     if (key:repr() == "slash") and (caret_pos == 4) and (input_code:match("^%l+")) then
         word_auto_commit.word_shape_code_tbl = {}
@@ -62,6 +60,7 @@ function P.func(key, env)
         end
     end
     if key:repr() == "Escape" then word_auto_commit.word_shape_code_tbl = {} end
+    --]]
 
     -- 按下 '/' 后, 数字键或符号键选单字时, 自动上屏
     local idx = segment.selected_index
@@ -94,7 +93,7 @@ function T.func(input, seg, env)
         local filtered_cand_count = 0
         local word_shape_code_tbl = {}
 
-        --[[
+        -- [[
         local word_yin_code = input:sub(1, 4)
         local word_cands = env.script_tran:query(word_yin_code, seg) or nil
 
@@ -115,9 +114,9 @@ function T.func(input, seg, env)
                 end
             end
         end
+        if (table.len(word_shape_code_tbl) < 1) then return end
         --]]
-        if (table.len(word_shape_code_tbl) < 1) and (table.len(word_auto_commit.word_shape_code_tbl) < 1 ) then return end
-        if (table.len(word_shape_code_tbl) < 1) then word_shape_code_tbl = word_auto_commit.word_shape_code_tbl end
+        -- if (table.len(word_shape_code_tbl) < 1) then word_shape_code_tbl = word_auto_commit.word_shape_code_tbl end
 
         for _, val in ipairs(word_shape_code_tbl) do
             local input_shape_code = string.sub(input, 6)
@@ -158,7 +157,6 @@ function F.func(input, env)
     local normal_cands = {}
     local symbol_cands = {}
     local single_char_cands = {}
-    -- local fchars_word_cands = {}
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
@@ -221,52 +219,23 @@ function F.func(input, env)
         end
     end
 
-    -- 四字短语自动上屏
-    --[[
-    if
-        (#preedit_code == 8)
-        and env.autocommit_on
-        and preedit_code:match("^%l+")
-        and (table.len(fchars_word_cands) > 0)
-    then
-        local done, commit_text = 0, ""
-        for _, cand in pairs(fchars_word_cands) do
-            local reverse_code = env.phrase_reversedb:lookup(cand.text)
-
-            local match_res = reverse_code:match("^" .. preedit_code .. "$")
-            if reverse_code and match_res then
-                done = done + 1
-                commit_text = cand.text
-            end
-        end
-        if (done == 1) and (caret_pos == 8) and (#commit_text >= 4) then
-            local cand_txt = insert_space_to_candText(env, commit_text)
-            set_commited_cand_is_chinese(env)
-            env.engine:commit_text(cand_txt)
-            context:clear()
-            return 1 -- kAccepted
-        end
-    end
-    --]]
-    for _, cand in ipairs(normal_cands) do
-        yield(cand)
-    end
+    for _, cand in ipairs(normal_cands) do yield(cand) end
 end
 
 return {
     processor = {
         init = word_auto_commit.init,
         func = P.func,
-        -- fini = word_auto_commit.fini,
+        fini = word_auto_commit.fini,
     },
     translator = {
         init = word_auto_commit.init,
         func = T.func,
-        -- fini = word_auto_commit.fini,
+        fini = word_auto_commit.fini,
     },
     filter = {
         init = word_auto_commit.init,
         func = F.func,
-        -- fini = word_auto_commit.fini,
+        fini = word_auto_commit.fini,
     },
 }
