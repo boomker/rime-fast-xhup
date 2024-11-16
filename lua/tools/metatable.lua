@@ -165,13 +165,21 @@ end
 function table.sorted_keys(t, compareFunc)
     local keys = {}
     for k in pairs(t) do
-        if type(k) == "number" then
-            table.insert(keys, k)
-        end
+        table.insert(keys, k)
     end
 
-    table.sort(keys, compareFunc or function(a, b)
-        return a < b
+    table.sort(keys, function(a, b)
+        if compareFunc == 'desc' then
+            return a > b
+        elseif compareFunc == 'len' then
+            if #a == #b then
+                return a < b  -- 当长度相同，按字母表顺序排序
+            else
+                return #a < #b
+            end
+        else
+            return a < b
+        end
     end)
 
     return keys
