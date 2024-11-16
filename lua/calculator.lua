@@ -1,5 +1,5 @@
--- author: https://github.com/ChaosAlphard
--- 说明 https://github.com/gaboolic/rime-shuangpin-fuzhuma/pull/41
+-- author: ChaosAlphard, boomker
+
 local T = {}
 
 function T.init(env)
@@ -32,8 +32,8 @@ local calc_methods = {
 }
 
 local methods_desc = {
-	["e"] = "自然常数, 欧拉数",
-	["pi"] = "圆周率 π",
+	["e"] = "自然数",
+	["pi"] = "π",
     ["b"] = "百",
     ["q"] = "千",
     ["k"] = "千",
@@ -120,7 +120,7 @@ local function atan2(y, x)
     end
 end
 calc_methods["atan2"] = atan2
-methods_desc["atan2"] = "返回以弧度为单位的点(x,y)相对于x轴的逆时针角度"
+methods_desc["atan2"] = "反正切(弧度)"
 
 -- 将角度从弧度转换为度 e.g. deg(π) = 180
 local function deg(x) return math.deg(x) end
@@ -162,12 +162,12 @@ local function nth_root(x, n)
     end
 end
 calc_methods["nroot"] = nth_root
-methods_desc["nroot"] = "计算 x 开 N 次方"
+methods_desc["nroot"] = "开 n 次方"
 
 -- 返回x的平方根 e.g. sqrt(x) = x^0.5
 local function sqrt(x) return math.sqrt(x) end
 calc_methods["sqrt"] = sqrt
-methods_desc["sqrt"] = "计算 x 平方根"
+methods_desc["sqrt"] = "平方根"
 
 -- x为底的对数, log(10, 100) = log(100) / log(10) = 2
 local function log(x, y)
@@ -274,6 +274,12 @@ function T.func(input, seg, env)
 
     if startsWith(input, T.prefix) or (seg:has_tag("calculator")) then
         segment.prompt = "〔" .. T.tips .. "〕"
+        if input:match("?h$") then
+            for _, fn in pairs(table.sorted_keys(methods_desc, 'len')) do
+                local fd = methods_desc[fn]
+                yield(Candidate('calc', seg.start, seg._end, fn .. ":" .. fd , ""))
+            end
+        end
         -- 提取算式
         local express = input:gsub(T.prefix, ""):gsub("^/vs", "")
         -- 算式长度 < 2 直接终止(没有计算意义)
@@ -283,15 +289,15 @@ function T.func(input, seg, env)
 
         local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)
         if loaded_func and (type(methods_desc[code]) == "string") then
-            yield(Candidate(input, seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
+            yield(Candidate('calc', seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
 		elseif loaded_func then
             local success, result = pcall(loaded_func)
             if success then
-                yield(Candidate(input, seg.start, seg._end, tostring(result), ""))
-                yield(Candidate(input, seg.start, seg._end, express .. "=" .. tostring(result), ""))
+                yield(Candidate('calc', seg.start, seg._end, tostring(result), ""))
+                yield(Candidate('calc', seg.start, seg._end, express .. "=" .. tostring(result), ""))
             else
                 -- 处理执行错误
-				yield(Candidate(input, seg.start, seg._end, express, "执行错误"))
+				yield(Candidate('calc', seg.start, seg._end, express, "执行错误"))
             end
         else
             -- 处理加载错误
