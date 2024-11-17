@@ -86,7 +86,7 @@ function processor.func(key, env)
 
     if context:has_menu() and (key:repr() == env.commit_comment_key) then
         local cand = context:get_selected_candidate()
-        local cand_comment = cand.comment:gsub("%p", "")
+        local cand_comment = cand.comment:gsub("[~〔〕]", "")
         engine:commit_text(cand_comment)
         commit_history:push("raw", cand_comment)
         context:clear()

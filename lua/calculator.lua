@@ -4,7 +4,7 @@ local T = {}
 
 function T.init(env)
     local config = env.engine.schema.config
-    env.name_space = env.name_space:gsub('^*', '')
+    env.name_space = env.name_space:gsub("^*", "")
     local _calc_pat = config:get_string("recognizer/patterns/calculator") or nil
     T.prefix = _calc_pat and _calc_pat:match("%^.?([a-zA-Z/=]+).*") or "/="
     T.tips = config:get_string("calculator/tips") or "计算器"
@@ -28,12 +28,12 @@ local calc_methods = {
     m = 10 ^ 6,
     tm = 10 ^ 7,
     y = 10 ^ 8,
-    g = 10 ^ 9
+    g = 10 ^ 9,
 }
 
 local methods_desc = {
-	["e"] = "自然数",
-	["pi"] = "π",
+    ["e"] = "自然数",
+    ["pi"] = "π",
     ["b"] = "百",
     ["q"] = "千",
     ["k"] = "千",
@@ -42,17 +42,21 @@ local methods_desc = {
     ["m"] = "百万",
     ["tm"] = "千万",
     ["y"] = "亿",
-    ["g"] = "十亿"
+    ["g"] = "十亿",
 }
 
 -- random([m [,n ]]) 返回m-n之间的随机数, n为空则返回1-m之间, 都为空则返回0-1之间的小数
-local function random(...) return math.random(...) end
+local function random(...)
+    return math.random(...)
+end
 -- 注册到函数表中
 calc_methods["rdm"] = random
 methods_desc["rdm"] = "随机数"
 
 -- 正弦
-local function sin(x) return math.sin(x) end
+local function sin(x)
+    return math.sin(x)
+end
 calc_methods["sin"] = sin
 methods_desc["sin"] = "正弦"
 
@@ -64,12 +68,16 @@ calc_methods["sinh"] = sinh
 methods_desc["sinh"] = "双曲正弦"
 
 -- 反正弦
-local function asin(x) return math.asin(x) end
+local function asin(x)
+    return math.asin(x)
+end
 calc_methods["asin"] = asin
 methods_desc["asin"] = "反正弦"
 
 -- 余弦
-local function cos(x) return math.cos(x) end
+local function cos(x)
+    return math.cos(x)
+end
 calc_methods["cos"] = cos
 methods_desc["cos"] = "余弦"
 
@@ -81,12 +89,16 @@ calc_methods["cosh"] = cosh
 methods_desc["cosh"] = "双曲余弦"
 
 -- 反余弦
-local function acos(x) return math.acos(x) end
+local function acos(x)
+    return math.acos(x)
+end
 calc_methods["acos"] = acos
 methods_desc["acos"] = "反余弦"
 
 -- 正切
-local function tan(x) return math.tan(x) end
+local function tan(x)
+    return math.tan(x)
+end
 calc_methods["tan"] = tan
 methods_desc["tan"] = "正切"
 
@@ -99,7 +111,9 @@ calc_methods["tanh"] = tanh
 methods_desc["tanh"] = "双曲正切"
 
 -- 反正切
-local function atan(x) return math.atan(x) end
+local function atan(x)
+    return math.atan(x)
+end
 calc_methods["atan"] = atan
 methods_desc["atan"] = "反正切"
 
@@ -123,12 +137,16 @@ calc_methods["atan2"] = atan2
 methods_desc["atan2"] = "反正切(弧度)"
 
 -- 将角度从弧度转换为度 e.g. deg(π) = 180
-local function deg(x) return math.deg(x) end
+local function deg(x)
+    return math.deg(x)
+end
 calc_methods["deg"] = deg
 methods_desc["deg"] = "弧度转换为角度"
 
 -- 将角度从度转换为弧度 e.g. rad(180) = π
-local function rad(x) return math.rad(x) end
+local function rad(x)
+    return math.rad(x)
+end
 calc_methods["rad"] = rad
 methods_desc["rad"] = "角度转换为弧度"
 
@@ -142,12 +160,16 @@ calcPlugin["frexp"] = frexp
 --]]
 
 -- 返回 x*2^y
-local function ldexp(x, y) return x * 2 ^ y end
+local function ldexp(x, y)
+    return x * 2 ^ y
+end
 calc_methods["ldexp"] = ldexp
 methods_desc["ldexp"] = "返回 x*2^y"
 
 -- 返回 e^x
-local function exp(x) return math.exp(x) end
+local function exp(x)
+    return math.exp(x)
+end
 calc_methods["exp"] = exp
 methods_desc["exp"] = "返回 e^x"
 
@@ -165,7 +187,9 @@ calc_methods["nroot"] = nth_root
 methods_desc["nroot"] = "开 n 次方"
 
 -- 返回x的平方根 e.g. sqrt(x) = x^0.5
-local function sqrt(x) return math.sqrt(x) end
+local function sqrt(x)
+    return math.sqrt(x)
+end
 calc_methods["sqrt"] = sqrt
 methods_desc["sqrt"] = "平方根"
 
@@ -203,7 +227,7 @@ methods_desc["logt"] = "10作为底数的对数"
 
 -- 平均值
 local function avg(...)
-    local data = {...}
+    local data = { ... }
     local n = select("#", ...)
     -- 样本数量不能为0
     if n == 0 then return nil end
@@ -221,7 +245,7 @@ methods_desc["avg"] = "平均值"
 
 -- 方差
 local function variance(...)
-    local data = {...}
+    local data = { ... }
     local n = select("#", ...)
     -- 样本数量不能为0
     if n == 0 then return nil end
@@ -275,33 +299,37 @@ function T.func(input, seg, env)
     if startsWith(input, T.prefix) or (seg:has_tag("calculator")) then
         segment.prompt = "〔" .. T.tips .. "〕"
         if input:match("?h$") then
-            for _, fn in pairs(table.sorted_keys(methods_desc, 'len')) do
+            for _, fn in pairs(table.sorted_keys(methods_desc, "len")) do
                 local fd = methods_desc[fn]
-                yield(Candidate('calc', seg.start, seg._end, fn .. ":" .. fd , ""))
+                yield(Candidate("calc", seg.start, seg._end, fn .. ":" .. fd, ""))
             end
         end
         -- 提取算式
-        local express = input:gsub(T.prefix, ""):gsub("^/vs", "")
+        local express = input:gsub(T.prefix, ""):gsub("^vS", "")
         -- 算式长度 < 2 直接终止(没有计算意义)
-        if (string.len(express) < 2) and (not calc_methods[express]) then return end
-        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then return end
+        if (string.len(express) < 2) and not calc_methods[express] then
+            return
+        end
+        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then
+            return
+        end
         local code = replaceToFactorial(express)
 
         local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)
         if loaded_func and (type(methods_desc[code]) == "string") then
-            yield(Candidate('calc', seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
-		elseif loaded_func then
+            yield(Candidate("calc", seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
+        elseif loaded_func then
             local success, result = pcall(loaded_func)
             if success then
-                yield(Candidate('calc', seg.start, seg._end, tostring(result), ""))
-                yield(Candidate('calc', seg.start, seg._end, express .. "=" .. tostring(result), ""))
+                yield(Candidate("calc", seg.start, seg._end, tostring(result), ""))
+                yield(Candidate("calc", seg.start, seg._end, express .. "=" .. tostring(result), ""))
             else
                 -- 处理执行错误
-				yield(Candidate('calc', seg.start, seg._end, express, "执行错误"))
+                yield(Candidate("calc", seg.start, seg._end, express, "执行错误"))
             end
         else
             -- 处理加载错误
-			yield(Candidate(input, seg.start, seg._end, express, "解析失败"))
+            yield(Candidate(input, seg.start, seg._end, express, "解析失败"))
         end
     end
 end

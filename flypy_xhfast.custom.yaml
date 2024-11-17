@@ -9,7 +9,7 @@ patch:
   menu/+:
     # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪]
-    # alternative_select_keys: 1234890      # 候选项选中快捷键
+    alternative_select_keys: 123456789      # 候选项选中快捷键
     page_size: 7                            # 自定义候选项个数
 
   # 候选菜单布局样式
@@ -97,17 +97,17 @@ patch:
       week: "^(/wk|week)$"
       time: "^(/wt|time)$"
       date: "^(/wd|date)$"
-      LaTeX: "^(/lt|LT)(.*)$"                   # LaTeX 公式
+      LaTeX: "^(/lt|lT)(.*)$"                   # LaTeX 公式
       history: "^(/hs|hisz)$"                   # 上屏历史
       easy_en: "/oe[a-zA-Z*]+'?$"               # 英文输入
       flypy_help: "^/(oh|help)$"                # 方案帮助菜单
       shortcuts: "^/(fj|kj)[a-z]*$"             # 快捷指令
-      calculator: "^(/=|/vs)(.*)$"              # 简易计算器
+      calculator: "^(/=|vS)(.*)$"               # 简易计算器
       radical_lookup: "~[a-z]+'?$"              # 部件拆字组字
       flypy_key_help: "^/ok[a-z]*$"             # 双拼键位帮助
       lunar: "^(/nl|lunar)[0-9]*$"              # 中国农历
       switch_options: "^(/so|sopt)$"            # 快速切换配置选项
-      chinese_number: "^(/cn|nN)[0-9.]+$"       # 中文大写数字(金额)
+      chinese_number: "^(/cn|Nn)[0-9.]+$"       # 中文大写数字(金额)
 
   punctuator/+:
     full_shape/+:
@@ -192,10 +192,12 @@ patch:
     tips: "计算器"
 
   chinese_number:                     # 中文数字
-    tag: chinese_number
+    # prefix: "Nn"
     prefix: "/cn"
     suffix: "'"
     tips: "中文数字"
+    tag: chinese_number
+    select_keys: "HJKLNM"
 
   custom_phrase/+:                    # 自定义短语
     comment_mark: " 📌"               # 自定义短语注解标记
