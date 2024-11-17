@@ -139,20 +139,22 @@ local function number2cnChar(num, flag, digitUnit, wordFigure)
     if tonumber(num2) == 0 then
         if tonumber(flag) < 1 then
             digitUnit = digitUnit or { [1] = "万", [2] = "亿" }
-            wordFigure = wordFigure or {
-                [1] = "〇",
-                [2] = "一",
-                [3] = "十",
-                [4] = "元",
-            }
+            wordFigure = wordFigure
+                or {
+                    [1] = "〇",
+                    [2] = "一",
+                    [3] = "十",
+                    [4] = "元",
+                }
         else
             digitUnit = digitUnit or { [1] = "万", [2] = "亿" }
-            wordFigure = wordFigure or {
-                [1] = "零",
-                [2] = "壹",
-                [3] = "拾",
-                [4] = "元",
-            }
+            wordFigure = wordFigure
+                or {
+                    [1] = "零",
+                    [2] = "壹",
+                    [3] = "拾",
+                    [4] = "元",
+                }
         end
 
         local lens = string.len(num1)
@@ -238,12 +240,12 @@ local function number_translatorFunc(num)
     if numberPart.dot ~= "" then
         table.insert(result, {
             number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "点" })
-            .. number2zh(numberPart.dec, 0),
+                .. number2zh(numberPart.dec, 0),
             "〔数字小写〕",
         })
         table.insert(result, {
             number2cnChar(numberPart.int, 1, { "萬", "億" }, { "〇", "一", "十", "点" })
-            .. number2zh(numberPart.dec, 1),
+                .. number2zh(numberPart.dec, 1),
             "〔数字大写〕",
         })
     else
@@ -300,15 +302,57 @@ local function number_translatorFunc(num)
     return result
 end
 
+local P = {}
 local T = {}
-function T.func(input, seg, env)
-    local str, numberPart
+local CN = {}
+
+function CN.init(env)
+    local schema = env.engine.schema
+    local context = env.engine.context
     local config = env.engine.schema.config
     local chinese_number_pattern = "recognizer/patterns/chinese_number"
-    local _cn_pat = config:get_string(chinese_number_pattern) or nil
-    local trigger_prefix = _cn_pat and _cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/cn"
-    if seg:has_tag("chinese_number") or string.match(input, "^" .. trigger_prefix) then
-        str = input:gsub("^" .. trigger_prefix, ""):gsub("%a+", "")
+    local _cn_pat = config:get_string(chinese_number_pattern) or "Nn"
+    env.trigger_prefix = _cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/cn"
+    env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
+    env.select_keys = config:get_string("chinese_number/select_keys") or "HJKLNM"
+    env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
+    CN.speller_alphabet = CN.speller_alphabet or config:get_string("speller/alphabet")
+    env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
+        local segment = ctx.composition:back()
+        if segment.prompt:match(env.tip) then
+            config:set_int("menu/alternative_select_keys", env.alter_select_keys)
+            config:set_string("speller/alphabet", CN.speller_alphabet)
+            env.engine:apply_schema(Schema(schema.schema_id))
+        end
+    end)
+end
+
+function CN.fini(env)
+    env.notifier_commit_number:disconnect()
+end
+
+function P.func(key, env)
+    local engine = env.engine
+    local schema = engine.schema
+    local context = engine.context
+    local input_code = context.input
+    local config = engine.schema.config
+    local segment = context.composition:back()
+    if segment.prompt:match(env.tip) or input_code:match("^/cn$") or input_code:match("^Nn$") then
+        config:set_string("menu/alternative_select_keys", env.select_keys)
+        config:set_string("speller/alphabet", "abcdefghijklmnopqrstuvwxyz")
+        engine:apply_schema(Schema(schema.schema_id))
+        context:push_input(input_code)
+        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
+    end
+end
+
+function T.func(input, seg, env)
+    local str, numberPart
+    local segment = env.engine.context.composition:back()
+    if seg:has_tag("chinese_number") or string.match(input, "^" .. env.trigger_prefix) then
+        segment.prompt = "〔".. env.tip .."〕"
+        str = input:gsub("^" .. env.trigger_prefix, ""):gsub("%a+", "")
         numberPart = number_translatorFunc(str)
         if #numberPart > 0 then
             for i = 1, #numberPart do
@@ -318,4 +362,7 @@ function T.func(input, seg, env)
     end
 end
 
-return T
+return {
+    processor = { init = CN.init, func = P.func, fini = CN.fini },
+    translator = { init = CN.init, func = T.func, fini = CN.fini },
+}
