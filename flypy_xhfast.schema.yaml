@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: "2024.11.12"
+  version: "2024.11.17"
   author:
     - boomker
   description: |
@@ -39,6 +39,7 @@ engine:
     - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
     - lua_processor@*shortcut*processor
+    - lua_processor@*chinese_number*processor
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
     - lua_processor@*commit_history*processor
@@ -80,12 +81,12 @@ engine:
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
     - lua_translator@*calculator                      # /= 触发简易计算器
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
-    - lua_translator@*chinese_number                  # /cn 触发大写金额数字
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     # - lua_translator@*fly_fixed*translator            # 降频简拼产生的候选项
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
+    - lua_translator@*chinese_number*translator       # /cn 触发大写金额数字
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
     - lua_translator@*word_autocommit*translator      # / 单字和符号表情自动触发上屏

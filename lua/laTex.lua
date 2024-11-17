@@ -145,7 +145,7 @@ function T.func(input, seg, env)
     local laTex_pattern = "recognizer/patterns/LaTeX"
     local tips = config:get_string("LaTeX/tips") or "LaTeX公式"
     local trigger = config:get_string(laTex_pattern):match("%^.?[a-zA-Z/]+.*") or "^/lt"
-    local expr, n = input:gsub("^" .. trigger .. "(.*)$", "%1"):gsub("^LT", "")
+    local expr, n = input:gsub("^" .. trigger .. "(.*)$", "%1"):gsub("^lT", "")
     if (n ~= 0) or (seg:has_tag("LaTeX")) then
         -- expr = expr:gsub('%W', snip_charmap) --- 启用特殊符号替换
         expr = expr:gsub("ooa(.)", "^{%1+1}")
