@@ -305,7 +305,7 @@ function T.func(input, seg, env)
             end
         end
         -- 提取算式
-        local express = input:gsub(T.prefix, ""):gsub("^vS", "")
+        local express = input:gsub(T.prefix, ""):gsub("^cC", "")
         -- 算式长度 < 2 直接终止(没有计算意义)
         if (string.len(express) < 2) and not calc_methods[express] then
             return

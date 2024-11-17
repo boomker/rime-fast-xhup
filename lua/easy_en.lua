@@ -58,8 +58,8 @@ function easy_en.translator(input, seg, env)
 		for dictentry in env.mem:iter_dict() do
 			local codetail = string.match(dictentry.comment:lower(), tailer .. "$") or ""
 			if tailer and (codetail == tailer) then
-				local code = env.mem:decode(dictentry.code)
-				local codeComment = table.concat(code, ",")
+				-- local code = env.mem:decode(dictentry.code)
+				-- local codeComment = table.concat(code, ",")
 				local ph = Phrase(env.mem, "expand_en_word", seg.start, seg._end, dictentry)
 				ph.comment = dictentry.comment:lower()
 				yield(ph:toCandidate())
