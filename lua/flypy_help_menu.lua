@@ -5,7 +5,7 @@ local T = {}
 function T.func(input, seg, env)
 	local composition = env.engine.context.composition
 	local segment = composition:back()
-	if seg:has_tag("flypy_help") or (input == "/oh") or (input == "/help") then
+	if seg:has_tag("flypy_help") or (input == "/oh") or (input == "oH") then
 		local table = {
 			{ "帮助菜单", "→ /oh" },
 			{ "小鹤键位", "→ /ok" },
@@ -25,7 +25,8 @@ function T.func(input, seg, env)
 			{ "词条降频", "→ Ctrl+j" },
 			{ "词条隐藏", "→ Ctrl+x" },
 			{ "词条删除", "→ Ctrl+d" },
-            { "删用户词", "→ Ctrl+r" },
+            { "删用户词", "→ Ctrl+k" },
+            { "删上屏词", "→ Ctrl+r" },
 			{ "注解切换", "→ Ctrl+n" },
 			{ "注解上屏", "→ Ctrl+p" },
 			{ "单字优先", "→ Ctrl+s" },
@@ -34,13 +35,13 @@ function T.func(input, seg, env)
 			{ "简拼展开", "→ Ctrl+0" },
 			{ "全角半角", "→ Ctrl+," },
 			{ "中英标点", "→ Ctrl+." },
-			{ "繁简切换", "→ Ctrl+/" },
-			{ "表😂显隐", "→ Ctrl+Shift+/" },
-			{ "码区提示", "→ Ctrl+Shift+," },
-			{ "切换英打", "→ Ctrl+Shift+;" },
+            { "切换英打", "→ Ctrl+Shift+g" },
+			{ "表😂显隐", "→ Ctrl+Shift+4" },
+			{ "码区提示", "→ Ctrl+Shift+5" },
+			{ "繁简切换", "→ Ctrl+Shift+6" },
 			{ "以形查音", "→ ~键引导以形查音" },
 			{ "精准造词", "→ `键引导精准造词" },
-			{ "单词大写", "→ AZ大写字母触发" },
+			{ "单词大写", "→ AZ 大写字母触发" },
 			{ "时间戳值", "→ " .. "timestamp | /uts" },
 			{ "日期时间", "→ " .. "date | time | /wd | /wt" },
 			{ "农历星期", "→ " .. "lunar | week | /nl | /wk" },

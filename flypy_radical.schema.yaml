@@ -15,10 +15,10 @@ schema:
 
 engine:
   processors:
-    - key_binder
     - speller
     - selector
     - navigator
+    - key_binder
     - express_editor
   segmentors:
     - abc_segmentor

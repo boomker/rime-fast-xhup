@@ -13,6 +13,7 @@ function word_auto_commit.init(env)
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
     -- env.memory = Memory(env.engine, schema, "translator")
+    env.word_auto_commit= config:get_bool("speller/auto_commit") or false
     env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
@@ -86,6 +87,7 @@ function T.func(input, seg, env)
     local preedit_code = context:get_preedit().text
     if composition:empty() then return end
     local commit_history = context.commit_history
+    local auto_commit_enable = env.word_auto_commit
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
     if input:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
@@ -139,7 +141,8 @@ function T.func(input, seg, env)
         end
 
         if
-            (filtered_cand_count == 1)
+            auto_commit_enable
+            and (filtered_cand_count == 1)
             and (utf8.len(preedit_code) <= 8)
             and (utf8.len(filtered_cand_text) == 2)
         then
@@ -173,16 +176,6 @@ function F.func(input, env)
             table.insert(single_char_cands, cand)
         end
 
-        -- 四字短语自动上屏
-        --[[
-        if
-            (#preedit_code == 8)
-            and preedit_code:match("^%l+$")
-            and not fchars_word_cands[cand.text]
-        then
-            fchars_word_cands[cand.text] = cand
-        end
-        --]]
         if #normal_cands >= 150 then break end
         table.insert(normal_cands, cand)
     end

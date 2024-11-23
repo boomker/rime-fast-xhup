@@ -61,7 +61,7 @@ function space_leader_word.func(key, env)
         return 2
     end
 
-    if (#input_code >= 1) and env.return_keys[key_value] then
+    if (#input_code >= 2) and env.return_keys[key_value] then
         local cand_text = input_code
         local commit_text_is_symbol = false
         if (prev_cand_is_chinese == "1") or (prev_cand_is_word == "1") or (prev_cand_is_preedit == "1") then

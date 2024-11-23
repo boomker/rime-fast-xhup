@@ -31,7 +31,7 @@ end
 
 ---@diagnostic disable-next-line: unused-local
 local function autocap_translator(input, seg, env)
-    if input:match("^%u%l%l?%l?%l?%l?%l?%l?$") and input:match("^[^V].*") then
+    if input:match("^%u%l%l?%l?%l?%l?%l?%l?%l?%l?%l?%l?$") and input:match("^[^V].*") then
         local cand = Candidate("Word", seg.start, seg._end, input, "")
         cand.quality = 999
         yield(cand)
