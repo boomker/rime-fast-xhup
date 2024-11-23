@@ -3,7 +3,7 @@ local F = {}
 function F.init(env)
 	local engine = env.engine
 	local config = engine.schema.config
-	env.emoji_pos = config:get_int("emoji_reduce/idx") or 6
+	env.emoji_pos = config:get_int("emoji_reduce/index") or 6
 	env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 	--[[
     local logger = require "tools.logger"

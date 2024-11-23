@@ -8,8 +8,8 @@ patch:
   # 候选菜单
   menu/+:
     # 注释掉下行以恢复常规候选标签序号
-    alternative_select_labels: [①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪]
-    alternative_select_keys: 123456789      # 候选项选中快捷键
+    alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
+    # alternative_select_keys: 1234567890   # 候选项选中快捷键
     page_size: 7                            # 自定义候选项个数
 
   # 候选菜单布局样式
@@ -59,7 +59,7 @@ patch:
     switch_comment: "Control+n"       # 切换注释(小鹤形码 / 带调拼音 / 无)
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
-    expand_abbr_py: "Control+0"       # 展开超级简拼
+    expand_abbr_py: "Control+0"       # 展开超级简拼(开启时生效)
     remove_user_word: "Control+r"     # 用户词典里的字词调频为负
     easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮字词
     # select_first_character: "minus" # `-` 以词定字(第一个字)
@@ -97,25 +97,26 @@ patch:
       week: "^(/wk|week)$"
       time: "^(/wt|time)$"
       date: "^(/wd|date)$"
-      LaTeX: "^(/lt|lT)(.*)$"                   # LaTeX 公式
-      history: "^(/hs|hisz)$"                   # 上屏历史
-      flypy_help: "^/(oh|help)$"                # 方案帮助菜单
+      history: "^(/hs|hH)$"                     # 上屏历史
+      LaTeX: "^(/lt|lT)(.*)$"                   # LaTeX排版
+      flypy_help: "^(/oh|oH)$"                  # 帮助菜单
       calculator: "^(/=|cC)(.*)$"               # 简易计算器
-      radical_lookup: "~[a-z]+'?$"              # 部件拆字组字
-      lunar: "^(/nl|lunar)[0-9]*$"              # 中国农历
-      shortcuts: "^/(fj|kj)[a-z]*$"             # 快捷指令
+      switch_options: "^(/so|sO)$"              # 切换配置选项
       flypy_key_help: "^/ok[a-z]*$"             # 双拼键位帮助
-      switch_options: "^(/so|sopt)$"            # 快速切换配置选项
-      easy_en: "(/oe|eE)[a-zA-Z*]+'?$"          # 英文输入
+      shortcuts: "^/(fj|kj)[a-z]*$"             # 快捷指令(短语)
+      easy_en: "(/oe|eN)[a-zA-Z*]+'?$"          # 英文方案(带中文)
+      radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
+      chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
       chinese_number: "^(/cn|Nn)[0-9.]+$"       # 中文大写数字(金额)
 
   punctuator/+:
+    symbols/+:
     full_shape/+:
     half_shape/+:
       # '"': {pair: ['‘', '’']}
       # "'": {pair: ['“', '”']}
-      # ";": {commit: "；"}                     # 取消注释后, 下行添加注释, 以恢复默认分号
-      ";": [";", "；"]
+      # ";": {commit: "；"}                     # 恢复默认分号, 取消注释
+      ";": [";", "；"]                          # 添加注释, 以恢复默认分号
       '\': ['､', '、', '\', '＼', '\r', '\n', '\t']
       "@":
         - "@"
@@ -127,23 +128,34 @@ patch:
         - "@qq.com"
         - "@163.com"
         - "@139.com"
-    symbols/+:
 
   speller/+:
+    auto_commit: true                 # 二字词组加辅码唯一时则自动上屏
     algebra/+:
-      # - derive|/||                            # 取消注释,直接辅码(新手不推荐)
+      # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
 
       ## 模糊音:
       # - derive/^([jqxy])v/$1u/
       # - derive/^([jqxy])u/$1v/
-      # - derive/^l(.*)/n$1/                    # l => n
-      # - derive/^n(.*)/l$1/                    # n => l
-      # - derive/^v(.*)/z$1/                    # zh => z
-      # - derive/^i(.*)/c$1/                    # ch => c
-      # - derive/^u(.*)/s$1/                    # sh => s
-      # - derive/^(.*)k/$1b/                    # ing => in
-      # - derive/^(.*)g/$1f/                    # [zcs][h]eng => [zcs][h]en
-      # - derive/^(.*)f/$1g/                    # [zcs][h]en => [zcs][h]eng
+      # - derive/^l(.*)/n$1/          # l => n
+      # - derive/^n(.*)/l$1/          # n => l
+      # - derive/^v(.*)/z$1/          # zh => z
+      # - derive/^i(.*)/c$1/          # ch => c
+      # - derive/^u(.*)/s$1/          # sh => s
+      # - derive/^(.*)k/$1b/          # ing => in
+      # - derive/^(.*)g/$1f/          # [zcs][h]eng => [zcs][h]en
+      # - derive/^(.*)f/$1g/          # [zcs][h]en => [zcs][h]eng
+
+  flypy_key_help/+:                   # 小鹤双拼键位帮助
+    prefix: "/ok"
+    tips: "双拼查键"
+
+  custom_phrase/+:                    # 自定义短语
+    comment_mark: " 📌"               # 注解标记
+
+  pin_word:                           # 词条置顶配置
+    word_quality: 1000
+    comment_mark: " 🔝"               # 置顶词标记
 
   char_mode:                          # 单字模式开关
     toggle: "off"
@@ -151,48 +163,36 @@ patch:
   pair_symbol:                        # 符号配对开关
     toggle: "off"
 
-  easy_en/+:                          # 英文输入方案
-    # prefix: "eE"
-    prefix: "/oe"
-    tips: "英文输入"
-    wildcard: '*'
-    expan_word_count: 666
+  emoji_reduce:                       # Emoji 降频
+    index: 6                          # 到 index 位置
 
-  emoji/+:                            # Emoji转换
-    tips: all
-
-  emoji_reduce:                       # Emoji 降频到第 idx 个位置
-    idx: 6
-
-  cold_word_reduce:                   # 生僻词条降频到第 idx 个位置
-    idx: 4
+  cold_word_reduce:                   # 高亮词条降频
+    index: 4                          # 到 index 位置
     excluded_types: ["easy_en"]
-
-  pin_word:                           # 词条置顶配置
-    word_quality: 1000
-    comment_mark: " 🔝"               # 置顶词标记
 
   LaTeX:                              # LaTeX 公式输入
     tag: LaTeX
+    # prefix: "lT"
     prefix: "/lt"
     tips: "LaTeX 公式"
 
   history:                            # 上屏历史记录
     tag: history
+    # prefix: "hH"
     prefix: "/hs"
     tips: "上屏历史"
-    max_count: 30
-    initial_quality: 1000
-    comment_max_length: 20
+    max_count: 99
+    initial_quality: 999
+    comment_max_length: 9
     excluded_types: ["punct"]
 
-  calculator:                         # 计算器
+  calculator:                         # 简易计算器
     tag: calculator
-    # prefix: "/vs"
+    # prefix: "cC"
     prefix: "/="
     tips: "计算器"
 
-  chinese_number:                     # 中文数字
+  chinese_number:                     # 中文大写数字(金额)
     # prefix: "Nn"
     prefix: "/cn"
     suffix: "'"
@@ -200,14 +200,15 @@ patch:
     tag: chinese_number
     select_keys: "HJKLNM"
 
-  custom_phrase/+:                    # 自定义短语
-    comment_mark: " 📌"               # 自定义短语注解标记
+  easy_en/+:                          # 英文单词输入方案
+    # prefix: "eN"
+    prefix: "/oe"
+    tips: "英文"
+    wildcard: '*'
+    expan_word_count: 666             # 模糊匹配最多迭代数
 
-  flypy_key_help/+:                   # 小鹤双拼键位帮助
-    prefix: "/ok"
-    tips: "小鹤双拼查键"
-
-  radical_lookup/+:                   # 部件组字
+  radical_lookup/+:                   # 单字部件拆字组字
+    # prefix: "rL"
     prefix: "~"
     tips: 部件组字
 
@@ -215,7 +216,7 @@ patch:
     overwrite_comment: false
     dictionary: kMandarin             # 可自行更换反查词典
 
-  predictor:
+  predictor:                          # 候选字词联想预测
     db: predict.db
-    max_candidates: 7
-    max_iterations: 1
+    max_candidates: 7                 # 联想的候选项个数
+    max_iterations: 1                 # 联想预测的次数

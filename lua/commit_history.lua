@@ -54,8 +54,8 @@ function T.init(env)
     env.tag = config:get_string("history" .. "/tag") or "history"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
     env.trigger_prefix = config:get_string("history" .. "/prefix") or "/hs"
-    env.initial_quality = config:get_int("history" .. "/initial_quality") or 1000
-    env.comment_max_length = config:get_int("history" .. "/comment_max_length") or 20
+    env.initial_quality = config:get_int("history" .. "/initial_quality") or 999
+    env.comment_max_length = config:get_int("history" .. "/comment_max_length") or 9
 
     local history_num_max = config:get_string("history" .. "/max_count") or 30
     if #env.history_list >= tonumber(history_num_max) then
