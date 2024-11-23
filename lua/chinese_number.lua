@@ -314,6 +314,7 @@ function CN.init(env)
     local _cn_pat = config:get_string(chinese_number_pattern) or "Nn"
     env.trigger_prefix = _cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/cn"
     env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
+	env.user_distribute_name = rime_api:get_distribution_code_name()
     env.select_keys = config:get_string("chinese_number/select_keys") or "HJKLNM"
     env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
     CN.speller_alphabet = CN.speller_alphabet or config:get_string("speller/alphabet")
@@ -338,16 +339,14 @@ function P.func(key, env)
     local input_code = context.input
     local config = engine.schema.config
     local segment = context.composition:back()
+    local client_name = env.user_distribute_name
+    if table.find_index({"fcitx", "trime"}, client_name) then return 2 end
     if segment.prompt:match(env.tip) or input_code:match("^/cn$") or input_code:match("^Nn$") then
         config:set_string("menu/alternative_select_keys", env.select_keys)
         config:set_string("speller/alphabet", "abcdefghijklmnopqrstuvwxyz")
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(input_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
-    elseif segment.prompt:match(env.tip) and (key:repr() == "Escape") then
-        config:set_int("menu/alternative_select_keys", env.alter_select_keys)
-        config:set_string("speller/alphabet", CN.speller_alphabet)
-        engine:apply_schema(Schema(schema.schema_id))
     end
 end
 
