@@ -13,6 +13,8 @@ function detect_os()
 		return "MacOS"
 	elseif user_distribute_name:lower():match("^fcitx%-rime$") then
 		return "Android"
+	elseif user_distribute_name:lower():match("trime") then
+		return "Android"
 	elseif user_distribute_name:lower():match("^fcitx$") then
 		return "Linux"
 	elseif user_distribute_name:lower():match("ibus") then
