@@ -204,52 +204,6 @@ preset_color_schemes:
     th3: 0xff000000
     th4: 0xff000000
     tkg: 0xff000000
-    author: "风花絮"
-    back_color: 0xffffffff
-    baoe: 0xffffffff
-    bbs: 0xffacb2c2
-    benter: 0xff3266a0
-    bgn: 0xffacb2c2
-    bh1: 0xffffffff
-    bh2: 0xffffffff
-    bh3: 0xffffffff
-    bh4: 0xffffffff
-    bkg: 0xffffffff
-    candidate_separator_color: 0xffffffff
-    candidate_text_color: 0xff000000
-    comment_text_color: 0xffe1e3e7
-    dark_scheme: steam
-    hilited_back_color: 0xffffffff
-    hilited_candidate_back_color: 0xffffffff
-    hilited_candidate_text_color: 0xff3266a0
-    hilited_comment_text_color: 0xff000000
-    hilited_key_back_color: 0xff3266a0
-    hilited_key_symbol_color: 0xffffffff
-    hilited_key_text_color: 0xff000000
-    hilited_off_key_back_color: 0xffffffff
-    hilited_off_key_text_color: 0xff000000
-    hilited_text_color: 0xff000000
-    key_back_color: 0xffffffff
-    key_symbol_color: 0xff838383
-    key_text_color: 0xff000000
-    keyboard_back_color: 0xffe1e3e7
-    label_color: 0xff3266a0
-    name: "标准配色！"
-    off_key_back_color: 0xffacb2c2
-    off_key_text_color: 0xff838383
-    preview_back_color: 0xffacb2c2
-    preview_text_color: 0xff3266a0
-    taoe: 0xff3266a0
-    tbs: 0xffffffff
-    tenter: 0xffffffff
-    text_back_color: 0xffffffff
-    text_color: 0xff3266a0
-    tgn: 0xffffffff
-    th1: 0xff000000
-    th2: 0xff000000
-    th3: 0xff000000
-    th4: 0xff000000
-    tkg: 0xff000000
 preset_keyboards:
   bqfh1:
     ascii_mode: 0
@@ -514,7 +468,7 @@ preset_keyboards:
     ascii_mode: 0
     author: "暖暖"
     keys: [
-      {click: q, key_back_color: bh1, key_text_color: th1, swipe_up: "*", swipe_down: "^", swipe_left: "Tab", long_click: 1}, {click: w, key_back_color: bh1, key_text_color: th1, swipe_up: "#", swipe_down: "~", , long_click: 2}, {click: e, key_back_color: bh1, key_text_color: th1, swipe_up: ">", swipe_down: "\"", swipe_left: "<", long_click: 3}, {click: r, key_back_color: bh1, key_text_color: th1, swipe_up: "(", swipe_down: ")", long_click: 4}, {click: t, key_back_color: bh1, key_text_color: th1, swipe_up: "'", swipe_down: "\"", long_click: 5}, {click: y, key_back_color: bh1, key_text_color: th1, long_click: 6}, {click: u, key_back_color: bh1, key_text_color: th1, long_click: 7}, {click: i, key_back_color: bh1, key_text_color: th1, long_click: 8}, {click: o, key_back_color: bh1, key_text_color: th1, long_click: 9}, {click: p, key_back_color: bh1, key_text_color: th1, long_click: 0}, {key_back_color: bh2, key_text_color: th2, width: 5}, {click: a, key_back_color: bh2, key_text_color: th2, swipe_up: "+", swipe_down: "=", long_click: select_all}, {click: s, key_back_color: bh2, key_text_color: th2, swipe_up: "-", swipe_down: "_", long_click: ""}, {click: d, key_back_color: bh2, key_text_color: th2, swipe_up: "/", swipe_down: "\\", long_click: ""}, {click: f, key_back_color: bh2, key_text_color: th2, swipe_up: "[", swipe_down: "]", long_click: ""}, {click: g, key_back_color: bh2, key_text_color: th2, swipe_up: "?", swipe_down: "!", long_click: ""}, {click: h, key_back_color: bh2, key_text_color: th2, long_click: "F2"}, {click: j, key_back_color: bh2, key_text_color: th2, swipe_left: Left, swipe_right: Right, swipe_up: Up, swipe_down: Down, long_click: "F5"}, {click: k, key_back_color: bh2, key_text_color: th2, swipe_up: Page_Up, swipe_down: Page_Down, swipe_left: Home, swipe_right: End, long_click: "F10"}, {click: l, key_back_color: bh2, key_text_color: th2, swipe_up: ";", swipe_down: ":", long_click: "F12"}, {key_back_color: bh2, key_text_color: th2, width: 5}, {click: Shift_L, composing: delimiter, hilited_key_back_color: benter, key_back_color: bbs, key_text_color: tbs, width: 15}, {click: z, key_back_color: bh3, key_text_color: th3, swipe_up: "$", swipe_down: "@", long_click: withdraw}, {click: x, key_back_color: bh3, key_text_color: th3, swipe_up: "%", long_click: cut}, {click: c, key_back_color: bh3, key_text_color: th3, swipe_up: "&", swipe_down: "|", long_click: copy}, {click: v, key_back_color: bh3, key_text_color: th3, swipe_up: "{", swipe_down: "}", long_click: paste_clip, swipe_down: paste}, {click: b, key_back_color: bh3, key_text_color: th3, long_click: ""}, {click: n, key_back_color: bh3, key_text_color: th3, long_click: ""}, {click: m, key_back_color: bh3, key_text_color: th3, long_click: ""}, {click: BackSpace, key_back_color: bbs, key_text_color: tbs, swipe_up: Escape, swipe_left: BackToPreviousSyllable, width: 15}, {click: Keyboard_number, key_back_color: bgn, key_text_color: tgn, long_click: Menu, width: 12.5}, {click: Keyboard_bqrw, key_back_color: bgn, key_text_color: tgn, key_text_size: 18, long_click: Theme_settings, swipe_down: Color_switch, swipe_up: Color_switch, width: 12.5}, {click: ",", key_back_color: bh4, key_text_color: th4, label: "，", long_click: ""}, {click: space, key_back_color: bkg, key_text_color: tkg, long_click: Mode_switch, swipe_left: Left, swipe_right: Right, swipe_up: Schema_switchcn, width: 30}, {click: ., key_back_color: bh4, key_text_color: th4, label: "。", long_click: liquid_keyboard_clipboard}, {click: "/", key_back_color: bh4, key_text_color: th4, key_text_size: 18, long_click: liquid_keyboard_switch}, {click: Return, composing: Return1, key_back_color: benter, key_text_color: tenter, width: 15}
+      {click: q, key_back_color: bh1, key_text_color: th1, swipe_up: "*", swipe_down: "^", swipe_left: "Tab", long_click: 1}, {click: w, key_back_color: bh1, key_text_color: th1, swipe_up: "#", swipe_down: "~", long_click: 2}, {click: e, key_back_color: bh1, key_text_color: th1, swipe_up: ">", swipe_down: "\"", swipe_left: "<", long_click: 3}, {click: r, key_back_color: bh1, key_text_color: th1, swipe_up: "(", swipe_down: ")", long_click: 4}, {click: t, key_back_color: bh1, key_text_color: th1, swipe_up: "'", swipe_down: "\"", long_click: 5}, {click: y, key_back_color: bh1, key_text_color: th1, long_click: 6}, {click: u, key_back_color: bh1, key_text_color: th1, long_click: 7}, {click: i, key_back_color: bh1, key_text_color: th1, long_click: 8}, {click: o, key_back_color: bh1, key_text_color: th1, long_click: 9}, {click: p, key_back_color: bh1, key_text_color: th1, long_click: 0}, {key_back_color: bh2, key_text_color: th2, width: 5}, {click: a, key_back_color: bh2, key_text_color: th2, swipe_up: "+", swipe_down: "=", long_click: select_all}, {click: s, key_back_color: bh2, key_text_color: th2, swipe_up: "-", swipe_down: "_", long_click: ""}, {click: d, key_back_color: bh2, key_text_color: th2, swipe_up: "/", swipe_down: "\\", long_click: ""}, {click: f, key_back_color: bh2, key_text_color: th2, swipe_up: "[", swipe_down: "]", long_click: ""}, {click: g, key_back_color: bh2, key_text_color: th2, swipe_up: "?", swipe_down: "!", long_click: ""}, {click: h, key_back_color: bh2, key_text_color: th2, long_click: "F2"}, {click: j, key_back_color: bh2, key_text_color: th2, swipe_left: Left, swipe_right: Right, swipe_up: Up, swipe_down: Down, long_click: "F5"}, {click: k, key_back_color: bh2, key_text_color: th2, swipe_up: Page_Up, swipe_down: Page_Down, swipe_left: Home, swipe_right: End, long_click: "F10"}, {click: l, key_back_color: bh2, key_text_color: th2, swipe_up: ";", swipe_down: ":", long_click: "F12"}, {key_back_color: bh2, key_text_color: th2, width: 5}, {click: Shift_L, composing: delimiter, hilited_key_back_color: benter, key_back_color: bbs, key_text_color: tbs, width: 15}, {click: z, key_back_color: bh3, key_text_color: th3, swipe_up: "$", swipe_down: "@", long_click: withdraw}, {click: x, key_back_color: bh3, key_text_color: th3, swipe_up: "%", long_click: cut}, {click: c, key_back_color: bh3, key_text_color: th3, swipe_up: "&", swipe_down: "|", long_click: copy}, {click: v, key_back_color: bh3, key_text_color: th3, swipe_up: "{", swipe_down: "}", long_click: paste_clip, }, {click: b, key_back_color: bh3, key_text_color: th3, long_click: ""}, {click: n, key_back_color: bh3, key_text_color: th3, long_click: ""}, {click: m, key_back_color: bh3, key_text_color: th3, long_click: ""}, {click: BackSpace, key_back_color: bbs, key_text_color: tbs, swipe_up: Escape, swipe_left: BackToPreviousSyllable, width: 15}, {click: Keyboard_number, key_back_color: bgn, key_text_color: tgn, long_click: Menu, width: 12.5}, {click: Keyboard_bqrw, key_back_color: bgn, key_text_color: tgn, key_text_size: 18, long_click: Theme_settings, swipe_down: Color_switch, swipe_up: Color_switch, width: 12.5}, {click: ",", key_back_color: bh4, key_text_color: th4, label: "，", long_click: ""}, {click: space, key_back_color: bkg, key_text_color: tkg, long_click: Mode_switch, swipe_left: Left, swipe_right: Right, swipe_up: Schema_switchcn, width: 30}, {click: ., key_back_color: bh4, key_text_color: th4, label: "。", long_click: liquid_keyboard_clipboard}, {click: "/", key_back_color: bh4, key_text_color: th4, key_text_size: 18, long_click: liquid_keyboard_switch}, {click: Return, composing: Return1, key_back_color: benter, key_text_color: tenter, width: 15}
     ]
     # !终于摸清楚同文如何即时更新了，部署到不报错依然可能未更新，切换主题可以，强行结束也可以，如果依然没有更新考虑语法错误比如这里的\……
     name: "26键默认布局"
