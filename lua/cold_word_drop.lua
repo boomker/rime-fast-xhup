@@ -81,7 +81,7 @@ function cold_word_drop.init(env)
 
     env.easy_en_prefix = config:get_string("easy_en/prefix") or "/oe"
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
-    env.word_reduce_idx = config:get_int("cold_word_reduce/idx") or 4
+    env.word_reduce_idx = config:get_int("cold_word_reduce/index") or 4
     env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
     env.hide_cand_key = config:get_string("key_binder/hide_cand") or "Control+x"
     env.reduce_cand_key = config:get_string("key_binder/reduce_fq_cand") or "Control+j"

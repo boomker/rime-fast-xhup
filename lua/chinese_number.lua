@@ -344,6 +344,10 @@ function P.func(key, env)
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(input_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
+    elseif segment.prompt:match(env.tip) and (key:repr() == "Escape") then
+        config:set_int("menu/alternative_select_keys", env.alter_select_keys)
+        config:set_string("speller/alphabet", CN.speller_alphabet)
+        engine:apply_schema(Schema(schema.schema_id))
     end
 end
 

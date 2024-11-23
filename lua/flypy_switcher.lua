@@ -30,15 +30,15 @@ function flypy_switcher.init(env)
     env.normal_labels = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
     env.alter_labels = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪"}
     env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
-    env.word_auto_commit_enabled = config:get_bool("flypy_phrase/auto_commit") or false
-    env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
-    env.cn_comment_overwrited = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
+    env.word_auto_commit= config:get_bool("speller/auto_commit") or false
+    env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
+    env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
     env.switch_options_menu = {"切换纵横布局样式", "切换候选文字方向", "切换编码区位样式",
                                "切换候选序号样式", "切换Emoji😂显隐", "切换中英标点输出",
                                "切换半角全角符号", "切换简体繁体显示", "增加候选字体大小",
                                "减少候选字体大小", "增加行间距的大小", "减少行间距的大小",
                                "增加单页候选项数", "减少单页候选项数", "恢复分号自动上屏",
-                               "恢复常规候选按键", "关闭候选注解提示", "开关短语自动上屏",
+                               "恢复常规候选按键", "关闭候选注解提示", "开关词组自动上屏",
                                "开关字符码区提示", "开关中英词条空格", "禁用中英前置空格"}
 end
 
@@ -63,13 +63,13 @@ function processor.func(key, env)
     local commit_history = context.commit_history
 
     if context:has_menu() and (key:repr() == env.switch_comment_key) then
-        if preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrited then
+        if preedit_code:match("^" .. env.easy_en_prefix) and env.en_comment_overwrite then
             config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
-        elseif preedit_code:match("^" .. env.easy_en_prefix) and not env.en_comment_overwrited then
+        elseif preedit_code:match("^" .. env.easy_en_prefix) and not env.en_comment_overwrite then
             config:set_bool("ecdict_reverse_lookup/overwrite_comment", true) -- 重写英文注释为中文
-        elseif (not env.cn_comment_overwrited) and (env.comment_hints > 0) then
+        elseif (not env.cn_comment_overwrite) and (env.comment_hints > 0) then
             config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
-        elseif env.cn_comment_overwrited and (env.comment_hints > 0) then
+        elseif env.cn_comment_overwrite and (env.comment_hints > 0) then
             config:set_int("translator/spelling_hints", 0)
             config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
             env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
@@ -176,9 +176,9 @@ function processor.func(key, env)
             config:set_int("translator/spelling_hints", 0)
             config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
             env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
-        elseif cand_text == "开关短语自动上屏" then
-            local switch_to_val = not env.word_auto_commit_enabled
-            config:set_bool("flypy_phrase/auto_commit", switch_to_val)
+        elseif cand_text == "开关词组自动上屏" then
+            local switch_to_val = not env.word_auto_commit
+            config:set_bool("speller/auto_commit", switch_to_val)
         elseif cand_text == "开关字符码区提示" then
             local charset_hint_state = context:get_option("charset_hint")
             local switch_to_val = not charset_hint_state
