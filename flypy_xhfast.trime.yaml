@@ -3526,7 +3526,7 @@ preset_keys:
   Up: { label: '↑', send: Up }
   Right: { label: '→', send: Right }
   select_all: { label: '☑', send: Control+a }
-  Clear: { label: 清除, text: '{Control+a}{BackSpace}' } #全选并删除
+  # Clear: { label: 清除, text: '{Control+a}{BackSpace}' } #全选并删除
   cut: { label: '✂', send: Control+x }
   cut_all: { label: 全挪, text: '{Control+a}{Control+x}' } #全选并剪切
   copy: { label: '❐', send: Control+c }
@@ -3588,8 +3588,8 @@ preset_keys:
   kb_func: { label: '❖', send: Eisu_toggle, select: func }
   # 自定义按键
   BS: { label: '⌫', repeatable: true, send: BackSpace }
-#  select_second: { label: '.', send: . }
-  split_word: { label: "'分词", send: apostrophe }     #分词功能
+  #  select_second: { label: '.', send: . }
+  # split_word: { label: "'分词", send: apostrophe }     #分词功能
 
 #符号键盘区，解决中文状态下shift锁定导致的符号映射发生变化的问题,由于已经合理布置需要的符号，没必要这种变化
   xiegang: { label: "/", text: "/" }
@@ -3602,7 +3602,7 @@ preset_keys:
   juhao: { label: ".", text: "." }
   zkhz: { label: "[", text: "[" }
   zkhy: { label: "]", text: "]" }
-#顶部数字排映射  
+#顶部数字排映射
   num1: { label: 1, send: 1 }
   num2: { label: 2, send: 2 }
   num3: { label: 3, send: 3 }
