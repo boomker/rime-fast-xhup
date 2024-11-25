@@ -136,6 +136,15 @@ patch:
       symbol_unpair_flag: true
     com.apple.Terminal:               # 终端
       ascii_mode: true
+      ascii_punct: true               # 中文状态输出英文标点(半角)
+      symbol_unpair_flag: true
+    com.github.wez.wezterm:
+      ascii_mode: true
+      ascii_punct: true
+      symbol_unpair_flag: true
+    net.kovidgoyal.kitty:
+      ascii_mode: true
+      ascii_punct: true
       symbol_unpair_flag: true
     com.googlecode.iterm2:            # iterm2
       ascii_mode: true
@@ -145,8 +154,6 @@ patch:
       ascii_mode: false
     com.apple.TextEdit:
       ascii_mode: false
-    md.obsidian:
-      ascii_mode: true
     com.neovide.neovide:
       vim_mode: true
       ascii_mode: true
