@@ -2,6 +2,7 @@ sync/
 build/
 .venv/
 *.userdb/
+.stfolder/
 __pycache__/
 .DS_Store
 .stignore
