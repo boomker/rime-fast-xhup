@@ -105,7 +105,7 @@
 识	shi, zhi	24
 扎	za, zha	24
 伯	bai, bo	23
-划	hua	23
+划	hua, hk	23
 靓	jing, liang	23
 壳	ke, qiao	23
 仔	zai, zi	23
