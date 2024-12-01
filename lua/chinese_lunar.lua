@@ -554,7 +554,7 @@ function T.func(input, seg, env)
 	if composition:empty() then return end
 	local segment = composition:back()
 
-	if (input:match("^/nl") or input:match("^nL")) and input:gsub("[%a%/]", ""):match("^2%d%d%d%d%d%d%d$") then
+	if seg:has_tag("chinese_lunar") and input:gsub("[%a%/]", ""):match("^2%d%d%d%d%d%d%d$") then
 		segment.prompt = "〔" .. "农历" .. "〕"
 		local date1, date2 = Date2LunarDate(input:gsub("[%a%/]", ""))
 		local lunar_date = Candidate("", seg.start, seg._end, date1, "")
@@ -563,7 +563,7 @@ function T.func(input, seg, env)
 		lunar_ymd.quality = 999
 		yield(lunar_date)
 		yield(lunar_ymd)
-	elseif seg:has_tag("lunar") or (input == "/nl") or (input == "nL") then
+	elseif seg:has_tag("chinese_lunar") or (input == "/nl") or (input == "nL") then
 		segment.prompt = "〔" .. "农历" .. "〕"
 		local date1, date2 = Date2LunarDate(os.date("%Y%m%d"))
 		local lunar_date = Candidate("lunar", seg.start, seg._end, date1, "")
