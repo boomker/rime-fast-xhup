@@ -1,6 +1,7 @@
 sync/
 build/
 .venv/
+**/tmp/
 *.userdb/
 .stfolder/
 __pycache__/
