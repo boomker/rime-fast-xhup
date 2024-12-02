@@ -19,21 +19,21 @@ else:
     from pathlib import PosixPath as pp
 
 from pypinyin import Style, lazy_pinyin
-from pypinyin_dict.phrase_pinyin_data import cc_cedict, zdic_cibs, zdic_cybs
-from pypinyin_dict.phrase_pinyin_data import pinyin as pp_py
-from pypinyin_dict.pinyin_data import ktghz2013
 
+# from pypinyin_dict.phrase_pinyin_data import cc_cedict, zdic_cibs, zdic_cybs
+# from pypinyin_dict.phrase_pinyin_data import pinyin as pp_py
+# from pypinyin_dict.pinyin_data import ktghz2013
 # import itertools
 # from flypy_chars_zhuyin_dict import single_char_dict
 # from pypinyin import lazy_pinyin, load_single_dict
 # load_single_dict(single_char_dict)
 from xhxm_map import xhxm_dict
 
-pp_py.load()
-ktghz2013.load()
-cc_cedict.load()
-zdic_cibs.load()
-zdic_cybs.load()
+# pp_py.load()
+# ktghz2013.load()
+# cc_cedict.load()
+# zdic_cibs.load()
+# zdic_cybs.load()
 
 """
 usage: flypy_dict_generator.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
