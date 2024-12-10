@@ -176,4 +176,4 @@ patch:
     com.tencent.xinWeChat:
       wechat_flag: true
     com.tencent.xWeChat:
-      wechat_flag: true
+      wechat_flag: false
