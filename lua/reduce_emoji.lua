@@ -42,12 +42,12 @@ function F.func(input, env)
 		if top_cand_count <= env.emoji_pos then
 			if cand.comment:match(env.pin_mark) then
 				yield(cand)
-			elseif cand.text:match("^%u%a+") and preedit_code:match("^%u%a+") then
+			elseif preedit_code:match("^%u%a+") then
 				yield(cand)
 			elseif
 				emoji_toggle
 				and (cand:get_dynamic_type() == "Shadow")
-				and (not preedit_code:match("^%l+[`/][%l`/]*$"))
+				and (not preedit_code:match("^[%l%`]+[`/][%l`/]*$"))
 			then
 				table.insert(emoji_cands, cand)
 			else

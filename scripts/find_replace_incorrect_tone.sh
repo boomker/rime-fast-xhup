@@ -8,9 +8,11 @@ function find_incorrect_tone() {
 		charcode=${line:2:2}
 		echo "$char" "$charcode"
 		gawk -v CHAR="$char" -v CHARCODE="$charcode" -F'\t' 'NR>10 && $1 ~ CHAR {
-    split($1, arr, 'x');split($2, s, " ");{
-    for(i in arr){if(arr[i]==CHAR && s[i]!=CHARCODE)print $0}
-    }}' "../cn_dicts/flypy_${BASENAME}.dict.yaml" >"./tmp/${BASENAME}/cyz-${char}_${charcode}"
+    p=match($1,/CHAR/);if($1 ~ /CHAR.*CHAR.*/){l=length($1)}else{l=p};
+    split($1, a, 'x');split($2, b, " ");{
+    for(i=p;i<=l;i++){
+        if(a[i]==CHAR && b[i]!=CHARCODE){if(c!=$0){c=$0;print $0}}
+    }}}' "../cn_dicts/flypy_${BASENAME}.dict.yaml" >"./tmp/${BASENAME}/cyz-${char}_${charcode}"
 	done <"./top3k_chars"
 }
 
