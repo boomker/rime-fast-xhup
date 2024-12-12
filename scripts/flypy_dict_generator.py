@@ -24,9 +24,9 @@ from pypinyin_dict.phrase_pinyin_data import pinyin as pp_py
 from pypinyin_dict.pinyin_data import ktghz2013
 
 # import itertools
-# from flypy_chars_zhuyin_dict import single_char_dict
+# from chinese_chars_pinyin_dict import chinese_chars_pinyin_dict
 # from pypinyin import lazy_pinyin, load_single_dict
-# load_single_dict(single_char_dict)
+# load_single_dict(chinese_chars_pinyin_dict)
 from xhxm_map import xhxm_dict
 
 pp_py.load()
