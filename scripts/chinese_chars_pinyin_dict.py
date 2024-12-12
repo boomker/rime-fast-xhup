@@ -1,4 +1,4 @@
-single_char_dict = {
+chinese_chars_pinyin_dict = {
     ord('一'): 'yī',
     ord('乙'): 'yǐ',
     ord('二'): 'èr',

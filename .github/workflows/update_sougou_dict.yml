@@ -50,7 +50,7 @@ jobs:
 
       - name: Remove spam entries for flypy_sogou.dict.yaml
         run: |
-          bash ./scripts/purge_words.sh
+          bash ./scripts/prune_words.sh
 
       - name: Remove intermediate file
         run: |
