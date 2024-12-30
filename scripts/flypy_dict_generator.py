@@ -13,27 +13,30 @@ import argparse
 from functools import lru_cache
 from platform import system as systype
 
+from pypinyin import Style, lazy_pinyin
+
+from xhxm_map import xhxm_dict
+
+
 if systype() == "Windows":
     from pathlib import Path as pp
 else:
     from pathlib import PosixPath as pp
 
-from pypinyin import Style, lazy_pinyin
-from pypinyin_dict.phrase_pinyin_data import cc_cedict, zdic_cibs, zdic_cybs
-from pypinyin_dict.phrase_pinyin_data import pinyin as pp_py
-from pypinyin_dict.pinyin_data import ktghz2013
+# from pypinyin_dict.phrase_pinyin_data import cc_cedict, zdic_cibs, zdic_cybs
+# from pypinyin_dict.phrase_pinyin_data import pinyin as pp_py
+# from pypinyin_dict.pinyin_data import ktghz2013
 
 # import itertools
 # from chinese_chars_pinyin_dict import chinese_chars_pinyin_dict
 # from pypinyin import lazy_pinyin, load_single_dict
 # load_single_dict(chinese_chars_pinyin_dict)
-from xhxm_map import xhxm_dict
 
-pp_py.load()
-ktghz2013.load()
-cc_cedict.load()
-zdic_cibs.load()
-zdic_cybs.load()
+# pp_py.load()
+# ktghz2013.load()
+# cc_cedict.load()
+# zdic_cibs.load()
+# zdic_cybs.load()
 
 """
 usage: flypy_dict_generator.py [-h] [--style {q,s,xh,he,zr,zrm,j}]
@@ -240,6 +243,7 @@ def write_date_to_file(data, outfile, mode):
 
 def open_dict_and_send_line(infile):
     from string import ascii_letters
+
     with open(infile, "r") as fd:
         for line in fd.readlines():
             conditions = any(
