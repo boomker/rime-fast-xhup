@@ -130,15 +130,19 @@ patch:
       ascii_mode: true
     com.runningwithcrayons.Alfred:    # alfred
       ascii_mode: true
-    org.alacritty:                    # alacritty 终端
-      ascii_mode: true
-      ascii_punct: true               # 中文状态输出英文标点(半角)
-      symbol_unpair_flag: true
     com.apple.Terminal:               # 终端
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
       symbol_unpair_flag: true
+    org.alacritty:                    # alacritty 终端
+      ascii_mode: true
+      ascii_punct: true               # 中文状态输出英文标点(半角)
+      symbol_unpair_flag: true
     com.github.wez.wezterm:
+      ascii_mode: true
+      ascii_punct: true
+      symbol_unpair_flag: true
+    com.mitchellh.ghostty:
       ascii_mode: true
       ascii_punct: true
       symbol_unpair_flag: true
@@ -173,6 +177,8 @@ patch:
       ascii_mode: false
     com.google.Chrome:
       inline: true
+    com.antiless.cleanclip.mac:
+      ascii_mode: true
     com.tencent.xinWeChat:
       wechat_flag: true
     com.tencent.xWeChat:
