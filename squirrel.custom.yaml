@@ -177,8 +177,6 @@ patch:
       ascii_mode: false
     com.google.Chrome:
       inline: true
-    com.antiless.cleanclip.mac:
-      ascii_mode: true
     com.tencent.xinWeChat:
       wechat_flag: true
     com.tencent.xWeChat:
