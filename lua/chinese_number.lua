@@ -311,7 +311,7 @@ function CN.init(env)
     local context = env.engine.context
     local config = env.engine.schema.config
     local chinese_number_pattern = "recognizer/patterns/chinese_number"
-    local _cn_pat = config:get_string(chinese_number_pattern) or "nN"
+    local _cn_pat = config:get_string(chinese_number_pattern) or "Nn"
     env.trigger_prefix = _cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/cn"
     env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
     env.user_distribute_name = rime_api:get_distribution_code_name()
@@ -343,7 +343,7 @@ function P.func(key, env)
     if table.find_index({ "fcitx-rime", "trime" }, client_name) then
         return 2
     end
-    if segment.prompt:match(env.tip) or input_code:match("^/cn$") or input_code:match("^nN$") then
+    if input_code:match("^/cn$") or input_code:match("^Nn$") or segment.prompt:match(env.tip) then
         config:set_string("menu/alternative_select_keys", env.select_keys)
         config:set_string("speller/alphabet", "abcdefghijklmnopqrstuvwxyz")
         engine:apply_schema(Schema(schema.schema_id))
