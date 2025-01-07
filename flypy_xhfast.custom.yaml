@@ -107,7 +107,7 @@ patch:
       easy_en: "(/oe|eN)[a-zA-Z*]+'?$"          # 英文方案(带中文)
       radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
-      chinese_number: "^(/cn|Nn)[0-9.]+$"       # 中文大写数字(金额)
+      chinese_number: "^(/cn|nN)[0-9.]+$"       # 中文大写数字(金额)
 
   punctuator/+:
     symbols/+:
@@ -178,8 +178,8 @@ patch:
 
   history:                            # 上屏历史记录
     tag: history
-    # prefix: "hH"
-    prefix: "/hs"
+    # prefix: "/hs"
+    prefix: "hH"
     tips: "上屏历史"
     max_count: 99
     initial_quality: 999
@@ -188,21 +188,21 @@ patch:
 
   calculator:                         # 简易计算器
     tag: calculator
-    # prefix: "cC"
-    prefix: "/="
+    # prefix: "/="
+    prefix: "cC"
     tips: "计算器"
 
   chinese_number:                     # 中文大写数字(金额)
-    # prefix: "Nn"
-    prefix: "/cn"
+    # prefix: "/cn"
+    prefix: "nN"
     suffix: "'"
     tips: "中文数字"
     tag: chinese_number
     select_keys: "HJKLNM"
 
   easy_en/+:                          # 英文单词输入方案
-    # prefix: "eN"
-    prefix: "/oe"
+    # prefix: "/oe"
+    prefix: "eN"
     tips: "英文"
     wildcard: '*'
     expan_word_count: 666             # 模糊匹配最多迭代数
