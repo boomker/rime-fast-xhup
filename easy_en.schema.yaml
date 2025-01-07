@@ -12,7 +12,7 @@ schema:
     - BlindingDark <blindingdark@outlook.com>
   description: Easy English
   dependencies:
-    - ecdict_reverse
+    - ecdict
 
 engine:
   processors:
@@ -75,11 +75,11 @@ translator:
 # 英文反查释意
 ecdict_reverse_lookup:
   overwrite_comment: true     # 是否开启中文释意注解
-  dictionary: ecdict_reverse
+  dictionary: ecdict
   comment_format:
-    - xform/\\n/ | /
-    - xform/^/ /
-    - erase/^.$/
+    - xform|\\r\\n| ; |
+    - xform|\\n| ; |
+    - erase|^.$|
 
 key_binder:
   import_preset: default

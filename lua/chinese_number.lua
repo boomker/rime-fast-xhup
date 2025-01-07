@@ -311,11 +311,11 @@ function CN.init(env)
     local context = env.engine.context
     local config = env.engine.schema.config
     local chinese_number_pattern = "recognizer/patterns/chinese_number"
-    local _cn_pat = config:get_string(chinese_number_pattern) or "Nn"
+    local _cn_pat = config:get_string(chinese_number_pattern) or "nN"
     env.trigger_prefix = _cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/cn"
     env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
-	env.user_distribute_name = rime_api:get_distribution_code_name()
-    env.select_keys = config:get_string("chinese_number/select_keys") or "HJKLNM"
+    env.user_distribute_name = rime_api:get_distribution_code_name()
+    env.select_keys = config:get_string("chinese_number/select_keys") or "HJKLIOM"
     env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
     CN.speller_alphabet = CN.speller_alphabet or config:get_string("speller/alphabet")
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
@@ -340,8 +340,10 @@ function P.func(key, env)
     local config = engine.schema.config
     local segment = context.composition:back()
     local client_name = env.user_distribute_name
-    if table.find_index({"fcitx-rime", "trime"}, client_name) then return 2 end
-    if segment.prompt:match(env.tip) or input_code:match("^/cn$") or input_code:match("^Nn$") then
+    if table.find_index({ "fcitx-rime", "trime" }, client_name) then
+        return 2
+    end
+    if segment.prompt:match(env.tip) or input_code:match("^/cn$") or input_code:match("^nN$") then
         config:set_string("menu/alternative_select_keys", env.select_keys)
         config:set_string("speller/alphabet", "abcdefghijklmnopqrstuvwxyz")
         engine:apply_schema(Schema(schema.schema_id))
@@ -354,7 +356,7 @@ function T.func(input, seg, env)
     local str, numberPart
     local segment = env.engine.context.composition:back()
     if seg:has_tag("chinese_number") or string.match(input, "^" .. env.trigger_prefix) then
-        segment.prompt = "〔".. env.tip .."〕"
+        segment.prompt = "〔" .. env.tip .. "〕"
         str = input:gsub("^" .. env.trigger_prefix, ""):gsub("%a+", "")
         numberPart = number_translatorFunc(str)
         if #numberPart > 0 then
