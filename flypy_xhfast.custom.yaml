@@ -107,7 +107,7 @@ patch:
       easy_en: "(/oe|eN)[a-zA-Z*]+'?$"          # 英文方案(带中文)
       radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
-      chinese_number: "^(/cn|nN)[0-9.]+$"       # 中文大写数字(金额)
+      chinese_number: "^(/cn|Nn)[0-9.]+$"       # 中文大写数字(金额)
 
   punctuator/+:
     symbols/+:
@@ -194,11 +194,11 @@ patch:
 
   chinese_number:                     # 中文大写数字(金额)
     # prefix: "/cn"
-    prefix: "nN"
+    prefix: "Nn"
     suffix: "'"
     tips: "中文数字"
     tag: chinese_number
-    select_keys: "HJKLNM"
+    select_keys: "HJKLIOM"
 
   easy_en/+:                          # 英文单词输入方案
     # prefix: "/oe"
