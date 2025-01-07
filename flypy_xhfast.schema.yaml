@@ -83,9 +83,9 @@ engine:
     - lua_translator@*calculator                      # /= 触发简易计算器
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
-    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(;r退格键)
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
+    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(;r退格键)
     # - lua_translator@*fly_fixed*translator          # 降频简拼产生的候选项
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
     - lua_translator@*chinese_number*translator       # /cn 触发大写金额数字
@@ -116,10 +116,10 @@ grammar:
   language: wanxiang-lts-zh-hans
   collocation_max_length: 8     # 命中的最长词组
   collocation_min_length: 2     # 命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
-  collocation_penalty: -12      # 默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配。
-  non_collocation_penalty: -12  # 默认-12 对非搭配词组施加的惩罚值。较高的负值会降低非搭配词组被选中的概率，避免不合逻辑或不常见的词组组合。
-  weak_collocation_penalty: -24 # 默认-24 对弱搭配词组施加的惩罚值。保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合。
-  rear_penalty: -18             # 默认-18 对词组中后续词语的位置施加的惩罚值。数值越小出现的概率越小，防止句子结构不自然。
+  collocation_penalty: -12      # 默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配
+  non_collocation_penalty: -12  # 默认-12 对非搭配词组施加的惩罚值。较高的负值会降低非搭配词组被选中的概率，避免不合逻辑或不常见的词组组合
+  weak_collocation_penalty: -24 # 默认-24 对弱搭配词组施加的惩罚值。保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合
+  rear_penalty: -18             # 默认-18 对词组中后续词语的位置施加的惩罚值。数值越小出现的概率越小，防止句子结构不自然
 
 # 主翻译器, 小鹤双拼
 translator:
