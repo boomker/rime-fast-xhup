@@ -4,8 +4,8 @@
 ---
 
 schema:
-  schema_id: ecdict_reverse
-  name: ecdict_reverse
+  schema_id: ecdict
+  name: ecdict
   version: "0.2"
   description:
     英文单词(释意)
@@ -28,7 +28,7 @@ translator:
   enable_user_dict: true
   enable_completion: true
   encode_commit_history: false
-  dictionary: ecdict_reverse
+  dictionary: ecdict
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA

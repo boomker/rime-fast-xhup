@@ -5,7 +5,7 @@
 #
 
 ---
-name: ecdict_reverse
+name: ecdict
 version: "2024-05-09"
 import_tables:
-  - en_dicts/ecdict_reverse                         # 英文主词库
+  - en_dicts/ecdict
