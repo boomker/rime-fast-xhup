@@ -33,7 +33,7 @@ key_binder:
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz"
-  delimiter: " '"
+  delimiter: " "
 
 translator:
   dictionary: flypy_radical
