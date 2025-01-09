@@ -1,5 +1,7 @@
-local REVERT_KEY = ";r" -- 定义撤回上屏编码
-local GOTOEND_KEY = ";e" -- 定义go to end 编码
+-- https://github.com/qiuyue0/rime-lua-sendKeyCode
+
+local REVERT_KEY = ";z" -- 定义撤回上屏编码
+local GOTOEND_KEY = "" -- 定义光标移到末尾编码
 local STACK_SIZE = 10 -- 定义栈大小，表示可以连续撤回的最大次数
 
 local function getOS()
