@@ -1,5 +1,5 @@
-require("tools/string")
-require("tools/metatable")
+require("lib/string")
+require("lib/metatable")
 
 local cold_word_drop = {}
 local processor = {}
@@ -17,8 +17,11 @@ local function get_record_filername(record_type)
             "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
     end
     if user_distribute_name:lower():match("ibus") then
-        return string.format("%s/rime/lua/cold_word_records/%s_words.lua", os.getenv("HOME") .. "/.config/ibus",
-            record_type)
+        return string.format(
+            "%s/rime/lua/cold_word_records/%s_words.lua",
+            os.getenv("HOME") .. "/.config/ibus",
+            record_type
+        )
     else
         local file_path = string.format("%s/lua/cold_word_records/%s_words.lua", user_data_dir, record_type)
         return file_path:gsub("/", path_sep)
@@ -54,7 +57,7 @@ local function append_word_to_droplist(env, ctx, action_type)
 
     if action_type == "hide" then
         if not env.hide_words[word] then
-            env.hide_words[word] = {input_code}
+            env.hide_words[word] = { input_code }
             -- 隐藏的词条如果已经在 hide_list 中, 则将输入串追加到 值表中, 如: ['藏'] = {'chang', 'zhang'}
         elseif not table.find_index(env.hide_words[word], input_code) then
             table.insert(env.hide_words[word], input_code)
@@ -66,7 +69,7 @@ local function append_word_to_droplist(env, ctx, action_type)
         if env.reduce_freq_words[word] then
             table.insert(env.reduce_freq_words[word], input_code)
         else
-            env.reduce_freq_words[word] = {input_code}
+            env.reduce_freq_words[word] = { input_code }
         end
         return true
     end
@@ -79,7 +82,7 @@ function cold_word_drop.init(env)
     local _sh, hide_words = pcall(require, "cold_word_records/hide_words")
     local _sr, reduce_freq_words = pcall(require, "cold_word_records/reduce_freq_words")
 
-    env.easy_en_prefix = config:get_string("easy_en/prefix") or "/oe"
+    env.easy_en_prefix = config:get_string("easy_en/prefix") or "eN"
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.word_reduce_idx = config:get_int("cold_word_reduce/index") or 4
     env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
@@ -91,7 +94,7 @@ function cold_word_drop.init(env)
     env.words_tbl = {
         ["drop_list"] = env.drop_words or {},
         ["hide_list"] = env.hide_words or {},
-        ["reduce_freq_list"] = env.reduce_freq_words or {}
+        ["reduce_freq_list"] = env.reduce_freq_words or {},
     }
 end
 
@@ -102,21 +105,25 @@ function processor.func(key, env)
     local action_map = {
         [env.drop_cand_key] = "drop",
         [env.hide_cand_key] = "hide",
-        [env.reduce_cand_key] = "reduce_freq"
+        [env.reduce_cand_key] = "reduce_freq",
     }
 
     if context:has_menu() and action_map[key:repr()] then
         local cand = context:get_selected_candidate()
-        if not cand then return 2 end
+        if not cand then
+            return 2
+        end
         local action_type = action_map[key:repr()]
         local ctx_map = {
             ["word"] = cand.text,
-            ["code"] = preedit_code
+            ["code"] = preedit_code,
         }
         local res = append_word_to_droplist(env, ctx_map, action_type)
 
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        if not res then return 2 end
+        if not res then
+            return 2
+        end
 
         if res then
             -- 期望被删的词和隐藏的词条写入文件(drop_words.lua, hide_words.lua)
@@ -149,22 +156,38 @@ function filter.func(input, env)
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
             if reduce_freq_list and table.find_index(reduce_freq_list, preedit_code) then
                 table.insert(cands, cand)
-            elseif ((cand_text:match("^%l%l%l?%p?$") == preedit_code) or
-                (cand_text:match("^%u[%a%d]%a?%p?$") and preedit_code:match("^%l%l%l?$")) or
-                (cand_text:match("^%u%a%a?%.?") and prev_cand_text and cand_text:lower():match("^" .. prev_cand_text))) and
-                not (cand.comment:match(env.pin_mark) or preedit_str:match(env.easy_en_prefix)) then
+            elseif
+                (
+                    (cand_text:match("^%l%l%l?%p?$") == preedit_code)
+                    or (cand_text:match("^%u[%a%d]%a?%p?$") and preedit_code:match("^%l%l%l?$"))
+                    or (
+                        cand_text:match("^%u%a%a?%.?")
+                        and prev_cand_text
+                        and cand_text:lower():match("^" .. prev_cand_text)
+                    )
+                )
+                and not (cand.comment:match(env.pin_mark) or preedit_str:match(env.easy_en_prefix))
+            then
                 table.insert(cands, cand)
                 if cand_text:match("^[%a.]+$") and not prev_cand_text then
                     prev_cand_text = cand_text:gsub(" ", ""):lower()
                 end
-            elseif not (table.find_index(drop_words, cand_text) or
-                (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))) then
+            elseif
+                not (
+                    table.find_index(drop_words, cand_text)
+                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+                )
+            then
                 yield(cand)
                 word_reduce_idx = word_reduce_idx - 1
             end
         else
-            if not (table.find_index(drop_words, cand_text) or
-                (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))) then
+            if
+                not (
+                    table.find_index(drop_words, cand_text)
+                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+                )
+            then
                 table.insert(cands, cand)
             end
         end
@@ -182,10 +205,10 @@ end
 return {
     processor = {
         init = cold_word_drop.init,
-        func = processor.func
+        func = processor.func,
     },
     filter = {
         init = cold_word_drop.init,
-        func = filter.func
-    }
+        func = filter.func,
+    },
 }

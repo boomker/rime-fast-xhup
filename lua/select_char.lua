@@ -3,7 +3,7 @@
 -- 删除了默认按键，需要在 key_binder（default.custom.yaml）下设置
 -- http://lua-users.org/lists/lua-l/2014-04/msg00590.html
 
-require("tools/rime_helper")
+require("lib/rime_helper")
 local P = {}
 
 local function first_character(s)

@@ -1,5 +1,5 @@
-require("tools/rime_helper")
-local reload_env = require("tools/env_api")
+require("lib/rime_helper")
+local reload_env = require("lib/env_api")
 
 local P = {}
 local T = {}

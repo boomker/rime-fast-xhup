@@ -1,4 +1,4 @@
-require("tools/string")
+require("lib/string")
 local F = {}
 local T = {}
 local flypy_fixed = {}

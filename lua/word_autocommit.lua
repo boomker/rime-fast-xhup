@@ -1,6 +1,6 @@
-require("tools/string")
-require("tools/metatable")
-require("tools/rime_helper")
+require("lib/string")
+require("lib/metatable")
+require("lib/rime_helper")
 
 local P = {}
 local T = {}

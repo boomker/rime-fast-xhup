@@ -7,8 +7,8 @@
 --
 
 -- env metatable
-local List = require("tools/list")
-local Config_api = require("tools/config_api")
+local List = require("lib/list")
+local Config_api = require("lib/config_api")
 
 local E = {}
 --

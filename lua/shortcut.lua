@@ -2,8 +2,8 @@ local launcher = {}
 local processor = {}
 local translator = {}
 
-require("tools/metatable")
-require("tools/rime_helper")
+require("lib/metatable")
+require("lib/rime_helper")
 local _ok_conf, shortcut_config = pcall(require, "shortcut_config")
 
 local function cmd(system, cmdArgs, appId)

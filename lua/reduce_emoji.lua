@@ -6,7 +6,7 @@ function F.init(env)
 	env.emoji_pos = config:get_int("emoji_reduce/index") or 6
 	env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
 	--[[
-    local logger = require "tools.logger"
+    local logger = require("lib.logger")
     env.mem = Memory(engine, engine.schema)
     env.notifier_commit = env.engine.context.commit_notifier:connect(function(ctx)
         local cand = ctx:get_selected_candidate()
