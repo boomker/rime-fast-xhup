@@ -19,7 +19,7 @@ elseif getOS() == "Linux" then
     package.cpath = os.getenv("HOME") .. "/.config/Rime/lua/?.so;" .. package.cpath
 end
 
-SendKeyCode = require("sendKeyCode") -- 文件名不能变，只能是sendKeyCode.so或dll
+SendKeyCode = require("lib/sendKeyCode") -- 文件名不能变，只能是sendKeyCode.so或dll
 
 -- 创建一个固定大小的栈
 local function create_stack(max_size)

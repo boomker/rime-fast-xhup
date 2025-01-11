@@ -2,7 +2,7 @@
 -- 为中英混输词条（cn_en.dict.yaml）自动空格
 -- 示例：`VIP中P` → `VIP 中 P`
 
-require("tools/rime_helper")
+require("lib/rime_helper")
 local space_leader_word = {}
 
 function space_leader_word.init(env)

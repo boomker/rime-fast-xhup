@@ -26,6 +26,7 @@
 		"Memory",
 		"DictEntry",
 		"Phrase",
-		"utf8"
+		"utf8",
+        "to_uniquified_candidate"
 	]
 }

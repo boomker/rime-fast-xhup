@@ -1,4 +1,4 @@
-local number_to_cn = require("tools/number_to_cn")
+local number_to_cn = require("lib/number_to_cn")
 
 -- 天干名称
 local cTianGan = {
