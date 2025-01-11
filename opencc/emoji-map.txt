@@ -1,7 +1,7 @@
 # Emoji 映射表
 # 根据此文件生成 emoji.txt
 #
-# version: "2023-07-30"
+# version: 2025.01.11
 #
 # 中文映射由 Dvel 纯手工打造 https://github.com/iDvel/rime-ice
 #
