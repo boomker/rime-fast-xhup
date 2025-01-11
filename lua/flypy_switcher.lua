@@ -1,9 +1,9 @@
 local processor = {}
 local translator = {}
 local flypy_switcher = {}
-require("tools/metatable")
-require("tools/rime_helper")
-local reload_env = require("tools/env_api")
+require("lib/metatable")
+require("lib/rime_helper")
+local reload_env = require("lib/env_api")
 
 function flypy_switcher.init(env)
     local config = env.engine.schema.config
@@ -24,22 +24,38 @@ function flypy_switcher.init(env)
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
-    env.switch_options = _so_pat and _so_pat:match("%^.?([a-zA-Z/]+).*") or "/so"
-    env.easy_en_prefix = _en_pat and _en_pat:match("%^.?([a-zA-Z/]+).*") or "/oe"
+    env.switch_options = _so_pat and _so_pat:match("%^.?([a-zA-Z/]+).*") or "sO"
+    env.easy_en_prefix = _en_pat and _en_pat:match("%^.?([a-zA-Z/]+).*") or "eN"
     env.char_mode_suffix = config:get_string("key_binder/char_mode_suffix") or "|"
-    env.normal_labels = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
-    env.alter_labels = {"①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪"}
+    env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }
+    env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪" }
     env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
-    env.word_auto_commit= config:get_bool("speller/auto_commit") or false
+    env.word_auto_commit = config:get_bool("speller/auto_commit") or false
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
     env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
-    env.switch_options_menu = {"切换纵横布局样式", "切换候选文字方向", "切换编码区位样式",
-                               "切换候选序号样式", "切换Emoji😂显隐", "切换中英标点输出",
-                               "切换半角全角符号", "切换简体繁体显示", "增加候选字体大小",
-                               "减少候选字体大小", "增加行间距的大小", "减少行间距的大小",
-                               "增加单页候选项数", "减少单页候选项数", "恢复分号自动上屏",
-                               "恢复常规候选按键", "关闭候选注解提示", "开关词组自动上屏",
-                               "开关字符码区提示", "开关中英词条空格", "禁用中英前置空格"}
+    env.switch_options_menu = {
+        "切换纵横布局样式",
+        "切换候选文字方向",
+        "切换编码区位样式",
+        "切换候选序号样式",
+        "切换Emoji😂显隐",
+        "切换中英标点输出",
+        "切换半角全角符号",
+        "切换简体繁体显示",
+        "增加候选字体大小",
+        "减少候选字体大小",
+        "增加行间距的大小",
+        "减少行间距的大小",
+        "增加单页候选项数",
+        "减少单页候选项数",
+        "恢复分号自动上屏",
+        "恢复常规候选按键",
+        "关闭候选注解提示",
+        "开关词组自动上屏",
+        "开关字符码区提示",
+        "开关中英词条空格",
+        "禁用中英前置空格",
+    }
 end
 
 function flypy_switcher.fini(env)
@@ -57,7 +73,9 @@ function processor.func(key, env)
     local context = engine.context
     local page_size = schema.page_size
     local composition = context.composition
-    if composition:empty() then return 2 end
+    if composition:empty() then
+        return 2
+    end
     local segment = composition:back()
     local preedit_code = context:get_script_text():gsub(" ", "")
     local commit_history = context.commit_history
@@ -111,7 +129,9 @@ function processor.func(key, env)
         local key_value = key:repr()
         local idx = segment.selected_index
         local index = get_selected_candidate_index(key_value, idx, page_size)
-        if index < 0 then return 2 end
+        if index < 0 then
+            return 2
+        end
         local selected_cand = segment:get_candidate_at(index)
         local cand_text = selected_cand.text:gsub(" ", "")
 
@@ -197,7 +217,9 @@ function processor.func(key, env)
             local processors = env:Config_get("engine/processors")
             local target_processor = "lua_processor@*word_append_space*processor"
             local processor_idx = table.find_index(processors, target_processor)
-            if processor_idx then table.remove(processors, processor_idx) end
+            if processor_idx then
+                table.remove(processors, processor_idx)
+            end
             env:Config_set("engine/processors", processors)
         end
         config:save_to_file(rime_api.get_user_data_dir() .. "/build/flypy_xhfast.schema.yaml")
@@ -220,7 +242,9 @@ end
 function translator.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
     local segment = composition:back()
     local char_mode_option = (env.char_mode_state == "off") or 0 and 1
     local char_mode_state = flypy_switcher.char_mode or char_mode_option
@@ -235,18 +259,25 @@ function translator.func(input, seg, env)
     end
 
     -- 四码时, 按下'|', 单字优先
-    if input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$") or (input:match("%l%l%l%l$") and (char_mode_state == 1)) then
+    if
+        input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$")
+        or (input:match("%l%l%l%l$") and (char_mode_state == 1))
+    then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search
-        if not ok then return end
+        if not ok then
+            return
+        end
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
 
             if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
                 local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
                 local pattern = "%f[%a](" .. input:gsub("%" .. env.char_mode_suffix, "") .. "%a*)"
-                if reverse_char_code:match(pattern) then table.insert(entry_matched_tbl, dictentry) end
+                if reverse_char_code:match(pattern) then
+                    table.insert(entry_matched_tbl, dictentry)
+                end
             end
         end
 
@@ -263,11 +294,11 @@ return {
     processor = {
         init = flypy_switcher.init,
         func = processor.func,
-        fini = flypy_switcher.fini
+        fini = flypy_switcher.fini,
     },
     translator = {
         init = flypy_switcher.init,
         func = translator.func,
-        fini = flypy_switcher.fini
-    }
+        fini = flypy_switcher.fini,
+    },
 }

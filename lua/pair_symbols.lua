@@ -1,6 +1,6 @@
 -- 自动补全配对的符号, 并把光标左移到符号对内部
 -- ref: https://github.com/hchunhui/librime-lua/issues/84
-require("tools/rime_helper")
+require("lib/rime_helper")
 
 local function moveCursorToLeft(env)
     local move_cursor = ""

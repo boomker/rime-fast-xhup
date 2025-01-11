@@ -1,4 +1,4 @@
--- require("tools/rime_helper")
+-- require("lib/rime_helper")
 
 local P = {}
 local kNoop = 2
