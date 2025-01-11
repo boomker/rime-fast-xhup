@@ -6,6 +6,6 @@
 
 ---
 name: ecdict
-version: "2024-05-09"
+version: 2025.01.11
 import_tables:
   - en_dicts/ecdict

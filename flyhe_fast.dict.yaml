@@ -3,7 +3,7 @@
 
 ---
 name: flyhe_fast
-version: "2024-10-20"
+version: 2025.01.11
 
 import_tables:
   - cn_dicts/flyhe_chars        # 字表

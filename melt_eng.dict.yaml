@@ -6,7 +6,7 @@
 
 ---
 name: melt_eng
-version: "2024-05-09"
+version: 2025.01.11
 import_tables:
   - en_dicts/en                         # 英文 base 词库
   - en_dicts/en_ext                     # 英文扩展 Lite 版

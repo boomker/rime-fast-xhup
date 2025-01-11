@@ -15,7 +15,7 @@ menu:
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: "2024.10.20"
+  version: 2025.01.11
   author:
     - boomker
   description: |

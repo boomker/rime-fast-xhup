@@ -7,7 +7,7 @@
 # 要比共享目录的同名文件的 config_version 大才可以生效
 ---
 
-config_version: "2024-03-16"
+config_version: 2025.01.11
 # 方案列表
 # schema_list:
 #   - schema: flypy_xhfast
