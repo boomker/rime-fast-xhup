@@ -6,7 +6,7 @@
 
 ---
 name: easy_en
-version: "2024-05-09"
+version: 2025.01.11
 import_tables:
   - en_dicts/en                         # 英文 base 词库
   - en_dicts/easy_en                    # 英文主扩展

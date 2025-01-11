@@ -3,7 +3,7 @@
 
 ---
 name: flypy_chars_ext
-version: 2024-04-27
+version: 2025.01.11
 sort: by_weight
 # max_phrase_length: 1         # 不生成词条
 ...

@@ -3,7 +3,7 @@
 
 ---
 name: flypy_xhfast
-version: "2024-07-29"
+version: 2025.01.11
 
 import_tables:
   - cn_dicts/flypy_chars        # 字表
