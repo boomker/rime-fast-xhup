@@ -13,7 +13,6 @@
 name: easy_en
 version: "0.2"
 sort: by_weight
-use_preset_vocabulary: false
 ...
 
 á	a
