@@ -297,10 +297,10 @@ function KeySequence(repr) end
 ---@field get_genuine fun(self: self): Candidate
 ---@field get_genuines fun(self: self): Candidate[]
 ---@field to_shadow_candidate fun(self: self): ShadowCandidate
----@field to_uniquified_candidate fun(self: self): UniquifiedCandidate
 ---@field to_phrase fun(self: self): Phrase
 ---@field to_sentence fun(self: self): Sentence
 ---@field append fun(self: self, cand: Candidate)
+---field to_uniquified_candidate fun(self: self): UniquifiedCandidate
 
 ---@param type string
 ---@param start integer
@@ -312,11 +312,12 @@ function Candidate(type, start, _end, text, comment) end
 
 ---@class UniquifiedCandidate: Candidate
 
----@param cand Candidate
+--- param cand Candidate
 ---@param type string
 ---@param text string
 ---@param comment string
-function UniquifiedCandidate(cand, type, text, comment) end
+-- function UniquifiedCandidate(cand, type, text, comment) end
+function UniquifiedCandidate(type, text, comment) end
 
 ---@class ShadowCandidate: Candidate
 

@@ -1,7 +1,7 @@
 local P = {}
 local T = {}
 require("lib/metatable")
-local reload_env = require("lib/env_api")
+-- local reload_env = require("lib/env_api")
 
 local function is_candidate_in_type(cand, excluded_types)
     local cs = cand:get_genuines()
@@ -48,16 +48,16 @@ function P.fini(env)
 end
 
 function T.init(env)
-    reload_env(env)
     env.history_list = {}
-    local config = env.engine.schema.config
+    local excluded_types = { "punct" }
     local context = env.engine.context
-    local excluded_types = env:Config_get("history" .. "/excluded_types") or {}
+    local config = env.engine.schema.config
     env.tag = config:get_string("history" .. "/tag") or "history"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
-    env.trigger_prefix = config:get_string("history" .. "/prefix") or "hH"
+    env.trigger_prefix = config:get_string("history" .. "/prefix") or "/hs"
     env.initial_quality = config:get_int("history" .. "/initial_quality") or 999
     env.comment_max_length = config:get_int("history" .. "/comment_max_length") or 9
+    -- local excluded_types = config:get_list("history" .. "/excluded_types") or {}
 
     local history_num_max = config:get_string("history" .. "/max_count") or 30
     if #env.history_list >= tonumber(history_num_max) then
@@ -97,12 +97,8 @@ function T.func(input, seg, env)
         for i = #his_cands, 1, -1 do
             local cand = his_cands[i]
             cand = Candidate("history", seg.start, seg._end, cand.text, cand.preedit)
-            local cand_uniq = to_uniquified_candidate(
-                cand,
-                cand.type,
-                cand.text,
-                cand.comment:sub(1, comment_max_length)
-            )
+            local cand_uniq =
+                cand:to_uniquified_candidate(cand.type, cand.text, cand.comment:sub(1, comment_max_length))
             cand_uniq.quality = env.initial_quality
             yield(cand_uniq)
         end
