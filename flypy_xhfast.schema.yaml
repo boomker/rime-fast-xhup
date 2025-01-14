@@ -83,6 +83,7 @@ engine:
     - lua_translator@*calculator                      # /= 触发简易计算器
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
+    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(退格键)
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     # - lua_translator@*revert_commit_word            # 撤销已上屏字符(;r退格键)
