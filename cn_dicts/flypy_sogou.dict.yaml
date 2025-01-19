@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-01-14
+version: 2025-01-18
 sort: by_weight
 ...
 
@@ -11379,6 +11379,7 @@ sort: by_weight
 哀牢山堵车	ai lc uj du ie	1
 哀牢山野游	ai lc uj ye yz	1
 艾伦宋亚轩	ai ly ss ya xr	1
+爱奇艺排播	ai qi yi pd bo	1
 爱奇艺卧底	ai qi yi wo di	1
 爱奇艺新规	ai qi yi xb gv	1
 爱奇艺选秀	ai qi yi xr xq	1
@@ -11404,6 +11405,8 @@ sort: by_weight
 敖瑞鹏好帅	ao rv pg hc uk	1
 敖瑞鹏男模	ao rv pg nj mo	1
 敖瑞鹏直播	ao rv pg vi bo	1
+敖瑞鹏写真	ao rv pg xp vf	1
+敖瑞鹏演技	ao rv pg yj ji	1
 奥特曼来了	ao te mj ld le	1
 澳洲大老鼠	ao vz da lc uu	1
 奥运闭幕日	ao yy bi mu ri	1
@@ -14861,6 +14864,7 @@ sort: by_weight
 安静公主直播	an jk gs vu vi bo	1
 安乐死胶囊舱	an le si jn nh ch	1
 安全扣没扣好	an qr kz mw kz hc	1
+安宥真好会跳	an yz vf hc hv tn	1
 奥巴马秀饶舌	ao ba ma xq rc ue	1
 澳大利亚领先	ao da li ya lk xm	1
 澳大利亚联邦	ao da li ya lm bh	1
