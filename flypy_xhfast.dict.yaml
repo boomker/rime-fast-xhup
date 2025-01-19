@@ -3,7 +3,7 @@
 
 ---
 name: flypy_xhfast
-version: 2025.01.11
+version: 2025.01.19
 
 import_tables:
   - cn_dicts/flypy_chars        # 字表
@@ -12,10 +12,9 @@ import_tables:
   - cn_dicts/flypy_base         # 基础词库
   - cn_dicts/flypy_ext          # 扩展词库
   - cn_dicts/flypy_sogou        # 搜狗网络流行词库
-  - cn_dicts/flypy_wuhgit       # from github.com/wuhgit
-  - cn_dicts/flypy_tencent      # 腾讯词库(大词库, 部署时间较长)
   - cn_dicts/flypy_ext_misc     # 大写字母和数字派生, V开头Emoji
-  # - cn_dicts/flypy_super_ext1   # 扩展词库(大词库, 部署时间较长)
-  # - cn_dicts/flypy_super_ext2   # 扩展词库(大词库, 部署时间较长)
-  # - cn_dicts/flypy_super_ext3   # 扩展词库(大词库, 部署时间较长)
-  # - cn_dicts/flypy_super_ext4   # 扩展词库(大词库, 部署时间较长)
+  - cn_dicts/flypy_super_ext1   # 扩展词库(大词库, 部署时间较长)
+  - cn_dicts/flypy_super_ext2   # 扩展词库(大词库, 部署时间较长)
+  - cn_dicts/flypy_super_ext3   # 扩展词库(大词库, 部署时间较长)
+  - cn_dicts/flypy_super_ext4   # 扩展词库(大词库, 部署时间较长)
+  - cn_dicts/flypy_super_ext5   # 扩展词库(大词库, 部署时间较长)
