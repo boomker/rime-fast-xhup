@@ -16,7 +16,8 @@ patch:
   style/+:
     font_point: 12                    # 候选字大小
     line_spacing: 6                   # 行间距大小
-    inline_preedit: true              # 编码位是否嵌入候选框
+    show_paging: false
+    inline_preedit: false             # 编码位是否嵌入候选框
     text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
     candidate_list_layout: linear     # 候选菜单横向(linear)/纵向(stacked)
 
