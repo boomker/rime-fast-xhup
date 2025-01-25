@@ -16,6 +16,7 @@ patch:
     color_scheme_dark: catppuccin_frappe        # macos黑暗主题
     # color_scheme_dark: catppuccin_macchiato   # macos黑暗主题
 
+    show_paging: false
     inline_preedit: false                       # 是否行內編輯
     inline_candidate: false                     # 是否行內顯示第一候選
     mutual_exclusive: false                     # 色不叠加: false | true

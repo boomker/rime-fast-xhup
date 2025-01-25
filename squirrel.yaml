@@ -31,7 +31,7 @@ style:
 
   # 预设选项：（可被皮肤覆盖；如果皮肤没写，则默认使用这些属性。）
   text_orientation: horizontal                      # horizontal | vertical
-  show_paging: true
+  show_paging: false
   inline_preedit: false
   mutual_exclusive: false                           # 色不叠加: false | true
   spacing: 10
@@ -146,7 +146,6 @@ preset_color_schemes:
   dracula:
     name: dracula
     horizontal: false
-    show_paging: true
     inline_preedit: false
     candidate_format: "%c.\u2005%@ \u2005"
     font_point: 20
