@@ -8,6 +8,7 @@ function flypy_fixed.init(env)
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
+    env.easy_en_prefix = config:get_string("easy_en/prefix") or "eN"
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.custom_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
     env.script_translator = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
@@ -64,9 +65,9 @@ function T.func(input, seg, env)
     end
 end
 
+
 function F.func(input, env)
     local drop_cand = false
-    -- local cmp_cand_count = 0
     local context = env.engine.context
     local preedit_code = context.input
     local _, symbol_count = preedit_code:gsub("[`']", "")
@@ -81,7 +82,6 @@ function F.func(input, env)
         elseif cand_text:match("<br>") then
              -- 词条有<br>标签, 将其转为换行符
             local ccand_text = cand_text:gsub("<br>", "\n")
-            -- yield(Candidate(cand.type, cand.start, cand._end, ccand_text, env.custom_mark))
             yield(cand:to_shadow_candidate(cand.type, ccand_text, env.custom_mark))
         elseif  -- 丢弃一些候选结果
                 -- 去掉候选注解包含`太极️`的候选项
@@ -105,21 +105,6 @@ function F.func(input, env)
             )
         then
             drop_cand = true
-        elseif preedit_code:match("^%l+`%l+") and cand.comment:match("^~[ %l]+") then
-            -- 辅码模式下, 覆写注解(太长了)为空
-            -- yield(Candidate(cand.type, cand.start, cand._end, cand_text, ""))
-            yield(cand:to_shadow_candidate(cand.type, cand_text, ""))
-        --[[ elseif -- 候选词长度超出预确认音节长度 1 个以上的候选, 保留2个
-            (cand.type == "completion") and
-            (not cand_text:match("[%a%p]")) and
-            (utf8.len(cand_text) - confirmed_syllable_len > 1)
-        then
-            cmp_cand_count = cmp_cand_count + 1
-            if cmp_cand_count >= 3 then
-                drop_cand = true
-            else
-                yield(cand)
-            end ]]
         else
             yield(cand)
         end

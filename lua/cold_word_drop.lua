@@ -82,7 +82,6 @@ function cold_word_drop.init(env)
     local _sh, hide_words = pcall(require, "cold_word_records/hide_words")
     local _sr, reduce_freq_words = pcall(require, "cold_word_records/reduce_freq_words")
 
-    env.easy_en_prefix = config:get_string("easy_en/prefix") or "eN"
     env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.word_reduce_idx = config:get_int("cold_word_reduce/index") or 4
     env.drop_cand_key = config:get_string("key_binder/drop_cand") or "Control+d"
@@ -138,7 +137,6 @@ end
 
 function filter.func(input, env)
     local cands = {}
-    local prev_cand_text = nil
     local engine = env.engine
     local context = engine.context
     local preedit_str = context.input
@@ -156,22 +154,6 @@ function filter.func(input, env)
             -- 前三个 候选项排除 要调整词频的词条, 要删的(实际假性删词, 彻底隐藏罢了) 和要隐藏的词条
             if reduce_freq_list and table.find_index(reduce_freq_list, preedit_code) then
                 table.insert(cands, cand)
-            elseif
-                (
-                    (cand_text:match("^%l%l%l?%p?$") == preedit_code)
-                    or (cand_text:match("^%u[%a%d]%a?%p?$") and preedit_code:match("^%l%l%l?$"))
-                    or (
-                        cand_text:match("^%u%a%a?%.?")
-                        and prev_cand_text
-                        and cand_text:lower():match("^" .. prev_cand_text)
-                    )
-                )
-                and not (cand.comment:match(env.pin_mark) or preedit_str:match(env.easy_en_prefix))
-            then
-                table.insert(cands, cand)
-                if cand_text:match("^[%a.]+$") and not prev_cand_text then
-                    prev_cand_text = cand_text:gsub(" ", ""):lower()
-                end
             elseif
                 not (
                     table.find_index(drop_words, cand_text)
@@ -192,9 +174,7 @@ function filter.func(input, env)
             end
         end
 
-        if #cands >= 150 then
-            break
-        end
+        if #cands >= 150 then break end
     end
 
     for _, cand in ipairs(cands) do
