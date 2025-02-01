@@ -5,7 +5,6 @@
 name: flypy_chars_ext
 version: 2025.01.11
 sort: by_weight
-# max_phrase_length: 1         # 不生成词条
 ...
 
 錒	aa	0
@@ -1903,6 +1902,7 @@ sort: by_weight
 闣	dh	0
 雼	dh	0
 黨	dh[xe	0
+𪠽	dh	0
 㐧	di	0
 㓳	di	0
 㚄	di	0
@@ -3480,6 +3480,7 @@ sort: by_weight
 麬	fu	0
 麱	fu	0
 𫚒	fu	0
+𮔅	fu	0
 㓈	fw	0
 㔈	fw	0
 㔗	fw	0
@@ -6334,6 +6335,7 @@ sort: by_weight
 窓	il	0
 窻	il	0
 闖	il[mm	0
+𪭢	il	0
 㚟	io	0
 㲋	io	0
 䂐	io	0
@@ -21703,6 +21705,8 @@ sort: by_weight
 鸎	yk	0
 鸚	yk[kn	0
 𤇾	yk	0
+𬎆	yk	0
+𮐨	yk	0
 喲	yo[ku	0
 㐾	yr	0
 㘣	yr	0
@@ -22904,6 +22908,7 @@ sort: by_weight
 鉆	zr	0
 鑚	zr	0
 鑽	zr[jk	0
+𭎂	zs	0
 㙡	zs	0
 㚇	zs	0
 㢔	zs	0
