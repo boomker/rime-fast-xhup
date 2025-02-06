@@ -209,8 +209,10 @@ app_options:
     ascii_mode: true
     ascii_punct: true               # 中文状态输出英文标点(半角)
   com.trae.app:                     # trae
+    vim_mode: true
     ascii_mode: true
-    ascii_punct: true               # 中文状态输出英文标点(半角)
+    ascii_punct: true
+    symbol_unpair_flag: true
   com.neovide.neovide:
     ascii_mode: true
     ascii_punct: true               # 中文状态输出英文标点(半角)
