@@ -16,6 +16,7 @@ sort: by_weight
 阿散	aa sj	1
 阿术	aa uu	1
 阿厌	aa yj	1
+阿瓒	aa zj	1
 埃安	ai an	1
 爱藏	ai ch	1
 哀黄	ai hl	1
@@ -24,9 +25,13 @@ sort: by_weight
 安期	an qi	1
 安万	an wj	1
 傲弟	ao di	1
+敖光	ao gl	1
 熬穿	ao ir	1
 澳假	ao jx	1
+奥巧	ao qn	1
 奥恰	ao qx	1
+敖润	ao ry	1
+敖闰	ao ry	1
 奥扎	ao va	1
 敖隐	ao yb	1
 敖子	ao zi	1
@@ -2503,6 +2508,7 @@ sort: by_weight
 阿帕特	aa pa te	1
 阿其那	aa qi na	1
 阿如那	aa ru na	1
+阿署达	aa uu da	1
 阿维塔	aa ww ta	1
 艾尔登	ai er dg	1
 爱黄金	ai hl jb	1
@@ -2534,6 +2540,7 @@ sort: by_weight
 奥德彪	ao de bn	1
 奥德诺	ao de no	1
 奥丁战	ao dk vj	1
+奥菲欧	ao fw ou	1
 熬穿了	ao ir le	1
 傲娇美	ao jn mw	1
 熬老汤	ao lc th	1
@@ -2545,6 +2552,8 @@ sort: by_weight
 鳌太线	ao td xm	1
 奥特迅	ao te xy	1
 奥运赛	ao yy sd	1
+把把壶	ba ba hu	1
+把把胡	ba ba hu	1
 八宝粥	ba bc vz	1
 扒棒子	ba bh zi	1
 八部半	ba bu bj	1
@@ -6565,6 +6574,7 @@ sort: by_weight
 阿娇锁骨	aa jn so gu	1
 阿夸毕业	aa kx bi ye	1
 阿拉米扬	aa la mi yh	1
+阿里大涨	aa li da vh	1
 阿里乌斯	aa li wu si	1
 阿兰德龙	aa lj de ls	1
 阿米诺斯	aa mi no si	1
@@ -6573,17 +6583,22 @@ sort: by_weight
 阿斯帕斯	aa si pa si	1
 爱德华兹	ai de hx zi	1
 爱的颂歌	ai de ss ge	1
+爱看短剧	ai kj dr ju	1
 哀牢古国	ai lc gu go	1
 爱丽状态	ai li vl td	1
 爱莉希雅	ai li xi ya	1
 艾丽西亚	ai li xi ya	1
 爱玛科技	ai ma ke ji	1
+艾米好灵	ai mi hc lk	1
 暧昧拉扯	ai mw la ie	1
 爱情广场	ai qk gl ih	1
+爱情美满	ai qk mw mj	1
 爱情启蒙	ai qk qi mg	1
+爱情甜蜜	ai qk tm mi	1
 爱情神话	ai qk uf hx	1
 埃斯特雷	ai si te lw	1
 爱上伍鹏	ai uh wu pg	1
+埃文凯尔	ai wf kd er	1
 爱心发型	ai xb fa xk	1
 爱徐艺洋	ai xu yi yh	1
 埃因霍温	ai yb ho wf	1
@@ -6595,7 +6610,9 @@ sort: by_weight
 暗黑魔女	an hw mo nv	1
 安静公主	an jk gs vu	1
 暗壳科技	an ke ke ji	1
+安康幸福	an kh xk fu	1
 安陵公主	an lk gs vu	1
+暗恋文学	an lm wf xt	1
 安擎科技	an qk ke ji	1
 安全退役	an qr tv yi	1
 暗区突围	an qu tu ww	1
@@ -6606,18 +6623,24 @@ sort: by_weight
 暗喻幻想	an yu hr xl	1
 奥本海默	ao bf hd mo	1
 敖丙开门	ao bk kd mf	1
+敖丙皮套	ao bk pi tc	1
+敖丙劝架	ao bk qr jx	1
 奥尔菲斯	ao er fw si	1
+敖光敖闰	ao gl ao ry	1
 奥创光子	ao il gl zi	1
 奥利维拉	ao li ww la	1
 澳门来信	ao mf ld xb	1
 澳门特区	ao mf te qu	1
 敖犬领证	ao qr lk vg	1
 奥恰洛夫	ao qx lo fu	1
+敖闰鹤童	ao ry he ts	1
 奥萨苏纳	ao sa su na	1
 奥斯梅恩	ao si mw en	1
 奥司他韦	ao si ta ww	1
 奥特灭伽	ao te mp jx	1
 澳洲包邮	ao vz bc yz	1
+澳网女单	ao wh nv dj	1
+傲雪梅枪	ao xt mw ql	1
 傲意科技	ao yi ke ji	1
 奥运闭幕	ao yy bi mu	1
 奥运比赛	ao yy bi sd	1
@@ -11369,12 +11392,14 @@ sort: by_weight
 阿卡丽来了	aa ka li ld le	1
 阿勒泰暴雪	aa le td bc xt	1
 阿玛德绝杀	aa ma de jt ua	1
+阿玛特拉斯	aa ma te la si	1
 阿如那圈粉	aa ru na qr ff	1
 阿如那淘汰	aa ru na tc td	1
 阿条姐领奖	aa tn jp lk jl	1
 阿哲生日会	aa ve ug ri hv	1
 阿信好会写	aa xb hc hv xp	1
 阿雅好温柔	aa ya hc wf rz	1
+阿瓒我爱你	aa zj wo ai ni	1
 爱本质无异	ai bf vi wu yi	1
 爱的三部曲	ai de sj bu qu	1
 艾尔登法环	ai er dg fa hr	1
@@ -11383,6 +11408,7 @@ sort: by_weight
 哀牢山堵车	ai lc uj du ie	1
 哀牢山野游	ai lc uj ye yz	1
 艾伦宋亚轩	ai ly ss ya xr	1
+艾米买股粉	ai mi md gu ff	1
 爱奇艺排播	ai qi yi pd bo	1
 爱奇艺漂白	ai qi yi pn bd	1
 爱奇艺卧底	ai qi yi wo di	1
@@ -11405,6 +11431,10 @@ sort: by_weight
 安小鸟保胎	an xn nn bc td	1
 暗夜与黎明	an ye yu li mk	1
 安以轩老公	an yi xr lc gs	1
+敖丙和莲花	ao bk he lm hx	1
+敖丙传封面	ao bk ir fg mm	1
+敖丙小鼻嘎	ao bk xn bi ga	1
+敖丙小果冻	ao bk xn go ds	1
 傲得我很爽	ao de wo hf ul	1
 澳门演唱会	ao mf yj ih hv	1
 敖瑞鹏好帅	ao rv pg hc uk	1
@@ -14845,6 +14875,7 @@ sort: by_weight
 邹敬园好牛	zz jk yr hc nq	1
 走向大西南	zz xl da xi nj	1
 阿娇演的怨女	aa jn yj de yr nv	1
+阿姐又放粮了	aa jp yz fh ll le	1
 阿勒泰的秋天	aa le td de qq tm	1
 阿勒泰下雪了	aa le td xx xt le	1
 阿兰德龙去世	aa lj de ls qu ui	1
@@ -14864,6 +14895,7 @@ sort: by_weight
 爱让人像小孩	ai rh rf xl xn hd	1
 爱值班的校猫	ai vi bj de xn mc	1
 爱之深责之切	ai vi uf ze vi qp	1
+埃文凯尔回国	ai wf kd er hv go	1
 爱我没有如果	ai wo mw yz ru go	1
 安东尼奥车祸	an ds ni ao ie ho	1
 安徽省考公告	an hv ug kc gs gc	1
@@ -14872,6 +14904,10 @@ sort: by_weight
 安全扣没扣好	an qr kz mw kz hc	1
 安宥真好会跳	an yz vf hc hv tn	1
 奥巴马秀饶舌	ao ba ma xq rc ue	1
+敖丙爸爸硬帅	ao bk ba ba yk uk	1
+敖丙版混天绫	ao bk bj hy tm lk	1
+敖丙他爸好帅	ao bk ta ba hc uk	1
+敖丙他爸出场	ao bk ta ba iu ih	1
 澳大利亚领先	ao da li ya lk xm	1
 澳大利亚联邦	ao da li ya lm bh	1
 澳门机遇巨大	ao mf ji yu ju da	1
@@ -14879,6 +14915,7 @@ sort: by_weight
 敖瑞鹏红温了	ao rv pg hs wf le	1
 敖瑞鹏金丝猴	ao rv pg jb si hz	1
 敖瑞鹏看看腰	ao rv pg kj kj yc	1
+敖瑞鹏收官文	ao rv pg uz gr wf	1
 奥斯卡宁荣荣	ao si ka nk rs rs	1
 澳网今日开幕	ao wh jb ri kd mu	1
 奥运村守村人	ao yy cy uz cy rf	1
@@ -18334,6 +18371,7 @@ sort: by_weight
 走进国家公园	zz jb go jx gs yr	1
 奏一曲东风破	zz yi qu ds fg po	1
 埃吉齐奥博物馆	ai ji qi ao bo wu gr	1
+爱你孤身走暗巷	ai ni gu uf zz an xl	1
 爱一个具体的人	ai yi ge ju ti de rf	1
 巴斯德肉汤实验	ba si de rz th ui yj	1
 八十天环游地球	ba ui tm hr yz di qq	1
@@ -18599,123 +18637,3 @@ sort: by_weight
 张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	1
 中华人民共和国政府	vs hx rf mb gs he go vg fu	1
 中国人民对外友好协会	vs go rf mb dv wd yz hc xp hv	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-爱心发型	ai xb fa xk	1
-阿米诺斯	aa mi no si	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-爱我没有如果	ai wo mw yz ru go	1
-敖隐	ao yb	1
-傲意科技	ao yi ke ji	1
-爱奇艺漂白	ai qi yi pn bd	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-奥德诺	ao de no	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-傲弟	ao di	1
-阿米诺斯	aa mi no si	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-阿姐又放粮了	aa jp yz fh ll le	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-澳网女单	ao wh nv dj	1
-阿米诺斯	aa mi no si	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-奥菲欧	ao fw ou	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖瑞鹏收官文	ao rv pg uz gr wf	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-傲雪梅枪	ao xt mw ql	1
-敖隐	ao yb	1
-爱情甜蜜	ai qk tm mi	1
-埃文凯尔	ai wf kd er	1
-阿玛特拉斯	aa ma te la si	1
-安赛龙	an sd ls	1
-把把胡	ba ba hu	1
-爱你孤身走暗巷	ai ni gu uf zz an xl	1
-阿米诺斯	aa mi no si	1
-敖丙他爸好帅	ao bk ta ba hc uk	1
-把把壶	ba ba hu	1
-敖光	ao gl	1
-爱情美满	ai qk mw mj	1
-安康幸福	an kh xk fu	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖光敖闰	ao gl ao ry	1
-敖隐	ao yb	1
-埃文凯尔回国	ai wf kd er hv go	1
-安赛龙	an sd ls	1
-敖闰	ao ry	1
-阿米诺斯	aa mi no si	1
-敖丙他爸出场	ao bk ta ba iu ih	1
-敖隐	ao yb	1
-阿瓒我爱你	aa zj wo ai ni	1
-安赛龙	an sd ls	1
-阿瓒	aa zj	1
-敖丙爸爸硬帅	ao bk ba ba yk uk	1
-阿米诺斯	aa mi no si	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-爱看短剧	ai kj dr ju	1
-敖隐	ao yb	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖隐	ao yb	1
-敖丙小鼻嘎	ao bk xn bi ga	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖闰鹤童	ao ry he ts	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖丙小果冻	ao bk xn go ds	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-艾米好灵	ai mi hc lk	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-敖丙皮套	ao bk pi tc	1
-敖润	ao ry	1
-敖丙版混天绫	ao bk bj hy tm lk	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-艾米买股粉	ai mi md gu ff	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿里大涨	aa li da vh	1
-阿米诺斯	aa mi no si	1
-敖丙劝架	ao bk qr jx	1
-安赛龙	an sd ls	1
-阿署达	aa uu da	1
-敖丙和莲花	ao bk he lm hx	1
-阿米诺斯	aa mi no si	1
-奥巧	ao qn	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-暗恋文学	an lm wf xt	1
-安赛龙	an sd ls	1
-敖丙传封面	ao bk ir fg mm	1
-阿米诺斯	aa mi no si	1
