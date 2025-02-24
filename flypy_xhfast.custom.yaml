@@ -25,13 +25,13 @@ patch:
     - name: emoji
       states: [🈚️, 😄]
       reset: 1
-    - name: charset
-      states: [通用, 增廣]
-      reset: 1
     - name: prediction
       states: [联想关, 联想开]
     - name: char_mode
       states: [单字模式关, 单字模式开]
+    - name: charset
+      states: [通用字符集, 增廣字符集]
+      reset: 1
     - name: charset_hint
       states: [码区提示关, 码区提示开]
 
@@ -45,7 +45,7 @@ patch:
   # 注释下行, 以取消中英混合的候选词条里自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
-  'engine/processors/@after 1': lua_processor@*word_append_space*processor
+  # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的

@@ -22,7 +22,7 @@ switcher:
   caption: 「方案选单」
   hotkeys:
     - Alt+grave
-    - Control+Alt+grave
+    # - Control+grave
   # 开关记忆，从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
   save_options:
     - ascii_punct
@@ -47,11 +47,11 @@ switcher:
 ascii_composer:
   good_old_caps_lock: true  # true | false
   switch_key:               # commit_code | commit_text | inline_ascii | clear | noop
-    Caps_Lock: clear        # commit_code | commit_text | clear
+    Shift_R: inline_ascii
+    Shift_L: noop
     Control_L: noop
     Control_R: noop
-    Shift_L: noop
-    Shift_R: inline_ascii
+    Caps_Lock: clear        # commit_code | commit_text | clear
 ###################################################################################
 
 # 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。
