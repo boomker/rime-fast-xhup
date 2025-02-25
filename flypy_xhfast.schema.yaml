@@ -115,7 +115,6 @@ grammar:
   language: wanxiang-lts-zh-hans
   # language: zh-hans-t-essay-bgw
   # language: zh-hans-t-huayu-v7-bgw
-  language: wanxiang-lts-zh-hans
   collocation_max_length: 8     # 命中的最长词组
   collocation_min_length: 2     # 命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
   collocation_penalty: -12      # 默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配
