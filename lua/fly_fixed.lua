@@ -65,7 +65,6 @@ function T.func(input, seg, env)
     end
 end
 
-
 function F.func(input, env)
     local drop_cand = false
     local context = env.engine.context
@@ -96,7 +95,7 @@ function F.func(input, env)
                 preedit_code:match("^%l+`%l+") and
                 (cand_text:utf8_len() > confirmed_syllable_len)
             ) or ( -- V模式下, 过滤掉中英混合词条
-                preedit_code:match("^%u%a+$") and
+                preedit_code:match("^V%a+$") and
                 cand_text:find("([\228-\233][\128-\191]-)")
             ) or ( -- 候选词长度超出预确认音节长度 2 个以上的候选
                 (cand.type == "completion") and

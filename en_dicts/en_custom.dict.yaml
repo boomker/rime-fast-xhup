@@ -7,7 +7,6 @@ I/O	i/o	100000
 I/O	io	100000
 IPMI	ipmi	100000
 abcd	abcd	100000
-vnext	vnext	100000
 xform	xform	100000
 Baidu	baidu	100000
 Docker	docker	100000
@@ -99,7 +98,6 @@ tcpreplay	tcpreplay	100000
 websocket	websocket	100000
 uvicorn	uvicorn	100000
 untimely	untimely	100000
-sogou	sogou	100000
 frontend	frontend	100000
 Pinia	Pinia	100000
 NFV	NFV	100000
@@ -130,7 +128,6 @@ nextchat	nextchat	100000
 NextChat	NextChat	100000
 Syncthing	Syncthing	100000
 xhfast	xhfast	100000
-Vprev	Vprev	100000
 chatbox	chatbox	100000
 grok	grok	100000
 gsub	gsub	100000
