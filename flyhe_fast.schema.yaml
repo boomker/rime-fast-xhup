@@ -6,6 +6,7 @@
 style:
   font_point: 18                    # 候选字大小
   line_spacing: 6                   # 行间距大小
+  show_paging: false                # 是否显示分页符号
   inline_preedit: true              # 编码位是否嵌入候选框
   text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
   candidate_list_layout: linear     # 候选菜单横向(linear)/纵向(stacked)
@@ -15,7 +16,7 @@ menu:
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: 2025.01.11
+  version: 2025.02.24
   author:
     - boomker
   description: |
@@ -28,10 +29,10 @@ switches:
     states: [中, En]
   - name: ascii_punct
     states: [。, .]
-  - name: traditionalize
-    states: [简, 繁]
   - name: full_shape
     states: [半, 全]
+  - name: traditionalize
+    states: [简, 繁]
   - name: extended_charset
     states: [通用, 增廣]
     reset: 1
@@ -39,13 +40,13 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - ascii_composer
     - speller
     - selector
     - navigator
-    - key_binder
     - recognizer
+    - key_binder
     - punctuator
-    - ascii_composer
     - express_editor
   segmentors:
     - matcher
@@ -60,14 +61,14 @@ engine:
     - table_translator@custom_phrase
   filters:
     - simplifier@tradition                            # 简繁切换
-    - uniquifier                                      #  只能放到最后!
+    - uniquifier                                      # 只能放到最后!
 
 # 八股文
 grammar:
   # collocation_min_length: 2
   # collocation_max_length: 5
-  # language: zh-hans-amz-v2n3m1
-  language: zh-hans-t-huayu-v7-bgw
+  language: wanxiang-lts-zh-hans
+  # language: zh-hans-t-huayu-v7-bgw
 
 # 主翻译器, 小鹤双拼
 translator:
@@ -83,12 +84,12 @@ translator:
   # max_homophones: 7
   # max_homographs: 7
   # max_phrase_length: 5
-  # enable_encoder: true
+  # enable_encoder: false
   # always_show_comments: true
   # disable_user_dict_for_patterns:
   #   - '^[a-z][a-z]?$'             # 单字不调频
   # preedit_format:
-  #   __include: preedit_convert_rules    # 编辑器输入码显示为全拼
+  #   __include: preedit_convert_rules    # 输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
 
@@ -102,7 +103,6 @@ custom_phrase:                      # 自定义固顶字
   enable_completion: false
 
 # 简体转繁体
-
 tradition:                          # 简繁转换
   tips: none                    # 转换提示: all | char 仅单字显示 | none 不显示
   tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
@@ -161,10 +161,12 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   bindings:
-    - {when: paging, accept: comma, send: Page_Up}        # 逗号, 返回上一页
-    - {when: has_menu, accept: semicolon, send: 2}        # 分号用于第2候选
-    - {when: has_menu, accept: apostrophe, send: 3}       # 单引号用于第3候选
-    - {when: has_menu, accept: period, send: Page_Down}   # 句号. 下一页
+    - {when: has_menu, accept: semicolon, send: 2}         # 分号用于第2候选
+    - {when: has_menu, accept: apostrophe, send: 3}        # 单引号用于第3候选
+    - {when: paging, accept: comma, send: Page_Up}         # 逗号上一页
+    - {when: has_menu, accept: period, send: Page_Down}    # 句号下一页
+    # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 上一页
+    # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
     - {when: has_menu,  accept: Tab, send: Control+Right}
     - {when: composing, accept: Tab, send: Control+Right}
     - {when: composing, accept: Shift+Tab, send: Control+Left}

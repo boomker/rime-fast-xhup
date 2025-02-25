@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-02-25
+version: 2025-02-16
 sort: by_weight
 ...
 
@@ -214,10 +214,10 @@ sort: by_weight
 登子	dg zi	1
 堤段	di dr	1
 低费	di fw	1
-嫡长	di ih	1
 地窟	di ku	1
 地鸣	di mk	1
 地投	di tz	1
+嫡长	di vh	1
 低消	di xn	1
 地肖	di xn	1
 滴血	di xt	1
@@ -2498,7 +2498,9 @@ sort: by_weight
 阿尔塞	aa er sd	1
 阿甘左	aa gj zo	1
 阿克尚	aa ke uh	1
+阿奎那	aa kv na	1
 阿拉梅	aa la mw	1
+阿莱夫	aa ld fu	1
 阿勒颇	aa le po	1
 阿勒泰	aa le td	1
 阿鲁纳	aa lu na	1
@@ -2522,6 +2524,7 @@ sort: by_weight
 艾扎克	ai va ke	1
 爱之巢	ai vi ic	1
 安倍撒	an bw sa	1
+安顶山	an dk uj	1
 安东森	an ds sf	1
 暗河传	an he vr	1
 暗黑向	an hw xl	1
@@ -6591,6 +6594,7 @@ sort: by_weight
 爱玛科技	ai ma ke ji	1
 艾米好灵	ai mi hc lk	1
 暧昧拉扯	ai mw la ie	1
+爱你定档	ai ni dk dh	1
 爱情广场	ai qk gl ih	1
 爱情美满	ai qk mw mj	1
 爱情启蒙	ai qk qi mg	1
@@ -11389,6 +11393,7 @@ sort: by_weight
 走近波学	zz jb bo xt	1
 走近珂学	zz jb ke xt	1
 走进珂学	zz jb ke xt	1
+阿凡达重映	aa fj da is yk	1
 阿卡丽来了	aa ka li ld le	1
 阿勒泰暴雪	aa le td bc xt	1
 阿玛德绝杀	aa ma de jt ua	1
@@ -11414,6 +11419,7 @@ sort: by_weight
 爱奇艺卧底	ai qi yi wo di	1
 爱奇艺新规	ai qi yi xb gv	1
 爱奇艺选秀	ai qi yi xr xq	1
+爱情有味道	ai qk yz ww dc	1
 爱人不见了	ai rf bu jm le	1
 爱人像小孩	ai rf xl xn hd	1
 爱心还给我	ai xb hr gw wo	1
@@ -18115,7 +18121,7 @@ sort: by_weight
 严浩翔麦没关	yj hc xl md mw gr	1
 阎鹤祥脱口秀	yj he xl to kz xq	1
 延迟开学成功	yj ii kd xt ig gs	1
-闫妮的嫡长闺	yj ni de di ih gv	1
+闫妮的嫡长闺	yj ni de di vh gv	1
 闫妮差点摔了	yj ni ia dm uk le	1
 闫妮跳的真好	yj ni tn de vf hc	1
 闫妮新剧口碑	yj ni xb ju kz bw	1
@@ -18637,27 +18643,3 @@ sort: by_weight
 张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	1
 中华人民共和国政府	vs hx rf mb gs he go vg fu	1
 中国人民对外友好协会	vs go rf mb dv wd yz hc xp hv	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-爱你定档	ai ni dk dh	1
-阿米诺斯	aa mi no si	1
-阿凡达重映	aa fj da is yk	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-爱情有味道	ai qk yz ww dc	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-阿莱夫	aa ld fu	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安顶山	an dk uj	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-阿奎那	aa kv na	1

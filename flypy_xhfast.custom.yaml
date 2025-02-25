@@ -25,13 +25,13 @@ patch:
     - name: emoji
       states: [🈚️, 😄]
       reset: 1
-    - name: charset
-      states: [通用, 增廣]
-      reset: 1
     - name: prediction
       states: [联想关, 联想开]
     - name: char_mode
       states: [单字模式关, 单字模式开]
+    - name: charset
+      states: [通用字符集, 增廣字符集]
+      reset: 1
     - name: charset_hint
       states: [码区提示关, 码区提示开]
 
