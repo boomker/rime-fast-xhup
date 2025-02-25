@@ -22,7 +22,7 @@ switcher:
   caption: 「方案选单」
   hotkeys:
     - Alt+grave
-    - Control+Alt+grave
+    # - Control+grave
   # 开关记忆，从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
   save_options:
     - ascii_punct
@@ -39,19 +39,19 @@ switcher:
 #
 # 切换中英：
 # 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
+# noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
+# clear        清除未上屏内容，然后切换到英文
 # commit_code  上屏原始的编码，然后切换到英文
 # commit_text  上屏拼出的词句，然后切换到英文
-# clear        清除未上屏内容，然后切换到英文
 # inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
-# noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
 ascii_composer:
-  good_old_caps_lock: true    # true | false
-  switch_key:     # commit_code | commit_text | inline_ascii | clear | noop
-    Caps_Lock: clear          # commit_code | commit_text | clear
+  good_old_caps_lock: true  # true | false
+  switch_key:               # commit_code | commit_text | inline_ascii | clear | noop
+    Shift_R: inline_ascii
+    Shift_L: noop
     Control_L: noop
     Control_R: noop
-    Shift_L: noop
-    Shift_R: inline_ascii
+    Caps_Lock: clear        # commit_code | commit_text | clear
 ###################################################################################
 
 # 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。

@@ -34,11 +34,11 @@ engine:
   processors:
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
-    - lua_processor@*smart_commit_cand
     - lua_processor@*idiom_abbr_expand
     - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
     - lua_processor@*shortcut*processor
+    # - lua_processor@*smart_commit_cand
     - lua_processor@*chinese_number*processor
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
@@ -48,9 +48,9 @@ engine:
     - recognizer
     - key_binder
     - speller
-    - punctuator
     - selector
     - navigator
+    - punctuator
     - express_editor
   segmentors:
     - ascii_segmentor
@@ -108,10 +108,11 @@ engine:
     - lua_filter@*cold_word_drop*filter
     - lua_filter@*word_autocommit*filter
     - lua_filter@*pin_word*filter
-    - uniquifier                                      #  只能放到最后!
+    - uniquifier                                      # 只能放到最后!
 
 # 语法模型
 grammar:
+  language: wanxiang-lts-zh-hans
   # language: zh-hans-t-essay-bgw
   # language: zh-hans-t-huayu-v7-bgw
   language: wanxiang-lts-zh-hans
@@ -133,12 +134,12 @@ translator:
   encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启语言模型优化候选
   enable_word_completion: true      # 4 音节以上的词条才补全
-  # max_homophones: 7                 # 最大同音簇长度〔需配合 grammar 使用〕
-  # max_homographs: 7                 # 最大同形簇长度〔需配合 grammar 使用〕
-  # enable_encoder: true              # 是否开启自动造词〔仅table_translator有效〕
-  # enable_correction false           # 是否开启自动纠错〔仅script_translator有效〕
-  # always_show_comments: true        # 始终显示提示码〔仅script_translator有效〕
-  # sentence_over_completion: true    # 逐键提示时智能组句〔仅script_translator有效〕
+  sentence_over_completion: true    # 逐键提示时智能组句〔仅script_translator有效〕
+  # max_homophones: 7               # 最大同音簇长度〔需配合 grammar 使用〕
+  # max_homographs: 7               # 最大同形簇长度〔需配合 grammar 使用〕
+  # enable_encoder: false           # 是否开启自动造词〔仅table_translator有效〕
+  # enable_correction false         # 是否开启自动纠错〔仅script_translator有效〕
+  # always_show_comments: true      # 始终显示提示码〔仅script_translator有效〕
   # disable_user_dict_for_patterns:
   #   - '^[a-z][a-z]?$'               # 单字不调频
   # preedit_format:
