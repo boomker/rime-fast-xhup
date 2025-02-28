@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 name: flypy_xhfast #方案名称
-author: 'amzxyz' #作者
+author: 'boomker' #作者
 conf:
   # 数字、编辑、功能键盘
   num_height:
@@ -58,7 +58,7 @@ conf:
 
   # 符号键盘配置
   sym:
-    author: 'amzxyz'
+    author: 'boomker'
     ascii_mode: 1
     width: 12 #按键宽度
     key_press_offset_x: 2
@@ -74,10 +74,9 @@ conf:
       - width: { __include: conf/sym_bottom_switch }
         height: { __include: conf/sym_bottom }
 
-
 style:
   color_scheme: default #默认配色方案
-  keyboard_height: 260 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
+  keyboard_height: 270 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
   keyboard_height_land: 200 #锁定横屏下键盘高度，避免切换时键盘高度变化而造成闪烁
   horizontal: true #水平模式。改变方向键的功能 （true：方向键适配横排候选；false：方向键适配竖排候选）
   keyboard_padding: 6 #竖屏模式下，屏幕左右两侧与键盘的距离（曲面屏减少误触）
@@ -152,7 +151,13 @@ style:
     - ywz61
     - ywz62
     - default
+    - 9jian
+    - 14jian
+    - 18jian
     - letter
+    - letter_18jian
+    - letter_14jian
+    - letter_9jian
     - number
     - func
     - edit
@@ -302,11 +307,10 @@ fallback_colors:
   hilited_menu_back_color: key_back_color #高亮菜单背景 ※
   hilited_menu_text_color: enter_sym_back_color #高亮菜单文字 ※
 
-
 preset_color_schemes:
   default:
     name: 简蓝 #方案名称
-    author: 'amzxyz' #作者
+    author: 'boomker' #作者
     dark_scheme: google_black
     # 悬浮窗
     # border_color: back_color #悬浮窗边框
@@ -373,7 +377,7 @@ preset_color_schemes:
 
   google_black:
     name: 简黑 #方案名称
-    author: 'amzxyz' #作者
+    author: 'boomker' #作者
     light_scheme: default
     # 悬浮窗
     # border_color: back_color #悬浮窗边框
@@ -440,7 +444,7 @@ preset_color_schemes:
 
   google_white:
     name: 简白
-    author: 'amzxyz'
+    author: 'boomker'
     dark_scheme: google_black
     # 悬浮窗
     # border_color: back_color #悬浮窗边框
@@ -505,79 +509,7 @@ preset_color_schemes:
     # hilited_menu_back_color: key_back_color #高亮菜单背景 ※
     # hilited_menu_text_color: enter_sym_back_color #高亮菜单文字 ※
 
-
-  white:
-    name: 黄昏 #方案名称
-    author: amzxyz #作者资讯
-    dark_scheme: google_black #夜间模式
-    # 悬浮窗
-    # border_color: back_color #悬浮窗边框
-    # label_color: hilited_text_color #标签（候选序号）
-    # text_back_color: back_color #编码区背景
-    text_color: 0xbc763c #编码 色
-    # hilited_back_color: back_color #高亮编码背景
-    hilited_text_color: 0xff5a676e #高亮编码 黑
-
-    # 候选栏
-    # candidate_separator_color: back_color #候选分割线
-    back_color: 0xf8fbf8 #候选栏背景 灰
-    # candidate_text_color: hilited_text_color #候选文字
-    comment_text_color: 0x7b868c #提示
-    # hilited_candidate_back_color: back_color #高亮候选背景
-    # hilited_candidate_text_color: text_color #高亮候选文字
-    # hilited_comment_text_color: hilited_candidate_text_color #高亮提示
-
-    # 键盘通用
-    # keyboard_back_color: back_color #键盘背景
-    # key_border_color: border_color #按键边框
-    # shadow_color: border_color #按键文字阴影
-    # preview_back_color: back_color #按键提示背景
-    # preview_text_color: key_text_color #按键提示文字
-    # key_text_color: candidate_text_color #按键文字
-    # key_symbol_color: comment_text_color #按键符号
-    # hilited_key_text_color: key_text_color #高亮按键文字
-    # hilited_key_symbol_color: key_symbol_color #高亮按键符号
-
-    # 主键盘
-    main_back_color: 0xf3f3f3 #按键背景 ※
-    hilited_main_back_color: 0xffd3d7da #高亮按键背景 ※
-    # space_back_color: 0xFAFAFA #空格背景 ※
-    # hilited_space_back_color: 0xD7D9DD #高亮空格背景 ※
-    off_key_back_color: 0xf8f4e6 #功能键背景
-    # off_key_text_color: key_text_color #功能键文字
-    # off_key_symbol_color: off_key_text_color #功能键符号 高亮功能键符号※
-    hilited_off_key_back_color: 0xffD7D6D6  #高亮功能键背景
-    # hilited_off_key_text_color: off_key_text_color #高亮功能键文字
-    on_key_back_color: 0xcbb994 #shift锁定时背景
-    on_key_text_color: 0xff37474f #shift锁定时文字
-    hilited_on_key_back_color: 0xffd3d7da #高亮shift锁定时背景
-    # hilited_on_key_text_color: on_key_text_color #高亮shift锁定时文字
-    enter_back_color: 0xcbb994 #enter背景 ※
-    enter_text_color: 0xff37474f #enter文字 高亮enter文字※
-    enter_symbol_color: 0xFFFFFF #enter符号 高亮enter符号※
-    hilited_enter_back_color: 0xffd3d7da #高亮enter背景 ※
-
-    # 附键盘
-    key_back_color: 0xf8fbf8 #按键背景
-    # hilited_key_back_color: back_color #高亮按键背景
-    # off_sym_back_color: back_color #功能键背景 ※
-    # off_sym_text_color: off_key_text_color #功能键文字 ※
-    # off_sym_fy_text_color: hilited_off_sym_back_color #翻页停止箭头文字 高亮※
-    hilited_off_sym_back_color: 0xede4cd #高亮功能键背景 ※
-    # hilited_off_sym_text_color: hilited_off_key_text_color #高亮功能键文字 ※
-    enter_sym_back_color: 0xe9e4d4 # enter背景 ※
-    # enter_sym_text_color: on_key_text_color #enter文字 高亮enter文字※
-    hilited_enter_sym_back_color: 0xe9e4d4 ##高亮enter背景 ※
-    # menu_back_color: off_sym_back_color #菜单背景 ※
-    # menu_text_color: off_sym_text_color #菜单文字 ※
-    # hilited_menu_back_color: key_back_color #高亮菜单背景 ※
-    # hilited_menu_text_color: enter_sym_back_color #高亮菜单文字 ※
-
-
-
-
-# 按键样式
-styl:
+styles:
   key:
     key_back_color: main_back_color
     hilited_key_back_color: hilited_main_back_color
@@ -601,7 +533,7 @@ styl:
     hilited_key_back_color: hilited_off_sym_back_color
   # 不可用的功能键（右边点不动的箭头）
   unavl_off_sym:
-    __include: styl/off_sym
+    __include: styles/off_sym
     hilited_key_back_color: off_sym_back_color
     key_text_color: hilited_off_sym_back_color
     hilited_key_text_color: hilited_off_sym_back_color
@@ -615,27 +547,26 @@ styl:
     hilited_key_text_color: hilited_menu_text_color
   # 高亮的底部菜单
   hilited_menu:
-    __include: styl/menu
+    __include: styles/menu
     key_back_color: hilited_menu_back_color
     key_text_color: hilited_menu_text_color
   # 颜文字 底部菜单
   ywz_menu:
-    __include: styl/menu
+    __include: styles/menu
     width: 16 #颜文字键盘菜单宽度
   # 颜文字 高亮的底部菜单
   ywz_hilited_menu:
-    __include: styl/ywz_menu
+    __include: styles/ywz_menu
     key_back_color: hilited_menu_back_color
     key_text_color: hilited_menu_text_color
   # 双键宽度
   ywz_double_width:
     width: 56 #颜文字键盘2键宽度
 
-
 liquid_keyboard:
   # 目前只能直接写参数，不支持变量或者fallback机制。
-  # 缺少参数时，自动从style中加载参数。除非需要指定liquid_keyboard使用与主键盘不同的背景色、背景图，否则不应设置被注释掉的参数。
-  author: "amzxyz"
+  # 缺少参数时，自动从stylese中加载参数。除非需要指定liquid_keyboard使用与主键盘不同的背景色、背景图，否则不应设置被注释掉的参数。
+  author: "boomker"
   row: 7              #每屏最多显示多少行按键
   row_land: 5         #横屏每屏最多显示多少行按键
   key_height: 40      #按键高度
@@ -650,7 +581,7 @@ liquid_keyboard:
       - space1
       - BackSpace
       - Return1
- #     - liquid_keyboard_clipboard  
+ #     - liquid_keyboard_clipboard
  #     - liquid_keyboard_switch    #进入更多
   keyboards: [clipboard, history, emoji, math, ascii, cn, unit, list, symbol]  #tab列表
   history:
@@ -716,8 +647,9 @@ liquid_keyboard:
     name: 特殊
     type: SINGLE
     keys: "△▽○◇□☆▲▼●◆■★▷◁▶◀♻♲†⚝✡⚹✦✸✹￼�×⌫☑☒✅❎✔✘✓✗☀☼☽☾◑◐㏂㏘☭♀♂☹☻☠☜☝☞☚☟☛▪•‥…∷※♩♪♫♬§°♭♯♮‖¶№◎¤۞℗®©卍卐℡™㏇Φ⇦⇧⇨⇩⇪↖↑↗←↔→↙↓↘⇄⇅⇆⇤↩⇥▸◂▴▾◤◥◣◢㊤㊧㊥㊨㊦❏❐◲〼▢▣↶✁↷✍⏍ϟ📝✎✆☱☰☴⚿⛮⚙☲☯☵⛶☩☐☳☷☶💬🗨⟲ღ✈☂🎤🌐🔍"
+
 preset_keyboards:
-  symbols:
+  sym121:
     name: 中文1
     __include: conf/sym
     __patch: conf/bottom
@@ -729,7 +661,7 @@ preset_keyboards:
       - { click: '：' }
       - { click: '；' }
       - { click: '……' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '、' }
       - { click: '——' }
       - { click: '“' }
@@ -737,7 +669,7 @@ preset_keyboards:
       - { click: '‘' }
       - { click: '’' }
       - { click: '·' }
-      - { click: kb_sym11u, __include: styl/unavl_off_sym }
+      - { click: kb_sym11u, __include: styles/unavl_off_sym }
       - { click: '（' }
       - { click: '）' }
       - { click: '《' }
@@ -745,7 +677,7 @@ preset_keyboards:
       - { click: '〈' }
       - { click: '〉' }
       - { click: '﹁' }
-      - { click: kb_sym11d, __include: styl/off_sym }
+      - { click: kb_sym11d, __include: styles/off_sym }
       - { click: '『' }
       - { click: '』' }
       - { click: '「' }
@@ -753,15 +685,15 @@ preset_keyboards:
       - { click: '〔' }
       - { click: '〕' }
       - { click: '﹂' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/hilited_menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/hilited_menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym112:
     name: 中文2
@@ -775,7 +707,7 @@ preset_keyboards:
       - { click: '／' }
       - { click: '＼' }
       - { click: '｜' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '［' }
       - { click: '］' }
       - { click: '｛' }
@@ -783,7 +715,7 @@ preset_keyboards:
       - { click: '＃' }
       - { click: '＆' }
       - { click: '＊' }
-      - { click: kb_sym11u, __include: styl/off_sym }
+      - { click: kb_sym11u, __include: styles/off_sym }
       - { click: '￥' }
       - { click: '＄' }
       - { click: '￡' }
@@ -791,7 +723,7 @@ preset_keyboards:
       - { click: '％' }
       - { click: '｀' }
       - { click: '～' }
-      - { click: kb_sym11d, __include: styl/unavl_off_sym }
+      - { click: kb_sym11d, __include: styles/unavl_off_sym }
       - { click: '＾' }
       - { click: '' }
       - { click: '' }
@@ -799,17 +731,18 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/hilited_menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
 
-  sym121:
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/hilited_menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
+
+  symbols:
     name: 英文1
     __include: conf/sym
     __patch: conf/bottom
@@ -821,7 +754,7 @@ preset_keyboards:
       - { click: ':' }
       - { click: ';' }
       - { click: '…' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '_' }
       - { click: '-' }
       - { click: '*' }
@@ -829,7 +762,7 @@ preset_keyboards:
       - { click: "'" }
       - { click: '"' }
       - { click: '/' }
-      - { click: kb_sym12u, __include: styl/unavl_off_sym }
+      - { click: kb_sym12u, __include: styles/unavl_off_sym }
       - { click: '+' }
       - { click: '=' }
       - { click: '<' }
@@ -837,7 +770,7 @@ preset_keyboards:
       - { click: '(' }
       - { click: ')' }
       - { click: '\' }
-      - { click: kb_sym12d, __include: styl/off_sym }
+      - { click: kb_sym12d, __include: styles/off_sym }
       - { click: '[' }
       - { click: ']' }
       - { click: '{' }
@@ -845,15 +778,15 @@ preset_keyboards:
       - { click: '&' }
       - { click: '#' }
       - { click: '|' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/hilited_menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/hilited_menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym122:
     name: 英文2
@@ -867,7 +800,7 @@ preset_keyboards:
       - { click: '¢' }
       - { click: '€' }
       - { click: '^' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '`' }
       - { click: '~' }
       - { click: '♀' }
@@ -875,7 +808,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym12u, __include: styl/off_sym }
+      - { click: kb_sym12u, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -883,7 +816,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym12d, __include: styl/unavl_off_sym }
+      - { click: kb_sym12d, __include: styles/unavl_off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -891,15 +824,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/hilited_menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/hilited_menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym151:
     name: 特殊1
@@ -913,7 +846,7 @@ preset_keyboards:
       - { click: '♡' }
       - { click: '♤' }
       - { click: '♧' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '●' }
       - { click: '◆' }
       - { click: '■' }
@@ -921,7 +854,7 @@ preset_keyboards:
       - { click: '♥' }
       - { click: '♠' }
       - { click: '♣' }
-      - { click: kb_sym15u1, __include: styl/unavl_off_sym }
+      - { click: kb_sym15u1, __include: styles/unavl_off_sym }
       - { click: '☆' }
       - { click: '△' }
       - { click: '▽' }
@@ -929,7 +862,7 @@ preset_keyboards:
       - { click: '☞' }
       - { click: '♂' }
       - { click: '♀' }
-      - { click: kb_sym15d2, __include: styl/off_sym }
+      - { click: kb_sym15d2, __include: styles/off_sym }
       - { click: '★' }
       - { click: '▲' }
       - { click: '▼' }
@@ -937,15 +870,15 @@ preset_keyboards:
       - { click: '♟' }
       - { click: '♚' }
       - { click: '♛' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/hilited_menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/hilited_menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym152:
     name: 特殊2
@@ -959,7 +892,7 @@ preset_keyboards:
       - { click: '⇔' }
       - { click: '↹' }
       - { click: '↣' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '◢' }
       - { click: '◣' }
       - { click: '↖' }
@@ -967,7 +900,7 @@ preset_keyboards:
       - { click: '↗' }
       - { click: '←' }
       - { click: '→' }
-      - { click: kb_sym15u1, __include: styl/off_sym }
+      - { click: kb_sym15u1, __include: styles/off_sym }
       - { click: '◥' }
       - { click: '◤' }
       - { click: '↙' }
@@ -975,7 +908,7 @@ preset_keyboards:
       - { click: '↘' }
       - { click: '↔' }
       - { click: '↕' }
-      - { click: kb_sym15d3, __include: styl/off_sym }
+      - { click: kb_sym15d3, __include: styles/off_sym }
       - { click: '℡' }
       - { click: '╳' }
       - { click: '№' }
@@ -983,15 +916,15 @@ preset_keyboards:
       - { click: '卍' }
       - { click: '囍' }
       - { click: '▓' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/hilited_menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/hilited_menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym153:
     name: 特殊3
@@ -1005,7 +938,7 @@ preset_keyboards:
       - { click: '﹌' }
       - { click: '﹉' }
       - { click: '﹊' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '￣' }
       - { click: '︴' }
       - { click: '♩' }
@@ -1013,7 +946,7 @@ preset_keyboards:
       - { click: '♫' }
       - { click: '♬' }
       - { click: '¶' }
-      - { click: kb_sym15u2, __include: styl/off_sym }
+      - { click: kb_sym15u2, __include: styles/off_sym }
       - { click: '‖' }
       - { click: '♯' }
       - { click: '♭' }
@@ -1021,7 +954,7 @@ preset_keyboards:
       - { click: '◎' }
       - { click: '™' }
       - { click: '©' }
-      - { click: kb_sym15d4, __include: styl/off_sym }
+      - { click: kb_sym15d4, __include: styles/off_sym }
       - { click: '®' }
       - { click: '⊙' }
       - { click: '⊕' }
@@ -1029,15 +962,15 @@ preset_keyboards:
       - { click: '㊣' }
       - { click: 'Θ' }
       - { click: '¤' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/hilited_menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/hilited_menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym154:
     name: 特殊4
@@ -1051,7 +984,7 @@ preset_keyboards:
       - { click: '￡' }
       - { click: '£' }
       - { click: '€' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '₩' }
       - { click: '†' }
       - { click: '‡' }
@@ -1059,7 +992,7 @@ preset_keyboards:
       - { click: '§' }
       - { click: '〓' }
       - { click: 'ˇ' }
-      - { click: kb_sym15u3, __include: styl/off_sym }
+      - { click: kb_sym15u3, __include: styles/off_sym }
       - { click: '«' }
       - { click: '»' }
       - { click: '‥' }
@@ -1067,7 +1000,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym15d5, __include: styl/off_sym }
+      - { click: kb_sym15d5, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1075,15 +1008,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/hilited_menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/hilited_menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym155:
     name: 特殊5
@@ -1097,7 +1030,7 @@ preset_keyboards:
       - { click: '︻' }
       - { click: '︽' }
       - { click: '︷' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '﹀' }
       - { click: '﹂' }
       - { click: '﹄' }
@@ -1105,7 +1038,7 @@ preset_keyboards:
       - { click: '︼' }
       - { click: '︾' }
       - { click: '︸' }
-      - { click: kb_sym15u4, __include: styl/off_sym }
+      - { click: kb_sym15u4, __include: styles/off_sym }
       - { click: '︵' }
       - { click: '╭' }
       - { click: '╮' }
@@ -1113,7 +1046,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym15d5, __include: styl/unavl_off_sym }
+      - { click: kb_sym15d5, __include: styles/unavl_off_sym }
       - { click: '︶' }
       - { click: '╰' }
       - { click: '╯' }
@@ -1121,15 +1054,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/hilited_menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/hilited_menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym161:
     name: 数学1
@@ -1143,7 +1076,7 @@ preset_keyboards:
       - { click: '+' }
       - { click: '-' }
       - { click: '×' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '÷' }
       - { click: '>' }
       - { click: '<' }
@@ -1151,31 +1084,31 @@ preset_keyboards:
       - { click: '≤' }
       - { click: '/' }
       - { click: '√' }
-      - { click: kb_sym16u1, __include: styl/unavl_off_sym }
+      - { click: kb_sym16u1, __include: styles/unavl_off_sym }
       - { click: '%' }
       - { click: '‰' }
-      - { click: '(){Left}', __include: styl/long_text_size }
-      - { click: '{}{Left}', __include: styl/long_text_size }
-      - { click: '[]{Left}', __include: styl/long_text_size }
-      - { click: '||{Left}', __include: styl/long_text_size }
+      - { click: '(){Left}', __include: styles/long_text_size }
+      - { click: '{}{Left}', __include: styles/long_text_size }
+      - { click: '[]{Left}', __include: styles/long_text_size }
+      - { click: '||{Left}', __include: styles/long_text_size }
       - { click: 'π' }
-      - { click: kb_sym16d2, __include: styl/off_sym }
-      - { click: '³√', __include: styl/long_text_size }
+      - { click: kb_sym16d2, __include: styles/off_sym }
+      - { click: '³√', __include: styles/long_text_size }
       - { click: '℃' }
       - { click: '℉' }
       - { click: '㎎' }
       - { click: '㎏' }
       - { click: '㎜' }
       - { click: '㎝' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/hilited_menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/hilited_menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym162:
     name: 数学2
@@ -1184,12 +1117,12 @@ preset_keyboards:
     keys:
       - { click: '㎞' }
       - { click: '㎡' }
-      - { click: 'm³', __include: styl/long_text_size }
+      - { click: 'm³', __include: styles/long_text_size }
       - { click: '㏄' }
       - { click: '㏕' }
       - { click: '㏒' }
       - { click: '㏑' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '°' }
       - { click: '¹' }
       - { click: '²' }
@@ -1197,7 +1130,7 @@ preset_keyboards:
       - { click: 'ⁿ' }
       - { click: '′' }
       - { click: '〃' }
-      - { click: kb_sym16u1, __include: styl/off_sym }
+      - { click: kb_sym16u1, __include: styles/off_sym }
       - { click: '∞' }
       - { click: '∑' }
       - { click: '∈' }
@@ -1205,23 +1138,23 @@ preset_keyboards:
       - { click: '⊥' }
       - { click: '∏' }
       - { click: '↔' }
-      - { click: kb_sym16d3, __include: styl/off_sym }
-      - { click: ':=', __include: styl/long_text_size }
+      - { click: kb_sym16d3, __include: styles/off_sym }
+      - { click: ':=', __include: styles/long_text_size }
       - { click: '¬' }
       - { click: '⊕' }
       - { click: '￠' }
       - { click: 'Ψ' }
-      - { click: "f'", __include: styl/long_text_size }
+      - { click: "f'", __include: styles/long_text_size }
       - { click: '∥' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/hilited_menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/hilited_menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym163:
     name: 数学3
@@ -1235,7 +1168,7 @@ preset_keyboards:
       - { click: '∽' }
       - { click: '≌' }
       - { click: '≒' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '∵' }
       - { click: '∴' }
       - { click: '∫' }
@@ -1243,7 +1176,7 @@ preset_keyboards:
       - { click: '∶' }
       - { click: '∷' }
       - { click: '⌒' }
-      - { click: kb_sym16u2, __include: styl/off_sym }
+      - { click: kb_sym16u2, __include: styles/off_sym }
       - { click: '∧' }
       - { click: '∨' }
       - { click: '∩' }
@@ -1251,7 +1184,7 @@ preset_keyboards:
       - { click: '⊿' }
       - { click: '△' }
       - { click: 'Δ' }
-      - { click: kb_sym16d4, __include: styl/off_sym }
+      - { click: kb_sym16d4, __include: styles/off_sym }
       - { click: '½' }
       - { click: '⅓' }
       - { click: '¼' }
@@ -1259,15 +1192,15 @@ preset_keyboards:
       - { click: '¾' }
       - { click: '⅜' }
       - { click: '℅' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/hilited_menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/hilited_menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym164:
     name: 数学4
@@ -1279,9 +1212,9 @@ preset_keyboards:
       - { click: '⊆' }
       - { click: '⊇' }
       - { click: '∃' }
-      - { click: '∃!', __include: styl/long_text_size }
+      - { click: '∃!', __include: styles/long_text_size }
       - { click: '∅' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '∉' }
       - { click: '⇒' }
       - { click: '⇔' }
@@ -1289,7 +1222,7 @@ preset_keyboards:
       - { click: '∀' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym16u3, __include: styl/off_sym }
+      - { click: kb_sym16u3, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1297,7 +1230,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym16d4, __include: styl/unavl_off_sym }
+      - { click: kb_sym16d4, __include: styles/unavl_off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1305,15 +1238,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/hilited_menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/hilited_menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym171:
     name: 序号1
@@ -1327,7 +1260,7 @@ preset_keyboards:
       - { click: '⑤' }
       - { click: '⒈' }
       - { click: '⒉' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '⑥' }
       - { click: '⑦' }
       - { click: '⑧' }
@@ -1335,7 +1268,7 @@ preset_keyboards:
       - { click: '⑩' }
       - { click: '⒊' }
       - { click: '⒋' }
-      - { click: kb_sym17u, __include: styl/unavl_off_sym }
+      - { click: kb_sym17u, __include: styles/unavl_off_sym }
       - { click: 'Ⅰ' }
       - { click: 'Ⅱ' }
       - { click: 'Ⅲ' }
@@ -1343,7 +1276,7 @@ preset_keyboards:
       - { click: 'Ⅴ' }
       - { click: '⒌' }
       - { click: '⒍' }
-      - { click: kb_sym17d, __include: styl/off_sym }
+      - { click: kb_sym17d, __include: styles/off_sym }
       - { click: 'Ⅵ' }
       - { click: 'Ⅶ' }
       - { click: 'Ⅷ' }
@@ -1351,15 +1284,15 @@ preset_keyboards:
       - { click: 'Ⅹ' }
       - { click: '⒎' }
       - { click: '⒏' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/hilited_menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/hilited_menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym172:
     name: 序号2
@@ -1373,7 +1306,7 @@ preset_keyboards:
       - { click: '⑸' }
       - { click: '⒐' }
       - { click: '⒑' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '⑹' }
       - { click: '⑺' }
       - { click: '⑻' }
@@ -1381,7 +1314,7 @@ preset_keyboards:
       - { click: '⑽' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym17u, __include: styl/off_sym }
+      - { click: kb_sym17u, __include: styles/off_sym }
       - { click: '㈠' }
       - { click: '㈡' }
       - { click: '㈢' }
@@ -1389,7 +1322,7 @@ preset_keyboards:
       - { click: '㈤' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym17d, __include: styl/unavl_off_sym }
+      - { click: kb_sym17d, __include: styles/unavl_off_sym }
       - { click: '㈥' }
       - { click: '㈦' }
       - { click: '㈧' }
@@ -1397,15 +1330,15 @@ preset_keyboards:
       - { click: '㈩' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/hilited_menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/hilited_menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   sym211:
     name: 注音1
@@ -1419,7 +1352,7 @@ preset_keyboards:
       - { click: 'ū' }
       - { click: 'ǖ' }
       - { click: 'ü' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'á' }
       - { click: 'ó' }
       - { click: 'é' }
@@ -1427,7 +1360,7 @@ preset_keyboards:
       - { click: 'ú' }
       - { click: 'ǘ' }
       - { click: 'ê' }
-      - { click: kb_sym21u1, __include: styl/unavl_off_sym }
+      - { click: kb_sym21u1, __include: styles/unavl_off_sym }
       - { click: 'ǎ' }
       - { click: 'ǒ' }
       - { click: 'ě' }
@@ -1435,7 +1368,7 @@ preset_keyboards:
       - { click: 'ǔ' }
       - { click: 'ǚ' }
       - { click: 'ɑ' }
-      - { click: kb_sym21d2, __include: styl/off_sym }
+      - { click: kb_sym21d2, __include: styles/off_sym }
       - { click: 'à' }
       - { click: 'ò' }
       - { click: 'è' }
@@ -1443,15 +1376,15 @@ preset_keyboards:
       - { click: 'ù' }
       - { click: 'ǜ' }
       - { click: 'ń' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/hilited_menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/hilited_menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym212:
     name: 注音2
@@ -1465,7 +1398,7 @@ preset_keyboards:
       - { click: 'ㄇ' }
       - { click: 'ㄈ' }
       - { click: 'ㄉ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ㄊ' }
       - { click: 'ㄋ' }
       - { click: 'ㄌ' }
@@ -1473,7 +1406,7 @@ preset_keyboards:
       - { click: 'ㄎ' }
       - { click: 'ㄏ' }
       - { click: 'ㄐ' }
-      - { click: kb_sym21u1, __include: styl/off_sym }
+      - { click: kb_sym21u1, __include: styles/off_sym }
       - { click: 'ㄑ' }
       - { click: 'ㄒ' }
       - { click: 'ㄓ' }
@@ -1481,7 +1414,7 @@ preset_keyboards:
       - { click: 'ㄕ' }
       - { click: 'ㄖ' }
       - { click: 'ㄗ' }
-      - { click: kb_sym21d3, __include: styl/off_sym }
+      - { click: kb_sym21d3, __include: styles/off_sym }
       - { click: 'ㄘ' }
       - { click: 'ㄙ' }
       - { click: 'ㄚ' }
@@ -1489,15 +1422,15 @@ preset_keyboards:
       - { click: 'ㄜ' }
       - { click: 'ㄝ' }
       - { click: 'ㄞ' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/hilited_menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/hilited_menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym213:
     name: 注音3
@@ -1511,7 +1444,7 @@ preset_keyboards:
       - { click: 'ㄣ' }
       - { click: 'ㄤ' }
       - { click: 'ㄥ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ㄦ' }
       - { click: 'ㄧ' }
       - { click: '丨' }
@@ -1519,7 +1452,7 @@ preset_keyboards:
       - { click: 'ㄩ' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym21u2, __include: styl/off_sym }
+      - { click: kb_sym21u2, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1527,7 +1460,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym21d3, __include: styl/unavl_off_sym }
+      - { click: kb_sym21d3, __include: styles/unavl_off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1535,15 +1468,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/hilited_menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/hilited_menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym221:
     name: 日文1
@@ -1557,7 +1490,7 @@ preset_keyboards:
       - { click: 'ぅ' }
       - { click: 'う' }
       - { click: 'ぇ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'え' }
       - { click: 'ぉ' }
       - { click: 'お' }
@@ -1565,7 +1498,7 @@ preset_keyboards:
       - { click: 'が' }
       - { click: 'き' }
       - { click: 'ぎ' }
-      - { click: kb_sym22u1, __include: styl/unavl_off_sym }
+      - { click: kb_sym22u1, __include: styles/unavl_off_sym }
       - { click: 'く' }
       - { click: 'ぐ' }
       - { click: 'け' }
@@ -1573,7 +1506,7 @@ preset_keyboards:
       - { click: 'こ' }
       - { click: 'ご' }
       - { click: 'さ' }
-      - { click: kb_sym22d2, __include: styl/off_sym }
+      - { click: kb_sym22d2, __include: styles/off_sym }
       - { click: 'ざ' }
       - { click: 'し' }
       - { click: 'じ' }
@@ -1581,15 +1514,15 @@ preset_keyboards:
       - { click: 'ず' }
       - { click: 'せ' }
       - { click: 'ぜ' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/hilited_menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/hilited_menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym222:
     name: 日文2
@@ -1603,7 +1536,7 @@ preset_keyboards:
       - { click: 'と' }
       - { click: 'ど' }
       - { click: 'な' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'に' }
       - { click: 'ぬ' }
       - { click: 'ね' }
@@ -1611,7 +1544,7 @@ preset_keyboards:
       - { click: 'は' }
       - { click: 'ば' }
       - { click: 'ぱ' }
-      - { click: kb_sym22u1, __include: styl/off_sym }
+      - { click: kb_sym22u1, __include: styles/off_sym }
       - { click: 'ひ' }
       - { click: 'び' }
       - { click: 'ぴ' }
@@ -1619,7 +1552,7 @@ preset_keyboards:
       - { click: 'ぶ' }
       - { click: 'ぷ' }
       - { click: 'へ' }
-      - { click: kb_sym22d3, __include: styl/off_sym }
+      - { click: kb_sym22d3, __include: styles/off_sym }
       - { click: 'べ' }
       - { click: 'ぺ' }
       - { click: 'ほ' }
@@ -1627,15 +1560,15 @@ preset_keyboards:
       - { click: 'ぽ' }
       - { click: 'ま' }
       - { click: 'み' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/hilited_menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/hilited_menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym223:
     name: 日文3
@@ -1649,7 +1582,7 @@ preset_keyboards:
       - { click: 'や' }
       - { click: 'ゅ' }
       - { click: 'ゆ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ょ' }
       - { click: 'よ' }
       - { click: 'ら' }
@@ -1657,7 +1590,7 @@ preset_keyboards:
       - { click: 'る' }
       - { click: 'れ' }
       - { click: 'ろ' }
-      - { click: kb_sym22u2, __include: styl/off_sym }
+      - { click: kb_sym22u2, __include: styles/off_sym }
       - { click: 'ゎ' }
       - { click: 'わ' }
       - { click: 'ゐ' }
@@ -1665,7 +1598,7 @@ preset_keyboards:
       - { click: 'を' }
       - { click: 'ん' }
       - { click: 'ゔ' }
-      - { click: kb_sym22d4, __include: styl/off_sym }
+      - { click: kb_sym22d4, __include: styles/off_sym }
       - { click: 'ゕ' }
       - { click: 'ゖ' }
       - { click: '゚' }
@@ -1673,15 +1606,15 @@ preset_keyboards:
       - { click: '゜' }
       - { click: 'ゝ' }
       - { click: 'ゞ' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/hilited_menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/hilited_menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym224:
     name: 日文4
@@ -1695,7 +1628,7 @@ preset_keyboards:
       - { click: 'ィ' }
       - { click: 'イ' }
       - { click: 'ゥ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ウ' }
       - { click: 'ェ' }
       - { click: 'エ' }
@@ -1703,7 +1636,7 @@ preset_keyboards:
       - { click: 'オ' }
       - { click: 'カ' }
       - { click: 'ガ' }
-      - { click: kb_sym22u3, __include: styl/off_sym }
+      - { click: kb_sym22u3, __include: styles/off_sym }
       - { click: 'キ' }
       - { click: 'ギ' }
       - { click: 'ク' }
@@ -1711,7 +1644,7 @@ preset_keyboards:
       - { click: 'ケ' }
       - { click: 'ゲ' }
       - { click: 'コ' }
-      - { click: kb_sym22d5, __include: styl/off_sym }
+      - { click: kb_sym22d5, __include: styles/off_sym }
       - { click: 'ゴ' }
       - { click: 'サ' }
       - { click: 'ザ' }
@@ -1719,15 +1652,15 @@ preset_keyboards:
       - { click: 'ジ' }
       - { click: 'ス' }
       - { click: 'ズ' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/hilited_menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/hilited_menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym225:
     name: 日文5
@@ -1741,7 +1674,7 @@ preset_keyboards:
       - { click: 'タ' }
       - { click: 'ダ' }
       - { click: 'チ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ヂ' }
       - { click: 'ッ' }
       - { click: 'ツ' }
@@ -1749,7 +1682,7 @@ preset_keyboards:
       - { click: 'テ' }
       - { click: 'デ' }
       - { click: 'ト' }
-      - { click: kb_sym22u4, __include: styl/off_sym }
+      - { click: kb_sym22u4, __include: styles/off_sym }
       - { click: 'ド' }
       - { click: 'ナ' }
       - { click: 'ニ' }
@@ -1757,7 +1690,7 @@ preset_keyboards:
       - { click: 'ネ' }
       - { click: 'ノ' }
       - { click: 'ハ' }
-      - { click: kb_sym22d6, __include: styl/off_sym }
+      - { click: kb_sym22d6, __include: styles/off_sym }
       - { click: 'バ' }
       - { click: 'パ' }
       - { click: 'ヒ' }
@@ -1765,15 +1698,15 @@ preset_keyboards:
       - { click: 'ピ' }
       - { click: 'フ' }
       - { click: 'ブ' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/hilited_menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/hilited_menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym226:
     name: 日文6
@@ -1787,7 +1720,7 @@ preset_keyboards:
       - { click: 'ホ' }
       - { click: 'ボ' }
       - { click: 'ポ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'マ' }
       - { click: 'ミ' }
       - { click: 'ム' }
@@ -1795,7 +1728,7 @@ preset_keyboards:
       - { click: 'モ' }
       - { click: 'ャ' }
       - { click: 'ヤ' }
-      - { click: kb_sym22u5, __include: styl/off_sym }
+      - { click: kb_sym22u5, __include: styles/off_sym }
       - { click: 'ュ' }
       - { click: 'ユ' }
       - { click: 'ョ' }
@@ -1803,7 +1736,7 @@ preset_keyboards:
       - { click: 'ラ' }
       - { click: 'リ' }
       - { click: 'ル' }
-      - { click: kb_sym22d7, __include: styl/off_sym }
+      - { click: kb_sym22d7, __include: styles/off_sym }
       - { click: 'レ' }
       - { click: 'ロ' }
       - { click: 'ヮ' }
@@ -1811,15 +1744,15 @@ preset_keyboards:
       - { click: 'ヰ' }
       - { click: 'ヱ' }
       - { click: 'ヲ' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/hilited_menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/hilited_menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym227:
     name: 日文7
@@ -1833,7 +1766,7 @@ preset_keyboards:
       - { click: 'ヷ' }
       - { click: 'ヸ' }
       - { click: 'ヹ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ヺ' }
       - { click: '・' }
       - { click: 'ー' }
@@ -1841,7 +1774,7 @@ preset_keyboards:
       - { click: 'ヾ' }
       - { click: 'ヿ' }
       - { click: '㍿' }
-      - { click: kb_sym22u6, __include: styl/off_sym }
+      - { click: kb_sym22u6, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1849,7 +1782,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym22d7, __include: styl/unavl_off_sym }
+      - { click: kb_sym22d7, __include: styles/unavl_off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1857,45 +1790,45 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/hilited_menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/hilited_menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym231:
     name: 音标1
     __include: conf/sym
     __patch: conf/bottom
     keys:
-      - { click: 'i:', __include: styl/long_text_size }
-      - { click: 'ɜ:', __include: styl/long_text_size }
-      - { click: 'ɑ:', __include: styl/long_text_size }
-      - { click: 'ɔ:', __include: styl/long_text_size }
-      - { click: 'u:', __include: styl/long_text_size }
+      - { click: 'i:', __include: styles/long_text_size }
+      - { click: 'ɜ:', __include: styles/long_text_size }
+      - { click: 'ɑ:', __include: styles/long_text_size }
+      - { click: 'ɔ:', __include: styles/long_text_size }
+      - { click: 'u:', __include: styles/long_text_size }
       - { click: 'ɪ' }
       - { click: 'e' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'æ' }
       - { click: 'ʌ' }
       - { click: 'ɒ' }
       - { click: 'ʊ' }
       - { click: 'ə' }
-      - { click: 'eɪ', __include: styl/long_text_size }
-      - { click: 'aɪ', __include: styl/long_text_size }
-      - { click: kb_sym23u, __include: styl/unavl_off_sym }
-      - { click: 'ɔɪ', __include: styl/long_text_size }
-      - { click: 'əʊ', __include: styl/long_text_size }
-      - { click: 'aʊ', __include: styl/long_text_size }
-      - { click: 'ɪə', __include: styl/long_text_size }
-      - { click: 'eə', __include: styl/long_text_size }
-      - { click: 'ʊə', __include: styl/long_text_size }
+      - { click: 'eɪ', __include: styles/long_text_size }
+      - { click: 'aɪ', __include: styles/long_text_size }
+      - { click: kb_sym23u, __include: styles/unavl_off_sym }
+      - { click: 'ɔɪ', __include: styles/long_text_size }
+      - { click: 'əʊ', __include: styles/long_text_size }
+      - { click: 'aʊ', __include: styles/long_text_size }
+      - { click: 'ɪə', __include: styles/long_text_size }
+      - { click: 'eə', __include: styles/long_text_size }
+      - { click: 'ʊə', __include: styles/long_text_size }
       - { click: 'p' }
-      - { click: kb_sym23d, __include: styl/off_sym }
+      - { click: kb_sym23d, __include: styles/off_sym }
       - { click: 't' }
       - { click: 'k' }
       - { click: 'f' }
@@ -1903,37 +1836,37 @@ preset_keyboards:
       - { click: 's' }
       - { click: 'ʃ' }
       - { click: 'h' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/hilited_menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/hilited_menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym232:
     name: 音标2
     __include: conf/sym
     __patch: conf/bottom
     keys:
-      - { click: 'tʃ', __include: styl/long_text_size }
-      - { click: 'ts', __include: styl/long_text_size }
-      - { click: 'tr', __include: styl/long_text_size }
+      - { click: 'tʃ', __include: styles/long_text_size }
+      - { click: 'ts', __include: styles/long_text_size }
+      - { click: 'tr', __include: styles/long_text_size }
       - { click: 'b' }
       - { click: 'd' }
       - { click: 'g' }
       - { click: 'v' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ð' }
       - { click: 'z' }
       - { click: 'ʒ' }
       - { click: 'r' }
-      - { click: 'dʒ', __include: styl/long_text_size }
-      - { click: 'dz', __include: styl/long_text_size }
-      - { click: 'dr', __include: styl/long_text_size }
-      - { click: kb_sym23u, __include: styl/off_sym }
+      - { click: 'dʒ', __include: styles/long_text_size }
+      - { click: 'dz', __include: styles/long_text_size }
+      - { click: 'dr', __include: styles/long_text_size }
+      - { click: kb_sym23u, __include: styles/off_sym }
       - { click: 'j' }
       - { click: 'w' }
       - { click: 'm' }
@@ -1941,7 +1874,7 @@ preset_keyboards:
       - { click: 'ŋ' }
       - { click: 'l' }
       - { click: '' }
-      - { click: kb_sym23d, __include: styl/unavl_off_sym }
+      - { click: kb_sym23d, __include: styles/unavl_off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -1949,15 +1882,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/hilited_menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/hilited_menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym241:
     name: 希俄1
@@ -1971,7 +1904,7 @@ preset_keyboards:
       - { click: 'ε' }
       - { click: 'ζ' }
       - { click: 'η' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'θ' }
       - { click: 'ι' }
       - { click: 'κ' }
@@ -1979,7 +1912,7 @@ preset_keyboards:
       - { click: 'μ' }
       - { click: 'ν' }
       - { click: 'ξ' }
-      - { click: kb_sym24u1, __include: styl/unavl_off_sym }
+      - { click: kb_sym24u1, __include: styles/unavl_off_sym }
       - { click: 'ο' }
       - { click: 'π' }
       - { click: 'ρ' }
@@ -1987,7 +1920,7 @@ preset_keyboards:
       - { click: 'τ' }
       - { click: 'υ' }
       - { click: 'φ' }
-      - { click: kb_sym24d2, __include: styl/off_sym }
+      - { click: kb_sym24d2, __include: styles/off_sym }
       - { click: 'χ' }
       - { click: 'ψ' }
       - { click: 'ω' }
@@ -1995,15 +1928,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/hilited_menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/hilited_menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym242:
     name: 希俄2
@@ -2017,7 +1950,7 @@ preset_keyboards:
       - { click: 'Ε' }
       - { click: 'Ζ' }
       - { click: 'Η' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'Θ' }
       - { click: 'Ι' }
       - { click: 'Κ' }
@@ -2025,7 +1958,7 @@ preset_keyboards:
       - { click: 'Μ' }
       - { click: 'Ν' }
       - { click: 'Ξ' }
-      - { click: kb_sym24u1, __include: styl/off_sym }
+      - { click: kb_sym24u1, __include: styles/off_sym }
       - { click: 'Ο' }
       - { click: 'Π' }
       - { click: 'Ρ' }
@@ -2033,7 +1966,7 @@ preset_keyboards:
       - { click: 'Τ' }
       - { click: 'Υ' }
       - { click: 'Φ' }
-      - { click: kb_sym24d3, __include: styl/off_sym }
+      - { click: kb_sym24d3, __include: styles/off_sym }
       - { click: 'Χ' }
       - { click: 'Ψ' }
       - { click: 'Ω' }
@@ -2041,15 +1974,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/hilited_menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/hilited_menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym243:
     name: 希俄3
@@ -2063,7 +1996,7 @@ preset_keyboards:
       - { click: 'д' }
       - { click: 'е' }
       - { click: 'ё' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ж' }
       - { click: 'з' }
       - { click: 'и' }
@@ -2071,7 +2004,7 @@ preset_keyboards:
       - { click: 'к' }
       - { click: 'л' }
       - { click: 'м' }
-      - { click: kb_sym24u2, __include: styl/off_sym }
+      - { click: kb_sym24u2, __include: styles/off_sym }
       - { click: 'н' }
       - { click: 'о' }
       - { click: 'п' }
@@ -2079,7 +2012,7 @@ preset_keyboards:
       - { click: 'с' }
       - { click: 'т' }
       - { click: 'у' }
-      - { click: kb_sym24d4, __include: styl/off_sym }
+      - { click: kb_sym24d4, __include: styles/off_sym }
       - { click: 'ф' }
       - { click: 'х' }
       - { click: 'ц' }
@@ -2087,15 +2020,15 @@ preset_keyboards:
       - { click: 'ш' }
       - { click: 'щ' }
       - { click: 'ъ' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/hilited_menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/hilited_menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym244:
     name: 希俄4
@@ -2109,7 +2042,7 @@ preset_keyboards:
       - { click: 'я' }
       - { click: '' }
       - { click: '' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'А' }
       - { click: 'Б' }
       - { click: 'В' }
@@ -2117,7 +2050,7 @@ preset_keyboards:
       - { click: 'Д' }
       - { click: 'Е' }
       - { click: 'Ё' }
-      - { click: kb_sym24u3, __include: styl/off_sym }
+      - { click: kb_sym24u3, __include: styles/off_sym }
       - { click: 'Ж' }
       - { click: 'З' }
       - { click: 'И' }
@@ -2125,7 +2058,7 @@ preset_keyboards:
       - { click: 'К' }
       - { click: 'Л' }
       - { click: 'М' }
-      - { click: kb_sym24d5, __include: styl/off_sym }
+      - { click: kb_sym24d5, __include: styles/off_sym }
       - { click: 'Н' }
       - { click: 'О' }
       - { click: 'П' }
@@ -2133,15 +2066,15 @@ preset_keyboards:
       - { click: 'С' }
       - { click: 'Т' }
       - { click: 'У' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/hilited_menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/hilited_menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym245:
     name: 希俄5
@@ -2155,7 +2088,7 @@ preset_keyboards:
       - { click: 'Ш' }
       - { click: 'Щ' }
       - { click: 'Ъ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'Ы' }
       - { click: 'Ь' }
       - { click: 'Э' }
@@ -2163,7 +2096,7 @@ preset_keyboards:
       - { click: 'Я' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym24u4, __include: styl/off_sym }
+      - { click: kb_sym24u4, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -2171,7 +2104,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym24d5, __include: styl/unavl_off_sym }
+      - { click: kb_sym24d5, __include: styles/unavl_off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -2179,15 +2112,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/hilited_menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/hilited_menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym251:
     name: 拉丁1
@@ -2201,7 +2134,7 @@ preset_keyboards:
       - { click: 'Á' }
       - { click: 'Â' }
       - { click: 'Ã' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'Ç' }
       - { click: 'È' }
       - { click: 'É' }
@@ -2209,7 +2142,7 @@ preset_keyboards:
       - { click: 'Ë' }
       - { click: 'Ð' }
       - { click: 'Ì' }
-      - { click: kb_sym25u1, __include: styl/unavl_off_sym }
+      - { click: kb_sym25u1, __include: styles/unavl_off_sym }
       - { click: 'Í' }
       - { click: 'Î' }
       - { click: 'Ï' }
@@ -2217,7 +2150,7 @@ preset_keyboards:
       - { click: 'Ø' }
       - { click: 'Ò' }
       - { click: 'Ó' }
-      - { click: kb_sym25d2, __include: styl/off_sym }
+      - { click: kb_sym25d2, __include: styles/off_sym }
       - { click: 'Ô' }
       - { click: 'Õ' }
       - { click: 'Ñ' }
@@ -2225,15 +2158,15 @@ preset_keyboards:
       - { click: 'Ú' }
       - { click: 'Û' }
       - { click: 'Ü' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/hilited_menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/hilited_menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym252:
     name: 拉丁2
@@ -2247,7 +2180,7 @@ preset_keyboards:
       - { click: 'å' }
       - { click: 'à' }
       - { click: 'á' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'â' }
       - { click: 'ã' }
       - { click: 'ç' }
@@ -2255,7 +2188,7 @@ preset_keyboards:
       - { click: 'é' }
       - { click: 'ê' }
       - { click: 'ë' }
-      - { click: kb_sym25u1, __include: styl/off_sym }
+      - { click: kb_sym25u1, __include: styles/off_sym }
       - { click: 'ð' }
       - { click: 'ì' }
       - { click: 'í' }
@@ -2263,7 +2196,7 @@ preset_keyboards:
       - { click: 'ï' }
       - { click: 'ö' }
       - { click: 'ø' }
-      - { click: kb_sym25d3, __include: styl/off_sym }
+      - { click: kb_sym25d3, __include: styles/off_sym }
       - { click: 'ò' }
       - { click: 'ó' }
       - { click: 'ô' }
@@ -2271,15 +2204,15 @@ preset_keyboards:
       - { click: 'ñ' }
       - { click: 'ù' }
       - { click: 'ú' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/hilited_menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/hilited_menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym253:
     name: 拉丁3
@@ -2293,7 +2226,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -2301,7 +2234,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym25u2, __include: styl/off_sym }
+      - { click: kb_sym25u2, __include: styles/off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -2309,7 +2242,7 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: kb_sym25d3, __include: styl/unavl_off_sym }
+      - { click: kb_sym25d3, __include: styles/unavl_off_sym }
       - { click: '' }
       - { click: '' }
       - { click: '' }
@@ -2317,15 +2250,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/hilited_menu }
-      - { click: kb_sym26, __include: styl/menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/hilited_menu }
+      - { click: kb_sym26, __include: styles/menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym261:
     name: 制表1
@@ -2339,7 +2272,7 @@ preset_keyboards:
       - { click: '┉' }
       - { click: '┏' }
       - { click: '┓' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '┄' }
       - { click: '┊' }
       - { click: '┃' }
@@ -2347,7 +2280,7 @@ preset_keyboards:
       - { click: '┋' }
       - { click: '┗' }
       - { click: '┛' }
-      - { click: kb_sym26u1, __include: styl/unavl_off_sym }
+      - { click: kb_sym26u1, __include: styles/unavl_off_sym }
       - { click: '│' }
       - { click: '┌' }
       - { click: '┐' }
@@ -2355,7 +2288,7 @@ preset_keyboards:
       - { click: '┑' }
       - { click: '┎' }
       - { click: '┒' }
-      - { click: kb_sym26d2, __include: styl/off_sym }
+      - { click: kb_sym26d2, __include: styles/off_sym }
       - { click: '┆' }
       - { click: '└' }
       - { click: '┘' }
@@ -2363,15 +2296,15 @@ preset_keyboards:
       - { click: '┙' }
       - { click: '┖' }
       - { click: '┚' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/hilited_menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/hilited_menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym262:
     name: 制表2
@@ -2385,7 +2318,7 @@ preset_keyboards:
       - { click: '┠' }
       - { click: '┢' }
       - { click: '┪' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '┤' }
       - { click: '┥' }
       - { click: '┦' }
@@ -2393,7 +2326,7 @@ preset_keyboards:
       - { click: '┨' }
       - { click: '┡' }
       - { click: '┩' }
-      - { click: kb_sym26u1, __include: styl/off_sym }
+      - { click: kb_sym26u1, __include: styles/off_sym }
       - { click: '┣' }
       - { click: '┬' }
       - { click: '┭' }
@@ -2401,7 +2334,7 @@ preset_keyboards:
       - { click: '┯' }
       - { click: '┰' }
       - { click: '┳' }
-      - { click: kb_sym26d3, __include: styl/off_sym }
+      - { click: kb_sym26d3, __include: styles/off_sym }
       - { click: '┫' }
       - { click: '┴' }
       - { click: '┵' }
@@ -2409,15 +2342,15 @@ preset_keyboards:
       - { click: '┷' }
       - { click: '┸' }
       - { click: '┻' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/hilited_menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/hilited_menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym263:
     name: 制表3
@@ -2431,7 +2364,7 @@ preset_keyboards:
       - { click: '╉' }
       - { click: '╇' }
       - { click: '┿' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '┺' }
       - { click: '┹' }
       - { click: '┾' }
@@ -2439,7 +2372,7 @@ preset_keyboards:
       - { click: '╊' }
       - { click: '╈' }
       - { click: '╂' }
-      - { click: kb_sym26u2, __include: styl/off_sym }
+      - { click: kb_sym26u2, __include: styles/off_sym }
       - { click: '┼' }
       - { click: '╆' }
       - { click: '╅' }
@@ -2447,7 +2380,7 @@ preset_keyboards:
       - { click: '╕' }
       - { click: '╓' }
       - { click: '╖' }
-      - { click: kb_sym26d4, __include: styl/off_sym }
+      - { click: kb_sym26d4, __include: styles/off_sym }
       - { click: '╋' }
       - { click: '╄' }
       - { click: '╃' }
@@ -2455,15 +2388,15 @@ preset_keyboards:
       - { click: '╛' }
       - { click: '╙' }
       - { click: '╜' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/hilited_menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/hilited_menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   sym264:
     name: 制表4
@@ -2477,7 +2410,7 @@ preset_keyboards:
       - { click: '╟' }
       - { click: '╠' }
       - { click: '╤' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '╚' }
       - { click: '╝' }
       - { click: '║' }
@@ -2485,7 +2418,7 @@ preset_keyboards:
       - { click: '╢' }
       - { click: '╣' }
       - { click: '╧' }
-      - { click: kb_sym26u3, __include: styl/off_sym }
+      - { click: kb_sym26u3, __include: styles/off_sym }
       - { click: '╥' }
       - { click: '╦' }
       - { click: '╭' }
@@ -2493,7 +2426,7 @@ preset_keyboards:
       - { click: '╪' }
       - { click: '╫' }
       - { click: '╬' }
-      - { click: kb_sym26d4, __include: styl/unavl_off_sym }
+      - { click: kb_sym26d4, __include: styles/unavl_off_sym }
       - { click: '╨' }
       - { click: '╩' }
       - { click: '╰' }
@@ -2501,15 +2434,15 @@ preset_keyboards:
       - { click: '╱' }
       - { click: '╲' }
       - { click: '╳' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym21, __include: styl/menu }
-      - { click: kb_sym22, __include: styl/menu }
-      - { click: kb_sym23, __include: styl/menu }
-      - { click: kb_sym24, __include: styl/menu }
-      - { click: kb_sym25, __include: styl/menu }
-      - { click: kb_sym26, __include: styl/hilited_menu }
-      - { click: '', __include: styl/menu }
-      - { click: kb_sym1, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym21, __include: styles/menu }
+      - { click: kb_sym22, __include: styles/menu }
+      - { click: kb_sym23, __include: styles/menu }
+      - { click: kb_sym24, __include: styles/menu }
+      - { click: kb_sym25, __include: styles/menu }
+      - { click: kb_sym26, __include: styles/hilited_menu }
+      - { click: '', __include: styles/menu }
+      - { click: kb_sym1, __include: styles/menu }
 
   emoji1:
     name: emoji1
@@ -2523,7 +2456,7 @@ preset_keyboards:
       - { click: '😰' }
       - { click: '😝' }
       - { click: '😁' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '😜' }
       - { click: '☺️' }
       - { click: '😉' }
@@ -2531,7 +2464,7 @@ preset_keyboards:
       - { click: '😔' }
       - { click: '😄' }
       - { click: '😏' }
-      - { click: kb_emojiu1, __include: styl/unavl_off_sym }
+      - { click: kb_emojiu1, __include: styles/unavl_off_sym }
       - { click: '😒' }
       - { click: '😳' }
       - { click: '😘' }
@@ -2539,7 +2472,7 @@ preset_keyboards:
       - { click: '😱' }
       - { click: '😂' }
       - { click: '💪' }
-      - { click: kb_emojid2, __include: styl/off_sym }
+      - { click: kb_emojid2, __include: styles/off_sym }
       - { click: '👊' }
       - { click: '👍' }
       - { click: '☝️' }
@@ -2547,15 +2480,15 @@ preset_keyboards:
       - { click: '✌️' }
       - { click: '👎' }
       - { click: '🙏' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/hilited_menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/hilited_menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   emoji2:
     name: emoji2
@@ -2569,7 +2502,7 @@ preset_keyboards:
       - { click: '👇' }
       - { click: '👀' }
       - { click: '👃' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '👄' }
       - { click: '👂' }
       - { click: '🍚' }
@@ -2577,7 +2510,7 @@ preset_keyboards:
       - { click: '🍜' }
       - { click: '🍙' }
       - { click: '🍧' }
-      - { click: kb_emojiu1, __include: styl/off_sym }
+      - { click: kb_emojiu1, __include: styles/off_sym }
       - { click: '🍣' }
       - { click: '🎂' }
       - { click: '🍞' }
@@ -2585,7 +2518,7 @@ preset_keyboards:
       - { click: '🍳' }
       - { click: '🍟' }
       - { click: '🍺' }
-      - { click: kb_emojid3, __include: styl/off_sym }
+      - { click: kb_emojid3, __include: styles/off_sym }
       - { click: '🍻' }
       - { click: '🍸' }
       - { click: '☕️' }
@@ -2593,15 +2526,15 @@ preset_keyboards:
       - { click: '🍊' }
       - { click: '🍓' }
       - { click: '🍉' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/hilited_menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/hilited_menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   emoji3:
     name: emoji3
@@ -2615,7 +2548,7 @@ preset_keyboards:
       - { click: '🎉' }
       - { click: '🌴' }
       - { click: '💝' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '🎀' }
       - { click: '🎈' }
       - { click: '🐚' }
@@ -2623,7 +2556,7 @@ preset_keyboards:
       - { click: '💣' }
       - { click: '👑' }
       - { click: '🔔' }
-      - { click: kb_emojiu2, __include: styl/off_sym }
+      - { click: kb_emojiu2, __include: styles/off_sym }
       - { click: '⭐️' }
       - { click: '✨' }
       - { click: '💨' }
@@ -2631,7 +2564,7 @@ preset_keyboards:
       - { click: '🔥' }
       - { click: '🏆' }
       - { click: '💰' }
-      - { click: kb_emojid4, __include: styl/off_sym }
+      - { click: kb_emojid4, __include: styles/off_sym }
       - { click: '💤' }
       - { click: '⚡️' }
       - { click: '👣' }
@@ -2639,15 +2572,15 @@ preset_keyboards:
       - { click: '💉' }
       - { click: '♨️' }
       - { click: '📫' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/hilited_menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/hilited_menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   emoji4:
     name: emoji4
@@ -2661,7 +2594,7 @@ preset_keyboards:
       - { click: '🚗' }
       - { click: '🚤' }
       - { click: '🚲' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '🐎' }
       - { click: '🚀' }
       - { click: '🚌' }
@@ -2669,7 +2602,7 @@ preset_keyboards:
       - { click: '👩' }
       - { click: '👨' }
       - { click: '👧' }
-      - { click: kb_emojiu3, __include: styl/off_sym }
+      - { click: kb_emojiu3, __include: styles/off_sym }
       - { click: '👦' }
       - { click: '🐵' }
       - { click: '🐙' }
@@ -2677,7 +2610,7 @@ preset_keyboards:
       - { click: '💀' }
       - { click: '🐤' }
       - { click: '🐨' }
-      - { click: kb_emojid5, __include: styl/off_sym }
+      - { click: kb_emojid5, __include: styles/off_sym }
       - { click: '🐮' }
       - { click: '🐔' }
       - { click: '🐸' }
@@ -2685,15 +2618,15 @@ preset_keyboards:
       - { click: '🐛' }
       - { click: '🐠' }
       - { click: '🐶' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/hilited_menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/hilited_menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   emoji5:
     name: emoji5
@@ -2707,7 +2640,7 @@ preset_keyboards:
       - { click: '🐭' }
       - { click: '👒' }
       - { click: '👗' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '💄' }
       - { click: '👠' }
       - { click: '👢' }
@@ -2715,7 +2648,7 @@ preset_keyboards:
       - { click: '👜' }
       - { click: '👙' }
       - { click: '👕' }
-      - { click: kb_emojiu4, __include: styl/off_sym }
+      - { click: kb_emojiu4, __include: styles/off_sym }
       - { click: '👟' }
       - { click: '☁️' }
       - { click: '☀️' }
@@ -2723,7 +2656,7 @@ preset_keyboards:
       - { click: '🌙' }
       - { click: '⛄️' }
       - { click: '⭕️' }
-      - { click: kb_emojid6, __include: styl/off_sym }
+      - { click: kb_emojid6, __include: styles/off_sym }
       - { click: '❌' }
       - { click: '❔' }
       - { click: '❕' }
@@ -2731,15 +2664,15 @@ preset_keyboards:
       - { click: '📷' }
       - { click: '📱' }
       - { click: '📠' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/hilited_menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/hilited_menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   emoji6:
     name: emoji6
@@ -2753,7 +2686,7 @@ preset_keyboards:
       - { click: '💿' }
       - { click: '💓' }
       - { click: '♣️' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '🀄️' }
       - { click: '〽️' }
       - { click: '🎰' }
@@ -2761,7 +2694,7 @@ preset_keyboards:
       - { click: '🚧' }
       - { click: '🎸' }
       - { click: '💈' }
-      - { click: kb_emojiu5, __include: styl/off_sym }
+      - { click: kb_emojiu5, __include: styles/off_sym }
       - { click: '🛀' }
       - { click: '🚽' }
       - { click: '🏠' }
@@ -2769,7 +2702,7 @@ preset_keyboards:
       - { click: '🏦' }
       - { click: '🏥' }
       - { click: '🏨' }
-      - { click: kb_emojid6, __include: styl/unavl_off_sym }
+      - { click: kb_emojid6, __include: styles/unavl_off_sym }
       - { click: '🏧' }
       - { click: '🏪' }
       - { click: '🚹' }
@@ -2777,15 +2710,15 @@ preset_keyboards:
       - { click: '' }
       - { click: '' }
       - { click: '' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_sym11, __include: styl/menu }
-      - { click: kb_sym12, __include: styl/menu }
-      - { click: kb_emoji, __include: styl/hilited_menu }
-      - { click: kb_ywz, __include: styl/menu }
-      - { click: kb_sym15, __include: styl/menu }
-      - { click: kb_sym16, __include: styl/menu }
-      - { click: kb_sym17, __include: styl/menu }
-      - { click: kb_sym2, __include: styl/menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_sym12, __include: styles/menu }
+      - { click: kb_sym11, __include: styles/menu }
+      - { click: kb_emoji, __include: styles/hilited_menu }
+      - { click: kb_ywz, __include: styles/menu }
+      - { click: kb_sym15, __include: styles/menu }
+      - { click: kb_sym16, __include: styles/menu }
+      - { click: kb_sym17, __include: styles/menu }
+      - { click: kb_sym2, __include: styles/menu }
 
   ywz11:
     name: 开心1
@@ -2795,25 +2728,25 @@ preset_keyboards:
       - { click: '^_^' }
       - { click: '^ω^' }
       - { click: '^o^' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: "~\\(≧▽≦)/~" }
       - { click: '*^_^*' }
       - { click: '↖(^ω^)↗' }
-      - { click: kb_ywz1u, __include: styl/unavl_off_sym }
+      - { click: kb_ywz1u, __include: styles/unavl_off_sym }
       - { click: '(^o^)／' }
       - { click: '(=^▽^=)' }
       - { click: '=^_^=' }
-      - { click: kb_ywz1d, __include: styl/off_sym }
+      - { click: kb_ywz1d, __include: styles/off_sym }
       - { click: '(*^ω^*)' }
       - { click: '٩(๑^o^๑)۶' }
       - { click: 'o(￣▽￣)o' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz12:
     name: 开心2
@@ -2823,24 +2756,24 @@ preset_keyboards:
       - { click: 'Y(^_^)Y' }
       - { click: "٩( 'ω' )و" }
       - { click: '╰(*´︶`*)╯' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '*罒▽罒*' }
       - { click: 'ヾ ^_^♪' }
       - { click: '=￣ω￣=' }
-      - { click: kb_ywz1u, __include: styl/off_sym }
+      - { click: kb_ywz1u, __include: styles/off_sym }
       - { click: '︿(￣︶￣)︿' }
       - { click: '(´▽｀)ノ♪' }
       - { click: '乁( ˙ ω˙乁)' }
-      - { click: kb_ywz1d, __include: styl/unavl_off_sym }
+      - { click: kb_ywz1d, __include: styles/unavl_off_sym }
       - { click: '✧*｡٩(ˊωˋ*)و✧*｡', key_text_size: '13' }
-      - { click: '～(￣▽￣～)(～￣▽￣)～', __include: styl/ywz_double_width }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: '～(￣▽￣～)(～￣▽￣)～', __include: styles/ywz_double_width }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz21:
     name: 喜欢1
@@ -2850,25 +2783,25 @@ preset_keyboards:
       - { click: 'QwQ' }
       - { click: '(●—●)' }
       - { click: '(๑• . •๑)' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: 'ヾ(≧O≦)〃嗷~', key_text_size: '14' }
       - { click: '罒ω罒' }
       - { click: '(｡ì _ í｡)' }
-      - { click: kb_ywz2u, __include: styl/unavl_off_sym }
+      - { click: kb_ywz2u, __include: styles/unavl_off_sym }
       - { click: '(๑•ี_เ•ี๑)' }
       - { click: 'ㄟ(≧◇≦)ㄏ' }
       - { click: '(*/ω＼*)' }
-      - { click: kb_ywz2d, __include: styl/off_sym }
+      - { click: kb_ywz2d, __include: styles/off_sym }
       - { click: '●▽●' }
       - { click: '٩(๑òωó๑)۶' }
       - { click: '✺◟(∗❛ัᴗ❛ั∗)◞✺', key_text_size: '14' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz22:
     name: 喜欢2
@@ -2878,25 +2811,25 @@ preset_keyboards:
       - { click: "( σ'ω')σ" }
       - { click: '♡＾▽＾♡' }
       - { click: '(๑•̀ㅂ•́)و✧' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '(ง •̀_•́)ง' }
       - { click: '(｡･ω･｡)ﾉ♡' }
       - { click: '(☆_☆)' }
-      - { click: kb_ywz2u, __include: styl/off_sym }
+      - { click: kb_ywz2u, __include: styles/off_sym }
       - { click: '(๑°3°๑)' }
       - { click: '_(•̀ω•́ 」∠)_' }
       - { click: '♪～(´ε｀　)' }
-      - { click: kb_ywz2d, __include: styl/unavl_off_sym }
+      - { click: kb_ywz2d, __include: styles/unavl_off_sym }
       - { click: '～(^з^)-☆' }
       - { click: '(´∀｀)♡' }
       - { click: 'ლ(´ڡ`ლ)' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz31:
     name: 伤心1
@@ -2906,25 +2839,25 @@ preset_keyboards:
       - { click: '(＞﹏＜)' }
       - { click: 'T_T' }
       - { click: '⊙︿⊙' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '〒▽〒' }
       - { click: '⊙﹏⊙' }
       - { click: 'π_π' }
-      - { click: kb_ywz3u, __include: styl/unavl_off_sym }
+      - { click: kb_ywz3u, __include: styles/unavl_off_sym }
       - { click: '(｡•́︿•̀｡)' }
       - { click: '(ToT)/~~~' }
       - { click: '╯﹏╰' }
-      - { click: kb_ywz3d, __include: styl/off_sym }
+      - { click: kb_ywz3d, __include: styles/off_sym }
       - { click: 'ಥ_ಥ' }
       - { click: '(╥╯^╰╥)' }
       - { click: '(〃′o`)' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz32:
     name: 伤心2
@@ -2934,25 +2867,25 @@ preset_keyboards:
       - { click: '●﹏●' }
       - { click: '( •̥́ ˍ •̀ू )' }
       - { click: '(つд⊂)' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '心塞(´-ωก`)' }
       - { click: '(╥﹏╥)' }
       - { click: '┭┮﹏┭┮' }
-      - { click: kb_ywz3u, __include: styl/off_sym }
+      - { click: kb_ywz3u, __include: styles/off_sym }
       - { click: '（；´д｀）ゞ' }
       - { click: '(´;︵;`)' }
       - { click: '(。﹏。)' }
-      - { click: kb_ywz3d, __include: styl/unavl_off_sym }
+      - { click: kb_ywz3d, __include: styles/unavl_off_sym }
       - { click: '┗( T﹏T )┛' }
       - { click: 'QAQ' }
       - { click: 'ヘ(_ _ヘ)' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz41:
     name: 生气1
@@ -2962,25 +2895,25 @@ preset_keyboards:
       - { click: '╰（‵□′）╯' }
       - { click: '(*￣︿￣)' }
       - { click: '>o<' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '(-`ェ´-怒)' }
       - { click: 'ヽ(‘⌒´メ)ノ' }
       - { click: '(*｀Ω´*)v' }
-      - { click: kb_ywz4u, __include: styl/unavl_off_sym }
+      - { click: kb_ywz4u, __include: styles/unavl_off_sym }
       - { click: '(｡•ˇ‸ˇ•｡)' }
       - { click: '(怒｀Д´怒)' }
       - { click: '٩(๑`^´๑)۶' }
-      - { click: kb_ywz4d, __include: styl/off_sym }
+      - { click: kb_ywz4d, __include: styles/off_sym }
       - { click: '(;｀O´)o' }
       - { click: '╰_╯' }
       - { click: '(#｀皿´)<怒怒怒!!!', key_text_size: '13' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz42:
     name: 生气2
@@ -2990,25 +2923,25 @@ preset_keyboards:
       - { click: '<(｀^´)>' }
       - { click: '（｀Δ´）！' }
       - { click: 'ψ(｀∇´)ψ' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '(；′⌒`)' }
       - { click: 's(・｀ヘ´・;)ゞ', key_text_size: '14' }
       - { click: '(▼皿▼#)' }
-      - { click: kb_ywz4u, __include: styl/off_sym }
+      - { click: kb_ywz4u, __include: styles/off_sym }
       - { click: '￣へ￣' }
       - { click: '←_←' }
       - { click: '（╯‵□′）╯︵┴─┴', key_text_size: '12' }
-      - { click: kb_ywz4d, __include: styl/unavl_off_sym }
+      - { click: kb_ywz4d, __include: styles/unavl_off_sym }
       - { click: '（▼へ▼メ）' }
       - { click: '☄ฺ(◣д◢)☄ฺ' }
       - { click: '→_→' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz51:
     name: 惊讶1
@@ -3018,25 +2951,25 @@ preset_keyboards:
       - { click: '⊙_⊙' }
       - { click: 'd(ŐдŐ๑)' }
       - { click: 'Σ( ° △ °|||)︴' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '(((φ(◎ロ◎;)φ)))', key_text_size: '13' }
       - { click: '⊙▽⊙' }
       - { click: '(๑ŐдŐ)b' }
-      - { click: kb_ywz5u, __include: styl/unavl_off_sym }
+      - { click: kb_ywz5u, __include: styles/unavl_off_sym }
       - { click: '╭(°A°`)╮' }
       - { click: '(๑òᆺó๑)' }
       - { click: '⊙ω⊙' }
-      - { click: kb_ywz5d, __include: styl/off_sym }
+      - { click: kb_ywz5d, __include: styles/off_sym }
       - { click: 'Σ(っ °Д °;)っ' }
       - { click: ' (ﾟДﾟ≡ﾟдﾟ)!?' }
       - { click: '( *・ω・)✄╰ひ╯', key_text_size: '12' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz52:
     name: 惊讶2
@@ -3046,23 +2979,23 @@ preset_keyboards:
       - { click: '(⊙x⊙;)' }
       - { click: '┌(。Д。)┐' }
       - { click: '(°ー°〃)' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '︽⊙_⊙︽' }
       - { click: '!!!∑(°Д°ノ)ノ' }
       - { click: '!!!∑(°Д°ノ)ノ' }
-      - { click: kb_ywz5u, __include: styl/off_sym }
+      - { click: kb_ywz5u, __include: styles/off_sym }
       - { click: 'Σ⊙▃⊙川' }
-      - { click: '(๑ŐдŐ)b☆d(ŐдŐ๑)', __include: styl/ywz_double_width }
-      - { click: kb_ywz5d, __include: styl/unavl_off_sym }
+      - { click: '(๑ŐдŐ)b☆d(ŐдŐ๑)', __include: styles/ywz_double_width }
+      - { click: kb_ywz5d, __include: styles/unavl_off_sym }
       - { click: 'ヽ(*。>Д<)o゜' }
-      - { click: '━((*′д｀)爻(′д｀*))━!!!!', __include: styl/ywz_double_width }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_hilited_menu }
-      - { click: kb_ywz6, __include: styl/ywz_menu }
+      - { click: '━((*′д｀)爻(′д｀*))━!!!!', __include: styles/ywz_double_width }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_hilited_menu }
+      - { click: kb_ywz6, __include: styles/ywz_menu }
 
   ywz61:
     name: 无奈1
@@ -3072,25 +3005,25 @@ preset_keyboards:
       - { click: '=_=' }
       - { click: '╮(╯_╰)╭' }
       - { click: '（︶︿︶）' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '_(:з」∠)_' }
       - { click: '@_@' }
       - { click: '╮(╯▽╰)╭' }
-      - { click: kb_ywz6u, __include: styl/unavl_off_sym }
+      - { click: kb_ywz6u, __include: styles/unavl_off_sym }
       - { click: '(＠￣ー￣＠)' }
       - { click: '_(:3」∠❀)_' }
       - { click: '눈_눈' }
-      - { click: kb_ywz6d, __include: styl/off_sym }
+      - { click: kb_ywz6d, __include: styles/off_sym }
       - { click: '╭(╯ε╰)╮' }
       - { click: '(ー_ー)!!' }
       - { click: '_(:D)∠)_' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_hilited_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_hilited_menu }
 
   ywz62:
     name: 无奈2
@@ -3100,173 +3033,172 @@ preset_keyboards:
       - { click: 'o_O' }
       - { click: '╭(╯^╰)╮' }
       - { click: '(；一_一)' }
-      - { click: Back, __include: styl/off_sym }
+      - { click: Back, __include: styles/off_sym }
       - { click: '´_>`' }
       - { click: '-_-#' }
       - { click: '┑(￣Д ￣)┍' }
-      - { click: kb_ywz6u, __include: styl/off_sym }
+      - { click: kb_ywz6u, __include: styles/off_sym }
       - { click: '≡￣﹏￣≡' }
       - { click: '○|￣|_' }
       - { click: '-_-||' }
-      - { click: kb_ywz6d, __include: styl/unavl_off_sym }
+      - { click: kb_ywz6d, __include: styles/unavl_off_sym }
       - { click: 'ㄟ( ▔, ▔ )ㄏ' }
       - { click: '( ＿ ＿)ノ｜壁' }
       - { click: '▄█▀█●' }
-      - { click: BackSpace, __include: styl/off_sym }
-      - { click: kb_ywz1, __include: styl/ywz_menu }
-      - { click: kb_ywz2, __include: styl/ywz_menu }
-      - { click: kb_ywz3, __include: styl/ywz_menu }
-      - { click: kb_ywz4, __include: styl/ywz_menu }
-      - { click: kb_ywz5, __include: styl/ywz_menu }
-      - { click: kb_ywz6, __include: styl/ywz_hilited_menu }
+      - { click: BackSpace, __include: styles/off_sym }
+      - { click: kb_ywz1, __include: styles/ywz_menu }
+      - { click: kb_ywz2, __include: styles/ywz_menu }
+      - { click: kb_ywz3, __include: styles/ywz_menu }
+      - { click: kb_ywz4, __include: styles/ywz_menu }
+      - { click: kb_ywz5, __include: styles/ywz_menu }
+      - { click: kb_ywz6, __include: styles/ywz_hilited_menu }
 
   default:
     name: 26键
-    author: 'amzxyz'
+    author: 'boomker'
     ascii_mode: 0
     label_transform: uppercase   #键盘字母转化为大写
     lock: true #切换程序时记忆键盘
     width: 10
-    __patch: 
+    __patch:
       - conf/main_en
       - 'keys/@40/height': { __include: conf/key_height_last }
     keys:
       # 数字行
-#      - {click: num1, __include: conf/num_line}
-#      - {click: num2}
-#      - {click: num3}
-#      - {click: num4}
-#      - {click: num5}
-#      - {click: num6}
-#      - {click: num7}
-#      - {click: num8}
-#      - {click: num9}
-#      - {click: num0}
+      - {click: num1, __include: conf/num_line}
+      - {click: num2}
+      - {click: num3}
+      - {click: num4}
+      - {click: num5}
+      - {click: num6}
+      - {click: num7}
+      - {click: num8}
+      - {click: num9}
+      - {click: num0}
       # 第 1 行
-      - { click: 'q', long_click: '!', swipe_down: 1, __include: styl/key }
-      - { click: 'w', long_click: '@', swipe_down: 2, __include: styl/key }
-      - { click: 'e', long_click: '#', swipe_down: 3, __include: styl/key }
+      - { click: 'q', long_click: '!', swipe_down: 1, __include: styles/key }
+      - { click: 'w', long_click: '@', swipe_down: 2, __include: styles/key }
+      - { click: 'e', long_click: '#', swipe_down: 3, __include: styles/key }
       - {
           click: 'r',
           long_click: '$',
           swipe_down: 4,
           hint: 4,
-          __include: styl/key,
+          __include: styles/key,
         }
-      - { click: 't', long_click: '%', swipe_down: 5, __include: styl/key }
-      - { click: 'y', long_click: '^', swipe_down: 6, __include: styl/key }
+      - { click: 't', long_click: '%', swipe_down: 5, __include: styles/key }
+      - { click: 'y', long_click: '^', swipe_down: 6, __include: styles/key }
       - {
           click: 'u',
           long_click: '&',
           swipe_down: 7,
           hint: 7,
-          __include: styl/key,
+          __include: styles/key,
         }
-      - { click: 'i', long_click: '*', swipe_down: 8, __include: styl/key }
-      - { click: 'o', long_click: '"', swipe_down: 9, __include: styl/key }
-      - { click: 'p', long_click: "danyinhao", swipe_down: 0, __include: styl/key }
+      - { click: 'i', long_click: '*', swipe_down: 8, __include: styles/key }
+      - { click: 'o', long_click: '"', swipe_down: 9, __include: styles/key }
+      - { click: 'p', long_click: "danyinhao", swipe_down: 0, __include: styles/key }
       # 第 2 行
       - { width: 5 }
-      - { click: 'a', long_click: select_all, __include: styl/key }
+      - { click: 'a', long_click: select_all, __include: styles/key }
       - {
           click: 's',
           long_click: '<',
-          __include: styl/key,
+          __include: styles/key,
         }
       - {
           click: 'd',
           long_click: '>',
-          __include: styl/key,
+          __include: styles/key,
         }
       - {
           click: 'f',
           long_click: '{',
-          __include: styl/key,
+          __include: styles/key,
         }
       - {
           click: 'g',
           long_click: '}',
           swipe_down: kb_edit,
           hint: '<ɪ>',
-          __include: styl/key,
+          __include: styles/key,
         }
       - {
           click: 'h',
           long_click: 'zkhz',
-          __include: styl/key,
+          __include: styles/key,
         }
       - {
           click: 'j',
           long_click: 'zkhy',
-          __include: styl/key,
+          __include: styles/key,
         }
-      - { click: 'k', long_click: '(', __include: styl/key }
-      - { click: 'l', long_click: ")", __include: styl/key }
+      - { click: 'k', long_click: '(', __include: styles/key }
+      - { click: 'l', long_click: ")", __include: styles/key }
       # 第 3 行
-      - { click: Shift_L, composing: split_word, width: 15 }   
-#      - { click: Shift_L, width: 15 }
-      - { click: 'z',long_click: 'fanyinhao', __include: styl/key }
-      - { click: 'x', long_click: cut, __include: styl/key }
-      - { click: 'c', long_click: copy, __include: styl/key }
-      - { click: 'v', long_click: paste, __include: styl/key }
+      - { click: Shift_L, composing: split_word, width: 15 }
+      # - { click: Shift_L, width: 15 }
+      - { click: 'z',long_click: 'fanyinhao', __include: styles/key }
+      - { click: 'x', long_click: cut, __include: styles/key }
+      - { click: 'c', long_click: copy, __include: styles/key }
+      - { click: 'v', long_click: paste, __include: styles/key }
       - {
           click: 'b',
           long_click: 'xiegang',
-          __include: styl/key,
+          __include: styles/key,
         }
       - {
           click: 'n',
           long_click: ':',
-          __include: styl/key,
+          __include: styles/key,
         }
-      - { click: 'm', long_click: 'fenhao', __include: styl/key }
-      - { click: BS, width: 15, 
+      - { click: 'm', long_click: 'fenhao', __include: styles/key }
+      - { click: BS, width: 15,
           swipe_up: 'Escape',
         }
       # 第 4 行
       - {
           click: Keyboard_symbols,
           long_click: Color_switch,
+          composing: Tab,
           width: 11,
-          __include: styl/off_key,
-        }     
+          __include: styles/off_key,
+        }
       - {
           click: Keyboard_number,
-          composing: Tab,
-          width: 12,      
-          __include: styl/off_key,
+          composing: xiegang,
+          width: 12,
+          __include: styles/off_key,
           __patch: conf/key_height_last,
-        }  
-
-      - { click: 'douhao', 
+        }
+      - { click: 'douhao',
           label: ' ，',
-          long_click: '、', 
-          width: 11, 
-          __include: styl/key, 
-          } 
+          long_click: '、',
+          width: 11,
+          __include: styles/key,
+          }
       - {
-          click: space,                        
-#          long_click: VOICE_ASSIST,
+          click: space,
+          # long_click: VOICE_ASSIST,
           swipe_up: Clear,
           swipe_down: liquid_keyboard_clipboard,
           key_symbol_offset_x: 0,
-          width: 30,
+          width: 29,
           key_back_color: space_back_color,
           hilited_key_back_color: hilited_space_back_color,
-        }        
+        }
       - {
-          click: '.',
+          click: 'juhao',
           label: ' 。',
           long_click: '?',
           width: 11,
-          __include: styl/key,
+          __include: styles/key,
         }
-
       - {
           click: 'Mode_switch',
-          composing: "xiegang",
+          composing: CommitScriptText,
           width: 11,
-          __include: styl/off_key,  
+          __include: styles/off_key,
         }
       - {
           click: Return,
@@ -3280,12 +3212,207 @@ preset_keyboards:
           hilited_key_symbol_color: enter_symbol_color,
           key_symbol_offset_x: 0,
         }
-#下面新增最后一排按钮
-      - { click: IME_switch1, width: 20, height: 25, key_back_color: keyboard_back_color }
-      - { click: Left, width: 20, height: 25, key_back_color: keyboard_back_color }  
-      - { click: 'VOICE_ASSIST', width: 20, height: 25, key_back_color: keyboard_back_color }
-      - { click: Right, width: 20, height: 25, key_back_color: keyboard_back_color } 
-      - { click: 'Back1', width: 20, height: 25, key_back_color: keyboard_back_color }
+      # 下面新增最后一排按钮
+      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
+      # - { click: bihua, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+
+  18jian:
+    name: 18键
+    author: 'boomker'
+    ascii_mode: 0
+    label_transform: uppercase   #键盘字母转化为大写
+    lock: true #切换程序时记忆键盘
+    width: 10
+    __patch:
+      - conf/main
+      - 'keys/@40/height': { __include: conf/key_height_last }
+    keys:
+      # 数字行
+      - {click: num1, __include: conf/num_line}
+      - {click: num2}
+      - {click: num3}
+      - {click: num4}
+      - {click: num5}
+      - {click: num6}
+      - {click: num7}
+      - {click: num8}
+      - {click: num9}
+      - {click: num0}
+      # 第 1 行
+      - { click: '18keyq', long_click: '!', swipe_down: 'fanxiegang', hint: '\', width: 14.3, __include: styles/key }
+      - { click: '18keywe', long_click: '@', swipe_down: "{", hint: "{", width: 14.3, __include: styles/key }
+      - { click: '18keyrt', long_click: '#', swipe_down: "}", hint: "}", width: 14.3, __include: styles/key }
+      - { click: '18keyy', long_click: '$', swipe_down: "[", hint: "[", width: 14.3, __include: styles/key }
+      - { click: '18keyu', long_click: '%', swipe_down: "]", hint: "]", width: 14.3, __include: styles/key }
+      - { click: '18keyio', long_click: '^', swipe_down: "(", hint: "(", width: 14.3, __include: styles/key }
+      - { click: '18keyp', long_click: '&', swipe_down: ")", hint: ")", width: 14.3, __include: styles/key }
+      # 第 2 行
+      - { click: '18keya', long_click: 'select_all', width: 16.6, __include: styles/key }
+      - { click: '18keysd', long_click: '_', width: 16.6, __include: styles/key }
+      - { click: '18keyfg', long_click: "-", width: 16.6, __include: styles/key }
+      - { click: '18keyh', long_click: "*", width: 16.6, __include: styles/key }
+      - { click: '18keyjk', long_click: '"', __include: styles/key, width: 16.6 }
+      - { click: '18keyl', long_click: "'", __include: styles/key, width: 16.6 }
+      # 第 3 行
+      - { click: liquid_keyboard_clipboard, composing: split_word, width: 14.3 }
+      # - { click: Shift_L, width: 15 }
+      - { click: '18keyz',long_click: 'fanyinhao', width: 14.3, __include: styles/key }
+      - { click: '18keyxc', long_click: copy, width: 14.3, __include: styles/key }
+      - { click: '18keyv', long_click: paste, width: 14.3, __include: styles/key }
+      - { click: '18keybn', long_click: ":", width: 14.3, __include: styles/key }
+      - { click: '18keym', long_click: ';', width: 14.3, __include: styles/key }
+      - { click: BS, width: 14.3, swipe_up: 'Escape' }
+      # 第 4 行
+      - { click: 18Keyboard_symbols, long_click: Color_switch, composing: Tab, width: 11.5, __include: styles/off_key }
+      - { click: 18Keyboard_number, composing: xiegang, width: 11.5, __include: styles/off_key, __patch: conf/key_height_last }
+      - { click: '，', label: '，', long_click: '、', width: 10, key_symbol_offset_x: 4, __include: styles/key,  }
+      - { click: space, swipe_up: Clear, swipe_down: liquid_keyboard_clipboard, key_symbol_offset_x: 0, width: 30, key_back_color: space_back_color, hilited_key_back_color: hilited_space_back_color }
+      - { click: '。', label: '。', long_click: '？', width: 10, key_symbol_offset_x: 4, __include: styles/key }
+      - { click: 'Keyboard_letter_18jian', composing: "CommitScriptText", width: 11.5, __include: styles/off_key }
+      - {
+          click: Return,
+          long_click: kb_func,
+          width: 16,
+          key_back_color: enter_back_color,
+          hilited_key_back_color: hilited_enter_back_color,
+          key_text_color: enter_text_color,
+          hilited_key_text_color: enter_text_color,
+          key_symbol_color: enter_symbol_color,
+          hilited_key_symbol_color: enter_symbol_color,
+          key_symbol_offset_x: 0,
+        }
+      # 下面新增最后一排按钮
+      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
+      # - { click: bihua, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+
+  14jian:
+    name: 14键
+    author: 'boomker'
+    ascii_mode: 0
+    label_transform: uppercase   #键盘字母转化为大写
+    lock: true #切换程序时记忆键盘
+    width: 10
+    __patch:
+      - conf/main
+      - 'keys/@40/height': { __include: conf/key_height_last }
+    keys:
+      # 数字行
+      - {click: num1, __include: conf/num_line}
+      - {click: num2}
+      - {click: num3}
+      - {click: num4}
+      - {click: num5}
+      - {click: num6}
+      - {click: num7}
+      - {click: num8}
+      - {click: num9}
+      - {click: num0}
+      # 第 1 行
+      - { click: '14keyqw', long_click: '!', swipe_down: '\', hint: '\', width: 20, __include: styles/key }
+      - { click: '14keyer', long_click: '@', swipe_down: "{", hint: "{", width: 20, __include: styles/key }
+      - { click: '14keyty', long_click: '#', swipe_down: "}", hint: "}", width: 20, __include: styles/key }
+      - { click: '14keyui', long_click: '$', swipe_down: "[", hint: "[", width: 20, __include: styles/key }
+      - { click: '14keyop', long_click: '%', swipe_down: "]", hint: "]", width: 20, __include: styles/key }
+      # 第 2 行
+      - { click: '14keyas', long_click: 'select_all', swipe_down: "(", hint: "(", width: 20, __include: styles/key }
+      - { click: '14keydf', long_click: '&', swipe_down: ")", hint: ")", width: 20, __include: styles/key }
+      - { click: '14keygh', long_click: '*', swipe_down: "<", hint: "<", width: 20, __include: styles/key }
+      - { click: '14keyjk', long_click: '"', width: 20, swipe_down: ">", hint: ">", __include: styles/key }
+      - { click: '14keyl', long_click: "danyinhao", swipe_down: "/", hint: "/", width: 20, __include: styles/key }
+      # 第 3 行
+      - { click: liquid_keyboard_clipboard, composing: split_word, width: 16 }
+      - { click: '14keyzx', long_click: "copy", width: 17, __include: styles/key }
+      - { click: '14keycv', long_click: 'paste', __include: styles/key, width: 17 }
+      - { click: '14keybn', long_click: ':', __include: styles/key, width: 17 }
+      - { click: '14keym', long_click: "fenhao", __include: styles/key, width: 17 }
+      - { click: BS, width: 16, swipe_up: 'Escape' }
+      # 第 4 行
+      - { click: 14Keyboard_symbols, long_click: Color_switch, composing: Tab, width: 11.5, __include: styles/off_key }
+      - { click: 14Keyboard_number, composing: xiegang, width: 11.5, __include: styles/off_key, __patch: conf/key_height_last }
+      - { click: '，', label: '，', long_click: '、', width: 10, key_symbol_offset_x: 4, __include: styles/key,  }
+      - { click: space, swipe_up: Clear, swipe_down: liquid_keyboard_clipboard, key_symbol_offset_x: 0, width: 30, key_back_color: space_back_color, hilited_key_back_color: hilited_space_back_color }
+      - { click: '。', label: '。', long_click: '？', width: 10, key_symbol_offset_x: 4, __include: styles/key }
+      - { click: 'Keyboard_letter_14jian', composing: "CommitScriptText", width: 11.5, __include: styles/off_key }
+      - {
+          click: Return,
+          long_click: kb_func,
+          width: 16,
+          key_back_color: enter_back_color,
+          hilited_key_back_color: hilited_enter_back_color,
+          key_text_color: enter_text_color,
+          hilited_key_text_color: enter_text_color,
+          key_symbol_color: enter_symbol_color,
+          hilited_key_symbol_color: enter_symbol_color,
+          key_symbol_offset_x: 0,
+        }
+      # 下面新增最后一排按钮
+      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
+      # - { click: bihua, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
+
+  9jian:
+    name: 9键
+    author: 'boomker'
+    ascii_mode: 0
+#    label_transform: uppercase   #键盘字母转化为大写
+    lock: true #切换程序时记忆键盘
+    width: 10
+    __patch:
+      - conf/main
+    keys:
+      # 第 1 行
+      - { click: liquid_keyboard_clipboard, width: 16, long_click: cut }
+      - { click: split_word, long_click: '1', width: 22, __include: styles/key }
+      - { click: '9keyabc', long_click: '2', width: 22, __include: styles/key }
+      - { click: '9keydef', long_click: '3', width: 22, __include: styles/key }
+      - { click: BS, width: 18 }
+      # 第 2 行
+      - { click: '，', long_click: '、', width: 16, key_back_color: off_key_back_color }
+      - { click: '9keyghi', long_click: '4', width: 22, __include: styles/key }
+      - { click: '9keyjkl', long_click: '5', width: 22, __include: styles/key }
+      - { click: '9keymno', long_click: '6', width: 22, __include: styles/key }
+      - { click: 'Escape1', long_click: copy, width: 18, key_back_color: off_key_back_color }
+      # 第 3 行
+      - { click: '。', long_click: '？', width: 16, key_back_color: off_key_back_color }
+      - { click: '9keypqrs', long_click: '7', width: 22, __include: styles/key }
+      - { click: '9keytuv', long_click: '8', width: 22, __include: styles/key }
+      - { click: '9keywxyz', long_click: '9', width: 22, __include: styles/key }
+      - { click: '0', long_click: paste, width: 18, key_back_color: off_key_back_color }
+      # 第 4 行
+      - { click: 9Keyboard_symbols, long_click: Color_switch, composing: Tab, width: 16, __include: styles/off_key }
+      - { click: 9Keyboard_number, composing: xiegang, width: 16, __include: styles/off_key, __patch: conf/key_height_last }
+      - { click: space, swipe_up: Clear, swipe_down: liquid_keyboard_clipboard, key_symbol_offset_x: 0, width: 34, key_back_color: space_back_color, hilited_key_back_color: hilited_space_back_color }
+      - { click: 'Keyboard_letter_9jian', composing: "CommitScriptText", width: 16, __include: styles/off_key }
+      - {
+          click: Return,
+          long_click: kb_func,
+          width: 18,
+          key_back_color: enter_back_color,
+          hilited_key_back_color: hilited_enter_back_color,
+          key_text_color: enter_text_color,
+          hilited_key_text_color: enter_text_color,
+          key_symbol_color: enter_symbol_color,
+          hilited_key_symbol_color: enter_symbol_color,
+          key_symbol_offset_x: 0,
+        }
+      # 下面新增最后一排按钮
+      - { click: IME_switch1, width: 18, height: 25, key_back_color: keyboard_back_color }
+      - { click: Left, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: fancha, width: 16, height: 25, key_back_color: keyboard_back_color }
+      # - { click: bihua, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: Right, width: 16, height: 25, key_back_color: keyboard_back_color }
+      - { click: 'Back1', width: 18, height: 25, key_back_color: keyboard_back_color }
 
   letter:
     ascii_mode: 1
@@ -3295,11 +3422,115 @@ preset_keyboards:
       - conf/main_en
       - 'keys/@33/long_click': Keyboard_default
       - 'keys/@40/height': { __include: conf/key_height_last }
-      
+
+  letter_9jian:
+    ascii_mode: 1
+    lock: false
+    __include: preset_keyboards/letter_18jian
+    __patch:
+      - conf/main_en
+      - 'keys/@39/click': 9Keyboard_symbolsen
+      - 'keys/@40/click': 9Keyboard_numberen
+      - 'keys/@44/click': Keyboard_9jian
+
+  letter_14jian:
+    ascii_mode: 1
+    lock: false
+    __include: preset_keyboards/letter_18jian
+    __patch:
+      - conf/main_en
+      - 'keys/@39/click': 14Keyboard_symbolsen
+      - 'keys/@40/click': 14Keyboard_numberen
+      - 'keys/@44/click': Keyboard_14jian
+
+  letter_18jian:
+    ascii_mode: 1
+    lock: false
+    name: 英文键盘
+    author: 'boomker'
+    width: 10
+    __patch:
+      - conf/main_en
+    keys:
+      # 数字行
+      - {click: num1, __include: conf/num_line}
+      - {click: num2}
+      - {click: num3}
+      - {click: num4}
+      - {click: num5}
+      - {click: num6}
+      - {click: num7}
+      - {click: num8}
+      - {click: num9}
+      - {click: num0}
+      # 第 1 行
+      - { click: 'q', long_click: '!', __include: styles/key }
+      - { click: 'w', long_click: '@', __include: styles/key }
+      - { click: 'e', long_click: '#', __include: styles/key }
+      - { click: 'r', long_click: '$', __include: styles/key }
+      - { click: 't', long_click: '%', __include: styles/key }
+      - { click: 'y', long_click: '^', __include: styles/key }
+      - { click: 'u', long_click: '&', __include: styles/key }
+      - { click: 'i', long_click: '*', __include: styles/key }
+      - { click: 'o', long_click: '(', __include: styles/key }
+      - { click: 'p', long_click: ')', __include: styles/key }
+      # 第 2 行
+      - { width: 5 }
+      - { click: 'a', long_click: select_all, __include: styles/key }
+      - { click: 's', long_click: '_', __include: styles/key }
+      - { click: 'd', long_click: '-', __include: styles/key }
+      - { click: 'f', long_click: '+', __include: styles/key }
+      - { click: 'g', long_click: '=', __include: styles/key }
+      - { click: 'h', long_click: '*', __include: styles/key }
+      - { click: 'j', long_click: '/', __include: styles/key }
+      - { click: 'k', long_click: '"', __include: styles/key }
+      - { click: 'l', long_click: "'", __include: styles/key }
+      # 第 3 行
+      - { click: Shift_L, width: 15 }
+      - { click: 'z',long_click: '`', __include: styles/key }
+      - { click: 'x', long_click: cut, __include: styles/key }
+      - { click: 'c', long_click: copy, __include: styles/key }
+      - { click: 'v', long_click: paste, __include: styles/key }
+      - { click: 'b', long_click: '√', __include: styles/key }
+      - { click: 'n', long_click: ':', __include: styles/key }
+      - { click: 'm', long_click: ';', __include: styles/key }
+      - { click: BS, width: 15, swipe_up: 'Escape' }
+      # 第 4 行
+      - { click: 18Keyboard_symbolsen, long_click: Color_switch, width: 11, __include: styles/off_key }
+      - { click: 18Keyboard_numberen, width: 12, __include: styles/off_key, __patch: conf/key_height_last }
+      - { click: ',', long_click: '、', width: 11, __include: styles/key }
+      - {
+          click: space,
+          swipe_up: Clear,
+          swipe_down: liquid_keyboard_clipboard,
+          key_symbol_offset_x: 0,
+          width: 29,
+          key_back_color: space_back_color,
+          hilited_key_back_color: hilited_space_back_color,
+        }
+      - { click: '.', long_click: '?', width: 11, __include: styles/key }
+      - { click: 'Keyboard_18jian', width: 11, __include: styles/off_key }
+      - {
+          click: Return,
+          long_click: kb_func,
+          width: 15,
+          key_back_color: enter_back_color,
+          hilited_key_back_color: hilited_enter_back_color,
+          key_text_color: enter_text_color,
+          hilited_key_text_color: enter_text_color,
+          key_symbol_color: enter_symbol_color,
+          hilited_key_symbol_color: enter_symbol_color,
+          key_symbol_offset_x: 0,
+        }
+      # 下面新增最后一排按钮
+      - { click: IME_switch1, width: 25, height: 25, key_back_color: keyboard_back_color }
+      - { click: Left, width: 25, height: 25, key_back_color: keyboard_back_color }
+      - { click: Right, width: 25, height: 25, key_back_color: keyboard_back_color }
+      - { click: 'Back1', width: 25, height: 25, key_back_color: keyboard_back_color }
 
   number:
     name: 数字
-    author: 'amzxyz'
+    author: 'boomker'
     ascii_mode: 0
     width: 16.6
     __patch:
@@ -3312,21 +3543,21 @@ preset_keyboards:
       - { click: 1 }
       - { click: 2 }
       - { click: 3 }
-      - { click: Back, __include: styl/off_func }
+      - { click: Back, __include: styles/off_func }
       # 第二行
       - { click: '[]{Left}', long_click: 'riqi' }
       - { click: '-', long_click: '±' }
       - { click: 4 }
       - { click: 5 }
       - { click: 6 }
-      - { click: Delete, __include: styl/off_func }
+      - { click: Delete, __include: styles/off_func }
       # 第三行
       - { click: '(){Left}', long_click: 'jine' }
       - { click: '*', long_click: '×' }
       - { click: 7 }
       - { click: 8 }
       - { click: 9 }
-      - { click: BackSpace, __include: styl/off_func }
+      - { click: BackSpace, __include: styles/off_func }
       # 第四行
       - { click: '=', long_click: 'jisuan' }
       - { click: '/', long_click: '÷' }
@@ -3341,61 +3572,119 @@ preset_keyboards:
           hilited_key_text_color: enter_sym_text_color,
         }
 
+  9number:
+    __include: preset_keyboards/number
+    __patch:
+      - 'keys/@5/click': Back9
+
+  14number:
+    __include: preset_keyboards/number
+    __patch:
+      - 'keys/@5/click': Back14
+
+  18number:
+    __include: preset_keyboards/number
+    __patch:
+      - 'keys/@5/click': Back18
+
+  9numberen:
+    __include: preset_keyboards/number
+    __patch:
+      - 'keys/@5/click': Back9en
+
+  14numberen:
+    __include: preset_keyboards/number
+    __patch:
+      - 'keys/@5/click': Back14en
+
+  18numberen:
+    __include: preset_keyboards/number
+    __patch:
+      - 'keys/@5/click': Back18en
+
+  9symbols:
+    __include: preset_keyboards/symbols
+    __patch:
+      - 'keys/@7/click': Back9
+  14symbols:
+    __include: preset_keyboards/symbols
+    __patch:
+      - 'keys/@7/click': Back14
+  18symbols:
+    __include: preset_keyboards/symbols
+    __patch:
+      - 'keys/@7/click': Back18
+  9symbolsen:
+    __include: preset_keyboards/symbols
+    __patch:
+      - 'keys/@7/click': Back9en
+  14symbolsen:
+    __include: preset_keyboards/symbols
+    __patch:
+      - 'keys/@7/click': Back14en
+  18symbolsen:
+    __include: preset_keyboards/symbols
+    __patch:
+      - 'keys/@7/click': Back18en
+
   edit:
     name: 编辑
-    author: 'amzxyz'
+    author: 'boomker'
     ascii_mode: 0
     width: 25
     __patch:
       - conf/num
       - conf/num_height
     keys:
-      - { click: Home, __include: styl/off_func }
-      - { click: Up, __include: styl/off_func }
-      - { click: cut, __include: styl/off_func }
-      - { click: Back, __include: styl/off_func }
-      - { click: Left, __include: styl/off_func }
+      - { click: Home, __include: styles/off_func }
+      - { click: Up, __include: styles/off_func }
+      - { click: cut, __include: styles/off_func }
+      - { click: Back, __include: styles/off_func }
+      - { click: Left, __include: styles/off_func }
       - {
           click: Shift_L,
           label: 选择,
           key_back_color: off_sym_back_color,
           hilited_key_back_color: hilited_off_sym_back_color,
         }
-      - { click: Right, __include: styl/off_func }
-      - { click: Delete, __include: styl/off_func }
-      - { click: End, __include: styl/off_func }
-      - { click: Down, __include: styl/off_func }
-      - { click: Tab, __include: styl/off_func }
-      - { click: BackSpace, __include: styl/off_func }
-      - { click: select_all, __include: styl/off_func }
-      - { click: copy, __include: styl/off_func }
-      - { click: paste, __include: styl/off_func }
-      - { click: Return, __include: styl/off_func }
+      - { click: Right, __include: styles/off_func }
+      - { click: Delete, __include: styles/off_func }
+      - { click: End, __include: styles/off_func }
+      - { click: Down, __include: styles/off_func }
+      - { click: Tab, __include: styles/off_func }
+      - { click: BackSpace, __include: styles/off_func }
+      - { click: select_all, __include: styles/off_func }
+      - { click: copy, __include: styles/off_func }
+      - { click: paste, __include: styles/off_func }
+      - { click: Return, __include: styles/off_func }
 
   func:
     name: 功能
-    author: 'amzxyz'
+    author: 'boomker'
     ascii_mode: 0
     width: 25
     __patch:
       - conf/num
       - conf/num_height
     keys:
-      - { click: Candidate_switch, __include: styl/off_func }
-      - { click: Comment_switch, __include: styl/off_func }
-      - { click: Hint_switch, __include: styl/off_func }
-      - { click: Back, __include: styl/off_func }
-      - { click: Deploy, __include: styl/off_func }
-      - { click: Sync, __include: styl/off_func }
-      - { click: Schema_settings, __include: styl/off_func }
-#      - { click: Theme_settings, __include: styl/off_func }
-      - { click: Settings, __include: styl/off_func }
-      - { click: kb_edit, __include: styl/off_func }
-      - { click: Baidu, __include: styl/off_func }
-      - { click: Google, __include: styl/off_func }
-#      - { click: VOICE_ASSIST, __include: styl/off_func }     #注释掉原因是配置到了长按空格键
-      - { click: IME_switch, __include: styl/off_func }
-
+      # - { click: Candidate_switch, __include: styles/off_func }
+      # - { click: Comment_switch, __include: styles/off_func }
+      # - { click: Hint_switch, __include: styles/off_func }
+      - { click: Back, __include: styles/off_func }
+      - { click: Deploy, __include: styles/off_func }
+      - { click: Sync, __include: styles/off_func }
+      - { click: Schema_settings, __include: styles/off_func }
+      # - { click: Theme_settings, __include: styles/off_func }
+      - { click: Settings, __include: styles/off_func }
+      - { click: kb_edit, __include: styles/off_func }
+      - { click: Baidu, __include: styles/off_func }
+      - { click: Google, __include: styles/off_func }
+      # - { click: VOICE_ASSIST, __include: styles/off_func }     #注释掉原因是配置到了长按空格键
+      - { click: IME_switch, __include: styles/off_func }
+      - { click: kb_26jian, __include: styles/off_func }
+      - { click: kb_18jian, __include: styles/off_func }
+      - { click: kb_14jian, __include: styles/off_func }
+      - { click: kb_9jian, __include: styles/off_func }
 
 android_keys:
   # 仅供编辑键盘时参考，实际不产生任何效果
@@ -3447,8 +3736,6 @@ preset_keys:
   POWER: { label: 电源, send: POWER }
   SEARCH: { label: 搜寻, send: Find }
   SLEEP: { label: 休眠, send: SLEEP }
-
-  VOICE_ASSIST: { label: 🎤, send: VOICE_ASSIST } #用于底部语音输入按钮  
   Back1: { label: 🔽, send: BACK }  #用于底部收起键盘
   IME_switch1: { label: 🌐, send: LANGUAGE_SWITCH } #用于底部弹出对话框选择输入法
 
@@ -3477,29 +3764,29 @@ preset_keys:
       command: run,
       option: 'https://www.google.com/search?q=%s',
     } #搜索网页: %s或者%1$s为当前字符
-#  MoeDict: { label: 萌典, command: run, option: 'https://www.moedict.tw/%3$s' } #搜索网页: %3$s为光标前字符
+  #  MoeDict: { label: 萌典, command: run, option: 'https://www.moedict.tw/%3$s' } #搜索网页: %3$s为光标前字符
   Baidu: {
       label: 百度,
       command: run,
       option: 'https://www.baidu.com/s?wd=%4$s',
     } #搜索网页: %4s为光标前所有字符
-#  Zdic: {
-#      label: 汉典,
-#      command: run,
-#      option: 'http://www.zdic.net/sousuo/?q=%1$s',
-#    } #搜索网页: %s或者%1$s为当前字符
-#  Zdic2: {
-#      label: 汉典,
-#      command: run,
-#      option: 'http://www.zdic.net/sousuo/?q=%2$s',
-#    } #搜索网页: %2$s为当前输入的编码
+  #  Zdic: {
+  #      label: 汉典,
+  #      command: run,
+  #      option: 'http://www.zdic.net/sousuo/?q=%1$s',
+  #    } #搜索网页: %s或者%1$s为当前字符
+  #  Zdic2: {
+  #      label: 汉典,
+  #      command: run,
+  #      option: 'http://www.zdic.net/sousuo/?q=%2$s',
+  #    } #搜索网页: %2$s为当前输入的编码
   WebSearch: { label: 搜索网页, command: web_search, option: '%4$s' } #搜索，其他view、dial、edit、search等intent，参考安卓的intent文档：https://developer.android.com/reference/android/content/Intent.html
   Search: { label: 搜索, command: search, option: '%1$s' } #搜索短信、字典等
   Share: { label: 分享, command: send, option: '%s' } #分享指定文本: %s或者%1$s为当前字符
   Deploy: { label: 部署, command: broadcast, option: 'com.osfans.trime.deploy' }
   Sync: { label: 同步, command: broadcast, option: 'com.osfans.trime.sync' }
   # 编辑
-#  Shift_L: { label: Shift, send: Shift_L, shift_lock: ascii_long }
+  # Shift_L: { label: Shift, send: Shift_L, shift_lock: ascii_long }
   Shift_L: { label: Shift, send: Shift_L, shift_lock: long }
   Return: { label: Enter, send: Return }
   Return1: { label: 回车, send: Return }
@@ -3508,9 +3795,11 @@ preset_keys:
   space: { label: '', preview: '{schema}', repeatable: false, functional: false, send: space}
   space1: {label: 空格, repeatable: false, functional: false, send: space}  #用于liquidkeyboard显示一致性
   space2: {label: ⎵, repeatable: false, functional: false, send: space}  #用与数字键盘空格的展现形式
-  jisuan: { label: '计算', send: V }
-  jine: { label: '金额', send: R }
-  riqi: { label: '日期', send: N }
+  # bihua: { label: '笔画', text: '{`}{`}' }
+  fancha: { label: '反查', send: 'rL' }
+  jisuan: { label: '计算', send: 'cC' }
+  jine: { label: '金额', send: 'nN' }
+  riqi: { label: '日期', send: '/wd' }
   Escape: { label: Esc, send: Escape }
   Escape1: { label: 重输, send: Escape }
   Clear: {label: 全清, send: Clear}
@@ -3536,30 +3825,31 @@ preset_keys:
   share_text: { label: 分享文本, send: Control+Alt+s } #>=Android 6.0
   redo: { label: 重做, send: Control+y } #>=Android 6.0
   undo: { label: 撤销, send: Control+z } #>=Android 6.0
-#liquidkeyboard剪切板相关
+
+  # liquidkeyboard剪切板相关
   liquid_keyboard_switch: { label: 更多, send: function, command: liquid_keyboard, option: "更多" }
   liquid_keyboard_exit: {label: 返回, send: function, command: liquid_keyboard, option: "-1"}  #退出liquidkeyboard
   liquid_keyboard_emoji: { label: 🙂, send: function, command: liquid_keyboard, option: "emoji" }
   liquid_keyboard_clipboard: { label: 剪贴, send: function, command: liquid_keyboard, option: "剪贴" }
+
   # rime组合键
   F4: { label: 方案选单, send: F4 }
   BackToPreviousSyllable: { label: 删音节, send: Control+BackSpace }
   CommitRawInput: { label: 编码, send: Control+Return }
-  CommitScriptText: { label: 编码, send: Shift+Return }
+  CommitScriptText: { label: '✍', send: Shift+Return }
   CommitComment: { label: 编码, send: Control+Shift+Return }
   DeleteCandidate: { label: 删词, send: Control+Delete }
+
   # rime状态
   Mode_switch: { toggle: ascii_mode, send: Mode_switch, states: [中, 英] }
-
-  
- # kb_qwertys: { label: ' ', send: "{Eisu_toggle}{Mode_switch}", select: qwertys }
   Zenkaku_Hankaku: { toggle: full_shape, send: Mode_switch, states: [半角, 全角] }
-  Henkan: { toggle: simplification, send: Mode_switch, states: [汉字, 汉字] }
+  Henkan: { toggle: traditionalize, send: Mode_switch, states: [汉字, 繁字] }
   Charset_switch: { toggle: extended_charset, send: Mode_switch, states: [常用, 增广] }
   Punct_switch: { toggle: ascii_punct, send: Mode_switch, states: [。，, ．，] }
-  Candidate_switch: { toggle: _hide_candidate, send: Mode_switch, states: [有候选, 无候选] }
-  Comment_switch: { toggle: _hide_comment, send: Mode_switch, states: [有注释, 无注释] }
-  Hint_switch: { toggle: _hide_key_hint, send: Mode_switch, states: [有下标, 无下标] }
+  # Candidate_switch: { toggle: _hide_candidate, send: Mode_switch, states: [有候选, 无候选] }
+  # Comment_switch: { toggle: _hide_comment, send: Mode_switch, states: [有注释, 无注释] }
+  # Hint_switch: { toggle: _hide_key_hint, send: Mode_switch, states: [有下标, 无下标] }
+
   # trime设定
   IME_switch: { label: 输入法, send: LANGUAGE_SWITCH } #弹出对话框选择输入法
   IME_last: { label: 上一输入法, send: LANGUAGE_SWITCH, select: .last } #直接切换到上一输入法
@@ -3578,20 +3868,61 @@ preset_keys:
   Mode_switch_space: { toggle: ascii_mode, send: Mode_switch, states: [' ', 'ascii'] }
   Keyboard_switch: { label: 键盘, send: Eisu_toggle, select: .next }
   Back: { label: 返回, send: Eisu_toggle, select: .default }
+  Back9: { label: 返回, send: Eisu_toggle, select: 9jian }
+  Back14: { label: 返回, send: Eisu_toggle, select: 14jian }
+  Back18: { label: 返回, send: Eisu_toggle, select: 18jian }
+
+  Back9en: { label: 返回, send: Eisu_toggle, select: letter_9jian }
+  Back14en: { label: 返回, send: Eisu_toggle, select: letter_14jian }
+  Back18en: { label: 返回, send: Eisu_toggle, select: letter_18jian }
+
   Keyboard_default: { label: ' ', send: Eisu_toggle, select: .default }
   Keyboard_letter: { label: ' ', send: Eisu_toggle, select: letter }
-#配合数字键盘相互跳转回到上一个键盘
+  # 功能键盘切换区
+  kb_9jian: { label: '9键', send: Eisu_toggle, select: 9jian }
+  kb_14jian: { label: '14键', send: Eisu_toggle, select: 14jian }
+  kb_18jian: { label: '18键', send: Eisu_toggle, select: 18jian }
+  kb_26jian: { label: '26键', send: Eisu_toggle, select: default }
+  # 键盘相互跳转
+  Keyboard_26jian: { label: '英', send: Eisu_toggle, select: default }
+  Keyboard_letter_26jian: { label: '中', send: Eisu_toggle, select: letter }
+
+  Keyboard_18jian: { label: '英', send: Eisu_toggle, select: 18jian }
+  Keyboard_letter_18jian: { label: '中', send: Eisu_toggle, select: letter_18jian }
+
+  Keyboard_14jian: { label: '英', send: Eisu_toggle, select: 14jian }
+  Keyboard_letter_14jian: { label: '中', send: Eisu_toggle, select: letter_14jian }
+
+  Keyboard_9jian: { label: '英', send: Eisu_toggle, select: 9jian }
+  Keyboard_letter_9jian: { label: '中', send: Eisu_toggle, select: letter_9jian }
+
+  # 配合数字键盘相互跳转回到上一个键盘
   Keyboard_number: { label: '123', send: Eisu_toggle, select: number }
-#配合符号键盘相互跳转回到上一个键盘  
+  9Keyboard_number: { label: '123', send: Eisu_toggle, select: 9number }
+  14Keyboard_number: { label: '123', send: Eisu_toggle, select: 14number }
+  18Keyboard_number: { label: '123', send: Eisu_toggle, select: 18number }
+
+  9Keyboard_numberen: { label: '123', send: Eisu_toggle, select: 9numberen }
+  14Keyboard_numberen: { label: '123', send: Eisu_toggle, select: 14numberen }
+  18Keyboard_numberen: { label: '123', send: Eisu_toggle, select: 18numberen }
+  # 配合符号键盘相互跳转回到上一个键盘
   Keyboard_symbols: { label: '۞', send: Eisu_toggle, select: symbols }
+  9Keyboard_symbols: { label: '۞', send: Eisu_toggle, select: 9symbols }
+  14Keyboard_symbols: { label: '۞', send: Eisu_toggle, select: 14symbols }
+  18Keyboard_symbols: { label: '۞', send: Eisu_toggle, select: 18symbols }
+  9Keyboard_symbolsen: { label: '۞', send: Eisu_toggle, select: 9symbolsen }
+  14Keyboard_symbolsen: { label: '۞', send: Eisu_toggle, select: 14symbolsen }
+  18Keyboard_symbolsen: { label: '۞', send: Eisu_toggle, select: 18symbolsen }
+
   kb_edit: { label: '编辑', send: Eisu_toggle, select: edit }
   kb_func: { label: '❖', send: Eisu_toggle, select: func }
   # 自定义按键
   BS: { label: '⌫', repeatable: true, send: BackSpace }
   #  select_second: { label: '.', send: . }
-  # split_word: { label: "'分词", send: apostrophe }     #分词功能
+  split_word: { label: "'分词", send: apostrophe }     #分词功能
 
-#符号键盘区，解决中文状态下shift锁定导致的符号映射发生变化的问题,由于已经合理布置需要的符号，没必要这种变化
+  # 符号键盘区, 解决中文状态下 shift 锁定导致的符号映射发生变化的问题,
+  # 由于已经合理布置需要的符号, 没必要这种变化
   xiegang: { label: "/", text: "/" }
   jianhao: { label: "-", text: "-" }
   fanyinhao: { label: "`", text: "`" }
@@ -3602,7 +3933,7 @@ preset_keys:
   juhao: { label: ".", text: "." }
   zkhz: { label: "[", text: "[" }
   zkhy: { label: "]", text: "]" }
-#顶部数字排映射
+  # 顶部数字排映射
   num1: { label: 1, send: 1 }
   num2: { label: 2, send: 2 }
   num3: { label: 3, send: 3 }
@@ -3613,7 +3944,7 @@ preset_keys:
   num8: { label: 8, send: 8 }
   num9: { label: 9, send: 9 }
   num0: { label: 0, send: 0 }
-#配合18键键盘布局实现共键单发
+  # 配合18键键盘布局实现共键单发
   18keyq: { label: " Q ", send: "q" }
   18keywe: { label: "W E", send: "w" }
   18keyrt: { label: "R T", send: "r" }
@@ -3633,7 +3964,7 @@ preset_keys:
   18keybn: { label: "B N", send: "b" }
   18keym: { label: " M ", send: "m" }
 
-#配合14键键盘布局实现共键单发
+  #配合14键键盘布局实现共键单发
   14keyqw: { label: " Q W ", send: "q" }
   14keyer: { label: "E R", send: "e" }
   14keyty: { label: "T Y", send: "t" }
@@ -3648,8 +3979,8 @@ preset_keys:
   14keycv: { label: "C V", send: "c" }
   14keybn: { label: "B N", send: "b" }
   14keym: { label: " M ", send: "m" }
-  
-#配合9键键盘布局实现共键单发
+
+  #配合9键键盘布局实现共键单发
   9keyabc: { label: "ABC", send: "a" }
   9keydef: { label: "DEF", send: "d" }
   9keyghi: { label: "GHI", send: "g" }
@@ -3658,17 +3989,16 @@ preset_keys:
   9keypqrs: { label: "PQRS", send: "p" }
   9keytuv: { label: "TUV", send: "t" }
   9keywxyz: { label: "WXYZ", send: "w" }
-  
-  
+
   kb_sym1: { label: '◀', send: Eisu_toggle, select: symbols }
   kb_sym2: { label: '▶', send: Eisu_toggle, select: sym211 }
 
-  kb_sym11: { label: '中文', send: Eisu_toggle, select: symbols }
-  kb_sym11u: { label: '▲', send: Eisu_toggle, select: symbols }
+  kb_sym11: { label: '中文', send: Eisu_toggle, select: sym121 }
+  kb_sym11u: { label: '▲', send: Eisu_toggle, select: sym121 }
   kb_sym11d: { label: '▼', send: Eisu_toggle, select: sym112 }
 
-  kb_sym12: { label: '英文', send: Eisu_toggle, select: sym121 }
-  kb_sym12u: { label: '▲', send: Eisu_toggle, select: sym121 }
+  kb_sym12: { label: '英文', send: Eisu_toggle, select: symbols }
+  kb_sym12u: { label: '▲', send: Eisu_toggle, select: symbols }
   kb_sym12d: { label: '▼', send: Eisu_toggle, select: sym122 }
 
   kb_sym15: { label: '特殊', send: Eisu_toggle, select: sym151 }

@@ -13,7 +13,7 @@ function word_auto_commit.init(env)
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
     -- env.memory = Memory(env.engine, schema, "translator")
-    env.word_auto_commit= config:get_bool("speller/auto_commit") or false
+    env.word_auto_commit = config:get_bool("speller/auto_commit") or false
     env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
@@ -38,30 +38,11 @@ function P.func(key, env)
     local caret_pos = context.caret_pos
 
     local composition = context.composition
-    if composition:empty() then return 2 end
+    if composition:empty() then
+        return 2
+    end
     local segment = composition:back()
     local commit_history = context.commit_history
-
-    --[[
-    -- 四码二字词时, 按下 '/'  生成辅助码提示注解
-    if (key:repr() == "slash") and (caret_pos == 4) and (input_code:match("^%l+")) then
-        word_auto_commit.word_shape_code_tbl = {}
-        for i = 1, 100, 1 do
-            local word_cand = segment:get_candidate_at(i)
-            if not word_cand then return 2 end
-            local word_cand_text = word_cand.text
-            if utf8.len(word_cand_text) ~= 2 then goto skip_cand end
-            local _cand_header_text = string.utf8_sub(word_cand_text, 1, 1)
-            local _cand_tailer_text = string.utf8_sub(word_cand_text, 2, 2)
-            local cand_header_code = _cand_header_text and env.reversedb:lookup(_cand_header_text):sub(4, 4)
-            local cand_tailer_code = _cand_tailer_text and env.reversedb:lookup(_cand_tailer_text):sub(4, 5)
-            local cand_shape_code = cand_tailer_code .. cand_header_code
-            word_auto_commit.word_shape_code_tbl[i] = {word_cand_text, cand_shape_code}
-            ::skip_cand::
-        end
-    end
-    if key:repr() == "Escape" then word_auto_commit.word_shape_code_tbl = {} end
-    --]]
 
     -- 按下 '/' 后, 数字键或符号键选单字时, 自动上屏
     local idx = segment.selected_index
@@ -85,7 +66,9 @@ function T.func(input, seg, env)
     local caret_pos = context.caret_pos
     local composition = context.composition
     local preedit_code = context:get_preedit().text
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
     local commit_history = context.commit_history
     local auto_commit_enable = env.word_auto_commit
 
@@ -95,7 +78,6 @@ function T.func(input, seg, env)
         local filtered_cand_count = 0
         local word_shape_code_tbl = {}
 
-        -- [[
         local word_yin_code = input:sub(1, 4)
         local word_cands = env.script_tran:query(word_yin_code, seg) or nil
 
@@ -116,9 +98,9 @@ function T.func(input, seg, env)
                 end
             end
         end
-        if (table.len(word_shape_code_tbl) < 1) then return end
-        --]]
-        -- if (table.len(word_shape_code_tbl) < 1) then word_shape_code_tbl = word_auto_commit.word_shape_code_tbl end
+        if table.len(word_shape_code_tbl) < 1 then
+            return
+        end
 
         for _, val in ipairs(word_shape_code_tbl) do
             local input_shape_code = string.sub(input, 6)
@@ -126,8 +108,7 @@ function T.func(input, seg, env)
             local _p2 = (input_shape_code:len() == 2) and (input_shape_code:sub(2)) or ""
             local match_pattern = "^" .. _p1 .. ".?" .. _p2
             local remain_shape_code = val[2]:gsub(_p1, "", 1):gsub(_p2, "", 1)
-            local comment = (remain_shape_code:len() > 0)
-                    and string.format("~%s", remain_shape_code) or " "
+            local comment = (remain_shape_code:len() > 0) and string.format("~%s", remain_shape_code) or " "
             if val[2]:match(match_pattern) then
                 local cand = Candidate("wac", seg.start, seg._end, val[1], comment)
                 filtered_cand_count = filtered_cand_count + 1
@@ -176,7 +157,9 @@ function F.func(input, env)
             table.insert(single_char_cands, cand)
         end
 
-        if #normal_cands >= 150 then break end
+        if #normal_cands >= 150 then
+            break
+        end
         table.insert(normal_cands, cand)
     end
 
@@ -193,26 +176,25 @@ function F.func(input, env)
             local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
             set_commited_cand_is_chinese(env)
             env.engine:commit_text(cand_txt)
-            commit_history:push('raw', cand_txt)
+            commit_history:push("raw", cand_txt)
             context:clear()
             return 1 -- kAccepted
         end
 
         for _, cand in ipairs(single_char_cands) do
             local input_shape_code = string.sub(preedit_code, 4):gsub("/", "")
-            local current_cand_shape_code = cand.comment:match("%l")
-                and cand.comment:sub(2):gsub("%[", "")
-            local remain_shape_code, _ =
-                string.gsub(current_cand_shape_code, input_shape_code, "", 1)
-            local comment = (string.len(remain_shape_code) > 0)
-                    and string.format("~%s", remain_shape_code) or " "
+            local current_cand_shape_code = cand.comment:match("%l") and cand.comment:sub(2):gsub("%[", "")
+            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, "", 1)
+            local comment = (string.len(remain_shape_code) > 0) and string.format("~%s", remain_shape_code)
+                or " "
             ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
-            -- yield(cand:to_shadow_candidate(cand.type, cand.text, comment))
         end
     end
 
-    for _, cand in ipairs(normal_cands) do yield(cand) end
+    for _, cand in ipairs(normal_cands) do
+        yield(cand)
+    end
 end
 
 return {
