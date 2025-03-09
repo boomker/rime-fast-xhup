@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-02-16
+version: 2025-03-06
 sort: by_weight
 ...
 
@@ -214,10 +214,10 @@ sort: by_weight
 登子	dg zi	1
 堤段	di dr	1
 低费	di fw	1
-嫡长	di vh	1
 地窟	di ku	1
 地鸣	di mk	1
 地投	di tz	1
+嫡长	di vh	1
 低消	di xn	1
 地肖	di xn	1
 滴血	di xt	1
@@ -2495,10 +2495,13 @@ sort: by_weight
 揍哭	zz ku	1
 阿贝贝	aa bw bw	1
 阿贝多	aa bw do	1
+阿尔玛	aa er ma	1
 阿尔塞	aa er sd	1
 阿甘左	aa gj zo	1
 阿克尚	aa ke uh	1
+阿奎那	aa kv na	1
 阿拉梅	aa la mw	1
+阿莱夫	aa ld fu	1
 阿勒颇	aa le po	1
 阿勒泰	aa le td	1
 阿鲁纳	aa lu na	1
@@ -2510,6 +2513,7 @@ sort: by_weight
 阿如那	aa ru na	1
 阿署达	aa uu da	1
 阿维塔	aa ww ta	1
+爱蛋蛋	ai dj dj	1
 艾尔登	ai er dg	1
 爱黄金	ai hl jb	1
 埃吉尔	ai ji er	1
@@ -2522,8 +2526,11 @@ sort: by_weight
 艾扎克	ai va ke	1
 爱之巢	ai vi ic	1
 安倍撒	an bw sa	1
+犴达罕	an da hj	1
+安顶山	an dk uj	1
 安东森	an ds sf	1
 暗河传	an he vr	1
+暗黑面	an hw mm	1
 暗黑向	an hw xl	1
 安卿鱼	an qk yu	1
 安全车	an qr ie	1
@@ -2541,6 +2548,7 @@ sort: by_weight
 奥德诺	ao de no	1
 奥丁战	ao dk vj	1
 奥菲欧	ao fw ou	1
+奥赫玛	ao he ma	1
 熬穿了	ao ir le	1
 傲娇美	ao jn mw	1
 熬老汤	ao lc th	1
@@ -6565,6 +6573,7 @@ sort: by_weight
 阿爸的刀	aa ba de dc	1
 阿拜多斯	aa bd do si	1
 阿波尼亚	aa bo ni ya	1
+阿德里安	aa de li an	1
 啊对对对	aa dv dv dv	1
 阿尔古斯	aa er gu si	1
 阿尔图罗	aa er tu lo	1
@@ -6591,6 +6600,11 @@ sort: by_weight
 爱玛科技	ai ma ke ji	1
 艾米好灵	ai mi hc lk	1
 暧昧拉扯	ai mw la ie	1
+爱你定档	ai ni dk dh	1
+爱你开播	ai ni kd bo	1
+爱你热度	ai ni re du	1
+爱你直播	ai ni vi bo	1
+爱你致歉	ai ni vi qm	1
 爱情广场	ai qk gl ih	1
 爱情美满	ai qk mw mj	1
 爱情启蒙	ai qk qi mg	1
@@ -6614,6 +6628,7 @@ sort: by_weight
 安陵公主	an lk gs vu	1
 暗恋文学	an lm wf xt	1
 安擎科技	an qk ke ji	1
+安全恐惧	an qr ks ju	1
 安全退役	an qr tv yi	1
 暗区突围	an qu tu ww	1
 暗杀未遂	an ua ww sv	1
@@ -11389,6 +11404,7 @@ sort: by_weight
 走近波学	zz jb bo xt	1
 走近珂学	zz jb ke xt	1
 走进珂学	zz jb ke xt	1
+阿凡达重映	aa fj da is yk	1
 阿卡丽来了	aa ka li ld le	1
 阿勒泰暴雪	aa le td bc xt	1
 阿玛德绝杀	aa ma de jt ua	1
@@ -11409,11 +11425,14 @@ sort: by_weight
 哀牢山野游	ai lc uj ye yz	1
 艾伦宋亚轩	ai ly ss ya xr	1
 艾米买股粉	ai mi md gu ff	1
+爱你观后感	ai ni gr hz gj	1
+爱你云包场	ai ni yy bc ih	1
 爱奇艺排播	ai qi yi pd bo	1
 爱奇艺漂白	ai qi yi pn bd	1
 爱奇艺卧底	ai qi yi wo di	1
 爱奇艺新规	ai qi yi xb gv	1
 爱奇艺选秀	ai qi yi xr xq	1
+爱情有味道	ai qk yz ww dc	1
 爱人不见了	ai rf bu jm le	1
 爱人像小孩	ai rf xl xn hd	1
 爱心还给我	ai xb hr gw wo	1
@@ -14888,7 +14907,11 @@ sort: by_weight
 爱家月子中心	ai jx yt zi vs xb	1
 哀牢山危险性	ai lc uj ww xm xk	1
 爱你很久很久	ai ni hf jq hf jq	1
+爱你剧方道歉	ai ni ju fh dc qm	1
+爱你女主穿搭	ai ni nv vu ir da	1
+爱你热度登顶	ai ni re du dg dk	1
 爱你首发预告	ai ni uz fa yu gc	1
+爱你现偶细糠	ai ni xm ou xi kh	1
 爱奇艺破万墙	ai qi yi po wj ql	1
 爱奇艺已退款	ai qi yi yi tv kr	1
 艾热舞台好燃	ai re wu td hc rj	1
@@ -14910,6 +14933,7 @@ sort: by_weight
 敖丙他爸出场	ao bk ta ba iu ih	1
 澳大利亚领先	ao da li ya lk xm	1
 澳大利亚联邦	ao da li ya lm bh	1
+敖光蛋版秒针	ao gl dj bj mn vf	1
 澳门机遇巨大	ao mf ji yu ju da	1
 澳门葡记月饼	ao mf pu ji yt bk	1
 敖瑞鹏红温了	ao rv pg hs wf le	1
