@@ -78,5 +78,16 @@
 	],
 	"luahelper.base.ignoreFileOrDirError": [
 		".vscode/"
+	],
+	"cSpell.words": [
+		"boomker",
+		"flypy",
+		"hanb",
+		"opencc",
+		"preedit",
+		"Trime",
+		"wanxiang",
+		"xform",
+		"xhfast"
 	]
 }

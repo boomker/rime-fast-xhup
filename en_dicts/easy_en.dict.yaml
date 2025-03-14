@@ -1,17 +1,13 @@
-﻿# Rime dictionary
-# mim: set ts=8 sw=8 noet:
+# Rime dictionary
 # encoding: utf-8
 #
 # easy_en - Easy English
 #
-# Patrick <ipatrickmac@gmail.com>
-#
 # Easy English
-#
 
 ---
 name: easy_en
-version: "0.2"
+version: 2025.03.07
 sort: by_weight
 ...
 
@@ -89,7 +85,6 @@ sort: by_weight
 Ū	U
 ű	u
 Ű	U
-
 aa	aa	34300000
 aachen	aachen	3990000
 aaes	aaes	45900
@@ -39059,7 +39054,6 @@ hythergraph	hythergraph	92
 hyzone	hyzone	221
 i	i	1040000000
 ia	ia	38600000
-iaaf	iaaf	979000
 iacocca	iacocca	184000
 iadb	iadb	638000
 iaea	iaea	2050000
@@ -39272,13 +39266,13 @@ ie	ie	139000000
 iep	iep	1700000
 ieper	ieper	551000
 ieyasu	ieyasu	86000
-if	if	1140000000
-ifa	ifa	1720000
+if	if	11400000
+ifa	ifa	1720
 ifalp	ifalp	56
-ifc	ifc	1840000
-ife	ife	685000
-iff	iff	2020000
-iffen	iffen	12500
+ifc	ifc	1640
+ife	ife	685
+iff	iff	202
+iffen	iffen	125
 iffy	iffy	735000
 ifni	ifni	93300
 ifugao	ifugao	57600
