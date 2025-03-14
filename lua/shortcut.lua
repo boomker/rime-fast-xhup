@@ -30,7 +30,7 @@ end
 local function get_app_obj(obj, obj_type)
     local key_idx_map = {
         ["name"] = 1,
-        ["bundle_id"] = 2
+        ["bundle_id"] = 2,
     }
     local res_tbl = {}
     local function recursive_get(obj_val)
@@ -41,7 +41,9 @@ local function get_app_obj(obj, obj_type)
                 res_tbl[obj_val[1]] = obj_val[2]
             end
         else
-            for _, val in pairs(obj_val) do recursive_get(val) end
+            for _, val in pairs(obj_val) do
+                recursive_get(val)
+            end
         end
     end
     recursive_get(obj)
@@ -118,10 +120,17 @@ function processor.func(key, env)
     local all_command_items = env.all_command_items
 
     -- check trigger conditions
-    if not (input_code:match("^/j%l+") or input_code:match("^" .. favorcmd_prefix) or
-        input_code:match("^" .. app_launch_prefix)) or composition:empty() then return 2 end
+    if
+        not (
+            input_code:match("^/j%l+")
+            or input_code:match("^" .. favorcmd_prefix)
+            or input_code:match("^" .. app_launch_prefix)
+        ) or composition:empty()
+    then
+        return 2
+    end
 
-    if (key_value == "Escape") then
+    if key_value == "Escape" then
         context:clear()
         reset_state()
         return 1 -- kAccepted 收下此key
@@ -133,7 +142,7 @@ function processor.func(key, env)
         elseif (context.input ~= favorcmd_prefix) and launcher["main_menu_selected"] then
             launcher["main_menu_selected"] = nil
             context:pop_input(1)
-        elseif (context.input ~= favorcmd_prefix) then
+        elseif context.input ~= favorcmd_prefix then
             reset_state()
             context:pop_input(1)
             context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
@@ -142,8 +151,11 @@ function processor.func(key, env)
         end
         return 1 -- kAccepted 收下此key
     end
-    if input_code:match("^" .. favorcmd_prefix) and key_value:match("^%a$") and
-        (not launcher["main_menu_selected_text"]) then
+    if
+        input_code:match("^" .. favorcmd_prefix)
+        and key_value:match("^%a$")
+        and not launcher["main_menu_selected_text"]
+    then
         for idx, menu_name in ipairs(launcher["main_menu_orders"]) do
             if menu_name:lower():match("^" .. key_value) then
                 env.engine:process_key(KeyEvent(tostring(idx)))
@@ -151,8 +163,11 @@ function processor.func(key, env)
             end
         end
     end
-    if input_code:match("^" .. favorcmd_prefix) and key_value:match("^%a$") and
-        (not launcher["second_menu_selected_text"]) then
+    if
+        input_code:match("^" .. favorcmd_prefix)
+        and key_value:match("^%a$")
+        and not launcher["second_menu_selected_text"]
+    then
         local index = 0
         local match_count = 0
         for idx, menu_name in ipairs(launcher["second_menu_orders"]) do
@@ -160,6 +175,9 @@ function processor.func(key, env)
                 match_count = match_count + 1
                 index = idx
             end
+        end
+        if index > page_size then
+            index = index - page_size
         end
         if match_count == 1 then
             launcher["second_menu_selected_text"] = "matched"
@@ -170,7 +188,9 @@ function processor.func(key, env)
 
     local selected_index = segment.selected_index or -1
     local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, page_size)
-    if selected_cand_idx < 0 then return 2 end
+    if selected_cand_idx < 0 then
+        return 2
+    end
 
     if input_code:match("^" .. favorcmd_prefix) then
         if (input_code == favorcmd_prefix) and segment.prompt:match("快捷指令") then
@@ -183,7 +203,7 @@ function processor.func(key, env)
             return 1
         end
 
-        if (not segment.prompt:match("快捷指令")) and (launcher["main_menu_selected"]) then
+        if (not segment.prompt:match("快捷指令")) and launcher["main_menu_selected"] then
             local candidate_text = segment:get_candidate_at(selected_cand_idx).text:gsub(" ", "")
             local idx = launcher["second_menu_keys"][candidate_text]
             local main_menu_obj = launcher["main_menu_selected"]
@@ -239,7 +259,9 @@ function translator.func(input, seg, env)
     local app_launch_prefix = env.app_launch_prefix
     local all_command_items = env.all_command_items
     local composition = context.composition
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
 
     local segment = composition:back()
     local all_app_items = all_command_items[system_name] or nil
@@ -248,7 +270,9 @@ function translator.func(input, seg, env)
         local app_trigger_key = "/j" .. input:gsub(app_launch_prefix, "", 1)
         app_items = all_app_items and all_app_items[app_trigger_key]
     end
-    if (not app_items) and (input == app_launch_prefix) then app_items = all_app_items end
+    if (not app_items) and (input == app_launch_prefix) then
+        app_items = all_app_items
+    end
 
     -- 应用闪切
     if app_items then
@@ -263,8 +287,11 @@ function translator.func(input, seg, env)
     end
 
     -- render main menu
-    if input:match("^" .. favorcmd_prefix .. "$") and not launcher["main_menu_selected_text"] and
-        not segment.prompt:match("快捷指令") then
+    if
+        input:match("^" .. favorcmd_prefix .. "$")
+        and not launcher["main_menu_selected_text"]
+        and not segment.prompt:match("快捷指令")
+    then
         reset_state()
         segment.prompt = "〔快捷指令〕"
 
@@ -284,14 +311,20 @@ function translator.func(input, seg, env)
     end
 
     -- render unmatched second_menu_items
-    if input:match("^" .. favorcmd_prefix) and (#input > favorcmd_prefix:len()) and not launcher["main_menu_selected"] and
-        not launcher["main_menu_selected_text"] then
+    if
+        input:match("^" .. favorcmd_prefix)
+        and (#input > favorcmd_prefix:len())
+        and not launcher["main_menu_selected"]
+        and not launcher["main_menu_selected_text"]
+    then
         local match_count = 0
         local main_menu_items = launcher["main_menu_orders"]
         local main_menu_prefix = input:sub(favorcmd_prefix:len() + 1, -1)
 
         for _, key in ipairs(main_menu_items) do
-            if key:lower():match("^" .. main_menu_prefix) then match_count = match_count + 1 end
+            if key:lower():match("^" .. main_menu_prefix) then
+                match_count = match_count + 1
+            end
         end
 
         if match_count == 0 then
@@ -304,9 +337,13 @@ function translator.func(input, seg, env)
         return
     end
 
-    if input:match("^" .. favorcmd_prefix) and launcher["main_menu_selected_text"] and
-        not launcher["main_menu_selected"] and not launcher["second_menu_selected_text"] and
-        not segment.prompt:match("快捷指令") then
+    if
+        input:match("^" .. favorcmd_prefix)
+        and launcher["main_menu_selected_text"]
+        and not launcher["main_menu_selected"]
+        and not launcher["second_menu_selected_text"]
+        and not segment.prompt:match("快捷指令")
+    then
         launcher["second_menu_keys"] = {}
         launcher["second_menu_orders"] = {}
         local prompt = launcher["main_menu_selected_text"]:gsub("[%a%p]", "")
@@ -337,8 +374,12 @@ function translator.func(input, seg, env)
     end
 
     -- get second_menu_selected_text
-    if input:match("^" .. favorcmd_prefix) and launcher["main_menu_selected"] and
-        not launcher["second_menu_selected_text"] and not segment.prompt:match("快捷指令") then
+    if
+        input:match("^" .. favorcmd_prefix)
+        and launcher["main_menu_selected"]
+        and not launcher["second_menu_selected_text"]
+        and not segment.prompt:match("快捷指令")
+    then
         local match_count = 0
         local submenus = launcher["main_menu_selected"]["submenus"]
         local prompt = launcher["main_menu_selected_text"]:gsub("[%a%p]", "")
@@ -350,7 +391,7 @@ function translator.func(input, seg, env)
                 launcher["second_menu_selected_text"] = sm_name
             end
         end
-        if match_count == 1 and (launcher["second_menu_selected_text"]) then
+        if match_count == 1 and launcher["second_menu_selected_text"] then
             local second_menu_selected_text = launcher["second_menu_selected_text"]
             local cand = Candidate("favor", seg.start, seg._end, second_menu_selected_text, "")
             cand.quality = 999
@@ -369,10 +410,10 @@ end
 return {
     processor = {
         init = launcher.init,
-        func = processor.func
+        func = processor.func,
     },
     translator = {
         init = launcher.init,
-        func = translator.func
-    }
+        func = translator.func,
+    },
 }
