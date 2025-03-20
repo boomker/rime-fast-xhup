@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-03-19
+version: 2025-03-20
 sort: by_weight
 ...
 
@@ -18678,4 +18678,7 @@ sort: by_weight
 安赛龙	an sd ls	1
 阿米诺斯	aa mi no si	1
 安赛龙	an sd ls	1
+阿米诺斯	aa mi no si	1
+安赛龙	an sd ls	1
+安庆市立医院	an qk ui li yi yr	1
 阿米诺斯	aa mi no si	1
