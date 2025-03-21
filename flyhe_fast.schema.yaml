@@ -134,6 +134,8 @@ recognizer:
 
 # 标点符号
 punctuator:
+  digit_separators: ".:"            # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
+  # digit_separator_action: commit
   import_preset: symbols
   full_shape:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置

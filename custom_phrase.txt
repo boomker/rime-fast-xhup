@@ -108,4 +108,5 @@ TODO	todo
 DevOps	devo	2
 Django	djan	2
 Deploy	depl	2
+Nvim	nvim	2
 NeoVim	nvim	1

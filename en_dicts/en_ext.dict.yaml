@@ -263,6 +263,8 @@ archive	archive
 Evernote	Evernote
 PDF	PDF
 CSDN	CSDN
+git	git
+Git	Git
 Gitee	Gitee
 Gitea	Gitea
 GitBook	GitBook
@@ -277,7 +279,6 @@ Django	Django
 DBMesh	DBMesh
 Facebook	Facebook
 Firefox	Firefox
-git	git
 GoLand	GoLand
 Golang	Golang
 IQOS	IQOS
