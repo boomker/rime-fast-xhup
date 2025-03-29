@@ -147,3 +147,8 @@ zoxide	zoxide	100000
 zawk	zawk	100000
 fastfetch	fastfetch	100000
 truncate	truncate	100000
+Gerrit	Gerrit	100000
+ArgoCD	ArgoCD	100000
+GitFlow	GitFlow	100000
+CodeReview	CodeReview	100000
+worktree	worktree	100000
