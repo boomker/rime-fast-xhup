@@ -12,7 +12,9 @@ sort: by_weight
 阿蝉	aa ij	1
 阿枯	aa ku	1
 阿帽	aa mc	1
+阿漂	aa pn	1
 阿求	aa qq	1
+阿刃	aa rf	1
 阿散	aa sj	1
 阿术	aa uu	1
 阿厌	aa yj	1
@@ -22,10 +24,12 @@ sort: by_weight
 哀黄	ai hl	1
 艾莲	ai lm	1
 按背	an bw	1
+岸防	an fh	1
 安期	an qi	1
 安万	an wj	1
 傲弟	ao di	1
 敖光	ao gl	1
+奥姑	ao gu	1
 熬穿	ao ir	1
 澳假	ao jx	1
 奥巧	ao qn	1
@@ -2518,6 +2522,7 @@ sort: by_weight
 爱黄金	ai hl jb	1
 埃吉尔	ai ji er	1
 埃及风	ai ji fg	1
+爱可菲	ai ke fw	1
 哀牢山	ai lc uj	1
 艾丽妮	ai li ni	1
 艾露猫	ai lu mc	1
@@ -2534,6 +2539,7 @@ sort: by_weight
 暗黑向	an hw xl	1
 安卿鱼	an qk yu	1
 安全车	an qr ie	1
+安全牌	an qr pd	1
 安全箱	an qr xl	1
 安赛龙	an sd ls	1
 安三胖	an sj ph	1
@@ -6638,6 +6644,7 @@ sort: by_weight
 暗区突围	an qu tu ww	1
 暗杀未遂	an ua ww sv	1
 鞍山小马	an uj xn ma	1
+安慰食物	an ww ui wu	1
 暗夜迷局	an ye mi ju	1
 庵野秀明	an ye xq mk	1
 暗喻幻想	an yu hr xl	1
@@ -11416,11 +11423,13 @@ sort: by_weight
 阿玛特拉斯	aa ma te la si	1
 阿如那圈粉	aa ru na qr ff	1
 阿如那淘汰	aa ru na tc td	1
+阿瑟请开跑	aa se qk kd pc	1
 阿条姐领奖	aa tn jp lk jl	1
 阿哲生日会	aa ve ug ri hv	1
 阿信好会写	aa xb hc hv xp	1
 阿雅好温柔	aa ya hc wf rz	1
 阿瓒我爱你	aa zj wo ai ni	1
+爱哎唉变装	ai ai ai bm vl	1
 爱本质无异	ai bf vi wu yi	1
 爱的三部曲	ai de sj bu qu	1
 艾尔登法环	ai er dg fa hr	1
@@ -11461,6 +11470,7 @@ sort: by_weight
 敖丙传封面	ao bk ir fg mm	1
 敖丙小鼻嘎	ao bk xn bi ga	1
 敖丙小果冻	ao bk xn go ds	1
+澳大利亚队	ao da li ya dv	1
 傲得我很爽	ao de wo hf ul	1
 澳门演唱会	ao mf yj ih hv	1
 敖瑞鹏好帅	ao rv pg hc uk	1
@@ -14942,6 +14952,7 @@ sort: by_weight
 敖丙他爸出场	ao bk ta ba iu ih	1
 澳大利亚领先	ao da li ya lk xm	1
 澳大利亚联邦	ao da li ya lm bh	1
+澳大利亚破门	ao da li ya po mf	1
 敖光蛋版秒针	ao gl dj bj mn vf	1
 澳门机遇巨大	ao mf ji yu ju da	1
 澳门葡记月饼	ao mf pu ji yt bk	1
@@ -18670,32 +18681,3 @@ sort: by_weight
 张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	1
 中华人民共和国政府	vs hx rf mb gs he go vg fu	1
 中国人民对外友好协会	vs go rf mb dv wd yz hc xp hv	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-爱哎唉变装	ai ai ai bm vl	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-安慰食物	an ww ui wu	1
-澳大利亚破门	ao da li ya po mf	1
-阿米诺斯	aa mi no si	1
-安全牌	an qr pd	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-岸防	an fh	1
-澳大利亚队	ao da li ya dv	1
-阿瑟请开跑	aa se qk kd pc	1
-奥姑	ao gu	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-阿漂	aa pn	1
-爱可菲	ai ke fw	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-阿刃	aa rf	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
