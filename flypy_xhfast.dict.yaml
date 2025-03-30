@@ -12,6 +12,7 @@ import_tables:
   - cn_dicts/flypy_base         # 基础词库
   - cn_dicts/flypy_ext          # 扩展词库
   - cn_dicts/flypy_sogou        # 搜狗网络流行词库
+  - cn_dicts/flypy_zhwiki       # 中文维基百科Lite 版
   - cn_dicts/flypy_ext_misc     # 大写字母和数字派生, V开头Emoji
   - cn_dicts/flypy_super_ext1   # 扩展词库(大词库, 部署时间较长)
   - cn_dicts/flypy_super_ext2   # 扩展词库(大词库, 部署时间较长)
