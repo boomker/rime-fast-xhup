@@ -36,12 +36,12 @@ patch:
       - derive/^gf/gn/                # gf --> gn
       - derive/^gr/gm/                # gr --> gm
       - derive/^g([wv])/gi/           # g[wv] --> gi
-      - derive/^xp/xj/
       - derive/^xt/xo/
       - derive/^xs/xh/
       - derive/^li/lx/
       - derive/^nu/nv/
       - derive/^nh/nx/
+      - derive/^nj/xj/
       - derive/^no/nr/
       - derive/^lo/ng/
       - derive/^ly/nw/
