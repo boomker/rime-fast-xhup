@@ -6,8 +6,6 @@ local function moveCursorToLeft(env)
     local move_cursor = ""
     if detect_os() == "MacOS" then
         move_cursor = env.user_data_dir .. "/lua/lib/move_cursor"
-        -- else
-        -- move_cursor = [[cmd /c start "" /B ]] .. env.user_data_dir .. [[\lua\lib\move_cursor.exe]]
         os.execute(move_cursor)
     end
 end
@@ -57,19 +55,13 @@ function P.func(key, env)
     local segment = composition:back()
     local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
 
-    if symbol_unpair_flag then
-        return 2
-    end
-    if env.system_name == "iOS" then
-        return 2
-    end
+    if symbol_unpair_flag then return 2 end
+    if env.system_name == "iOS" then return 2 end
     -- local focus_app_id = context:get_property("client_app")
     -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
     local key_name = key:repr()
-    if key.keycode == 34 then
-        key_name = "quotedbl"
-    end
+    if key.keycode == 34 then key_name = "quotedbl" end
     local prev_ascii_mode = context:get_option("ascii_mode")
 
     if context:has_menu() or context:is_composing() then
@@ -120,9 +112,7 @@ function P.func(key, env)
         end
     end
 
-    if env.pair_toggle == "off" then
-        return 2
-    end
+    if env.pair_toggle == "off" then return 2 end
     if env.pairTable[key_name] and composition:empty() then
         if prev_ascii_mode then
             engine:commit_text(env.pairTable[key_name][2])
@@ -131,7 +121,7 @@ function P.func(key, env)
         end
 
         if (env.system_name == "MacOS") and (key_name == "quotedbl") then
-            os.execute("sleep 0.3") -- 等待按键被松开
+            -- os.execute("sleep 0.2") -- 等待按键被松开
             moveCursorToLeft(env)
         else
             moveCursorToLeft(env)
