@@ -1,0 +1,10 @@
+# Rime dictionary
+# encoding: utf-8
+
+---
+name: flyhe_fast
+version: 2025.01.11
+
+import_tables:
+  - cn_dicts/flyhe_chars        # 字表
+  - cn_dicts/flypy_base         # 基础词库

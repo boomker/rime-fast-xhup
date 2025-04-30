@@ -1,0 +1,112 @@
+# Rime table
+# coding: utf-8
+#@/db_name	custom_phrase.txt
+#@/db_type	tabledb
+
+## 置顶词与自定义词组在这个文件里指定
+## 格式：文本-输入码-权重，其间用 Tab 符分隔。
+## 如要添加新的，可以复制已有的行，然后在其基础上修改。
+## 置顶字词
+啊	a	1
+把	b	1
+吧	b	2
+才	c	1
+大	d	1
+的	d	2
+发	f	1
+个	g	1
+和	h	1
+好	h	2
+出	i	1
+吃	i	2
+将	j	1
+就	j	2
+可	k	2
+了	l	1
+没	m	1
+吗	m	2
+能	n	1
+你	n	2
+哦	o	1
+去	q	1
+人	r	1
+搜	s	1
+它	t	1
+她	t	2
+他	t	3
+是	u	2
+说	u	1
+这	v	1
+我	w	1
+些	x	2
+下	x	1
+有	y	2
+又	y	1
+在	z	2
+# 爱	ai	3
+# Illustrator	ai	2
+# Adobe Illustrator	ai	1
+
+## 常用短语
+🐮🍺	nei
+微信	wx
+哪里	nl	1
+因为	yw	1
+查询	ix	4
+重新	ix	3
+成本	ib	3
+差别	ib	2
+初步	ib	1
+好吧	hb	1
+是吧	ub	4
+失败	ub	3
+上班	ub	2
+傻逼	ub	1
+上图	ut	4
+身体	ut	3
+视图	ut	2
+渗透	ut	1
+有吗	um	1
+什么	um	2
+哦哦	oo	3
+噢噢	oo	2
+喔喔	oo	1
+有没有	ymy	2
+也没有	ymy	1
+有没有	umu	1
+我这边	wvb	1
+你那边	nnb	2
+您那边	nnb	1
+手机号	sjh	1
+是不是	ubu	1
+怎样的	zyd	1
+为什么	wum	2
+什么鬼	umg	1
+什么鬼	smg	1
+什么情况	umqk
+什么情况	umfk
+什么意思	umys
+怎么样了	zmyl
+怎么样了	zmwl
+截图看看	jtkk
+截图看下	jtkx
+又双叒叕	yyyy
+什么玩意儿	umwy
+什么玩意儿!	wtf	2
+What the fuck!	wtf	1
+WTF	wtf	3
+酒8	jq8	1
+喝9	he9	1
+Rime	rime	3
+开源输入法引擎	rime	2
+http://rime.im	rime	1
+换行词条<br>第二行	hhct
+# 其他换行词条<br>我是下一行	hhct
+
+## 简单单词
+TODO	todo
+DevOps	devo	2
+Django	djan	2
+Deploy	depl	2
+Nvim	nvim	2
+NeoVim	nvim	1

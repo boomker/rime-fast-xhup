@@ -1,0 +1,68 @@
+---
+
+patch:
+  speller:
+    algebra:
+      ## 左右并击飞键音码规则
+      - derive/^(j)n/$1c/
+      - derive/^([jyn])t/$1d/         # t --> d
+      - derive/^([jlmn])p/$1e/        # p --> e
+      - derive/^([djlnx])q/$1f/       # q --> f
+      - derive/^p([okibnmuhj])/e$1/
+      - derive/^q([pkibnmsxyl])/f$1/
+      - derive/^qt/fd/
+      - derive/^qu/fe/
+      - derive/^qr/fo/
+      - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
+      - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
+      - derive/^yh/wn/
+      - derive/^yj/wm/
+      - derive/^hy/hw/
+      - derive/^uy/uw/                # uy --> uw
+      - derive/^vx/ux/                # vx --> ux
+      - derive/^vs/us/                # vs --> us
+      - derive/^vd/ud/                # vd --> ud
+      - derive/^vf/vn/                # vf --> vn
+      - derive/^vg/vk/                # vg --> vk
+      - derive/^vr/vm/                # vr --> vm
+      - derive/^te/df/                # te --> df
+      - derive/^tw/dw/                # tw --> dw
+      - derive/^tg/db/                # tg --> db
+      - derive/^tv/dl/                # tv --> dl
+      - derive/^rv/rl/                # rv --> rl
+      - derive/^rg/rb/                # rg --> rb
+      - derive/^rz/rm/                # rz --> rm
+      - derive/^rf/rn/                # rf --> rn
+      - derive/^gf/gn/                # gf --> gn
+      - derive/^gr/gm/                # gr --> gm
+      - derive/^g([wv])/gi/           # g[wv] --> gi
+      - derive/^xt/xo/
+      - derive/^xs/xh/
+      - derive/^li/lx/
+      - derive/^nu/nv/
+      - derive/^nh/nx/
+      - derive/^nj/xj/
+      - derive/^no/nr/
+      - derive/^lo/ng/
+      - derive/^ly/nw/
+      - derive/^lm/nz/
+      - derive/^jm/jz/
+      - derive/^jb/ja/
+      - derive/^za/zl/
+      - derive/^ze/zn/
+      - derive/^zr/zm/
+      - derive/^z([ws])/zk/
+      - derive/^mb/ms/
+      - derive/^mh/mx/
+      - derive/^mk/me/
+      - derive/^mo/mr/
+      - derive/^mu/mv/
+      - derive/^ik/ix/
+      - derive/^sz/sl/
+      - derive/^bw/bs/
+      - derive/^b([hjku])/a$1/
+      - derive/^b([fgnm])/s$1/
+      - derive/^c([dz])/cl/
+      - derive/^cs/ck/
+      - derive/^ce/cn/
+      - derive/^cr/cm/

@@ -1,0 +1,11 @@
+# Rime dictionary
+# encoding: utf-8
+#
+# 挂载英文输入方案的词库
+#
+
+---
+name: ecdict
+version: 2025.01.11
+import_tables:
+  - en_dicts/ecdict

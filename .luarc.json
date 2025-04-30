@@ -1,0 +1,31 @@
+{
+  "diagnostics.globals": [
+    "ReverseDb",
+    "yield",
+    "Candidate",
+    "ReverseLookup",
+    "UniquifiedCandidate",
+    "CommitHistory",
+    "LevelDb",
+    "KeyEvent",
+    "KeySequence",
+    "log",
+    "Switcher",
+    "ShadowCandidate",
+    "rime_api",
+    "Opencc",
+    "UniqifiedCandidate",
+    "metatable",
+    "ConfigValue",
+    "Schema",
+    "ConfigMap",
+    "ConfigList",
+    "Set",
+    "Component",
+    "Translator",
+    "Memory",
+    "DictEntry",
+    "Phrase",
+    "utf8"
+  ]
+}

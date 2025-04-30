@@ -1,0 +1,864 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://d3gyfrtg0yt6hg.cloudfront.net/schema/rime-schema-yaml-schema.json",
+    "title": "Rime Schema Configuration",
+    "description": "A JSON Schema for RIME schema configurations.",
+    "type": "object",
+    "definitions": {
+        "regexString": {
+            "type": "string",
+            "format": "regex"
+        },
+        "keyCombination": {
+            "type": "string"
+        },
+        "switchKeyActions": {
+            "type": "string",
+            "enum": [
+                "inline_ascii",
+                "commit_code",
+                "commit_text",
+                "noop",
+                "clear"
+            ]
+        },
+        "compilingCommands": {
+            "__include": {
+                "type": "object"
+            },
+            "__patch": {
+                "type": "object"
+            },
+            "__append": {
+                "type": "object"
+            },
+            "__merge": {
+                "type": "object"
+            }
+        }
+    },
+    "required": [
+        "schema",
+        "engine"
+    ],
+    "properties": {
+        "schema": {
+            "description": "输入方案的元信息。",
+            "type": "object",
+            "required": [
+                "schema_id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "schema_id": {
+                    "type": "string",
+                    "description": "方案的内部名称。"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "方案的显示名称。"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "方案的版本号。"
+                },
+                "author": {
+                    "type": [
+                        "string",
+                        "array"
+                    ],
+                    "description": "方案的发明人、撰写者。"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "方案历史、码表来源、方案规则等的简要描述。"
+                },
+                "dependencies": {
+                    "type": [
+                        "string",
+                        "array"
+                    ],
+                    "description": "所依赖的其它方案。"
+                }
+            }
+        },
+        "switches": {
+            "type": "array",
+            "description": "输入方案定义的一系列开关。",
+            "items": {
+                "additionalItems": false,
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "states"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "enum": [
+                                    "gbk",
+                                    "emoji",
+                                    "charset",
+                                    "ascii_mode",
+                                    "full_shape",
+                                    "ascii_punct",
+                                    "charset_hint",
+                                    "simplification",
+                                    "traditionalize",
+                                    "extended_charset"
+                                ],
+                                "description": "定义一个二值开关，其内部名称。"
+                            },
+                            "states": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "开关的各个状态描述。最终会显示在方案选单界面上。"
+                            },
+                            "reset": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 1,
+                                "description": "开关的默认状态。"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "options",
+                            "states"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "options": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "定义一个多值开关，其各个选项的内部名称，如 [zh_trad, zh_cn, zh_mars] 将得到三值开关"
+                            },
+                            "states": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "开关的各个状态描述。最终会显示在方案选单界面上。"
+                            },
+                            "reset": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 1,
+                                "description": "开关的默认状态。"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "engine": {
+            "description": "输入引擎设定。即挂接组件的「处方」。",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "processors": {
+                    "type": "array",
+                    "description": "负责处理各类按键消息的组件。",
+                    "items": {
+                        "additionalItems": false,
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "ascii_composer"
+                                ],
+                                "description": "处理西文模式及中西文切换。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "recognizer"
+                                ],
+                                "description": "与 segmentors 中的 matcher 搭配，处理符合特定规则的输入码，如网址反查等 tag。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "key_binder"
+                                ],
+                                "description": "按键绑定。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "speller"
+                                ],
+                                "description": "拼写处理器。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "punctuator"
+                                ],
+                                "description": "标点处理器。将单个字符按键直接映射为标点符号或文字。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "selector"
+                                ],
+                                "description": "选字处理器。处理数字选字键、上下候选定位、换页等。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "navigator"
+                                ],
+                                "description": "处理输入栏内的光标移动。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "express_editor"
+                                ],
+                                "description": "编辑器。处理空格、退格、回车上屏等。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "fluency_editor"
+                                ],
+                                "description": "句式编辑器。用于以空格断词，回车上屏的输入方案，如「注音」、「语句流」。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "chord_composer"
+                                ],
+                                "description": "并击处理器（和弦作曲家）。用于多键并击的输入方案，如「宫保拼音」。"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_processor@\\w+",
+                                "description": "Lua 自定义脚本处理器。使用 lua 脚本定义的自定义按键。可定义多个。需添加@{函数名}后缀，如 lua_processor@foo。函数名定义于用户文件夹下的 rime.lua。",
+                                "example": "lua_processor@foo"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_processor@\\*\\w+",
+                                "description": "Lua 自定义脚本处理器。使用 lua 脚本定义的自定义按键。可定义多个。需添加@{函数名}后缀，如 lua_processor@foo。函数名定义于用户文件夹下的 rime.lua。",
+                                "example": "lua_processor@foo"
+                            }
+                        ]
+                    }
+                },
+                "segmentors": {
+                    "type": "array",
+                    "description": "负责识别输入内容，分段并打标记的组件。",
+                    "items": {
+                        "additionalItems": false,
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "ascii_segmentor"
+                                ],
+                                "description": "标识西文段落字母直接上屏。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "matcher"
+                                ],
+                                "description": "与 processor 中的 recognizer 搭配，标识符合特定规则的段落，如网址、反查等。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "abc_segmentor"
+                                ],
+                                "description": "将常规的文字段落标识为 `abc` tag。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "punct_segmentor"
+                                ],
+                                "description": "将标点段落标识为 `punct` tag。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "fallback_segmentor"
+                                ],
+                                "description": "标识其余未识别的段落。"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^affix_segmentor@\\w+",
+                                "description": "用户自定义标识器。可定义多个。需添加 @{tag} 后缀，如 affix_segmentor@foo。",
+                                "example": "affix_segmentor@foo"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_segmentor@\\w+",
+                                "description": "自定义 Lua 函数标识器。可定义多个。需添加 @{函数名} 后缀，如 lua_segmentor@foo。",
+                                "example": "lua_segmentor@foo"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_segmentor@\\*\\w+",
+                                "description": "自定义 Lua 函数标识器。可定义多个。需添加 @{函数名} 后缀，如 lua_segmentor@foo。",
+                                "example": "lua_segmentor@foo"
+                            }
+                        ]
+                    }
+                },
+                "translators": {
+                    "type": "array",
+                    "description": "翻译特定输入码为一组候选文字的组件。",
+                    "items": {
+                        "additionalItems": false,
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "echo_translator"
+                                ],
+                                "description": "回显输入码。输入码可以直接通过 Shift+Enter 上屏。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "punct_translator"
+                                ],
+                                "description": "标点符号翻译器。配合 punct_segmentor 使用。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "reverse_lookup_translator"
+                                ],
+                                "description": "反查翻译器。借助另一种编码方案查询编码。"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^table_translator(@\\w+)?",
+                                "description": "码表翻译器。可定义多个。需添加 @{码表名} 后缀，如 table_translator@cangjie。",
+                                "example": "table_translator@cangjie"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^script_translator(@\\w+)?",
+                                "description": "脚本翻译器。可定义多个。需添加 @{脚本名} 后缀，如 script_translator@pinyin。",
+                                "example": "script_translator@pinyin"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_translator@\\w+",
+                                "description": "Lua 函数翻译器。可定义多个。需添加 @{lua 函数名} 后缀，如 lua_translator@date_translator。Lua 函数定义于用户文件夹下的 rime.lua，参数为 (input, seg, env)。",
+                                "example": "lua_translator@date_translator"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_translator@\\*\\w+",
+                                "description": "Lua 函数翻译器。可定义多个。需添加 @*{lua 函数名} 后缀，如 lua_translator@*date_translator。",
+                                "example": "lua_translator@date_translator"
+                            }
+                        ]
+                    }
+                },
+                "filters": {
+                    "type": "array",
+                    "description": "负责对翻译结果进行过滤的组件。",
+                    "items": {
+                        "additionalItems": false,
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "uniquifier"
+                                ],
+                                "description": "过滤重复的候选字。有可能来自 simplifier。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "cjk_minifier"
+                                ],
+                                "description": "字符集过滤。仅用于 script_translator，使其支持 extended_charset 开关。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "single_char_filter"
+                                ],
+                                "description": "单字过滤器。如加载该组件，则屏蔽词典中的词组（仅 table_translator 有效）。"
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "simplifier"
+                                ],
+                                "description": "用字转换。"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^reverse_lookup_filter@\\w+",
+                                "description": "反查过滤器。Rime 1.0 后替代 reverse_lookup_translator，以提供更灵活的反查方式。\n可定义多个。需添加@{过滤器名称}后缀，如 reverse_lookup_filter@pinyin_lookup。",
+                                "example": "reverse_lookup_filter@pinyin_lookup"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^charset_filter@\\w+",
+                                "description": "字符集过滤器。可定义多个。需添加@{字符集名称}后缀，如 charset_filter@utf-8。",
+                                "example": "charset_filter@utf-8"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_filter@\\w+",
+                                "description": "使用 Lua 函数的自定义过滤器。可定义多个。需添加@{字符集名称}后缀，如 lua_filter@single_char_first。Lua 函数名定义于用户文件夹下的 rime.lua，参数为 (input, env)。",
+                                "example": "lua_filter@single_char_first"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^lua_filter@\\*\\w+",
+                                "description": "使用 Lua 函数的自定义过滤器。可定义多个。需添加@{字符集名称}后缀，如 lua_filter@single_char_first。Lua 函数名定义于用户文件夹下的 rime.lua，参数为 (input, env)。",
+                                "example": "lua_filter@single_char_first"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^simplifier@\\w+",
+                                "description": "simplifier转换器",
+                                "example": "simplifier@emoji"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "speller": {
+            "description": "拼写处理组件。接受字符按键，编辑输入码。",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "alphabet": {
+                    "type": "string",
+                    "description": "定义本方案输入键。"
+                },
+                "initials": {
+                    "type": "string",
+                    "description": "定义仅作为始码的键。"
+                },
+                "finals": {
+                    "type": "string",
+                    "description": "定义仅作为末码的键。"
+                },
+                "delimiter": {
+                    "type": "string",
+                    "description": "上屏时的音节间分音符。",
+                    "examples": [
+                        " ",
+                        "'",
+                        " '"
+                    ]
+                },
+                "algebra": {
+                    "description": "拼写运算规则。由之算出的拼写汇入 prism 中。",
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "pattern": "((derive|xform|fuzz|xlit|abbrev)/[^/]+/[^/]*/)|(erase/[^/]+/)",
+                                "examples": [
+                                    "erase/^xx$/",
+                                    "derive/^([jqxy])u$/$1v/",
+                                    "xform/^([aoe])(ng)?$/$1$1$2/",
+                                    "xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/",
+                                    "abbrev/^(.).+$/$1/"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "__include": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                },
+                                "__append": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
+                },
+                "max_code_length": {
+                    "type": "integer",
+                    "description": "形码最大码长，如超出最大码长则顶字上屏。"
+                },
+                "auto_select": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：自动上屏。"
+                },
+                "auto_select_pattern": {
+                    "type": "string",
+                    "description": "自动上屏规则。以正则表达式描述，当输入串匹配时自动顶字上屏。"
+                },
+                "use_space": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：以空格键作为输入码。"
+                },
+                "__patch": {
+                    "description": "拼写补丁",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^(algebra|alphabet|initials|auto_select_pattern)(\\/[+=])$": {
+                            "description": "拼写运算规则补丁",
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "((derive|xform|fuzz|xlit|abbrev)/[^/]+/[^/]*/)|(erase/[^/]+/)",
+                                        "examples": [
+                                            "erase/^xx$/",
+                                            "derive/^([jqxy])u$/$1v/",
+                                            "xform/^([aoe])(ng)?$/$1$1$2/",
+                                            "xlit/QWRTYUIOPSDFGHJKLZXCVBNM/qwrtyuiopsdfghjklzxcvbnm/",
+                                            "abbrev/^(.).+$/$1/"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "__include": {
+                                            "type": "string",
+                                            "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                        },
+                                        "__append": {
+                                            "type": "string",
+                                            "pattern": "^[a-z0-9_.]+(yaml)?(:/)?(.+)$"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "segmentor": {
+            "description": "输入码分段组件。识别不同内容类型，将输入码分段。",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "tag": {
+                    "type": "string",
+                    "description": "分段后打上的类型标记。"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "前缀标识。可留空。"
+                },
+                "suffix": {
+                    "type": "string",
+                    "description": "后缀标识。可留空。"
+                },
+                "tips": {
+                    "type": "string",
+                    "description": "输入前提示符。可留空。"
+                },
+                "closing_tips": {
+                    "type": "string",
+                    "description": "结束输入提示符。可留空。"
+                },
+                "extra_tags": {
+                    "type": "array",
+                    "description": "可定义的一组额外类型标记。",
+                    "items": {
+                        "type": "string",
+                        "description": "额外类型标记。"
+                    }
+                }
+            }
+        },
+        "translator": {
+            "description": "输入码翻译组件。将输入码翻译为一组候选文字。",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enable_charset_filter": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：字符集过滤。仅对 table_translator 生效。"
+                },
+                "enable_encoder": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：自动造词。仅对 table_translator 生效。"
+                },
+                "encode_commit_history": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：对上屏词自动成词。仅对 table_translator 生效。"
+                },
+                "max_phrase_length": {
+                    "type": "integer",
+                    "description": "最大自动成词词长。仅对 table_translator 生效。"
+                },
+                "enable_completion": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：自动补全输入码。仅对 table_translator 生效。"
+                },
+                "dynamic_model": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：动态模型。仅对 table_translator 生效。"
+                },
+                "prioritize_quality": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "启用优先质量选项"
+                },
+                "enable_word_completion": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "4 音节以上的词条才补全"
+                },
+                "sentence_over_completion": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：开启智能组句，即使无全码对应字而仅有逐键提示时。仅对 table_translator 生效。"
+                },
+                "strict_spelling": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：屏蔽符合 fuzz 拼写规则的单字候选，仅以其输入词组。仅对 table_translator 生效。"
+                },
+                "disable_user_dict_for_patterns": {
+                    "description": "一组指定的匹配模式字符串，若输入串匹配任一指定模式，则在当前查询中禁用用户词典。",
+                    "type": "array",
+                    "additionalItems": false,
+                    "items": {
+                        "type": "string",
+                        "description": "编码的匹配模式字符串（pattern）。"
+                    }
+                },
+                "enable_sentence": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：开启自动造句。"
+                },
+                "enable_user_dict": {
+                    "type": "boolean",
+                    "pattern": "(true|false)",
+                    "description": "开关：开启用户词典（用于记录动态字词频、用户词）。"
+                },
+                "dictionary": {
+                    "type": "string",
+                    "description": "提供给翻译器的字典文件。"
+                },
+                "prism": {
+                    "type": "string",
+                    "description": "主翻译器生成的棱镜文件名，或副翻译器调用的棱镜文件名。"
+                },
+                "user_dict": {
+                    "type": "string",
+                    "description": "指定的用户词典名。"
+                },
+                "db_class": {
+                    "type": "string",
+                    "pattern": "(tabledb|userdb)",
+                    "description": "指定的用户词典类型。文本（tabledb）或二进制（userdb）。"
+                },
+                "preedit_format": {
+                    "description": "自定义的一组上屏码规则。",
+                    "additionalItems": false,
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "examples": [
+                                    "xform/(\\w)g/$1eng/"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "__include": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
+                },
+                "comment_format": {
+                    "type": "array",
+                    "description": "自定义的一组提示码规则。",
+                    "additionalItems": false,
+                    "items": {
+                        "type": "string",
+                        "description": "自定义提示码规则"
+                    }
+                },
+                "spelling_hints": {
+                    "type": "integer",
+                    "description": "启用带调拼音标注的候选字数。仅对 script_translator 生效。"
+                },
+                "initial_quality": {
+                    "type": "number",
+                    "description": "当前翻译器翻译的优先级。"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "设置此翻译器针对的 tag。可留空，留空则仅针对 abc。"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "设置此翻译器的前缀标识，可留空，留空则无前缀。"
+                },
+                "suffix": {
+                    "type": "string",
+                    "description": "设置此翻译器的后缀标识，可留空，留空则无后缀。"
+                },
+                "tips": {
+                    "type": "string",
+                    "description": "设置此翻译器的输入提示符，可留空，留空则无提示符。"
+                },
+                "closing_tips": {
+                    "type": "string",
+                    "description": "设置此翻译器的结束输入提示符，可留空，留空则无提示符。"
+                },
+                "contextual_suggestions": {
+                    "type": "boolean",
+                    "description": "是否使用语言模型优化输出结果（需要与 grammar 一起使用）。"
+                },
+                "max_homophones": {
+                    "type": "integer",
+                    "description": "最大同音词群长度（需要与 grammar 一起使用）。"
+                },
+                "max_homographs": {
+                    "type": "integer",
+                    "description": "最大同形词群长度（需要与 grammar 一起使用）。"
+                }
+            }
+        },
+        "reverse_lookup_filter": {
+            "description": "反查过滤器。将候选文字翻译为一组输入码。",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "tags": {
+                    "type": "string",
+                    "description": "设置其作用范围。"
+                },
+                "overwrite_comment": {
+                    "type": "boolean",
+                    "description": "是否覆盖其他提示。"
+                },
+                "dictionary": {
+                    "type": "string",
+                    "description": "反查所得提示码之码表。"
+                },
+                "comment_format": {
+                    "type": "string",
+                    "description": "自定义提示码格式。"
+                }
+            }
+        },
+        "simplifier": {
+            "description": "简繁体转换器",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "option_name": {
+                    "type": "string",
+                    "description": "对应 switches 中设置的切换项名，即 key_binder/binding 中所用名。"
+                },
+                "opencc_config": {
+                    "type": "string",
+                    "description": "用字转换的配置文件。位于 rime_dir/opencc/。自带之配置文件包含：繁转简（默认）：t2s.json，繁转台湾：t2tw.json，繁转香港：t2hk.json，简转繁：s2t.json。",
+                    "enum": [
+                        "t2s.json",
+                        "t2tw.json",
+                        "t2hk.json",
+                        "s2t.json"
+                    ]
+                },
+                "tags": {
+                    "type": "string",
+                    "description": "设置转换范围。"
+                },
+                "tips": {
+                    "type": "string",
+                    "description": "设置是否提示转换前的字。可填 none（或不填）、char（仅对单字有效）、all。",
+                    "enum": [
+                        "none",
+                        "char",
+                        "all"
+                    ]
+                },
+                "comment_format": {
+                    "type": "string",
+                    "description": "自定义提示码格式。"
+                },
+                "allow_erase_comment": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "是否允许返回空提示码（默认为 false）。"
+                },
+                "show_in_comment": {
+                    "type": "boolean",
+                    "description": "设置是否仅将转换结果显示在备忘中。"
+                },
+                "excluded_types": {
+                    "type": "string",
+                    "description": "取消特定范围(一般为 reverse_lookup_translator)转换用字。"
+                }
+            }
+        },
+        "chord_composer": {
+            "description": "并击处理器（和弦作曲家）。用于多键并击的输入方案，如「宫保拼音」。",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "alphabet": {
+                    "type": "string",
+                    "description": "字母表，包含用于并击的按键。击键虽有先后，形成并击时，一律以字母表顺序排列。"
+                },
+                "algebra": {
+                    "type": "string",
+                    "description": "拼写运算规则，将一组并击编码转换为拼音音节。"
+                },
+                "output_format": {
+                    "type": "string",
+                    "description": "并击完成后采用的格式，追加隔音符号。"
+                },
+                "prompt_format": {
+                    "type": "string",
+                    "description": "并击过程中采用的格式，如方括号。"
+                }
+            }
+        }
+    }
+}

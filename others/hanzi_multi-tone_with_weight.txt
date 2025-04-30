@@ -1,0 +1,803 @@
+的	de, dī, dí, dì	15525620
+和	hé, hè, hú, huó, huò, huo	2261575
+中	zhōng, zhòng	532908
+与	yǔ, yù	465722
+上	shǎng, shàng	414865
+都	dōu, dū	387928
+被	bèi, pī (被荆请罪)	343538
+这	zhè, zhèi (这人)	320243
+为	wéi, wèi	310675
+吧	bā, ba	302859
+吗	má, mǎ, ma	300110
+呢	ne, ní	287374
+要	yāo, yào	264066
+把	bǎ, bà	259867
+啊	ā, á, ǎ, à, a	252181
+能	néng, nài (能耐)	248211
+个	gě, gè	219075
+还	hái, huán	205870
+不	bù, fǒu (是否)	198117
+那	nà, nǎ (哪里), nèi (那厢), nuó (挪那)	194126
+将	jiāng, jiàng	193938
+看	kān, kàn	182015
+其	qí, jī (郦食其)	145716
+更	gēng, gèng	140303
+并	bīng, bìng	138792
+大	dà, dài	135958
+好	hǎo, hào	133046
+当	dāng, dàng	130627
+过	guō, guò	118476
+分	fēn, fèn	107314
+可	kě, kè	106157
+万	mò, wàn	87991
+们	mén, men	84934
+且	qiě, jū (且住)	75333
+号	háo, hào	69027
+只	zhī, zhǐ	60749
+啦	lā, la	58908
+么	me, mó (幺麽小丑)	58835
+打	dá, dǎ	58304
+内	nèi, nà (内子)	53898
+哦	é, ó, ò	49713
+谁	shéi, shuí	42315
+呀	yā, ya	38262
+家	jiā, jia (家伙), gū (家什)	32526
+少	shǎo, shào	32173
+得	dé, de, děi	31722
+着	zhāo, zháo, zhe, zhuó	29440
+背	bēi, bèi	26971
+跑	páo, pǎo	26183
+发	fā, fà	25674
+刷	shuā, shuà	25241
+无	mó, wú	24966
+别	bié, biè	24272
+强	jiàng, qiáng, qiǎng	23968
+同	tóng, tòng	22794
+量	liáng, liàng	21322
+间	jiān, jiàn	20054
+作	zuō, zuò	19518
+拉	lā, lá	19227
+干	gān, gàn	18961
+哈	hā, hǎ, hà	18940
+处	chǔ, chù	18829
+种	chóng, zhǒng, zhòng	18519
+若	ruò, rě (般若)	17419
+转	zhuǎn, zhuàn (转动, 转盘)	17323
+正	zhēng, zhèng	17298
+占	zhān, zhàn	16994
+喝	hē, hè (喝彩)	16816
+论	lún, lùn	16800
+难	nán, nàn (灾难)	15583
+答	dā, dá	15242
+卷	juǎn, juàn	14162
+应	yīng, yìng	13163
+场	cháng, chǎng	12262
+据	jū, jù	12045
+地	de, dì	11815
+片	piān, piàn	11678
+喷	pēn, pèn	11545
+呗	bèi, bei (呗侬)	11048
+经	jīng, jìng	10958
+教	jiāo, jiào	10441
+倒	dǎo, dào	10349
+红	hóng, gōng (女红)	10194
+嗯	ńg, ňg, ǹg	10156
+抢	qiǎng, qiāng (抢球)	9763
+咱	zán, zǎ (咱家)	9399
+令	líng, lǐng, lìng	8923
+假	jiǎ, jià	8911
+台	tāi, tái	8388
+率	lǜ, shuài	8086
+待	dāi, dài	8006
+哪	nǎ, na, né	7697
+查	chá, zhā	7626
+唉	āi, ài	7572
+冲	chōng, chòng	7460
+挑	tiāo, tiǎo	7117
+涨	zhǎng, zhàng	7112
+汤	tāng, shāng (汤汤)	6983
+提	dī, tí	6883
+体	tī, tǐ	6854
+传	chuán, zhuàn	6526
+般	bān, pán (般若)	6516
+哇	wā, wa	6487
+省	shěng, xǐng	6393
+排	pái, pǎi	6333
+脚	jiǎo, jué (脚儿)	6136
+阿	ā, ē	6126
+切	qiē, qiè	5937
+於	wū, yū, yú (於菟)	5932
+色	sè, shǎi	5550
+行	háng, héng, xíng	5435
+属	shǔ, zhǔ (属望)	5418
+累	léi, lěi, lèi	5366
+诶	éi, ài (诶乃)	5330
+价	jià, jie	5254
+空	kōng, kòng	5158
+供	gōng, gòng	5144
+血	xiě, xuè	4965
+几	jī, jǐ	4938
+通	tōng, tòng	4904
+相	xiāng, xiàng	4872
+岗	gāng, gǎng	4866
+盖	gài, gě	4864
+节	jiē, jié	4728
+弄	lòng, nòng	4582
+服	fú, fù	4567
+压	yā, yà	4547
+句	gōu, jù	4504
+炸	zhá, zhà	4482
+朝	cháo, zhāo	4445
+著	zhù, zhuó (著衣), zhe (同'着')	4438
+泡	pāo, pào	4407
+曲	qū, qǔ	4397
+重	chóng, zhòng	4376
+折	shé, zhē, zhé	4308
+遂	suí, suì	4227
+拆	chāi, cā (拆烂污)	4099
+核	hé, hú	4063
+挣	zhēng, zhèng	4046
+厂	chǎng, hàn (同'厰')	4023
+肖	xiāo, xiào	3967
+任	rén, rèn	3950
+术	shù, zhú	3923
+轴	zhóu, zhòu	3766
+调	diào, tiáo	3708
+观	guān, guàn	3638
+角	jiǎo, jué	3599
+侧	cè, zè (侧棱)	3582
+胖	pán, pàng	3546
+弹	dàn, tán	3473
+呐	nà, nè (呐喊)	3467
+绿	lù, lǜ	3419
+夹	gā, jiā, jiá (夹袄)	3411
+叶	xié, yè	3366
+塞	sāi, sài, sè	3362
+齐	qí, jì (剂齐)	3288
+员	yuán, yùn	3287
+尽	jǐn, jìn	3286
+洞	dòng, tóng	3282
+蛇	shé, yí (委蛇)	3262
+哟	yō, yo	3194
+浅	qiǎn, jiān (浅浅)	3117
+钻	zuān, zuàn	3092
+券	quàn, xuàn	3019
+熬	āo, áo	2992
+哼	hēng, hng	2957
+系	jì, xì	2953
+长	cháng, zhǎng	2916
+吐	tǔ, tù	2909
+恶	ě, è, wù	2851
+南	nā, nán	2805
+撒	sā, sǎ	2801
+炮	bāo, páo, pào	2792
+稍	shāo, shào	2735
+汗	hán, hàn	2730
+扫	sǎo, sào	2727
+合	gě, hé	2669
+症	zhēng, zhèng	2663
+呃	è, e	2653
+拜	bái, bài	2651
+挡	dǎng, dàng	2643
+虾	xiā, há (虾蟆)	2641
+骨	gū, gǔ	2555
+壳	ké, qiào	2551
+磨	mó, mò	2530
+呵	hē, ā (呵护)	2488
+薄	báo, bó, bò	2426
+耶	yē, yé	2378
+谷	gǔ, yù (吐谷浑)	2376
+杆	gān, gǎn	2354
+番	fān, pān	2316
+拽	zhuài, yè (曳兵), zhuāi (把袖子一拽)	2279
+扎	zā, zhā, zhá	2275
+铺	pū, pù	2271
+吵	chāo, chǎo	2265
+划	huá, huà (划分)	2240
+扛	gāng, káng	2222
+横	héng, hèng	2180
+溜	liū, liù	2171
+尿	niào, suī	2162
+脏	zāng, zàng	2067
+斗	dǒu, dòu	2063
+创	chuāng, chuàng	2024
+散	sǎn, sàn	2023
+刺	cī, cì	1998
+凉	liáng, liàng	1997
+华	huá, huà	1986
+给	gěi, jǐ	1950
+瓦	wǎ, wà	1920
+食	shí, sì (食邑)	1906
+罢	bà, ba	1874
+喽	lóu, lou	1857
+扇	shān, shàn	1852
+帖	tiē, tiě, tiè	1832
+泥	ní, nì	1829
+降	jiàng, xiáng	1804
+撩	liāo, liáo	1803
+沙	shā, shà	1786
+拧	níng, nǐng, nìng	1782
+蒙	méng, mēng (蒙骗), měng (蒙古)	1764
+冒	mào, mào (冒顿)	1741
+思	sī, sāi (于思)	1722
+结	jiē, jié	1707
+菌	jūn, jùn	1699
+饮	yǐn, yìn	1695
+勾	gōu, gòu	1684
+挨	āi, ái	1676
+沈	shěn, chén (沈阳)	1654
+陆	liù, lù	1646
+载	zǎi, zài	1626
+侯	hóu, hòu	1620
+晕	yūn, yùn	1571
+咯	gē, kǎ, lo, luò	1569
+芯	xīn, xìn	1557
+奔	bēn, bèn	1557
+鲜	xiān, xiǎn	1556
+糊	hū, hú, hù	1549
+冠	guān, guàn	1514
+钢	gāng, gàng	1404
+哄	hōng, hǒng, hòng	1365
+搁	gē, gé	1330
+艾	ài, yì	1315
+椅	yī, yǐ	1283
+宁	níng, nìng	1252
+否	fǒu, pǐ	1229
+缴	jiǎo, zhuó (弓缴)	1187
+邪	xié, yé (古同'耶')	1141
+麽	mó, me (么麽)	1141
+丧	sāng, sàng	1134
+劈	pī, pǐ	1131
+翘	qiáo, qiào	1112
+郎	láng, làng	1095
+钉	dīng, dìng	1094
+缝	féng, fèng	1080
+晃	huǎng, huàng	1079
+闷	mēn, mèn	1076
+禁	jīn, jìn	1057
+亡	wáng, wú (亡赖)	1016
+纪	jǐ, jì	979
+兴	xīng, xìng	953
+叉	chā, chá, chǎ, chà	953
+咳	hāi, ké	940
+龟	guī, jūn, qiū	915
+坊	fāng, fáng	914
+嗑	kē, kè	910
+捋	lǚ, luō	907
+膏	gāo, gào	897
+兹	cí, zī	891
+唠	láo, lào	868
+舍	shě, shè	866
+采	cǎi, cài	858
+丽	lí, lì	853
+什	shén, shí	843
+咧	liē, liě	828
+腌	ā, yān	825
+爪	zhǎo, zhuǎ	803
+盛	chéng, shèng	801
+没	méi, mò	791
+尺	chě, chǐ	773
+参	cān, cēn, shēn	743
+漂	piāo, piǎo, piào	714
+勒	lè, lēi	700
+撇	piē, piě	696
+识	shí, zhì	690
+臂	bei, bì	688
+颈	gěng, jǐng	687
+伯	bǎi, bó	675
+巷	hàng, xiàng	669
+俱	jū, jù	667
+燕	yān, yàn	664
+菲	fēi, fěi	661
+泽	zé, shì (泽国)	652
+呲	cī, zī (呲牙)	632
+摩	mā, mó	631
+葛	gé, gě	631
+缩	sù, suō	626
+嘎	gā, gá, gǎ	624
+踏	tā, tà	617
+俞	yú, shù (俞跗)	615
+仔	zǎi, zǐ	610
+嚼	jiáo, jiào, jué	607
+仇	chóu, qiú	605
+嘘	shī, xū	602
+衰	shuāi, cuī (衰微)	596
+隋	suí, duò (隋和)	592
+禅	chán, shàn	586
+呛	qiāng, qiàng	585
+适	shì, kuò (南适)	578
+暴	bào, pù (一暴十寒)	570
+町	tīng, dīng (町畦)	559
+哩	lī, li	555
+脉	mài, mò	542
+扁	biǎn, piān	539
+殷	yān, yīn	534
+蜡	là, zhà (蜡梅)	533
+担	dān, dàn	513
+虹	hóng, jiàng	509
+莎	shā, suō	496
+咪	mī, mǐ	491
+岂	qǐ, kǎi (岂弟)	487
+钯	pá, bǎ (钯头)	480
+洒	sǎ, xǐ (洒脱)	471
+咔	kā, kǎ	463
+模	mó, mú	461
+搂	lōu, lǒu	460
+弟	dì, tì (悌弟)	460
+褚	chǔ, zhǔ (褚衣)	455
+砌	qì, qiè (砌末)	452
+掺	chān, càn (掺挝)	451
+喏	nuò, rě (唱喏)	443
+择	zé, zhái	439
+浆	jiāng, jiàng	439
+约	yāo, yuē	433
+旋	xuán, xuàn	429
+监	jiān, jiàn	427
+召	shào, zhào	426
+荷	hé, hè	424
+扒	bā, pá	424
+烙	lào, luò	419
+揣	chuāi, chuǎi (揣测), tuán, chuài (挣揣)	417
+揭	jiē, qì (揭谛)	416
+淋	lín, lìn	398
+颤	chàn, zhàn (颤栗)	397
+嬛	huán, xuān (嬛嬛)	394
+逮	dǎi, dài	392
+啰	luō, luó, luo	387
+煞	shā, shà	379
+繁	fán, pó	370
+予	yú, yǔ	368
+挟	xié, jiā (挟山超海)	358
+捎	shāo, shào	358
+泷	lóng, shuāng	355
+簿	bù, bó (簿书)	353
+豁	huō, huò (豁达)	352
+会	huì, kuài	351
+伽	gā, jiā, qié	347
+乐	lè, yuè	343
+涌	chōng, yǒng	342
+蛤	gé, há	333
+契	qì, xiè (契阔)	332
+哑	yā, yǎ	328
+笼	lóng, lǒng	323
+囊	nāng, náng	320
+瘪	biē, biě	318
+革	gé, jí (病革)	312
+阙	quē, què	311
+圈	juān, juàn, quān	308
+拾	shè, shí	306
+熟	shóu, shú	294
+遗	yí, wèi (遗之千金)	293
+卡	kǎ, qiǎ	293
+嘬	zuō, chuài (嘬奶)	291
+度	dù, duó	281
+肚	dǔ, dù	279
+瞿	qú, jù (瞿塘)	277
+刨	bào, páo	272
+肋	lèi, lē (肋脦)	271
+棱	lēng, léng, líng	270
+济	jǐ, jì	269
+氐	dī, dǐ	269
+卜	bo, bǔ	269
+蚂	mǎ, mà	267
+倔	jué, juè	263
+淌	tǎng, chàng (淌白)	262
+综	zèng, zōng	259
+馕	náng, nǎng	258
+拂	fú, bì (拂衣)	252
+荫	yīn, yìn	250
+栖	qī, xī (栖栖)	248
+车	chē, jū	243
+绷	bēng, běng, bèng	231
+估	gū, gù	223
+敦	dūn, duì (敦勉)	219
+唬	hǔ, xià (唬人)	211
+矫	jiáo, jiǎo	209
+仆	pū, pú	198
+苔	tāi, tái	196
+雀	qiāo, qiǎo, què	189
+茜	qiàn, xī	176
+称	chèn, chēng	176
+见	jiàn, xiàn	174
+芥	jiè, gài (芥菜)	173
+欸	ǎi, ê̄, ế, ê̌, ề	171
+桡	ráo, náo (桡骨)	171
+鞘	qiào, shāo	171
+哏	gén, hěn (哏儿)	165
+恁	nèn, nín (恁地)	164
+剿	chāo, jiǎo (剿袭)	164
+濛	méng, měng (濛鸿)	162
+涡	guō, wō	160
+祇	qí, zhǐ (神祇)	159
+迫	pǎi, pò	159
+秘	bì, mì	150
+哗	huā, huá	145
+棣	dì, dài (棠棣)	140
+铣	xǐ, xiān (铣铁)	135
+掖	yē, yè	134
+抹	mā, mǒ, mò	133
+藉	jí, jiè	133
+掸	dǎn, shàn (掸子)	129
+拓	tà, tuò	128
+艮	gěn, gèn	127
+阏	è, yān (阏氏)	126
+倘	tǎng, cháng (倘佯)	125
+腊	là, xī (腊祭)	122
+甸	diàn, tián (甸服)	122
+倭	wō, wēi (倭傀)	120
+蓼	liǎo, luò (蓼蓝)	118
+梢	shāo, sào (末梢)	116
+徵	zhǐ, zhēng (徵羽)	112
+佣	yōng, yòng	112
+杉	shā, shān	112
+幢	chuáng, zhuàng	111
+溺	nì, ruò (溺弱)	107
+卬	áng, yǎng (卬首)	107
+嚷	rāng, rǎng	105
+鞅	yāng, yàng	103
+靡	mí, mǐ	102
+铛	chēng, dāng	101
+鲑	guī, xié (鲑菜)	100
+溃	huì, kuì	97
+铪	hā, kē (铪匝)	96
+姥	mǔ, lǎo (姥姥)	95
+啫	zhě, zé (啫喱)	93
+柚	yóu, yòu	93
+吭	háng, kēng	93
+毌	guàn, mǔ (毌丘)	93
+耙	bà, pá	93
+栅	shān, zhà	92
+撮	cuō, zuǒ	91
+棹	zhào, zhuō (棹船)	89
+眯	mī, mí	89
+削	xiāo, xuē	88
+畜	chù, xù	87
+臊	sāo, sào	86
+区	ōu, qū	84
+藏	cáng, zàng	84
+糜	méi, mí	83
+亟	jí, qì	81
+媛	yuán, yuàn	80
+蔚	wèi, yù	80
+帑	tǎng, nú (帑藏)	80
+叕	zhuó, yǐ (连叕), lì (叕涚), jué (叕趋)	78
+椎	zhuī, chuí (椎心)	77
+澹	dàn, tán	77
+钌	liǎo, liào	75
+膻	dàn, shān	75
+颏	kē, ké	73
+剥	bāo, bō	72
+菀	wǎn, yù (菀柳)	71
+乜	miē, niè	71
+燎	liáo, liǎo	71
+蔓	mán, màn, wàn	69
+芦	lú, lǔ	69
+曾	céng, zēng	69
+玟	wén, mín (玟玟)	68
+圩	wéi, xū	68
+矜	jīn, guān (矜持)	67
+露	lòu, lù	66
+佛	fó, fú	66
+劲	jìn, jìng	65
+杓	sháo, biāo (杓携)	64
+吡	pǐ, bǐ (吡邻)	64
+彷	páng, fǎng (彷彿)	63
+伎	jì, qí (伎女)	61
+玹	xuán, xián (玹琴)	60
+厦	shà, xià	60
+擂	léi, lèi	60
+偈	jì, jié (偈语)	60
+呷	gā, xiā (呷醋)	60
+繇	yáo, yóu (繇使), zhòu (卦繇)	59
+纤	qiàn, xiān	59
+俩	liǎ, liǎng	59
+浚	jùn, xùn	59
+镗	tāng, táng	58
+解	jiě, jiè, xiè	58
+瀑	bào, pù	58
+尾	wěi, yǐ	57
+吁	xū, yū, yù	56
+杈	chā, chà	56
+拗	ào, niù	56
+颉	jié, xié	55
+石	dàn, shí	55
+惮	dàn, chán (憺惮)	54
+僮	tóng, zhuàng (僮仆)	53
+湫	jiǎo, qiū	53
+呔	dǎi, tài (呔声)	53
+磅	bàng, páng	53
+蜇	zhē, zhé	52
+铊	tā, tuó	52
+筠	jūn, yún	51
+了	le, liǎo	50
+脯	fǔ, pú	50
+奇	jī, qí	48
+垛	duǒ, duò	48
+沓	dá, tà	48
+便	biàn, pián	48
+钐	shān, shàn	47
+箐	qìng, jīng (箐华)	47
+蹶	jué, juě	46
+锔	jū, jú	45
+叚	jiǎ, xiá (叚借)	45
+攒	cuán, zǎn	45
+禺	yú, yù (禺谷)	44
+轧	yà, zhá	43
+莳	shí, shì	43
+俶	chù, tì (俶傥)	42
+潦	lǎo, liáo (潦草)	41
+苴	jū, chá (苴麻)	40
+圜	huán, yuán	40
+屏	bǐng, píng	40
+柏	bǎi, bó	40
+戗	qiāng, qiàng	38
+莞	guǎn, wǎn	38
+枋	fāng, bàng (枋榆)	38
+桁	héng, háng (桁杨)	37
+泊	bó, pō	37
+曝	bào, pù	37
+莘	shēn, xīn	36
+似	shì, sì	36
+祕	mì, bì (秘戏)	36
+剋	kè, kēi (剋扣)	36
+嚓	cā, chā	36
+嗳	ǎi, ài	35
+宿	sù, xiǔ, xiù	35
+悄	qiāo, qiǎo	35
+咖	gā, kā	35
+碴	chā, chá	35
+吽	hōng, ōu (吽牙)	34
+贾	gǔ, jiǎ	34
+钿	diàn, tián (钿头)	34
+烊	yáng, yàng	33
+疟	nüè, yào	33
+鬲	gé, lì	33
+囤	dùn, tún	31
+酢	cù, zuò (酢浆草)	31
+卒	cù, zú	31
+澍	shù, zhù (澍雨)	30
+殖	shi, zhí	29
+咀	jǔ, zuǐ	29
+埔	bù, pǔ	29
+竺	zhú, dǔ (天竺)	28
+汶	wèn, mín (汶水)	28
+校	jiào, xiào	28
+鹄	gǔ, hú	28
+咥	dié, xì (咥笑)	28
+绰	chāo, chuò	28
+楯	shǔn, dùn (楯墨)	27
+纥	hé, gē (纥繨)	27
+貉	háo, hé	27
+纶	guān, lún	27
+嘚	dē, dēi	27
+剡	yǎn, shàn (剡木为楫)	26
+铤	tǐng, dìng (铤而走险)	26
+郇	huán, xún	26
+胳	gē, gé	26
+吱	zhī, zī	25
+钥	yào, yuè	25
+楂	zhā, chá (山楂)	24
+瘕	jiǎ, jiā (瘕疵)	24
+泌	bì, mì	24
+琢	zhuó, zuó	23
+偲	sī, cāi (偲偲)	23
+戛	gā, jiá	23
+溱	zhēn, qín (溱洧)	22
+苹	píng, pēn (苹蘩)	22
+吓	hè, xià	22
+炅	guì, jiǒng	22
+桧	guì, huì	22
+擘	bò, bāi (擘肌分理)	22
+蛸	shāo, xiāo	21
+苫	shān, shàn	21
+峙	shì, zhì	21
+荨	qián, xún	21
+栝	guā, tiě (栝楼)	21
+伺	cì, sì	21
+喁	yóng, yú	20
+覃	qín, tán	20
+泺	luò, pō (泺水)	20
+佃	diàn, tián (佃户)	20
+椹	shèn, zhēn (椹质)	19
+孖	mā, zī (孖仔)	19
+螫	shì, zhē (螫手)	18
+沌	dùn, zhuàn	18
+鳣	zhān, chán (鳣鲔)	17
+苧	zhù, chǔ (苧麻)	17
+迤	yí, yǐ	17
+耆	qí, shì (耆老)	17
+嫚	mān, màn	17
+落	là, lào, luò	17
+觉	jiào, jué	17
+蜚	fēi, fěi	16
+瘥	chài, cuó (瘥疠)	16
+堡	bǎo, bǔ, pù	16
+觜	zī, zuǐ (觜宿)	15
+芘	pí, bì (芘莉)	15
+碌	liù, lù	15
+傀	guī, kuǐ (傀怪)	15
+嶲	guī, huì (嶲周)	15
+宓	fú, mì	15
+镡	chán, tán	14
+肫	zhūn, chún (肫肝)	13
+汋	zhuó, jué (汋訾)	13
+矞	yù, jué (云矞)	13
+喳	chā, zhā	13
+窨	yìn, xūn (窨井)	12
+挝	wō, zhuā (挝耳挠腮)	12
+梃	tǐng, tìng	12
+惔	tán, dàn (惔然)	12
+莩	piǎo, fú (莩甲)	12
+絜	jié, xié	12
+袷	jiá, jiā (袷袢)	12
+缊	yùn, wēn (缊袍)	11
+芫	yán, yuán	11
+亹	wěi, mén (亹亹)	11
+尨	máng, páng (尨茸)	11
+阇	dū, shé	11
+哱	bō, bèi (哱哱)	11
+豸	zhài, zhì	10
+潵	sǎ, sā (潵沙)	10
+掊	póu, pǒu	10
+漯	luò, tà (漯阴)	10
+麇	jūn, qún	10
+苣	jù, qǔ	10
+峤	jiào, qiáo	10
+蛄	gū, gǔ	10
+戆	gàng, zhuàng	10
+骀	dài, tái	10
+梣	chén, qín	10
+柞	zhà, zuò	9
+熨	yù, yùn	9
+畬	yú, shē (畬田)	9
+糁	sǎn, shēn	9
+蹊	qī, xī	9
+铅	qiān, yán	9
+燋	jiāo, qiáo (燋火)	9
+茄	jiā, qié	9
+倞	jìng, liàng (倞然)	9
+朏	fěi, pèi (朏魄)	9
+读	dòu, dú	9
+峒	dòng, tóng	9
+铫	diào, yáo	9
+偁	chēng, chèn (偁地)	9
+膀	bǎng, pāng, páng	9
+咋	zǎ, zé, zhā	8
+郄	xì, qiè (郄曲)	8
+擿	tì, zhī (擿埴)	8
+梼	táo, zhōu (梼昧)	8
+嗄	shà, á (嗄七马八)	8
+葚	rèn, shèn	8
+馏	liú, liù	8
+犍	jiān, qián	8
+砉	huā, xū (砉然)	8
+汩	gǔ, yù (汩没)	8
+鹘	gǔ, hú	8
+氿	guǐ, jiǔ (氿泉)	8
+酊	dīng, dǐng	8
+喋	dié, zhá	8
+骠	biāo, piào	8
+隃	yú, tóng (隃糜)	7
+洗	xǐ, xiǎn	7
+埏	shān, yán (埏埴)	7
+瀼	ráng, ràng (瀼瀼)	7
+黾	mǐn, měng (黾勉)	7
+栎	lì, yuè	7
+蠡	lí, lǐ	7
+缉	jī, qī	7
+槛	jiàn, kǎn	7
+桄	guāng, guàng	7
+镦	duì, dūn (镦头)	7
+簸	bǒ, bò	7
+拶	zā, zǎn	6
+奘	zàng, zhuǎng	6
+咽	yān, yàn, yè	6
+戌	qu, xū	6
+圻	qí, yín (圻父)	6
+觭	qí, jī (觭角)	6
+朴	piáo, pò, pǔ	6
+粘	nián, zhān	6
+娜	nà, nuó	6
+侥	jiǎo, yáo	6
+嘏	gǔ, jiǎ (嘏辞)	6
+叨	dāo, dáo, tāo	6
+衩	chǎ, chà	6
+奓	zhā, chǐ (奓张)	5
+酂	zàn, cuó (酂侯)	5
+瑱	tiàn, zhèn (瑱压)	5
+亲	qīn, qìng	5
+缲	qiāo, sāo (缲丝)	5
+慊	qiàn, qiè	5
+踦	qí, yǐ (踦跂)	5
+靓	jìng, liàng	5
+哕	huì, yuě	5
+饹	gē, le	5
+差	chā, chà, chāi, cī	5
+蚌	bàng, bèng	5
+嗌	ài, yì	5
+啁	zhāo, zhōu	4
+笮	zé, zuó	4
+荥	xíng, yíng	4
+隗	wěi, kuí (隗嚣)	4
+橦	tóng, chuáng (橦木)	4
+擞	sǒu, sòu	4
+偻	lóu, lǚ	4
+镏	liú, liù	4
+坷	kē, kě	4
+焌	jùn, qū	4
+芾	fèi, fú	4
+驮	duò, tuó	4
+翟	dí, zhái	4
+杻	chǒu, niǔ	4
+婼	chuò, ruò (婼羌)	4
+玢	bīn, fēn	4
+辟	bì, pì	4
+褪	tuì, tùn	3
+荑	tí, yí	3
+裼	tì, xī	3
+酾	shī, sāi (酾酒)	3
+俟	qí, sì	3
+忞	mǐn, wěn (忞忞)	3
+牟	móu, mù	3
+缪	miào, miù, móu	3
+期	jī, qī	3
+楷	jiē, kǎi	3
+浒	hǔ, xǔ	3
+仡	gē, yì (仡然)	3
+柜	guì, jǔ	3
+瘅	dān, dàn	3
+垌	dòng, tóng	3
+枞	cōng, zōng	3
+茈	cí, zǐ	3
+棽	chēn, shēn	3
+臭	chòu, xiù	3
+帱	chóu, dào	3
+匙	chí, shi	3
+玚	chàng, yáng (玚琫)	3
+槟	bīn, bīng	3
+棓	bàng, péi (棓朴)	3
+尉	wèi, yù	2
+桯	tīng, yíng (桯床)	2
+数	shǔ, shù, shuò	2
+说	shuì, shuō	2
+氏	shì, zhī	2
+埋	mái, mán	2
+络	lào, luò	2
+莨	làng, liáng	2
+岨	jū, qū	2
+趄	jū, qiè	2
+祭	jì, zhài	2
+荠	jì, qí	2
+枸	gōu, gǒu, jǔ	2
+呱	gū, guā	2
+耏	ér, nài	2
+瘩	dá, da	2
+馇	chā, zha	2
+啜	chuài, chuò	2
+眙	chì, yí (眙盱)	2
+澄	chéng, dèng	2
+单	chán, dān, shàn	2
+孱	chán, càn (孱头)	2
+刹	chà, shā	2
+桲	bó, po	2
+搒	bàng, péng	2
+犴	àn, hān	2
+铻	wú, yǔ (铻知)	1
+趯	tì, yuè (趯趯)	1
+挲	sā, suō	1
+蝤	qiú, yóu	1
+渑	miǎn, shéng (渑池)	1
+跞	luò, lì (跞踔)	1
+浰	lì, liàn	1
+葰	jùn, suǒ	1
+坬	guà, wā	1
+漴	chóng, shuāng	1
+湴	bàn, pán (湴河)	1
+𫭟	ōu, qū	0
+敩	xiào, xué (敩学)	0
+𦰡	nà, nuó	0
+𦝼	lóu, lǘ	0
+蔊	hǎn, hàn	0
+虷	gān, hán	0
+鿎	dá, tǎ	0
+裎	chéng, chěng	0

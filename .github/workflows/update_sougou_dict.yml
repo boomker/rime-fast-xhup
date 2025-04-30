@@ -1,0 +1,68 @@
+# 自动同步上游项目变更
+name: auto_update_sougou_dict
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"   # 设置定时任务
+
+jobs:
+  update_sogou_dict:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.1.1
+        with:
+          python-version: "3.11"  # 你可以根据需要选择 Python 版本
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pypinyin pypinyin_dict
+
+      - name: Download sogou scel file
+        run: |
+          curl -fsL -o sogou_net_pop.scel 'https://pinyin.sogou.com/d/dict/download_cell.php?id=4&name=网络流行新词【官方推荐】&f=detail'
+
+      - name: Convert sogou scel to rime quanpin_dict
+        run: |
+          python3 ./scripts/scel2rime_dict.py sogou_net_pop.scel
+
+      - name: Gen diff file
+        run: |
+          awk -F'\t' 'FNR==NR&&NR>=10{a[$1]++;w[$1]=$0};FNR!=NR&&FNR>=10{b[$1]++}END{for(i in a){if(b[i]<1)print w[i]}}' ./cn_dicts/sougou_pop.dict.yaml ./cn_dicts/flypy_sogou.dict.yaml >diff_sg.txt
+
+      - name: Incremental update rime quanpin_dict to shuangpin_dict
+        run: |
+          python3 ./scripts/flypy_dict_generator.py -i ./diff_sg.txt -o ./cn_dicts/flypy_sogou.dict.yaml -m
+
+      - name: change version for flypy_sogou.dict.yaml
+        run: |
+          today="$(date '+%F')"
+          sed -i "s/version: .*/version: $today/" ./cn_dicts/flypy_sogou.dict.yaml
+
+      - name: Remove spam entries for flypy_sogou.dict.yaml
+        run: |
+          bash ./scripts/prune_words.sh
+
+      - name: Remove intermediate file
+        run: |
+          rm -f ./diff_sg.txt ./cn_dicts/sougou_pop.dict.yaml
+
+      - name: Set env
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push changes
+        run: |
+          git add cn_dicts/flypy_sogou.dict.yaml
+          git commit -m "Update sougou dict"
+          git push origin main

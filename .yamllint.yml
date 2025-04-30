@@ -1,0 +1,8 @@
+
+extends: default
+rules:
+  line-length:
+    max: 110  # 设置每行的最大长度为 110 个字符
+  commas:     # 配置逗号规则
+    level: warning  # 将逗号的检查级别设置为警告
+  # allow-trailing-whitespace: true  # 允许逗号后有多余的空格

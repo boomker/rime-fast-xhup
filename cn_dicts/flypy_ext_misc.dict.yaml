@@ -1,0 +1,240 @@
+# Rime dictionary
+# encoding: utf-8
+
+---
+name: flypy_ext_misc
+version: 2025.01.11
+
+...
+# 按需启用:
+# 数字参与中文造词, 方便输入一些特殊的 ID
+# 配合大写字母造词可以输出 `5G网络`, `3D打印` 等词汇
+# 示例: 输入 siSdian 得到 4S店, 输入 Hwu 得到 H5
+# V开头词条是响应 opencc/others.txt 的 emoji 集合
+
+A	A
+B	B
+C	C
+D	D
+E	E
+F	F
+G	G
+H	H
+I	I
+J	J
+K	K
+L	L
+M	M
+N	N
+O	O
+P	P
+Q	Q
+R	R
+S	S
+T	T
+U	U
+V	V
+W	W
+X	X
+Y	Y
+Z	Z
+
+0	lk
+1	yi
+2	er
+3	sj
+4	si
+5	wu
+6	lq
+7	qi
+8	ba
+9	jq
+
+3G
+4G
+5G
+2D
+3A
+3D
+4D
+M1
+M2
+M3
+M4
+H5
+K8S
+AE86
+H263
+H264
+M3U8
+00后
+10后
+20后
+30后
+40后
+50后
+60后
+70后
+80后
+85后
+90后
+95后
+4S店
+4A级
+4A级
+5A级
+5A级
+3A大作
+3A游戏
+3D打印
+3D电影
+3G网络
+4G网络
+5G网络
+3G流量
+4G流量
+5G流量
+4G通信
+5G通信
+
+V冷
+V包
+V卷
+V奖
+V帽
+V果
+V球
+V肉
+V船
+V花
+V菜
+V虫
+V车
+V酒
+V雪
+V鞋
+V饭
+V鱼
+V鸟
+V中华
+V中餐
+V串串
+V乐器
+V亚裔
+V交通
+V元素
+V公交
+V分数
+V动物
+V午餐
+V发型
+V发色
+V叶子
+V器官
+V国旗
+V圆形
+V地铁
+V坚果
+V外汇
+V夜晚
+V夜空
+V天气
+V奖牌
+V奖项
+V娱乐
+V宗教
+V家禽
+V寒冷
+V工具
+V常用
+V帽子
+V心心
+V快餐
+V怪物
+V手势
+V拉丁
+V拉美
+V按键
+V数码
+V方形
+V日料
+V日用
+V早点
+V早餐
+V时钟
+V星号
+V星座
+V景点
+V月亮
+V有毒
+V服装
+V服饰
+V机械
+V植物
+V正餐
+V武器
+V气象
+V水果
+V汽车
+V火车
+V点心
+V热饮
+V牲畜
+V特殊
+V甜点
+V甜食
+V生肖
+V电器
+V电子
+V畜生
+V白人
+V眼镜
+V科学
+V粗粮
+V精灵
+V纸币
+V肤色
+V自然
+V节日
+V花朵
+V蔬菜
+V血型
+V衣服
+V表情
+V西餐
+V调料
+V货币
+V运动
+V野味
+V钞票
+V零食
+V面包
+V鞋子
+V颜色
+V餐具
+V饮料
+V黑人
+V东亚人
+V东亚裔
+V亚裔女
+V亚裔男
+V动物脸
+V多媒体
+V大自然
+V拉丁裔
+V拉美人
+V拉美裔
+V日本菜
+V棕色人
+V正方形
+V游乐园
+V白种人
+V穆斯林
+V运动员
+V阿拉伯
+V飞行器
+V黄种人
+V日式料理
+V棕色人种
+V野生动物
+V阿拉伯人

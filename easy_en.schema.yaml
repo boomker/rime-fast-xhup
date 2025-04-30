@@ -1,0 +1,132 @@
+# Rime schema
+# vim: set sw=2 sts=2 et:
+# encoding: utf-8
+---
+
+schema:
+  schema_id: easy_en
+  name: Easy English
+  version: 2025.01.11
+  author:
+    - Patrick <ipatrickmac@gmail.com>
+    - BlindingDark <blindingdark@outlook.com>
+  description: Easy English
+  dependencies:
+    - ecdict
+
+engine:
+  processors:
+    # - lua_processor@*en-word_append_space
+    - lua_processor@*flypy_switcher*processor
+    - ascii_composer
+    - key_binder
+    - speller
+    - recognizer
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - matcher
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+    - punct_translator
+    - lua_translator@*easy_en*translator
+    - lua_translator@*word_autocaps*translator
+    - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
+  filters:
+    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
+    - lua_filter@*easy_en*filter
+    - lua_filter@*word_autocaps*filter
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/*_'
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
+  delimiter: " "
+  algebra:
+    - xform/^a/!/
+    - xform/^e/@/
+    - xform/^i/,/
+    - xform/^o/:/
+    - xform/^u/;/
+    - derive/[aeiou]//
+    - xlit/!@,:;/aeiou/
+    # 全小写
+    - derive/^.+$/\L$0/
+    # 全大写
+    - derive/^.+$/\U$0/
+    # 首字母大写
+    - derive/^./\U$0/
+    - derive/^([a-z]{2})/\U$1/
+    - erase/^.$/
+
+translator:
+  dictionary: easy_en
+  enable_encoder: false
+  enable_sentence: false
+  comment_format:
+    - erase/^.$/
+
+# 英文反查释意
+ecdict_reverse_lookup:
+  overwrite_comment: true     # 是否开启中文释意注解
+  dictionary: ecdict
+  comment_format:
+    - xform|\\r\\n| ; |
+    - xform|\\n| ; |
+    - erase|^.$|
+
+key_binder:
+  import_preset: default
+
+punctuator:
+  # import_preset: default
+  half_shape:
+    ',': ','
+    '.': '.'
+    "<": "<"
+    ">": ">"
+    "/": "/"
+    "?": "?"
+    ";": ";"
+    ":": ":"
+    "'": "'"
+    '"': '"'
+    '\': "\\"
+    "|": "|"
+    "`": "`"
+    "~": "~"
+    "!": "!"
+    "@": "@"
+    "#": "#"
+    "%": "%"
+    "$": "$"
+    "^": "^"
+    "&": "&"
+    "*": "*"
+    "(": "("
+    ")": ")"
+    "-": "-"
+    "_": "_"
+    "+": "+"
+    "=": "="
+    "[": "["
+    "]": "]"
+    "{": "{"
+    "}": "}"
+
+recognizer:
+  import_preset: default
+  patterns:
+    uppercase: ""
+
+easy_en:                          # 英文输入方案
+  prefix: "/oe"
+  tips: "英文输入"
+  wildcard: '*'
+  expan_word_count: 666

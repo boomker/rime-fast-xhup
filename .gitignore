@@ -1,0 +1,19 @@
+sync/
+build/
+.venv/
+**/tmp/
+*.userdb/
+.stfolder/
+__pycache__/
+.DS_Store
+.stignore
+**/runLog.txt
+**/.ropeproject
+user.yaml
+wanxiang*.gram
+zh-*huayu*.gram
+installation.yaml
+# lua/cold_word_records/*
+# lua/pin_word_record.lua
+lua/shortcut_config.lua
+en_dicts/en_custom.dict.yaml
