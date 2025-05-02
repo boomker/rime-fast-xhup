@@ -101,9 +101,14 @@ local function generateRandomString(length)
 end
 
 function launcher.init(env)
+    local config = env.engine.schema.config
+    local shortcuts_app_pat = config:get_string("recognizer/patterns/shortcuts_app") or nil
+    local shortcuts_cmd_pat = config:get_string("recognizer/patterns/shortcuts_cmd") or nil
     env.system_name = detect_os()
     env.shortcut_config = _ok_conf and shortcut_config
-    env.app_launch_prefix, env.favor_cmd_prefix, env.all_command_items = table.unpack(env.shortcut_config)
+    env._app_launch_prefix, env._favor_cmd_prefix, env.all_command_items = table.unpack(env.shortcut_config)
+    env.favor_cmd_prefix = shortcuts_cmd_pat and shortcuts_cmd_pat:match("%^([a-zA-Z/]+).*") or env._favor_cmd_prefix
+    env.app_launch_prefix = shortcuts_app_pat and shortcuts_app_pat:match("%^([a-zA-Z/]+).*") or env._app_launch_prefix
 end
 
 function processor.func(key, env)
@@ -158,7 +163,7 @@ function processor.func(key, env)
     then
         for idx, menu_name in ipairs(launcher["main_menu_orders"]) do
             if menu_name:lower():match("^" .. key_value) then
-                env.engine:process_key(KeyEvent(tostring(idx)))
+                engine:process_key(KeyEvent(tostring(idx)))
                 return 1
             end
         end
@@ -181,16 +186,14 @@ function processor.func(key, env)
         end
         if match_count == 1 then
             launcher["second_menu_selected_text"] = "matched"
-            env.engine:process_key(KeyEvent(tostring(index)))
+            engine:process_key(KeyEvent(tostring(index)))
             return 1
         end
     end
 
     local selected_index = segment.selected_index or -1
     local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, page_size)
-    if selected_cand_idx < 0 then
-        return 2
-    end
+    if selected_cand_idx < 0 then return 2 end
 
     if input_code:match("^" .. favorcmd_prefix) then
         if (input_code == favorcmd_prefix) and segment.prompt:match("快捷指令") then
@@ -211,9 +214,9 @@ function processor.func(key, env)
             local _second_menu_items = main_menu_obj and main_menu_obj["submenu_items"] or nil
             local second_menu_items = _second_menu_items or main_menu_obj and main_menu_obj["submenus"] or nil
             local second_menu_item = second_menu_items and second_menu_items[idx] or nil
-            local selected_item_txet = second_menu_item or candidate_text
+            local selected_item_text = second_menu_item or candidate_text
 
-            action_handler(env, action, system_name, selected_item_txet)
+            action_handler(env, action, system_name, selected_item_text)
             reset_state()
             context:clear()
             return 1 -- kAccepted 收下此key

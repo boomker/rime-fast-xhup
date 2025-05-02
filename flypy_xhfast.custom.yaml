@@ -106,9 +106,10 @@ patch:
       flypy_help: "^(/oh|oH)$"                  # 帮助菜单
       calculator: "^(/=|cC)(.*)$"               # 简易计算器
       switch_options: "^(/so|sO)$"              # 切换配置选项
+      shortcuts_app: "^/jk[a-z]*$"              # 快捷指令(启动应用)
+      shortcuts_cmd: "^/kj[a-z]*$"              # 快捷指令(执行命令)
       flypy_key_help: "^/ok[a-z]*$"             # 双拼键位帮助
-      shortcuts: "^/(jk|kj)[a-z]*$"             # 快捷指令(短语)
-      easy_en: "(/oe|eN)[a-zA-Z*]+'?$"          # 英文方案(带中文)
+      easy_en: "^(/oe|eN)[a-zA-Z*]+'?$"         # 英文方案(带中文)
       radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.]+$"       # 中文大写数字(金额)

@@ -20,5 +20,5 @@ patch:
     - ascii_punct
     - traditionalize
   "switcher/hotkeys":
-    - F4
+    # - F4
     - Alt+grave                             # Alt+grave 在Windows下不生效
