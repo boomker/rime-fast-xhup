@@ -2,17 +2,6 @@
 # encoding: utf-8
 ---
 
-# 方案说明
-style:
-  font_point: 18                    # 候选字大小
-  line_spacing: 6                   # 行间距大小
-  show_paging: false                # 是否显示分页符号
-  inline_preedit: true              # 编码位是否嵌入候选框
-  text_orientation: horizontal      # 候选文字横向(horizontal)/纵向(vertical)
-  candidate_list_layout: linear     # 候选菜单横向(linear)/纵向(stacked)
-menu:
-  page_size: 5                      # 自定义候选项个数
-
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
