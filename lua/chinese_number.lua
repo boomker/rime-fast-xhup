@@ -340,9 +340,7 @@ function P.func(key, env)
     local config = engine.schema.config
     local segment = context.composition:back()
     local client_name = env.user_distribute_name
-    if table.find_index({ "fcitx-rime", "trime" }, client_name) then
-        return 2
-    end
+    if not table.find_index({ "Squirrel", "squirrel" }, client_name) then return 2 end
     if input_code:match("^/nn$") or input_code:match("^nN$") or segment.prompt:match(env.tip) then
         config:set_string("menu/alternative_select_keys", env.select_keys)
         config:set_string("speller/alphabet", "abcdefghijklmopqrstuvwxyz")

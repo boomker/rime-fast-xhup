@@ -28,8 +28,8 @@ function easy_en.init(env)
 end
 
 function easy_en.fini(env)
+    env.mem:disconnect()
     if env.mem then
-        env.mem:disconnect()
         env.mem = nil
     end
 end
@@ -38,9 +38,7 @@ function easy_en.processor(key, env)
     local engine = env.engine
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
 
     if context:has_menu() and (key:repr() == env.easydict_translate_key) then
         local cand = context:get_selected_candidate()

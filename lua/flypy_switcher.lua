@@ -8,8 +8,8 @@ local reload_env = require("lib/env_api")
 function flypy_switcher.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
-    local _en_pat = config:get_string("recognizer/patterns/easy_en") or nil
-    local _so_pat = config:get_string("recognizer/patterns/switch_options") or nil
+    local easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
+    local switchOpt_pat = config:get_string("recognizer/patterns/switch_options") or nil
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
     env.mem = Memory(env.engine, schema, "translator")
@@ -20,13 +20,13 @@ function flypy_switcher.init(env)
     env.char_mode_state = config:get_string("char_mode/toggle") or "off"
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
+    env.char_mode_suffix = config:get_string("key_binder/char_mode_suffix") or "|"
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
-    env.switch_options = _so_pat and _so_pat:match("%^.?([a-zA-Z/]+).*") or "sO"
-    env.easy_en_prefix = _en_pat and _en_pat:match("%^.?([a-zA-Z/]+).*") or "eN"
-    env.char_mode_suffix = config:get_string("key_binder/char_mode_suffix") or "|"
+    env.easy_en_prefix = easy_en_pat and easy_en_pat:match("%^.?([a-zA-Z/]+).*") or "eN"
+    env.switch_options = switchOpt_pat and switchOpt_pat:match("%^.?([a-zA-Z/]+).*") or "sO"
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }
     env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪" }
     env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
@@ -59,8 +59,8 @@ function flypy_switcher.init(env)
 end
 
 function flypy_switcher.fini(env)
+    env.mem:disconnect()
     if env.mem then
-        env.mem:disconnect()
         env.mem = nil
     end
 end
