@@ -24,9 +24,7 @@ function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
     local segment = composition:back()
     if segment.prompt:match(env.prompt) and (key:repr() == env.remove_user_word_key) then
         local cand = context:get_selected_candidate()
@@ -41,8 +39,8 @@ function P.func(key, env)
 end
 
 function P.fini(env)
+    env.mem:disconnect()
     if env.mem then
-        env.mem:disconnect()
         env.mem = nil
     end
 end

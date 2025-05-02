@@ -18,14 +18,10 @@ function word_auto_commit.init(env)
 end
 
 function word_auto_commit.fini(env)
-    if env.memory then
-        env.memory:disconnect()
-        env.memory = nil
-    end
-    if env.script_tran then
-        env.script_tran:disconnect()
-        env.script_tran = nil
-    end
+    -- env.memory:disconnect()
+    -- if env.memory then env.memory = nil end
+    env.script_tran:disconnect()
+    if env.script_tran then env.script_tran = nil end
 end
 
 function P.func(key, env)

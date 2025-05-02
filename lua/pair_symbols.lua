@@ -57,6 +57,7 @@ function P.func(key, env)
 
     if symbol_unpair_flag then return 2 end
     if env.system_name == "iOS" then return 2 end
+    if env.system_name == "Windows" then return 2 end
     -- local focus_app_id = context:get_property("client_app")
     -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
@@ -97,6 +98,7 @@ function P.func(key, env)
         end
 
         if (selected_cand_idx >= 0) and (env.pair_toggle == "on") then
+            if not selected_cand_idx then return 2 end
             local candidate_text = segment:get_candidate_at(selected_cand_idx).text -- 获取指定项 从0起
             local paired_text = env.pairTable[candidate_text]
             if paired_text then
