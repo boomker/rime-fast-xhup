@@ -1,6 +1,33 @@
 # Weasel settings
 # encoding: utf-8
 
+# Windows 小狼毫样全局式配置，覆盖 weasel.yaml 的部分参数，
+# 但自身会被各方案的方案文件(***.schema.yaml ) 和方案对应的补丁文件(***.custom.yaml )覆盖覆盖。
 ---
 patch:
-  "style/color_scheme": mint_dark_blue
+  # 註: 預設的配色方案及代碼(指定爲 style/color_scheme 系統默認色系 - native)
+  "style/color_scheme": mint_dark_blue                # 明亮主题
+  "style/color_scheme_dark": catppuccin_macchiato     # 黑暗主题
+  "style/display_tray_icon": false
+  "style/font_point": 16                              # 候选字大小
+  "style/line_spacing": 5                             # 行间距大小
+  "style/horizontal": true
+  "style/fullscreen": false
+  "style/show_paging": false                          # 是否显示分页符号
+  "style/inline_preedit": false                       # 编码位是否嵌入候选框
+  "style/inline_candidate": false                     # 是否行內顯示第一候選
+  "style/mutual_exclusive": false                     # 色不叠加: false | true
+  "style/spacing": 10                                 # 编码区域和候选区域的间距
+  "style/alpha":  0.95                                # 透明度, 0~1
+  "style/shadow_size": 5                              # 高亮候選詞增添陰影
+  "style/border_width": -1
+  "style/border_height": -1
+  "style/corner_radius": 10
+  "style/label_font_point": 15
+  "style/comment_font_point": 14
+  "style/hilited_corner_radius": 8                    # 圆角半径
+  "style/text_orientation": horizontal                # 候选文字横向(horizontal)/纵向(vertical) 
+  "style/candidate_list_layout": linear               # 候选菜单横向(linear)/纵向(stacked)
+  "style/label_font_face":  'Lucida Grande'           # 标签字体
+  "style/font_face": "MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei"
+  

@@ -174,7 +174,9 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
     - A: 在 [`squirrel.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/main/squirrel.custom.yaml) 或 [`weasel.yaml`](https://github.com/boomker/rime-fast-xhup/blob/main/weasel.yaml) 配置可以正常显示的字体, 推荐 [`MiSans`](https://hyperos.mi.com/font/download)
 13. - Q: `~` 反查出来在字没有注音, 部署日志中提示缺少 `kMandarin` 反查词典文件
     - A: 请自行到这个[项目](https://github.com/mirtlecn/rime-radical-pinyin/releases)下载反查注音文件, 或将 `others` 下的 `kMandarin.reverse.bin` 移动到 `build` 目录里
-
+14. - Q: 自定义修改候选项数量、候选菜单方向、外观主题等配置应该从何着手？
+    - A: 多个方案统一全局配置修改候选项数量、候选菜单方向, 应该修改[default.custom.yaml文件](./default.custom.yaml). 外观主题、字体大小等样式则是修改[weasel.custom.yaml](./weasel.custom.yaml) (Windows小狼毫) [squirrel.custom.yaml](./squirrel.custom.yaml)(苹果鼠须管). 单独为某个方案修改, 应该修改具体的方案文件 `***.schema.yaml` 所对应的补丁文件 `***.custom.yaml`. 如: `飞鹤快拼`的方案文件是 [flypy_xhfast.schema.yaml](./flypy_xhfast.schema.yaml), 对应的补丁文件是 [flypy_xhfast.custom.yaml](./flypy_xhfast.custom.yaml). 此文件具有最高优先级, 会覆盖其他所有文件的配置.
+   
 ### 鸣谢
 
 - [Rime](http://rime.im/), 开源输入法框架, 本项目方案来源于它

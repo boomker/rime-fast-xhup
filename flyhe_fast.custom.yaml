@@ -1,0 +1,13 @@
+
+# 飞鹤快码方案的配置补丁
+# 覆盖 flyhe_fast.schema.yaml 的部分参数。
+# 在此方案下，这里的配置具有最高优先级
+patch:
+  "menu/page_size": 5                       # 自定义候选项个数
+  "style/font_point": 18                    # 候选字大小
+  "style/line_spacing": 6                   # 行间距大小
+  "style/show_paging": false                # 是否显示分页符号
+  "style/inline_preedit": true              # 编码位是否嵌入候选框
+  # "style/horizontal": true                # 候选菜单横向布局(true)/纵向布局(false)
+  "style/candidate_list_layout": linear     # 候选菜单横向(linear)/纵向(stacked)
+  "style/text_orientation": horizontal      # 候选文字横向(horizontal)/纵向(vertical)
