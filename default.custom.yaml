@@ -4,8 +4,8 @@
 #   ~/Library/Rime       (macos)
 #   %APPDATA%\Rime       (windows)
 
-# 全局配置。 default.yaml 的补丁文件。会覆盖 default.yaml 文件中的配置，
-# 但是自身会被各方案的方案文件(***.schema.yaml ) 和方案对应的的补丁文件(***.custom.yaml )覆盖覆盖。
+# 全局配置, default.yaml 的补丁文件, 会覆盖 default.yaml 文件中的配置,
+# 会被各方案的主配置文件(***.schema.yaml ) 和方案对应的的补丁文件(***.custom.yaml )覆盖.
 ---
 patch:
   # 方案列表
@@ -13,12 +13,12 @@ patch:
     - schema: flypy_xhfast
     - schema: flyhe_fast
     - schema: easy_en
+  "menu/page_size": 7                       # 候选词个数
+  "switcher/fold_options": false            # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
   "switcher/save_options":                  # 开关记忆，从方案选单（而非快捷键）切换时会记住的选项，需要记忆的开关不能设定 reset
     - char_mode
     - ascii_punct
     - traditionalize
   "switcher/hotkeys":
-      - F4 
-      - Alt+grave                           # Alt+grave 在Windows下不生效
-  "switcher/fold_options": false            # 呼出时是否折叠，多方案时建议折叠 true ，一个方案建议展开 false
-  "menu/page_size": 7                       # 候选词个数
+    - F4
+    - Alt+grave                             # Alt+grave 在Windows下不生效
