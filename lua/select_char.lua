@@ -41,7 +41,7 @@ function P.func(key, env)
 		commit_history:push(cand.type, cand_txt)
 		context:clear()
 
-		set_commited_cand_is_chinese(env)
+		set_committed_cand_is_chinese(env)
 		return 1 -- kAccepted
 	end
 
@@ -56,7 +56,7 @@ function P.func(key, env)
 		commit_history:push(cand.type, cand_txt)
 		context:clear()
 
-		set_commited_cand_is_chinese(env)
+		set_committed_cand_is_chinese(env)
 		return 1 -- kAccepted
 	end
 

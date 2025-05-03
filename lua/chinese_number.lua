@@ -310,9 +310,9 @@ function CN.init(env)
     local schema = env.engine.schema
     local context = env.engine.context
     local config = env.engine.schema.config
-    local chinese_number_pattern = "recognizer/patterns/chinese_number"
-    local _cn_pat = config:get_string(chinese_number_pattern) or "nN"
-    env.trigger_prefix = _cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/nn"
+    local pattern_path = "recognizer/patterns/chinese_number"
+    local cn_pat = config:get_string(pattern_path) or "nN"
+    env.trigger_prefix = cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/nn"
     env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
     env.user_distribute_name = rime_api:get_distribution_code_name()
     env.select_keys = config:get_string("chinese_number/select_keys") or "HJKLIOM"

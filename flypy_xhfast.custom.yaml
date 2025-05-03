@@ -109,7 +109,7 @@ patch:
       shortcuts_app: "^/jk[a-z]*$"              # 快捷指令(启动应用)
       shortcuts_cmd: "^/kj[a-z]*$"              # 快捷指令(执行命令)
       flypy_key_help: "^/ok[a-z]*$"             # 双拼键位帮助
-      easy_en: "^(/oe|eN)[a-zA-Z*]+'?$"         # 英文方案(带中文)
+      easy_en: "^(/oe|eN)[a-zA-Z*]+'?$"         # 英文方案(带中译)
       radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.]+$"       # 中文大写数字(金额)
@@ -219,7 +219,7 @@ patch:
     prefix: "eN"
     tips: "英文"
     wildcard: '*'
-    expan_word_count: 666             # 模糊匹配最多迭代数
+    expand_word_count: 666             # 模糊匹配最多迭代数
 
   radical_lookup/+:                   # 单字部件拆字组字
     # prefix: "~"

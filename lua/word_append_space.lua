@@ -23,7 +23,7 @@ function space_leader_word.init(env)
         ['grave'] = true,
         ["bracketleft"] = true,
     }
-    reset_commited_cand_state(env)
+    reset_committed_cand_state(env)
 end
 
 function space_leader_word.func(key, env)
@@ -47,17 +47,17 @@ function space_leader_word.func(key, env)
     local prev_cand_is_preedit = context:get_property("prev_cand_is_preedit")
 
     if current_focus_app ~= context:get_property("prev_focus_app") then
-        reset_commited_cand_state(env)
+        reset_committed_cand_state(env)
     end
 
 
     if (#input_code == 0) and env.return_keys[key_value] then
-        reset_commited_cand_state(env)
+        reset_committed_cand_state(env)
         context:set_property("prev_cand_is_null", "1")
     end
 
     if input_code:match("^%p$") or env.symbol_keys[key_value] or env.symbol_keys[tostring(key_code)] then
-        set_commited_cand_is_symbol(env)
+        set_committed_cand_is_symbol(env)
         return 2
     end
 
@@ -76,7 +76,7 @@ function space_leader_word.func(key, env)
             engine:commit_text(cand_text)
             commit_history:push("raw", cand_text)
         end
-        reset_commited_cand_state(env)
+        reset_committed_cand_state(env)
         if commit_text_is_symbol then
             context:set_property("prev_cand_is_symbol", "1")
         else
@@ -95,11 +95,11 @@ function space_leader_word.func(key, env)
         -- if not selected_cand then return 2 end
         local cand_text = selected_cand.text or nil
         if cand_text and cand_text:match("^%p?%a+$") then
-            set_commited_cand_is_word(env)
+            set_committed_cand_is_word(env)
         elseif input_code:match("^%p+$") then
-            set_commited_cand_is_symbol(env)
+            set_committed_cand_is_symbol(env)
         else
-            set_commited_cand_is_chinese(env)
+            set_committed_cand_is_chinese(env)
         end
         commit_history:push(key)
         context:set_property("prev_focus_app", current_focus_app)
@@ -125,7 +125,7 @@ function space_leader_word.func(key, env)
                 cand_text = cand_text .. "，"
             end
         end
-        reset_commited_cand_state(env)
+        reset_committed_cand_state(env)
         context:set_property("prev_cand_is_null", "1")
         context:set_property("prev_focus_app", current_focus_app)
         engine:commit_text(cand_text)
@@ -142,7 +142,7 @@ function space_leader_word.func(key, env)
         if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
             if not cand_text:match("^[%a%p]") then
                 local ccand_text = " " .. cand_text
-                reset_commited_cand_state(env)
+                reset_committed_cand_state(env)
                 context:set_property("prev_cand_is_chinese", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 engine:commit_text(ccand_text:match("^ "))
@@ -151,7 +151,7 @@ function space_leader_word.func(key, env)
                 return 1 -- kAccepted
             elseif cand_text:match("^%p?%a+") then
                 local ccand_text = " " .. cand_text
-                reset_commited_cand_state(env)
+                reset_committed_cand_state(env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 engine:commit_text(ccand_text:match("^ "))
@@ -164,7 +164,7 @@ function space_leader_word.func(key, env)
 
         if (prev_cand_is_chinese == "1") and cand_text:match("^%p?%a+") then
             local ccand_text = " " .. cand_text
-            reset_commited_cand_state(env)
+            reset_committed_cand_state(env)
             context:set_property("prev_cand_is_word", "1")
             context:set_property("prev_focus_app", current_focus_app)
             engine:commit_text(ccand_text:match("^ "))
@@ -174,7 +174,7 @@ function space_leader_word.func(key, env)
         end
 
         if not cand_text:match("[%a%p]") then
-            reset_commited_cand_state(env)
+            reset_committed_cand_state(env)
             context:set_property("prev_cand_is_chinese", "1")
             context:set_property("prev_focus_app", current_focus_app)
         end
