@@ -67,10 +67,12 @@ sort: by_weight
 垵	an[tn	2
 厂	an[ap	1
 广	an[di	1
+广	an[wp	1
 鹌	an[dn	1
 犴	an[qg	1
 埯	an[td	1
 𩽾	an[dn	0
+𩽾	an[an	0
 奥	ao[pd	32
 熬	ao[fh	24
 澳	ao[dd	20
@@ -103,6 +105,7 @@ sort: by_weight
 八	ba[pn	33
 爸	ba[bb	29
 巴	ba[sl	28
+巴	ba[vv	28
 拔	ba[fd	24
 罢	ba[ss	22
 坝	ba[tr	19
@@ -729,6 +732,7 @@ sort: by_weight
 𫟼	da[jz	0
 垯	da[tz	0
 鿎	da[ud	0
+鿎	da[uz	0
 惮	da[xl	0
 跶	da[zz	0
 到	dc[ad	68
@@ -1266,6 +1270,7 @@ sort: by_weight
 葑	fg[cc	5
 砜	fg[ux	5
 酆	fg[ee	3
+酆	fg[fe	3
 崶	fg[ec	2
 唪	fg[kl	1
 浲	fg[df	0
@@ -1547,6 +1552,7 @@ sort: by_weight
 跟	gf[zg	54
 根	gf[mg	33
 艮	gf[en	11
+艮	gf[vn	11
 亘	gf[aa	8
 哏	gf[kg	8
 茛	gf[cg	2
@@ -1624,6 +1630,7 @@ sort: by_weight
 掴	gk[fy	1
 光	gl[xw	38
 广	gl[di	29
+广	gl[wp	29
 逛	gl[zw	29
 咣	gl[kw	8
 桄	gl[mw	5
@@ -1683,6 +1690,7 @@ sort: by_weight
 毌	gr[va	1
 鳤	gr[ak	0
 贯	gr[gr	0
+贯	gr[vr	0
 斡	gr[uu	0
 筦	gr[ve	0
 共	gs[cb	36
@@ -2564,6 +2572,7 @@ sort: by_weight
 崭	ij[ej	0
 韂	ij[gk	0
 𬊤	ij[hd	0
+𬊤	ij[hl	0
 刬	ij[jd	0
 镵	ij[jd	0
 啴	ij[kl	0
@@ -2885,6 +2894,7 @@ sort: by_weight
 𬶨	ji[ga	0
 穄	ji[hx	0
 𫓹	ji[jq	0
+𫓹	ji[jb	0
 𫓯	ji[jt	0
 耤	ji[lo	0
 乩	ji[lv	0
@@ -3549,6 +3559,7 @@ sort: by_weight
 蒉	kk[cr	0
 㧟	kk[fk	0
 𫘝	kk[mn	0
+𫘝	kk[mg	0
 狂	kl[qw	30
 矿	kl[ug	26
 框	kl[mw	24
@@ -4302,6 +4313,8 @@ sort: by_weight
 𪣻	lz[tn	0
 呒	m[kw	4
 呣	m[km	2
+呒	om[kw	4
+呣	om[km	2
 吗	ma[km	64
 嘛	ma[km	53
 马	ma[va	38
@@ -5873,6 +5886,7 @@ sort: by_weight
 咝	si[ka	2
 咝	si[ks	2
 鸶	si[sn	2
+鸶	si[vn	2
 缌	si[sx	2
 蛳	si[ij	1
 楒	si[mx	1
@@ -6036,6 +6050,7 @@ sort: by_weight
 阘	ta[mx	0
 祂	ta[py	0
 鿎	ta[ud	0
+鿎	ta[uz	0
 套	tc[ds	35
 逃	tc[zd	25
 陶	tc[ef	24
@@ -6366,6 +6381,7 @@ sort: by_weight
 腯	tu[oo	1
 酴	tu[yh	1
 𬳿	tu[md	0
+𬳿	tu[mh	0
 㻬	tu[wk	0
 退	tv[zg	34
 推	tv[ff	32
@@ -7124,7 +7140,7 @@ sort: by_weight
 𫗴	vj[ua	0
 鹯	vj[wn	0
 拽	vk[fy	21
-跩	vk[fy	2
+跩	vk[zy	2
 转	vk[iv	0
 装	vl[dy	42
 状	vl[dq	28
@@ -7136,6 +7152,7 @@ sort: by_weight
 桩	vl[mt	18
 僮	vl[rl	3
 奘	vl[pd	2
+奘	vl[vd	2
 漴	vl[dx	0
 戆	vl[lx	0
 着	vo[yo	25
@@ -7340,6 +7357,7 @@ sort: by_weight
 畖	wa[tg	0
 外	wd[xb	42
 歪	wd[bv	22
+歪	wd[pv	22
 崴	wd[en	10
 问	wf[mk	50
 文	wf[wx	37
@@ -8108,6 +8126,7 @@ sort: by_weight
 珝	xu[wx	1
 湑	xu[do	0
 冔	xu[ky	0
+冔	xu[oy	0
 朐	xu[ok	0
 旴	xu[oy	0
 媭	xu[pn	0
@@ -9064,6 +9083,7 @@ sort: by_weight
 赃	zh[kt	9
 驵	zh[mq	2
 奘	zh[pd	2
+奘	zh[vd	2
 牂	zh[py	2
 子	zi[va	42
 字	zi[bz	40

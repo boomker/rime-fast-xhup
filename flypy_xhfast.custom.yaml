@@ -163,7 +163,8 @@ patch:
 
   pin_word:                           # 词条置顶配置
     word_quality: 1000
-    comment_mark: " 🔝"               # 置顶词标记
+    comment_mark: " ᵀᴼᴾ"              # 置顶词标记
+    # comment_mark: " 🔝"             # 置顶词标记
 
   char_mode:                          # 单字模式开关
     toggle: "off"
