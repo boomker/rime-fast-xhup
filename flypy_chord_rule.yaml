@@ -38,14 +38,14 @@ patch:
       - derive/^g([wv])/gi/           # g[wv] --> gi
       - derive/^xt/xo/
       - derive/^xs/xh/
-      - derive/^li/lx/
-      - derive/^nu/nv/
       - derive/^nh/nx/
+      - derive/^nu/nv/
       - derive/^nj/xj/
       - derive/^no/nr/
       - derive/^lo/ng/
       - derive/^ly/nw/
       - derive/^lm/nz/
+      - derive/^li/lx/
       - derive/^jm/jz/
       - derive/^jb/ja/
       - derive/^za/zl/
@@ -60,7 +60,7 @@ patch:
       - derive/^ik/ix/
       - derive/^sz/sl/
       - derive/^bw/bs/
-      - derive/^b([hjku])/a$1/
+      - derive/^b([jku])/a$1/
       - derive/^b([fgnm])/s$1/
       - derive/^c([dz])/cl/
       - derive/^cs/ck/
