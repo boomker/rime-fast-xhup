@@ -56,8 +56,7 @@ function P.func(key, env)
     local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
 
     if symbol_unpair_flag then return 2 end
-    if env.system_name == "iOS" then return 2 end
-    if env.system_name == "Windows" then return 2 end
+    if env.system_name ~= "MacOS" then return 2 end
     -- local focus_app_id = context:get_property("client_app")
     -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
@@ -120,9 +119,13 @@ function P.func(key, env)
             engine:commit_text(env.pairTable[key_name][1])
         end
 
-        if (env.system_name == "MacOS") and (key_name == "quotedbl") then
-            -- os.execute("sleep 0.2") -- 等待按键被松开
-            moveCursorToLeft(env)
+        if key.shift and (key_name == "quotedbl") then
+            os.execute("sleep 0.1") -- 等待按键被松开
+            if KeyEvent(key:repr()):release() then
+                moveCursorToLeft(env)
+            else
+                moveCursorToLeft(env)
+            end
         else
             moveCursorToLeft(env)
         end
