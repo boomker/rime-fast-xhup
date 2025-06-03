@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-06-02
+version: 2025-06-03
 sort: by_weight
 ...
 
@@ -18732,5 +18732,7 @@ sort: by_weight
 安康呀	an kh ya	1
 阿米诺斯	aa mi no si	1
 安康啊	an kh aa	1
+安赛龙	an sd ls	1
+阿米诺斯	aa mi no si	1
 安赛龙	an sd ls	1
 阿米诺斯	aa mi no si	1
