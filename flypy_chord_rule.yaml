@@ -25,16 +25,17 @@ patch:
       - derive/^vf/vn/                # vf --> vn
       - derive/^vg/vk/                # vg --> vk
       - derive/^vr/vm/                # vr --> vm
-      - derive/^te/df/                # te --> df
-      - derive/^tw/dw/                # tw --> dw
-      - derive/^tg/db/                # tg --> db
-      - derive/^tv/dl/                # tv --> dl
       - derive/^rv/rl/                # rv --> rl
-      - derive/^rg/rb/                # rg --> rb
       - derive/^rz/rm/                # rz --> rm
       - derive/^rf/rn/                # rf --> rn
-      - derive/^gf/gn/                # gf --> gn
+      - derive/^rg/rb/                # rg --> rb
+      - derive/^tg/rb/                # tg --> rb
+      - derive/^tk/rk/                # tk --> rk
+      - derive/^te/df/                # te --> df
+      - derive/^tw/dw/                # tw --> dw
+      - derive/^tv/dl/                # tv --> dl
       - derive/^gr/gm/                # gr --> gm
+      - derive/^gf/gn/                # gf --> gn
       - derive/^g([wv])/gi/           # g[wv] --> gi
       - derive/^xt/xo/
       - derive/^xs/xh/

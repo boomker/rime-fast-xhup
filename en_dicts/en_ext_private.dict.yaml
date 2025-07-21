@@ -308,7 +308,6 @@ rancher	rancher
 redis	redis
 redpanda	redpanda
 rethinkdb	rethinkdb
-rke2	rke2
 rocketmq	rocketmq
 rook	rook
 rudder	rudder
