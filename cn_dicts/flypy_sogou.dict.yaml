@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-08-11
+version: 2025-08-12
 sort: by_weight
 ...
 
@@ -18849,3 +18849,6 @@ sort: by_weight
 中国人民对外友好协会	vs go rf mb dv wd yz hc xp hv	1
 安赛龙	an sd ls	1
 阿米诺斯	aa mi no si	1
+安赛龙	an sd ls	1
+阿米诺斯	aa mi no si	1
+阿凡达色	aa fj da se	1
