@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-09-03
+version: 2025-09-04
 sort: by_weight
 ...
 
@@ -18930,4 +18930,8 @@ sort: by_weight
 阿尔特塔	aa er te ta	1
 阿米诺斯	aa mi no si	1
 安赛龙	an sd ls	1
+阿米诺斯	aa mi no si	1
+安赛龙	an sd ls	1
+阿斯塔特	aa si ta te	1
+爱国	ai go	1
 阿米诺斯	aa mi no si	1
