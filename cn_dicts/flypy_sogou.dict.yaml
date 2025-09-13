@@ -11,8 +11,11 @@ sort: by_weight
 阿赑	aa bi	1
 阿策	aa ce	1
 阿脆	aa cv	1
+阿黛	aa dd	1
 阿蝉	aa ij	1
+阿卡	aa ka	1
 阿枯	aa ku	1
+阿里	aa li	1
 阿帽	aa mc	1
 阿漂	aa pn	1
 阿求	aa qq	1
@@ -21,22 +24,31 @@ sort: by_weight
 阿条	aa tn	1
 阿升	aa ug	1
 阿术	aa uu	1
+阿栩	aa xu	1
 阿厌	aa yj	1
 阿瓒	aa zj	1
 埃安	ai an	1
 爱藏	ai ch	1
 艾感	ai gj	1
+爱国	ai go	1
 哀黄	ai hl	1
 爱纯	ai iy	1
+爱莉	ai li	1
 艾莲	ai lm	1
 艾威	ai ww	1
+艾许	ai xu	1
+艾泽	ai ze	1
+安保	an bc	1
 岸宝	an bc	1
 按背	an bw	1
 岸防	an fh	1
 暗川	an ir	1
+安检	an jm	1
+案件	an jm	1
 安期	an qi	1
 岸田	an tm	1
 暗账	an vh	1
+安卓	an vo	1
 安万	an wj	1
 傲弟	ao di	1
 敖光	ao gl	1
@@ -2514,6 +2526,7 @@ sort: by_weight
 阿贝多	aa bw do	1
 阿尔玛	aa er ma	1
 阿尔塞	aa er sd	1
+阿根廷	aa gf tk	1
 阿甘左	aa gj zo	1
 阿基孚	aa ji fu	1
 阿克萨	aa ke sa	1
@@ -2526,21 +2539,35 @@ sort: by_weight
 阿勒颇	aa le po	1
 阿勒泰	aa le td	1
 阿鲁纳	aa lu na	1
+阿玛尼	aa ma ni	1
+阿莫林	aa mo lb	1
 阿莫斯	aa mo si	1
+阿尼斯	aa ni si	1
 阿尼亚	aa ni ya	1
+阿诺德	aa no de	1
 阿诺拉	aa no la	1
+阿努廷	aa nu tk	1
 阿帕特	aa pa te	1
 阿其那	aa qi na	1
 阿如那	aa ru na	1
+阿森纳	aa sf na	1
 阿斯麦	aa si md	1
+阿三哥	aa sj ge	1
 阿塔尔	aa ta er	1
 阿条姐	aa tn jp	1
 阿署达	aa uu da	1
 阿乌拉	aa wu la	1
 阿维塔	aa ww ta	1
+阿兹克	aa zi ke	1
+昂利康	ah li kh	1
 爱伴侣	ai bj lv	1
+艾布鲁	ai bu lu	1
+艾草锤	ai cc iv	1
+埃德森	ai de sf	1
 爱蛋蛋	ai dj dj	1
 艾尔登	ai er dg	1
+爱尔兰	ai er lj	1
+埃弗顿	ai fu dy	1
 艾格努	ai ge nu	1
 爱和城	ai he ig	1
 爱黄金	ai hl jb	1
@@ -2552,6 +2579,7 @@ sort: by_weight
 爱老师	ai lc ui	1
 哀牢山	ai lc uj	1
 艾丽妮	ai li ni	1
+埃里森	ai li sf	1
 艾露猫	ai lu mc	1
 爱马适	ai ma ui	1
 爱梅斯	ai mw si	1
@@ -2565,10 +2593,12 @@ sort: by_weight
 矮子哭	ai zi ku	1
 安倍撒	an bw sa	1
 犴达罕	an da hj	1
+安道尔	an dc er	1
 安顶山	an dk uj	1
 安东森	an ds sf	1
 安戈洛	an ge lo	1
 暗河传	an he vr	1
+暗红色	an hs se	1
 暗黑面	an hw mm	1
 暗黑向	an hw xl	1
 安淳蛋	an iy dj	1
@@ -2576,6 +2606,7 @@ sort: by_weight
 安康呀	an kh ya	1
 安卿鱼	an qk yu	1
 安全车	an qr ie	1
+安全课	an qr ke	1
 安全牌	an qr pd	1
 安全箱	an qr xl	1
 安赛龙	an sd ls	1
@@ -2583,15 +2614,20 @@ sort: by_weight
 安藤樱	an tg yk	1
 安身法	an uf fa	1
 安神汤	an uf th	1
+安神水	an uf uv	1
+安卓猫	an vo mc	1
 安卓妹	an vo mw	1
+安卓人	an vo rf	1
 安卓味	an vo ww	1
 安洗莹	an xi yk	1
 安以夏	an yi xx	1
+安宰贤	an zd xm	1
 奥伯龙	ao bo ls	1
 奥茨玛	ao ci ma	1
 奥村春	ao cy iy	1
 奥德彪	ao de bn	1
 奥德诺	ao de no	1
+奥地利	ao di li	1
 奥丁战	ao dk vj	1
 奥尔莫	ao er mo	1
 奥菲欧	ao fw ou	1
@@ -2602,10 +2638,12 @@ sort: by_weight
 熬老汤	ao lc th	1
 熬老头	ao lc tz	1
 奥莉花	ao li hx	1
+奥利文	ao li wf	1
 澳门场	ao mf ih	1
 奥美迦	ao mw jx	1
 奥纳纳	ao na na	1
 奥奇坎	ao qi kj	1
+敖瑞鹏	ao rv pg	1
 鳌太线	ao td xm	1
 奥特迅	ao te xy	1
 奥运赛	ao yy sd	1
@@ -6623,10 +6661,13 @@ sort: by_weight
 阿巴斯港	aa ba si gh	1
 阿拜多斯	aa bd do si	1
 阿波尼亚	aa bo ni ya	1
+阿策道歉	aa ce dc qm	1
 阿德里安	aa de li an	1
 啊对对对	aa dv dv dv	1
 阿尔古斯	aa er gu si	1
+阿尔特塔	aa er te ta	1
 阿尔图罗	aa er tu lo	1
+阿凡达色	aa fj da se	1
 阿格莱亚	aa ge ld ya	1
 阿格莱雅	aa ge ld ya	1
 阿根廷队	aa gf tk dv	1
@@ -6637,23 +6678,30 @@ sort: by_weight
 阿克达拉	aa ke da la	1
 阿夸毕业	aa kx bi ye	1
 阿拉米扬	aa la mi yh	1
+阿拉木图	aa la mu tu	1
 阿拉维斯	aa la ww si	1
+阿里巴巴	aa li ba ba	1
 阿里大涨	aa li da vh	1
 阿里乌斯	aa li wu si	1
 阿兰德龙	aa lj de ls	1
 阿兰助攻	aa lj vu gs	1
+阿蕾奇诺	aa lw qi no	1
 阿米诺斯	aa mi no si	1
 阿美莉卡	aa mw li ka	1
 阿切尔比	aa qp er bi	1
 阿斯卡纶	aa si ka ly	1
 阿斯莫代	aa si mo dd	1
 阿斯帕斯	aa si pa si	1
+阿斯塔特	aa si ta te	1
 阿扎伦卡	aa va ly ka	1
 阿吱阿吱	aa vi aa vi	1
 阿信直播	aa xb vi bo	1
 爱德华兹	ai de hx zi	1
 爱的颂歌	ai de ss ge	1
+埃尔多安	ai er do an	1
+艾尔海森	ai er hd sf	1
 艾感科技	ai gj ke ji	1
+埃及旅游	ai ji lv yz	1
 爱康声明	ai kh ug mk	1
 爱看短剧	ai kj dr ju	1
 哀牢古国	ai lc gu go	1
@@ -6662,6 +6710,7 @@ sort: by_weight
 爱莉希雅	ai li xi ya	1
 艾丽西亚	ai li xi ya	1
 爱玛科技	ai ma ke ji	1
+爱马仕橙	ai ma ui ig	1
 艾米好灵	ai mi hc lk	1
 埃姆雷詹	ai mu lw vj	1
 暧昧拉扯	ai mw la ie	1
@@ -6684,6 +6733,7 @@ sort: by_weight
 爱上伍鹏	ai uh wu pg	1
 爱上扬州	ai uh yh vz	1
 埃文凯尔	ai wf kd er	1
+爱玩电脑	ai wj dm nc	1
 爱心发型	ai xb fa xk	1
 爱徐艺洋	ai xu yi yh	1
 埃因霍温	ai yb ho wf	1
@@ -6696,6 +6746,7 @@ sort: by_weight
 俺不中嘞	an bu vs le	1
 安德里希	an de li xi	1
 安东内利	an ds nw li	1
+安菲尔德	an fw er de	1
 暗河长明	an he ih mk	1
 安徽冰雹	an hv bk bc	1
 安徽地震	an hv di vf	1
@@ -6731,6 +6782,7 @@ sort: by_weight
 敖丙劝架	ao bk qr jx	1
 奥尔菲斯	ao er fw si	1
 敖光敖闰	ao gl ao ry	1
+奥古斯塔	ao gu si ta	1
 傲寒回应	ao hj hv yk	1
 奥创光子	ao il gl zi	1
 傲科光电	ao ke gl dm	1
@@ -11495,6 +11547,7 @@ sort: by_weight
 走近波学	zz jb bo xt	1
 走近珂学	zz jb ke xt	1
 走进珂学	zz jb ke xt	1
+阿达娃淘汰	aa da wa tc td	1
 阿黛尔采访	aa dd er cd fh	1
 阿尔巴尼亚	aa er ba ni ya	1
 阿尔卡拉斯	aa er ka la si	1
@@ -11509,9 +11562,12 @@ sort: by_weight
 阿勒泰暴雪	aa le td bc xt	1
 阿勒泰极光	aa le td ji gl	1
 阿勒泰旅游	aa le td lv yz	1
+阿里创新高	aa li il xb gc	1
 阿兰出手吧	aa lj iu uz ba	1
 阿玛德绝杀	aa ma de jt ua	1
 阿玛尼大秀	aa ma ni da xq	1
+阿玛尼高定	aa ma ni gc dk	1
+阿玛尼生平	aa ma ni ug pk	1
 阿玛特拉斯	aa ma te la si	1
 阿如那圈粉	aa ru na qr ff	1
 阿如那淘汰	aa ru na tc td	1
@@ -11572,12 +11628,16 @@ sort: by_weight
 安徽地震了	an hv di vf le	1
 安成民受伤	an ig mb uz uh	1
 俺没相过亲	an mw xl go qb	1
+安诺机器人	an no ji qi rf	1
 安全是底线	an qr ui di xm	1
+黯然销魂饭	an rj xn hy fj	1
 安赛龙退赛	an sd ls tv sd	1
 安踏太神了	an ta td uf le	1
+暗示性求助	an ui xk qq vu	1
 安睡裤价格	an uv ku jx ge	1
 俺正得发邪	an vg dw fa xp	1
 安洗莹退赛	an xi yk tv sd	1
+按姓氏分班	an xk ui ff bj	1
 安香怡卫冕	an xl yi ww mm	1
 安小鸟保胎	an xn nn bc td	1
 暗夜与黎明	an ye yu li mk	1
@@ -11590,7 +11650,9 @@ sort: by_weight
 澳大利亚队	ao da li ya dv	1
 傲得我很爽	ao de wo hf ul	1
 奥克尼的雨	ao ke ni de yu	1
+澳门冠军赛	ao mf gr jy sd	1
 澳门演唱会	ao mf yj ih hv	1
+傲慢魔女篇	ao mj mo nv pm	1
 敖瑞鹏古装	ao rv pg gu vl	1
 敖瑞鹏好帅	ao rv pg hc uk	1
 敖瑞鹏吃播	ao rv pg ii bo	1
@@ -15040,10 +15102,12 @@ sort: by_weight
 阿勒泰下雪了	aa le td xx xt le	1
 阿利森谈夺冠	aa li sf tj do gr	1
 阿狸是这儿吗	aa li ui ve er ma	1
+阿里山的姑娘	aa li uj de gu nl	1
 阿里云服务器	aa li yy fu wu qi	1
 阿兰德龙去世	aa lj de ls qu ui	1
 阿兰两射一传	aa lj ll ue yi ir	1
 阿兰梅开二度	aa lj mw kd er du	1
+阿玛尼发讣告	aa ma ni fa fu gc	1
 阿米巴食脑虫	aa mi ba ui nc is	1
 阿诺产后抑郁	aa no ij hz yi yu	1
 阿森西奥直红	aa sf xi ao vi hs	1
@@ -15063,6 +15127,7 @@ sort: by_weight
 爱谍报会发财	ai dp bc hv fa cd	1
 爱读书的女人	ai du uu de nv rf	1
 艾顿加盟湖人	ai dy jx mg hu rf	1
+爱豆技能觉醒	ai dz ji ng jt xk	1
 艾福杰尼当爸	ai fu jp ni dh ba	1
 埃及游船沉没	ai ji yz ir if mo	1
 爱家月子中心	ai jx yt zi vs xb	1
@@ -15122,6 +15187,7 @@ sort: by_weight
 敖瑞鹏金丝猴	ao rv pg jb si hz	1
 敖瑞鹏看看腰	ao rv pg kj kj yc	1
 敖瑞鹏李兰迪	ao rv pg li lj di	1
+敖瑞鹏松弛感	ao rv pg ss ii gj	1
 敖瑞鹏收官文	ao rv pg uz gr wf	1
 敖瑞鹏真能扛	ao rv pg vf ng kh	1
 敖瑞鹏吴宣仪	ao rv pg wu xr yi	1
@@ -18847,135 +18913,3 @@ sort: by_weight
 张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	1
 中华人民共和国政府	vs hx rf mb gs he go vg fu	1
 中国人民对外友好协会	vs go rf mb dv wd yz hc xp hv	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-阿凡达色	aa fj da se	1
-安赛龙	an sd ls	1
-爱玩电脑	ai wj dm nc	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-阿兹克	aa zi ke	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿达娃淘汰	aa da wa tc td	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿策道歉	aa ce dc qm	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-埃及旅游	ai ji lv yz	1
-安诺机器人	an no ji qi rf	1
-安赛龙	an sd ls	1
-安神水	an uf uv	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-艾泽	ai ze	1
-阿三哥	aa sj ge	1
-安宰贤	an zd xm	1
-安保	an bc	1
-安检	an jm	1
-阿拉木图	aa la mu tu	1
-埃弗顿	ai fu dy	1
-爱豆技能觉醒	ai dz ji ng jt xk	1
-阿莫林	aa mo lb	1
-昂利康	ah li kh	1
-埃德森	ai de sf	1
-阿蕾奇诺	aa lw qi no	1
-阿森纳	aa sf na	1
-阿米诺斯	aa mi no si	1
-艾布鲁	ai bu lu	1
-案件	an jm	1
-安赛龙	an sd ls	1
-奥古斯塔	ao gu si ta	1
-奥利文	ao li wf	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-黯然销魂饭	an rj xn hy fj	1
-阿诺德	aa no de	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿里巴巴	aa li ba ba	1
-阿栩	aa xu	1
-艾尔海森	ai er hd sf	1
-阿尼斯	aa ni si	1
-安菲尔德	an fw er de	1
-阿米诺斯	aa mi no si	1
-阿里	aa li	1
-安赛龙	an sd ls	1
-敖瑞鹏松弛感	ao rv pg ss ii gj	1
-安全课	an qr ke	1
-敖瑞鹏	ao rv pg	1
-埃尔多安	ai er do an	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿尔特塔	aa er te ta	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿斯塔特	aa si ta te	1
-爱国	ai go	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿玛尼发讣告	aa ma ni fa fu gc	1
-阿根廷	aa gf tk	1
-阿玛尼高定	aa ma ni gc dk	1
-阿玛尼生平	aa ma ni ug pk	1
-阿努廷	aa nu tk	1
-阿玛尼	aa ma ni	1
-安卓猫	an vo mc	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-安道尔	an dc er	1
-奥地利	ao di li	1
-爱尔兰	ai er lj	1
-阿米诺斯	aa mi no si	1
-阿黛	aa dd	1
-安赛龙	an sd ls	1
-阿卡	aa ka	1
-按姓氏分班	an xk ui ff bj	1
-澳门冠军赛	ao mf gr jy sd	1
-暗红色	an hs se	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-爱莉	ai li	1
-暗示性求助	an ui xk qq vu	1
-阿里山的姑娘	aa li uj de gu nl	1
-傲慢魔女篇	ao mj mo nv pm	1
-阿米诺斯	aa mi no si	1
-安赛龙	an sd ls	1
-爱马仕橙	ai ma ui ig	1
-安卓人	an vo rf	1
-阿里创新高	aa li il xb gc	1
-阿米诺斯	aa mi no si	1
-艾草锤	ai cc iv	1
-安赛龙	an sd ls	1
-埃里森	ai li sf	1
-安卓	an vo	1
-阿米诺斯	aa mi no si	1
-艾许	ai xu	1
-安赛龙	an sd ls	1
-阿米诺斯	aa mi no si	1
