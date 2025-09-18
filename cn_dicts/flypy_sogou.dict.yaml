@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-09-17
+version: 2025-09-18
 sort: by_weight
 ...
 
@@ -18926,3 +18926,7 @@ sort: by_weight
 安培龙	an pw ls	1
 安赛龙	an sd ls	1
 阿米诺斯	aa mi no si	1
+安赛龙	an sd ls	1
+阿萨拉	aa sa la	1
+阿米诺斯	aa mi no si	1
+啊萨拉	aa sa la	1
