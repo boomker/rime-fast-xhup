@@ -36,6 +36,7 @@ patch:
       - derive/^tv/dl/                # tv --> dl
       - derive/^gr/gm/                # gr --> gm
       - derive/^gf/gn/                # gf --> gn
+      - derive/^gy/gk/                # gy --> gk
       - derive/^g([wv])/gi/           # g[wv] --> gi
       - derive/^xt/xo/
       - derive/^xs/xh/
