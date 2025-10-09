@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-10-08
+version: 2025-10-09
 sort: by_weight
 ...
 
@@ -18941,4 +18941,7 @@ sort: by_weight
 中华人民共和国政府	vs hx rf mb gs he go vg fu	1
 中国人民对外友好协会	vs go rf mb dv wd yz hc xp hv	1
 安赛龙	an sd ls	1
+阿米诺斯	aa mi no si	1
+安赛龙	an sd ls	1
+按美食攻略打卡	an mw ui gs lt da ka	1
 阿米诺斯	aa mi no si	1
