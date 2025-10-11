@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-10-10
+version: 2025-10-11
 sort: by_weight
 ...
 
@@ -18946,4 +18946,7 @@ sort: by_weight
 按美食攻略打卡	an mw ui gs lt da ka	1
 阿米诺斯	aa mi no si	1
 安赛龙	an sd ls	1
+阿米诺斯	aa mi no si	1
+安赛龙	an sd ls	1
+啊这	aa ve	1
 阿米诺斯	aa mi no si	1
