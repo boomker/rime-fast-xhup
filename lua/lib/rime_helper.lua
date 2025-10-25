@@ -26,7 +26,7 @@ function detect_os()
 	end
 end
 
-function reset_commited_cand_state(env)
+function reset_committed_cand_state(env)
 	local context = env.engine.context
 	context:set_property("prev_cand_is_null", "0")
 	context:set_property("prev_cand_is_word", "0")
@@ -35,21 +35,21 @@ function reset_commited_cand_state(env)
 	context:set_property("prev_cand_is_preedit", "0")
 end
 
-function set_commited_cand_is_chinese(env)
+function set_committed_cand_is_chinese(env)
 	local context = env.engine.context
-	reset_commited_cand_state(env)
+	reset_committed_cand_state(env)
 	context:set_property("prev_cand_is_chinese", "1")
 end
 
-function set_commited_cand_is_word(env)
+function set_committed_cand_is_word(env)
 	local context = env.engine.context
-	reset_commited_cand_state(env)
+	reset_committed_cand_state(env)
 	context:set_property("prev_cand_is_word", "1")
 end
 
-function set_commited_cand_is_symbol(env)
+function set_committed_cand_is_symbol(env)
 	local context = env.engine.context
-	reset_commited_cand_state(env)
+	reset_committed_cand_state(env)
 	context:set_property("prev_cand_is_symbol", "1")
 end
 

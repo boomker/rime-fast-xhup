@@ -17,14 +17,14 @@ end
 function easy_en.init(env)
     local config = env.engine.schema.config
     local easy_en_schema = Schema("easy_en") -- schema_id
-    local _easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
+    local easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
     env.wildcard = config:get_string("easy_en/wildcard") or "*"
     env.trigger_prefix = config:get_string("easy_en/prefix") or "eN"
-    env.expan_word_count = config:get_int("easy_en/expan_word_count") or 666
+    env.expand_word_count = config:get_int("easy_en/expand_word_count") or 666
     env.mem = Memory(env.engine, easy_en_schema, "translator")
-    env.easy_en_prefix = env.trigger_prefix or _easy_en_pat and _easy_en_pat:match("%^([a-z/]+).*")
+    env.easy_en_prefix = env.trigger_prefix or easy_en_pat and easy_en_pat:match("%^%(?([a-z/]+).*")
     env.easydict_translate_key = config:get_string("key_binder/easydict_translate") or "Control+y"
-    env.en_comment_overwrited = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
+    env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
 end
 
 function easy_en.fini(env)
@@ -55,7 +55,7 @@ function easy_en.translator(input, seg, env)
     if string.match(input, env.wildcard) then
         local tailer = string.match(input, "[^" .. env.wildcard .. "]+$") or ""
         local header = string.match(input, "^[^" .. env.wildcard .. "]+")
-        env.mem:dict_lookup(header, true, env.expan_word_count) -- expand_search
+        env.mem:dict_lookup(header, true, env.expand_word_count) -- expand_search
         for dictentry in env.mem:iter_dict() do
             local codetail = string.match(dictentry.comment:lower(), tailer .. "$") or ""
             if tailer and (codetail == tailer) then
@@ -76,7 +76,7 @@ function easy_en.filter(input, env)
     local schema = engine.schema
     local context = env.engine.context
     local input_code = context.input:gsub(" ", "")
-    local en_comment_overwrited = env.en_comment_overwrited
+    local en_comment_overwrite = env.en_comment_overwrite
 
     for cand in input:iter() do
         if schema.schema_id == "easy_en" then
@@ -84,7 +84,7 @@ function easy_en.filter(input, env)
             cand.comment = separator .. comment
             table.insert(en_cands, cand)
         elseif input_code:match("^" .. env.easy_en_prefix) then
-            if en_comment_overwrited then
+            if en_comment_overwrite then
                 local comment = truncate_comment(cand.comment)
                 cand.comment = separator .. comment
                 table.insert(en_cands, cand)
