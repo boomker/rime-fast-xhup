@@ -3,14 +3,13 @@
 
 ---
 name: flypy_xhfast
-version: 2025.01.19
+version: 2025.10.25
 
 import_tables:
   - cn_dicts/flypy_chars        # 字表
   # - cn_dicts/flyhe_chars      # 字表
   # - cn_dicts/flypy_chars_ext  # 扩展字表
   - cn_dicts/flypy_base         # 基础词库
-  - cn_dicts/flypy_ext          # 扩展词库
   - cn_dicts/flypy_sogou        # 搜狗网络流行词库
   - cn_dicts/flypy_zhwiki       # 中文维基百科Lite 版
   - cn_dicts/flypy_ext_misc     # 大写字母和数字派生, V开头Emoji
