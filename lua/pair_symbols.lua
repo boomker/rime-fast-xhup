@@ -56,8 +56,7 @@ function P.func(key, env)
     local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
 
     if symbol_unpair_flag then return 2 end
-    if env.system_name == "iOS" then return 2 end
-    if env.system_name == "Windows" then return 2 end
+    if env.system_name ~= "MacOS" then return 2 end
     -- local focus_app_id = context:get_property("client_app")
     -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
 
@@ -70,6 +69,7 @@ function P.func(key, env)
         local cand = context:get_selected_candidate()
         local commit_history = context.commit_history
         local selected_cand_idx = get_selected_candidate_index(key_name, index, page_size)
+        if not selected_cand_idx then return 2 end
         if env.enclosed_a or env.enclosed_b or env.enclosed_c or env.enclosed_d then
             local matched = false
             if key_name == env.enclosed_a then
@@ -88,8 +88,6 @@ function P.func(key, env)
                 matched = true
                 engine:commit_text("〔" .. cand.text .. "〕")
                 commit_history:push("raw", "〔" .. cand.text .. "〕")
-                -- elseif cand.text and (key_name == "Shift+Control+7") then
-                --     engine:commit_text(cand.text .. " 先生")
             end
             if matched then
                 context:clear()
@@ -98,7 +96,6 @@ function P.func(key, env)
         end
 
         if (selected_cand_idx >= 0) and (env.pair_toggle == "on") then
-            if not selected_cand_idx then return 2 end
             local candidate_text = segment:get_candidate_at(selected_cand_idx).text -- 获取指定项 从0起
             local paired_text = env.pairTable[candidate_text]
             if paired_text then
@@ -107,7 +104,7 @@ function P.func(key, env)
                 context:clear()
 
                 moveCursorToLeft(env)
-                set_commited_cand_is_symbol(env)
+                set_committed_cand_is_symbol(env)
 
                 return 1 -- kAccepted 收下此key
             end
@@ -122,14 +119,18 @@ function P.func(key, env)
             engine:commit_text(env.pairTable[key_name][1])
         end
 
-        if (env.system_name == "MacOS") and (key_name == "quotedbl") then
-            -- os.execute("sleep 0.2") -- 等待按键被松开
-            moveCursorToLeft(env)
+        if key.shift and (key_name == "quotedbl") then
+            os.execute("sleep 0.1") -- 等待按键被松开
+            if KeyEvent(key:repr()):release() then
+                moveCursorToLeft(env)
+            else
+                moveCursorToLeft(env)
+            end
         else
             moveCursorToLeft(env)
         end
         context:clear()
-        set_commited_cand_is_symbol(env)
+        set_committed_cand_is_symbol(env)
         return 1 -- kAccepted 收下此key
     end
 
