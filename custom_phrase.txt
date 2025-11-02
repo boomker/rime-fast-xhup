@@ -95,18 +95,16 @@
 什么玩意儿!	wtf	2
 What the fuck!	wtf	1
 WTF	wtf	3
-酒8	jq8	1
-喝9	he9	1
+# 酒8	jq8	1
+# 喝9	he9	1
 Rime	rime	3
 开源输入法引擎	rime	2
 http://rime.im	rime	1
 换行词条<br>第二行	hhct
-# 其他换行词条<br>我是下一行	hhct
 
 ## 简单单词
 TODO	todo
 DevOps	devo	2
-Django	djan	2
 Deploy	depl	2
 Nvim	nvim	2
 NeoVim	nvim	1
