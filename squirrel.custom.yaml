@@ -9,8 +9,7 @@ patch:
   # 狀態通知, 默認裝有Growl時顯示, 也可設爲全開(always)全關(never)
 
   style:
-    # layout:
-    #   max_width: 0
+    # layout/max_width: 1200
     # 註: 預設的配色方案及代碼(指定爲 style/color_scheme 系統默認色系 - native)
     color_scheme: songhe                        # macos明亮主题
     color_scheme_dark: catppuccin_frappe        # macos黑暗主题
