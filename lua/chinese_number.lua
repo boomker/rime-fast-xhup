@@ -237,7 +237,47 @@ end
 local function number_translatorFunc(num)
     local numberPart = splitNumPart(num)
     local result = {}
-    if numberPart.dot ~= "" then
+    table.insert(result, {
+        number2cnChar(numberPart.int, 1) .. decimal_func(numberPart.dec, {
+            [1] = "角",
+            [2] = "分",
+            [3] = "厘",
+            [4] = "毫",
+        }, {
+            [0] = "零",
+            "壹",
+            "贰",
+            "叁",
+            "肆",
+            "伍",
+            "陆",
+            "柒",
+            "捌",
+            "玖",
+        }),
+        "〔金额大写〕",
+    })
+    table.insert(result, {
+        number2cnChar(numberPart.int, 0) .. decimal_func(numberPart.dec, {
+            [1] = "角",
+            [2] = "分",
+            [3] = "厘",
+            [4] = "毫",
+        }, {
+            [0] = "〇",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六",
+            "七",
+            "八",
+            "九",
+        }),
+        "〔金额小写〕",
+    })
+    if numberPart.dot then
         table.insert(result, {
             number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "点" })
                 .. number2zh(numberPart.dec, 0),
@@ -259,46 +299,6 @@ local function number_translatorFunc(num)
         })
     end
     table.insert(result, { genChineseSeq(num), "〔数字序数〕" })
-    table.insert(result, {
-        number2cnChar(numberPart.int, 0) .. decimal_func(numberPart.dec, {
-            [1] = "角",
-            [2] = "分",
-            [3] = "厘",
-            [4] = "毫",
-        }, {
-            [0] = "〇",
-            "一",
-            "二",
-            "三",
-            "四",
-            "五",
-            "六",
-            "七",
-            "八",
-            "九",
-        }),
-        "〔金额小写〕",
-    })
-    table.insert(result, {
-        number2cnChar(numberPart.int, 1) .. decimal_func(numberPart.dec, {
-            [1] = "角",
-            [2] = "分",
-            [3] = "厘",
-            [4] = "毫",
-        }, {
-            [0] = "零",
-            "壹",
-            "贰",
-            "叁",
-            "肆",
-            "伍",
-            "陆",
-            "柒",
-            "捌",
-            "玖",
-        }),
-        "〔金额大写〕",
-    })
     return result
 end
 
