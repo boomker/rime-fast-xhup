@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-11-04
+version: 2025-11-05
 sort: by_weight
 ...
 
@@ -20833,7 +20833,6 @@ sort: by_weight
 定性了	dk xk le	1
 定向能	dk xl ng	1
 订校服	dk xn fu	1
-陆校服	dk xn fu	1
 丁小伟	dk xn ww	1
 丁雄军	dk xs jy	1
 丁学长	dk xt vh	1
@@ -61144,7 +61143,7 @@ sort: by_weight
 乐观进取	le gr jb qu	1
 乐谷银滩	le gu yb tj	1
 乐购深圳	le gz uf vf	1
-乐华娱乐	yt hx yu le	1
+乐华娱乐	yt hx yu yt	1
 乐凯胶片	le kd jn pm	1
 勒克莱尔	le ke ld er	1
 乐看视频	le kj ui pb	1
@@ -108813,3 +108812,5 @@ sort: by_weight
 中国人民解放军空军航空大学	vs go rf mb jp fh jy ks jy hh ks da xt	1
 黑神话销售量发售周年突破一亿	hw uf hx xn uz ll fa uz vz nm tu po yi yi	1
 黑神话销售量发售周年突破一亿用户	hw uf hx xn uz ll fa uz vz nm tu po yi yi ys hu	1
+阿蒲	aa pu	1
+阿米诺斯	aa mi no si	1
