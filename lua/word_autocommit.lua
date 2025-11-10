@@ -12,14 +12,11 @@ function word_auto_commit.init(env)
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
-    -- env.memory = Memory(env.engine, schema, "translator")
     env.word_auto_commit = config:get_bool("speller/auto_commit") or false
     env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
 function word_auto_commit.fini(env)
-    -- env.memory:disconnect()
-    -- if env.memory then env.memory = nil end
     env.script_tran:disconnect()
     if env.script_tran then env.script_tran = nil end
 end
@@ -133,6 +130,15 @@ function T.func(input, seg, env)
     end
 end
 
+-- function F.init(env)
+--     env.memory = Memory(env.engine, env.engine.schema)
+-- end
+
+-- function F.fini(env)
+--     env.memory:disconnect()
+--     if env.memory then env.memory = nil end
+-- end
+
 function F.func(input, env)
     local normal_cands = {}
     local symbol_cands = {}
@@ -169,10 +175,12 @@ function F.func(input, env)
     -- 单字全码唯一自动上屏(xy/ab?)
     if (caret_pos >= 4) and preedit_code:match("^%l%l/%l%l?$") then
         if #single_char_cands == 1 then
-            local cand_txt = insert_space_to_candText(env, single_char_cands[1].text)
+            local cand_obj = single_char_cands[1]
+            local cand_text = cand_obj.text
+            local cand_text_fm = insert_space_to_candText(env, cand_text)
             set_committed_cand_is_chinese(env)
-            env.engine:commit_text(cand_txt)
-            commit_history:push("raw", cand_txt)
+            env.engine:commit_text(cand_text_fm)
+            commit_history:push(cand_obj.type, cand_text)
             context:clear()
             return 1 -- kAccepted
         end
@@ -181,8 +189,7 @@ function F.func(input, env)
             local input_shape_code = string.sub(preedit_code, 4):gsub("/", "")
             local current_cand_shape_code = cand.comment:match("%l") and cand.comment:sub(2):gsub("%[", "")
             local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, "", 1)
-            local comment = (string.len(remain_shape_code) > 0) and string.format("~%s", remain_shape_code)
-                or " "
+            local comment = (string.len(remain_shape_code) > 0) and string.format("~%s", remain_shape_code) or " "
             ---@diagnostic disable-next-line: missing-parameter
             yield(ShadowCandidate(cand, cand.type, cand.text, comment))
         end

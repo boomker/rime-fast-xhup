@@ -13,11 +13,14 @@ patch:
       - derive/^qt/fd/
       - derive/^qu/fe/
       - derive/^qr/fo/
+      - derive/^ko/kr/
       - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
       - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
       - derive/^yh/wn/
       - derive/^yj/wm/
+      - derive/^hj/aj/
       - derive/^hy/hw/
+      - derive/^uj/ur/
       - derive/^uy/uw/                # uy --> uw
       - derive/^vx/ux/                # vx --> ux
       - derive/^vs/us/                # vs --> us
@@ -62,7 +65,6 @@ patch:
       - derive/^ik/ix/
       - derive/^sz/sl/
       - derive/^bw/bs/
-      - derive/^b([jku])/a$1/
       - derive/^b([fgnm])/s$1/
       - derive/^c([dz])/cl/
       - derive/^cs/ck/
