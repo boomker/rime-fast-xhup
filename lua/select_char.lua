@@ -30,7 +30,7 @@ function P.func(key, env)
 	local segment = composition:back()
 
 	local commit_history = context.commit_history
-	if (key:repr() == env.first_key) and (input_code ~= "") and (not segment.prompt:match("计算器")) then
+	if (key:repr() == env.first_key) and (input_code:match("^[a-zA-Z]")) and (not segment.prompt:match("计算器")) then
 		local cand = context:get_selected_candidate()
 		local _cand_text, _commit_txt = cand.text, nil
 		if _cand_text then
@@ -45,7 +45,7 @@ function P.func(key, env)
 		return 1 -- kAccepted
 	end
 
-	if (key:repr() == env.last_key) and (input_code ~= "") and (not segment.prompt:match("计算器")) then
+	if (key:repr() == env.last_key) and (input_code:match("^[a-zA-Z]")) and (not segment.prompt:match("计算器")) then
 		local cand = context:get_selected_candidate()
 		local _cand_text, _commit_txt = cand.text, nil
 		if _cand_text then

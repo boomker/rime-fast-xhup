@@ -73,12 +73,8 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then
-        return
-    end
-    if #env.history_list < 1 then
-        return
-    end
+    if composition:empty() then return end
+    if #env.history_list < 1 then return end
     local segment = composition:back()
     local commit_history = context.commit_history
     if seg:has_tag(env.tag) or (input == env.trigger_prefix) then
@@ -95,8 +91,8 @@ function T.func(input, seg, env)
         for i = #his_cands, 1, -1 do
             local cand = his_cands[i]
             cand = Candidate("history", seg.start, seg._end, cand.text, cand.preedit)
-            local cand_uniq =
-                cand:to_uniquified_candidate(cand.type, cand.text, cand.comment:sub(1, comment_max_length))
+            local cand_comment = cand.comment:sub(1, comment_max_length)
+            local cand_uniq = cand:to_uniquified_candidate(cand.type, cand.text, cand_comment)
             cand_uniq.quality = env.initial_quality
             yield(cand_uniq)
         end
