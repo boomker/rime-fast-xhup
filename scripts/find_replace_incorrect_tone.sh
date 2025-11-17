@@ -1,7 +1,7 @@
-#!/usr/local/bin/bash
+#!/opt/homebrew/bin/bash
 
 function find_incorrect_tone() {
-    [[ "$1" =~ '^[0-9]$' ]] && BASENAME="super_ext${1}" || BASENAME="${1}"
+    [[ $1 =~ ^[0-9]$ ]] && BASENAME="super_ext${1}" || BASENAME="${1}"
     mkdir -p "./tmp/${BASENAME}"
     while IFS= read -r line; do
         char=${line:0:1}
@@ -15,18 +15,18 @@ function find_incorrect_tone() {
             for(i=p;i<=l;i++){
                 if(a[i]==CHAR && b[i]!=CHARCODE){if(c!=$0){c=$0;print $0}}
             }
-        }' "../cn_dicts/flypy_${BASENAME}.dict.yaml" >"./tmp/${BASENAME}/cyz-${char}_${charcode}"
-    done <"./top4kchars"
+        }' "./cn_dicts/flypy_${BASENAME}.dict.yaml" >"./tmp/${BASENAME}/cyz-${char}_${charcode}"
+    done <"./stone_chars.txt"
 }
 
 function replace_incorrect_tone() {
-    [[ "$1" =~ '^[0-9]$' ]] && BASENAME="super_ext${1}" || BASENAME="${1}"
+    [[ $1 =~ ^[0-9]$ ]] && BASENAME="super_ext${1}" || BASENAME="${1}"
+    Pattern="**/${BASENAME}/cyz*"
     ErrRecFile="./tmp/chars_incorrect_${BASENAME}"
     RepRecFile="./tmp/chars_replaced_${BASENAME}"
-    TargetDictFile="../cn_dicts/flypy_${BASENAME}.dict.yaml"
-    Pattern="**/${BASENAME}/cyz*"
+    TargetDictFile="./cn_dicts/flypy_${BASENAME}.dict.yaml"
     touch ${ErrRecFile}
-    fd --no-ignore-vcs -p -g "${Pattern}" --size -1b -X rm
+    fd --no-ignore-vcs -p -g "${Pattern}" --size -0b -X rm
     fd --no-ignore-vcs -p -g "${Pattern}" -t f -x \
         gawk '{RC=substr(FILENAME, index(FILENAME, "-")+1);print RC"\t"$0}' {} >>"${ErrRecFile}"
     gawk -F'\t' '{
@@ -49,9 +49,9 @@ function new_replace_incorrect_tone() {
     Pattern="**/${BASENAME}/cyz*"
     ErrRecFile="./tmp/chars_incorrect_${BASENAME}"
     RepRecFile="./tmp/chars_replaced_${BASENAME}"
-    TargetDictFile="../cn_dicts/flypy_${BASENAME}.dict.yaml"
+    TargetDictFile="./cn_dicts/flypy_${BASENAME}.dict.yaml"
     touch "${ErrRecFile}"
-    fd --no-ignore-vcs -p -g "${Pattern}" --size -1b -X rm
+    fd --no-ignore-vcs -p -g "${Pattern}" --size -0b -X rm
     fd --no-ignore-vcs -p -g "${Pattern}" -t f -x \
         zawk '{RC=substr(FILENAME, index(FILENAME, "-")+1);print RC"\t"$0}' {} >>"${ErrRecFile}"
     zawk -F'\t' '{
@@ -72,30 +72,9 @@ function new_replace_incorrect_tone() {
 }
 
 function main() {
-    echo "${1}" "start ..."
-    [[ $1 == "find" ]] && echo "find" && find_incorrect_tone $2
-    [[ $1 == "rep" ]] && echo "rep" && replace_incorrect_tone $2
+    echo "cn_dicts/flypy_*${2}*" "start $1 ..."
+    [[ $1 == "find" ]] && find_incorrect_tone $2
+    [[ $1 == "rep" ]] && replace_incorrect_tone $2
 }
 
 main $1 $2
-
-# function find_incorrect_tone() {
-#     [[ "$1" =~ '^[0-9]$' ]] && BASENAME="super_ext${1}" || BASENAME="${1}"
-#     mkdir -p "./tmp/${BASENAME}"
-#     while IFS= read -r line; do
-#         char=${line:0:1}
-#         charcode=${line:2:2}
-#         echo "$char" "$charcode"
-#         zawk -v CHAR="$char" -v CHARCODE="$charcode" -F'\t' 'NR>10 && $1 ~ CHAR {
-#             sp=index($1,CHAR);
-#             ep=last_index($1,CHAR);
-#             wl=(sp==ep)?sp:ep;
-#             az=chars($1);
-#             split($2, ac, " ");{
-#                 for(i=sp;i<=wl;i++){
-#                     if(az[i]==CHAR && ac[i]!=CHARCODE){if(R!=$0){R=$0;print $0}}
-#                 }
-#             }
-#         }' "../cn_dicts/flypy_${BASENAME}.dict.yaml" >"./tmp/${BASENAME}/cyz-${char}_${charcode}"
-#     done <"./top3k_chars"
-# }
