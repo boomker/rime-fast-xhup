@@ -19,6 +19,21 @@ function find_incorrect_tone() {
     done <"./stone_chars.txt"
 }
 
+function find_incorrect_word_tone() {
+    [[ $1 =~ ^[0-9]$ ]] && BASENAME="super_ext${1}" || BASENAME="${1}"
+    mkdir -p "./tmp/${BASENAME}"
+    while IFS= read -r line; do
+        char=$(echo ${line} | hck -f1)
+        charcode=$(echo ${line} | hck -f2-4 -D " ")
+        echo "$char" "$charcode"
+        gawk -v CHAR="$char" -v CHARCODE="$charcode" -F'\t' 'NR>10 && $1 ~ CHAR {
+            p=index($1, CHAR);
+            split($2, ac, " ");
+            if(ac[p]" "ac[p+1]" "ac[p+2]!=CHARCODE){print $0}
+        }' "./cn_dicts/flypy_${BASENAME}.dict.yaml" >"./tmp/${BASENAME}/cyz-${char}_${charcode// /}"
+    done <"./chm-tcw_sorted.txt"
+}
+
 function replace_incorrect_tone() {
     [[ $1 =~ ^[0-9]$ ]] && BASENAME="super_ext${1}" || BASENAME="${1}"
     Pattern="**/${BASENAME}/cyz*"
@@ -74,6 +89,7 @@ function new_replace_incorrect_tone() {
 function main() {
     echo "cn_dicts/flypy_*${2}*" "start $1 ..."
     [[ $1 == "find" ]] && find_incorrect_tone $2
+    [[ $1 == "fword" ]] && find_incorrect_word_tone $2
     [[ $1 == "rep" ]] && replace_incorrect_tone $2
 }
 
