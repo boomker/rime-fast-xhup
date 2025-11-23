@@ -173,11 +173,9 @@ patch:
       ascii_mode: true
       ascii_punct: true
       symbol_unpair_flag: true
-    com.todesktop.230313mzl4w4u92:    # cursor
-      vim_mode: true
+    com.DanPristupov.Fork:
       ascii_mode: true
       ascii_punct: true
-      symbol_unpair_flag: true
     com.microsoft.edgemac:
       ascii_mode: false
     com.google.Chrome:
