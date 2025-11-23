@@ -57,16 +57,16 @@ patch:
       - derive/^ze/zn/
       - derive/^zr/zm/
       - derive/^z([ws])/zk/
-      - derive/^mb/ms/
+      - derive/^i([kl])/ix/
       - derive/^mh/mx/
+      - derive/^mb/ms/
       - derive/^mk/me/
       - derive/^mo/mr/
       - derive/^mu/mv/
-      - derive/^ik/ix/
       - derive/^sz/sl/
       - derive/^bw/bs/
       - derive/^b([fgnm])/s$1/
-      - derive/^c([dz])/cl/
       - derive/^cs/ck/
       - derive/^ce/cn/
       - derive/^cr/cm/
+      - derive/^c([dz])/cl/

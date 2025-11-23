@@ -8,8 +8,6 @@ local reload_env = require("lib/env_api")
 function flypy_switcher.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
-    local easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
-    local switchOpt_pat = config:get_string("recognizer/patterns/switch_options") or nil
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
     env.mem = Memory(env.engine, schema, "translator")
@@ -20,17 +18,18 @@ function flypy_switcher.init(env)
     env.char_mode_state = config:get_string("char_mode/toggle") or "off"
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
-    env.char_mode_suffix = config:get_string("key_binder/char_mode_suffix") or "|"
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
+    local easy_en_pat = config:get_string("recognizer/patterns/easy_en") or nil
+    local switchOpt_pat = config:get_string("recognizer/patterns/switch_options") or nil
     env.easy_en_prefix = easy_en_pat and easy_en_pat:match("%^.?([a-zA-Z/]+).*") or "eN"
     env.switch_options = switchOpt_pat and switchOpt_pat:match("%^.?([a-zA-Z/]+).*") or "sO"
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }
     env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⓪" }
-    env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
     env.word_auto_commit = config:get_bool("speller/auto_commit") or false
+    env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
     env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
     env.switch_options_menu = {
@@ -73,9 +72,7 @@ function processor.func(key, env)
     local context = engine.context
     local page_size = schema.page_size
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
     local segment = composition:back()
     local preedit_code = context:get_script_text():gsub(" ", "")
     local commit_history = context.commit_history
@@ -258,24 +255,20 @@ function translator.func(input, seg, env)
         end
     end
 
-    -- 四码时, 按下'|', 单字优先
+    -- 四码时, 按下`Control+s`, 单字优先
     if
-        input:match("%l%l%l%l?%" .. env.char_mode_suffix .. "$")
-        or (input:match("%l%l%l%l$") and (char_mode_state == 1))
+        (input:match("^%l%l%l%l$") and (char_mode_state == 1))
     then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search
-        if not ok then
-            return
-        end
+        if not ok then return end
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
 
             if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
                 local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
-                local pattern = "%f[%a](" .. input:gsub("%" .. env.char_mode_suffix, "") .. "%a*)"
-                if reverse_char_code:match(pattern) then
+                if reverse_char_code:match(input) then
                     table.insert(entry_matched_tbl, dictentry)
                 end
             end

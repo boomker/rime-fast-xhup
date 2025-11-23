@@ -68,8 +68,8 @@ function F.func(input, env)
     local context = env.engine.context
     local preedit_code = context.input
     local _, symbol_count = preedit_code:gsub("[`']", "")
-    local _syllable_count = math.floor(#preedit_code / 2)
-    local confirmed_syllable_len = _syllable_count - symbol_count
+    local syllable_count = math.floor(#preedit_code / 2)
+    local confirmed_syllable_len = syllable_count - symbol_count
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
 
@@ -81,23 +81,23 @@ function F.func(input, env)
             local ccand_text = cand_text:gsub("<br>", "\n")
             yield(cand:to_shadow_candidate(cand.type, ccand_text, env.custom_mark))
         elseif  -- 丢弃一些候选结果
-                -- 去掉候选注解包含`太极️`的候选项
+                -- 去掉候选注解包含`太极️☯ ` 的候选项
             string.find(cand.comment, "☯")
             or (   -- 开头大写的输入编码, 去掉只有单字母的候选
                 preedit_code:match("^[%u][%a]+")
                 and cand_text:match("^[A-Z]$")
             ) or ( -- 辅码筛字时, 过滤掉 emoji
-                preedit_code:match("^%l+[`/][%l`/]*$")
+                preedit_code:match("^%l+[`/][%l`/]+$")
                 and (cand:get_dynamic_type() == "Shadow")
             ) or ( -- 辅码模式下, 过滤掉长度超出预确认音节长度的候选
-                preedit_code:match("^%l+`%l+") and
-                (cand_text:utf8_len() > confirmed_syllable_len)
+                preedit_code:match("^%l+[`/][%l`/]+$") and
+                (utf8.len(cand_text) > confirmed_syllable_len)
             ) or ( -- V模式下, 过滤掉中英混合词条
                 preedit_code:match("^V%a+$") and
                 cand_text:find("([\228-\233][\128-\191]-)")
             ) or ( -- 候选词长度超出预确认音节长度 2 个以上的候选
                 (cand.type == "completion") and
-                (not cand_text:match("[%a%p]")) and
+                -- (not cand_text:match("[%a%p]")) and
                 (utf8.len(cand_text) - confirmed_syllable_len > 2)
             )
         then

@@ -23,9 +23,7 @@ local function write_word_to_file(env)
     local filename = get_record_filename()
     local record_header = string.format("local pin_word_records =\n")
     local record_tailer = string.format("\nreturn pin_word_records")
-    if not filename then
-        return false
-    end
+    if not filename then return false end
 
     local fd = assert(io.open(filename, "w")) --打开
     fd:setvbuf("line")
@@ -64,9 +62,7 @@ function P.func(key, env)
     if context:has_menu() and pin_unpin_keymap[key:repr()] then
         local cand = context:get_selected_candidate()
         local cand_text = cand.text:gsub(" ", "")
-        if not cand then
-            return 2
-        end
+        if not cand then return 2 end
 
         if not env.pin_word_records[preedit_code] then
             env.pin_word_records[preedit_code] = {}
@@ -100,9 +96,7 @@ function P.func(key, env)
             write_word_to_file(env)
         end
 
-        if key_accepted then
-            return 1
-        end
+        if key_accepted then return 1 end
     end
 
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
@@ -131,9 +125,7 @@ function T.func(input, seg, env)
 
     -- 自定义短语的置顶字词加类型标记
     env.custom_tran = env.custom_phrase_tran:query(input, seg)
-    if not env.custom_tran then
-        return
-    end
+    if not env.custom_tran then return end
     for cand in env.custom_tran:iter() do
         cand.type = "custom_phrase_" .. cand.type
         yield(cand)
@@ -145,8 +137,9 @@ function F.func(input, env)
     local other_cands = {}
     local custom_phrase_cands = {}
     local pin_mark = env.pin_mark
+    local context = env.engine.context
     local custom_mark = env.comment_mark
-    local input_code = env.engine.context.input:gsub(" ", "")
+    local input_code = context.input:gsub(" ", "")
 
     for cand in input:iter() do
         local cand_text = cand.text
@@ -170,9 +163,7 @@ function F.func(input, env)
             table.insert(other_cands, cand)
         end
 
-        if #other_cands >= 150 then
-            break
-        end
+        if #other_cands >= 150 then break end
     end
 
     if #pin_cands > 0 then
