@@ -49,6 +49,7 @@ function easy_en.processor(key, env)
         context:clear()
         return 1
     end
+    return 2
 end
 
 function easy_en.translator(input, seg, env)
