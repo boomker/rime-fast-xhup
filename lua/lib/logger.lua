@@ -19,9 +19,8 @@ M.setDbg = function(flg)
 	print('runLog dbgFlg is '..tostring(dbgFlg))
 end
 
--- local current_path = string.sub(debug.getinfo(1).source, 2, string.len("/logger.lua") * -1)
 local user_data_dir = rime_api:get_user_data_dir()
-M.logDoc = user_data_dir ..'runLog.txt'
+M.logDoc = user_data_dir .. '/runLog.txt'
 
 M.writeLog = function (logStr)
 	if nil == logStr then

@@ -25,10 +25,10 @@ function P.func(key, env)
 	local engine = env.engine
 	local context = engine.context
 	local input_code = context.input
-	local composition = env.engine.context.composition
-	if composition:empty() then return end
+	local composition = context.composition
+    if composition:empty() then return 2 end
 	local segment = composition:back()
-
+    if not (segment and segment.menu) then return 2 end
 	local commit_history = context.commit_history
 	if (key:repr() == env.first_key) and (input_code:match("^[a-zA-Z]")) and (segment.prompt:len() < 1) then
 		local cand = context:get_selected_candidate()

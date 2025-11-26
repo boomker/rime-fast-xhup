@@ -13,9 +13,11 @@ end
 local P = {}
 
 function P.init(env)
-    local config = env.engine.schema.config
     env.system_name = detect_os()
+    local config = env.engine.schema.config
     env.user_data_dir = rime_api:get_user_data_dir()
+    env.calc_tip = config:get_string("calculator/tips") or "计算器"
+    env.number_tip = config:get_string("chinese_number/tips") or "中文数字"
     env.pair_toggle = config:get_string("pair_symbol/toggle") or "off"
     env.enclosed_a = config:get_string("key_binder/enclosed_cand_chars_a") or nil
     env.enclosed_b = config:get_string("key_binder/enclosed_cand_chars_b") or nil
@@ -53,12 +55,11 @@ function P.func(key, env)
     local page_size = engine.schema.page_size
     local composition = context.composition
     local segment = composition:back()
-    local symbol_unpair_flag = context:get_option("symbol_unpair_flag")
 
-    if symbol_unpair_flag then return 2 end
     if env.system_name ~= "MacOS" then return 2 end
-    -- local focus_app_id = context:get_property("client_app")
-    -- elseif focus_app_id:match("alacritty") or focus_app_id:match("VSCode") then
+    if context:get_option("symbol_unpair_flag") then return 2 end
+    if segment and segment.prompt:match(env.calc_tip) then return 2 end
+    if segment and segment.prompt:match(env.number_tip) then return 2 end
 
     local key_name = key:repr()
     if key.keycode == 34 then key_name = "quotedbl" end
@@ -70,6 +71,7 @@ function P.func(key, env)
         local commit_history = context.commit_history
         local selected_cand_idx = get_selected_candidate_index(key_name, index, page_size)
         if not selected_cand_idx then return 2 end
+
         if env.enclosed_a or env.enclosed_b or env.enclosed_c or env.enclosed_d then
             local matched = false
             if key_name == env.enclosed_a then

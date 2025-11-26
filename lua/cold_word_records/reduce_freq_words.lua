@@ -1,26 +1,2 @@
-local reduce_freq_words =
-{ 	["肏屄"] = { "ccbi", },
-	["D组"] = { "dzu", },
-	["磨涅"] = { "mone", },
-	["官婢"] = { "grbi", },
-	["x64"] = { "xlf", },
-	["大V"] = { "dav", },
-	["Y轴"] = { "yvz", },
-	["托克罗"] = { "token", },
-	["扎鹿盘"] = { "value", },
-	["X轴"] = { "xvz", },
-	["vivid"] = { "vivid", },
-	["X11"] = { "xwi", },
-	["颜射"] = { "yjue", },
-	["圈X"] = { "qrx", },
-	["明松暗"] = { "messa", },
-	["加Q"] = { "jxq", },
-	["爬船"] = { "pair", },
-	["Photoshop"] = { "ps", },
-	["萨法"] = { "safa", },
-	["B面"] = { "bmm", },
-	["恩特"] = { "ente", },
-	["书裙"] = { "uuqy", },
-	["佛莱尔"] = { "folder", },
-}
+local reduce_freq_words = { }
 return reduce_freq_words

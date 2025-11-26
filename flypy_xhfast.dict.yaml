@@ -3,14 +3,15 @@
 
 ---
 name: flypy_xhfast
-version: 2025.10.20
+version: 2025.11.24
 
 import_tables:
   - cn_dicts/flyhe_chars        # 字表
   # - cn_dicts/flypy_chars      # 字表
   # - cn_dicts/flypy_chars_ext  # 扩展字表
   - cn_dicts/flypy_base         # 基础词库
-  - cn_dicts/flypy_sogou        # 搜狗网络流行热词词库
+  - cn_dicts/flypy_sogou        # 网络流行热词
+  - cn_dicts/flypy_stock        # A 股市场股票
   - cn_dicts/flypy_zhwiki       # 精简版中文维基百科词库
   - cn_dicts/flypy_ext_misc     # 大写字母和数字派生, V开头Emoji
   - cn_dicts/flypy_super_ext1   # 扩展词库(大词库, 部署时间较长)

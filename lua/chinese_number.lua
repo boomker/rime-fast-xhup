@@ -1,6 +1,13 @@
 -- 来源 https://github.com/yanhuacuo/98wubi-tables > http://98wb.ysepan.com/
 -- 数字、金额大写 (任意大写字母引导+数字)
 
+-- local logEnable, log = pcall(require, "lib/logger")
+-- if logEnable then
+--     log.writeLog('\n')
+--     log.writeLog('--- start ---')
+--     log.writeLog('log from chinese_number.lua\n')
+-- end
+
 local n2c = {
     ["0"] = "〇",
     ["1"] = "一",
@@ -312,15 +319,15 @@ function CN.init(env)
     local config = env.engine.schema.config
     local pattern_path = "recognizer/patterns/chinese_number"
     local cn_pat = config:get_string(pattern_path) or "nN"
-    env.trigger_prefix = cn_pat:match("%^%(?([a-zA-Z/]+).*") or "/nn"
-    env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
     env.user_distribute_name = rime_api:get_distribution_code_name()
-    env.select_keys = config:get_string("chinese_number/select_keys") or "HJKLIOM"
+    env.trigger_prefix = cn_pat:match("%^?%(?([a-zA-Z/|]+)%)?.*") or "nN"
+    env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
+    env.select_keys = config:get_string("chinese_number/select_keys") or "sdfjkl"
     env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
     CN.speller_alphabet = CN.speller_alphabet or config:get_string("speller/alphabet")
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
         local segment = ctx.composition:back()
-        if segment.prompt:match(env.tip) then
+        if segment and segment.prompt:match(env.tip) then
             config:set_int("menu/alternative_select_keys", env.alter_select_keys)
             config:set_string("speller/alphabet", CN.speller_alphabet)
             env.engine:apply_schema(Schema(schema.schema_id))
@@ -332,31 +339,37 @@ function CN.fini(env)
     env.notifier_commit_number:disconnect()
 end
 
+---@diagnostic disable-next-line: unused-local
 function P.func(key, env)
     local engine = env.engine
     local schema = engine.schema
     local context = engine.context
     local input_code = context.input
     local config = engine.schema.config
-    local segment = context.composition:back()
-    local client_name = env.user_distribute_name
-    if not table.find_index({ "Squirrel", "squirrel" }, client_name) then return 2 end
+    local composition = context.composition
+    if composition:empty() then return 2 end
+    local segment = composition:back()
+    if not segment then return 2 end
+    local _alphabet_str = CN.speller_alphabet:gsub("[a-z%p]", "")
+    local alphabet_str = _alphabet_str:gsub("[" .. env.trigger_prefix .. "]", "")
     if input_code:match("^/nn$") or input_code:match("^nN$") or segment.prompt:match(env.tip) then
         config:set_string("menu/alternative_select_keys", env.select_keys)
-        config:set_string("speller/alphabet", "abcdefghijklmopqrstuvwxyz")
+        config:set_string("speller/alphabet", alphabet_str)
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(input_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
     end
+    return 2
 end
 
 function T.func(input, seg, env)
-    local str, numberPart
+    local pyload_str, numberPart
     local segment = env.engine.context.composition:back()
-    if seg:has_tag("chinese_number") or string.match(input, "^" .. env.trigger_prefix) then
+    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or {"/nn", "nn"}
+    if seg:has_tag("chinese_number") or input:match("^" .. prefix_tbl[1]) or input:match("^" .. prefix_tbl[2]) then
         segment.prompt = "〔" .. env.tip .. "〕"
-        str = input:gsub("^" .. env.trigger_prefix, ""):gsub("%a+", "")
-        numberPart = number_translatorFunc(str)
+        pyload_str = input:gsub("[%a/]+", "")
+        numberPart = number_translatorFunc(pyload_str)
         if #numberPart > 0 then
             for i = 1, #numberPart do
                 yield(Candidate(input, seg.start, seg._end, numberPart[i][1], numberPart[i][2]))
