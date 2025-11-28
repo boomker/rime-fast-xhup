@@ -80,12 +80,14 @@
 		".vscode/"
 	],
 	"cSpell.words": [
+		"Atoi",
 		"boomker",
 		"bracketleft",
 		"bracketright",
 		"fini",
 		"flyhe",
 		"flypy",
+		"foxmail",
 		"hanb",
 		"metatable",
 		"opencc",
@@ -97,6 +99,7 @@
 		"Trime",
 		"wanxiang",
 		"xform",
-		"xhfast"
+		"xhfast",
+		"xhup"
 	]
 }

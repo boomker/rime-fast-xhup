@@ -193,6 +193,8 @@ preset_color_schemes:
 app_options:
   com.apple.Spotlight:              # 聚焦搜索
     ascii_mode: true                # true默认英文,false默认中文
+  com.raycast.macos:                # Raycast
+    ascii_mode: true
   com.runningwithcrayons.Alfred:    # alfred
     ascii_mode: true
   com.apple.Terminal:               # 终端
@@ -200,15 +202,18 @@ app_options:
   com.googlecode.iterm2:            # iterm2
     ascii_mode: true
     ascii_punct: true               # 中文状态输出英文标点(半角)
+  org.alacritty:
+    ascii_mode: true
+    ascii_punct: true               # 中文状态输出英文标点(半角)
   com.microsoft.VSCode:             # Visual Studio Code
     ascii_mode: true
     ascii_punct: true               # 中文状态输出英文标点(半角)
-  com.raycast.macos:                # Raycast
+  com.trae.app:                     # trae
+    vim_mode: true
     ascii_mode: true
+    ascii_punct: true
+    symbol_unpair_flag: true
   com.neovide.neovide:
-    ascii_mode: true
-    ascii_punct: true               # 中文状态输出英文标点(半角)
-  org.alacritty:
     ascii_mode: true
     ascii_punct: true               # 中文状态输出英文标点(半角)
   com.microsoft.edgemac:
