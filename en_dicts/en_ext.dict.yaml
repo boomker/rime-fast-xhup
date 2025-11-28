@@ -10,7 +10,7 @@
 # 少数单词与 en 重复，纯粹是为了排版美观，部署时的报错 duplicate word definition 可忽略，无任何影响
 ---
 name: en_ext
-version: "2025-08-01"
+version: "2025-11-25"
 sort: by_weight
 ...
 # 一些杂项
@@ -153,26 +153,26 @@ OS X Mavericks	OSX	3
 OS X Yosemite	OSX	4
 OS X El Capitan	OSX	5
 macOS	macOS	999
-# macOS Sierra	macOS	1
-# macOS High Sierra	macOS	2
-# macOS Mojave	macOS	3
-# macOS Catalina	macOS	4
-# macOS Big Sur	macOS	5
-# macOS Monterey	macOS	6
-# macOS Ventura	macOS	7
+macOS Sierra	macOS	1
+macOS High Sierra	macOS	2
+macOS Mojave	macOS	3
+macOS Catalina	macOS	4
+macOS Big Sur	macOS	5
+macOS Monterey	macOS	6
+macOS Ventura	macOS	7
 macOS Sonoma	macOS	8
 macOS Sequoia	macOS	9
 macOS Tahoe	macOS	10
 Windows	Windows	999
-# Windows 95	Windows	1
-# Windows 98	Windows	2
-# Windows Me	Windows	3
-# Windows 2000	Windows	4
+Windows 95	Windows	1
+Windows 98	Windows	2
+Windows Me	Windows	3
+Windows 2000	Windows	4
 Windows XP	Windows	5
-# Windows XP	WindowsXP
-# Windows Vista	Windows	6
+Windows XP	WindowsXP
+Windows Vista	Windows	6
 Windows 7	Windows	7
-# Windows 8	Windows	8
+Windows 8	Windows	8
 Windows 10	Windows	10
 Windows 11	Windows	11
 # Windows 12	Windows	12
@@ -376,6 +376,7 @@ Workspace	Workspace
 AdSense	AdSense
 Authenticator	Authenticator
 DeepMind	DeepMind
+Figma	Figma
 Google	Google
 Google Ads	GoogleAds
 Google AdSense	GoogleAdSense
@@ -828,11 +829,7 @@ Quiver	Quiver
 Rdio	Rdio
 Readability	Readability
 Readkit	Readkit
-Regulex	Regulex
-Remote	Remote
 RescueTime	RescueTime
-Retina	Retina
-Safari	Safari
 Safari View Controller	SafariViewController
 SaneDesk	SaneDesk
 Scrapbook	Scrapbook
@@ -1384,7 +1381,6 @@ Maine	Maine
 Elijah	Elijah
 Love & Peace	Love&Peace
 Peace & Love	Peace&Love
-Liquid	Liquid
 LCD	LCD
 Liquid Crystal Display	LCD
 Liquid Crystal Display	LiquidCrystalDisplay
@@ -1677,6 +1673,7 @@ GPT-4	GPT-4
 GPT-4o	GPT-4o
 GPT-4.1	GPT-4.1
 GPT-4.5	GPT-4.5
+GPT-5	GPT-5
 LaMDA	LaMDA
 Language Model for Dialogue Applications	LaMDA
 Coinbase Wallet	CoinbaseWallet
@@ -2178,7 +2175,6 @@ Apple Intelligence	AppleIntelligence
 7-Zip	7-Zip
 LGTM	LGTM
 PTAL	PTAL
-Grok	Grok
 MBR	MBR
 master boot record	masterbootrecord
 master boot record	MBR
