@@ -312,8 +312,10 @@ end
 local P = {}
 local T = {}
 local CN = {}
+local Env = require("lib/env_api")
 
 function CN.init(env)
+    Env(env)
     local schema = env.engine.schema
     local context = env.engine.context
     local config = env.engine.schema.config
@@ -322,14 +324,16 @@ function CN.init(env)
     env.user_distribute_name = rime_api:get_distribution_code_name()
     env.trigger_prefix = cn_pat:match("%^?%(?([a-zA-Z/|]+)%)?.*") or "nN"
     env.tip = config:get_string("chinese_number" .. "/tips") or "中文数字"
-    env.select_keys = config:get_string("chinese_number/select_keys") or "sdfjkl"
+    env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
+    env.alph_select_keys = config:get_string("chinese_number/select_keys") or "sdfjkl"
     env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
     CN.speller_alphabet = CN.speller_alphabet or config:get_string("speller/alphabet")
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
         local segment = ctx.composition:back()
         if segment and segment.prompt:match(env.tip) then
-            config:set_int("menu/alternative_select_keys", env.alter_select_keys)
             config:set_string("speller/alphabet", CN.speller_alphabet)
+            config:set_int("menu/alternative_select_keys", env.alter_select_keys)
+            env:Config_set("menu/alternative_select_labels", env.alter_labels)
             env.engine:apply_schema(Schema(schema.schema_id))
         end
     end)
@@ -349,12 +353,14 @@ function P.func(key, env)
     local composition = context.composition
     if composition:empty() then return 2 end
     local segment = composition:back()
-    if not segment then return 2 end
-    local _alphabet_str = CN.speller_alphabet:gsub("[a-z%p]", "")
-    local alphabet_str = _alphabet_str:gsub("[" .. env.trigger_prefix .. "]", "")
+    if not (segment and segment.menu) then return 2 end
+    local alph_labels = { "s", "d", "f", "j", "k", "l", "i", "o", "p" }
+    local _speller_str = CN.speller_alphabet:gsub("[a-z%p]", "")
+    local speller_str = _speller_str:gsub("[" .. env.trigger_prefix .. "]", "")
     if input_code:match("^/nn$") or input_code:match("^nN$") or segment.prompt:match(env.tip) then
-        config:set_string("menu/alternative_select_keys", env.select_keys)
-        config:set_string("speller/alphabet", alphabet_str)
+        config:set_string("menu/alternative_select_keys", env.alph_select_keys)
+        env:Config_set("menu/alternative_select_labels", alph_labels)
+        config:set_string("speller/alphabet", speller_str)
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(input_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
@@ -365,8 +371,8 @@ end
 function T.func(input, seg, env)
     local pyload_str, numberPart
     local segment = env.engine.context.composition:back()
-    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or {"/nn", "nn"}
-    if seg:has_tag("chinese_number") or input:match("^" .. prefix_tbl[1]) or input:match("^" .. prefix_tbl[2]) then
+    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or {"/nn", "nN"}
+    if seg:has_tag("chinese_number") or table.find(prefix_tbl, input) then
         segment.prompt = "〔" .. env.tip .. "〕"
         pyload_str = input:gsub("[%a/]+", "")
         numberPart = number_translatorFunc(pyload_str)

@@ -27,6 +27,7 @@
         "DictEntry",
         "Phrase",
         "utf8",
-        "ConfigItem"
+        "ConfigItem",
+        "Env"
     ]
 }

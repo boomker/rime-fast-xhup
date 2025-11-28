@@ -8,8 +8,7 @@ schema:
   name: Easy English
   version: 2025.01.11
   author:
-    - Patrick <ipatrickmac@gmail.com>
-    - BlindingDark <blindingdark@outlook.com>
+    - Boomker <gmboomker@gmail.com>
   description: Easy English
   dependencies:
     - ecdict
@@ -124,9 +123,12 @@ recognizer:
   import_preset: default
   patterns:
     uppercase: ""
+    easy_en: "^[a-zA-Z]+$"
 
 easy_en:                          # 英文输入方案
-  prefix: "/oe"
-  tips: "英文输入"
+  prefix: "eN"
+  suffix: "'"
+  tag: easy_en
+  tips: "英文"
   wildcard: '*'
   expan_word_count: 666
