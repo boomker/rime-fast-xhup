@@ -75,7 +75,7 @@ engine:
     - table_translator@make_sentence                  # ` 精准造词
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
-    - table_translator@easy_en                        # /oe 触发进入英文输入模式
+    - table_translator@easy_en                        # /en 触发进入英文输入模式
     - lua_translator@*pin_word*translator             # ctrl-t 自定义置顶词
     - lua_translator@*date_time                       # date, week, time 触发
     - lua_translator@*en_custom                       # \ 触发自定义单词入库
@@ -88,10 +88,10 @@ engine:
     # - lua_translator@*revert_commit_word            # 撤销已上屏字符(退格键)
     # - lua_translator@*fly_fixed*translator          # 降频简拼产生的候选项
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
-    - lua_translator@*chinese_number*translator       # /cn 触发大写金额数字
+    - lua_translator@*chinese_number*translator       # /nn 触发大写金额数字
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
-    - lua_translator@*word_autocommit*translator      # / 单字和符号表情自动触发上屏
+    - lua_translator@*word_autocommit*translator      # /; 单字或词组和表情自动上屏
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -127,7 +127,7 @@ translator:
   dictionary: flypy_xhfast
   spelling_hints: 1                 # `0`: 关闭单字编码提示
   initial_quality: 1.3              # 初始词频
-  enable_user_dict: true            # 开启用户词库
+  enable_user_dict: true            # 开启用户词库(是否自动调频)
   enable_completion: true           # 启用输入补全
   encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启语言模型优化候选
@@ -237,7 +237,7 @@ radical_reverse_lookup:
 
 # 英文输入方案
 easy_en:
-  # prefix: "/oe"
+  # prefix: "/en"
   prefix: "eN"
   suffix: "'"
   tag: easy_en

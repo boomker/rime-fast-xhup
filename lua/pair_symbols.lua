@@ -16,9 +16,9 @@ function P.init(env)
     env.system_name = detect_os()
     local config = env.engine.schema.config
     env.user_data_dir = rime_api:get_user_data_dir()
+    env.pair_toggle = config:get_string("pair_symbol/toggle") or "off"
     env.calc_tip = config:get_string("calculator/tips") or "计算器"
     env.number_tip = config:get_string("chinese_number/tips") or "中文数字"
-    env.pair_toggle = config:get_string("pair_symbol/toggle") or "off"
     env.enclosed_a = config:get_string("key_binder/enclosed_cand_chars_a") or nil
     env.enclosed_b = config:get_string("key_binder/enclosed_cand_chars_b") or nil
     env.enclosed_c = config:get_string("key_binder/enclosed_cand_chars_c") or nil
@@ -58,6 +58,9 @@ function P.func(key, env)
 
     if env.system_name ~= "MacOS" then return 2 end
     if context:get_option("symbol_unpair_flag") then return 2 end
+    if segment and segment.prompt:match("农历") then return 2 end
+    if segment and segment.prompt:match("应用闪切") then return 2 end
+    if segment and segment.prompt:match("配置选项") then return 2 end
     if segment and segment.prompt:match(env.calc_tip) then return 2 end
     if segment and segment.prompt:match(env.number_tip) then return 2 end
 

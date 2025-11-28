@@ -35,7 +35,6 @@ function P.func(key, env)
         return 2
     end
     local segment = composition:back()
-    local commit_history = context.commit_history
 
     -- 按下 '/' 后, 数字键或符号键选单字时, 自动上屏
     local idx = segment.selected_index
@@ -46,7 +45,6 @@ function P.func(key, env)
         local cand_txt = insert_space_to_candText(env, _cand_text)
         set_committed_cand_is_chinese(env)
         engine:commit_text(cand_txt)
-        commit_history:push("raw", cand_txt)
         context:clear()
         return 1
     end
@@ -62,7 +60,6 @@ function T.func(input, seg, env)
     if composition:empty() then
         return
     end
-    local commit_history = context.commit_history
     local auto_commit_enable = env.word_auto_commit
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
@@ -123,7 +120,6 @@ function T.func(input, seg, env)
             local cand_text = insert_space_to_candText(env, filtered_cand_text)
             set_committed_cand_is_chinese(env)
             env.engine:commit_text(cand_text)
-            commit_history:push("raw", cand_text)
             context:clear()
             return
         end
@@ -146,7 +142,6 @@ function F.func(input, env)
     local context = env.engine.context
     local preedit_code = context.input
     local caret_pos = context.caret_pos
-    local commit_history = context.commit_history
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])
@@ -180,7 +175,6 @@ function F.func(input, env)
             local cand_text_fm = insert_space_to_candText(env, cand_text)
             set_committed_cand_is_chinese(env)
             env.engine:commit_text(cand_text_fm)
-            commit_history:push(cand_obj.type, cand_text)
             context:clear()
             return 1 -- kAccepted
         end

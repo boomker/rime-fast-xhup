@@ -17,7 +17,7 @@
 # 转化应当大写的单词
 ---
 name: en
-version: "2025-09-01"
+version: "2025-11-22"
 sort: by_weight
 ...
 # +_+
@@ -629,6 +629,7 @@ allowing	allowing
 allows	allows
 alloy	alloy
 alloys	alloys
+allure	allure
 ally	ally
 Alma	Alma
 almanac	almanac
@@ -804,6 +805,7 @@ Andrea	Andrea
 Andreas	Andreas
 Andrew	Andrew
 Andrews	Andrews
+androecium	androecium
 Andy	Andy
 anecdote	anecdote
 anemia	anemia
@@ -817,6 +819,7 @@ Angelo	Angelo
 angels	angels
 anger	anger
 Angie	Angie
+angiosperm	angiosperm
 angle	angle
 angles	angles
 Anglican	Anglican
@@ -886,6 +889,7 @@ antenna	antenna
 antennas	antennas
 anterior	anterior
 anthem	anthem
+anther	anther
 anthology	anthology
 Anthony	Anthony
 anthrax	anthrax
@@ -911,6 +915,8 @@ antivirus	antivirus
 Anton	Anton
 Antonio	Antonio
 Antony	Antony
+antonym	antonym
+antonymous	antonymous
 ants	ants
 anxiety	anxiety
 anxious	anxious
@@ -1082,6 +1088,7 @@ are	are
 area	area
 areas	areas
 arena	arena
+areola	areola
 Ares	Ares
 arg	arg
 argent	argent
@@ -1292,6 +1299,7 @@ assurance	assurance
 assure	assure
 assured	assured
 # AST	AST
+astatine	astatine
 asterisk	asterisk
 asthma	asthma
 # astm	astm
@@ -1896,7 +1904,7 @@ bell	bell
 Bell	Bell
 Bella	Bella
 belle	belle
-Bellevue	Bellevue
+# Bellevue	Bellevue
 bellhop	bellhop
 bells	bells
 Bellsouth	Bellsouth
@@ -2401,6 +2409,7 @@ bracelets	bracelets
 braces	braces
 bracket	bracket
 brackets	brackets
+bract	bract
 brad	brad
 Bradford	Bradford
 Bradley	Bradley
@@ -2501,6 +2510,7 @@ brighter	brighter
 brightness	brightness
 Brighton	Brighton
 brilliant	brilliant
+brilliantly	brilliantly
 brim	brim
 bring	bring
 bringing	bringing
@@ -2536,6 +2546,7 @@ broken	broken
 broker	broker
 brokerage	brokerage
 brokers	brokers
+bromide	bromide
 bromine	bromine
 broncos	broncos
 Bronx	Bronx
@@ -2556,7 +2567,9 @@ brow	brow
 Brown	Brown
 brown	brown
 Browne	Browne
+browned	browned
 browning	browning
+brownish	brownish
 browns	browns
 browse	browse
 browser	browser
@@ -2568,9 +2581,11 @@ bruise	bruise
 bruised	bruised
 brunch	brunch
 Brunei	Brunei
+brunet	brunet
 brunette	brunette
 Bruno	Bruno
 Brunswick	Brunswick
+brunt	brunt
 brush	brush
 brushed	brushed
 brushes	brushes
@@ -2813,6 +2828,7 @@ calm	calm
 calorie	calorie
 calories	calories
 Calvin	Calvin
+calyx	calyx
 cam	cam
 Camaro	Camaro
 Cambodia	Cambodia
@@ -2973,6 +2989,7 @@ Carolina	Carolina
 Caroline	Caroline
 Carolyn	Carolyn
 carp	carp
+carpel	carpel
 carpenter	carpenter
 carpet	carpet
 carpets	carpets
@@ -3144,7 +3161,7 @@ Celtic	Celtic
 cement	cement
 cemeteries	cemeteries
 cemetery	cemetery
-Cen	Cen
+# Cen	Cen
 censor	censor
 censorship	censorship
 census	census
@@ -3242,6 +3259,7 @@ chang	chang
 change	change
 changed	changed
 changelog	changelog
+changeover	changeover
 changer	changer
 changes	changes
 changing	changing
@@ -3270,6 +3288,7 @@ charger	charger
 chargers	chargers
 charges	charges
 charging	charging
+charisma	charisma
 charitable	charitable
 charities	charities
 charity	charity
@@ -3381,10 +3400,12 @@ Chico	Chico
 chief	chief
 chiefly	chiefly
 chiefs	chiefs
+chiffon	chiffon
 child	child
 childbirth	childbirth
 childcare	childcare
 childhood	childhood
+childish	childish
 children	children
 childrens	childrens
 childs	childs
@@ -3536,6 +3557,7 @@ civilize	civilize
 # cj	cj
 # ck	ck
 # cl	cl
+clack	clack
 clad	clad
 claim	claim
 claimant	claimant
@@ -3624,7 +3646,7 @@ clerks	clerks
 Cleveland	Cleveland
 clever	clever
 CLI	CLI
-clic	clic
+cliche	cliche
 click	click
 clicked	clicked
 clicker	clicker
@@ -3656,11 +3678,13 @@ clippers	clippers
 clips	clips
 clique	clique
 clit	clit
+clitoris	clitoris
 Clive	Clive
 cloak	cloak
 clock	clock
 clocks	clocks
 clockwise	clockwise
+clog	clog
 clone	clone
 clones	clones
 cloning	cloning
@@ -3691,6 +3715,7 @@ cloying	cloying
 club	club
 clubhouse	clubhouse
 clubs	clubs
+cluck	cluck
 clue	clue
 clues	clues
 clumsy	clumsy
@@ -3789,6 +3814,7 @@ Coldplay	Coldplay
 cole	cole
 Coleman	Coleman
 coli	coli
+colic	colic
 colin	colin
 coll	coll
 collaborate	collaborate
@@ -3837,6 +3863,7 @@ colon	colon
 colonel	colonel
 colonial	colonial
 colonies	colonies
+colonnade	colonnade
 colony	colony
 color	color
 Colorado	Colorado
@@ -3941,6 +3968,7 @@ communism	communism
 communist	communist
 communities	communities
 community	community
+commutation	commutation
 commute	commute
 commuter	commuter
 # como	como
@@ -4478,8 +4506,10 @@ corners	corners
 cornerstone	cornerstone
 corning	corning
 Cornwall	Cornwall
+corolla	corolla
 corona	corona
 coronary	coronary
+coronet	coronet
 corp	corp
 corporate	corporate
 corporation	corporation
@@ -4763,6 +4793,7 @@ cruise	cruise
 cruiser	cruiser
 cruises	cruises
 cruising	cruising
+crumble	crumble
 crunch	crunch
 crusade	crusade
 crush	crush
@@ -4989,7 +5020,7 @@ dart	dart
 Darth	Darth
 Dartmouth	Dartmouth
 darts	darts
-Darussalam	Darussalam
+# Darussalam	Darussalam
 Darwin	Darwin
 # das	das
 dash	dash
@@ -5275,8 +5306,10 @@ democratic	democratic
 democrats	democrats
 demographic	demographic
 demographics	demographics
+demolish	demolish
 demolition	demolition
 demon	demon
+demonic	demonic
 demons	demons
 demonstrate	demonstrate
 demonstrated	demonstrated
@@ -5490,6 +5523,7 @@ deviations	deviations
 device	device
 devices	devices
 devil	devil
+devilish	devilish
 devils	devils
 devise	devise
 devised	devised
@@ -5515,6 +5549,10 @@ DHTML	DHTML
 diabetes	diabetes
 diabetic	diabetic
 Diablo	Diablo
+diabolical	diabolical
+diachronic	diachronic
+diadem	diadem
+diaeresis	diaeresis
 diagnose	diagnose
 diagnosed	diagnosed
 diagnosis	diagnosis
@@ -5540,6 +5578,10 @@ diapers	diapers
 diaries	diaries
 diarrhea	diarrhea
 diary	diary
+diaspora	diaspora
+diathesis	diathesis
+diatomic	diatomic
+diatribe	diatribe
 # diaz	diaz
 diazepam	diazepam
 dice	dice
@@ -5602,6 +5644,8 @@ digital	digital
 digitally	digitally
 digits	digits
 dignity	dignity
+dilapidate	dilapidate
+dilapidated	dilapidated
 dildo	dildo
 dildos	dildos
 dilemma	dilemma
@@ -5744,6 +5788,7 @@ Dish Network	DishNetwork
 dishes	dishes
 dishwasher	dishwasher
 disillusion	disillusion
+disintegrate	disintegrate
 disjunction	disjunction
 disjunctions	disjunctions
 disk	disk
@@ -5896,6 +5941,7 @@ documenting	documenting
 documents	documents
 # dod	dod
 dodge	dodge
+dodger	dodger
 dodgers	dodgers
 doe	doe
 does	does
@@ -6000,6 +6046,7 @@ downloadable	downloadable
 downloaded	downloaded
 downloading	downloading
 downloads	downloads
+downpour	downpour
 downs	downs
 downstairs	downstairs
 downstream	downstream
@@ -6086,6 +6133,7 @@ drivers	drivers
 drives	drives
 driveway	driveway
 driving	driving
+drizzle	drizzle
 # drm	drm
 drool	drool
 drop	drop
@@ -6177,6 +6225,7 @@ durable	durable
 Durango	Durango
 duration	duration
 Durban	Durban
+duress	duress
 Durham	Durham
 durian	durian
 during	during
@@ -6212,6 +6261,7 @@ dynamic	dynamic
 dynamical	dynamical
 dynamically	dynamically
 dynamics	dynamics
+dynamism	dynamism
 dynamite	dynamite
 dynamo	dynamo
 dynasty	dynasty
@@ -6812,6 +6862,7 @@ escrow	escrow
 # esp	esp
 espanol	espanol
 especially	especially
+Esperanto	Esperanto
 espn	espn
 espresso	espresso
 # esq	esq
@@ -6988,6 +7039,7 @@ excluding	excluding
 exclusion	exclusion
 exclusive	exclusive
 exclusively	exclusively
+excrescence	excrescence
 excursion	excursion
 excursions	excursions
 excuse	excuse
@@ -7223,16 +7275,16 @@ failures	failures
 faint	faint
 fainter	fainter
 fair	fair
-Fairbanks	Fairbanks
-Faire	Faire
-Fairfax	Fairfax
-fairfield	fairfield
+# Fairbanks	Fairbanks
+# Faire	Faire
+# Fairfax	Fairfax
+# fairfield	fairfield
 fairies	fairies
 fairly	fairly
 Fairmont	Fairmont
 fairness	fairness
 fairs	fairs
-Fairview	Fairview
+# Fairview	Fairview
 fairy	fairy
 faith	faith
 faithful	faithful
@@ -7284,6 +7336,7 @@ farther	farther
 # fas	fas
 fascinate	fascinate
 fascinating	fascinating
+fascination	fascination
 fashion	fashion
 fashionable	fashionable
 fashioned	fashioned
@@ -7626,10 +7679,13 @@ flared	flared
 flares	flares
 flaring	flaring
 flash	flash
-flashers	flashers
+flashback	flashback
+flashed	flashed
+flasher	flasher
 flashes	flashes
 flashing	flashing
 flashlight	flashlight
+flashy	flashy
 flask	flask
 flat	flat
 flatbed	flatbed
@@ -7980,8 +8036,9 @@ freshen	freshen
 freshly	freshly
 freshman	freshman
 freshmen	freshmen
+freshness	freshness
 freshwater	freshwater
-Fresno	Fresno
+# Fresno	Fresno
 fret	fret
 Frey	Frey
 Fri.	Fri
@@ -8243,8 +8300,9 @@ GeForce	GeForce
 # geile	geile
 geisha	geisha
 gel	gel
+gelatin	gelatin
 gem	gem
-Gemini	Gemini
+gemini	gemini
 gems	gems
 gemstone	gemstone
 gemstones	gemstones
@@ -8671,6 +8729,7 @@ groan	groan
 grocer	grocer
 groceries	groceries
 grocery	grocery
+grok	grok
 groom	groom
 grooming	grooming
 groove	groove
@@ -8771,7 +8830,9 @@ Gwen	Gwen
 gym	gym
 gymnasium	gymnasium
 gymnastics	gymnastics
+gymnosperm	gymnosperm
 gyms	gyms
+gynoecium	gynoecium
 gypsy	gypsy
 Gypsy	Gypsy
 # gz	gz
@@ -8789,6 +8850,7 @@ hacked	hacked
 hacker	hacker
 hackers	hackers
 hacking	hacking
+hackneyed	hackneyed
 hacks	hacks
 had	had
 Hades	Hades
@@ -8887,6 +8949,7 @@ happier	happier
 happily	happily
 happiness	happiness
 happy	happy
+haptic	haptic
 # har	har
 harassment	harassment
 harbor	harbor
@@ -9697,6 +9760,7 @@ IMDb	IMDb
 img	img
 imitate	imitate
 imitation	imitation
+immaturity	immaturity
 immediate	immediate
 immediately	immediately
 immense	immense
@@ -9778,6 +9842,11 @@ improvement	improvement
 improvements	improvements
 improves	improves
 improving	improving
+improvisation	improvisation
+improvise	improvise
+improvised	improvised
+improvises	improvises
+improvising	improvising
 impulse	impulse
 impurity	impurity
 # ims	ims
@@ -10059,6 +10128,7 @@ ins	ins
 insane	insane
 insanity	insanity
 insect	insect
+insecticide	insecticide
 insects	insects
 insensitive	insensitive
 insert	insert
@@ -10074,6 +10144,7 @@ insight	insight
 insightful	insightful
 insights	insights
 insignificant	insignificant
+insipid	insipid
 insist	insist
 insisted	insisted
 insistent	insistent
@@ -10268,6 +10339,7 @@ intrude	intrude
 intrusion	intrusion
 intuition	intuition
 intuitive	intuitive
+intuitively	intuitively
 Inuyasha	Inuyasha
 invade	invade
 invalid	invalid
@@ -10287,6 +10359,7 @@ inverness	inverness
 inverse	inverse
 inversely	inversely
 invert	invert
+invertebrate	invertebrate
 inverted	inverted
 inverter	inverter
 invest	invest
@@ -10328,9 +10401,10 @@ involves	involves
 involving	involving
 inward	inward
 IO	IO
-Iomega	Iomega
+iodine	iodine
+# Iomega	Iomega
 ion	ion
-Ionamin	Ionamin
+# Ionamin	Ionamin
 ionic	ionic
 ions	ions
 iOS	iOS
@@ -11370,6 +11444,7 @@ licenses	licenses
 licensing	licensing
 licensors	licensors
 licensure	licensure
+lichen	lichen
 lick	lick
 licking	licking
 lid	lid
@@ -11392,6 +11467,9 @@ lifted	lifted
 lifting	lifting
 lifts	lifts
 ligand	ligand
+ligate	ligate
+ligation	ligation
+ligature	ligature
 light	light
 lightbox	lightbox
 lighted	lighted
@@ -11711,6 +11789,7 @@ lozenges	lozenges
 Ltd.	Ltd.
 # lu	lu
 Lubbock	Lubbock
+lubricant	lubricant
 lubricants	lubricants
 lubricate	lubricate
 # luc	luc
@@ -12583,6 +12662,7 @@ miracle	miracle
 miracles	miracles
 mirage	mirage
 Miranda	Miranda
+mire	mire
 # miriam	miriam
 mirror	mirror
 mirrors	mirrors
@@ -12825,6 +12905,7 @@ Moses	Moses
 Moslem	Moslem
 mosque	mosque
 mosquito	mosquito
+mosquitocide	mosquitocide
 moss	moss
 most	most
 mostly	mostly
@@ -12987,6 +13068,9 @@ must	must
 mustang	mustang
 mustard	mustard
 musty	musty
+mutagen	mutagen
+mutagenesis	mutagenesis
+mutagenic	mutagenic
 mutant	mutant
 mutants	mutants
 mutation	mutation
@@ -13111,6 +13195,7 @@ nav	nav
 # NAV	NAV
 Navajo	Navajo
 naval	naval
+navel	navel
 navigate	navigate
 navigation	navigation
 navigational	navigational
@@ -13354,6 +13439,7 @@ nod	nod
 nodded	nodded
 node	node
 nodes	nodes
+nodule	nodule
 noel	noel
 noir	noir
 noise	noise
@@ -13375,6 +13461,7 @@ none	none
 nonetheless	nonetheless
 nonfiction	nonfiction
 nonlinear	nonlinear
+nonmetallic	nonmetallic
 nonprofit	nonprofit
 nonsense	nonsense
 nonstandard	nonstandard
@@ -13756,6 +13843,7 @@ onwards	onwards
 onyx	onyx
 # oo	oo
 ooh	ooh
+oomph	oomph
 # ooo	ooo
 oops	oops
 # op	op
@@ -13784,10 +13872,12 @@ operations	operations
 operative	operative
 operator	operator
 operators	operators
+Ophelia	Ophelia
 ophthalmology	ophthalmology
 opinion	opinion
 opinions	opinions
 opium	opium
+opossum	opossum
 # opp	opp
 opponent	opponent
 opponents	opponents
@@ -13885,6 +13975,7 @@ oriented	oriented
 orig	orig
 origin	origin
 original	original
+originality	originality
 originally	originally
 originals	originals
 originate	originate
@@ -13968,6 +14059,7 @@ outlook	outlook
 outlying	outlying
 outpatient	outpatient
 outpost	outpost
+outpouring	outpouring
 output	output
 outputs	outputs
 outrage	outrage
@@ -13981,9 +14073,11 @@ outskirts	outskirts
 outsourcing	outsourcing
 outstanding	outstanding
 outward	outward
+outwit	outwit
 # ov	ov
 oval	oval
 ovarian	ovarian
+ovary	ovary
 oven	oven
 ovens	ovens
 over	over
@@ -14032,6 +14126,8 @@ overweight	overweight
 overwhelm	overwhelm
 overwhelmed	overwhelmed
 overwhelming	overwhelming
+ovule	ovule
+ovules	ovules
 # ow	ow
 owe	owe
 owed	owed
@@ -14171,6 +14267,7 @@ papillae	papillae
 papillate	papillate
 papillose	papillose
 Papua	Papua
+papule	papule
 par	par
 para	para
 parachute	parachute
@@ -14393,6 +14490,7 @@ pedestal	pedestal
 pedestrian	pedestrian
 pediatric	pediatric
 pediatrics	pediatrics
+pedicel	pedicel
 pedigree	pedigree
 pedlar	pedlar
 pedophilia	pedophilia
@@ -14400,6 +14498,7 @@ Pedro	Pedro
 pee	pee
 peeing	peeing
 peek	peek
+peekaboo	peekaboo
 peel	peel
 peep	peep
 peer	peer
@@ -14477,6 +14576,7 @@ performs	performs
 perfume	perfume
 perfumes	perfumes
 perhaps	perhaps
+perianth	perianth
 peril	peril
 perimeter	perimeter
 period	period
@@ -14548,10 +14648,12 @@ pesticide	pesticide
 pesticides	pesticides
 pests	pests
 pet	pet
+petal	petal
+petals	petals
 pete	pete
 peter	peter
 Peter	Peter
-Peterborough	Peterborough
+# Peterborough	Peterborough
 Peters	Peters
 Petersburg	Petersburg
 Petersen	Petersen
@@ -14749,6 +14851,7 @@ Pisces	Pisces
 piss	piss
 pissed	pissed
 pissing	pissing
+pistil	pistil
 pistol	pistol
 pistols	pistols
 piston	piston
@@ -14771,6 +14874,7 @@ pixel	pixel
 pixels	pixels
 # pixmania	pixmania
 pizza	pizza
+pizzazz	pizzazz
 # pj	pj
 # pk	pk
 pkg	pkg
@@ -14876,6 +14980,7 @@ plumber	plumber
 plumbers	plumbers
 plumbing	plumbing
 plumbum	plumbum
+plume	plume
 plump	plump
 plunder	plunder
 plunge	plunge
@@ -14919,6 +15024,7 @@ pointers	pointers
 pointing	pointing
 pointless	pointless
 points	points
+poise	poise
 poised	poised
 poison	poison
 poisoning	poisoning
@@ -15193,6 +15299,7 @@ prediction	prediction
 predictions	predictions
 predictive	predictive
 predicts	predicts
+predisposition	predisposition
 predominant	predominant
 predominantly	predominantly
 preedit	preedit
@@ -15430,6 +15537,7 @@ profitability	profitability
 profitable	profitable
 profits	profits
 profound	profound
+profoundly	profoundly
 prog	prog
 prognosis	prognosis
 prognosticate	prognosticate
@@ -15462,6 +15570,7 @@ prolong	prolong
 prolonged	prolonged
 # prolyte	prolyte
 prom	prom
+prominence	prominence
 prominent	prominent
 promise	promise
 promised	promised
@@ -15711,6 +15820,7 @@ pushing	pushing
 pussies	pussies
 pussy	pussy
 pussycat	pussycat
+pustule	pustule
 put	put
 putative	putative
 Putin	Putin
@@ -16053,6 +16163,8 @@ recall	recall
 recalled	recalled
 recalls	recalls
 recap	recap
+recapitulate	recapitulate
+recapitulation	recapitulation
 recede	recede
 receipt	receipt
 receipts	receipts
@@ -16065,6 +16177,7 @@ receives	receives
 receiving	receiving
 recent	recent
 recently	recently
+receptacle	receptacle
 reception	reception
 receptor	receptor
 receptors	receptors
@@ -16086,6 +16199,7 @@ reclamation	reclamation
 recognise	recognise
 recognised	recognised
 recognition	recognition
+recognizable	recognizable
 recognize	recognize
 recognized	recognized
 recognizes	recognizes
@@ -16272,6 +16386,7 @@ regulations	regulations
 regulator	regulator
 regulators	regulators
 regulatory	regulatory
+regulex	regulex
 rehab	rehab
 rehabilitation	rehabilitation
 rehearsal	rehearsal
@@ -16609,6 +16724,7 @@ retains	retains
 retard	retard
 retardation	retardation
 retention	retention
+retina	retina
 retire	retire
 retired	retired
 retirement	retirement
@@ -16701,6 +16817,7 @@ rhizome	rhizome
 rhode	rhode
 Rhodes	Rhodes
 rhodium	rhodium
+rhyme	rhyme
 rhymes	rhymes
 rhythm	rhythm
 rhythms	rhythms
@@ -16739,6 +16856,7 @@ ridge	ridge
 ridicule	ridicule
 ridiculous	ridiculous
 riding	riding
+riff	riff
 rifle	rifle
 rifles	rifles
 rig	rig
@@ -16804,6 +16922,7 @@ Riviera	Riviera
 RNA	RNA
 # ro	ro
 roach	roach
+roaches	roaches
 road	road
 roadmap	roadmap
 roads	roads
@@ -17190,6 +17309,7 @@ satellite	satellite
 satellites	satellites
 satin	satin
 satire	satire
+satirical	satirical
 satisfaction	satisfaction
 satisfactorily	satisfactorily
 satisfactory	satisfactory
@@ -17438,7 +17558,9 @@ seated	seated
 seating	seating
 seats	seats
 Seattle	Seattle
+sebaceous	sebaceous
 Sebastian	Sebastian
+sebum	sebum
 sec	sec
 second	second
 second-hand	second-hand
@@ -17452,6 +17574,10 @@ secretarial	secretarial
 secretariat	secretariat
 secretaries	secretaries
 secretary	secretary
+secrete	secrete
+secreted	secreted
+secretes	secretes
+secreting	secreting
 secretion	secretion
 secretly	secretly
 secrets	secrets
@@ -17591,6 +17717,8 @@ sentry	sentry
 SEO	SEO
 Seoul	Seoul
 Sep.	Sep.
+sepal	sepal
+sepals	sepals
 separate	separate
 separated	separated
 separately	separately
@@ -18107,6 +18235,7 @@ sleeper	sleeper
 sleeping	sleeping
 sleeps	sleeps
 sleepy	sleepy
+sleet	sleet
 sleeve	sleeve
 sleeves	sleeves
 slender	slender
@@ -18157,6 +18286,8 @@ sludge	sludge
 slug	slug
 sluggish	sluggish
 slum	slum
+slush	slush
+slushy	slushy
 slut	slut
 sluts	sluts
 sly	sly
@@ -18558,6 +18689,7 @@ sponsors	sponsors
 sponsorship	sponsorship
 spontaneous	spontaneous
 spoon	spoon
+spore	spore
 sport	sport
 sporting	sporting
 sports	sports
@@ -18602,6 +18734,7 @@ SQL	SQL
 # sqrt	sqrt
 squad	squad
 squadron	squadron
+squander	squander
 square	square
 squared	squared
 squares	squares
@@ -18665,6 +18798,7 @@ stale	stale
 stalk	stalk
 stall	stall
 stalls	stalls
+stamen	stamen
 Stamford	Stamford
 stamp	stamp
 stamped	stamped
@@ -18780,6 +18914,7 @@ stepping	stepping
 steps	steps
 stereo	stereo
 stereotype	stereotype
+stereotyped	stereotyped
 sterile	sterile
 sterling	sterling
 stern	stern
@@ -18804,6 +18939,7 @@ sticking	sticking
 sticks	sticks
 sticky	sticky
 stiff	stiff
+stigma	stigma
 still	still
 stills	stills
 stimulant	stimulant
@@ -18814,6 +18950,7 @@ stimulation	stimulation
 stimuli	stimuli
 stimulus	stimulus
 sting	sting
+stinker	stinker
 stir	stir
 Stirling	Stirling
 stirring	stirring
@@ -19068,6 +19205,7 @@ successfully	successfully
 succession	succession
 successive	successive
 successor	successor
+succinct	succinct
 succulent	succulent
 succulently	succulently
 such	such
@@ -19102,6 +19240,7 @@ suggested	suggested
 suggesting	suggesting
 suggestion	suggestion
 suggestions	suggestions
+suggestive	suggestive
 suggests	suggests
 suicide	suicide
 suit	suit
@@ -19147,6 +19286,8 @@ superannuation	superannuation
 superb	superb
 superficial	superficial
 superfluous	superfluous
+superhero	superhero
+superheroes	superheroes
 superintendent	superintendent
 superior	superior
 superiority	superiority
@@ -19350,6 +19491,7 @@ syllabus	syllabus
 Sylvia	Sylvia
 symantec	symantec
 Symbian	Symbian
+symbiotic	symbiotic
 symbol	symbol
 symbolic	symbolic
 symbols	symbols
@@ -19364,6 +19506,7 @@ symptom	symptom
 symptoms	symptoms
 # syn	syn
 sync	sync
+synchronic	synchronic
 synchronization	synchronization
 synchronize	synchronize
 synchronized	synchronized
@@ -19674,6 +19817,7 @@ tentative	tentative
 tenth	tenth
 tents	tents
 tenure	tenure
+tepal	tepal
 ter	ter
 tera	tera
 Teresa	Teresa
@@ -19913,7 +20057,7 @@ thyme	thyme
 thyroid	thyroid
 # ti	ti
 # tia	tia
-Tiava	Tiava
+tiara	tiara
 Tibet	Tibet
 Tibetan	Tibetan
 tic	tic
@@ -19921,7 +20065,7 @@ tick	tick
 # tickboxes	tickboxes
 ticker	ticker
 ticket	ticket
-ticketmaster	ticketmaster
+# ticketmaster	ticketmaster
 tickets	tickets
 tickle	tickle
 tickling	tickling
@@ -20341,6 +20485,7 @@ trekking	trekking
 trembl	trembl
 tremble	tremble
 tremendous	tremendous
+tremor	tremor
 trench	trench
 trend	trend
 trended	trended
@@ -20389,6 +20534,7 @@ tripod	tripod
 trips	trips
 Trish	Trish
 Tristan	Tristan
+trite	trite
 triumph	triumph
 triumphant	triumphant
 trivia	trivia
@@ -20431,6 +20577,7 @@ Truman	Truman
 Trump	Trump
 trump	trump
 trumpet	trumpet
+truncate	truncate
 trunk	trunk
 trust	trust
 # truste	truste
@@ -20456,6 +20603,7 @@ tsunami	tsunami
 # tub	tub
 tube	tube
 tuber	tuber
+tubercle	tubercle
 tuberculosis	tuberculosis
 tubes	tubes
 tubing	tubing
@@ -20468,6 +20616,7 @@ Tue.	Tue.
 # tues	tues
 Tuesday	Tuesday
 Tuesdays	Tuesdays
+tuft	tuft
 # tug	tug
 tuition	tuition
 tulip	tulip
@@ -20496,6 +20645,7 @@ turbulence	turbulence
 turbulent	turbulent
 turf	turf
 Turin	Turin
+Turing	Turing
 Turismo	Turismo
 Turkey	Turkey
 turkey	turkey
@@ -20613,6 +20763,8 @@ ultraviolet	ultraviolet
 # um	um
 # uma	uma
 umami	umami
+umbilical	umbilical
+umbilicus	umbilicus
 umbrella	umbrella
 # umd	umd
 # uml	uml
@@ -20754,6 +20906,7 @@ unrated	unrated
 unread	unread
 unreal	unreal
 unreasonable	unreasonable
+unrecognizable	unrecognizable
 unregistered	unregistered
 unrelated	unrelated
 unresolved	unresolved
@@ -21205,6 +21358,7 @@ viscosity	viscosity
 viscous	viscous
 visibility	visibility
 visible	visible
+visibly	visibly
 vision	vision
 visionary	visionary
 visions	visions
@@ -21494,9 +21648,12 @@ wealthy	wealthy
 weapon	weapon
 weapons	weapons
 wear	wear
+wearied	wearied
+wearies	wearies
 wearing	wearing
 wears	wears
 weary	weary
+wearying	wearying
 weasel	weasel
 weather	weather
 weave	weave
@@ -21896,6 +22053,7 @@ worries	worries
 worry	worry
 worrying	worrying
 worse	worse
+worsen	worsen
 worship	worship
 worst	worst
 worth	worth
@@ -22126,6 +22284,7 @@ zoo	zoo
 zoofilia	zoofilia
 zoology	zoology
 zoom	zoom
+zoomorphic	zoomorphic
 zoophilia	zoophilia
 # zshops	zshops
 # zu	zu
