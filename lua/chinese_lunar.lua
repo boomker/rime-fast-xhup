@@ -131,18 +131,18 @@ local function bitAnd(num1, num2)
 end
 
 --判断所在年份是否为闰年
-local function IsLeapYear(solarYear)
-	if solarYear % 4 ~= 0 then
-		return 0
-	end
-	if solarYear % 100 ~= 0 then
-		return 1
-	end
-	if solarYear % 400 == 0 then
-		return 1
-	end
-	return 0
-end
+-- local function IsLeapYear(solarYear)
+-- 	if solarYear % 4 ~= 0 then
+-- 		return 0
+-- 	end
+-- 	if solarYear % 100 ~= 0 then
+-- 		return 1
+-- 	end
+-- 	if solarYear % 400 == 0 then
+-- 		return 1
+-- 	end
+-- 	return 0
+-- end
 
 local function getYearInfo(lunarYear, index)
 	if lunarYear < BEGIN_YEAR or lunarYear > BEGIN_YEAR + NUMBER_YEAR - 1 then

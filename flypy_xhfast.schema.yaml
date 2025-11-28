@@ -75,7 +75,7 @@ engine:
     - table_translator@make_sentence                  # ` 精准造词
     - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
-    - table_translator@easy_en                        # /oe 触发进入英文输入模式
+    - table_translator@easy_en                        # /en 触发进入英文输入模式
     - lua_translator@*pin_word*translator             # ctrl-t 自定义置顶词
     - lua_translator@*date_time                       # date, week, time 触发
     - lua_translator@*en_custom                       # \ 触发自定义单词入库
@@ -83,16 +83,15 @@ engine:
     - lua_translator@*calculator                      # /= 触发简易计算器
     - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
-    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(退格键)
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
-    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(;r退格键)
+    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(退格键)
     # - lua_translator@*fly_fixed*translator          # 降频简拼产生的候选项
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
-    - lua_translator@*chinese_number*translator       # /cn 触发大写金额数字
+    - lua_translator@*chinese_number*translator       # /nn 触发大写金额数字
     - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
-    - lua_translator@*word_autocommit*translator      # / 单字和符号表情自动触发上屏
+    - lua_translator@*word_autocommit*translator      # /; 单字或词组和表情自动上屏
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -107,29 +106,29 @@ engine:
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
     - lua_filter@*word_autocommit*filter
+    # - lua_filter@*rime_ollama_translator
     - lua_filter@*pin_word*filter
     - uniquifier                                      # 只能放到最后!
 
-# 语法模型
+# 八股文
 grammar:
   language: wanxiang-lts-zh-hans
   # language: zh-hans-t-essay-bgw
   # language: zh-hans-t-huayu-v7-bgw
-  collocation_max_length: 8     # 命中的最长词组
-  collocation_min_length: 2     # 命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
-  collocation_penalty: -12      # 默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配
-  non_collocation_penalty: -12  # 默认-12 对非搭配词组施加的惩罚值。较高的负值会降低非搭配词组被选中的概率，避免不合逻辑或不常见的词组组合
-  weak_collocation_penalty: -24 # 默认-24 对弱搭配词组施加的惩罚值。保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合
-  rear_penalty: -18             # 默认-18 对词组中后续词语的位置施加的惩罚值。数值越小出现的概率越小，防止句子结构不自然
+  collocation_max_length: 8       # 命中的最长词组
+  collocation_min_length: 2       # 命中的最短词组, 搭配词频健全的词库时候应当最小值设为3避开2字高频词
+  collocation_penalty: -10        # 默认-12 对常见搭配词组施加惩罚值. 较高的负值会降低这些搭配被选中的概率, 防止频繁地出现某些固定搭配
+  non_collocation_penalty: -17    # 默认-12 对非搭配词组施加的惩罚值. 较高的负值会降低非搭配词组被选中的概率, 避免不常见的词组组合
+  weak_collocation_penalty: -24   # 默认-24 对弱搭配词组施加的惩罚值. 保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合
+  rear_penalty: -18               # 默认-18 对词组中后续词语的位置施加的惩罚值. 数值越小出现的概率 越低, 防止句子结构不自然
 
 # 主翻译器, 小鹤双拼
 translator:
   dictionary: flypy_xhfast
   spelling_hints: 1                 # `0`: 关闭单字编码提示
   initial_quality: 1.3              # 初始词频
-  enable_user_dict: true            # 开启用户词库
+  enable_user_dict: true            # 开启用户词库(是否自动调频)
   enable_completion: true           # 启用输入补全
-  prioritize_quality: true          # 启用优先质量选项
   encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启语言模型优化候选
   enable_word_completion: true      # 4 音节以上的词条才补全
@@ -140,9 +139,9 @@ translator:
   # enable_correction false         # 是否开启自动纠错〔仅script_translator有效〕
   # always_show_comments: true      # 始终显示提示码〔仅script_translator有效〕
   # disable_user_dict_for_patterns:
-  #   - '^[a-z][a-z]?$'               # 单字不调频
+  #   - '^[a-z][a-z]?$'             # 单字不调频
   # preedit_format:
-  #   __include: preedit_convert_rules    # 编辑器输入码显示为全拼
+  #   __include: preedit_convert_rules  # 编辑区输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
 
@@ -152,7 +151,7 @@ make_sentence:                      # 精准造词
   suffix: "'"
   tag: make_sentence
   tips: "〔精准造词〕"
-  enable_sentence: true
+  # enable_sentence: true
   __include: /translator
 
 # 次翻译器, 英文
@@ -169,18 +168,18 @@ melt_eng:                           # 英文输入
 
 # 成语短语
 idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
+  dictionary: ""
   db_class: stabledb
   user_dict: idiom_phrase
-  dictionary: ""
   initial_quality: 0.8
   enable_sentence: false
   enable_completion: false
 
 # 自定义短语
 custom_phrase:                      # 自定义短语, 包含固顶字
+  dictionary: ""
   db_class: stabledb
   user_dict: custom_phrase
-  dictionary: ""
   initial_quality: 99
   enable_sentence: false
   enable_completion: false
@@ -205,12 +204,13 @@ emoji:                              # Emoji转换
   option_name: emoji
   opencc_config: emoji.json
   inherit_comment: false
+  # show_in_comment: false
 
 # 简体转繁体
 tradition:                          # 简繁转换
-  tips: none                    # 转换提示: all | char 仅单字显示 | none 不显示
-  tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
-  opencc_config: s2t.json       # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  tips: none                        # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                       # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  opencc_config: s2t.json           # s2t.json | s2hk.json | s2tw.json | s2twp.json
   option_name: traditionalize
 
 # 部件拆字反查
@@ -237,7 +237,7 @@ radical_reverse_lookup:
 
 # 英文输入方案
 easy_en:
-  # prefix: "/oe"
+  # prefix: "/en"
   prefix: "eN"
   suffix: "'"
   tag: easy_en
@@ -250,14 +250,14 @@ easy_en:
 # 英文反查释意
 ecdict_reverse_lookup:
   tags: [easy_en]
-  overwrite_comment: true     # 是否开启中文释意注解
   dictionary: ecdict
+  overwrite_comment: true           # 是否开启中文释意注解
   comment_format:
     - xform|\\r\\n| ; |
     - xform|\\n| ; |
     - erase|^.$|
 
-# 处理符合特定规则的输入码，如网址、反查
+# 处理符合特定规则的输入码, 如网址、反查
 recognizer:
   import_preset: default
   patterns:
@@ -308,17 +308,17 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_-`*&/|\
-  # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_/`\*&
+  # initials 定义仅作为始码的按键
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
     __include: algebra_common
 
-  # 飞键音码规则, 注释以下三行使用原版小鹤双拼
-  # __patch:
-  #   algebra/+:
-  #     __include: flypy_chord_rule:/patch/speller/algebra
+  # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+  __patch:
+    algebra/+:
+      __include: flypy_chord_rule:/patch/speller/algebra
 
 algebra_common:
   - erase/^ng\[kk$/            # 取消「唔 ng」的独占

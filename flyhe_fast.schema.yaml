@@ -57,22 +57,27 @@ engine:
 
 # 八股文
 grammar:
-  # collocation_min_length: 2
-  # collocation_max_length: 5
   language: wanxiang-lts-zh-hans
+  # language: zh-hans-t-essay-bgw
   # language: zh-hans-t-huayu-v7-bgw
+  collocation_max_length: 8       # 命中的最长词组
+  collocation_min_length: 2       # 命中的最短词组, 搭配词频健全的词库时候应当最小值设为3避开2字高频词
+  collocation_penalty: -10        # 默认-12 对常见搭配词组施加惩罚值. 较高的负值会降低这些搭配被选中的概率, 防止频繁地出现某些固定搭配
+  non_collocation_penalty: -17    # 默认-12 对非搭配词组施加的惩罚值. 较高的负值会降低非搭配词组被选中的概率, 避免不常见的词组组合
+  weak_collocation_penalty: -24   # 默认-24 对弱搭配词组施加的惩罚值. 保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合
+  rear_penalty: -18               # 默认-18 对词组中后续词语的位置施加的惩罚值. 数值越小出现的概率 越低, 防止句子结构不自然
 
 # 主翻译器, 小鹤双拼
 translator:
   dictionary: flyhe_fast
   spelling_hints: 1                 # `0`: 关闭单字编码提示
-  initial_quality: 1
-  enable_sentence: true
+  initial_quality: 1.3
   enable_user_dict: true            # 开启用户词库
   enable_completion: true           # 启用输入补全
   encode_commit_history: true       # 历史上屏自动编码成词
   contextual_suggestions: true      # 开启语言模型优化候选
-  sentence_over_completion: true    # 逐鍵提示時啓智能組句
+  enable_word_completion: true      # 4 音节以上的词条才补全
+  sentence_over_completion: true    # 逐键提示时智能组句〔仅script_translator有效〕
   # max_homophones: 7
   # max_homographs: 7
   # max_phrase_length: 5
@@ -101,7 +106,6 @@ melt_eng:                           # 英文输入
 custom_phrase:                      # 自定义固顶字
   db_class: stabledb
   user_dict: custom_phrase
-  dictionary: ""
   initial_quality: 99
   enable_sentence: false
   enable_completion: false
@@ -195,10 +199,10 @@ speller:
   algebra:
     __include: algebra_common
 
+    # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
     # __patch:
     #   algebra/+:
     #     __include: flypy_chord_rule:/patch/speller/algebra
-    # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
 
 algebra_common:
   - erase/^ng\[kk$/            # 取消「唔 ng」的独占
@@ -208,10 +212,10 @@ algebra_common:
   - erase/^m\[\w+$/            # 取消「呣 m」的独占
 
   ## 字表编码到输入码的转换规则
-  # - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|    # Flypy: AB/CD
-  # - derive|^(\w+)\[(\w)(\w)$|$1/$2|      # Flypy: AB/C
-  - derive/^(\w+)\[(\w)(\w)$/$1~$2$3/     # Flypy: AB~CD
+  # - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|   # Flypy: AB/CD
+  # - derive|^(\w+)\[(\w)(\w)$|$1/$2|     # Flypy: AB/C
   # - derive/^(\w+)\[(\w)(\w)$/$1~$3/     # Flypy: AB~D
+  - derive/^(\w+)\[(\w)(\w)$/$1~$2$3/     # Flypy: AB~CD
   - derive/^(\w+)\[(\w)(\w)$/$1~$2/       # Flypy: AB~C
   - derive/^(\w+)\[(\w)(\w)$/$1/          # Flypy: AB
   - derive/~//                            # 直接辅码(ABC[D])

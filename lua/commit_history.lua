@@ -1,7 +1,6 @@
 local P = {}
 local T = {}
 require("lib/metatable")
--- local reload_env = require("lib/env_api")
 
 local function is_candidate_in_type(cand, excluded_types)
     local cs = cand:get_genuines()

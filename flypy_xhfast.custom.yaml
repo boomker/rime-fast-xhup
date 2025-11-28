@@ -28,15 +28,15 @@ patch:
     - name: emoji
       states: [🈚️, 😄]
       reset: 1
-    - name: prediction
+    - name: prediction  # 仅用于移动端
       states: [联想关, 联想开]
     - name: char_mode
       states: [单字模式关, 单字模式开]
+    - name: charset_hint
+      states: [码区提示关, 码区提示开]
     - name: charset
       states: [通用字符集, 增廣字符集]
       reset: 1
-    - name: charset_hint
-      states: [码区提示关, 码区提示开]
 
   engine/+:
     processors/+:
@@ -53,7 +53,6 @@ patch:
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
     # search: "`"                     # 辅码引导符
-    char_mode_suffix: "|"             # 单字优先触发后缀(四码词组->四码单字)
     char_mode: "Control+s"            # 单字模式
     pin_cand: "Control+t"             # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
@@ -66,10 +65,8 @@ patch:
     expand_abbr_py: "Control+0"       # 展开超级简拼(开启时生效)
     remove_user_word: "Control+r"     # 用户词典里的字词调频为负
     easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮字词
-    # select_first_character: "minus" # `-` 以词定字(第一个字)
-    # select_last_character:  "equal" # `=` 以词定字(最后一个字)
-    select_first_character: "bracketleft"   # `[` 以词定字(首字)
-    select_last_character: "bracketright"   # `]` 以词定字(尾字)
+    select_first_character: "bracketleft"      # `9/bracketleft/minus` 以词定字(首字)
+    select_last_character: "bracketright"      # `0/bracketright/equal` 以词定字(尾字)
     enclosed_cand_chars_a: "Shift+Control+7"   # 上屏「高亮字词」
     enclosed_cand_chars_b: "Shift+Control+8"   # 上屏【高亮字词】
     enclosed_cand_chars_c: "Shift+Control+9"   # 上屏（高亮字词）
@@ -108,8 +105,8 @@ patch:
       switch_options: "^(/so|sO)$"              # 切换配置选项
       shortcuts_app: "^/jk[a-z]*$"              # 快捷指令(启动应用)
       shortcuts_cmd: "^/kj[a-z]*$"              # 快捷指令(执行命令)
-      flypy_key_help: "^/ok[a-z]*$"             # 双拼键位帮助
-      easy_en: "^(/oe|eN)[a-zA-Z*]+'?$"         # 英文方案(带中文)
+      flypy_key_help: "^/ok[a-z]*$"             # 小鹤双拼键位帮助
+      easy_en: "^(/en|eN)[a-zA-Z*]+'?$"         # 英文方案(带中译)
       radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.]+$"       # 中文大写数字(金额)
@@ -122,7 +119,7 @@ patch:
     half_shape/+:
       # '"': {pair: ['‘', '’']}
       # "'": {pair: ['“', '”']}
-      # ";": {commit: "；"}                     # 取消注释, 恢复默认分号
+      # ";": {commit: "；"}                     # 取消注释后, 恢复默认分号
       ";": [";", "；"]                          # 添加注释, 以恢复默认分号
       "_": "_"
       '\': ['､', '、', '\', '＼', '\r', '\n', '\t']
@@ -154,12 +151,28 @@ patch:
       # - derive/^(.*)g/$1f/          # [zcs][h]eng => [zcs][h]en
       # - derive/^(.*)f/$1g/          # [zcs][h]en => [zcs][h]eng
 
+  easy_en/+:                          # 英文单词输入方案
+    # prefix: "/en"
+    prefix: "eN"
+    tips: "英文"
+    wildcard: '*'
+    expand_word_count: 666            # 模糊匹配最多迭代数
+
+  custom_phrase/+:                    # 自定义短语
+    comment_mark: " 📌"               # 注解标记
+
   flypy_key_help/+:                   # 小鹤双拼键位帮助
     prefix: "/ok"
     tips: "双拼查键"
 
-  custom_phrase/+:                    # 自定义短语
-    comment_mark: " 📌"               # 注解标记
+  radical_lookup/+:                   # 单字部件拆字组字
+    # prefix: "~"
+    prefix: "rL"
+    tips: 部件组字
+
+  radical_reverse_lookup/+:           # 部件组字反查拼音
+    overwrite_comment: false
+    dictionary: kMandarin             # 可自行更换反查词典
 
   pin_word:                           # 词条置顶配置
     word_quality: 1000
@@ -170,7 +183,7 @@ patch:
     toggle: "off"
 
   pair_symbol:                        # 符号配对开关
-    toggle: "off"
+    toggle: "on"
 
   emoji_reduce:                       # Emoji 降频
     index: 6                          # 到 index 位置
@@ -203,27 +216,11 @@ patch:
 
   chinese_number:                     # 中文大写数字(金额)
     # prefix: "/nn"
-    prefix: "Nn"
+    prefix: "nN"
     suffix: "'"
     tips: "中文数字"
     tag: chinese_number
-    select_keys: "HJKLIOM"
-
-  easy_en/+:                          # 英文单词输入方案
-    # prefix: "/oe"
-    prefix: "eN"
-    tips: "英文"
-    wildcard: '*'
-    expan_word_count: 666             # 模糊匹配最多迭代数
-
-  radical_lookup/+:                   # 单字部件拆字组字
-    # prefix: "~"
-    prefix: "rL"
-    tips: 部件组字
-
-  radical_reverse_lookup/+:           # 部件组字反查拼音
-    overwrite_comment: false
-    dictionary: kMandarin             # 可自行更换反查词典
+    select_keys: "sdfjkl"
 
   predictor:                          # 候选字词联想预测
     db: predict.db
