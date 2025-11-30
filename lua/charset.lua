@@ -26,7 +26,8 @@ local charset = {
 	["ExtF"] = { first = 0x2CEB0, last = 0x2EBEF }, -- CJK Unified Ideographs Extension F - https://unicode.org/charts/PDF/U2CEB0.pdf
 	["ExtG"] = { first = 0x30000, last = 0x3134A }, -- CJK Unified Ideographs Extension G - https://unicode.org/charts/PDF/U30000.pdf
 	["ExtH"] = { first = 0x31350, last = 0x323AF }, -- CJK Unified Ideographs Extension H - https://unicode.org/charts/PDF/U31350.pdf
-	["ExtI"] = { first = 0x2EBF0, last = 0x2EE5D }, -- CJK Unified Ideographs Extension I - https://unicode.org/charts/PDF/U31350.pdf
+	["ExtI"] = { first = 0x2EBF0, last = 0x2EE5D }, -- CJK Unified Ideographs Extension I - https://unicode.org/charts/PDF/U2EBF0.pdf
+    ["ExtJ"] = { first = 0x323B0, last = 0x3347F }, -- CJK Unified Ideographs Extension J - https://unicode.org/charts/PDF/Uew3b0.pdf
 	["Compat"] = { first = 0xF900, last = 0xFAFF }, -- CJK Compatibility Ideographs - https://unicode.org/charts/PDF/UF900.pdf
 	["CompatSupp"] = { first = 0x2F800, last = 0x2FA1F }, -- CJK Compatibility Ideographs Supplement - https://unicode.org/charts/PDF/U2F800.pdf
 }
@@ -75,9 +76,9 @@ filter 的输出与 translator 相同，也是若干候选项，也要求您使�
 --]]
 local function charset_filter(input, env)
 	-- 使用 `iter()` 遍历所有输入候选项
-	local extended = env.engine.context:get_option("charset")
+	local extend_enabled = env.engine.context:get_option("charset")
 
-	if extended then
+	if extend_enabled then
 		for cand in input:iter() do
 			yield(cand)
 		end
@@ -118,4 +119,4 @@ local function charset_comment_filter(input, env)
 end
 
 -- 本例中定义了两个 filter，故使用一个表将两者导出
-return { filter = charset_filter, comment_hint = charset_comment_filter }
+return { filter = charset_filter, charset_hint = charset_comment_filter }

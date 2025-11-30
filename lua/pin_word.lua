@@ -37,7 +37,7 @@ end
 
 function pin_word.init(env)
     local config = env.engine.schema.config
-    local schema_id = config:get_string("translator/dictionary")
+    local schema_id = config:get_string("schema/schema_id")
     local ok, pin_word_records = pcall(require, "pin_word_record")
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)

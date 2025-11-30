@@ -176,11 +176,11 @@ patch:
     com.DanPristupov.Fork:
       ascii_mode: true
       ascii_punct: true
+    com.surteesstudios.Bartender:
+      ascii_mode: true
     com.microsoft.edgemac:
       ascii_mode: false
     com.google.Chrome:
       inline: true
     com.tencent.xinWeChat:
       wechat_flag: true
-    com.tencent.xWeChat:
-      wechat_flag: false

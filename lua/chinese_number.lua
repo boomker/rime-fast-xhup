@@ -340,7 +340,10 @@ function CN.init(env)
 end
 
 function CN.fini(env)
-    env.notifier_commit_number:disconnect()
+    if env.notifier_commit_number then
+        env.notifier_commit_number:disconnect()
+        env.notifier_commit_number = nil
+    end
 end
 
 ---@diagnostic disable-next-line: unused-local

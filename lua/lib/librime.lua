@@ -316,8 +316,7 @@ function Candidate(type, start, _end, text, comment) end
 ---@param type string
 ---@param text string
 ---@param comment string
--- function UniquifiedCandidate(cand, type, text, comment) end
-function UniquifiedCandidate(type, text, comment) end
+function UniquifiedCandidate(cand, type, text, comment) end
 
 ---@class ShadowCandidate: Candidate
 
