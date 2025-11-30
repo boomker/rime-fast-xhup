@@ -73,7 +73,7 @@ function P.func(key, env)
         local cand = context:get_selected_candidate()
         local commit_history = context.commit_history
         local selected_cand_idx = get_selected_candidate_index(key_name, index, page_size)
-        if not selected_cand_idx then return 2 end
+        if (not selected_cand_idx) or (selected_cand_idx < 0) then return 2 end
 
         if env.enclosed_a or env.enclosed_b or env.enclosed_c or env.enclosed_d then
             local matched = false
@@ -100,7 +100,7 @@ function P.func(key, env)
             end
         end
 
-        if (selected_cand_idx >= 0) and (env.pair_toggle == "on") then
+        if (env.pair_toggle == "on") then
             local candidate_text = segment:get_candidate_at(selected_cand_idx).text -- 获取指定项 从0起
             local paired_text = env.pairTable[candidate_text]
             if paired_text then
