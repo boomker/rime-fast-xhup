@@ -102,13 +102,13 @@ end
 
 function launcher.init(env)
     local config = env.engine.schema.config
-    local shortcuts_app_pat = config:get_string("recognizer/patterns/shortcuts_app") or nil
-    local shortcuts_cmd_pat = config:get_string("recognizer/patterns/shortcuts_cmd") or nil
+    local app_pattern = config:get_string("recognizer/patterns/shortcuts_app") or "/jk"
+    local cmd_pattern = config:get_string("recognizer/patterns/shortcuts_cmd") or "/kj"
     env.system_name = detect_os()
-    env.shortcut_config = _ok_conf and shortcut_config
-    env._app_launch_prefix, env._favor_cmd_prefix, env.all_command_items = table.unpack(env.shortcut_config)
-    env.favor_cmd_prefix = shortcuts_cmd_pat and shortcuts_cmd_pat:match("%^([a-zA-Z/]+).*") or env._favor_cmd_prefix
-    env.app_launch_prefix = shortcuts_app_pat and shortcuts_app_pat:match("%^([a-zA-Z/]+).*") or env._app_launch_prefix
+    env.shortcut_config = _ok_conf and shortcut_config or {nil, nil, nil}
+    env.favor_cmd_prefix = cmd_pattern and cmd_pattern:match("%^([a-zA-Z/]+).*") or "/kj"
+    env.app_launch_prefix = app_pattern and app_pattern:match("%^([a-zA-Z/]+).*") or "/jk"
+    env._alprefix, env._fcprefix, env.all_command_items = table.unpack(env.shortcut_config)
 end
 
 function processor.func(key, env)
@@ -125,6 +125,7 @@ function processor.func(key, env)
     local all_command_items = env.all_command_items
 
     -- check trigger conditions
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return 2 end
     if
         not (
             input_code:match("^/j%l+")
@@ -262,11 +263,10 @@ function translator.func(input, seg, env)
     local app_launch_prefix = env.app_launch_prefix
     local all_command_items = env.all_command_items
     local composition = context.composition
-    if composition:empty() then
-        return
-    end
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return 2 end
 
     local segment = composition:back()
+    if not (favorcmd_prefix or app_launch_prefix) then return end
     local all_app_items = all_command_items[system_name] or nil
     local app_items = all_app_items and all_app_items[input]
     if (not app_items) and (input:sub(1, app_launch_prefix:len()) == app_launch_prefix) then

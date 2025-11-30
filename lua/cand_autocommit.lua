@@ -12,7 +12,7 @@ function word_auto_commit.init(env)
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
-    env.word_auto_commit = config:get_bool("speller/auto_commit") or false
+    env.word_auto_commit = config:get_bool("speller/auto_select_phrase") or false
     env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
@@ -57,10 +57,8 @@ function T.func(input, seg, env)
     local caret_pos = context.caret_pos
     local composition = context.composition
     local preedit_code = context:get_preedit().text
-    if composition:empty() then
-        return
-    end
-    local auto_commit_enable = env.word_auto_commit
+    if composition:empty() then return end
+    -- local auto_commit_enable = env.word_auto_commit
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
     if input:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
@@ -88,9 +86,7 @@ function T.func(input, seg, env)
                 end
             end
         end
-        if table.len(word_shape_code_tbl) < 1 then
-            return
-        end
+        if table.len(word_shape_code_tbl) < 1 then return end
 
         for _, val in ipairs(word_shape_code_tbl) do
             local input_shape_code = string.sub(input, 6)
@@ -112,7 +108,7 @@ function T.func(input, seg, env)
         end
 
         if
-            auto_commit_enable
+            env.word_auto_commit
             and (filtered_cand_count == 1)
             and (utf8.len(preedit_code) <= 8)
             and (utf8.len(filtered_cand_text) == 2)
