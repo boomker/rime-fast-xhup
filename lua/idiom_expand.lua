@@ -29,7 +29,17 @@ function P.func(key, env)
     local caret_pos = context.caret_pos
     local composition = context.composition
     if composition:empty() then return 2 end
-    local preedit_code = context:get_script_text():gsub(" ", "")
+    local preedit_text = context:get_preedit().text
+    local preedit_code = preedit_text:gsub("[‸ ]", "")
+
+    if (#preedit_code ~= caret_pos) and (key:repr() == "Tab") then
+        engine:process_key(KeyEvent(tostring("Right")))
+        engine:process_key(KeyEvent(tostring("Right")))
+        return 1
+    elseif (#preedit_code == caret_pos) and (key:repr() == "Tab") then
+        engine:process_key(KeyEvent(tostring("Control+Right")))
+        return 1
+    end
 
     if
         context:has_menu()
@@ -40,13 +50,6 @@ function P.func(key, env)
         M.idiom_phrase_first = switch_val
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1 -- kAccept
-    end
-
-    if (#preedit_code ~= caret_pos) and (key:repr() == "Tab") then
-        engine:process_key(KeyEvent(tostring("Right")))
-    elseif (#preedit_code == caret_pos) and (key:repr() == "Tab") then
-        engine:process_key(KeyEvent(tostring("Control+Right")))
-        return 1
     end
 
     return 2 -- kNoop
