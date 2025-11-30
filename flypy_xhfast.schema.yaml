@@ -34,16 +34,15 @@ engine:
   processors:
     - lua_processor@*select_char
     - lua_processor@*pair_symbols
-    - lua_processor@*idiom_abbr_expand
     - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
     - lua_processor@*shortcut*processor
-    # - lua_processor@*smart_commit_cand
+    - lua_processor@*idiom_expand*processor
     - lua_processor@*chinese_number*processor
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
     - lua_processor@*commit_history*processor
-    - lua_processor@*word_autocommit*processor
+    - lua_processor@*cand_autocommit*processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -69,29 +68,30 @@ engine:
   translators:
     - punct_translator
     - reverse_lookup_translator
+    - table_translator@easy_en                        # /en,eN 触发进入英文模式
     - table_translator@melt_eng
-    - table_translator@idiom_phrase
+    - table_translator@idiom_phrase                   # 成语短语的首字母简拼
     - table_translator@custom_phrase
     - table_translator@make_sentence                  # ` 精准造词
-    - table_translator@radical_lookup                 # ~ 触发进入部件组字模式
+    - table_translator@radical_lookup                 # ~,rL 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
-    - table_translator@easy_en                        # /en 触发进入英文输入模式
     - lua_translator@*pin_word*translator             # ctrl-t 自定义置顶词
-    - lua_translator@*date_time                       # date, week, time 触发
-    - lua_translator@*en_custom                       # \ 触发自定义单词入库
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
-    - lua_translator@*calculator                      # /= 触发简易计算器
-    - lua_translator@*chinese_lunar                   # /nl 触发显示中国农历
-    - lua_translator@*flypy_help_menu                 # /oh 触发进入帮助菜单
+    - lua_translator@*date_time                       # date,week,time 触发
+    - lua_translator@*en_custom                       # \ 触发自定义单词入库
+    - lua_translator@*calculator                      # /=,cC 触发简易计算器
+    - lua_translator@*chinese_lunar                   # /nl,nL 触发显示中国农历
+    - lua_translator@*flypy_help_menu                 # /oh,oH 触发进入帮助菜单
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
-    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(退格键)
-    # - lua_translator@*fly_fixed*translator          # 降频简拼产生的候选项
+    # - lua_translator@*revert_commit_word            # 撤销已上屏字符(模拟退格键)
+    # - lua_translator@*fly_fixed*translator          # 抑制分词错误的简拼候选项
+    - lua_translator@*idiom_expand*translator         # ctrl-q 成语简拼展开优先
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
-    - lua_translator@*chinese_number*translator       # /nn 触发大写金额数字
-    - lua_translator@*commit_history*translator       # /hs 触发显示上屏历史
-    - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
-    - lua_translator@*word_autocommit*translator      # /; 单字或词组和表情自动上屏
+    - lua_translator@*chinese_number*translator       # /nn,nN 触发大写金额数字
+    - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
+    - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
+    - lua_translator@*cand_autocommit*translator      # /,; 单字或二字词和表情自动上屏
     - script_translator
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -102,10 +102,11 @@ engine:
     - lua_filter@*easy_en*filter
     - lua_filter@*charset*filter
     - lua_filter@*fly_fixed*filter
-    - lua_filter@*charset*comment_hint
+    - lua_filter@*idiom_expand*filter
+    - lua_filter@*charset*charset_hint
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
-    - lua_filter@*word_autocommit*filter
+    - lua_filter@*cand_autocommit*filter
     # - lua_filter@*rime_ollama_translator
     - lua_filter@*pin_word*filter
     - uniquifier                                      # 只能放到最后!

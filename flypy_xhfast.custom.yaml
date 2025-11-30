@@ -62,9 +62,9 @@ patch:
     switch_comment: "Control+n"       # 切换注释(小鹤形码 / 带调拼音 / 无)
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
-    expand_abbr_py: "Control+0"       # 展开超级简拼(开启时生效)
     remove_user_word: "Control+r"     # 用户词典里的字词调频为负
     easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮字词
+    simpy_expand_key: "Control+q"     # `8/Control+q` 简拼成语优先
     select_first_character: "bracketleft"      # `9/bracketleft/minus` 以词定字(首字)
     select_last_character: "bracketright"      # `0/bracketright/equal` 以词定字(尾字)
     enclosed_cand_chars_a: "Shift+Control+7"   # 上屏「高亮字词」
@@ -135,7 +135,7 @@ patch:
         - "@139.com"
 
   speller/+:
-    auto_commit: true                 # 二字词组加辅码唯一时则自动上屏
+    auto_select_phrase: true          # 二字词组加辅码唯一时则自动上屏
     algebra/+:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
 
@@ -156,7 +156,7 @@ patch:
     prefix: "eN"
     tips: "英文"
     wildcard: '*'
-    expand_word_count: 666            # 模糊匹配最多迭代数
+    expand_word_count: 666             # 模糊匹配最多迭代数
 
   custom_phrase/+:                    # 自定义短语
     comment_mark: " 📌"               # 注解标记

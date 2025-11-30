@@ -50,6 +50,7 @@ engine:
     - script_translator
     - reverse_lookup_translator
     - table_translator@melt_eng
+    - table_translator@idiom_phrase
     - table_translator@custom_phrase
   filters:
     - simplifier@tradition                            # 简繁切换
@@ -104,9 +105,19 @@ melt_eng:                           # 英文输入
 
 # 自定义短语
 custom_phrase:                      # 自定义固顶字
+  dictionary: ""
   db_class: stabledb
   user_dict: custom_phrase
   initial_quality: 99
+  enable_sentence: false
+  enable_completion: false
+
+# 成语短语
+idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
+  dictionary: ""
+  db_class: stabledb
+  user_dict: idiom_phrase
+  initial_quality: 0.8
   enable_sentence: false
   enable_completion: false
 
@@ -116,7 +127,6 @@ tradition:                          # 简繁转换
   tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
   opencc_config: s2t.json       # s2t.json | s2hk.json | s2tw.json | s2twp.json
   option_name: traditionalize
-
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
