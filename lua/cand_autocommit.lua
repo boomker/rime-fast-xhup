@@ -31,9 +31,7 @@ function P.func(key, env)
     local caret_pos = context.caret_pos
 
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
     local segment = composition:back()
 
     -- 按下 '/' 后, 数字键或符号键选单字时, 自动上屏
@@ -56,9 +54,9 @@ function T.func(input, seg, env)
     local context = env.engine.context
     local caret_pos = context.caret_pos
     local composition = context.composition
-    local preedit_code = context:get_preedit().text
+    local preedit_text = context:get_preedit().text
+    local preedit_code = preedit_text:gsub("[‸]", "")
     if composition:empty() then return end
-    -- local auto_commit_enable = env.word_auto_commit
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
     if input:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
@@ -110,7 +108,8 @@ function T.func(input, seg, env)
         if
             env.word_auto_commit
             and (filtered_cand_count == 1)
-            and (utf8.len(preedit_code) <= 8)
+            and (preedit_code:len() <= 8)
+            and (preedit_code:len() <= caret_pos)
             and (utf8.len(filtered_cand_text) == 2)
         then
             local cand_text = insert_space_to_candText(env, filtered_cand_text)
