@@ -263,10 +263,9 @@ function translator.func(input, seg, env)
     local app_launch_prefix = env.app_launch_prefix
     local all_command_items = env.all_command_items
     local composition = context.composition
-    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return 2 end
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return end
 
     local segment = composition:back()
-    if not (favorcmd_prefix or app_launch_prefix) then return end
     local all_app_items = all_command_items[system_name] or nil
     local app_items = all_app_items and all_app_items[input]
     if (not app_items) and (input:sub(1, app_launch_prefix:len()) == app_launch_prefix) then

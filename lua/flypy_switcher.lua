@@ -7,17 +7,19 @@ local Env = require("lib/env_api")
 
 function flypy_switcher.init(env)
     Env(env)
-    local config = env.engine.schema.config
+    local engine = env.engine
+    local context = engine.context
+    local config = engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
-    env.mem = Memory(env.engine, schema, "translator")
+    env.mem = Memory(engine, schema, "translator")
+    env.char_mode_state = context:get_option("char_mode")
     env.page_size = config:get_int("menu/page_size") or 7
     env.font_point = config:get_int("style/font_point") or 20
     env.line_spacing = config:get_int("style/line_spacing") or 5
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
-    env.char_mode_state = config:get_string("char_mode/toggle") or "off"
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
@@ -198,7 +200,7 @@ function processor.func(key, env)
             end
         elseif cand_text == "开关词组自动上屏" then
             local switch_to_val = not env.word_auto_commit
-            config:set_bool("speller/auto_commit", switch_to_val)
+            config:set_bool("speller/auto_select_phrase", switch_to_val)
         elseif cand_text == "开关字集码区提示" then
             local charset_hint_state = context:get_option("charset_hint")
             local switch_to_val = not charset_hint_state
@@ -228,10 +230,8 @@ function processor.func(key, env)
         return 1 -- kAccept
     end
 
-    if (key:repr() == env.char_mode_switch_key) and (schema.schema_id ~= "easy_en") then
-        local char_mode_option = flypy_switcher.char_mode or (env.char_mode_state == "off") or 0 and 1
-        flypy_switcher.char_mode = (char_mode_option == 1) and 0 or 1
-        local switch_to_val = (flypy_switcher.char_mode == 1) and true or false
+    if (key:repr() == env.char_mode_switch_key) then
+        local switch_to_val = (env.char_mode_state == true) and false or true
         context:set_option("char_mode", switch_to_val)
         context:refresh_non_confirmed_composition()
         return 1 -- kAccept
@@ -244,8 +244,8 @@ function translator.func(input, seg, env)
     local composition = context.composition
     if composition:empty() then return end
     local segment = composition:back()
-    local char_mode_option = (env.char_mode_state == "off") or 0 and 1
-    local char_mode_state = flypy_switcher.char_mode or char_mode_option
+    local char_mode_state = context:get_option("char_mode")
+    -- local char_mode_state = (env.char_mode_state == true) and 0 or 1
 
     local trigger_pattern = env.switch_options_trigger
     local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or {"/so", "sO"}
@@ -258,7 +258,7 @@ function translator.func(input, seg, env)
     end
 
     -- 四码时, 按下`Control+s`, 单字优先
-    if (input:match("^%l%l%l%l$") and (char_mode_state == 1)) then
+    if input:match("^%l%l%l%l$") and char_mode_state then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search

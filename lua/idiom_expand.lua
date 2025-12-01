@@ -44,6 +44,7 @@ function P.func(key, env)
     if
         context:has_menu()
         and (#preedit_code >= 4)
+        and (preedit_code:match("^[%a' ]+$"))
         and (key:repr() == env.expand_idiom_key)
     then
         local switch_val = (M.idiom_phrase_first ~= true) and true or false
