@@ -198,7 +198,7 @@ function processor.func(key, env)
             end
         elseif cand_text == "开关词组自动上屏" then
             local switch_to_val = not env.word_auto_commit
-            config:set_bool("speller/auto_commit", switch_to_val)
+            config:set_bool("speller/auto_select_phrase", switch_to_val)
         elseif cand_text == "开关字集码区提示" then
             local charset_hint_state = context:get_option("charset_hint")
             local switch_to_val = not charset_hint_state

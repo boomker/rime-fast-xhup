@@ -59,6 +59,7 @@ sort: by_weight
 阿数	aa uu	1
 阿兽	aa uz	1
 啊这	aa ve	1
+阿哲	aa ve	1
 阿纸	aa vi	1
 阿湘	aa xl	1
 阿栩	aa xu	1
@@ -70,6 +71,7 @@ sort: by_weight
 阿厌	aa yj	1
 阿鸢	aa yr	1
 阿俞	aa yu	1
+阿云	aa yy	1
 阿游	aa yz	1
 啊泽	aa ze	1
 阿赞	aa zj	1
@@ -215,7 +217,6 @@ sort: by_weight
 敖雪	ao xt	1
 敖胥	ao xu	1
 凹音	ao yb	1
-敖隐	ao yb	1
 敖隐	ao yb	1
 傲因	ao yb	1
 傲夜	ao ye	1
@@ -1076,7 +1077,6 @@ sort: by_weight
 岑缨	cf yk	1
 蹭豆	cg dz	1
 蹭暖	cg nr	1
-曾琦	zg qi	1
 蹭图	cg tu	1
 层岩	cg yj	1
 层渊	cg yr	1
@@ -1269,8 +1269,6 @@ sort: by_weight
 大矛	da mc	1
 大蜜	da mi	1
 达墨	da mo	1
-打咩	da mp	1
-打咩	da mp	1
 打咩	da mp	1
 大嬢	da nl	1
 大牛	da nq	1
@@ -1707,7 +1705,6 @@ sort: by_weight
 癫癫	dm dm	1
 电队	dm dv	1
 颠锅	dm go	1
-癫公	dm gs	1
 癫公	dm gs	1
 癫火	dm ho	1
 电幻	dm hr	1
@@ -2794,7 +2791,6 @@ sort: by_weight
 肥尾	fw ww	1
 非限	fw xm	1
 飞霄	fw xn	1
-飞霄	fw xn	1
 妃咲	fw xn	1
 飞雪	fw xt	1
 非侠	fw xx	1
@@ -2811,7 +2807,6 @@ sort: by_weight
 肺源	fw yr	1
 肺鱼	fw yu	1
 非油	fw yz	1
-肥宗	fw zs	1
 肥宗	fw zs	1
 尕爸	ga ba	1
 尬帝	ga di	1
@@ -3079,8 +3074,6 @@ sort: by_weight
 光杖	gl vh	1
 逛展	gl vj	1
 光主	gl vu	1
-光追	gl vv	1
-光追	gl vv	1
 光追	gl vv	1
 光系	gl xi	1
 光学	gl xt	1
@@ -3536,7 +3529,6 @@ sort: by_weight
 棍花	gy hx	1
 棍铲	gy ij	1
 滚圈	gy qr	1
-棍式	gy ui	1
 棍式	gy ui	1
 狗步	gz bu	1
 狗盗	gz dc	1
@@ -5456,7 +5448,6 @@ sort: by_weight
 鸡刀	ji dc	1
 缉盗	ji dc	1
 集到	ji dc	1
-缉盗	ji dc	1
 基带	ji dd	1
 吉灯	ji dg	1
 吉迪	ji di	1
@@ -6003,7 +5994,6 @@ sort: by_weight
 劫宝	jp bc	1
 洁版	jp bj	1
 解斑	jp bj	1
-解斑	jp bj	1
 接兵	jp bk	1
 劫杯	jp bw	1
 解擦	jp ca	1
@@ -6088,7 +6078,6 @@ sort: by_weight
 借运	jp yy	1
 戒游	jp yz	1
 戒躁	jp zc	1
-接崽	jp zd	1
 接崽	jp zd	1
 解字	jp zi	1
 久巴	jq ba	1
@@ -6435,7 +6424,6 @@ sort: by_weight
 卡码	ka ma	1
 卡梦	ka mg	1
 卡膜	ka mo	1
-卡膜	ka mo	1
 卡努	ka nu	1
 卡彭	ka pg	1
 卡皮	ka pi	1
@@ -6599,7 +6587,6 @@ sort: by_weight
 刻晴	ke qk	1
 柯冉	ke rj	1
 柯燃	ke rj	1
-柯冉	ke rj	1
 科软	ke rr	1
 克戎	ke rs	1
 刻入	ke ru	1
@@ -6971,7 +6958,6 @@ sort: by_weight
 劳大	lc da	1
 牢大	lc da	1
 牢弟	lc di	1
-牢弟	lc di	1
 老地	lc di	1
 老鼎	lc dk	1
 老堵	lc du	1
@@ -7005,7 +6991,6 @@ sort: by_weight
 老谋	lc mz	1
 老尼	lc ni	1
 牢鸟	lc nn	1
-牢帕	lc pa	1
 牢帕	lc pa	1
 老帕	lc pa	1
 牢普	lc pu	1
@@ -7078,7 +7063,6 @@ sort: by_weight
 乐广	le gl	1
 乐馆	le gr	1
 乐会	le hv	1
-乐华	yt hx	1
 乐潮	le ic	1
 乐际	le ji	1
 乐考	le kc	1
@@ -8182,7 +8166,6 @@ sort: by_weight
 麻妃	ma fw	1
 妈阁	ma ge	1
 马各	ma ge	1
-吗喽	ma lz	1
 马孩	ma hd	1
 马核	ma he	1
 马赫	ma he	1
@@ -8203,7 +8186,6 @@ sort: by_weight
 马隆	ma ls	1
 马龙	ma ls	1
 玛露	ma lu	1
-吗喽	ma lz	1
 吗喽	ma lz	1
 妈幂	ma mi	1
 妈沫	ma mo	1
@@ -9124,7 +9106,6 @@ sort: by_weight
 倪匡	ni kl	1
 妮蔻	ni kz	1
 尼菈	ni la	1
-尼菈	ni la	1
 泥兰	ni lj	1
 逆练	ni lm	1
 泥流	ni lq	1
@@ -9154,9 +9135,7 @@ sort: by_weight
 逆缘	ni yr	1
 难报	nj bc	1
 难绷	nj bg	1
-难绷	nj bg	1
 男邦	nj bh	1
-南绷	nj bh	1
 南绷	nj bh	1
 难蚌	nj bh	1
 男德	nj de	1
@@ -11080,7 +11059,6 @@ sort: by_weight
 酸困	sr ky	1
 酸妮	sr ni	1
 蒜鸟	sr nn	1
-蒜苔	sr td	1
 蒜苔	sr td	1
 酸糖	sr th	1
 算输	sr uu	1
@@ -16397,6 +16375,7 @@ sort: by_weight
 越涵	yt hj	1
 约会	yt hv	1
 月晖	yt hv	1
+乐华	yt hx	1
 约钞	yt ic	1
 粤超	yt ic	1
 月尘	yt if	1
@@ -16628,7 +16607,6 @@ sort: by_weight
 云佳	yy jx	1
 云阔	yy ko	1
 云琅	yy lh	1
-云璃	yy li	1
 云璃	yy li	1
 云黎	yy li	1
 云链	yy lm	1
@@ -16883,6 +16861,7 @@ sort: by_weight
 增臭	zg iz	1
 增能	zg ng	1
 增评	zg pk	1
+曾琦	zg qi	1
 增选	zg xr	1
 增雪	zg xt	1
 增雨	zg yu	1
@@ -17400,7 +17379,6 @@ sort: by_weight
 安全箱	an qr xl	1
 安全椅	an qr yi	1
 安仁坊	an rf fh	1
-安赛龙	an sd ls	1
 安赛龙	an sd ls	1
 安三胖	an sj ph	1
 暗算蛋	an sr dj	1
@@ -19664,20 +19642,17 @@ sort: by_weight
 侧写师	ce xp ui	1
 岑夫子	cf fu zi	1
 岑家村	cf jx cy	1
-曾比特	zg bi te	1
 蹭别人	cg bp rf	1
 蹭饭图	cg fj tu	1
 蹭局势	cg ju ui	1
 蹭空调	cg ks tn	1
 蹭流量	cg lq ll	1
 蹭热点	cg re dm	1
-曾少年	zg uc nm	1
 藏宝地	ch bc di	1
 藏宝箱	ch bc xl	1
 藏大人	ch da rf	1
 藏灯牌	ch dg pd	1
 仓丰路	ch fg lu	1
-藏海传	zh hd vr	1
 沧海间	ch hd jm	1
 藏海转	ch hd vr	1
 藏经洞	ch jk ds	1
@@ -20746,7 +20721,6 @@ sort: by_weight
 登录码	dg lu ma	1
 等录取	dg lu qu	1
 登陆日	dg lu ri	1
-登陆日	dg lu ri	1
 灯明寺	dg mk si	1
 等你好	dg ni hc	1
 等排名	dg pd mk	1
@@ -21014,7 +20988,6 @@ sort: by_weight
 第五盘	di wu pj	1
 第五针	di wu vf	1
 地味变	di ww bm	1
-迪希雅	di xi ya	1
 迪希雅	di xi ya	1
 抵现金	di xm jb	1
 地下堡	di xx bc	1
@@ -21305,7 +21278,6 @@ sort: by_weight
 钓鱼佬	dn yu lc	1
 吊在俊	dn zd jy	1
 多包点	do bc dm	1
-夺宝券	do bc qr	1
 多保暖	do bc nr	1
 夺宝券	do bc qr	1
 多崩溃	do bg kv	1
@@ -22629,7 +22601,6 @@ sort: by_weight
 范玮琪	fj ww qi	1
 范喜良	fj xi ll	1
 梵希雅	fj xi ya	1
-梵希雅	fj xi ya	1
 泛性恋	fj xk lm	1
 返乡的	fj xl de	1
 樊小慧	fj xn hv	1
@@ -22821,7 +22792,6 @@ sort: by_weight
 傅廷修	fu tk xq	1
 付铁寒	fu tp hj	1
 浮屠界	fu tu jp	1
-浮屠界	fu tu jp	1
 福图纳	fu tu na	1
 浮图塔	fu tu ta	1
 浮屠塔	fu tu ta	1
@@ -22862,7 +22832,6 @@ sort: by_weight
 付忠伟	fu vs ww	1
 辅助机	fu vu ji	1
 福猪猪	fu vu vu	1
-负温度	fu wf du	1
 负温度	fu wf du	1
 付闻樱	fu wf yk	1
 赋完分	fu wj ff	1
@@ -25462,7 +25431,6 @@ sort: by_weight
 红袜子	hs wa zi	1
 弘文馆	hs wf gr	1
 红温了	hs wf le	1
-红温了	hs wf le	1
 洪屋涡	hs wu wo	1
 红舞鞋	hs wu xp	1
 红卫桥	hs ww qn	1
@@ -25840,8 +25808,6 @@ sort: by_weight
 黑龙刺	hw ls ci	1
 黑龙洞	hw ls ds	1
 黑龙炮	hw ls pc	1
-黑吗喽	hw ma lz	1
-黑吗喽	hw ma lz	1
 黑吗喽	hw ma lz	1
 黑棉花	hw mm hx	1
 黑魔盒	hw mo he	1
@@ -27701,7 +27667,6 @@ sort: by_weight
 技能树	ji ng uu	1
 技能位	ji ng ww	1
 基尼奇	ji ni qi	1
-基尼奇	ji ni qi	1
 济南车	ji nj ie	1
 济南场	ji nj ih	1
 急难愁	ji nj iz	1
@@ -28984,7 +28949,6 @@ sort: by_weight
 卡片上	ka pm uh	1
 卡普空	ka pu ks	1
 卡其灰	ka qi hv	1
-卡齐娜	ka qi na	1
 卡齐娜	ka qi na	1
 卡墙里	ka ql li	1
 卡却青	ka qt qk	1
@@ -30846,7 +30810,6 @@ sort: by_weight
 领笑员	lk xn yr	1
 灵虚界	lk xu jp	1
 凌虚子	lk xu zi	1
-凌虚子	lk xu zi	1
 灵隐道	lk yb dc	1
 凌音阁	lk yb ge	1
 另一杯	lk yi bw	1
@@ -32064,7 +32027,6 @@ sort: by_weight
 马奎斯	ma kv si	1
 马拉卡	ma la ka	1
 马拉美	ma la mw	1
-玛拉妮	ma la ni	1
 玛拉妮	ma la ni	1
 马拉圈	ma la qr	1
 马拉松	ma la ss	1
@@ -33461,7 +33423,6 @@ sort: by_weight
 哪玩了	na wj le	1
 纳维卡	na ww ka	1
 娜薇诗	na ww ui	1
-娜维娅	na ww ya	1
 娜维娅	na ww ya	1
 纳西妲	na xi da	1
 纳西索	na xi so	1
@@ -37063,7 +37024,6 @@ sort: by_weight
 笋小样	sy xn yh	1
 孙夏铃	sy xx lk	1
 孙颖莎	sy yb ua	1
-孙颖莎	sy yb ua	1
 孙耀路	sy yc lu	1
 孙业礼	sy ye li	1
 孙亦航	sy yi hh	1
@@ -37279,7 +37239,6 @@ sort: by_weight
 太空杀	td ks ua	1
 太空霜	td ks ul	1
 太空中	td ks vs	1
-泰酷辣	td ku la	1
 泰酷辣	td ku la	1
 泰拉饭	td la fj	1
 泰拉车	td la ie	1
@@ -39356,7 +39315,6 @@ sort: by_weight
 世一教	ui yi jn	1
 石倚洁	ui yi jp	1
 世一决	ui yi jt	1
-世一决	ui yi jt	1
 十一假	ui yi jx	1
 十一颗	ui yi ke	1
 十一了	ui yi le	1
@@ -41392,6 +41350,7 @@ sort: by_weight
 朱长江	vu ih jl	1
 主场哨	vu ih uc	1
 助产学	vu ij xt	1
+朱重八	vu is ba	1
 主基调	vu ji dn	1
 朱继东	vu ji ds	1
 朱婧汐	vu jk xi	1
@@ -41466,7 +41425,6 @@ sort: by_weight
 祝寿词	vu uz ci	1
 朱芝松	vu vi ss	1
 主战者	vu vj ve	1
-朱重八	vu is ba	1
 朱忠明	vu vs mk	1
 逐中原	vu vs yr	1
 猪猪辉	vu vu hv	1
@@ -43904,7 +43862,6 @@ sort: by_weight
 项塔兰	xl ta lj	1
 翔太郎	xl td lh	1
 香缇莫	xl ti mo	1
-香缇莫	xl ti mo	1
 想谈系	xl tj xi	1
 想退掉	xl tv dn	1
 想退款	xl tv kr	1
@@ -44079,7 +44036,6 @@ sort: by_weight
 仙音杯	xm yb bw	1
 仙音阁	xm yb ge	1
 掀衣服	xm yi fu	1
-显眼包	xm yj bc	1
 显眼包	xm yj bc	1
 咸元进	xm yr jb	1
 衔远山	xm yr uj	1
@@ -44334,7 +44290,6 @@ sort: by_weight
 小老乡	xn lc xl	1
 小狸花	xn li hx	1
 小立春	xn li iy	1
-小骊龙	xn li ls	1
 小骊龙	xn li ls	1
 小狸猫	xn li mc	1
 小栗帽	xn li mc	1
@@ -44926,7 +44881,6 @@ sort: by_weight
 雪粒子	xt li zi	1
 雪兰莪	xt lj ee	1
 雪盲症	xt mh vg	1
-雪迷宫	xt mi gs	1
 雪迷宫	xt mi gs	1
 雪米子	xt mi zi	1
 学模范	xt mo fj	1
@@ -46219,7 +46173,6 @@ sort: by_weight
 一诺的	yi no de	1
 伊涅芙	yi np fu	1
 乙女腐	yi nv fu	1
-伊内丝	yi nw si	1
 伊内丝	yi nw si	1
 一瓯春	yi ou iy	1
 已排除	yi pd iu	1
@@ -47746,6 +47699,7 @@ sort: by_weight
 怎么压	zf me ya	1
 曾艾佳	zg ai jx	1
 曾宝仪	zg bc yi	1
+曾比特	zg bi te	1
 曾蓓勋	zg bw xy	1
 增村镇	zg cy vf	1
 增额寿	zg ee uz	1
@@ -47758,6 +47712,7 @@ sort: by_weight
 赠品多	zg pb do	1
 曾若冰	zg ro bk	1
 曾三仙	zg sj xm	1
+曾少年	zg uc nm	1
 曾卓君	zg vo jy	1
 曾婉之	zg wj vi	1
 增香酒	zg xl jq	1
@@ -47766,6 +47721,7 @@ sort: by_weight
 曾轶可	zg yi ke	1
 增益量	zg yi ll	1
 臧梵清	zh fj qk	1
+藏海传	zh hd vr	1
 藏马熊	zh ma xs	1
 藏青盐	zh qk yj	1
 脏手指	zh uz vi	1
@@ -48219,7 +48175,6 @@ sort: by_weight
 阿蕾奇诺	aa lw qi no	1
 阿马多拉	aa ma do la	1
 阿米诺斯	aa mi no si	1
-阿米诺斯	aa mi no si	1
 阿莫罗芬	aa mo lo ff	1
 阿美莉卡	aa mw li ka	1
 阿努比斯	aa nu bi si	1
@@ -48235,6 +48190,7 @@ sort: by_weight
 阿斯帕斯	aa si pa si	1
 阿斯塔特	aa si ta te	1
 阿特金森	aa te jb sf	1
+阿什拉夫	aa uf la fu	1
 阿诗勒隼	aa ui le sy	1
 阿扎伦卡	aa va ly ka	1
 阿吱阿吱	aa vi aa vi	1
@@ -51164,7 +51120,6 @@ sort: by_weight
 登录排队	dg lu pd dv	1
 登录三天	dg lu sj tm	1
 登录天数	dg lu tm uu	1
-登陆少年	dg lu uc nm	1
 登陆少年	dg lu uc nm	1
 登陆时刻	dg lu ui ke	1
 登录时刻	dg lu ui ke	1
@@ -56750,7 +56705,6 @@ sort: by_weight
 回应我吧	hv yk wo ba	1
 汇源名居	hv yr mk ju	1
 晦月魔君	hv yt mo jy	1
-晦月魔君	hv yt mo jy	1
 会有惊喜	hv yz jk xi	1
 会有奇迹	hv yz qi ji	1
 会有震感	hv yz vf gj	1
@@ -58782,7 +58736,6 @@ sort: by_weight
 极品神豪	ji pb uf hc	1
 机票跳水	ji pn tn uv	1
 击破特工	ji po te gs	1
-击破特工	ji po te gs	1
 基普鲁托	ji pu lu to	1
 基普乔格	ji pu qn ge	1
 基普图姆	ji pu tu mu	1
@@ -60364,7 +60317,6 @@ sort: by_weight
 卡卡瓦夏	ka ka wa xx	1
 卡拉巴赫	ka la ba he	1
 卡拉比丘	ka la bi qq	1
-卡拉比丘	ka la bi qq	1
 卡拉采夫	ka la cd fu	1
 喀喇昆仑	ka la ky ly	1
 卡乐星球	ka le xk qq	1
@@ -61397,7 +61349,6 @@ sort: by_weight
 乐观进取	le gr jb qu	1
 乐谷银滩	le gu yb tj	1
 乐购深圳	le gz uf vf	1
-乐华娱乐	yt hx yu le	1
 勒克莱尔	le ke ld er	1
 乐看视频	le kj ui pb	1
 乐乐女王	le le nv wh	1
@@ -68091,7 +68042,6 @@ sort: by_weight
 太妃榛果	td fw vf go	1
 泰国震感	td go vf gj	1
 太过完美	td go wj mw	1
-太过完美	td go wj mw	1
 太过瘾了	td go yb le	1
 泰国孕妇	td go yy fu	1
 太关键了	td gr jm le	1
@@ -72064,7 +72014,6 @@ sort: by_weight
 战争状态	vj vg vl td	1
 战之必胜	vj vi bi ug	1
 战至巅峰	vj vi dm fg	1
-战至巅峰	vj vi dm fg	1
 战至终章	vj vi vs vh	1
 展信不佳	vj xb bu jx	1
 斩星魔剑	vj xk mo jm	1
@@ -73702,7 +73651,6 @@ sort: by_weight
 我来了澳	wo ld le ao	1
 我来助你	wo ld vu ni	1
 我嘞个丢	wo le ge dq	1
-我嘞个豆	wo le ge dz	1
 我嘞个豆	wo le ge dz	1
 我嘞个雷	wo le ge lw	1
 我嘞个钱	wo le ge qm	1
@@ -75509,7 +75457,6 @@ sort: by_weight
 兴隆家园	xk ls jx yr	1
 行雷闪电	xk lw uj dm	1
 星芒启明	xk mh qi mk	1
-星鸣特工	xk mk te gs	1
 星鸣特工	xk mk te gs	1
 性能霸榜	xk ng ba bh	1
 性能猛兽	xk ng mg uz	1
@@ -78990,6 +78937,7 @@ sort: by_weight
 悦华酒店	yt hx jq dm	1
 乐华年会	yt hx nm hv	1
 乐华艺人	yt hx yi rf	1
+乐华娱乐	yt hx yu le	1
 月城雪兔	yt ig xt tu	1
 越迟越好	yt ii yt hc	1
 月初福利	yt iu fu li	1
@@ -79580,7 +79528,6 @@ sort: by_weight
 有所帮助	yz so bh vu	1
 有所表示	yz so bn ui	1
 有所广益	yz so gl yi	1
-幽邃地窟	yz sv di ku	1
 幽邃地窟	yz sv di ku	1
 有损国格	yz sy go ge	1
 犹太复国	yz td fu go	1
@@ -81350,37 +81297,9 @@ sort: by_weight
 财运滚滚来	cd yy gy gy ld	1
 策划面对面	ce hx mm dv mm	1
 侧睡的危害	ce uv de ww hd	1
-曾辉发红包	zg hv fa hs bc	1
-曾敬骅演技	zg jk hx yj ji	1
-曾舜晞小号	zg uy xi xn hc	1
 藏海表情包	ch hd bn qk bc	1
 藏海辞官了	ch hd ci gr le	1
 藏海的名义	ch hd de mk yi	1
-藏海传打戏	zh hd vr da xi	1
-藏海传档期	zh hd vr dh qi	1
-藏海传第二	zh hd vr di er	1
-藏海传定档	zh hd vr dk dh	1
-藏海传广告	zh hd vr gl gc	1
-藏海传超点	zh hd vr ic dm	1
-藏海传床戏	zh hd vr il xi	1
-藏海传节奏	zh hd vr jp zz	1
-藏海传加广	zh hd vr jx gl	1
-藏海传开播	zh hd vr kd bo	1
-藏海传猫塑	zh hd vr mc su	1
-藏海传逆跌	zh hd vr ni dp	1
-藏海传片尾	zh hd vr pm ww	1
-藏海传破万	zh hd vr po wj	1
-藏海传配角	zh hd vr pw jt	1
-藏海传杀青	zh hd vr ua qk	1
-藏海传张本	zh hd vr vh bf	1
-藏海传涨分	zh hd vr vh ff	1
-藏海传质感	zh hd vr vi gj	1
-藏海传战绩	zh hd vr vj ji	1
-藏海传吻戏	zh hd vr wf xi	1
-藏海传下证	zh hd vr xx vg	1
-藏海传预告	zh hd vr yu gc	1
-藏海传云合	zh hd vr yy he	1
-藏海传再见	zh hd vr zd jm	1
 藏海升官了	ch hd ug gr le	1
 苍茫的天涯	ch mh de tm ya	1
 苍史诗皮肤	ch ui ui pi fu	1
@@ -81829,28 +81748,6 @@ sort: by_weight
 单身即地狱	dj uf ji di yu	1
 但我的崽有	dj wo de zd yz	1
 单休违法吗	dj xq ww fa ma	1
-单依纯帮唱	uj yi iy bh ih	1
-单依纯编曲	uj yi iy bm qu	1
-单依纯第二	uj yi iy di er	1
-单依纯第六	uj yi iy di lq	1
-单依纯第三	uj yi iy di sj	1
-单依纯第五	uj yi iy di wu	1
-单依纯第一	uj yi iy di yi	1
-单依纯疯了	uj yi iy fg le	1
-单依纯歌手	uj yi iy ge uz	1
-单依纯唱功	uj yi iy ih gs	1
-单依纯济南	uj yi iy ji nj	1
-单依纯哭了	uj yi iy ku le	1
-单依纯李白	uj yi iy li bd	1
-单依纯秒了	uj yi iy mn le	1
-单依纯哨音	uj yi iy uc yb	1
-单依纯失误	uj yi iy ui wu	1
-单依纯守榜	uj yi iy uz bh	1
-单依纯妆造	uj yi iy vl zc	1
-单依纯主持	uj yi iy vu ii	1
-单依纯舞娘	uj yi iy wu nl	1
-单依纯新歌	uj yi iy xb ge	1
-单依纯选歌	uj yi iy xr ge	1
 淡颜骨相美	dj yj gu xl mw	1
 单元测试卷	dj yr ce ui jr	1
 但愿梦长久	dj yr mg ih jq	1
@@ -82222,7 +82119,6 @@ sort: by_weight
 厄敌的钻石	ee di de zr ui	1
 鹅鹅鹅鹅鹅	ee ee ee ee ee	1
 饿了么订单	ee le me dk dj	1
-饿了么订单	ee le me dk dj	1
 饿了么免单	ee le me mm dj	1
 俄联邦政府	ee lm bh vg fu	1
 俄罗斯兵变	ee lo si bk bm	1
@@ -82275,8 +82171,8 @@ sort: by_weight
 二十四孝图	er ui si xn tu	1
 而是一树花	er ui yi uu hx	1
 耳水不平衡	er uv bu pk hg	1
-二刷藏海传	er ux zh hd vr	1
 二刷好东西	er ux hc ds xi	1
+二刷藏海传	er ux zh hd vr	1
 二战的故事	er vj de gu ui	1
 而我错过你	er wo co go ni	1
 二仙桥大爷	er xm qn da ye	1
@@ -82523,7 +82419,6 @@ sort: by_weight
 范玮琪上身	fj ww qi uh uf	1
 樊维秋死刑	fj ww qq si xk	1
 翻新卫生巾	fj xb ww ug jb	1
-梵希雅第四	fj xi ya di si	1
 梵希雅第四	fj xi ya di si	1
 梵希雅第一	fj xi ya di yi	1
 梵希雅机位	fj xi ya ji ww	1
@@ -84947,7 +84842,6 @@ sort: by_weight
 吉尔吉斯坦	ji er ji si tj	1
 姬发回来了	ji fa hv ld le	1
 积分夺宝券	ji ff do bc qr	1
-积分夺宝券	ji ff do bc qr	1
 纪梵希大秀	ji fj xi da xq	1
 纪梵希代言	ji fj xi dd yj	1
 纪梵希美妆	ji fj xi mw vl	1
@@ -86826,7 +86720,6 @@ sort: by_weight
 雷军谈华为	lw jy tj hx ww	1
 雷军新头像	lw jy xb tz xl	1
 雷霆荣耀杯	lw tk rs yc bw	1
-雷霆特工队	lw tk te gs dv	1
 雷霆特工队	lw tk te gs dv	1
 雷霆总冠军	lw tk zs gr jy	1
 雷氏对比法	lw ui dv bi fa	1
@@ -89735,8 +89628,8 @@ sort: by_weight
 涉案者被抓	ue an ve bw vx	1
 蛇宝宝出生	ue bc bc iu ug	1
 舍不得星星	ue bu de xk xk	1
-射雕藏海传	ue dn zh hd vr	1
 射雕长预告	ue dn ih yu gc	1
+射雕藏海传	ue dn zh hd vr	1
 蛇墩墩亮相	ue dy dy ll xl	1
 社火闹元宵	ue ho nc yr xn	1
 社会工作者	ue hv gs zo ve	1
@@ -90213,9 +90106,31 @@ sort: by_weight
 闪耀洛杉矶	uj yc lo uj ji	1
 闪耀中国红	uj yc vs go hs	1
 善意的竞争	uj yi de jk vg	1
+单依纯帮唱	uj yi iy bh ih	1
+单依纯编曲	uj yi iy bm qu	1
+单依纯第二	uj yi iy di er	1
+单依纯第六	uj yi iy di lq	1
+单依纯第三	uj yi iy di sj	1
+单依纯第五	uj yi iy di wu	1
+单依纯第一	uj yi iy di yi	1
+单依纯疯了	uj yi iy fg le	1
+单依纯歌手	uj yi iy ge uz	1
+单依纯唱功	uj yi iy ih gs	1
+单依纯济南	uj yi iy ji nj	1
+单依纯哭了	uj yi iy ku le	1
 单依纯口误	uj yi iy kz wu	1
+单依纯李白	uj yi iy li bd	1
+单依纯秒了	uj yi iy mn le	1
+单依纯哨音	uj yi iy uc yb	1
+单依纯失误	uj yi iy ui wu	1
+单依纯守榜	uj yi iy uz bh	1
 单依纯瘦了	uj yi iy uz le	1
 单依纯直播	uj yi iy vi bo	1
+单依纯妆造	uj yi iy vl zc	1
+单依纯主持	uj yi iy vu ii	1
+单依纯舞娘	uj yi iy wu nl	1
+单依纯新歌	uj yi iy xb ge	1
+单依纯选歌	uj yi iy xr ge	1
 帅的好夸张	uk de hc kx vh	1
 帅的很超过	uk de hf ic go	1
 帅得很超前	uk de hf ic qm	1
@@ -90745,7 +90660,6 @@ sort: by_weight
 张婧仪直播	vh jk yi vi bo	1
 张婧仪新剧	vh jk yi xb ju	1
 张建华被查	vh jm hx bw ia	1
-张杰梵希雅	vh jp fj xi ya	1
 张杰梵希雅	vh jp fj xi ya	1
 张杰杭州站	vh jp hh vz vj	1
 张杰唱了默	vh jp ih le mo	1
@@ -91475,10 +91389,10 @@ sort: by_weight
 周思成回应	vz si ig hv yk	1
 周涛好美啊	vz tc hc mw aa	1
 周深的脑洞	vz uf de nc ds	1
-周深单依纯	vz uf uj yi iy	1
 周深发红包	vz uf fa hs bc	1
 周深好浪漫	vz uf hc lh mj	1
 周深题词器	vz uf ti ci qi	1
+周深单依纯	vz uf uj yi iy	1
 周深摘耳机	vz uf vd er ji	1
 周深中场秀	vz uf vs ih xq	1
 周深新巡演	vz uf xb xy yj	1
@@ -93353,7 +93267,6 @@ sort: by_weight
 肖指导儿子	xn vi dc er zi	1
 肖战宝诗龙	xn vj bc ui ls	1
 肖战不内耗	xn vj bu nw hc	1
-肖战藏海传	xn vj zh hd vr	1
 肖战到杭州	xn vj dc hh vz	1
 肖战的口碑	xn vj de kz bw	1
 肖战递耳机	xn vj di er ji	1
@@ -93370,6 +93283,7 @@ sort: by_weight
 肖战洗澡戏	xn vj xi zc xi	1
 肖战笑什么	xn vj xn uf me	1
 肖战小站记	xn vj xn vj ji	1
+肖战藏海传	xn vj zh hd vr	1
 小众有情调	xn vs yz qk dn	1
 小王开麦节	xn wh kd md jp	1
 小王子配色	xn wh zi pw se	1
@@ -94964,11 +94878,14 @@ sort: by_weight
 曾凡博三分	zg fj bo sj ff	1
 曾凡博替补	zg fj bo ti bu	1
 曾凡博受伤	zg fj bo uz uh	1
+曾辉发红包	zg hv fa hs bc	1
+曾敬骅演技	zg jk hx yj ji	1
 曾黎工作室	zg li gs zo ui	1
 曾梦雪哭戏	zg mg xt ku xi	1
 曾庆杰手滑	zg qk jp uz hx	1
 增强运动会	zg ql yy ds hv	1
 曾舜晞直播	zg uy xi vi bo	1
+曾舜晞小号	zg uy xi xn hc	1
 曾志伟道歉	zg vi ww dc qm	1
 曾轶可长发	zg yi ke ih fa	1
 曾轶可热舞	zg yi ke re wu	1
@@ -94977,7 +94894,32 @@ sort: by_weight
 藏海花开播	zh hd hx kd bo	1
 藏海花选角	zh hd hx xr jt	1
 藏海花预告	zh hd hx yu gc	1
+藏海传打戏	zh hd vr da xi	1
+藏海传档期	zh hd vr dh qi	1
+藏海传第二	zh hd vr di er	1
+藏海传定档	zh hd vr dk dh	1
+藏海传广告	zh hd vr gl gc	1
+藏海传超点	zh hd vr ic dm	1
+藏海传床戏	zh hd vr il xi	1
+藏海传节奏	zh hd vr jp zz	1
+藏海传加广	zh hd vr jx gl	1
+藏海传开播	zh hd vr kd bo	1
+藏海传猫塑	zh hd vr mc su	1
+藏海传逆跌	zh hd vr ni dp	1
+藏海传片尾	zh hd vr pm ww	1
+藏海传破万	zh hd vr po wj	1
+藏海传配角	zh hd vr pw jt	1
 藏海传团综	zh hd vr tr zs	1
+藏海传杀青	zh hd vr ua qk	1
+藏海传张本	zh hd vr vh bf	1
+藏海传涨分	zh hd vr vh ff	1
+藏海传质感	zh hd vr vi gj	1
+藏海传战绩	zh hd vr vj ji	1
+藏海传吻戏	zh hd vr wf xi	1
+藏海传下证	zh hd vr xx vg	1
+藏海传预告	zh hd vr yu gc	1
+藏海传云合	zh hd vr yy he	1
+藏海传再见	zh hd vr zd jm	1
 脏了我的手	zh le wo de uz	1
 自报手机号	zi bc uz ji hc	1
 资本的力量	zi bf de li ll	1
@@ -95952,10 +95894,6 @@ sort: by_weight
 蔡依林演唱会	cd yi lb yj ih hv	1
 测评荣昌卤鹅	ce pk rs ih lu ee	1
 测评塞纳河水	ce pk sd na he uv	1
-曾师从杨振宁	zg ui cs yh vf nk	1
-曾舜晞你骂我	zg uy xi ni ma wo	1
-曾舜晞张康乐	zg uy xi vh kh le	1
-曾舜晞音乐节	zg uy xi yb yt jp	1
 藏不住的青春	ch bu vu de qk iy	1
 藏不住的心事	ch bu vu de xb ui	1
 苍古自由之誓	ch gu zi yz vi ui	1
@@ -95966,25 +95904,6 @@ sort: by_weight
 藏海毒蛇竖瞳	ch hd du ue uu ts	1
 藏海过中元节	ch hd go vs yr jp	1
 藏海汗如雨下	ch hd hj ru yu xx	1
-藏海传大结局	zh hd vr da jp ju	1
-藏海传第七集	zh hd vr di qi ji	1
-藏海传第三人	zh hd vr di sj rf	1
-藏海传赴山海	zh hd vr fu uj hd	1
-藏海传感情戏	zh hd vr gj qk xi	1
-藏海传观后感	zh hd vr gr hz gj	1
-藏海传海暗线	zh hd vr hd an xm	1
-藏海传出圈梗	zh hd vr iu qr gg	1
-藏海传见面会	zh hd vr jm mm hv	1
-藏海传面具人	zh hd vr mm ju rf	1
-藏海传皮影戏	zh hd vr pi yk xi	1
-藏海传庆功宴	zh hd vr qk gs yj	1
-藏海传人皮俑	zh hd vr rf pi ys	1
-藏海传团圆饭	zh hd vr tr yr fj	1
-藏海传市占比	zh hd vr ui vj bi	1
-藏海传收视率	zh hd vr uz ui lv	1
-藏海传周日见	zh hd vr vz ri jm	1
-藏海传演唱会	zh hd vr yj ih hv	1
-藏海传原创梗	zh hd vr yr il gg	1
 藏海绝色容光	ch hd jt se rs gl	1
 藏海身材好顶	ch hd uf cd hc dk	1
 藏海爷们要脸	ch hd ye mf yc lm	1
@@ -96334,17 +96253,6 @@ sort: by_weight
 丹尼格林退役	dj ni ge lb tv yi	1
 但求不愧我心	dj qq bu kv wo xb	1
 单休后的周一	dj xq hz de vz yi	1
-单依纯毕业了	uj yi iy bi ye le	1
-单依纯的李白	uj yi iy de li bd	1
-单依纯发红包	uj yi iy fa hs bc	1
-单依纯哽咽了	uj yi iy gg ye le	1
-单依纯好会扭	uj yi iy hc hv nq	1
-单依纯好会选	uj yi iy hc hv xr	1
-单依纯好争气	uj yi iy hc vg qi	1
-单依纯唱李白	uj yi iy ih li bd	1
-单依纯口水声	uj yi iy kz uv ug	1
-单依纯收手吧	uj yi iy uz uz ba	1
-单依纯王力宏	uj yi iy wh li hs	1
 蛋仔百万富翁	dj zd bd wj fu wg	1
 蛋仔必看系列	dj zd bi kj xi lp	1
 蛋仔岛被淹了	dj zd dc bw yj le	1
@@ -100122,7 +100030,6 @@ sort: by_weight
 凌肖加入拜年	lk xn jx ru bd nm	1
 凌选的真好赫	lk xr de vf hc he	1
 凌虚子怎么打	lk xu zi zf me da	1
-凌虚子怎么打	lk xu zi zf me da	1
 灵隐寺的辣椒	lk yb si de la jn	1
 另一种蓝定档	lk yi vs lj dk dh	1
 灵与火的织卷	lk yu ho de vi jr	1
@@ -101575,7 +101482,6 @@ sort: by_weight
 潘展乐换头像	pj vj le hr tz xl	1
 潘展乐练瘦了	pj vj le lm uz le	1
 潘展乐太牛了	pj vj le td nq le	1
-潘展乐双记录	pj vj le ul ji lu	1
 潘展乐双记录	pj vj le ul ji lu	1
 潘展乐演讲稿	pj vj le yj jl gc	1
 潘玮柏蒋梦婕	pj ww bo jl mg jp	1
@@ -103363,6 +103269,17 @@ sort: by_weight
 闪耀暖暖光效	uj yc nr nr gl xn	1
 闪耀暖暖质感	uj yc nr nr vi gj	1
 闪耀优俊少女	uj yc yz jy uc nv	1
+单依纯毕业了	uj yi iy bi ye le	1
+单依纯的李白	uj yi iy de li bd	1
+单依纯发红包	uj yi iy fa hs bc	1
+单依纯哽咽了	uj yi iy gg ye le	1
+单依纯好会扭	uj yi iy hc hv nq	1
+单依纯好会选	uj yi iy hc hv xr	1
+单依纯好争气	uj yi iy hc vg qi	1
+单依纯唱李白	uj yi iy ih li bd	1
+单依纯口水声	uj yi iy kz uv ug	1
+单依纯收手吧	uj yi iy uz uz ba	1
+单依纯王力宏	uj yi iy wh li hs	1
 山鹰与兰花花	uj yk yu lj hx hx	1
 山原旷其盈视	uj yr kl qi yk ui	1
 善宰飞吻挑战	uj zd fw wf tn vj	1
@@ -103945,7 +103862,6 @@ sort: by_weight
 张之臻王欣瑜	vh vi vf wh xb yu	1
 漳州发展涨停	vh vz fa vj vh tk	1
 张万森当鬼了	vh wj sf dh gv le	1
-张万森下雪了	vh wj sf xx xt le	1
 张万森下雪了	vh wj sf xx xt le	1
 张晚意马思纯	vh wj yi ma si iy	1
 张晚意染黄毛	vh wj yi rj hl mc	1
@@ -107653,6 +107569,10 @@ sort: by_weight
 增强四个意识	zg ql si ge yi ui	1
 增强文化自信	zg ql wf hx zi xb	1
 增强忧患意识	zg ql yz hr yi ui	1
+曾师从杨振宁	zg ui cs yh vf nk	1
+曾舜晞你骂我	zg uy xi ni ma wo	1
+曾舜晞张康乐	zg uy xi vh kh le	1
+曾舜晞音乐节	zg uy xi yb yt jp	1
 曾之乔晒孕肚	zg vi qn ud yy du	1
 曾之乔孕肚照	zg vi qn yy du vc	1
 增值税法通过	zg vi uv fa ts go	1
@@ -107660,6 +107580,25 @@ sort: by_weight
 藏海花打夜王	zh hd hx da ye wh	1
 藏海花真香了	zh hd hx vf xl le	1
 藏海花张九日	zh hd hx vh jq ri	1
+藏海传大结局	zh hd vr da jp ju	1
+藏海传第七集	zh hd vr di qi ji	1
+藏海传第三人	zh hd vr di sj rf	1
+藏海传赴山海	zh hd vr fu uj hd	1
+藏海传感情戏	zh hd vr gj qk xi	1
+藏海传观后感	zh hd vr gr hz gj	1
+藏海传海暗线	zh hd vr hd an xm	1
+藏海传出圈梗	zh hd vr iu qr gg	1
+藏海传见面会	zh hd vr jm mm hv	1
+藏海传面具人	zh hd vr mm ju rf	1
+藏海传皮影戏	zh hd vr pi yk xi	1
+藏海传庆功宴	zh hd vr qk gs yj	1
+藏海传人皮俑	zh hd vr rf pi ys	1
+藏海传团圆饭	zh hd vr tr yr fj	1
+藏海传市占比	zh hd vr ui vj bi	1
+藏海传收视率	zh hd vr uz ui lv	1
+藏海传周日见	zh hd vr vz ri jm	1
+藏海传演唱会	zh hd vr yj ih hv	1
+藏海传原创梗	zh hd vr yr il gg	1
 葬送的芙莉莲	zh ss de fu li lm	1
 资本你又赢了	zi bf ni yz yk le	1
 自变量机器人	zi bm ll ji qi rf	1
@@ -107900,7 +107839,6 @@ sort: by_weight
 财源滚滚随春到	cd yr gy gy sv iy dc	1
 测控技术与仪器	ce ks ji uu yu yi qi	1
 曾经不敢做的事	cg jk bu gj zo de ui	1
-曾少年之小时候	zg uc nm vi xn ui hz	1
 苍狼之绝命行动	ch lh vi jt mk xk ds	1
 此地有崇山峻岭	ci di yz is uj jy lk	1
 此生从此分明了	ci ug cs ci ff mk le	1
@@ -108459,7 +108397,6 @@ sort: by_weight
 燃野少年的天空	rj ye uc nm de tm ks	1
 弱者欺负更弱者	ro ve qi fu gg ro ve	1
 荣花与炎日之途	rs hx yu yj ri vi tu	1
-荣花与炎日之途	rs hx yu yj ri vi tu	1
 如厕感觉被监视	ru ce gj jt bw jm ui	1
 如此可爱的我们	ru ci ke ai de wo mf	1
 如果上天有旨意	ru go uh tm yz vi yi	1
@@ -108950,6 +108887,7 @@ sort: by_weight
 在无爱之森呐喊	zd wu ai vi sf na hj	1
 责任完全在菲方	ze rf wj qr zd fw fh	1
 怎敌她千娇百媚	zf di ta qm jn bd mw	1
+曾少年之小时候	zg uc nm vi xn ui hz	1
 自古英雄多悲凉	zi gu yk xs do bw ll	1
 自古英雄出少年	zi gu yk xs iu uc nm	1
 咨臣以当世之事	zi if yi dh ui vi ui	1
@@ -109262,7 +109200,6 @@ sort: by_weight
 亭前垂柳珍重待春风	tk qm iv lq vf vs dd iy fg	1
 天将降大任于是人也	tm jl jl da rf yu ui rf ye	1
 张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	1
-张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	1
 中华人民共和国政府	vs hx rf mb gs he go vg fu	1
 我家大师兄脑子有坑	wo jx da ui xs nc zi yz kg	1
 于适欢迎来到我身边	yu ui hr yk ld dc wo uf bm	1
@@ -109311,6 +109248,3 @@ sort: by_weight
 中国人民解放军空军航空大学	vs go rf mb jp fh jy ks jy hh ks da xt	1
 黑神话销售量发售周年突破一亿	hw uf hx xn uz ll fa uz vz nm tu po yi yi	1
 黑神话销售量发售周年突破一亿用户	hw uf hx xn uz ll fa uz vz nm tu po yi yi ys hu	1
-阿哲	aa ve	1
-阿云	aa yy	1
-阿什拉夫	aa uf la fu	1
