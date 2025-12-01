@@ -179,9 +179,6 @@ patch:
     comment_mark: " ᵀᴼᴾ"              # 置顶词标记
     # comment_mark: " 🔝"             # 置顶词标记
 
-  char_mode:                          # 单字模式开关
-    toggle: "off"
-
   pair_symbol:                        # 符号配对开关
     toggle: "on"
 
