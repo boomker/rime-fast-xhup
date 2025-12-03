@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2025.01.11
+  version: 2025.12.12
   author:
     - boomker
   description: |
@@ -33,10 +33,11 @@ switches:
 engine:
   processors:
     - lua_processor@*select_char
-    - lua_processor@*pair_symbols
+    - lua_processor@*symbol_menu
     - lua_processor@*easy_en*processor
     - lua_processor@*pin_word*processor
     - lua_processor@*shortcut*processor
+    - lua_processor@*pair_punct*processor
     - lua_processor@*idiom_expand*processor
     - lua_processor@*chinese_number*processor
     - lua_processor@*flypy_switcher*processor
@@ -54,6 +55,7 @@ engine:
   segmentors:
     - ascii_segmentor
     - matcher
+    - lua_segmentor@*pair_punct*segmentor
     - abc_segmentor
     - affix_segmentor@LaTeX
     - affix_segmentor@easy_en

@@ -36,9 +36,9 @@ function P.func(key, env)
 
     -- 按下 '/' 后, 数字键或符号键选单字时, 自动上屏
     local idx = segment.selected_index
-    local seleted_cand_index = get_selected_candidate_index(key_value, idx, page_size)
-    if (seleted_cand_index >= 0) and input_code:match("^%l+/$") and (caret_pos >= 3) then
-        context:select(seleted_cand_index)
+    local selected_cand_index = get_selected_candidate_index(key_value, idx, page_size)
+    if (selected_cand_index >= 0) and input_code:match("^%l+/$") and (caret_pos >= 3) then
+        context:select(selected_cand_index)
         local _cand_text = context:get_commit_text():utf8_sub(1, -2)
         local cand_txt = insert_space_to_candText(env, _cand_text)
         set_committed_cand_is_chinese(env)
