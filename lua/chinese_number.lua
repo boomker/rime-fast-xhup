@@ -374,6 +374,7 @@ function P.func(key, env)
         config:set_int("menu/alternative_select_keys", env.alter_select_keys)
         env:Config_set("menu/alternative_select_labels", M.alter_labels)
         env.engine:apply_schema(Schema(schema.schema_id))
+        return 1 -- kAccepted 收下此key
     end
     return 2
 end

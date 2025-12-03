@@ -61,10 +61,8 @@ local function reset_state()
 end
 
 local function action_handler(env, action, system_type, fact_item)
-    local commit_history = env.engine.context.commit_history
     if ((action == "commit") or (system_type == "ios")) and fact_item then
         env.engine:commit_text(fact_item)
-        commit_history:push("raw", fact_item)
     elseif (action == "open") and (system_type ~= "ios") and fact_item then
         if fact_item:match("^http") then
             cmd(system_type, "", fact_item)
@@ -79,7 +77,6 @@ local function action_handler(env, action, system_type, fact_item)
         cmd(system_type, "exec", cmd_string)
     else
         env.engine:commit_text(fact_item)
-        commit_history:push("raw", fact_item)
     end
 end
 

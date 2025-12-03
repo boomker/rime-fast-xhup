@@ -71,7 +71,6 @@ function P.func(key, env)
     if context:has_menu() or context:is_composing() then
         local index = segment.selected_index
         local cand = context:get_selected_candidate()
-        local commit_history = context.commit_history
         local selected_cand_idx = get_selected_candidate_index(key_name, index, page_size)
         if (not selected_cand_idx) or (selected_cand_idx < 0) then return 2 end
 
@@ -80,19 +79,15 @@ function P.func(key, env)
             if key_name == env.enclosed_a then
                 matched = true
                 engine:commit_text("「" .. cand.text .. "」")
-                commit_history:push("raw", "「" .. cand.text .. "」")
             elseif key_name == env.enclosed_b then
                 matched = true
                 engine:commit_text("【" .. cand.text .. "】")
-                commit_history:push("raw", "【" .. cand.text .. "】")
             elseif key_name == env.enclosed_c then
                 matched = true
                 engine:commit_text("（" .. cand.text .. "）")
-                commit_history:push("raw", "（" .. cand.text .. "）")
             elseif key_name == env.enclosed_d then
                 matched = true
                 engine:commit_text("〔" .. cand.text .. "〕")
-                commit_history:push("raw", "〔" .. cand.text .. "〕")
             end
             if matched then
                 context:clear()

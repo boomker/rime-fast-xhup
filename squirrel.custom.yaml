@@ -32,7 +32,7 @@ patch:
     hilited_corner_radius: 8
     candidate_list_layout: stacked              # 候选排布: 层叠 stacked | 行 linear
     label_font_face: 'Lucida Grande'
-    font_face: "MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei, WenJinMinchoP0"
+    font_face: "Maple Mono NF CN, MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei, WenJinMinchoP0"
 
   # 皮肤主题
   preset_color_schemes:

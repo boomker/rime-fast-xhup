@@ -14,12 +14,14 @@ function flypy_switcher.init(env)
     local schema = Schema(schema_id)
     env.reversedb = ReverseLookup(schema_id)
     env.mem = Memory(engine, schema, "translator")
+    env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
     env.char_mode_state = context:get_option("char_mode")
     env.page_size = config:get_int("menu/page_size") or 7
     env.font_point = config:get_int("style/font_point") or 20
     env.line_spacing = config:get_int("style/line_spacing") or 5
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
+    env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
@@ -28,10 +30,8 @@ function flypy_switcher.init(env)
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
     local switchOpt_pat = config:get_string("recognizer/patterns/switch_options") or "/so|sO"
     env.switch_options_trigger = switchOpt_pat:match("%^.?([a-zA-Z/|]+).*") or "/so|sO"
-    env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
-    env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
-    env.word_auto_commit = config:get_bool("speller/auto_commit") or false
     env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
+    env.word_auto_commit = config:get_bool("speller/auto_select_phrase") or false
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
     env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
     env.switch_options_menu = {
@@ -245,7 +245,6 @@ function translator.func(input, seg, env)
     if composition:empty() then return end
     local segment = composition:back()
     local char_mode_state = context:get_option("char_mode")
-    -- local char_mode_state = (env.char_mode_state == true) and 0 or 1
 
     local trigger_pattern = env.switch_options_trigger
     local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or {"/so", "sO"}
