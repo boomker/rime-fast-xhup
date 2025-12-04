@@ -153,6 +153,7 @@ function processor.func(key, env)
     local schema = env.engine.schema
     local context = env.engine.context
     local input_code = context.input
+    local preedit_code = context:get_script_text()
     local page_size = schema.page_size
 
     if env.pair_toggle == "off" then return 2 end
@@ -193,9 +194,15 @@ function processor.func(key, env)
         end
     end
 
-    -- if env.dist_code:match("^fcitx%-rime$") then return 2 end
     local idx = segment.selected_index
     local selected_cand_index = get_selected_candidate_index(key_value, idx, page_size)
+
+    if context:has_menu() and (key_value == "space") and input_code:match("^%p$") then
+        env.engine:commit_text(preedit_code)
+        context:clear()
+        return 1
+    end
+
     if context:has_menu() and (selected_cand_index > 0) and input_code:match("^%p$") then
         for i = 1, tonumber(selected_cand_index) do
             env.engine:process_key(KeyEvent(tostring("Down")))
