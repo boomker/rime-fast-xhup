@@ -65,7 +65,7 @@ function T.init(env)
     env.notifier_commit_history = context.commit_notifier:connect(function(ctx)
         local cand = ctx:get_selected_candidate()
         local commit_text = ctx:get_commit_text()
-        local preedit_code = ctx:get_preedit().text
+        local preedit_code =ctx:get_script_text()
         local cand_uniq = UniquifiedCandidate("", "history", commit_text, preedit_code)
         if cand and (not candidate_in_type(cand, excluded_types)) then
             table.insert(env.history_list, cand)

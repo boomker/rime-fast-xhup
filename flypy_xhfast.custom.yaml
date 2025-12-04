@@ -165,7 +165,7 @@ patch:
     prefix: "eN"
     tips: "英文"
     wildcard: '*'
-    expand_word_count: 666             # 模糊匹配最多迭代数
+    expand_word_count: 666            # 模糊匹配最多迭代数
 
   custom_phrase/+:                    # 自定义短语
     comment_mark: " 📌"               # 注解标记

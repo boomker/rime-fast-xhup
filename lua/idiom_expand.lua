@@ -1,3 +1,10 @@
+-- local logEnable, log = pcall(require, "lib/logger")
+-- if logEnable then
+--     log.writeLog('\n')
+--     log.writeLog('--- start ---')
+--     log.writeLog('log from idiom_expan.lua\n')
+-- end
+
 local M = {}
 local P = {}
 local T = {}
@@ -29,15 +36,14 @@ function P.func(key, env)
     local caret_pos = context.caret_pos
     local composition = context.composition
     if composition:empty() then return 2 end
-    local preedit_text = context:get_preedit().text
-    local preedit_code = preedit_text:gsub("[‸ ]", "")
+    local preedit_code = context:get_script_text():gsub(" ", "")
 
-    if (#preedit_code ~= caret_pos) and (key:repr() == "Tab") then
-        engine:process_key(KeyEvent(tostring("Right")))
-        engine:process_key(KeyEvent(tostring("Right")))
-        return 1
-    elseif (#preedit_code == caret_pos) and (key:repr() == "Tab") then
+    if (#preedit_code >= caret_pos) and (key:repr() == "Tab") then
         engine:process_key(KeyEvent(tostring("Control+Right")))
+        return 1
+    elseif (#preedit_code < caret_pos) and (key:repr() == "Tab") then
+        engine:process_key(KeyEvent(tostring("Right")))
+        engine:process_key(KeyEvent(tostring("Right")))
         return 1
     end
 

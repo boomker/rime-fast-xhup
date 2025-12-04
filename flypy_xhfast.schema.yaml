@@ -143,7 +143,7 @@ translator:
   # always_show_comments: true      # 始终显示提示码〔仅script_translator有效〕
   # disable_user_dict_for_patterns:
   #   - '^[a-z][a-z]?$'             # 单字不调频
-  # preedit_format:
+  preedit_format:
   #   __include: preedit_convert_rules  # 编辑区输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
@@ -208,6 +208,9 @@ emoji:                              # Emoji转换
   opencc_config: emoji.json
   inherit_comment: false
   # show_in_comment: false
+  allow_erase_comment: true
+  comment_format:
+    # - xform/.*//
 
 # 简体转繁体
 tradition:                          # 简繁转换
