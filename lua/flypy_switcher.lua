@@ -1,3 +1,4 @@
+
 local processor = {}
 local translator = {}
 local flypy_switcher = {}
@@ -20,6 +21,7 @@ function flypy_switcher.init(env)
     env.font_point = config:get_int("style/font_point") or 20
     env.line_spacing = config:get_int("style/line_spacing") or 5
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
+    env.preedit_format = config:get_list("translator/preedit_format") or nil
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
     env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
@@ -37,6 +39,7 @@ function flypy_switcher.init(env)
     env.switch_options_menu = {
         "切换纵横布局样式",
         "切换预编码区样式",
+        "切换预编码区格式",
         "切换候选序号样式",
         "切换Emoji😂显隐",
         "切换中英标点输出",
@@ -146,6 +149,12 @@ function processor.func(key, env)
         elseif cand_text == "切换预编码区样式" then
             local switch_to_val = not env.inline_preedit_style
             config:set_bool("style/inline_preedit", switch_to_val) -- 重写 inline_preedit
+        elseif cand_text == "切换预编码区格式" then
+            if (not env.preedit_format) or (env.preedit_format and env.preedit_format.size < 0) then
+                env:Config_set("translator/preedit_format", config:get_list("preedit_convert_rules"))
+            else
+                env:Config_set("translator/preedit_format", "")
+            end
         elseif cand_text == "切换候选序号样式" then
             if env:Config_get("menu/alternative_select_labels")[1] == 1 then
                 env:Config_set("menu/alternative_select_labels", env.alter_labels)
@@ -236,6 +245,7 @@ function processor.func(key, env)
         context:refresh_non_confirmed_composition()
         return 1 -- kAccept
     end
+
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 

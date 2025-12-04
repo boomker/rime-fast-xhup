@@ -54,8 +54,9 @@ function T.func(input, seg, env)
     local context = env.engine.context
     local caret_pos = context.caret_pos
     local composition = context.composition
-    local preedit_text = context:get_preedit().text
-    local preedit_code = preedit_text:gsub("[‸]", "")
+    local preedit_code = context:get_script_text()
+    -- local preedit_text = context:get_preedit().text
+    -- local preedit_code = preedit_text:gsub("[‸]", "")
     if composition:empty() then return end
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
