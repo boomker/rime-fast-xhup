@@ -11,7 +11,7 @@
 # Source: https://github.com/Wenti-D/Astralwelkin
 
 config_version: "3.2"
-name: 菊韻, boomker
+name: 菊韻, 飞鹤
 author: "Windy_D <windy0deng@gmail.com>, Hoengsaan (Lingdai)"
 
 height:
@@ -1623,9 +1623,10 @@ preset_keys:
   Commit_Dot: { label: ".", commit: ".", functional: false }
   Commit_Brace_L: { label: "{", commit: "{", functional: false }
   Commit_Brace_R: { label: "}", commit: "}", functional: false }
-  Number_Lua: { label: "中文数", text: "nN", functional: false }
+  # Eng_Lua: { label: "英语", text: "eN", functional: false }
   Calc_Lua: { label: "计算器", text: "cC", functional: false }
   Date_Lua: { label: "年月日", text: "nL", functional: false }
+  Number_Lua: { label: "中文数", text: "nN", functional: false }
   # Unicode_Lua: { label: "Uni", text: "U", functional: false }
   Alt_space: { label: "空格", repeatable: true, functional: false, send: space }
   Gukwan_readme: {
@@ -4631,7 +4632,7 @@ preset_keyboards:
           hint: "~",
         }
       - { click: "w" }
-      - { click: "e" }
+      - { click: "e", swipe_down: "eN", hint: "英式" }
       - { click: "r", swipe_down: Mandarin_rl, hint: "反查" }
       - {
           click: "t",
@@ -4660,21 +4661,21 @@ preset_keyboards:
           click: "i",
           long_click: "_",
           swipe_up: "_",
-          swipe_down: "{",
+          swipe_down: "[",
           # swipe_left: "{",
           # swipe_right: "}",
           # hint: "{   }",
-          hint: "{",
+          hint: "[",
         }
       - {
           click: "o",
           long_click: "=",
           swipe_up: "=",
-          swipe_down: "[",
+          swipe_down: "]",
           # swipe_left: "[",
           # swipe_right: "]",
           # hint: "[   ]",
-          hint: "[",
+          hint: "]",
         }
       - {
           click: "p",
@@ -4737,8 +4738,8 @@ preset_keyboards:
           # long_click: Keyboard_Katakana,
           # swipe_left: "『",
           # swipe_right: "』",
-          swipe_down: "}",
-          hint: "}",
+          swipe_down: "{",
+          hint: "{",
           # hint: "『   』",
         }
       - {
@@ -4746,8 +4747,8 @@ preset_keyboards:
           # long_click: Keyboard_Hangul,
           # swipe_left: "【",
           # swipe_right: "】",
-          swipe_down: "]",
-          hint: "]",
+          swipe_down: "}",
+          hint: "}",
           # hint: "【   】",
         }
       - { width: 5 }
