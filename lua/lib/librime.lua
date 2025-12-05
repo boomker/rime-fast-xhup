@@ -300,7 +300,7 @@ function KeySequence(repr) end
 ---@field to_phrase fun(self: self): Phrase
 ---@field to_sentence fun(self: self): Sentence
 ---@field append fun(self: self, cand: Candidate)
----field to_uniquified_candidate fun(self: self): UniquifiedCandidate
+---@field to_uniquified_candidate fun(self: self, type: string, text: string, comment: string): UniquifiedCandidate
 
 ---@param type string
 ---@param start integer
