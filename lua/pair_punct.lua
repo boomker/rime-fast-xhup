@@ -160,8 +160,9 @@ function processor.func(key, env)
     local composition = context.composition
 
     if key.keycode == 34 then key_value = "quotedbl" end
-    if (key_value == "quotedbl") and  pairTable[key_value] and composition:empty() then
-        if env.dist_code:match("^fcitx%-rime$") then return 2 end
+    local aps = context:get_option("ascii_punct")
+    if (key_value == "quotedbl") and pairTable[key_value] and composition:empty() then
+        if aps or env.dist_code:match("^fcitx%-rime$") then return 2 end
         context:push_input(pairTable[key_value][1])
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
@@ -203,7 +204,7 @@ function processor.func(key, env)
         return 1
     end
 
-    if context:has_menu() and (selected_cand_index > 0) and input_code:match("^%p$") then
+    if context:has_menu() and (selected_cand_index > 0) and input_code:match("^[`<%(%[{]$") then
         for i = 1, tonumber(selected_cand_index) do
             env.engine:process_key(KeyEvent(tostring("Down")))
         end
@@ -212,7 +213,7 @@ function processor.func(key, env)
         -- context:pop_input(1)
         -- context:push_input(cand_text)
         -- context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1                                       -- kAccept
+        return 1 -- kAccept
     end
 
     return 2

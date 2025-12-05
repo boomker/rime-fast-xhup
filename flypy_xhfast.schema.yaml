@@ -144,6 +144,7 @@ translator:
   # disable_user_dict_for_patterns:
   #   - '^[a-z][a-z]?$'             # 单字不调频
   preedit_format:
+    - xform/(.*)/$1/
   #   __include: preedit_convert_rules  # 编辑区输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
@@ -163,7 +164,7 @@ melt_eng:                           # 英文输入
   initial_quality: 1.1
   enable_encoder: false
   enable_sentence: false
-  enable_user_dict: false
+  enable_user_dict: true
   enable_completion: true           # 是否启用英文输入联想补全
   encode_commit_history: false
   comment_format:

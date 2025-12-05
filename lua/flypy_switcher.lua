@@ -150,7 +150,7 @@ function processor.func(key, env)
             local switch_to_val = not env.inline_preedit_style
             config:set_bool("style/inline_preedit", switch_to_val) -- 重写 inline_preedit
         elseif cand_text == "切换预编码区格式" then
-            if (not env.preedit_format) or (env.preedit_format and env.preedit_format.size < 0) then
+            if (not env.preedit_format) or (env.preedit_format and env.preedit_format.size <= 1) then
                 env:Config_set("translator/preedit_format", config:get_list("preedit_convert_rules"))
             else
                 env:Config_set("translator/preedit_format", "")
