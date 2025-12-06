@@ -141,6 +141,7 @@ function processor.init(env)
     local schema = env.engine.schema
     local config = schema.config
     env.system_name = detect_os()
+    env.dist_code = rime_api:get_distribution_code_name()
     env.pair_toggle = config:get_string("pair_symbol/toggle") or "off"
     env.enclosed_a = config:get_string("key_binder/enclosed_cand_chars_a") or nil
     env.enclosed_b = config:get_string("key_binder/enclosed_cand_chars_b") or nil
@@ -161,8 +162,12 @@ function processor.func(key, env)
 
     if key.keycode == 34 then key_value = "quotedbl" end
     local ascii_punct = context:get_option("ascii_punct")
+    if (key_value == "quotedbl") and (env.dist_code:match("^fcitx%-rime$")
+            or ascii_punct or env.system_name:lower():match("android"))
+    then
+        return 2
+    end
     if (key_value == "quotedbl") and pairTable[key_value] and composition:empty() then
-        if ascii_punct or env.system_name:lower():match("android") then return 2 end
         context:push_input(pairTable[key_value][1])
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
