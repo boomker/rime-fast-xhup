@@ -1623,10 +1623,11 @@ preset_keys:
   Commit_Dot: { label: ".", commit: ".", functional: false }
   Commit_Brace_L: { label: "{", commit: "{", functional: false }
   Commit_Brace_R: { label: "}", commit: "}", functional: false }
-  # Eng_Lua: { label: "英语", text: "eN", functional: false }
-  Calc_Lua: { label: "计算器", text: "cC", functional: false }
-  Date_Lua: { label: "年月日", text: "nL", functional: false }
+  EnMode_Lua: { label: "英式", text: "eN", functional: false }
+  Date_Lua: { label: "日期", text: "/wd", functional: false }
+  Lunar_Lua: { label: "农历", text: "nL", functional: false }
   Number_Lua: { label: "中文数", text: "nN", functional: false }
+  Calc_Lua: { label: "计算器", text: "cC", functional: false }
   # Unicode_Lua: { label: "Uni", text: "U", functional: false }
   Alt_space: { label: "空格", repeatable: true, functional: false, send: space }
   Gukwan_readme: {
@@ -4632,8 +4633,8 @@ preset_keyboards:
           hint: "~",
         }
       - { click: "w" }
-      - { click: "e", swipe_down: "eN", hint: "英式" }
-      - { click: "r", swipe_down: Mandarin_rl, hint: "反查" }
+      - { click: "e", long_click: EnMode_Lua, swipe_up: EnMode_Lua, }
+      - { click: "r", long_click: Mandarin_rl, swipe_up: Mandarin_rl, }
       - {
           click: "t",
           # long_click: "〃",
@@ -4662,20 +4663,20 @@ preset_keyboards:
           long_click: "_",
           swipe_up: "_",
           swipe_down: "[",
+          hint: "[",
           # swipe_left: "{",
           # swipe_right: "}",
           # hint: "{   }",
-          hint: "[",
         }
       - {
           click: "o",
           long_click: "=",
           swipe_up: "=",
           swipe_down: "]",
+          hint: "]",
           # swipe_left: "[",
           # swipe_right: "]",
           # hint: "[   ]",
-          hint: "]",
         }
       - {
           click: "p",
@@ -4700,6 +4701,9 @@ preset_keyboards:
         }
       - {
           click: "d",
+          long_click: Date_Lua,
+          swipe_up: Date_Lua,
+          # hint: "日期",
           # long_click: Keyboard_Cyrillic,
           # hint: "[   ]",
         }
@@ -4725,30 +4729,33 @@ preset_keyboards:
         }
       - {
           click: "j",
+          long_click: ";",
+          swipe_down: ";",
+          hint: ";",
           # long_click: Keyboard_Hiragana,
           # swipe_left: "「",
           # swipe_right: "」",
-          swipe_down: ";",
-          hint: ";",
           # hint: "「   」",
           # key_text_color: on_key_text_color,
         }
       - {
           click: "k",
+          long_click: "<",
+          swipe_down: "{",
+          hint: "{",
           # long_click: Keyboard_Katakana,
           # swipe_left: "『",
           # swipe_right: "』",
-          swipe_down: "{",
-          hint: "{",
           # hint: "『   』",
         }
       - {
           click: "l",
+          long_click: ">",
+          swipe_down: "}",
+          hint: "}",
           # long_click: Keyboard_Hangul,
           # swipe_left: "【",
           # swipe_right: "】",
-          swipe_down: "}",
-          hint: "}",
           # hint: "【   】",
         }
       - { width: 5 }
@@ -4786,9 +4793,9 @@ preset_keyboards:
           swipe_down: Keyboard_clipboard,
           hint: "剪贴板",
         }
-      - { click: "b", }
-      - { click: "n", }
-      - { click: "m", }
+      - { click: "b", long_click: "‘’", swipe_down: "‘’",  }
+      - { click: "n", long_click: "“”", swipe_down: "“”",  }
+      - { click: "m", long_click: "?", swipe_down: "?",  }
       - {
           click: BackSpace,
           swipe_down: Delete,
@@ -4843,10 +4850,13 @@ preset_keyboards:
       - {
           click: ".",
           label: 。,
-          long_click: "?",
-          swipe_up: "?",
-          swipe_down: "・",
-          hint: "・",
+          long_click: Commit_Dot,
+          swipe_down: Commit_Dot,
+          hint: ".",
+          # long_click: "?",
+          # swipe_up: "?",
+          # swipe_down: "・",
+          # hint: "・",
           key_text_color: one_color,
         }
       - {
@@ -4953,7 +4963,7 @@ preset_keyboards:
           click: Keyboard_default,
           width: 17.25,
           long_click: Number_Lua,
-          swipe_down: Date_Lua,
+          swipe_down: Lunar_Lua,
           hint: "年月日",
           key_back_color: off_key_back_color,
           key_text_color: off_key_text_color,
