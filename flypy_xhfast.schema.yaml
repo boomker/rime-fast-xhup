@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2025.12.03
+  version: 2025.12.12
   author:
     - boomker
   description: |
@@ -286,7 +286,7 @@ punctuator:
     ">": [">", 》, 〉, », ⟩, ˃, ˲]
     "/": ["/", ／, ÷]
     "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
-    "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
+    "`": ["`", "```", ‵, ‶, ‷, ′, ″]
     "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
     "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
     "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
@@ -323,9 +323,9 @@ speller:
     __include: algebra_common
 
   # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
-  # __patch:
-  #   algebra/+:
-  #     __include: flypy_chord_rule:/patch/speller/algebra
+  __patch:
+    algebra/+:
+      __include: flypy_chord_rule:/patch/speller/algebra
 
 algebra_common:
   - erase/^ng\[kk$/            # 取消「唔 ng」的独占
