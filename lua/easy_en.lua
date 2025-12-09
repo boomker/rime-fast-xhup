@@ -28,8 +28,8 @@ function easy_en.init(env)
 end
 
 function easy_en.fini(env)
-    env.mem:disconnect()
     if env.mem then
+        env.mem:disconnect()
         env.mem = nil
     end
 end

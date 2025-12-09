@@ -18,8 +18,8 @@ end
 function flypy_fixed.fini(env)
     -- env.memory:disconnect()
     -- if env.memory then env.memory = nil end
-    env.script_translator:disconnect()
     if env.script_translator then
+        env.script_translator:disconnect()
         env.script_translator = nil
     end
 end

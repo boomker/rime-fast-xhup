@@ -153,6 +153,7 @@ function processor.func(key, env)
     local key_value = key:repr()
     local schema = env.engine.schema
     local context = env.engine.context
+    local config = schema.config
     local input_code = context.input
     local preedit_code = context:get_script_text()
     local page_size = schema.page_size
@@ -161,17 +162,17 @@ function processor.func(key, env)
     local composition = context.composition
 
     if key.keycode == 34 then key_value = "quotedbl" end
-    local ascii_punct = context:get_option("ascii_punct")
-    if (key_value == "quotedbl") and (env.dist_code:match("^fcitx%-rime$")
-            or ascii_punct or env.system_name:lower():match("android"))
-    then
-        return 2
-    end
+    local ascii_mode = context:get_option("ascii_mode")
 
-    if (key_value == "quotedbl") and pairTable[key_value] and composition:empty() then
-        context:push_input(pairTable[key_value][1])
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1                                    -- kAccept
+    if (key_value == "quotedbl") and composition:empty() and (not ascii_mode) then
+        if (env.dist_code:match("^fcitx%-rime$") or env.system_name:lower():match("android")) then
+            context:push_input(pairTable["d"][1])
+            context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+        else
+            context:push_input(pairTable[key_value][1])
+            context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+        end
+        return 1                                        -- kAccept
     end
 
     if composition:empty() then return 2 end
@@ -210,12 +211,22 @@ function processor.func(key, env)
         return 1
     end
 
+    local cand_menu_layout = config:get_bool("style/horizontal")
+    local candidate_layout = config:get_string("style/candidate_list_layout")
     if context:has_menu() and (selected_cand_index > 0) and input_code:match("^[`<%(%[{]$") then
-        local select_key = selected_cand_index
-        for i = 1, tonumber(selected_cand_index) do
-            env.engine:process_key(KeyEvent(tostring("Down")))
-        end
-        if select_key ~= segment.selected_index then
+        if (env.dist_code:lower() == "trime") then
+            for o = 1, tonumber(selected_cand_index) do
+                env.engine:process_key(KeyEvent(tostring("Right")))
+            end
+        elseif (env.dist_code:lower() == "fcitx-rime") then
+            for k = 1, tonumber(selected_cand_index) do
+                env.engine:process_key(KeyEvent(tostring("Down")))
+            end
+        elseif (candidate_layout == "stacked") or (cand_menu_layout == false) then
+            for i = 1, tonumber(selected_cand_index) do
+                env.engine:process_key(KeyEvent(tostring("Down")))
+            end
+        else
             for j = 1, tonumber(selected_cand_index) do
                 env.engine:process_key(KeyEvent(tostring("Right")))
             end

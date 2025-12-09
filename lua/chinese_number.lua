@@ -1,11 +1,11 @@
 -- 来源 https://github.com/yanhuacuo/98wubi-tables > http://98wb.ysepan.com/
 -- 数字、金额大写 (任意大写字母引导+数字)
 
--- local logEnable, log = pcall(require, "lib/logger")
+-- local logEnable, logger = pcall(require, "lib/logger")
 -- if logEnable then
---     log.writeLog('\n')
---     log.writeLog('--- start ---')
---     log.writeLog('log from chinese_number.lua\n')
+--     logger.writeLog('\n')
+--     logger.writeLog('--- start ---')
+--     logger.writeLog('log from chinese_number.lua\n')
 -- end
 
 local n2c = {
@@ -20,12 +20,43 @@ local n2c = {
     ["8"] = "八",
     ["9"] = "九",
     ["d"] = "点",
+    ["-"] = "负",
 }
 
-local function genChineseSeq(num)
-    if not num:match("^%d") then
-        return "请输入数字"
+-- 定义函数：将数字转换为国际千分位格式
+local function format_number_comma(num)
+    -- 1. 将输入转换为字符串
+    local str = tostring(num)
+
+    -- 2. 分离整数部分和小数部分
+    -- ^(-?%d+) : 捕获开头可能带负号的整数部分
+    -- (%.?%d*)$ : 捕获可能存在的小数点及后续数字
+    local int_part, dec_part = string.match(str, "^(-?%d+)(%.?%d*)$")
+
+    -- 如果解析失败（例如输入非数字），直接返回原值
+    if not int_part then return num end
+
+    -- 3. 循环处理整数部分，插入逗号
+    while true do
+        -- string.gsub 返回两个值：替换后的字符串和替换次数
+        -- 模式解释：^(-?%d+)(%d%d%d)
+        -- 它的作用是找到 "一串数字" 后跟 "最后3个数字"，并在中间加逗号
+        local formatted, k = string.gsub(int_part, "^(-?%d+)(%d%d%d)", "%1,%2")
+
+        -- 如果替换次数为0，说明没有更多的千分位需要处理，跳出循环
+        if k == 0 then
+            break
+        end
+
+        -- 更新整数部分，继续下一次循环
+        int_part = formatted
     end
+
+    -- 4. 拼接整数部分和小数部分并返回
+    return int_part .. dec_part
+end
+
+local function genChineseSeq(num)
     local result = ""
     for i = 1, #num do
         local _cs = string.sub(num, i, i)
@@ -33,52 +64,6 @@ local function genChineseSeq(num)
         result = result .. n2c[cs]
     end
     return result
-end
-
-local function splitNumPart(str)
-    local part = {}
-    part.int, part.dot, part.dec = string.match(str, "^(%d*)(%.?)(%d*)")
-    return part
-end
-
-local function decimal_func(str, posMap, valMap)
-    local dec
-    posMap = posMap or { [1] = "角", [2] = "分", [3] = "厘", [4] = "毫" }
-    valMap = valMap
-        or {
-            [0] = "零",
-            "壹",
-            "贰",
-            "叁",
-            "肆",
-            "伍",
-            "陆",
-            "柒",
-            "捌",
-            "玖",
-        }
-    if #str > 4 then
-        dec = string.sub(tostring(str), 1, 4)
-    else
-        dec = tostring(str)
-    end
-    dec = string.gsub(dec, "0+$", "")
-
-    if dec == "" then
-        return "整"
-    end
-
-    local result = ""
-    for pos = 1, #dec do
-        local val = tonumber(string.sub(dec, pos, pos))
-        if val ~= 0 then
-            result = result .. valMap[val] .. posMap[pos]
-        else
-            result = result .. valMap[val]
-        end
-    end
-    result = result:gsub(valMap[0] .. valMap[0], valMap[0])
-    return result:gsub(valMap[0] .. valMap[0], valMap[0])
 end
 
 -- 把数字串按千分位四位数分割，进行转换为中文
@@ -139,6 +124,84 @@ end
 
 -- 数值转换为中文
 -- flag=0中文小写反之为大写
+local function decNumber2cnChar(num, flag)
+    local result, wordFigure
+    result = ""
+    if tonumber(flag) < 1 then
+        wordFigure = {
+            "〇",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六",
+            "七",
+            "八",
+            "九",
+        }
+    else
+        wordFigure = {
+            "零",
+            "壹",
+            "贰",
+            "叁",
+            "肆",
+            "伍",
+            "陆",
+            "柒",
+            "捌",
+            "玖",
+        }
+    end
+    if not tostring(num) then return "" end
+    for pos = 1, string.len(num) do
+        result = result .. wordFigure[tonumber(string.sub(num, pos, pos) + 1)]
+    end
+    result = result:gsub(wordFigure[1] .. wordFigure[1], wordFigure[1])
+    return result:gsub(wordFigure[1] .. wordFigure[1], wordFigure[1])
+end
+
+local function decimalNumber2cuChar(str, posMap, valMap)
+    local dec
+    posMap = posMap or { [1] = "角", [2] = "分", [3] = "厘", [4] = "毫" }
+    valMap = valMap
+        or {
+            [0] = "零",
+            "壹",
+            "贰",
+            "叁",
+            "肆",
+            "伍",
+            "陆",
+            "柒",
+            "捌",
+            "玖",
+        }
+    if #str > 4 then
+        dec = string.sub(tostring(str), 1, 4)
+    else
+        dec = tostring(str)
+    end
+    dec = string.gsub(dec, "0+$", "")
+
+    if dec == "" then
+        return "整"
+    end
+
+    local result = ""
+    for pos = 1, #dec do
+        local val = tonumber(string.sub(dec, pos, pos))
+        if val ~= 0 then
+            result = result .. valMap[val] .. posMap[pos]
+        else
+            result = result .. valMap[val]
+        end
+    end
+    result = result:gsub(valMap[0] .. valMap[0], valMap[0])
+    return result:gsub(valMap[0] .. valMap[0], valMap[0])
+end
+
 local function number2cnChar(num, flag, digitUnit, wordFigure)
     local result
     num = tonumber(num) or 0
@@ -196,56 +259,28 @@ local function number2cnChar(num, flag, digitUnit, wordFigure)
             result = "请输入数字!"
         end
     else
-        return "请输入数字"
+        return "请输入数字!"
     end
     return result
 end
 
-local function number2zh(num, t)
-    local result, wordFigure
-    result = ""
-    if tonumber(t) < 1 then
-        wordFigure = {
-            "〇",
-            "一",
-            "二",
-            "三",
-            "四",
-            "五",
-            "六",
-            "七",
-            "八",
-            "九",
-        }
-    else
-        wordFigure = {
-            "零",
-            "壹",
-            "贰",
-            "叁",
-            "肆",
-            "伍",
-            "陆",
-            "柒",
-            "捌",
-            "玖",
-        }
-    end
-    if not tostring(num) then
-        return ""
-    end
-    for pos = 1, string.len(num) do
-        result = result .. wordFigure[tonumber(string.sub(num, pos, pos) + 1)]
-    end
-    result = result:gsub(wordFigure[1] .. wordFigure[1], wordFigure[1])
-    return result:gsub(wordFigure[1] .. wordFigure[1], wordFigure[1])
+local function sign2char(str)
+    if not str then return "" end
+    if str == "-" then return "负" end
+    return ""
 end
 
-local function number_translatorFunc(num)
+local function splitNumPart(str)
+    local part = {}
+    part.sign, part.int, part.dot, part.dec = string.match(str, "^(%-?)(%d*)(%.?)(%d*)")
+    return part
+end
+
+local function number_translator(num)
     local numberPart = splitNumPart(num)
     local result = {}
     table.insert(result, {
-        number2cnChar(numberPart.int, 1) .. decimal_func(numberPart.dec, {
+        sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 1) .. decimalNumber2cuChar(numberPart.dec, {
             [1] = "角",
             [2] = "分",
             [3] = "厘",
@@ -265,7 +300,7 @@ local function number_translatorFunc(num)
         "〔金额大写〕",
     })
     table.insert(result, {
-        number2cnChar(numberPart.int, 0) .. decimal_func(numberPart.dec, {
+        sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 0) .. decimalNumber2cuChar(numberPart.dec, {
             [1] = "角",
             [2] = "分",
             [3] = "厘",
@@ -286,26 +321,27 @@ local function number_translatorFunc(num)
     })
     if numberPart.dot then
         table.insert(result, {
-            number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "点" })
-                .. number2zh(numberPart.dec, 0),
-            "〔数字小写〕",
+            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 1, { "萬", "億" }, { "零", "壹", "拾", "点" })
+            .. decNumber2cnChar(numberPart.dec, 1),
+            "〔数字大写〕",
         })
         table.insert(result, {
-            number2cnChar(numberPart.int, 1, { "萬", "億" }, { "〇", "一", "十", "点" })
-                .. number2zh(numberPart.dec, 1),
-            "〔数字大写〕",
+            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "点" })
+            .. decNumber2cnChar(numberPart.dec, 0),
+            "〔数字小写〕",
         })
     else
         table.insert(result, {
-            number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "" }),
-            "〔数字小写〕",
+            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 1, { "萬", "億" }, { "零", "壹", "拾", "" }),
+            "〔数字大写〕",
         })
         table.insert(result, {
-            number2cnChar(numberPart.int, 1, { "萬", "億" }, { "零", "壹", "拾", "" }),
-            "〔数字大写〕",
+            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "" }),
+            "〔数字小写〕",
         })
     end
     table.insert(result, { genChineseSeq(num), "〔数字序数〕" })
+    table.insert(result, { format_number_comma(num), "〔国际标读〕" })
     return result
 end
 
@@ -321,21 +357,23 @@ function M.init(env)
     local config = env.engine.schema.config
     local cn_pattern_key = "recognizer/patterns/chinese_number"
     local cn_pattern = config:get_string(cn_pattern_key) or "nN"
-    local current_speller = config:get_string("speller/alphabet")
     local default_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
     local current_labels = config:get_string("menu/alternative_select_labels")
-    M.alter_labels = M.alter_labels or current_labels or default_labels
-    M.speller_string = M.speller_string or current_speller -- 缓存speller
+    env.user_distribute_name = rime_api:get_distribution_code_name()
+    env.alter_labels = env.alter_labels or current_labels or default_labels
+    env.current_speller = config:get_string("speller/alphabet")
+    M.speller_string = M.speller_string or env.current_speller -- 缓存speller
     env.prompt = config:get_string("chinese_number/tips") or "中文数字"
     env.trigger_prefix = cn_pattern:match("%^?%(?([a-zA-Z/|]+)%)?.*") or "nN"
-    env.alph_select_keys = config:get_string("chinese_number/select_keys") or "sdfjkl"
+    env.alpha_select_keys = config:get_string("chinese_number/select_keys") or "sdfjklm"
     env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
         local segment = ctx.composition:back()
+        if env.user_distribute_name:lower():match("trime") then return end
         if segment and segment.prompt:match(env.prompt) then
-            config:set_string("speller/alphabet", M.speller_string)
-            config:set_int("menu/alternative_select_keys", env.alter_select_keys)
-            env:Config_set("menu/alternative_select_labels", M.alter_labels)
+            env:Config_set("speller/alphabet", M.speller_string)
+            env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
+            env:Config_set("menu/alternative_select_labels", env.alter_labels)
             env.engine:apply_schema(Schema(schema.schema_id))
         end
     end)
@@ -353,41 +391,45 @@ function P.func(key, env)
     local schema = engine.schema
     local context = engine.context
     local input_code = context.input
-    local config = engine.schema.config
     local composition = context.composition
+
+    if (env.current_speller ~= M.speller_string) and (key:repr() == "Escape") then
+        -- logger.writeLog("sps: " .. M.speller_string .. " | labels: " .. env.alter_labels[1])
+        env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
+        env:Config_set("menu/alternative_select_labels", env.alter_labels)
+        env:Config_set("speller/alphabet", M.speller_string)
+        engine:apply_schema(Schema(schema.schema_id))
+        return 1 -- kAccepted 收下此key
+    end
     if composition:empty() then return 2 end
     local segment = composition:back()
     if not (segment and segment.menu) then return 2 end
-    local alph_labels = { "s", "d", "f", "j", "k", "l", "i", "o", "p" }
-    local _speller_str = M.speller_string:gsub("[a-z%p]", "")
+    if env.user_distribute_name:lower():match("trime") then return 2 end
+
+    local alpha_labels = { "s", "d", "f", "j", "k", "l", "m" }
+    local _speller_str = env.current_speller:gsub("[a-z%p]", "")
     local speller_str = _speller_str:gsub("[" .. env.trigger_prefix .. "]", "")
-    if input_code:match("^/nn$") or input_code:match("^nN$") or segment.prompt:match(env.prompt) then
-        config:set_string("menu/alternative_select_keys", env.alph_select_keys)
-        env:Config_set("menu/alternative_select_labels", alph_labels)
-        config:set_string("speller/alphabet", speller_str)
+    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or { "/nn", "nN" }
+    if table.find(prefix_tbl, input_code) or segment.prompt:match(env.prompt) then
+        env:Config_set("menu/alternative_select_keys", env.alpha_select_keys)
+        env:Config_set("menu/alternative_select_labels", alpha_labels)
+        env:Config_set("speller/alphabet", speller_str)
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(input_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
-    end
-    if segment.prompt:match(env.prompt) and (key:repr() == "Escape") then
-        config:set_string("speller/alphabet", M.speller_string)
-        config:set_int("menu/alternative_select_keys", env.alter_select_keys)
-        env:Config_set("menu/alternative_select_labels", M.alter_labels)
-        env.engine:apply_schema(Schema(schema.schema_id))
-        return 1 -- kAccepted 收下此key
     end
     return 2
 end
 
 function T.func(input, seg, env)
-    local pyload_str, numberPart
+    local payload_str, numberPart
     local segment = env.engine.context.composition:back()
-    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or {"/nn", "nN"}
+    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or { "/nn", "nN" }
     if seg:has_tag("chinese_number") or table.find(prefix_tbl, input) then
         segment.prompt = "〔" .. env.prompt .. "〕"
-        pyload_str = input:gsub("[%a/]+", "")
-        numberPart = number_translatorFunc(pyload_str)
-        if #numberPart > 0 then
+        payload_str = input:gsub("[%a/]+", "")
+        numberPart = (payload_str:len() > 0) and number_translator(payload_str) or nil
+        if numberPart and #numberPart > 0 then
             for i = 1, #numberPart do
                 yield(Candidate(input, seg.start, seg._end, numberPart[i][1], numberPart[i][2]))
             end

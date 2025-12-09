@@ -7,8 +7,8 @@ function T.init(env)
     local config = env.engine.schema.config
     env.name_space = env.name_space:gsub("^*", "")
     local _calc_pat = config:get_string("recognizer/patterns/calculator") or nil
-    T.prefix = _calc_pat and _calc_pat:match("%^.?([a-zA-Z/|=]+).*")
-    T.tips = config:get_string("calculator/tips") or "计算器"
+    env.prefix = _calc_pat and _calc_pat:match("%^.?([a-zA-Z/|=]+).*") or "cC"
+    env.tips = config:get_string("calculator/tips") or "计算器"
 end
 
 local function startsWith(input_str, prefix_tbl)
@@ -298,10 +298,10 @@ function T.func(input, seg, env)
     if composition:empty() then return end
     local segment = composition:back()
 
-    local trigger_tbl = T.prefix:match("|") and string.split(T.prefix, "|") or { T.prefix }
+    local trigger_tbl = env.prefix:match("|") and string.split(env.prefix, "|") or { env.prefix }
     if startsWith(input, trigger_tbl) or seg:has_tag("calculator") then
-        segment.prompt = "〔" .. T.tips .. "〕"
-        if input:match("?h$") then
+        segment.prompt = "〔" .. env.tips .. "〕"
+        if input:match("?h$") or input:match("^cC$") then
             for _, fn in pairs(table.sorted_keys(methods_desc, "len")) do
                 local fd = methods_desc[fn]
                 yield(Candidate("calc", seg.start, seg._end, fn .. ":" .. fd, ""))
