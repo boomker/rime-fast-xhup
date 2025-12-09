@@ -73,8 +73,6 @@ patch:
     enclosed_cand_chars_c: "Shift+Control+9"   # 上屏（高亮字词）
     enclosed_cand_chars_d: "Shift+Control+0"   # 上屏〔高亮字词〕
     bindings/+:
-      - {when: has_menu,  accept: Tab, send: Right}
-      - {when: composing, accept: Tab, send: Right}
       - {when: composing, accept: grave, send: "`"}          # `键 逐字追加辅码
       - {when: has_menu,  accept: semicolon,  send: 2}       # 分号用于第2候选
       - {when: has_menu,  accept: apostrophe, send: 3}       # 单引号用于第3候选
@@ -82,13 +80,14 @@ patch:
       - {when: has_menu,  accept: period, send: Page_Down}   # 句号. 下一页
       # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 返回上一页
       # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
-      # - {when: has_menu,  accept: Tab, send: Control+Right}
-      # - {when: composing, accept: Tab, send: Control+Right}
+      - {when: has_menu,  accept: Tab, send: Control+Right}
+      - {when: composing, accept: Tab, send: Control+Right}
       - {when: composing, accept: Shift+Tab, send: Control+Left}
       - {when: composing, accept: Control+i, send: Control+Left}
       - {when: composing, accept: Control+o, send: Control+Right}
       - {when: composing, accept: Control+w, send: Control+BackSpace}
-      - {when: always,  accept: Control+Shift+g, select: easy_en}
+      - {when: always,    accept: Control+Shift+grave, select: .next}     # 在最近的两个方案之间切换
+      - {when: always,    accept: Control+Shift+g, select: easy_en}
       - {when: has_menu,  accept: Control+Shift+4, toggle: emoji}
       - {when: has_menu,  accept: Control+Shift+5, toggle: charset_hint}
       - {when: has_menu,  accept: Control+Shift+6, toggle: traditionalize}
@@ -110,7 +109,7 @@ patch:
       easy_en: "^(/en|eN)[a-zA-Z*]+'?$"         # 英文方案(带中译)
       radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
-      chinese_number: "^(/nn|nN)[0-9.]+$"       # 中文大写数字(金额)
+      chinese_number: "^(/nn|nN)[0-9.-]+$"      # 中文大写数字(金额)
 
   punctuator/+:
     digit_separators: ".:"            # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
@@ -226,7 +225,7 @@ patch:
     suffix: "'"
     tips: "中文数字"
     tag: chinese_number
-    select_keys: "sdfjkl"
+    select_keys: "sdfjklm"
 
   predictor:                          # 候选字词联想预测
     db: predict.db

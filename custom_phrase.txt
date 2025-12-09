@@ -49,50 +49,10 @@
 
 ## 常用短语
 🐮🍺	nei
-微信	wx
-哪里	nl	1
-因为	yw	1
-成本	ib	3
-差别	ib	2
-初步	ib	1
-好吧	hb	1
-是吧	ub	4
-失败	ub	3
-上班	ub	2
-傻逼	ub	1
-上图	ut	4
-身体	ut	3
-视图	ut	2
-渗透	ut	1
-有吗	um	1
-什么	um	2
-哦哦	oo	3
-噢噢	oo	2
-喔喔	oo	1
-有没有	ymy	2
-也没有	ymy	1
-有没有	umu	1
-我这边	wvb	1
-你那边	nnb	2
-您那边	nnb	1
-手机号	sjh	1
-是不是	ubu	1
-怎样的	zyd	1
-为什么	wum	2
-什么鬼	umg	1
-什么鬼	smg	1
-什么情况	umqk
-什么情况	umfk
-什么意思	umys
-怎么样了	zmyl
-怎么样了	zmwl
-截图看看	jtkk
-截图看下	jtkx
+WTF	wtf	3
 又双叒叕	yyyy
 什么玩意儿	umwy
 什么玩意儿!	wtf	2
-What the fuck!	wtf	1
-WTF	wtf	3
 # 酒8	jq8	1
 # 喝9	he9	1
 Rime	rime	3
@@ -104,5 +64,4 @@ http://rime.im	rime	1
 TODO	todo
 DevOps	devo	2
 Deploy	depl	2
-Nvim	nvim	2
 NeoVim	nvim	1
