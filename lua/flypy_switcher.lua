@@ -1,4 +1,3 @@
-
 local processor = {}
 local translator = {}
 local flypy_switcher = {}
@@ -17,6 +16,7 @@ function flypy_switcher.init(env)
     env.mem = Memory(engine, schema, "translator")
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
     env.char_mode_state = context:get_option("char_mode")
+    env.user_distribute_name = rime_api:get_distribution_code_name()
     env.page_size = config:get_int("menu/page_size") or 7
     env.font_point = config:get_int("style/font_point") or 20
     env.line_spacing = config:get_int("style/line_spacing") or 5
@@ -24,6 +24,7 @@ function flypy_switcher.init(env)
     env.preedit_format = config:get_list("translator/preedit_format") or nil
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
     env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
+    env.cand_menu_layout = config:get_bool("style/horizontal") or true
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
@@ -63,8 +64,10 @@ function flypy_switcher.init(env)
 end
 
 function flypy_switcher.fini(env)
-    env.mem:disconnect()
-    if env.mem then env.mem = nil end
+    if env.mem then
+        env.mem:disconnect()
+        env.mem = nil
+    end
 end
 
 function processor.func(key, env)
@@ -82,7 +85,7 @@ function processor.func(key, env)
         if segment.prompt:match(env.easy_en_prompt) and env.en_comment_overwrite then
             config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
         elseif segment.prompt:match(env.easy_en_prompt) and not env.en_comment_overwrite then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true) -- 重写英文注释为中文
+            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true)  -- 重写英文注释为中文
         elseif (not env.cn_comment_overwrite) and (env.comment_hints > 0) then
             config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
         elseif env.cn_comment_overwrite and (env.comment_hints > 0) then
@@ -97,7 +100,7 @@ function processor.func(key, env)
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1 -- kAccept
+        return 1                                    -- kAccept
     end
 
     if context:has_menu() and (key:repr() == env.commit_comment_key) then
@@ -113,13 +116,13 @@ function processor.func(key, env)
         env.engine:apply_schema(Schema("easy_en"))
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1 -- kAccept
+        return 1                                    -- kAccept
     elseif (key:repr() == env.switch_english_key) and (schema.schema_id == "easy_en") then
         context:clear()
         env.engine:apply_schema(Schema("flypy_xhfast"))
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1 -- kAccept
+        return 1                                    -- kAccept
     end
 
     if segment.prompt:match("切换配置选项") then
@@ -131,13 +134,22 @@ function processor.func(key, env)
         local cand_text = selected_cand.text:gsub(" ", "")
 
         if cand_text == "切换纵横布局样式" then
-            local switch_to_val = ""
-            if env.candidate_layout == "stacked" then
-                switch_to_val = "linear"
+            local switch_to_val = nil
+            if env.user_distribute_name:lower():match("weasel") then
+                if env.cand_menu_layout then
+                    switch_to_val = false
+                else
+                    switch_to_val = true
+                end
+                config:set_bool("style/horizontal", switch_to_val) -- 重写 horizontal
             else
-                switch_to_val = "stacked"
+                if env.candidate_layout == "stacked" then
+                    switch_to_val = "linear"
+                else
+                    switch_to_val = "stacked"
+                end
+                config:set_string("style/candidate_list_layout", switch_to_val) -- 重写 horizontal
             end
-            config:set_string("style/candidate_list_layout", switch_to_val) -- 重写 horizontal
         elseif cand_text == "切换候选文字方向" then
             local switch_to_val = ""
             if env.text_orientation == "horizontal" then
@@ -193,7 +205,7 @@ function processor.func(key, env)
             if env:Config_get("punctuator/half_shape/;") ~= "；" then
                 env:Config_set("punctuator/half_shape/;", "；")
             else
-                env:Config_set("punctuator/half_shape/;", {";", "；"})
+                env:Config_set("punctuator/half_shape/;", { ";", "；" })
             end
         elseif cand_text == "恢复常规候选按键" then
             config:set_int("menu/alternative_select_keys", 123456789)
@@ -257,7 +269,7 @@ function translator.func(input, seg, env)
     local char_mode_state = context:get_option("char_mode")
 
     local trigger_pattern = env.switch_options_trigger
-    local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or {"/so", "sO"}
+    local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or { "/so", "sO" }
 
     if seg:has_tag("switch_options") or table.find(trigger_prefix_tbl, input) then
         segment.prompt = "〔" .. "切换配置选项" .. "〕"

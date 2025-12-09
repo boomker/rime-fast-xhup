@@ -8,3 +8,5 @@ version: 2025.01.11
 import_tables:
   - cn_dicts/flyhe_chars        # 字表
   - cn_dicts/flypy_base         # 基础词库
+  - cn_dicts/flypy_sogou        # 网络流行热词
+  - cn_dicts/flypy_stock        # A 股市场股票

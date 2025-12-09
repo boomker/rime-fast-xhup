@@ -1,17 +1,19 @@
 -- author: ChaosAlphard, boomker
 
+require("lib/string")
 local T = {}
 
 function T.init(env)
     local config = env.engine.schema.config
     env.name_space = env.name_space:gsub("^*", "")
     local _calc_pat = config:get_string("recognizer/patterns/calculator") or nil
-    T.prefix = _calc_pat and _calc_pat:match("%^.?([a-zA-Z/=]+).*") or "/="
-    T.tips = config:get_string("calculator/tips") or "计算器"
+    env.prefix = _calc_pat and _calc_pat:match("%^.?([a-zA-Z/|=]+).*") or "cC"
+    env.tips = config:get_string("calculator/tips") or "计算器"
 end
 
-local function startsWith(str, start)
-    return string.sub(str, 1, string.len(start)) == start
+local function startsWith(input_str, prefix_tbl)
+    local match_str = input_str:match(prefix_tbl[1]) or input_str:match(prefix_tbl[2])
+    return match_str and string.sub(input_str, 1, match_str:len()) == match_str
 end
 
 -- 函数表
@@ -296,23 +298,21 @@ function T.func(input, seg, env)
     if composition:empty() then return end
     local segment = composition:back()
 
-    if startsWith(input, T.prefix) or (seg:has_tag("calculator")) then
-        segment.prompt = "〔" .. T.tips .. "〕"
-        if input:match("?h$") then
+    local trigger_tbl = env.prefix:match("|") and string.split(env.prefix, "|") or { env.prefix }
+    if startsWith(input, trigger_tbl) or seg:has_tag("calculator") then
+        segment.prompt = "〔" .. env.tips .. "〕"
+        if input:match("?h$") or input:match("^cC$") then
             for _, fn in pairs(table.sorted_keys(methods_desc, "len")) do
                 local fd = methods_desc[fn]
                 yield(Candidate("calc", seg.start, seg._end, fn .. ":" .. fd, ""))
             end
         end
         -- 提取算式
-        local express = input:gsub(T.prefix, ""):gsub("^cC", "")
+        local express = input:gsub(trigger_tbl[1], "") or input:gsub(trigger_tbl[2], "")
+
         -- 算式长度 < 2 直接终止(没有计算意义)
-        if (string.len(express) < 2) and not calc_methods[express] then
-            return
-        end
-        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then
-            return
-        end
+        if (string.len(express) < 2) and not calc_methods[express] then return end
+        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then return end
         local code = replaceToFactorial(express)
 
         local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)

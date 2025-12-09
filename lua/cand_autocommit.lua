@@ -5,9 +5,9 @@ require("lib/rime_helper")
 local P = {}
 local T = {}
 local F = {}
-local word_auto_commit = {}
+local M = {}
 
-function word_auto_commit.init(env)
+function M.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
@@ -16,9 +16,11 @@ function word_auto_commit.init(env)
     env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
-function word_auto_commit.fini(env)
-    env.script_tran:disconnect()
-    if env.script_tran then env.script_tran = nil end
+function M.fini(env)
+    if env.script_tran then
+        env.script_tran:disconnect()
+        env.script_tran = nil
+    end
 end
 
 function P.func(key, env)
@@ -178,6 +180,7 @@ function F.func(input, env)
         for _, cand in ipairs(single_char_cands) do
             local input_shape_code = string.sub(preedit_code, 4):gsub("/", "")
             local current_cand_shape_code = cand.comment:match("%l") and cand.comment:sub(2):gsub("%[", "")
+            if not current_cand_shape_code then return end
             local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, "", 1)
             local comment = (string.len(remain_shape_code) > 0) and string.format("~%s", remain_shape_code) or " "
             ---@diagnostic disable-next-line: missing-parameter
@@ -192,18 +195,18 @@ end
 
 return {
     processor = {
-        init = word_auto_commit.init,
+        init = M.init,
         func = P.func,
-        fini = word_auto_commit.fini,
+        fini = M.fini,
     },
     translator = {
-        init = word_auto_commit.init,
+        init = M.init,
         func = T.func,
-        fini = word_auto_commit.fini,
+        fini = M.fini,
     },
     filter = {
-        init = word_auto_commit.init,
+        init = M.init,
         func = F.func,
-        fini = word_auto_commit.fini,
+        fini = M.fini,
     },
 }

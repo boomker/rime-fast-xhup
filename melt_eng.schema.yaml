@@ -14,7 +14,6 @@ schema:
 
 engine:
   processors:
-    # - lua_processor@*en-word_append_space
     - ascii_composer
     - key_binder
     - speller

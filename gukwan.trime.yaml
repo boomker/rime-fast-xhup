@@ -71,15 +71,15 @@ style:
   locale: zh_CN #沒什麼
   speech_opencc_config: none #好說的
   #字體
-  text_font: ChocolateClassicalSans-Regular.otf #打出編碼字體
-  label_font: ChocolateClassicalSans-Regular.otf #懸浮窗序號字體
-  candidate_font: ShangguSansTC-Regular.ttf #候選項字體
-  comment_font: ChocolateClassicalSans-Regular.otf #候選項註釋字體
-  #hanb_font:                                      #後備字體
-  #latin_font:                                     #候選項及註釋的拉丁字體
-  key_font: WD-XLLubrifontTC-Regular.otf #按鍵字體
-  #symbol_font:                                    #按鍵註釋字體
-  preview_font: WD-XLLubrifontTC-Regular.otf #按鍵氣泡字體
+  text_font: MiSans-Regular.otf                     #打出編碼字體
+  label_font: MiSans-Regular.otf                    #懸浮窗序號字體
+  candidate_font: MiSans-Regular.otf                #候選項字體
+  comment_font: MiSans-Regular.otf                  #候選項註釋字體
+  hanb_font: MiSans-L3.otf                          #後備字體
+  #latin_font:                                      #候選項及註釋的拉丁字體
+  key_font: MapleMonoNormal-NF-CN-Regular.ttf       #按鍵字體
+  symbol_font: MapleMonoNormal-NF-CN-Regular.ttf    #按鍵註釋字體
+  preview_font: MapleMonoNormal-NF-CN-Regular.ttf   #按鍵氣泡字體
   #尺寸
   text_size: 14 #編碼字號
   label_text_size: 20 #候選序號字號
@@ -591,6 +591,52 @@ colors:
 
 preset_color_schemes:
   default:
+    name: "白夜 / White Night"
+    author: "Windy_D"
+    dark_scheme: by_astralwelkin
+    #懸浮窗顏色
+    border_color: *light_border_color
+    label_color: *light_sub_candidate_color
+    hilited_text_color: *light_code_text_color
+    text_color: *light_code_unparsed_color
+    hilited_back_color: *light_bg_color
+    text_back_color: *light_bg_color
+    ##候選區顏色
+    back_color: *light_bg_color
+    candidate_background: *light_bg_color
+    hilited_candidate_back_color: *light_main_color
+    candidate_separator_color: *pure_black
+    candidate_text_color: *light_sub_candidate_color
+    hilited_candidate_text_color: *light_main_text_color
+    comment_text_color: *light_sub_comment_color
+    hilited_comment_text_color: *light_comment_color
+    ##鍵盤顏色
+    key_back_color: *light_main_color
+    hilited_key_back_color: *light_border_color
+    key_text_color: *light_main_text_color
+    key_symbol_color: *light_key_hint_color
+    hilited_key_symbol_color: *pure_black
+    preview_back_color: *light_border_color
+    preview_text_color: *pure_black
+    keyboard_back_color: *light_bg_color
+    key_border_color: *light_border_color
+    off_key_back_color: *light_func_key_bg_color
+    off_key_text_color: *light_func_key_text_color
+    hilited_off_key_back_color: *light_func_key_pressed_bg_color
+    hilited_off_key_text_color: *light_func_key_pressed_text_color
+    on_key_back_color: *light_shift_lock_bg_color
+    hilited_on_key_back_color: *light_shift_lock_pressed_bg_color
+    on_key_text_color: *light_shift_lock_text_color
+    hilited_on_key_text_color: *light_shift_lock_pressed_text_color
+    enter_bg_color: *light_enter_bg_color
+    enter_text_color: *light_enter_text_color
+    enter_pressed_bg_color: *light_enter_pressed_bg_color
+    enter_pressed_text_color: *light_enter_pressed_text_color
+    liquid_keyboard_background: *light_bg_color
+    long_text_back_color: *light_main_color
+    one_color: *light_func_key_text_color #off
+
+  bk_gukwan:
     name: "菊韻 / Gukwan"
     author: "Hoengsaan (Lingdai)"
     #懸浮窗顏色
@@ -4793,8 +4839,8 @@ preset_keyboards:
           swipe_down: Keyboard_clipboard,
           hint: "剪贴板",
         }
-      - { click: "b", long_click: "‘’", swipe_down: "‘’",  }
-      - { click: "n", long_click: "“”", swipe_down: "“”",  }
+      - { click: "b", long_click: "'", swipe_down: "'",  }
+      - { click: "n", long_click: '"', swipe_down: '"',  }
       - { click: "m", long_click: "?", swipe_down: "?",  }
       - {
           click: BackSpace,
@@ -5030,7 +5076,7 @@ preset_keyboards:
       #第二行
       - { click: copy, long_click: copy_all, key_text_size: 20 }
       - { click: Left, key_text_size: 24 }
-      - { click: Shift_L, label: "選擇", key_text_size: 20 }
+      - { click: Shift_L, label: "选择", key_text_size: 20 }
       - { click: Right, key_text_size: 24 }
       - { click: Keyboard_clipboard, key_text_size: 20 }
       #第三行

@@ -15,7 +15,6 @@ schema:
 
 engine:
   processors:
-    # - lua_processor@*en-word_append_space
     - lua_processor@*flypy_switcher*processor
     - ascii_composer
     - key_binder

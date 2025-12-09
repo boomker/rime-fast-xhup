@@ -18,15 +18,11 @@ function processor.func(key, env)
     local segment = composition:back()
     if not (segment and segment.menu) then return kNoop end
 
-    if key_value == "Escape" then
-        context:clear()
-        return kAccepted
-    end
     local trigger_prefix = config:get_string("punctuator/symbol_menu_prefix") or '/vs'
     local symbol_normal_prefix = config:get_string("punctuator/symbol_normal_prefix") or '/'
     local fallback_key = config:get_string("key_binder/symbol_menu_fallback") or "slash"
 
-    if input_code:match("^" .. symbol_normal_prefix .. "[a-z]+$") and (key_value == fallback_key) then
+    if context:has_menu() and input_code:match("^" .. symbol_normal_prefix .. "[a-z]+$") and (key_value == fallback_key) then
         context:pop_input(#input_code)
         context:push_input(trigger_prefix)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单

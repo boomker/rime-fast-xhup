@@ -52,6 +52,7 @@ engine:
     - table_translator@melt_eng
     - table_translator@idiom_phrase
     - table_translator@custom_phrase
+    # - lua_translator@*fly_fixed*translator            # 抑制分词错误的简拼候选项
   filters:
     - simplifier@tradition                            # 简繁切换
     - uniquifier                                      # 只能放到最后!
@@ -73,17 +74,18 @@ translator:
   dictionary: flyhe_fast
   spelling_hints: 1                 # `0`: 关闭单字编码提示
   initial_quality: 1.3
+  enable_encoder: false
   enable_user_dict: true            # 开启用户词库
   enable_completion: true           # 启用输入补全
-  encode_commit_history: true       # 历史上屏自动编码成词
-  contextual_suggestions: true      # 开启语言模型优化候选
   enable_word_completion: true      # 4 音节以上的词条才补全
-  sentence_over_completion: true    # 逐键提示时智能组句〔仅script_translator有效〕
+  contextual_suggestions: true      # 开启语言模型优化候选
   # max_homophones: 7
   # max_homographs: 7
   # max_phrase_length: 5
-  # enable_encoder: false
+  # strict_spelling: true
   # always_show_comments: true
+  # encode_commit_history: true     # 历史上屏自动编码成词
+  # sentence_over_completion: true  # 逐键提示时智能组句〔仅script_translator有效〕
   # disable_user_dict_for_patterns:
   #   - '^[a-z][a-z]?$'             # 单字不调频
   # preedit_format:
@@ -94,7 +96,7 @@ translator:
 # 次翻译器, 英文
 melt_eng:                           # 英文输入
   dictionary: melt_eng
-  initial_quality: 1.1
+  initial_quality: 0.8
   enable_encoder: false
   enable_sentence: false
   enable_user_dict: false
@@ -123,9 +125,9 @@ idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
 
 # 简体转繁体
 tradition:                          # 简繁转换
-  tips: none                    # 转换提示: all | char 仅单字显示 | none 不显示
-  tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
-  opencc_config: s2t.json       # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  tips: none                        # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                       # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  opencc_config: s2t.json           # s2t.json | s2hk.json | s2tw.json | s2twp.json
   option_name: traditionalize
 
 # 处理符合特定规则的输入码，如网址、反查
@@ -194,15 +196,16 @@ key_binder:
     - {when: composing, accept: Control+i, send: Control+Left}
     - {when: composing, accept: Control+o, send: Control+Right}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
-    - {when: has_menu, accept: Control+Shift+slash, toggle: emoji}
+    - {when: always, accept: Control+Shift+grave, select: .next}               # 在最近的两个方案之间切换
     - {when: always, accept: "Control+comma", toggle: ascii_punct}
     - {when: always, accept: "Control+period", toggle: full_shape}
-    - {when: always, accept: "Control+slash", toggle: traditionalize}
+    - {when: has_menu, accept: Control+Shift+4, toggle: emoji}
+    - {when: has_menu, accept: "Control+Shift+5", toggle: traditionalize}
 
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`/
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " "
@@ -225,21 +228,17 @@ algebra_common:
   # - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|   # Flypy: AB/CD
   # - derive|^(\w+)\[(\w)(\w)$|$1/$2|     # Flypy: AB/C
   # - derive/^(\w+)\[(\w)(\w)$/$1~$3/     # Flypy: AB~D
-  - derive/^(\w+)\[(\w)(\w)$/$1~$2$3/     # Flypy: AB~CD
-  - derive/^(\w+)\[(\w)(\w)$/$1~$2/       # Flypy: AB~C
+  - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/     # Flypy: AB~CD
+  - derive/^(\w+)\[(\w)(\w)$/$1`$2/       # Flypy: AB~C
   - derive/^(\w+)\[(\w)(\w)$/$1/          # Flypy: AB
-  - derive/~//                            # 直接辅码(ABC[D])
+  - derive/`//                            # 直接辅码(ABC[D])
 
   - derive/^([qx])v/$1u/
   - derive/^([jy])u/$1v/
 
-  # 响应 ` 造词
-  # - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
-  # - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
-
   # 超级简拼, 开启后可能性能不佳, 视情况开启
-  # 输入3+个编码字符, 按下`Ctrl+0`展开超级简拼
-  # - abbrev/^(.).+$/$1/
+  - abbrev/^([a-z]).+$/$1/
+  # - fuzz/^([a-z]).+$/$1/
 
 preedit_convert_rules:
   - xform/(\w)g/$1eng/

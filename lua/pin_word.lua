@@ -3,7 +3,7 @@ require("lib/rime_helper")
 local P = {}
 local T = {}
 local F = {}
-local pin_word = {}
+local M = {}
 
 local function get_record_filename()
     local system_name = detect_os()
@@ -12,7 +12,7 @@ local function get_record_filename()
         return string.format("%s\\lua\\pin_word_record.lua", user_data_dir)
     elseif system_name:lower():match("ios") then
         user_data_dir =
-            "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+        "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
     else
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
@@ -25,17 +25,17 @@ local function write_word_to_file(env)
     local record_tailer = string.format("\nreturn pin_word_records")
     if not filename then return false end
 
-    local fd = assert(io.open(filename, "w")) --打开
+    local fd = assert(io.open(filename, "w"))            --打开
     fd:setvbuf("line")
-    fd:write(record_header) --写入文件头部
+    fd:write(record_header)                              --写入文件头部
     -- fd:flush() --刷新
     local record = table.serialize(env.pin_word_records) -- lua 的 table 对象 序列化为字符串
-    fd:write(record) --写入 序列化的字符串
-    fd:write(record_tailer) --写入文件尾部, 结束记录
-    fd:close() --关闭
+    fd:write(record)                                     --写入 序列化的字符串
+    fd:write(record_tailer)                              --写入文件尾部, 结束记录
+    fd:close()                                           --关闭
 end
 
-function pin_word.init(env)
+function M.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local ok, pin_word_records = pcall(require, "pin_word_record")
@@ -184,7 +184,7 @@ function F.func(input, env)
 end
 
 return {
-    processor = { init = pin_word.init, func = P.func },
-    translator = { init = pin_word.init, func = T.func },
-    filter = { init = pin_word.init, func = F.func },
+    processor = { init = M.init, func = P.func },
+    translator = { init = M.init, func = T.func },
+    filter = { init = M.init, func = F.func },
 }
