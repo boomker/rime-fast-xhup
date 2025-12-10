@@ -150,7 +150,7 @@ translator:
     - xform/^\w+[[](\w+)$/~$1/        # 单字编码提示只显示辅助码部分
 
 # "`" 精准造词
-make_sentence:                        # 精准造词
+make_sentence:                      # 精准造词
   prefix: "`"
   suffix: "'"
   tag: make_sentence

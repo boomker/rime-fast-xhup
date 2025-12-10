@@ -394,7 +394,6 @@ function P.func(key, env)
     local composition = context.composition
 
     if (env.current_speller ~= M.speller_string) and (key:repr() == "Escape") then
-        -- logger.writeLog("sps: " .. M.speller_string .. " | labels: " .. env.alter_labels[1])
         env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
         env:Config_set("menu/alternative_select_labels", env.alter_labels)
         env:Config_set("speller/alphabet", M.speller_string)
@@ -404,6 +403,7 @@ function P.func(key, env)
     if composition:empty() then return 2 end
     local segment = composition:back()
     if not (segment and segment.menu) then return 2 end
+    if env.alter_select_keys == env.alpha_select_keys then return 2 end
     if env.user_distribute_name:lower():match("trime") then return 2 end
 
     local alpha_labels = { "s", "d", "f", "j", "k", "l", "m" }
