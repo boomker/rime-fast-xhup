@@ -38,11 +38,11 @@ shift:
 #樣式
 style:
   #功能設定
-  auto_caps: false #自動句首大寫: true|false|ascii
+  auto_caps: false           #自動句首大寫: true|false|ascii
   candidate_use_cursor: true #高亮候選項
-  comment_on_top: true #編碼提示在上方/右側
-  horizontal: true #水平模式
-  keyboards: #用到的鍵盤
+  comment_on_top: true       #編碼提示在上方/右側
+  horizontal: true           #水平模式
+  keyboards:                 #用到的鍵盤
     - .default
     - default
     - number
@@ -66,9 +66,9 @@ style:
     - English
     - English_ASCII
   proximity_correction: true #避免按到縫隙
-  reset_ascii_mode: true #自動轉回中文
-  latin_locale: en_US #這些
-  locale: zh_CN #沒什麼
+  reset_ascii_mode: true     #自動轉回中文
+  latin_locale: en_US        #這些
+  locale: zh_CN              #沒什麼
   speech_opencc_config: none #好說的
   #字體
   text_font: MiSans-Regular.otf                     #打出編碼字體
@@ -81,35 +81,35 @@ style:
   symbol_font: MapleMonoNormal-NF-CN-Regular.ttf    #按鍵註釋字體
   preview_font: MapleMonoNormal-NF-CN-Regular.ttf   #按鍵氣泡字體
   #尺寸
-  text_size: 14 #編碼字號
-  label_text_size: 20 #候選序號字號
-  candidate_padding: 8 #候選項內邊距
-  candidate_spacing: 1 #候選項間隔
-  candidate_text_size: 20 #候選項字號
-  candidate_view_height: 26 #候選區高度
-  comment_text_size: 10 #候選項註釋字號
-  comment_height: 14 #註釋區高度
-  key_height: *36_key_height #默認鍵高
-  key_width: 10 #默認鍵寬（佔屏寬百分比）
-  key_text_size: 19 #單字符按鍵字號
-  key_long_text_size: 16 #多字符按鍵字號
-  symbol_text_size: 8 #長按標籤字號
-  round_corner: *main_round #默認按鍵圓角
-  preview_height: 56 #按鍵氣泡高度
-  preview_offset: -6 #按鍵氣泡縱向偏移（下正上負）
-  preview_text_size: 26 #氣泡字號
-  shadow_radius: 2 #按鍵字符陰影半徑
-  horizontal_gap: *hor_gap #按鍵默認水平間距
-  vertical_gap: *36_key_vert_gap #按鍵默認豎直間距
-  vertical_correction: -6 #觸摸位置修正（上正下負）
-  keyboard_padding: 5 #豎屏下鍵盤左右到屏幕左右間距
-  keyboard_padding_bottom: 5 #豎屏下鍵盤下端到屏幕下緣間距
-  keyboard_padding_land: 50 #橫屏下鍵盤左右到屏幕左右間距
+  text_size: 14                   #編碼字號
+  label_text_size: 20             #候選序號字號
+  candidate_padding: 8            #候選項內邊距
+  candidate_spacing: 1            #候選項間隔
+  candidate_text_size: 20         #候選項字號
+  candidate_view_height: 26       #候選區高度
+  comment_text_size: 10           #候選項註釋字號
+  comment_height: 14              #註釋區高度
+  key_height: *36_key_height      #默認鍵高
+  key_width: 10                   #默認鍵寬（佔屏寬百分比）
+  key_text_size: 19               #單字符按鍵字號
+  key_long_text_size: 16          #多字符按鍵字號
+  symbol_text_size: 8             #長按標籤字號
+  round_corner: *main_round       #默認按鍵圓角
+  preview_height: 56              #按鍵氣泡高度
+  preview_offset: -6              #按鍵氣泡縱向偏移（下正上負）
+  preview_text_size: 26           #氣泡字號
+  shadow_radius: 2                #按鍵字符陰影半徑
+  horizontal_gap: *hor_gap        #按鍵默認水平間距
+  vertical_gap: *36_key_vert_gap  #按鍵默認豎直間距
+  vertical_correction: -6         #觸摸位置修正（上正下負）
+  keyboard_padding: 5             #豎屏下鍵盤左右到屏幕左右間距
+  keyboard_padding_bottom: 5      #豎屏下鍵盤下端到屏幕下緣間距
+  keyboard_padding_land: 50       #橫屏下鍵盤左右到屏幕左右間距
   keyboard_padding_land_bottom: 5 #橫屏下鍵盤下端到屏幕下緣間距
-  keyboard_height: 300 #豎屏鍵盤高度
-  keyboard_height_land: 160 #橫屏下鍵盤鎖定高度
-  enter_label_mode: 0 #回車鍵標籤模式：0 自定義 | 1 僅ActionLabel | 2 ActionLabel優先 | 3 ActionLabel後備
-  enter_labels: #自定義回車鍵標籤
+  keyboard_height: 300            #豎屏鍵盤高度
+  keyboard_height_land: 160       #橫屏下鍵盤鎖定高度
+  enter_label_mode: 0             #回車鍵標籤模式：0 自定義 | 1 僅ActionLabel | 2 ActionLabel優先 | 3 ActionLabel後備
+  enter_labels:                   #自定義回車鍵標籤
     default: ↲
     done: ✓
     search: 🔍
@@ -119,23 +119,23 @@ style:
     go: ➤
   #懸浮窗口
   layout:
-    position: fixed #候選窗口位置
-    min_length: 7 #進窗最小詞長
-    max_length: 16 #超長換行極限
-    sticky_lines: 1 #固頂行數
-    max_entries: 5 #最多進窗數目
-    all_phrases: false #顯示所有長詞
-    border: 0 #候選窗口邊框
-    max_width: 450 #換行極限寬度
-    min_width: 0 #窗口最小寬度
-    margin_x: 5 #水平邊距
-    margin_y: 5 #豎直邊距
-    line_spacing: 0 #候選詞行間距
+    position: fixed            #候選窗口位置
+    min_length: 7              #進窗最小詞長
+    max_length: 16             #超長換行極限
+    sticky_lines: 1            #固頂行數
+    max_entries: 5             #最多進窗數目
+    all_phrases: false         #顯示所有長詞
+    border: 0                  #候選窗口邊框
+    max_width: 450             #換行極限寬度
+    min_width: 0               #窗口最小寬度
+    margin_x: 5                #水平邊距
+    margin_y: 5                #豎直邊距
+    line_spacing: 0            #候選詞行間距
     line_spacing_multiplier: 1 #行間距倍率
-    spacing: 1 #上下偏移量（上正下負，但 position 設置為 top_xxx 則相反）
-    round_corner: *sub_round #窗口圓角
-    alpha: 0xff #透明度
-    movable: false #是否可移動
+    spacing: 1                 #上下偏移量（上正下負，但 position 設置為 top_xxx 則相反）
+    round_corner: *sub_round   #窗口圓角
+    alpha: 0xff                #透明度
+    movable: false             #是否可移動
   window:
     - { start: "", composition: "%s", end: "", letter_spacing: 0 } #letter_spacing需要Android5.0
     - {
@@ -184,73 +184,73 @@ colors:
   - &pure_black 0x000000 #只是純黑色
   - &pure_white 0xffffff #只是純白色
   # 甲組：暗色
-  - &dark_main_color 0x030d1c #作為按鍵背景的暗藍色
-  - &dark_bg_color 0x131313 #背景的背景的暗灰色
-  - &dark_border_color 0x052a61 #作為邊框的稍亮一點點的藍色
-  - &dark_main_text_color 0xfffbe2 #作為字符主要顏色的淺黃色
-  - &dark_sub_candidate_color 0xd2cbb2 #作為非高亮候選的闇淺黃色
-  - &dark_code_text_color 0xfdf793 #已解析的編碼的黃色
-  - &dark_code_unparsed_color 0xfb4187 #未解析編碼的紅色
-  - &dark_comment_color 0xfee8ad #高亮註釋顏色
-  - &dark_sub_comment_color 0xd9c693 #其他註釋顏色
-  - &dark_func_key_bg_color 0x10052b #功能鍵背景色
-  - &dark_func_key_text_color 0xffc391 #功能鍵文本色
-  - &dark_func_key_pressed_bg_color 0x261c40 #功能鍵按下時背景色
+  - &dark_main_color 0x030d1c                  #作為按鍵背景的暗藍色
+  - &dark_bg_color 0x131313                    #背景的背景的暗灰色
+  - &dark_border_color 0x052a61                #作為邊框的稍亮一點點的藍色
+  - &dark_main_text_color 0xfffbe2             #作為字符主要顏色的淺黃色
+  - &dark_sub_candidate_color 0xd2cbb2         #作為非高亮候選的闇淺黃色
+  - &dark_code_text_color 0xfdf793             #已解析的編碼的黃色
+  - &dark_code_unparsed_color 0xfb4187         #未解析編碼的紅色
+  - &dark_comment_color 0xfee8ad               #高亮註釋顏色
+  - &dark_sub_comment_color 0xd9c693           #其他註釋顏色
+  - &dark_func_key_bg_color 0x10052b           #功能鍵背景色
+  - &dark_func_key_text_color 0xffc391         #功能鍵文本色
+  - &dark_func_key_pressed_bg_color 0x261c40   #功能鍵按下時背景色
   - &dark_func_key_pressed_text_color 0xffddc2 #功能鍵按下時文本色
-  - &dark_shift_lock_bg_color 0x14254a #Shift鎖定時背景顏色
-  - &dark_shift_lock_text_color 0xfff23b #Shift鎖定時文字顏色
+  - &dark_shift_lock_bg_color 0x14254a         #Shift鎖定時背景顏色
+  - &dark_shift_lock_text_color 0xfff23b       #Shift鎖定時文字顏色
   - &dark_shift_lock_pressed_bg_color 0x140e36 #Shift鎖定時按下的背景顏色
-  - &dark_enter_bg_color 0x024394 #回車鍵顏色
-  - &dark_enter_text_color 0xc0e8ff #回車鍵文字顏色
-  - &dark_enter_pressed_bg_color 0x01316b #回車鍵按下時顏色
-  - &dark_enter_pressed_text_color 0x86a2b3 #回車鍵按下時文字顏色
-  - &dark_key_hint_color 0x807e71 #按鍵小字顏色
+  - &dark_enter_bg_color 0x024394              #回車鍵顏色
+  - &dark_enter_text_color 0xc0e8ff            #回車鍵文字顏色
+  - &dark_enter_pressed_bg_color 0x01316b      #回車鍵按下時顏色
+  - &dark_enter_pressed_text_color 0x86a2b3    #回車鍵按下時文字顏色
+  - &dark_key_hint_color 0x807e71              #按鍵小字顏色
   # 甲組：亮色
-  - &light_main_color 0xffffff #作為按鍵背景的白色
-  - &light_bg_color 0xf1f1f1 #背景的背景的淺灰色
-  - &light_border_color 0xffedb1 #作為邊框的淺黃色
-  - &light_main_text_color 0x000000 #作為字符主要顏色的黑色
-  - &light_sub_candidate_color 0x5b5b5b #作為非高亮候選的暗灰色
-  - &light_code_text_color 0x004db5 #已解析的編碼的藍色
-  - &light_code_unparsed_color 0xcf3a00 #未解析編碼的紅色
-  - &light_comment_color 0x003595 #高亮註釋顏色
-  - &light_sub_comment_color 0x6d91d5 #其他註釋顏色
-  - &light_func_key_bg_color 0xdddddd #功能鍵背景色
-  - &light_func_key_text_color 0xe15500 #功能鍵文本色
-  - &light_func_key_pressed_bg_color 0xd2d2d2 #功能鍵按下時背景色
-  - &light_func_key_pressed_text_color 0xb55101 #功能鍵按下時文本色
-  - &light_shift_lock_bg_color 0x5c9abc #Shift鎖定時背景顏色
-  - &light_shift_lock_text_color 0xffe818 #Shift鎖定時文字顏色
-  - &light_shift_lock_pressed_bg_color 0x558aa6 #Shift鎖定時按下的背景顏色
+  - &light_main_color 0xffffff                    #作為按鍵背景的白色
+  - &light_bg_color 0xf1f1f1                      #背景的背景的淺灰色
+  - &light_border_color 0xffedb1                  #作為邊框的淺黃色
+  - &light_main_text_color 0x000000               #作為字符主要顏色的黑色
+  - &light_sub_candidate_color 0x5b5b5b           #作為非高亮候選的暗灰色
+  - &light_code_text_color 0x004db5               #已解析的編碼的藍色
+  - &light_code_unparsed_color 0xcf3a00           #未解析編碼的紅色
+  - &light_comment_color 0x003595                 #高亮註釋顏色
+  - &light_sub_comment_color 0x6d91d5             #其他註釋顏色
+  - &light_func_key_bg_color 0xdddddd             #功能鍵背景色
+  - &light_func_key_text_color 0xe15500           #功能鍵文本色
+  - &light_func_key_pressed_bg_color 0xd2d2d2     #功能鍵按下時背景色
+  - &light_func_key_pressed_text_color 0xb55101   #功能鍵按下時文本色
+  - &light_shift_lock_bg_color 0x5c9abc           #Shift鎖定時背景顏色
+  - &light_shift_lock_text_color 0xffe818         #Shift鎖定時文字顏色
+  - &light_shift_lock_pressed_bg_color 0x558aa6   #Shift鎖定時按下的背景顏色
   - &light_shift_lock_pressed_text_color 0xfff7b3 #Shift鎖定時按下的文字顏色
-  - &light_enter_bg_color 0x2682cd #回車鍵顏色
-  - &light_enter_text_color 0xbefffb #回車鍵文字顏色
-  - &light_enter_pressed_bg_color 0x0b6db3 #回車鍵按下時顏色
-  - &light_enter_pressed_text_color 0xb6edee #回車鍵按下時文字顏色
-  - &light_key_hint_color 0x0041ad #按鍵小字顏色
+  - &light_enter_bg_color 0x2682cd                #回車鍵顏色
+  - &light_enter_text_color 0xbefffb              #回車鍵文字顏色
+  - &light_enter_pressed_bg_color 0x0b6db3        #回車鍵按下時顏色
+  - &light_enter_pressed_text_color 0xb6edee      #回車鍵按下時文字顏色
+  - &light_key_hint_color 0x0041ad                #按鍵小字顏色
   # 甲組：菊韻
-  - &gukwan_main_color 0xD3A243 # 按鍵背景「枯葉」
-  - &gukwan_bg_color 0xF3D56E # 鍵盤背景「野菊」
-  - &gukwan_border_color 0xBF7F30 # 邊框「向日葵」
-  - &gukwan_main_text_color 0x250D00 # 主要字符「黑檀」
-  - &gukwan_sub_candidate_color 0x47885E # 非高亮候選「綠青」
-  - &gukwan_code_text_color 0xFFD34E # 已解析編碼「菊花」
-  - &gukwan_code_unparsed_color 0xBA2636 # 未解析編碼「硃」
-  - &gukwan_comment_color 0x47885E # 高亮註釋「綠青」
-  - &gukwan_sub_comment_color 0x77AA99 # 其他註釋
-  - &gukwan_func_key_bg_color 0x8C3E0E # 功能鍵背景色「栗子」
-  - &gukwan_func_key_text_color 0xBFAF8F # 功能鍵文本色「紙」
-  - &gukwan_func_key_pressed_bg_color 0x640125 # 功能鍵按下時（背景）「影木」
-  - &gukwan_func_key_pressed_text_color 0xD1C7A4 # 功能鍵按下時（文字）
-  - &gukwan_shift_lock_bg_color 0x704214 # Shift鎖定時（背景）
-  - &gukwan_shift_lock_text_color 0xFFD700 # Shift鎖定時（文字）「蒲公英」
-  - &gukwan_shift_lock_pressed_bg_color 0x583511 # Shift鎖定時按下（背景）「普洱」
+  - &gukwan_main_color 0xD3A243                    # 按鍵背景「枯葉」
+  - &gukwan_bg_color 0xF3D56E                      # 鍵盤背景「野菊」
+  - &gukwan_border_color 0xBF7F30                  # 邊框「向日葵」
+  - &gukwan_main_text_color 0x250D00               # 主要字符「黑檀」
+  - &gukwan_sub_candidate_color 0x47885E           # 非高亮候選「綠青」
+  - &gukwan_code_text_color 0xFFD34E               # 已解析編碼「菊花」
+  - &gukwan_code_unparsed_color 0xBA2636           # 未解析編碼「硃」
+  - &gukwan_comment_color 0x47885E                 # 高亮註釋「綠青」
+  - &gukwan_sub_comment_color 0x77AA99             # 其他註釋
+  - &gukwan_func_key_bg_color 0x8C3E0E             # 功能鍵背景色「栗子」
+  - &gukwan_func_key_text_color 0xBFAF8F           # 功能鍵文本色「紙」
+  - &gukwan_func_key_pressed_bg_color 0x640125     # 功能鍵按下時（背景）「影木」
+  - &gukwan_func_key_pressed_text_color 0xD1C7A4   # 功能鍵按下時（文字）
+  - &gukwan_shift_lock_bg_color 0x704214           # Shift鎖定時（背景）
+  - &gukwan_shift_lock_text_color 0xFFD700         # Shift鎖定時（文字）「蒲公英」
+  - &gukwan_shift_lock_pressed_bg_color 0x583511   # Shift鎖定時按下（背景）「普洱」
   - &gukwan_shift_lock_pressed_text_color 0xE8D3D1 # Shift鎖定時按下（文字）「灰櫻」
-  - &gukwan_enter_bg_color 0x602020 # 回車鍵（背景）
-  - &gukwan_enter_text_color 0xFDDEA5 # 回車鍵（文字）
-  - &gukwan_enter_pressed_bg_color 0x8B4726 # 回車鍵按下時（背景）「葡萄」
-  - &gukwan_enter_pressed_text_color 0xF3E5AB # 回車鍵按下時（文字）
-  - &gukwan_key_hint_color 0x69821B # 按鍵小字「苔」
+  - &gukwan_enter_bg_color 0x602020                # 回車鍵（背景）
+  - &gukwan_enter_text_color 0xFDDEA5              # 回車鍵（文字）
+  - &gukwan_enter_pressed_bg_color 0x8B4726        # 回車鍵按下時（背景）「葡萄」
+  - &gukwan_enter_pressed_text_color 0xF3E5AB      # 回車鍵按下時（文字）
+  - &gukwan_key_hint_color 0x69821B                # 按鍵小字「苔」
   - &gukwan_one_color 0xFDDEA5
   # 乙組一：酒紅
   - &vinho_main_color 0xAA0C0C
@@ -277,28 +277,28 @@ colors:
   - &vinho_key_hint_color 0xE5E9E5
   - &vinho_one_color 0xFFCDFF
   # 乙組一：峯櫻
-  - &sakura_main_color 0xFFB6C1 # 按鍵背景
-  - &sakura_bg_color 0xFFF0F5 # 鍵盤背景
-  - &sakura_border_color 0xFF6347 # 邊框
-  - &sakura_main_text_color 0x8B0000 # 主要字符
-  - &sakura_sub_candidate_color 0xDB7093 # 非高亮候選
-  - &sakura_code_text_color 0xEECAA9 # 已解析編碼
-  - &sakura_code_unparsed_color 0xA0522D # 未解析編碼
-  - &sakura_comment_color 0xFF69B4 # 高亮註釋
-  - &sakura_sub_comment_color 0xFFC0CB # 其他註釋
-  - &sakura_func_key_bg_color 0xCD5C5C # 功能鍵背景色
-  - &sakura_func_key_text_color 0xFFFAFA # 功能鍵文本色
-  - &sakura_func_key_pressed_bg_color 0xB22222 # 功能鍵按下時（背景）
-  - &sakura_func_key_pressed_text_color 0xFFE4E1 # 功能鍵按下時（文字）
-  - &sakura_shift_lock_bg_color 0xDB7093 # Shift鎖定時（背景）
-  - &sakura_shift_lock_text_color 0xFFF5EE # Shift鎖定時（文字）
-  - &sakura_shift_lock_pressed_bg_color 0x9932CC # Shift鎖定時按下（背景）
+  - &sakura_main_color 0xFFB6C1                    # 按鍵背景
+  - &sakura_bg_color 0xFFF0F5                      # 鍵盤背景
+  - &sakura_border_color 0xFF6347                  # 邊框
+  - &sakura_main_text_color 0x8B0000               # 主要字符
+  - &sakura_sub_candidate_color 0xDB7093           # 非高亮候選
+  - &sakura_code_text_color 0xEECAA9               # 已解析編碼
+  - &sakura_code_unparsed_color 0xA0522D           # 未解析編碼
+  - &sakura_comment_color 0xFF69B4                 # 高亮註釋
+  - &sakura_sub_comment_color 0xFFC0CB             # 其他註釋
+  - &sakura_func_key_bg_color 0xCD5C5C             # 功能鍵背景色
+  - &sakura_func_key_text_color 0xFFFAFA           # 功能鍵文本色
+  - &sakura_func_key_pressed_bg_color 0xB22222     # 功能鍵按下時（背景）
+  - &sakura_func_key_pressed_text_color 0xFFE4E1   # 功能鍵按下時（文字）
+  - &sakura_shift_lock_bg_color 0xDB7093           # Shift鎖定時（背景）
+  - &sakura_shift_lock_text_color 0xFFF5EE         # Shift鎖定時（文字）
+  - &sakura_shift_lock_pressed_bg_color 0x9932CC   # Shift鎖定時按下（背景）
   - &sakura_shift_lock_pressed_text_color 0xFFD700 # Shift鎖定時按下（文字）
-  - &sakura_enter_bg_color 0xC71585 # 回車鍵（背景）
-  - &sakura_enter_text_color 0xFFF0F5 # 回車鍵（文字）
-  - &sakura_enter_pressed_bg_color 0x8B008B # 回車鍵按下時（背景）
-  - &sakura_enter_pressed_text_color 0xFFE4E1 # 回車鍵按下時（文字）
-  - &sakura_key_hint_color 0xB22222 # 按鍵小字
+  - &sakura_enter_bg_color 0xC71585                # 回車鍵（背景）
+  - &sakura_enter_text_color 0xFFF0F5              # 回車鍵（文字）
+  - &sakura_enter_pressed_bg_color 0x8B008B        # 回車鍵按下時（背景）
+  - &sakura_enter_pressed_text_color 0xFFE4E1      # 回車鍵按下時（文字）
+  - &sakura_key_hint_color 0xB22222                # 按鍵小字
   - &sakura_one_color 0x8B0000
   # 乙組二：番瓜
   - &pumpkin_main_color 0xA5420D
@@ -325,52 +325,52 @@ colors:
   - &pumpkin_key_hint_color 0xFF9E4F
   - &pumpkin_one_color 0xFFD8B6
     # 乙組二：金盞
-  - &calendula_main_color 0xFFA500 # 按鍵背景
-  - &calendula_bg_color 0xEEE0C5 # 鍵盤背景
-  - &calendula_border_color 0xCC8400 # 邊框
-  - &calendula_main_text_color 0x4A3000 # 主要字符
-  - &calendula_sub_candidate_color 0xD67F00 # 非高亮候選
-  - &calendula_code_text_color 0xFFD699 # 已解析編碼
-  - &calendula_code_unparsed_color 0xA05A00 # 未解析編碼
-  - &calendula_comment_color 0xFF8C00 # 高亮註釋
-  - &calendula_sub_comment_color 0xE3503C # 其他註釋
-  - &calendula_func_key_bg_color 0xFF8F00 # 功能鍵背景色
-  - &calendula_func_key_text_color 0xFFDFB3 # 功能鍵文本色
-  - &calendula_func_key_pressed_bg_color 0xCC5C00 # 功能鍵按下時（背景）
-  - &calendula_func_key_pressed_text_color 0xFFD4A3 # 功能鍵按下時（文字）
-  - &calendula_shift_lock_bg_color 0xE67300 # Shift鎖定時（背景）
-  - &calendula_shift_lock_text_color 0xEEE4A3 # Shift鎖定時（文字）
-  - &calendula_shift_lock_pressed_bg_color 0xD96600 # Shift鎖定時按下（背景）
+  - &calendula_main_color 0xFFA500                    # 按鍵背景
+  - &calendula_bg_color 0xEEE0C5                      # 鍵盤背景
+  - &calendula_border_color 0xCC8400                  # 邊框
+  - &calendula_main_text_color 0x4A3000               # 主要字符
+  - &calendula_sub_candidate_color 0xD67F00           # 非高亮候選
+  - &calendula_code_text_color 0xFFD699               # 已解析編碼
+  - &calendula_code_unparsed_color 0xA05A00           # 未解析編碼
+  - &calendula_comment_color 0xFF8C00                 # 高亮註釋
+  - &calendula_sub_comment_color 0xE3503C             # 其他註釋
+  - &calendula_func_key_bg_color 0xFF8F00             # 功能鍵背景色
+  - &calendula_func_key_text_color 0xFFDFB3           # 功能鍵文本色
+  - &calendula_func_key_pressed_bg_color 0xCC5C00     # 功能鍵按下時（背景）
+  - &calendula_func_key_pressed_text_color 0xFFD4A3   # 功能鍵按下時（文字）
+  - &calendula_shift_lock_bg_color 0xE67300           # Shift鎖定時（背景）
+  - &calendula_shift_lock_text_color 0xEEE4A3         # Shift鎖定時（文字）
+  - &calendula_shift_lock_pressed_bg_color 0xD96600   # Shift鎖定時按下（背景）
   - &calendula_shift_lock_pressed_text_color 0xFFCC99 # Shift鎖定時按下（文字）
-  - &calendula_enter_bg_color 0xB35900 # 回車鍵（背景）
-  - &calendula_enter_text_color 0xFFEACC # 回車鍵（文字）
-  - &calendula_enter_pressed_bg_color 0x994D00 # 回車鍵按下時（背景）
-  - &calendula_enter_pressed_text_color 0xFFE0B2 # 回車鍵按下時（文字）
-  - &calendula_key_hint_color 0xB22B00 # 按鍵小字
+  - &calendula_enter_bg_color 0xB35900                # 回車鍵（背景）
+  - &calendula_enter_text_color 0xFFEACC              # 回車鍵（文字）
+  - &calendula_enter_pressed_bg_color 0x994D00        # 回車鍵按下時（背景）
+  - &calendula_enter_pressed_text_color 0xFFE0B2      # 回車鍵按下時（文字）
+  - &calendula_key_hint_color 0xB22B00                # 按鍵小字
   - &calendula_one_color 0xFFEACC
   # 乙組三：松葉
-  - &pine_main_color 0x2E5E23 # 按鍵背景
-  - &pine_bg_color 0x0D1F0A # 鍵盤背景
-  - &pine_border_color 0x1A3D14 # 邊框
-  - &pine_main_text_color 0xE0F0D8 # 主要字符
-  - &pine_sub_candidate_color 0x5A8C47 # 非高亮候選
-  - &pine_code_text_color 0x7AA66B # 已解析編碼
-  - &pine_code_unparsed_color 0x3C6B2D # 未解析編碼
-  - &pine_comment_color 0x4D8C3A # 高亮註釋
-  - &pine_sub_comment_color 0x2F4D26 # 其他註釋
-  - &pine_func_key_bg_color 0x1F3D19 # 功能鍵背景色
-  - &pine_func_key_text_color 0xC8D8C0 # 功能鍵文本色
-  - &pine_func_key_pressed_bg_color 0x142F10 # 功能鍵按下時（背景）
-  - &pine_func_key_pressed_text_color 0xB0C0A8 # 功能鍵按下時（文字）
-  - &pine_shift_lock_bg_color 0x5F3227 # Shift鎖定時（背景）
-  - &pine_shift_lock_text_color 0xD8B8A0 # Shift鎖定時（文字）
-  - &pine_shift_lock_pressed_bg_color 0x2D5A23 # Shift鎖定時按下（背景）
+  - &pine_main_color 0x2E5E23                    # 按鍵背景
+  - &pine_bg_color 0x0D1F0A                      # 鍵盤背景
+  - &pine_border_color 0x1A3D14                  # 邊框
+  - &pine_main_text_color 0xE0F0D8               # 主要字符
+  - &pine_sub_candidate_color 0x5A8C47           # 非高亮候選
+  - &pine_code_text_color 0x7AA66B               # 已解析編碼
+  - &pine_code_unparsed_color 0x3C6B2D           # 未解析編碼
+  - &pine_comment_color 0x4D8C3A                 # 高亮註釋
+  - &pine_sub_comment_color 0x2F4D26             # 其他註釋
+  - &pine_func_key_bg_color 0x1F3D19             # 功能鍵背景色
+  - &pine_func_key_text_color 0xC8D8C0           # 功能鍵文本色
+  - &pine_func_key_pressed_bg_color 0x142F10     # 功能鍵按下時（背景）
+  - &pine_func_key_pressed_text_color 0xB0C0A8   # 功能鍵按下時（文字）
+  - &pine_shift_lock_bg_color 0x5F3227           # Shift鎖定時（背景）
+  - &pine_shift_lock_text_color 0xD8B8A0         # Shift鎖定時（文字）
+  - &pine_shift_lock_pressed_bg_color 0x2D5A23   # Shift鎖定時按下（背景）
   - &pine_shift_lock_pressed_text_color 0xC0D0B8 # Shift鎖定時按下（文字）
-  - &pine_enter_bg_color 0x3D7A2E # 回車鍵（背景）
-  - &pine_enter_text_color 0xB8D8B0 # 回車鍵（文字）
-  - &pine_enter_pressed_bg_color 0x1D5A2D # 回車鍵按下時（背景）
-  - &pine_enter_pressed_text_color 0xA8C8A0 # 回車鍵按下時（文字）
-  - &pine_key_hint_color 0xC8C8A0 # 按鍵小字
+  - &pine_enter_bg_color 0x3D7A2E                # 回車鍵（背景）
+  - &pine_enter_text_color 0xB8D8B0              # 回車鍵（文字）
+  - &pine_enter_pressed_bg_color 0x1D5A2D        # 回車鍵按下時（背景）
+  - &pine_enter_pressed_text_color 0xA8C8A0      # 回車鍵按下時（文字）
+  - &pine_key_hint_color 0xC8C8A0                # 按鍵小字
   - &pine_one_color 0xC8D8C0
   # 乙組三：竹林
   - &bamboo_main_color 0x8FC31F
@@ -397,28 +397,28 @@ colors:
   - &bamboo_key_hint_color 0xE8F4D4
   - &bamboo_one_color 0xE8F4D4
   # 乙組四：矢車菊
-  - &centaurea_main_color 0x4368A7 # 按鍵背景
-  - &centaurea_bg_color 0x1A2B50 # 鍵盤背景
-  - &centaurea_border_color 0x3E62AD # 邊框
-  - &centaurea_main_text_color 0xE0F7FF # 主要字符
-  - &centaurea_sub_candidate_color 0x7DB9DE # 非高亮候選
-  - &centaurea_code_text_color 0x8FB4D1 # 已解析編碼
-  - &centaurea_code_unparsed_color 0x6A8372 # 未解析編碼
-  - &centaurea_comment_color 0xBA2636 # 高亮註釋
-  - &centaurea_sub_comment_color 0x4F726C # 其他註釋
-  - &centaurea_func_key_bg_color 0x2E4B7A # 功能鍵背景色
-  - &centaurea_func_key_text_color 0xC9E3E8 # 功能鍵文本色
-  - &centaurea_func_key_pressed_bg_color 0x1E3A6B # 功能鍵按下時（背景）
-  - &centaurea_func_key_pressed_text_color 0xA5DEE4 # 功能鍵按下時（文字）
-  - &centaurea_shift_lock_bg_color 0x4B7CB5 # Shift鎖定時（背景）
-  - &centaurea_shift_lock_text_color 0xFFFACD # Shift鎖定時（文字）
-  - &centaurea_shift_lock_pressed_bg_color 0x3A5F8E # Shift鎖定時按下（背景）
+  - &centaurea_main_color 0x4368A7                    # 按鍵背景
+  - &centaurea_bg_color 0x1A2B50                      # 鍵盤背景
+  - &centaurea_border_color 0x3E62AD                  # 邊框
+  - &centaurea_main_text_color 0xE0F7FF               # 主要字符
+  - &centaurea_sub_candidate_color 0x7DB9DE           # 非高亮候選
+  - &centaurea_code_text_color 0x8FB4D1               # 已解析編碼
+  - &centaurea_code_unparsed_color 0x6A8372           # 未解析編碼
+  - &centaurea_comment_color 0xBA2636                 # 高亮註釋
+  - &centaurea_sub_comment_color 0x4F726C             # 其他註釋
+  - &centaurea_func_key_bg_color 0x2E4B7A             # 功能鍵背景色
+  - &centaurea_func_key_text_color 0xC9E3E8           # 功能鍵文本色
+  - &centaurea_func_key_pressed_bg_color 0x1E3A6B     # 功能鍵按下時（背景）
+  - &centaurea_func_key_pressed_text_color 0xA5DEE4   # 功能鍵按下時（文字）
+  - &centaurea_shift_lock_bg_color 0x4B7CB5           # Shift鎖定時（背景）
+  - &centaurea_shift_lock_text_color 0xFFFACD         # Shift鎖定時（文字）
+  - &centaurea_shift_lock_pressed_bg_color 0x3A5F8E   # Shift鎖定時按下（背景）
   - &centaurea_shift_lock_pressed_text_color 0xD6E9F4 # Shift鎖定時按下（文字）
-  - &centaurea_enter_bg_color 0x5A7FC4 # 回車鍵（背景）
-  - &centaurea_enter_text_color 0xC8D5E1 # 回車鍵（文字）
-  - &centaurea_enter_pressed_bg_color 0x2F4D7E # 回車鍵按下時（背景）
-  - &centaurea_enter_pressed_text_color 0xE4F4FC # 回車鍵按下時（文字）
-  - &centaurea_key_hint_color 0x911115 # 按鍵小字
+  - &centaurea_enter_bg_color 0x5A7FC4                # 回車鍵（背景）
+  - &centaurea_enter_text_color 0xC8D5E1              # 回車鍵（文字）
+  - &centaurea_enter_pressed_bg_color 0x2F4D7E        # 回車鍵按下時（背景）
+  - &centaurea_enter_pressed_text_color 0xE4F4FC      # 回車鍵按下時（文字）
+  - &centaurea_key_hint_color 0x911115                # 按鍵小字
   - &centaurea_one_color 0xC9E3E8
   # 乙組四：紫陽
   - &hydrangea_main_color 0x7DB9DE
@@ -445,28 +445,28 @@ colors:
   - &hydrangea_key_hint_color 0x5D8CAE
   - &hydrangea_one_color 0xE4F4FC
   # 乙組五：薰衣草
-  - &lavender_main_color 0x7E5E9B # 按鍵背景
-  - &lavender_bg_color 0x4A365C # 鍵盤背景
-  - &lavender_border_color 0xB38AD4 # 邊框
-  - &lavender_main_text_color 0xF0E6FF # 主要字符
-  - &lavender_sub_candidate_color 0xC19EE0 # 非高亮候選
-  - &lavender_code_text_color 0xA87DCB # 已解析編碼
-  - &lavender_code_unparsed_color 0xE56DB1 # 未解析編碼
-  - &lavender_comment_color 0x9B72C5 # 高亮註釋
-  - &lavender_sub_comment_color 0x6E5185 # 其他註釋
-  - &lavender_func_key_bg_color 0x3D2A4E # 功能鍵背景色
-  - &lavender_func_key_text_color 0xD8C7EB # 功能鍵文本色
-  - &lavender_func_key_pressed_bg_color 0x5D4377 # 功能鍵按下時（背景）
-  - &lavender_func_key_pressed_text_color 0xCAB3DE # 功能鍵按下時（文字）
-  - &lavender_shift_lock_bg_color 0x8A6BBE # Shift鎖定時（背景）
-  - &lavender_shift_lock_text_color 0xFFD6FF # Shift鎖定時（文字）
-  - &lavender_shift_lock_pressed_bg_color 0x6E5185 # Shift鎖定時按下（背景）
+  - &lavender_main_color 0x7E5E9B                    # 按鍵背景
+  - &lavender_bg_color 0x4A365C                      # 鍵盤背景
+  - &lavender_border_color 0xB38AD4                  # 邊框
+  - &lavender_main_text_color 0xF0E6FF               # 主要字符
+  - &lavender_sub_candidate_color 0xC19EE0           # 非高亮候選
+  - &lavender_code_text_color 0xA87DCB               # 已解析編碼
+  - &lavender_code_unparsed_color 0xE56DB1           # 未解析編碼
+  - &lavender_comment_color 0x9B72C5                 # 高亮註釋
+  - &lavender_sub_comment_color 0x6E5185             # 其他註釋
+  - &lavender_func_key_bg_color 0x3D2A4E             # 功能鍵背景色
+  - &lavender_func_key_text_color 0xD8C7EB           # 功能鍵文本色
+  - &lavender_func_key_pressed_bg_color 0x5D4377     # 功能鍵按下時（背景）
+  - &lavender_func_key_pressed_text_color 0xCAB3DE   # 功能鍵按下時（文字）
+  - &lavender_shift_lock_bg_color 0x8A6BBE           # Shift鎖定時（背景）
+  - &lavender_shift_lock_text_color 0xFFD6FF         # Shift鎖定時（文字）
+  - &lavender_shift_lock_pressed_bg_color 0x6E5185   # Shift鎖定時按下（背景）
   - &lavender_shift_lock_pressed_text_color 0xBFA8D6 # Shift鎖定時按下（文字）
-  - &lavender_enter_bg_color 0x9B72C5 # 回車鍵（背景）
-  - &lavender_enter_text_color 0xE0D4EF # 回車鍵（文字）
-  - &lavender_enter_pressed_bg_color 0x7D55A3 # 回車鍵按下時（背景）
-  - &lavender_enter_pressed_text_color 0xD0BEE5 # 回車鍵按下時（文字）
-  - &lavender_key_hint_color 0xB38AD4 # 按鍵小字
+  - &lavender_enter_bg_color 0x9B72C5                # 回車鍵（背景）
+  - &lavender_enter_text_color 0xE0D4EF              # 回車鍵（文字）
+  - &lavender_enter_pressed_bg_color 0x7D55A3        # 回車鍵按下時（背景）
+  - &lavender_enter_pressed_text_color 0xD0BEE5      # 回車鍵按下時（文字）
+  - &lavender_key_hint_color 0xB38AD4                # 按鍵小字
   - &lavender_one_color 0xD8C7EB
   # 乙組五：紫藤
   - &wisteria_main_color 0xC7A2E0
@@ -517,28 +517,28 @@ colors:
   - &sinti_key_hint_color 0xDA70D6
   - &sinti_one_color 0xFFFAF0
   # 丙組：椰海
-  - &coconut_main_color 0xD4C99E # 按鍵背景
-  - &coconut_bg_color 0xF5F2E5 # 鍵盤背景
-  - &coconut_border_color 0x8B7E4B # 邊框
-  - &coconut_main_text_color 0x3A3416 # 主要字符
-  - &coconut_sub_candidate_color 0xA89C6D # 非高亮候選
-  - &coconut_code_text_color 0x30BDAE # 已解析編碼
-  - &coconut_code_unparsed_color 0x7D6E3F # 未解析編碼
-  - &coconut_comment_color 0xB8A86C # 高亮註釋
-  - &coconut_sub_comment_color 0xE0D9C0 # 其他註釋
-  - &coconut_func_key_bg_color 0x9D8E5A # 功能鍵背景色
-  - &coconut_func_key_text_color 0xE3DBC4 # 功能鍵文本色
-  - &coconut_func_key_pressed_bg_color 0x6B5D2E # 功能鍵按下時（背景）
-  - &coconut_func_key_pressed_text_color 0xD4CBAD # 功能鍵按下時（文字）
-  - &coconut_shift_lock_bg_color 0x8C7D48 # Shift鎖定時（背景）
-  - &coconut_shift_lock_text_color 0x21A732 # Shift鎖定時（文字）
-  - &coconut_shift_lock_pressed_bg_color 0x726535 # Shift鎖定時按下（背景）
+  - &coconut_main_color 0xD4C99E                    # 按鍵背景
+  - &coconut_bg_color 0xF5F2E5                      # 鍵盤背景
+  - &coconut_border_color 0x8B7E4B                  # 邊框
+  - &coconut_main_text_color 0x3A3416               # 主要字符
+  - &coconut_sub_candidate_color 0xA89C6D           # 非高亮候選
+  - &coconut_code_text_color 0x30BDAE               # 已解析編碼
+  - &coconut_code_unparsed_color 0x7D6E3F           # 未解析編碼
+  - &coconut_comment_color 0xB8A86C                 # 高亮註釋
+  - &coconut_sub_comment_color 0xE0D9C0             # 其他註釋
+  - &coconut_func_key_bg_color 0x9D8E5A             # 功能鍵背景色
+  - &coconut_func_key_text_color 0xE3DBC4           # 功能鍵文本色
+  - &coconut_func_key_pressed_bg_color 0x6B5D2E     # 功能鍵按下時（背景）
+  - &coconut_func_key_pressed_text_color 0xD4CBAD   # 功能鍵按下時（文字）
+  - &coconut_shift_lock_bg_color 0x8C7D48           # Shift鎖定時（背景）
+  - &coconut_shift_lock_text_color 0x21A732         # Shift鎖定時（文字）
+  - &coconut_shift_lock_pressed_bg_color 0x726535   # Shift鎖定時按下（背景）
   - &coconut_shift_lock_pressed_text_color 0xDDD5B8 # Shift鎖定時按下（文字）
-  - &coconut_enter_bg_color 0x6B5E2F # 回車鍵（背景）
-  - &coconut_enter_text_color 0xF1EDDE # 回車鍵（文字）
-  - &coconut_enter_pressed_bg_color 0x554926 # 回車鍵按下時（背景）
-  - &coconut_enter_pressed_text_color 0xE5DFCB # 回車鍵按下時（文字）
-  - &coconut_key_hint_color 0xB2A57B # 按鍵小字
+  - &coconut_enter_bg_color 0x6B5E2F                # 回車鍵（背景）
+  - &coconut_enter_text_color 0xF1EDDE              # 回車鍵（文字）
+  - &coconut_enter_pressed_bg_color 0x554926        # 回車鍵按下時（背景）
+  - &coconut_enter_pressed_text_color 0xE5DFCB      # 回車鍵按下時（文字）
+  - &coconut_key_hint_color 0xB2A57B                # 按鍵小字
   - &coconut_one_color 0xF1EDDE
   # 丙組：白炭
   - &coal_main_color 0x6C757D
@@ -1687,13 +1687,13 @@ preset_keys:
 
 liquid_keyboard:
   author: "Windy_D, Hoengsaan (Lingdai)"
-  row: 6 #豎屏每屏最多按鍵行數
-  row_land: 4 #橫屏每屏最多按鍵行數
-  key_height: 42 #豎屏按鍵高度
+  row: 6              #豎屏每屏最多按鍵行數
+  row_land: 4         #橫屏每屏最多按鍵行數
+  key_height: 42      #豎屏按鍵高度
   key_height_land: 18 #橫屏按鍵高度
-  single_width: 48 #single類型的按鍵寬度
-  vertical_gap: 4 #縱向按鍵間隙
-  margin_x: 2 #橫向按鍵間隙的一半
+  single_width: 48    #single類型的按鍵寬度
+  vertical_gap: 4     #縱向按鍵間隙
+  margin_x: 2         #橫向按鍵間隙的一半
   fixed_key_bar:
     position: right
     keys:
@@ -4732,13 +4732,15 @@ preset_keyboards:
           hint: '\',
         }
       #第三行
-      - { width: 5 }
+      - { width: 2 }
       - {
+          width: 12,
           click: "a",
           long_click: "select_all",
           # hint: '/   \',
         }
       - {
+          width: 11,
           click: "s",
           # long_click: Keyboard_Greek,
           # swipe_left: Commit_Brace_L,
@@ -4785,6 +4787,7 @@ preset_keyboards:
           # key_text_color: on_key_text_color,
         }
       - {
+          width: 11,
           click: "k",
           long_click: "<",
           swipe_down: "{",
@@ -4795,6 +4798,7 @@ preset_keyboards:
           # hint: "『   』",
         }
       - {
+          width: 12,
           click: "l",
           long_click: ">",
           swipe_down: "}",
@@ -4804,7 +4808,7 @@ preset_keyboards:
           # swipe_right: "】",
           # hint: "【   】",
         }
-      - { width: 5 }
+      - { width: 2 }
       #第四行
       - {
           click: Shift_L,

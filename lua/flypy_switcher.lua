@@ -8,14 +8,9 @@ local Env = require("lib/env_api")
 function flypy_switcher.init(env)
     Env(env)
     local engine = env.engine
-    local context = engine.context
+    -- local context = engine.context
     local config = engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
-    local schema = Schema(schema_id)
-    env.reversedb = ReverseLookup(schema_id)
-    env.mem = Memory(engine, schema, "translator")
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
-    env.char_mode_state = context:get_option("char_mode")
     env.user_distribute_name = rime_api:get_distribution_code_name()
     env.page_size = config:get_int("menu/page_size") or 7
     env.font_point = config:get_int("style/font_point") or 20
@@ -27,7 +22,6 @@ function flypy_switcher.init(env)
     env.cand_menu_layout = config:get_bool("style/horizontal") or true
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
-    env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
@@ -55,19 +49,13 @@ function flypy_switcher.init(env)
         "减少行间距的大小",
         "开关候选注解提示",
         "开关字集码区提示",
+        "开关单字优先功能",
         "开关词组自动上屏",
         "开关分号自动上屏",
         "开关中英词条空格",
         "禁用中英前置空格",
         "恢复常规候选按键",
     }
-end
-
-function flypy_switcher.fini(env)
-    if env.mem then
-        env.mem:disconnect()
-        env.mem = nil
-    end
 end
 
 function processor.func(key, env)
@@ -226,6 +214,10 @@ function processor.func(key, env)
             local charset_hint_state = context:get_option("charset_hint")
             local switch_to_val = not charset_hint_state
             context:set_option("charset_hint", switch_to_val)
+        elseif cand_text == "开关单字优先功能" then
+            local char_mode_state = context:get_option("char_mode")
+            local switch_to_val = not char_mode_state
+            context:set_option("char_mode", switch_to_val)
         elseif cand_text == "开关中英词条空格" then
             local filters = env:Config_get("engine/filters")
             local target_filter = "lua_filter@*word_append_space*filter"
@@ -251,13 +243,6 @@ function processor.func(key, env)
         return 1 -- kAccept
     end
 
-    if (key:repr() == env.char_mode_switch_key) then
-        local switch_to_val = (env.char_mode_state == true) and false or true
-        context:set_option("char_mode", switch_to_val)
-        context:refresh_non_confirmed_composition()
-        return 1 -- kAccept
-    end
-
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
@@ -266,7 +251,6 @@ function translator.func(input, seg, env)
     local composition = context.composition
     if composition:empty() then return end
     local segment = composition:back()
-    local char_mode_state = context:get_option("char_mode")
 
     local trigger_pattern = env.switch_options_trigger
     local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or { "/so", "sO" }
@@ -277,42 +261,17 @@ function translator.func(input, seg, env)
             yield(Candidate("switch_options", seg.start, seg._end, text, ""))
         end
     end
-
-    -- 四码时, 按下`Control+s`, 单字优先
-    if input:match("^%l%l%l%l$") and char_mode_state then
-        local entry_matched_tbl = {}
-        local yin_code = input:sub(1, 2)
-        local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search
-        if not ok then return end
-        for dictentry in env.mem:iter_dict() do
-            local entry_text = dictentry.text
-
-            if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
-                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
-                if reverse_char_code:match(input) then
-                    table.insert(entry_matched_tbl, dictentry)
-                end
-            end
-        end
-
-        for _, de in ipairs(entry_matched_tbl) do
-            local ph = Phrase(env.mem, "single_char", seg.start, seg._end, de)
-            local cand = ph:toCandidate()
-            cand.quality = 9999
-            yield(cand)
-        end
-    end
 end
 
 return {
     processor = {
         init = flypy_switcher.init,
         func = processor.func,
-        fini = flypy_switcher.fini,
+        -- fini = flypy_switcher.fini,
     },
     translator = {
         init = flypy_switcher.init,
         func = translator.func,
-        fini = flypy_switcher.fini,
+        -- fini = flypy_switcher.fini,
     },
 }
