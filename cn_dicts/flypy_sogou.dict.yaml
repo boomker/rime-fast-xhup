@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-01
+version: 2025-12-10
 sort: by_weight
 ...
 
@@ -21155,7 +21155,6 @@ sort: by_weight
 定性了	dk xk le	100
 定向能	dk xl ng	100
 订校服	dk xn fu	100
-陆校服	dk xn fu	100
 丁小伟	dk xn ww	100
 丁雄军	dk xs jy	100
 丁学长	dk xt vh	100
@@ -78938,7 +78937,7 @@ sort: by_weight
 悦华酒店	yt hx jq dm	100
 乐华年会	yt hx nm hv	100
 乐华艺人	yt hx yi rf	100
-乐华娱乐	yt hx yu le	100
+乐华娱乐	yt hx yu yt	100
 月城雪兔	yt ig xt tu	100
 越迟越好	yt ii yt hc	100
 月初福利	yt iu fu li	100
@@ -109249,3 +109248,35 @@ sort: by_weight
 中国人民解放军空军航空大学	vs go rf mb jp fh jy ks jy hh ks da xt	100
 黑神话销售量发售周年突破一亿	hw uf hx xn uz ll fa uz vz nm tu po yi yi	100
 黑神话销售量发售周年突破一亿用户	hw uf hx xn uz ll fa uz vz nm tu po yi yi ys hu	100
+阿信	aa xb	1
+阿里公益天天正能量	aa li gs yi tm tm vg ng ll	1
+阿迪达斯	aa di da si	1
+阿拉贡队	aa la gs dv	1
+阿凡不达	aa fj bu da	1
+阿巴斯	aa ba si	1
+阿合奇	aa he qi	1
+阿富汗	aa fu hj	1
+阿凡达	aa fj da	1
+阿克隆球场	aa ke ls qq ih	1
+阿尔波拉	aa er bo la	1
+阿拉德战记	aa la de vj ji	1
+阿里萨拉	aa li sa la	1
+阿梓不可爱	aa zi bu ke ai	1
+阿尔巴	aa er ba	1
+阿图什市	aa tu ui ui	1
+阿可替尼片	aa ke ti ni pm	1
+阿姆斯特丹泛欧交易所	aa mu si te dj fj ou jn yi so	1
+阿米诺斯	aa mi no si	1
+阿里千问	aa li qm wf	1
+阿萨辛	aa sa xb	1
+阿拉贡俱乐部	aa la gs ju le bu	1
+阿尔提乌斯	aa er ti wu si	1
+阿诺	aa no	1
+阿斌	aa bb	1
+阿图什队	aa tu ui dv	1
+阿克塞县	aa ke sd xm	1
+阿奇姆彭	aa qi mu pg	1
+阿拉比	aa la bi	1
+阿拉斯加	aa la si jx	1
+阿米噶蒂朵喵喵手势舞	aa mi ga di do mn mn uz ui wu	1
+阿合奇县	aa he qi xm	1
