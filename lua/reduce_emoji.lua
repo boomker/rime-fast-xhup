@@ -15,6 +15,7 @@ function F.func(input, env)
     local preedit_code = engine.context.input:gsub(" ", "")
     local emoji_toggle = engine.context:get_option("emoji")
     local wechat_flag = engine.context:get_option("wechat_flag")
+    local focus_app = engine.context:get_property("client_app")
 
     for cand in input:iter() do
         if top_cand_count <= env.emoji_pos then
@@ -39,7 +40,7 @@ function F.func(input, env)
 
     for _, emoji_cand in ipairs(emoji_cands) do
         local cand_text = emoji_cand.text
-        if wechat_flag then
+        if wechat_flag or (focus_app:match("xinWeChat")) then
             yield(emoji_cand)
         elseif not cand_text:match("^%[.*%]$") then
             yield(emoji_cand)
