@@ -1,21 +1,30 @@
+-- -- 导入log模块记录日志
+-- local logEnable, logger = pcall(require, "lib/logger")
+-- if logEnable then
+--     logger.writeLog('\n')
+--     logger.writeLog('--- start ---')
+--     logger.writeLog('log from fixed.lua\n')
+-- end
+
 require("lib/string")
 local F = {}
 local T = {}
-local flypy_fixed = {}
+local M = {}
 
-function flypy_fixed.init(env)
+function M.init(env)
     local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
-    local reverse_dict = config:get_string("translator/dictionary")
-    local schema = Schema(schema_id)
-    env.reversedb = ReverseLookup(reverse_dict)
+    env.schema_id = config:get_string("schema/schema_id")
+    local schema = Schema(env.schema_id)
+    env.reversedb = ReverseLookup(env.schema_id)
+    -- env.reversedb = ReverseLookup(reverse_dict)
+    -- local reverse_dict = config:get_string("translator/dictionary")
     env.easy_en_prefix = config:get_string("easy_en/prefix") or "eN"
-    env.pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    env.top_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.custom_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
     env.script_translator = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
-function flypy_fixed.fini(env)
+function M.fini(env)
     -- env.memory:disconnect()
     -- if env.memory then env.memory = nil end
     if env.script_translator then
@@ -66,41 +75,54 @@ function T.func(input, seg, env)
 end
 
 function F.func(input, env)
+    local seglen = 0
+    local fuzz_cands = {}
     local drop_cand = false
     local context = env.engine.context
+    local composition = context.composition
+
+    if composition:empty() then return end
+    local segment = composition:back()
+    seglen = segment.length
     local preedit_code = context.input
     local _, symbol_count = preedit_code:gsub("[`']", "")
-    local syllable_count = math.floor(#preedit_code / 2)
-    local confirmed_syllable_len = syllable_count - symbol_count
+    local syllable_len = (seglen > 1) and (seglen / 2) or (#preedit_code - symbol_count)
+
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
+        local cand_text_len = utf8.len(cand_text)
+        local cand_dtype = cand:get_dynamic_type()
 
-        if cand.comment:match("^" .. env.pin_mark .. "$") then
-            -- 带有 pin_mark 标记的候选词条, 优先显示
-            yield(cand)
+        if cand.comment:match("^" .. env.top_mark .. "$") then
+            yield(cand)                                     -- 带有 top_mark 标记的候选词条, 优先显示
         elseif cand_text:match("<br>") then
-            -- 词条有<br>标签, 将其转为换行符
-            local ccand_text = cand_text:gsub("<br>", "\n")
+            local ccand_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
             yield(cand:to_shadow_candidate(cand.type, ccand_text, env.custom_mark))
-        elseif -- 丢弃一些候选结果
-               -- 去掉候选注解包含`太极️☯ ` 的候选项
+        elseif (env.schema_id == "flyhe_fast") and (cand_text_len == 1) and (syllable_len == 1) then
+            local char_code = env.reversedb:lookup(cand_text)
+            local input_code = preedit_code:gsub("([jy])v", "%1u")
+            if (char_code:sub(0, 2):match("^" .. input_code)) then yield(cand) end
+        elseif (cand_text_len >= 2) and (syllable_len == 1) and (env.schema_id == "flyhe_fast") then
+            table.insert(fuzz_cands, cand)
+        elseif (cand_text_len == syllable_len) and (cand_dtype == "Shadow") and (env.schema_id == "flyhe_fast") then
+            table.insert(fuzz_cands, cand)
+        elseif   -- 丢弃一些候选结果 去掉候选注解包含`太极️☯ ` 的候选项
             string.find(cand.comment, "☯")
             or ( -- 开头大写的输入编码, 去掉只有单字母的候选
                 preedit_code:match("^[%u][%a]+")
                 and cand_text:match("^[A-Z]$")
             ) or ( -- 辅码筛字时, 过滤掉 emoji
                 preedit_code:match("^%l+[`/][%l`/]+$")
-                and (cand:get_dynamic_type() == "Shadow")
+                and (cand_dtype == "Shadow")
             ) or ( -- 辅码模式下, 过滤掉长度超出预确认音节长度的候选
-                preedit_code:match("^%l+[`/][%l`/]+$") and
-                (utf8.len(cand_text) > confirmed_syllable_len)
+                preedit_code:match("^%l+[`/][%l`/]+$")
+                and (cand_text_len > syllable_len)
             ) or ( -- V模式下, 过滤掉中英混合词条
                 preedit_code:match("^V%a+$") and
                 cand_text:find("([\228-\233][\128-\191]-)")
             ) or ( -- 候选词长度超出预确认音节长度 2 个以上的候选
                 (cand.type == "completion") and
-                -- (not cand_text:match("[%a%p]")) and
-                (utf8.len(cand_text) - confirmed_syllable_len > 2)
+                (cand_text_len - syllable_len > 2)
             )
         then
             drop_cand = true
@@ -109,18 +131,23 @@ function F.func(input, env)
         end
     end
 
+    if #fuzz_cands > 0 then
+        for _, fcand in ipairs(fuzz_cands) do
+            yield(fcand)
+        end
+    end
     if drop_cand then drop_cand = false end
 end
 
 return {
     translator = {
-        init = flypy_fixed.init,
+        init = M.init,
         func = T.func,
-        fini = flypy_fixed.fini
+        fini = M.fini
     },
     filter = {
-        init = flypy_fixed.init,
+        init = M.init,
         func = F.func,
-        fini = flypy_fixed.fini
+        fini = M.fini
     },
 }
