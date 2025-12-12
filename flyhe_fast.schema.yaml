@@ -55,6 +55,7 @@ engine:
     # - lua_translator@*fly_fixed*translator            # 抑制分词错误的简拼候选项
   filters:
     - simplifier@tradition                            # 简繁切换
+    - lua_filter@*fly_fixed*filter
     - uniquifier                                      # 只能放到最后!
 
 # 八股文
@@ -205,7 +206,7 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`/
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " "
@@ -233,9 +234,8 @@ algebra_common:
   - derive/^([qx])v/$1u/
   - derive/^([jy])u/$1v/
 
-  # 超级简拼, 开启后可能性能不佳, 视情况开启
   - abbrev/^([a-z]).+$/$1/
-  # - fuzz/^([a-z]).+$/$1/
+  - fuzz/^([a-z]).+$/$1/
 
 preedit_convert_rules:
   - xform/(\w)g/$1eng/
