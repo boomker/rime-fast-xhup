@@ -52,9 +52,8 @@ engine:
     - table_translator@melt_eng
     - table_translator@idiom_phrase
     - table_translator@custom_phrase
-    # - lua_translator@*fly_fixed*translator            # 抑制分词错误的简拼候选项
   filters:
-    - simplifier@tradition                            # 简繁切换
+    - simplifier@traditionalize                            # 简繁切换
     - lua_filter@*fly_fixed*filter
     - uniquifier                                      # 只能放到最后!
 
@@ -125,7 +124,7 @@ idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
   enable_completion: false
 
 # 简体转繁体
-tradition:                          # 简繁转换
+traditionalize:                     # 简繁转换
   tips: none                        # 转换提示: all | char 仅单字显示 | none 不显示
   tags: [abc]                       # 限制在对应 tag, 不对其他如反查的内容做简繁转换
   opencc_config: s2t.json           # s2t.json | s2hk.json | s2tw.json | s2twp.json
@@ -213,7 +212,7 @@ speller:
   algebra:
     __include: algebra_common
 
-    # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+    # 左右飞键音码规则, 注释以下三行使用原版小鹤双拼
     # __patch:
     #   algebra/+:
     #     __include: flypy_chord_rule:/patch/speller/algebra
