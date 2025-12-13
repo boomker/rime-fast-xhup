@@ -405,6 +405,7 @@ function P.func(key, env)
     if not (segment and segment.menu) then return 2 end
     if env.alter_select_keys == env.alpha_select_keys then return 2 end
     if env.user_distribute_name:lower():match("trime") then return 2 end
+    if env.user_distribute_name:lower():match("fcitx%-rime") then return 2 end
 
     local alpha_labels = { "s", "d", "f", "j", "k", "l", "m" }
     local _speller_str = env.current_speller:gsub("[a-z%p]", "")
