@@ -1621,15 +1621,11 @@ preset_keys:
   IPA_tie_bar_above: { label: "◌͡◌", text: "͡", functional: false }
   IPA_tie_bar_below: { label: "◌͜◌", text: "͜", functional: false }
   # Liquid Keyboard
-  Keyboard_clipboard:
-    {
-      label: 剪贴板,
-      send: function,
-      command: liquid_keyboard,
-      option: "剪贴板",
-    }
-  Keyboard_emoji:
-    { label: 表情, send: function, command: liquid_keyboard, option: " 😀 " }
+  # liquid_Keyboard_editor: {label: "️\uE1C0", send: Eisu_toggle, select: editor}
+  Keyboard_clipboard: { label: 剪贴板, send: function, command: liquid_keyboard, option: "剪贴板", }
+  liquid_keyboard_clipboard: {label: ⏍, send: function, command: liquid_keyboard, option: "剪贴板"}
+  Keyboard_emoji: { label: 表情, send: function, command: liquid_keyboard, option: " 😀 " }
+  liquid_keyboard_emoji: { label: ☻, send: function, command: liquid_keyboard, option: " 😀 " }
   Keyboard_kaomoji:
     {
       label: "颜符",
@@ -1684,6 +1680,107 @@ preset_keys:
     } #查看網頁: run 網址
   # For Gukwan Reverse Lookup
   Mandarin_rl: { label: 反查, text: "rL", functional: false }
+  menu_keyboard: {label: 菜单, send: function, command: menu_keyboard}
+
+tool_bar:
+  button_spacing: 7             #按钮间距
+  button_font: ["iconfont.ttf"] #按钮字体
+
+  #🔴左侧固定主按钮:
+  primary_button:
+    # 背景配置:
+    background:
+      # bg_normal: *            #背景
+      # bg_highlight: *         #背景高亮
+      type: rectangle           #背景高亮形状 (圆形circle | 矩形rectangle)
+      corner_radius: 8          #圆角半径
+      vertical_inset: 4         #垂直方向内缩量
+      horizontal_inset: 0       #水平方向内缩量
+    # 前景配置:
+    foreground:
+      style: "\uE141"           #前景样式
+      # fg_normal: *            #字色
+      # fg_highlight: *         #字高亮
+      font_size: 18             #字号
+      padding: 10               #与背景边界的上下内边距，适用于字符形式前景
+      # size: [53, 55]          #视图控件宽高，非字符宽高，适用于图片形式前景
+    action: menu_keyboard       #按钮点击事件
+
+  #🔴编辑：
+  edit_button: &edit_button
+    background:
+      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+      type: {__include: /tool_bar/primary_button/background/type}
+      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    foreground:
+      style: "\uE1C1"
+      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      font_size: 18
+      # padding: 10
+    action: Keyboard_editor
+
+  #🔴重做：
+  redo_button: &redo_button
+    background:
+      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+      type: {__include: /tool_bar/primary_button/background/type}
+      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    foreground:
+      style: "ic@redo"
+      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      font_size: 18
+    action: redo
+
+  #🔴撤销：
+  undo_button: &undo_button
+    background:
+      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+      type: {__include: /tool_bar/primary_button/background/type}
+      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    foreground:
+      style: "ic@undo"
+      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      font_size: 18
+    action: undo
+
+  #🔴隐藏键盘：
+  hide_button: &hide_button
+    background:
+      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}   #跟随主按钮背景高亮
+      type: {__include: /tool_bar/primary_button/background/type}                   #跟随主按钮背景高亮形状
+      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius} #跟随主按钮背景圆角
+    foreground:
+      style: "ic@keyboard_close"
+      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}   #跟随主按钮字高亮
+      font_size: 18
+    action: Hide
+
+  #🔴表情：
+  emoji_button: &emoji_button
+    background:
+      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+      type: {__include: /tool_bar/primary_button/background/type}
+      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    foreground:
+      style: "ic@emoticon"
+      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      font_size: 18
+    action: liquid_keyboard_emoji
+
+  #🔴剪贴板：
+  clipboard_button: &clipboard_button
+    background:
+      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+      type: {__include: /tool_bar/primary_button/background/type}
+      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    foreground:
+      style: "ic@clipboard"
+      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      font_size: 18
+    action: liquid_keyboard_clipboard
+
+  # 右侧按钮列表(从右向左排列)
+  buttons: [ *hide_button, *emoji_button, *clipboard_button, *edit_button, *redo_button, *undo_button ]
 
 liquid_keyboard:
   author: "Windy_D, Hoengsaan (Lingdai)"
