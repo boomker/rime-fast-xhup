@@ -322,7 +322,7 @@ speller:
   algebra:
     __include: algebra_common
 
-  # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+  # 左右飞键音码规则, 注释以下三行使用原版小鹤双拼
   __patch:
     algebra/+:
       __include: flypy_chord_rule:/patch/speller/algebra

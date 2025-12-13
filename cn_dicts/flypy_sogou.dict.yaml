@@ -3,12 +3,13 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-01
+version: 2025-12-13
 sort: by_weight
 ...
 
 阿赑	aa bi	100
 阿敖	aa ao	100
+阿斌	aa bb	100
 阿赑	aa bi	100
 阿策	aa ce	100
 阿岑	aa cf	100
@@ -26,6 +27,7 @@ sort: by_weight
 阿化	aa hx	100
 阿潮	aa ic	100
 阿蝉	aa ij	100
+阿禅	aa ij	100
 阿船	aa ir	100
 阿纪	aa ji	100
 阿九	aa jq	100
@@ -38,6 +40,7 @@ sort: by_weight
 阿茂	aa mc	100
 阿帽	aa mc	100
 阿妙	aa mn	100
+阿诺	aa no	100
 阿炮	aa pc	100
 阿漂	aa pn	100
 阿蒲	aa pu	100
@@ -61,6 +64,7 @@ sort: by_weight
 啊这	aa ve	100
 阿哲	aa ve	100
 阿纸	aa vi	100
+阿信	aa xb	100
 阿湘	aa xl	100
 阿栩	aa xu	100
 阿絮	aa xu	100
@@ -13261,7 +13265,6 @@ sort: by_weight
 治疆	vi jl	100
 治教	vi jn	100
 智界	vi jp	100
-智界	vi jp	100
 指夹	vi jx	100
 质价	vi jx	100
 智驾	vi jx	100
@@ -17058,7 +17061,6 @@ sort: by_weight
 尊嘟	zy du	100
 尊腐	zy fu	100
 尊界	zy jp	100
-尊界	zy jp	100
 尊湃	zy pd	100
 尊像	zy xl	100
 尊贤	zy xm	100
@@ -17075,6 +17077,7 @@ sort: by_weight
 邹衍	zz yj	100
 走鱼	zz yu	100
 阿巴巴	aa ba ba	100
+阿巴斯	aa ba si	100
 阿比斯	aa bi si	100
 阿波连	aa bo lm	100
 阿波舞	aa bo wu	100
@@ -17088,12 +17091,15 @@ sort: by_weight
 阿迪了	aa di le	100
 阿迪娜	aa di na	100
 阿多丸	aa do wj	100
+阿尔巴	aa er ba	100
 阿尔本	aa er bf	100
 阿尔丹	aa er dj	100
 阿尔勒	aa er le	100
 阿尔玛	aa er ma	100
 阿尔塞	aa er sd	100
 阿尔兹	aa er zi	100
+阿凡达	aa fj da	100
+阿富汗	aa fu hj	100
 阿菲夫	aa fw fu	100
 阿费夫	aa fw fu	100
 阿盖尔	aa gd er	100
@@ -17102,6 +17108,7 @@ sort: by_weight
 阿干镇	aa gj vf	100
 阿甘左	aa gj zo	100
 阿哈湖	aa ha hu	100
+阿合奇	aa he qi	100
 阿金斯	aa jb si	100
 阿基孚	aa ji fu	100
 阿吉雷	aa ji lw	100
@@ -17112,6 +17119,7 @@ sort: by_weight
 阿克尚	aa ke uh	100
 阿坎吉	aa kj ji	100
 阿奎那	aa kv na	100
+阿拉比	aa la bi	100
 阿拉曼	aa la mj	100
 阿拉梅	aa la mw	100
 阿拉山	aa la uj	100
@@ -17126,6 +17134,7 @@ sort: by_weight
 阿里云	aa li yy	100
 阿兰娜	aa lj na	100
 阿连德	aa lm de	100
+阿联酋	aa lm qq	100
 阿罗卡	aa lo ka	100
 阿萝拉	aa lo la	100
 阿罗娜	aa lo na	100
@@ -17160,6 +17169,7 @@ sort: by_weight
 阿萨拉	aa sa la	100
 啊萨拉	aa sa la	100
 阿萨塔	aa sa ta	100
+阿萨辛	aa sa xb	100
 阿森纳	aa sf na	100
 阿斯麦	aa si md	100
 阿三哥	aa sj ge	100
@@ -21155,7 +21165,6 @@ sort: by_weight
 定性了	dk xk le	100
 定向能	dk xl ng	100
 订校服	dk xn fu	100
-陆校服	dk xn fu	100
 丁小伟	dk xn ww	100
 丁雄军	dk xs jy	100
 丁学长	dk xt vh	100
@@ -48114,15 +48123,18 @@ sort: by_weight
 阿坝师范	aa ba ui fj	100
 阿拜多斯	aa bd do si	100
 阿波尼亚	aa bo ni ya	100
+阿勃梭鲁	aa bo so lu	100
 阿布扎比	aa bu va bi	100
 阿策道歉	aa ce dc qm	100
 阿德莱德	aa de ld de	100
 阿德里安	aa de li an	100
 阿德耶米	aa de ye mi	100
 吖嘀吖嘀	aa di aa di	100
+阿迪达斯	aa di da si	100
 阿迪萨亚	aa di sa ya	100
 啊对对对	aa dv dv dv	100
 阿尔比恩	aa er bi en	100
+阿尔波拉	aa er bo la	100
 阿尔达马	aa er da ma	100
 阿尔代尔	aa er dd er	100
 阿尔古斯	aa er gu si	100
@@ -48133,6 +48145,7 @@ sort: by_weight
 阿尔泰尔	aa er td er	100
 阿尔特塔	aa er te ta	100
 阿尔图罗	aa er tu lo	100
+阿凡不达	aa fj bu da	100
 阿凡达色	aa fj da se	100
 阿夫迪亚	aa fu di ya	100
 阿芙精油	aa fu jk yz	100
@@ -48142,6 +48155,8 @@ sort: by_weight
 阿根廷队	aa gf tk dv	100
 阿根廷人	aa gf tk rf	100
 阿哈利姆	aa ha li mu	100
+阿合奇县	aa he qi xm	100
+阿禅官宣	aa ij gr xr	100
 阿基蕾拉	aa ji lw la	100
 阿基维利	aa ji ww li	100
 阿吉野马	aa ji ye ma	100
@@ -48153,9 +48168,12 @@ sort: by_weight
 阿卡爆冷	aa ka bc lg	100
 阿克达拉	aa ke da la	100
 阿克塞尔	aa ke sd er	100
+阿克塞县	aa ke sd xm	100
 阿夸毕业	aa kx bi ye	100
+阿拉贡队	aa la gs dv	100
 阿拉米扬	aa la mi yh	100
 阿拉木图	aa la mu tu	100
+阿拉斯加	aa la si jx	100
 阿拉斯托	aa la si to	100
 阿拉维斯	aa la ww si	100
 阿莱格里	aa ld ge li	100
@@ -48163,7 +48181,10 @@ sort: by_weight
 阿里巴巴	aa li ba ba	100
 阿里班车	aa li bj ie	100
 阿里大涨	aa li da vh	100
+阿里公益	aa li gs yi	100
 阿里模式	aa li mo ui	100
+阿里千问	aa li qm wf	100
+阿里萨拉	aa li sa la	100
 阿里乌斯	aa li wu si	100
 阿里云盘	aa li yy pj	100
 阿兰德龙	aa lj de ls	100
@@ -48179,6 +48200,7 @@ sort: by_weight
 阿美莉卡	aa mw li ka	100
 阿努比斯	aa nu bi si	100
 阿婆克烈	aa po ke lp	100
+阿奇姆彭	aa qi mu pg	100
 阿切尔比	aa qp er bi	100
 阿萨谢尔	aa sa xp er	100
 阿塞拜疆	aa sd bd jl	100
@@ -48190,6 +48212,8 @@ sort: by_weight
 阿斯帕斯	aa si pa si	100
 阿斯塔特	aa si ta te	100
 阿特金森	aa te jb sf	100
+阿图什队	aa tu ui dv	100
+阿图什市	aa tu ui ui	100
 阿什拉夫	aa uf la fu	100
 阿诗勒隼	aa ui le sy	100
 阿扎伦卡	aa va ly ka	100
@@ -78938,7 +78962,7 @@ sort: by_weight
 悦华酒店	yt hx jq dm	100
 乐华年会	yt hx nm hv	100
 乐华艺人	yt hx yi rf	100
-乐华娱乐	yt hx yu le	100
+乐华娱乐	yt hx yu yt	100
 月城雪兔	yt ig xt tu	100
 越迟越好	yt ii yt hc	100
 月初福利	yt iu fu li	100
@@ -80399,6 +80423,7 @@ sort: by_weight
 阿尔巴尼亚	aa er ba ni ya	100
 阿尔卡拉斯	aa er ka la si	100
 阿尔梅里亚	aa er mw li ya	100
+阿尔提乌斯	aa er ti wu si	100
 阿尔瓦雷斯	aa er wa lw si	100
 阿凡达重映	aa fj da is yk	100
 阿夫迪夫卡	aa fu di fu ka	100
@@ -80406,9 +80431,12 @@ sort: by_weight
 阿根廷夺冠	aa gf tk do gr	100
 阿根廷女足	aa gf tk nv zu	100
 阿卡丽来了	aa ka li ld le	100
+阿克隆球场	aa ke ls qq ih	100
 阿克萨洪水	aa ke sa hs uv	100
+阿可替尼片	aa ke ti ni pm	100
 阿坎吉失点	aa kj ji ui dm	100
 阿拉伯国家	aa la bo go jx	100
+阿拉德战记	aa la de vj ji	100
 阿拉斯加州	aa la si jx vz	100
 阿劳霍绝杀	aa lc ho jt ua	100
 阿勒泰暴雪	aa le td bc xt	100
@@ -80418,6 +80446,7 @@ sort: by_weight
 阿里创新高	aa li il xb gc	100
 阿里烧鸭饭	aa li uc ya fj	100
 阿兰出手吧	aa lj iu uz ba	100
+阿联酋央行	aa lm qq yh hh	100
 阿留周年庆	aa lq vz nm qk	100
 阿鲁科尔沁	aa lu ke er qb	100
 阿玛德绝杀	aa ma de jt ua	100
@@ -80432,6 +80461,7 @@ sort: by_weight
 阿瑟请开跑	aa se qk kd pc	100
 阿森纳球迷	aa sf na qq mi	100
 阿桑奇认罪	aa sh qi rf zv	100
+阿斯顿马丁	aa si dy ma dk	100
 阿条姐领奖	aa tn jp lk jl	100
 阿条姐头像	aa tn jp tz xl	100
 阿水走错了	aa uv zz co le	100
@@ -80443,6 +80473,7 @@ sort: by_weight
 阿修罗之怒	aa xq lo vi nu	100
 阿雅好温柔	aa ya hc wf rz	100
 阿云嘎秒了	aa yy ga mn le	100
+阿梓不可爱	aa zi bu ke ai	100
 阿兹夫定片	aa zi fu dk pm	100
 阿瓒我爱你	aa zj wo ai ni	100
 爱哎唉变装	ai ai ai bm vl	100
@@ -95153,8 +95184,10 @@ sort: by_weight
 阿娇皮肤状态	aa jn pi fu vl td	100
 阿娇演的怨女	aa jn yj de yr nv	100
 阿姐又放粮了	aa jp yz fh ll le	100
+阿拉贡俱乐部	aa la gs ju le bu	100
 阿勒泰的秋天	aa le td de qq tm	100
 阿勒泰下雪了	aa le td xx xt le	100
+阿里巴巴公益	aa li ba ba gs yi	100
 阿利森谈夺冠	aa li sf tj do gr	100
 阿狸是这儿吗	aa li ui ve er ma	100
 阿里山的姑娘	aa li uj de gu nl	100
@@ -107759,6 +107792,7 @@ sort: by_weight
 走心入梦的人	zz xb ru mg de rf	100
 邹阳当爸爸了	zz yh dh ba ba le	100
 奏一曲东风破	zz yi qu ds fg po	100
+阿联酋中央银行	aa lm qq vs yh yb hh	100
 阿宅的恋爱真难	aa vd de lm ai vf nj	100
 哎刀马刀马刀马	ai dc ma dc ma dc ma	100
 爱尔兰女拳击手	ai er lj nv qr ji uz	100
@@ -109188,6 +109222,8 @@ sort: by_weight
 则其负大舟也无力	ze qi fu da vz ye wu li	100
 则其负大翼也无力	ze qi fu da yi ye wu li	100
 左氧氟沙星滴眼液	zo yh fu ua xk di yj ye	100
+阿里公益天天正能量	aa li gs yi tm tm vg ng ll	100
+阿联酋国际投资峰会	aa lm qq go ji tz zi fg hv	100
 北京冬天的第一场雪	bw jk ds tm de di yi ih xt	100
 电影穿过月亮的旅行	dm yk ir go yt ll de lv xk	100
 犯我中华者虽远必诛	fj wo vs hx ve sv yr bi vu	100
@@ -109204,6 +109240,8 @@ sort: by_weight
 中华人民共和国政府	vs hx rf mb gs he go vg fu	100
 我家大师兄脑子有坑	wo jx da ui xs nc zi yz kg	100
 于适欢迎来到我身边	yu ui hr yk ld dc wo uf bm	100
+阿米噶蒂朵喵喵手势舞	aa mi ga di do mn mn uz ui wu	100
+阿姆斯特丹泛欧交易所	aa mu si te dj fj ou jn yi so	100
 不能生同衾那就死同穴	bu ng ug ts qb na jq si ts xt	100
 广州工程技术职业学院	gl vz gs ig ji uu vi ye xt yr	100
 广西经贸职业技术学院	gl xi jk mc vi ye ji uu xt yr	100
