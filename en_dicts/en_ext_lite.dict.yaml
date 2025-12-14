@@ -122,10 +122,9 @@ net	net	2
 .NET	net	1
 .NET	dotnet
 iPhone	iPhone	999
-iPhone 16	iPhone	4
-iPhone 16 Plus	iPhone	3
-iPhone 16 Pro	iPhone	2
-iPhone 16 Pro Max	iPhone	1
+iPhone 17	iPhone	3
+iPhone 17 Pro	iPhone	2
+iPhone 17 Pro Max	iPhone	1
 Mac OS X	MacOSX	999
 Mac OS X Cheetah	MacOSX	1
 Mac OS X Puma	MacOSX	2
@@ -1933,3 +1932,6 @@ ICPC	ICPC
 International Collegiate Programming Contest	InternationalCollegiateProgrammingContest
 UML	UML
 Unified Modeling Language	UnifiedModelingLanguage
+Ollama	Ollama
+Omarchy	Omarchy
+LMArena	LMArena

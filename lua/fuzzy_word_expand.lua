@@ -86,7 +86,7 @@ function T.func(input, seg, env)
         for dictentry in word_cands:iter() do
             local entry_text = dictentry.text
             if utf8.len(entry_text) == #input then
-                local cand = Candidate("fuzzy_word", seg.start, seg._end, entry_text, "~fw")
+                local cand = Candidate("fuzzy_word", seg.start, seg._end, entry_text, "")
                 yield(cand)
             end
         end

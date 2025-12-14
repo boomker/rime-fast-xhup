@@ -214,12 +214,8 @@ function processor.func(key, env)
     local cand_menu_layout = config:get_bool("style/horizontal")
     local candidate_layout = config:get_string("style/candidate_list_layout")
     if context:has_menu() and (selected_cand_index > 0) and input_code:match("^[`<%(%[{]$") then
-        if (env.dist_code:lower() == "trime") then
+        if env.system_name:lower():match("android") then
             for o = 1, tonumber(selected_cand_index) do
-                env.engine:process_key(KeyEvent(tostring("Right")))
-            end
-        elseif (env.dist_code:lower() == "fcitx-rime") then
-            for k = 1, tonumber(selected_cand_index) do
                 env.engine:process_key(KeyEvent(tostring("Down")))
             end
         elseif (candidate_layout == "stacked") or (cand_menu_layout == false) then
