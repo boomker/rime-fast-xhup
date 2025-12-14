@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-13
+version: 2025-12-14
 sort: by_weight
 ...
 
@@ -48124,6 +48124,7 @@ sort: by_weight
 阿拜多斯	aa bd do si	100
 阿波尼亚	aa bo ni ya	100
 阿勃梭鲁	aa bo so lu	100
+阿卜杜拉	aa bu du la	1
 阿布扎比	aa bu va bi	100
 阿策道歉	aa ce dc qm	100
 阿德莱德	aa de ld de	100
@@ -48195,6 +48196,7 @@ sort: by_weight
 阿肋路亚	aa lw lu ya	100
 阿蕾奇诺	aa lw qi no	100
 阿马多拉	aa ma do la	100
+阿米诺斯	aa mi no si	1
 阿米诺斯	aa mi no si	100
 阿莫罗芬	aa mo lo ff	100
 阿美莉卡	aa mw li ka	100

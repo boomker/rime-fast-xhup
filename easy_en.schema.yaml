@@ -81,6 +81,8 @@ ecdict_reverse_lookup:
 
 key_binder:
   import_preset: default
+  bindings:
+    - {when: always, accept: Control+Shift+grave, select: .next}               # 在最近的两个方案之间切换
 
 punctuator:
   # import_preset: default

@@ -56,13 +56,12 @@ function T.func(input, seg, env)
     local context = env.engine.context
     local caret_pos = context.caret_pos
     local composition = context.composition
-    local preedit_code = context:get_script_text()
-    -- local preedit_text = context:get_preedit().text
-    -- local preedit_code = preedit_text:gsub("[‸]", "")
+    local preedit_text = context:get_preedit().text
+    local preedit_code = preedit_text:gsub("[‸]", "")
     if composition:empty() then return end
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
-    if input:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
+    if preedit_code:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
         local filtered_cand_text = ""
         local filtered_cand_count = 0
         local word_shape_code_tbl = {}
@@ -124,14 +123,14 @@ function T.func(input, seg, env)
     end
 end
 
--- function F.init(env)
---     env.memory = Memory(env.engine, env.engine.schema)
--- end
+--[[ function F.init(env)
+    env.memory = Memory(env.engine, env.engine.schema)
+end
 
--- function F.fini(env)
---     env.memory:disconnect()
---     if env.memory then env.memory = nil end
--- end
+function F.fini(env)
+    env.memory:disconnect()
+    if env.memory then env.memory = nil end
+end ]]
 
 function F.func(input, env)
     local normal_cands = {}
@@ -152,9 +151,7 @@ function F.func(input, env)
             table.insert(single_char_cands, cand)
         end
 
-        if #normal_cands >= 150 then
-            break
-        end
+        if #normal_cands >= 200 then break end
         table.insert(normal_cands, cand)
     end
 

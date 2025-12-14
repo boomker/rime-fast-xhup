@@ -163,7 +163,7 @@ function F.func(input, env)
             table.insert(other_cands, cand)
         end
 
-        if #other_cands >= 150 then break end
+        if #other_cands >= 200 then break end
     end
 
     if #pin_cands > 0 then

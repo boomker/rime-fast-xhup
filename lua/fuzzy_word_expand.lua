@@ -46,7 +46,6 @@ end
 function P.func(key, env)
     local engine = env.engine
     local context = engine.context
-    -- local caret_pos = context.caret_pos
     local composition = context.composition
     if composition:empty() then return 2 end
     local preedit_code = context:get_script_text():gsub(" ", "")
@@ -81,8 +80,7 @@ function T.func(input, seg, env)
     local composition = context.composition
     if composition:empty() then return end
 
-    -- local segment = composition:back() (not segment.menu) and
-    if (input:len() >= 2) and (input:len() <= 4) then
+    if (input:len() >= 2) and (input:len() <= 5) then
         local word_cands = env.script_tran:query(input, seg) or nil
         if not word_cands then return end
         for dictentry in word_cands:iter() do
@@ -147,7 +145,7 @@ function F.func(input, env)
             table.insert(other_cands, cand)
         end
 
-        if #other_cands >= 150 then break end
+        if #other_cands >= 200 then break end
     end
 
     if (#idiom_cands > 0) or (#schar_cands > 0) then

@@ -23,9 +23,7 @@ local function autocap_filter(input, env)
             yield(cand)
         end
 
-        if #u_cands >= 150 then
-            break
-        end
+        if #u_cands >= 200 then break end
     end
 
     for _, cand in ipairs(u_cands) do
@@ -41,7 +39,7 @@ local function autocap_translator(input, seg, env)
     elseif input:match("^%u%u%a+$") then
         local new_txt = input:upper()
         yield(Candidate("word_caps", seg.start, seg._end, new_txt, "~AU"))
-    -- elseif input:match("^%u%l+%u%a?") then
+        -- elseif input:match("^%u%l+%u%a?") then
     elseif input:match("^%a+[.:_-]%/?%/?%/?%a+") then
         yield(Candidate("en_custom", seg.start, seg._end, input, "~AC"))
     end

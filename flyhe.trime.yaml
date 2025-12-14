@@ -1,18 +1,16 @@
 # Trime custom style settings
 # encoding: utf-8
 #
-# gukwan - 菊韻
+# flyhe - 飞鹤
 
-# 此爲菊韻TRIME主題文件
-# 瞭解如何使用菊韻請閱覽readme文件，詳細請至本方案github頁：
-# https://github.com/HoengSaan/trime-gukwan
-# This is a gukwan TRIME theme file.
-# Learn how to use Gukwan in the readme file, available on the project's github page.
-# Source: https://github.com/Wenti-D/Astralwelkin
+# https://github.com/boomker/rime-fast-xhup
+# This is a flyhe TRIME theme file.
+# Learn how to use flyhe in the readme file, available on the project's github page.
+# Source: https://github.com/HoengSaan/trime-gukwan
 
-config_version: "3.2"
-name: 菊韻, 飞鹤
-author: "Windy_D <windy0deng@gmail.com>, Hoengsaan (Lingdai)"
+config_version: "3.3"
+name: 飞鹤
+author: "Boomker <gmboomker@gmail.com>"
 
 height:
   - &36_key_height 42
@@ -228,30 +226,30 @@ colors:
   - &light_enter_pressed_bg_color 0x0b6db3        #回車鍵按下時顏色
   - &light_enter_pressed_text_color 0xb6edee      #回車鍵按下時文字顏色
   - &light_key_hint_color 0x0041ad                #按鍵小字顏色
-  # 甲組：菊韻
-  - &gukwan_main_color 0xD3A243                    # 按鍵背景「枯葉」
-  - &gukwan_bg_color 0xF3D56E                      # 鍵盤背景「野菊」
-  - &gukwan_border_color 0xBF7F30                  # 邊框「向日葵」
-  - &gukwan_main_text_color 0x250D00               # 主要字符「黑檀」
-  - &gukwan_sub_candidate_color 0x47885E           # 非高亮候選「綠青」
-  - &gukwan_code_text_color 0xFFD34E               # 已解析編碼「菊花」
-  - &gukwan_code_unparsed_color 0xBA2636           # 未解析編碼「硃」
-  - &gukwan_comment_color 0x47885E                 # 高亮註釋「綠青」
-  - &gukwan_sub_comment_color 0x77AA99             # 其他註釋
-  - &gukwan_func_key_bg_color 0x8C3E0E             # 功能鍵背景色「栗子」
-  - &gukwan_func_key_text_color 0xBFAF8F           # 功能鍵文本色「紙」
-  - &gukwan_func_key_pressed_bg_color 0x640125     # 功能鍵按下時（背景）「影木」
-  - &gukwan_func_key_pressed_text_color 0xD1C7A4   # 功能鍵按下時（文字）
-  - &gukwan_shift_lock_bg_color 0x704214           # Shift鎖定時（背景）
-  - &gukwan_shift_lock_text_color 0xFFD700         # Shift鎖定時（文字）「蒲公英」
-  - &gukwan_shift_lock_pressed_bg_color 0x583511   # Shift鎖定時按下（背景）「普洱」
-  - &gukwan_shift_lock_pressed_text_color 0xE8D3D1 # Shift鎖定時按下（文字）「灰櫻」
-  - &gukwan_enter_bg_color 0x602020                # 回車鍵（背景）
-  - &gukwan_enter_text_color 0xFDDEA5              # 回車鍵（文字）
-  - &gukwan_enter_pressed_bg_color 0x8B4726        # 回車鍵按下時（背景）「葡萄」
-  - &gukwan_enter_pressed_text_color 0xF3E5AB      # 回車鍵按下時（文字）
-  - &gukwan_key_hint_color 0x69821B                # 按鍵小字「苔」
-  - &gukwan_one_color 0xFDDEA5
+  # 甲組：飞鹤
+  - &flyhe_main_color 0xD3A243                    # 按鍵背景「枯葉」
+  - &flyhe_bg_color 0xF3D56E                      # 鍵盤背景「野菊」
+  - &flyhe_border_color 0xBF7F30                  # 邊框「向日葵」
+  - &flyhe_main_text_color 0x250D00               # 主要字符「黑檀」
+  - &flyhe_sub_candidate_color 0x47885E           # 非高亮候選「綠青」
+  - &flyhe_code_text_color 0xFFD34E               # 已解析編碼「菊花」
+  - &flyhe_code_unparsed_color 0xBA2636           # 未解析編碼「硃」
+  - &flyhe_comment_color 0x47885E                 # 高亮註釋「綠青」
+  - &flyhe_sub_comment_color 0x77AA99             # 其他註釋
+  - &flyhe_func_key_bg_color 0x8C3E0E             # 功能鍵背景色「栗子」
+  - &flyhe_func_key_text_color 0xBFAF8F           # 功能鍵文本色「紙」
+  - &flyhe_func_key_pressed_bg_color 0x640125     # 功能鍵按下時（背景）「影木」
+  - &flyhe_func_key_pressed_text_color 0xD1C7A4   # 功能鍵按下時（文字）
+  - &flyhe_shift_lock_bg_color 0x704214           # Shift鎖定時（背景）
+  - &flyhe_shift_lock_text_color 0xFFD700         # Shift鎖定時（文字）「蒲公英」
+  - &flyhe_shift_lock_pressed_bg_color 0x583511   # Shift鎖定時按下（背景）「普洱」
+  - &flyhe_shift_lock_pressed_text_color 0xE8D3D1 # Shift鎖定時按下（文字）「灰櫻」
+  - &flyhe_enter_bg_color 0x602020                # 回車鍵（背景）
+  - &flyhe_enter_text_color 0xFDDEA5              # 回車鍵（文字）
+  - &flyhe_enter_pressed_bg_color 0x8B4726        # 回車鍵按下時（背景）「葡萄」
+  - &flyhe_enter_pressed_text_color 0xF3E5AB      # 回車鍵按下時（文字）
+  - &flyhe_key_hint_color 0x69821B                # 按鍵小字「苔」
+  - &flyhe_one_color 0xFDDEA5
   # 乙組一：酒紅
   - &vinho_main_color 0xAA0C0C
   - &vinho_bg_color 0x330000
@@ -636,54 +634,54 @@ preset_color_schemes:
     long_text_back_color: *light_main_color
     one_color: *light_func_key_text_color #off
 
-  bk_gukwan:
-    name: "菊韻 / Gukwan"
-    author: "Hoengsaan (Lingdai)"
+  bk_flyhe:
+    name: "飞鹤 / flyhe"
+    author: "Boomker"
     #懸浮窗顏色
-    border_color: *gukwan_border_color #懸浮窗邊框
-    label_color: *gukwan_sub_candidate_color #編碼高亮
-    hilited_text_color: *gukwan_code_text_color #已解析編碼
-    text_color: *gukwan_code_unparsed_color #未解析編碼
-    hilited_back_color: *gukwan_main_color #已解析編碼之背景
-    text_back_color: *gukwan_bg_color #未解析編碼之背景
+    border_color: *flyhe_border_color #懸浮窗邊框
+    label_color: *flyhe_sub_candidate_color #編碼高亮
+    hilited_text_color: *flyhe_code_text_color #已解析編碼
+    text_color: *flyhe_code_unparsed_color #未解析編碼
+    hilited_back_color: *flyhe_main_color #已解析編碼之背景
+    text_back_color: *flyhe_bg_color #未解析編碼之背景
     #候選區顏色
-    back_color: *gukwan_bg_color #候選區背景？
-    candidate_background: *gukwan_bg_color #候選區背景？
-    hilited_candidate_back_color: *gukwan_main_color #候選區高亮背景
+    back_color: *flyhe_bg_color #候選區背景？
+    candidate_background: *flyhe_bg_color #候選區背景？
+    hilited_candidate_back_color: *flyhe_main_color #候選區高亮背景
     candidate_separator_color: *pure_black #候選項分割線
-    candidate_text_color: *gukwan_sub_candidate_color #其他候選文本
-    hilited_candidate_text_color: *gukwan_main_text_color #候選高亮文本
-    comment_text_color: *gukwan_sub_comment_color #候選項註釋文本
-    hilited_comment_text_color: *gukwan_comment_color #高亮候選項註釋文本
+    candidate_text_color: *flyhe_sub_candidate_color #其他候選文本
+    hilited_candidate_text_color: *flyhe_main_text_color #候選高亮文本
+    comment_text_color: *flyhe_sub_comment_color #候選項註釋文本
+    hilited_comment_text_color: *flyhe_comment_color #高亮候選項註釋文本
     #鍵盤顏色
-    key_back_color: *gukwan_main_color #按鍵背景色
-    hilited_key_back_color: *gukwan_border_color #按鍵按下時背景色
-    key_text_color: *gukwan_main_text_color #按鍵字符顏色
-    key_symbol_color: *gukwan_key_hint_color #按鍵小字顏色
+    key_back_color: *flyhe_main_color #按鍵背景色
+    hilited_key_back_color: *flyhe_border_color #按鍵按下時背景色
+    key_text_color: *flyhe_main_text_color #按鍵字符顏色
+    key_symbol_color: *flyhe_key_hint_color #按鍵小字顏色
     hilited_key_symbol_color: *pure_white #按下時小字顏色
-    preview_back_color: *gukwan_border_color #氣泡背景色
+    preview_back_color: *flyhe_border_color #氣泡背景色
     preview_text_color: *pure_white #氣泡字符顏色
-    keyboard_back_color: *gukwan_bg_color #鍵盤整體背景色
-    key_border_color: *gukwan_border_color #按鍵邊框顏色
-    off_key_back_color: *gukwan_func_key_bg_color #功能鍵背景色
-    off_key_text_color: *gukwan_func_key_text_color #功能鍵文本色
-    hilited_off_key_back_color: *gukwan_func_key_pressed_bg_color #功能鍵按下時背景色
-    hilited_off_key_text_color: *gukwan_func_key_pressed_text_color #功能鍵按下時背景色
-    on_key_back_color: *gukwan_shift_lock_bg_color #Shift鎖定時背景色
-    hilited_on_key_back_color: *gukwan_shift_lock_pressed_bg_color #Shift鎖定時按下的背景顏色
-    on_key_text_color: *gukwan_shift_lock_text_color #Shift鎖定時文字顏色
-    hilited_on_key_text_color: *gukwan_shift_lock_pressed_text_color #Shift鎖定時按下的文字顏色
-    enter_bg_color: *gukwan_enter_bg_color
-    enter_text_color: *gukwan_enter_text_color
-    enter_pressed_bg_color: *gukwan_enter_pressed_bg_color
-    enter_pressed_text_color: *gukwan_enter_pressed_text_color
-    liquid_keyboard_background: *gukwan_bg_color
-    long_text_back_color: *gukwan_main_color
-    one_color: *gukwan_one_color
+    keyboard_back_color: *flyhe_bg_color #鍵盤整體背景色
+    key_border_color: *flyhe_border_color #按鍵邊框顏色
+    off_key_back_color: *flyhe_func_key_bg_color #功能鍵背景色
+    off_key_text_color: *flyhe_func_key_text_color #功能鍵文本色
+    hilited_off_key_back_color: *flyhe_func_key_pressed_bg_color #功能鍵按下時背景色
+    hilited_off_key_text_color: *flyhe_func_key_pressed_text_color #功能鍵按下時背景色
+    on_key_back_color: *flyhe_shift_lock_bg_color #Shift鎖定時背景色
+    hilited_on_key_back_color: *flyhe_shift_lock_pressed_bg_color #Shift鎖定時按下的背景顏色
+    on_key_text_color: *flyhe_shift_lock_text_color #Shift鎖定時文字顏色
+    hilited_on_key_text_color: *flyhe_shift_lock_pressed_text_color #Shift鎖定時按下的文字顏色
+    enter_bg_color: *flyhe_enter_bg_color
+    enter_text_color: *flyhe_enter_text_color
+    enter_pressed_bg_color: *flyhe_enter_pressed_bg_color
+    enter_pressed_text_color: *flyhe_enter_pressed_text_color
+    liquid_keyboard_background: *flyhe_bg_color
+    long_text_back_color: *flyhe_main_color
+    one_color: *flyhe_one_color
 
   ba_vinho:
     name: "酒紅 / Vinho"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     light_scheme: bb_sakura
     #懸浮窗顏色
     border_color: *vinho_border_color
@@ -729,7 +727,7 @@ preset_color_schemes:
 
   bb_sakura:
     name: "峯櫻 / Minezakura"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     dark_scheme: ba_vinho
     #懸浮窗顏色
     border_color: *sakura_border_color
@@ -775,7 +773,7 @@ preset_color_schemes:
 
   bc_pumpkin:
     name: "番瓜 / Pumpkin"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     light_scheme: bd_calendula
     #懸浮窗顏色
     border_color: *pumpkin_border_color
@@ -821,7 +819,7 @@ preset_color_schemes:
 
   bd_calendula:
     name: "金盞菊 / Calendula"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     dark_scheme: bc_pumpkin
     #懸浮窗顏色
     border_color: *calendula_border_color
@@ -867,7 +865,7 @@ preset_color_schemes:
 
   be_pine:
     name: "松葉 / Matsuba"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     light_scheme: bf_bamboo
     #懸浮窗顏色
     border_color: *pine_border_color
@@ -913,7 +911,7 @@ preset_color_schemes:
 
   bf_bamboo:
     name: "竹林 / Bamboo"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     dark_scheme: be_pine
     #懸浮窗顏色
     border_color: *bamboo_border_color
@@ -959,7 +957,7 @@ preset_color_schemes:
 
   bg_centaurea:
     name: "矢車菊 / Centaurea"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     light_scheme: bh_hydrangea
     #懸浮窗顏色
     border_color: *centaurea_border_color
@@ -1005,7 +1003,7 @@ preset_color_schemes:
 
   bh_hydrangea:
     name: "紫陽 / Hydrangea"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     dark_scheme: bg_centaurea
     #懸浮窗顏色
     border_color: *hydrangea_border_color
@@ -1051,7 +1049,7 @@ preset_color_schemes:
 
   bi_lavender:
     name: "薰衣草 / Lavendula"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     light_scheme: bj_wisteria
     #懸浮窗顏色
     border_color: *lavender_border_color
@@ -1097,7 +1095,7 @@ preset_color_schemes:
 
   bj_wisteria:
     name: "紫藤 / Wisteria"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     dark_scheme: bi_lavender
     #懸浮窗顏色
     border_color: *wisteria_border_color
@@ -1235,7 +1233,7 @@ preset_color_schemes:
 
   aa_sinti:
     name: "冶遊 / Courting"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     #懸浮窗顏色
     border_color: *sinti_border_color
     label_color: *sinti_sub_candidate_color
@@ -1280,7 +1278,7 @@ preset_color_schemes:
 
   ab_coconut:
     name: "椰海 / Coconut"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     #懸浮窗顏色
     border_color: *coconut_border_color
     label_color: *coconut_sub_candidate_color
@@ -1325,7 +1323,7 @@ preset_color_schemes:
 
   ac_coal:
     name: "白炭 / Charcoal"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     #懸浮窗顏色
     border_color: *coal_border_color
     label_color: *coal_sub_candidate_color
@@ -1370,7 +1368,7 @@ preset_color_schemes:
 
   ad_costa:
     name: "海傍 / Costa"
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     #懸浮窗顏色
     border_color: *costa_border_color
     label_color: *costa_sub_candidate_color
@@ -1621,9 +1619,8 @@ preset_keys:
   IPA_tie_bar_above: { label: "◌͡◌", text: "͡", functional: false }
   IPA_tie_bar_below: { label: "◌͜◌", text: "͜", functional: false }
   # Liquid Keyboard
-  # liquid_Keyboard_editor: {label: "️\uE1C0", send: Eisu_toggle, select: editor}
-  Keyboard_clipboard: { label: 剪贴板, send: function, command: liquid_keyboard, option: "剪贴板", }
-  liquid_keyboard_clipboard: {label: ⏍, send: function, command: liquid_keyboard, option: "剪贴板"}
+  Keyboard_clipboard: { label: 剪贴, send: function, command: liquid_keyboard, option: "剪贴", }
+  liquid_keyboard_clipboard: {label: ⏍, send: function, command: liquid_keyboard, option: "剪贴"}
   Keyboard_emoji: { label: 表情, send: function, command: liquid_keyboard, option: " 😀 " }
   liquid_keyboard_emoji: { label: ☻, send: function, command: liquid_keyboard, option: " 😀 " }
   Keyboard_kaomoji:
@@ -1635,22 +1632,18 @@ preset_keys:
     }
   Keyboard_symbol:
     {
-      label: 符号表,
+      label: 符号,
       send: function,
       command: liquid_keyboard,
       option: " 标点 ",
     }
-  Keyboard_greek_font:
-    { label: 字型, send: function, command: liquid_keyboard, option: "希腊字" }
-  Liquid_fixed_exit:
-    { label: " ↶ ", send: function, command: liquid_keyboard, option: "-1" }
-  Liquid_fixed_backspace: { label: " ⇦ ", repeatable: true, send: BackSpace }
-  Liquid_fixed_space:
-    { label: "  ⎵ ", repeatable: true, functional: false, send: space }
-  Liquid_fixed_left: { label: " ← ", send: Left }
-  Liquid_fixed_right: { label: " → ", send: Right }
-  Liquid_fixed_return:
-    { label: "  ↲  ", repeatable: true, send: Return, functional: false }
+  Keyboard_greek_font: { label: 字型, send: function, command: liquid_keyboard, option: "希腊字" }
+  Liquid_fixed_exit: { label: " ↶ ", send: function, command: liquid_keyboard, option: "-1" }
+  Liquid_fixed_backspace: { label: " ⇦  ", repeatable: true, send: BackSpace }
+  Liquid_fixed_space: { label: " ⎵  ", repeatable: true, functional: false, send: space }
+  Liquid_fixed_left: { label: " ←  ", send: Left }
+  Liquid_fixed_right: { label: " →  ", send: Right }
+  Liquid_fixed_return: { label: " ↲  ", repeatable: true, send: Return, functional: false }
   Commit_Caret: { label: "^", commit: "^", functional: false }
   Commit_Hash: { label: "#", commit: "#", functional: false }
   Commit_At: { label: "@", commit: "@", functional: false }
@@ -1672,13 +1665,13 @@ preset_keys:
   Calc_Lua: { label: "计算器", text: "cC", functional: false }
   # Unicode_Lua: { label: "Uni", text: "U", functional: false }
   Alt_space: { label: "空格", repeatable: true, functional: false, send: space }
-  Gukwan_readme: {
+  Flyhe_readme: {
       label: 关于,
       command: run,
       option: "https://github.com/boomker/rime-fast-xhup",
       # option: "https://github.com/HoengSaan/rime-gukwan",
     } #查看網頁: run 網址
-  # For Gukwan Reverse Lookup
+  # For flyhe Reverse Lookup
   Mandarin_rl: { label: 反查, text: "rL", functional: false }
   menu_keyboard: {label: 菜单, send: function, command: menu_keyboard}
 
@@ -1708,74 +1701,74 @@ tool_bar:
 
   #🔴编辑：
   edit_button: &edit_button
-    background:
-      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
-      type: {__include: /tool_bar/primary_button/background/type}
-      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    # background:
+    #   bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+    #   type: {__include: /tool_bar/primary_button/background/type}
+    #   corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
     foreground:
       style: "\uE1C1"
-      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
       font_size: 18
       # padding: 10
     action: Keyboard_editor
 
   #🔴重做：
   redo_button: &redo_button
-    background:
-      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
-      type: {__include: /tool_bar/primary_button/background/type}
-      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    # background:
+    #   bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+    #   type: {__include: /tool_bar/primary_button/background/type}
+    #   corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
     foreground:
       style: "ic@redo"
-      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
       font_size: 18
     action: redo
 
   #🔴撤销：
   undo_button: &undo_button
-    background:
-      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
-      type: {__include: /tool_bar/primary_button/background/type}
-      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    # background:
+    #   bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+    #   type: {__include: /tool_bar/primary_button/background/type}
+    #   corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
     foreground:
       style: "ic@undo"
-      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
       font_size: 18
     action: undo
 
   #🔴隐藏键盘：
   hide_button: &hide_button
-    background:
-      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}   #跟随主按钮背景高亮
-      type: {__include: /tool_bar/primary_button/background/type}                   #跟随主按钮背景高亮形状
-      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius} #跟随主按钮背景圆角
+    # background:
+    #   bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}   #跟随主按钮背景高亮
+    #   type: {__include: /tool_bar/primary_button/background/type}                   #跟随主按钮背景高亮形状
+    #   corner_radius: {__include: /tool_bar/primary_button/background/corner_radius} #跟随主按钮背景圆角
     foreground:
       style: "ic@keyboard_close"
-      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}   #跟随主按钮字高亮
+      # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}   #跟随主按钮字高亮
       font_size: 18
     action: Hide
 
   #🔴表情：
   emoji_button: &emoji_button
-    background:
-      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
-      type: {__include: /tool_bar/primary_button/background/type}
-      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    # background:
+      # bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+      # type: {__include: /tool_bar/primary_button/background/type}
+      # corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
     foreground:
       style: "ic@emoticon"
-      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
       font_size: 18
     action: liquid_keyboard_emoji
 
-  #🔴剪贴板：
+  #🔴剪贴：
   clipboard_button: &clipboard_button
-    background:
-      bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
-      type: {__include: /tool_bar/primary_button/background/type}
-      corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
+    # background:
+    #   bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
+    #   type: {__include: /tool_bar/primary_button/background/type}
+    #   corner_radius: {__include: /tool_bar/primary_button/background/corner_radius}
     foreground:
       style: "ic@clipboard"
-      fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
+      # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
       font_size: 18
     action: liquid_keyboard_clipboard
 
@@ -1783,7 +1776,7 @@ tool_bar:
   buttons: [ *hide_button, *emoji_button, *clipboard_button, *edit_button, *redo_button, *undo_button ]
 
 liquid_keyboard:
-  author: "Windy_D, Hoengsaan (Lingdai)"
+  author: "Windy_D, Boomker"
   row: 6              #豎屏每屏最多按鍵行數
   row_land: 4         #橫屏每屏最多按鍵行數
   key_height: 42      #豎屏按鍵高度
@@ -1864,7 +1857,7 @@ liquid_keyboard:
     type: DRAFT
     name: 草稿
   clipboard:
-    name: 剪贴板
+    name: 剪贴
     type: CLIPBOARD
   history:
     name: 常用
@@ -4696,7 +4689,7 @@ liquid_keyboard:
 preset_keyboards:
   default:
     name: 通用36鍵
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -4932,13 +4925,13 @@ preset_keyboards:
           click: "c",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - { click: "b", long_click: "'", swipe_down: "'",  }
       - { click: "n", long_click: '"', swipe_down: '"',  }
@@ -5019,7 +5012,7 @@ preset_keyboards:
 
   number:
     name: 數字小鍵盤
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 11.5
@@ -5149,7 +5142,7 @@ preset_keyboards:
 
   editor:
     name: 文字編輯鍵盤
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     width: 20
     height: 47
@@ -5205,6 +5198,7 @@ preset_keyboards:
       - { click: redo, key_text_size: 20 }
       - {
           click: Return,
+          width: 40,
           key_text_size: 24,
           key_text_offset_y: -2,
           key_back_color: enter_bg_color,
@@ -5327,7 +5321,7 @@ preset_keyboards:
       - {
           click: Keyboard_default,
           long_click: Settings,
-          width: 12.5,
+          width: 14,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,
           key_text_color: off_key_text_color,
@@ -5336,7 +5330,7 @@ preset_keyboards:
         }
       - {
           click: Keyboard_number,
-          long_click: Gukwan_readme,
+          long_click: Flyhe_readme,
           width: 12.5,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,
@@ -5494,7 +5488,7 @@ preset_keyboards:
       - {
           click: Keyboard_default,
           long_click: Settings,
-          width: 12.5,
+          width: 14,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,
           key_text_color: off_key_text_color,
@@ -5503,7 +5497,7 @@ preset_keyboards:
         }
       - {
           click: Keyboard_number,
-          long_click: Gukwan_readme,
+          long_click: Flyhe_readme,
           width: 12.5,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,
@@ -7138,7 +7132,7 @@ preset_keyboards:
 
   Hiragana:
     name: 平假名フリック輸入
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 1
     reset_ascii_mode: true
     width: 20
@@ -7383,7 +7377,7 @@ preset_keyboards:
 
   Katakana:
     name: 片假名フリック輸入
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 1
     reset_ascii_mode: true
     width: 20
@@ -7628,7 +7622,7 @@ preset_keyboards:
 
   Hangul:
     name: 諺文鍵盤
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 1
     reset_ascii_mode: true
     width: 10
@@ -7878,9 +7872,9 @@ preset_keyboards:
         }
       - { width: 6.5 }
 
-  gukwan:
-    name: 菊韻36鍵
-    author: "Hoengsaan (Lingdai)"
+  flyhe:
+    name: 飞鹤36鍵
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -8114,13 +8108,13 @@ preset_keyboards:
           click: "c",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
       - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }
@@ -8196,93 +8190,93 @@ preset_keyboards:
           hilited_key_text_color: enter_pressed_text_color,
         }
 
-  gukwan-cancyn:
-    import_preset: gukwan
+  flyhe-cancyn:
+    import_preset: flyhe
 
-  gukwan-daailoeng:
-    import_preset: gukwan
+  flyhe-daailoeng:
+    import_preset: flyhe
 
-  gukwan-default:
-    import_preset: gukwan
+  flyhe-default:
+    import_preset: flyhe
 
-  gukwan-dungfau:
-    import_preset: gukwan
+  flyhe-dungfau:
+    import_preset: flyhe
 
-  gukwan-dungfung-dunggubou:
-    import_preset: gukwan
+  flyhe-dungfung-dunggubou:
+    import_preset: flyhe
 
-  gukwan-dungfung-saigubou:
-    import_preset: gukwan
+  flyhe-dungfung-saigubou:
+    import_preset: flyhe
 
-  gukwan-dungfung-tungon:
-    import_preset: gukwan
+  flyhe-dungfung-tungon:
+    import_preset: flyhe
 
-  gukwan-dungsing:
-    import_preset: gukwan
+  flyhe-dungsing:
+    import_preset: flyhe
 
-  gukwan-dungsing-gosaa:
-    import_preset: gukwan
+  flyhe-dungsing-gosaa:
+    import_preset: flyhe
 
-  gukwan-dungsing-taaiping:
-    import_preset: gukwan
+  flyhe-dungsing-taaiping:
+    import_preset: flyhe
 
-  gukwan-dungsing-taanbui:
-    import_preset: gukwan
+  flyhe-dungsing-taanbui:
+    import_preset: flyhe
 
-  gukwan-fausaa-daaijauwai:
-    import_preset: gukwan
+  flyhe-fausaa-daaijauwai:
+    import_preset: flyhe
 
-  gukwan-fausaa-locung:
-    import_preset: gukwan
+  flyhe-fausaa-locung:
+    import_preset: flyhe
 
-  gukwan-guzan-hoizau:
-    import_preset: gukwan
+  flyhe-guzan-hoizau:
+    import_preset: flyhe
 
-  gukwan-gwanaan:
-    import_preset: gukwan
+  flyhe-gwanaan:
+    import_preset: flyhe
 
-  gukwan-longmong:
-    import_preset: gukwan
+  flyhe-longmong:
+    import_preset: flyhe
 
-  gukwan-longmong-kwanon:
-    import_preset: gukwan
+  flyhe-longmong-kwanon:
+    import_preset: flyhe
 
-  gukwan-naamtau-daisaa:
-    import_preset: gukwan
+  flyhe-naamtau-daisaa:
+    import_preset: flyhe
 
-  gukwan-naamtau-geusam:
-    import_preset: gukwan
+  flyhe-naamtau-geusam:
+    import_preset: flyhe
 
-  gukwan-naamtau-naamsing:
-    import_preset: gukwan
+  flyhe-naamtau-naamsing:
+    import_preset: flyhe
 
-  gukwan-naamtau-paaihom:
-    import_preset: gukwan
+  flyhe-naamtau-paaihom:
+    import_preset: flyhe
 
-  gukwan-sekki:
-    import_preset: gukwan
+  flyhe-sekki:
+    import_preset: flyhe
 
-  gukwan-siulaam:
-    import_preset: gukwan
+  flyhe-siulaam:
+    import_preset: flyhe
 
-  gukwan-siulaam-bofung:
-    import_preset: gukwan
+  flyhe-siulaam-bofung:
+    import_preset: flyhe
 
-  gukwan-waanglaan:
-    import_preset: gukwan
+  flyhe-waanglaan:
+    import_preset: flyhe
 
-  gukwan-wongpou:
-    import_preset: gukwan
+  flyhe-wongpou:
+    import_preset: flyhe
 
   jyut6ping3-gw:
-    import_preset: gukwan
+    import_preset: flyhe
 
   jyut6ping3-gw-cp:
-    import_preset: gukwan
+    import_preset: flyhe
 
   jyutsp:
     name: 粵雙37鍵
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -8497,13 +8491,13 @@ preset_keyboards:
           click: "c",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
       - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }
@@ -8581,7 +8575,7 @@ preset_keyboards:
 
   cangjie5:
     name: 倉頡36鍵
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -8816,14 +8810,14 @@ preset_keyboards:
           label: "金",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           label: "女",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - {
           click: "b",
@@ -8928,7 +8922,7 @@ preset_keyboards:
 
   cangjie6:
     name: 蒼頡36鍵
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -9163,14 +9157,14 @@ preset_keyboards:
           label: "金",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           label: "女",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - {
           click: "b",
@@ -9266,7 +9260,7 @@ preset_keyboards:
 
   bopomofo:
     name: 注音40鍵
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -9499,14 +9493,14 @@ preset_keyboards:
           label: "ㄏ",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           label: "ㄒ",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - {
           click: "b",
@@ -9613,7 +9607,7 @@ preset_keyboards:
 
   array30:
     name: 行列40鍵
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -9817,13 +9811,13 @@ preset_keyboards:
           click: "c",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
       - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }
@@ -9916,7 +9910,7 @@ preset_keyboards:
 
   t9:
     name: 九宮格鍵盤
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 20
@@ -10113,7 +10107,7 @@ preset_keyboards:
 
   t9_symbol:
     name: 新基本符号鍵盤
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 1
     reset_ascii_mode: true
     width: 10
@@ -10279,7 +10273,7 @@ preset_keyboards:
         }
       - {
           click: Keyboard_number,
-          long_click: Gukwan_readme,
+          long_click: Flyhe_readme,
           width: 14,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,
@@ -10326,7 +10320,7 @@ preset_keyboards:
 
   English:
     name: 英文36鍵
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 0
     reset_ascii_mode: true
     width: 10
@@ -10542,13 +10536,13 @@ preset_keyboards:
           click: "c",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
       - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }
@@ -10626,7 +10620,7 @@ preset_keyboards:
 
   English_ASCII:
     name: 英文36鍵ASCII
-    author: "Hoengsaan (Lingdai)"
+    author: "Boomker"
     ascii_mode: 1
     reset_ascii_mode: true
     width: 10
@@ -10842,13 +10836,13 @@ preset_keyboards:
           click: "c",
           long_click: copy,
           swipe_down: Keyboard_symbol,
-          hint: "符号表",
+          hint: "符号",
         }
       - {
           click: "v",
           long_click: paste,
           swipe_down: Keyboard_clipboard,
-          hint: "剪贴板",
+          hint: "剪贴",
         }
       - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
       - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }

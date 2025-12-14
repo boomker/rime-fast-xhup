@@ -106,9 +106,7 @@ function easy_en.filter(input, env)
             yield(cand)
         end
 
-        if #en_cands >= 150 then
-            break
-        end -- 防止候选太多, 输入卡顿
+        if #en_cands >= 200 then break end -- 防止候选太多, 输入卡顿
     end
 
     for _, cand in ipairs(en_cands) do
