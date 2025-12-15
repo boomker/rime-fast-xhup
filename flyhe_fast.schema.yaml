@@ -11,8 +11,6 @@ schema:
   description: |
     小鹤双拼+辅助码
     github.com:boomker/rime-fast-xhup
-  dependencies:
-    - melt_eng          # 中英混合,副翻译器
 
 # 选项开关
 switches:
@@ -49,7 +47,6 @@ engine:
     - punct_translator
     - script_translator
     - reverse_lookup_translator
-    - table_translator@melt_eng
     - table_translator@idiom_phrase
     - table_translator@custom_phrase
   filters:
@@ -92,18 +89,6 @@ translator:
   #   __include: preedit_convert_rules    # 输入码显示为全拼
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
-
-# 次翻译器, 英文
-melt_eng:                           # 英文输入
-  dictionary: melt_eng
-  initial_quality: 0.8
-  enable_encoder: false
-  enable_sentence: false
-  enable_user_dict: false
-  enable_completion: true           # 是否启用英文补全
-  encode_commit_history: false
-  comment_format:
-    - xform/.*//                    # 清空提示码(补全)
 
 # 自定义短语
 custom_phrase:                      # 自定义固顶字

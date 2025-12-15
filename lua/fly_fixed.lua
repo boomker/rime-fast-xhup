@@ -1,17 +1,8 @@
--- -- 导入log模块记录日志
--- local logEnable, logger = pcall(require, "lib/logger")
--- if logEnable then
---     logger.writeLog('\n')
---     logger.writeLog('--- start ---')
---     logger.writeLog('log from fixed.lua\n')
--- end
-
-require("lib/string")
 local F = {}
-local T = {}
-local M = {}
+-- local T = {}
+-- require("lib/string")
 
-function M.init(env)
+function F.init(env)
     local config = env.engine.schema.config
     env.schema_id = config:get_string("schema/schema_id")
     local schema = Schema(env.schema_id)
@@ -24,15 +15,14 @@ function M.init(env)
     env.script_translator = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
-function M.fini(env)
-    -- env.memory:disconnect()
-    -- if env.memory then env.memory = nil end
+function F.fini(env)
     if env.script_translator then
         env.script_translator:disconnect()
         env.script_translator = nil
     end
 end
 
+--[[
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
@@ -46,7 +36,6 @@ function T.func(input, seg, env)
         for cand in word_cands:iter() do
             if count > 3 then break end
             local entry_text = cand.text
-            -- local input_code_len = ((#input % 2) ~= 0) and (#input + 1) or #input
             if (utf8.len(entry_text) >= 2) and (not entry_text:match("%a%d%p")) then
                 local first_char = string.utf8_sub(entry_text, 1, 1)
                 local last_char = string.utf8_sub(entry_text, -1, -1)
@@ -73,6 +62,7 @@ function T.func(input, seg, env)
         end
     end
 end
+]]
 
 function F.func(input, env)
     local seglen = 0
@@ -122,7 +112,8 @@ function F.func(input, env)
                 cand_text:find("([\228-\233][\128-\191]-)")
             ) or ( -- 候选词长度超出预确认音节长度 2 个以上的候选
                 (cand.type == "completion") and
-                (cand_text_len - syllable_len > 2)
+                (cand_text_len - syllable_len > 2) and
+                cand_text:find("([\228-\233][\128-\191]-)")
             )
         then
             drop_cand = true
@@ -140,14 +131,14 @@ function F.func(input, env)
 end
 
 return {
-    translator = {
-        init = M.init,
-        func = T.func,
-        fini = M.fini
-    },
+    -- translator = {
+    --     init = M.init,
+    --     func = T.func,
+    --     fini = M.fini
+    -- },
     filter = {
-        init = M.init,
+        init = F.init,
         func = F.func,
-        fini = M.fini
+        fini = F.fini
     },
 }

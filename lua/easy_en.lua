@@ -21,7 +21,6 @@ function easy_en.init(env)
     env.prompt = config:get_string("easy_en/tips") or "英文"
     env.wildcard = config:get_string("easy_en/wildcard") or "*"
     env.mem = Memory(env.engine, easy_en_schema, "translator")
-    env.easy_en_prefix = config:get_string("easy_en/prefix") or "eN"
     env.expand_word_count = config:get_int("easy_en/expand_word_count") or 666
     env.easydict_translate_key = config:get_string("key_binder/easydict_translate") or "Control+y"
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
@@ -58,7 +57,7 @@ function easy_en.translator(input, seg, env)
     local composition = engine.context.composition
     if (composition:empty()) then return end
     local segment = composition:back()
-    if (segment:has_tag("easy_en") or (schema.schema_id == "easy_en")) then
+    if segment:has_tag("easy_en") or (schema.schema_id == "easy_en") or input:match("^%l+%*%l+$") then
         segment.prompt = "〔" .. env.prompt .. "〕"
         local tailer = string.match(input, "[^" .. env.wildcard .. "]+$") or ""
         local header = string.match(input, "^[^" .. env.wildcard .. "]+")
@@ -66,8 +65,6 @@ function easy_en.translator(input, seg, env)
         for dictentry in env.mem:iter_dict() do
             local codetail = string.match(dictentry.comment:lower(), tailer .. "$") or ""
             if tailer and (codetail == tailer) then
-                -- local code = env.mem:decode(dictentry.code)
-                -- local codeComment = table.concat(code, ",")
                 local ph = Phrase(env.mem, "expand_en_word", seg.start, seg._end, dictentry)
                 ph.comment = dictentry.comment:lower()
                 yield(ph:toCandidate())
@@ -81,27 +78,12 @@ function easy_en.filter(input, env)
     local separator = " 🔎 "
     local engine = env.engine
     local schema = engine.schema
-    local context = env.engine.context
-    local input_code = context.input:gsub(" ", "")
-    local en_comment_overwrite = env.en_comment_overwrite
 
     for cand in input:iter() do
         if schema.schema_id == "easy_en" then
             local comment = truncate_comment(cand.comment)
             cand.comment = separator .. comment
             table.insert(en_cands, cand)
-        elseif input_code:match("^" .. env.easy_en_prefix) then
-            if en_comment_overwrite then
-                local comment = truncate_comment(cand.comment)
-                cand.comment = separator .. comment
-                table.insert(en_cands, cand)
-            else
-                local preedit_code = input_code:lower():gsub(env.easy_en_prefix, "")
-                if cand.text:lower():match(preedit_code) then
-                    cand.comment = ""
-                end
-                table.insert(en_cands, cand) -- 防止候选太多, 输入卡顿
-            end
         else
             yield(cand)
         end

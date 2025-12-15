@@ -4,7 +4,6 @@ local pin_word_records =
 	["nf"] = { "嫩", },
 	["ba"] = { "吧", "把", },
 	["nv"] = { "女", },
-	["anato"] = { "anatomy", },
 	["size"] = { "size", },
 	["sf"] = { "森", },
 	["en"] = { "嗯", },

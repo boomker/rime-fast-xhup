@@ -589,50 +589,50 @@ colors:
 
 preset_color_schemes:
   default:
-    name: "白夜 / White Night"
-    author: "Windy_D"
-    dark_scheme: by_astralwelkin
+    name: "紫陽 / Hydrangea"
+    author: "Boomker"
+    dark_scheme: bg_centaurea
     #懸浮窗顏色
-    border_color: *light_border_color
-    label_color: *light_sub_candidate_color
-    hilited_text_color: *light_code_text_color
-    text_color: *light_code_unparsed_color
-    hilited_back_color: *light_bg_color
-    text_back_color: *light_bg_color
-    ##候選區顏色
-    back_color: *light_bg_color
-    candidate_background: *light_bg_color
-    hilited_candidate_back_color: *light_main_color
+    border_color: *hydrangea_border_color
+    label_color: *hydrangea_sub_candidate_color
+    hilited_text_color: *hydrangea_code_text_color
+    text_color: *hydrangea_code_unparsed_color
+    hilited_back_color: *hydrangea_main_color
+    text_back_color: *hydrangea_bg_color
+    #候選區顏色
+    back_color: *hydrangea_bg_color
+    candidate_background: *hydrangea_bg_color
+    hilited_candidate_back_color: *hydrangea_main_color
     candidate_separator_color: *pure_black
-    candidate_text_color: *light_sub_candidate_color
-    hilited_candidate_text_color: *light_main_text_color
-    comment_text_color: *light_sub_comment_color
-    hilited_comment_text_color: *light_comment_color
-    ##鍵盤顏色
-    key_back_color: *light_main_color
-    hilited_key_back_color: *light_border_color
-    key_text_color: *light_main_text_color
-    key_symbol_color: *light_key_hint_color
-    hilited_key_symbol_color: *pure_black
-    preview_back_color: *light_border_color
-    preview_text_color: *pure_black
-    keyboard_back_color: *light_bg_color
-    key_border_color: *light_border_color
-    off_key_back_color: *light_func_key_bg_color
-    off_key_text_color: *light_func_key_text_color
-    hilited_off_key_back_color: *light_func_key_pressed_bg_color
-    hilited_off_key_text_color: *light_func_key_pressed_text_color
-    on_key_back_color: *light_shift_lock_bg_color
-    hilited_on_key_back_color: *light_shift_lock_pressed_bg_color
-    on_key_text_color: *light_shift_lock_text_color
-    hilited_on_key_text_color: *light_shift_lock_pressed_text_color
-    enter_bg_color: *light_enter_bg_color
-    enter_text_color: *light_enter_text_color
-    enter_pressed_bg_color: *light_enter_pressed_bg_color
-    enter_pressed_text_color: *light_enter_pressed_text_color
-    liquid_keyboard_background: *light_bg_color
-    long_text_back_color: *light_main_color
-    one_color: *light_func_key_text_color #off
+    candidate_text_color: *hydrangea_sub_candidate_color
+    hilited_candidate_text_color: *hydrangea_main_text_color
+    comment_text_color: *hydrangea_sub_comment_color
+    hilited_comment_text_color: *hydrangea_comment_color
+    #鍵盤顏色
+    key_back_color: *hydrangea_main_color
+    hilited_key_back_color: *hydrangea_border_color
+    key_text_color: *hydrangea_main_text_color
+    key_symbol_color: *hydrangea_key_hint_color
+    hilited_key_symbol_color: *pure_white
+    preview_back_color: *hydrangea_border_color
+    preview_text_color: *pure_white
+    keyboard_back_color: *hydrangea_bg_color
+    key_border_color: *hydrangea_border_color
+    off_key_back_color: *hydrangea_func_key_bg_color
+    off_key_text_color: *hydrangea_func_key_text_color
+    hilited_off_key_back_color: *hydrangea_func_key_pressed_bg_color
+    hilited_off_key_text_color: *hydrangea_func_key_pressed_text_color
+    on_key_back_color: *hydrangea_shift_lock_bg_color
+    hilited_on_key_back_color: *hydrangea_shift_lock_pressed_bg_color
+    on_key_text_color: *hydrangea_shift_lock_text_color
+    hilited_on_key_text_color: *hydrangea_shift_lock_pressed_text_color
+    enter_bg_color: *hydrangea_enter_bg_color
+    enter_text_color: *hydrangea_enter_text_color
+    enter_pressed_bg_color: *hydrangea_enter_pressed_bg_color
+    enter_pressed_text_color: *hydrangea_enter_pressed_text_color
+    liquid_keyboard_background: *hydrangea_bg_color
+    long_text_back_color: *hydrangea_main_color
+    one_color: *hydrangea_one_color
 
   bk_flyhe:
     name: "飞鹤 / flyhe"
@@ -1432,7 +1432,8 @@ preset_keys:
   VOLUME_UP: { label: 音量+, send: VOLUME_UP }
   VOLUME_MUTE: { label: 静音, send: VOLUME_MUTE }
   # 編輯
-  Shift_L: { label: "⇧", key_text_size: 26, send: Shift_L, shift_lock: long }
+  Shift_L: { label: "⇪", key_text_size: 26, send: Shift_L,  functional: false }
+  Shift_L2: { label: "L", key_text_size: 26, send: Shift_L, shift_lock: click, functional: false }
   Return: { label: enter_labels, repeatable: true, send: Return, functional: false }
   Hide: { label: 隐藏, send: BACK }
   BackSpace: { label: "⇦", repeatable: true, send: BackSpace }
@@ -4902,6 +4903,7 @@ preset_keyboards:
       #第四行
       - {
           click: Shift_L,
+          double_click: Shift_L2,
           width: 14,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,
@@ -5125,7 +5127,7 @@ preset_keyboards:
           click: "0",
           width: 36,
           repeatable: true,
-          hint: "欲使腳本須方案本身支持",
+          hint: "欲使脚本须方案本身支持",
           key_symbol_color: on_key_text_color,
           key_text_size: 24,
         }
@@ -10513,6 +10515,7 @@ preset_keyboards:
       #第四行
       - {
           click: Shift_L,
+          double_click: Shift_L2,
           width: 14,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,
@@ -10813,6 +10816,7 @@ preset_keyboards:
       #第四行
       - {
           click: Shift_L,
+          double_click: Shift_L2,
           width: 14,
           key_text_offset_y: 0,
           key_back_color: off_key_back_color,

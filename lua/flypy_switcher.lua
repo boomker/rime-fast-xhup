@@ -8,7 +8,6 @@ local Env = require("lib/env_api")
 function flypy_switcher.init(env)
     Env(env)
     local engine = env.engine
-    -- local context = engine.context
     local config = engine.schema.config
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
     env.user_distribute_name = rime_api:get_distribution_code_name()

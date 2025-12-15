@@ -6,7 +6,7 @@ patch:
       ## 左右飞键音码规则
       - derive/^(j)n/$1c/
       - derive/^([jyn])t/$1d/         # t --> d
-      - derive/^([jlmn])p/$1e/        # p --> e
+      - derive/^([jmn])p/$1e/         # p --> e
       - derive/^([djlnx])q/$1f/       # q --> f
       - derive/^p([okibnmuhj])/e$1/
       - derive/^q([pkibnmsxyl])/f$1/
@@ -48,6 +48,7 @@ patch:
       - derive/^nj/xj/
       - derive/^no/nr/
       - derive/^lo/ng/
+      - derive/^lp/nl/
       - derive/^ly/nw/
       - derive/^lm/nz/
       - derive/^li/lx/

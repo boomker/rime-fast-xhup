@@ -21,5 +21,6 @@ local drop_words =
 	"色情市场",
 	"行政区画",
 	"骈偶",
+	"file",
 }
 return drop_words

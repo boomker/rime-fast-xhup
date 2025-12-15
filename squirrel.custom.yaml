@@ -178,6 +178,8 @@ patch:
       ascii_punct: true
     com.surteesstudios.Bartender:
       ascii_mode: true
+    com.antiless.cleanclip.mac:
+      ascii_mode: true
     com.microsoft.edgemac:
       ascii_mode: false
     com.google.Chrome:

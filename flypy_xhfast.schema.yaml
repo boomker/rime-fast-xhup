@@ -14,8 +14,6 @@ schema:
     github.com:boomker/rime-fast-xhup
   dependencies:
     - easy_en           # 英文输入方案
-    - ecdict            # 英文反查中文释义
-    - melt_eng          # 中英混合,副翻译器
     - flypy_radical     # 部件组字(反查)
 
 # 选项开关
@@ -58,7 +56,6 @@ engine:
     - lua_segmentor@*pair_punct*segmentor
     - abc_segmentor
     - affix_segmentor@LaTeX
-    - affix_segmentor@easy_en
     - affix_segmentor@calculator
     - affix_segmentor@make_sentence
     - affix_segmentor@chinese_lunar
@@ -72,8 +69,7 @@ engine:
     - lua_translator@*pin_word*translator             # ctrl-t 自定义置顶词
     - script_translator
     - reverse_lookup_translator
-    - table_translator@easy_en                        # /en,eN 触发进入英文模式
-    - table_translator@melt_eng
+    - table_translator@easy_en
     - table_translator@idiom_phrase                   # 成语短语的首字母简拼
     - table_translator@custom_phrase
     - table_translator@make_sentence                  # ` 精准造词
@@ -88,7 +84,6 @@ engine:
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     # - lua_translator@*revert_commit_word            # 撤销已上屏字符(模拟退格键)
-    # - lua_translator@*fly_fixed*translator          # 抑制分词错误的简拼候选项
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
     - lua_translator@*chinese_number*translator       # /nn,nN 触发大写金额数字
     - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
@@ -97,11 +92,9 @@ engine:
     - lua_translator@*fuzzy_word_expand*translator    # ctrl-q 成语简拼展开优先
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
-    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词的中文释义
     - simplifier@tradition                            # 简繁切换
     - simplifier@emoji
     - lua_filter@*reduce_emoji
-    - lua_filter@*easy_en*filter
     - lua_filter@*charset*filter
     - lua_filter@*fly_fixed*filter
     - lua_filter@*charset*charset_hint
@@ -159,14 +152,13 @@ make_sentence:                      # 精准造词
   __include: /translator
 
 # 次翻译器, 英文
-melt_eng:                           # 英文输入
-  dictionary: melt_eng
+easy_en:
+  dictionary: easy_en
   initial_quality: 0.8
   enable_encoder: false
   enable_sentence: false
   enable_user_dict: true
-  enable_completion: true           # 是否启用英文输入联想补全
-  encode_commit_history: false
+  enable_completion: true
   comment_format:
     - xform/.*//                    # 清空提示码
 
@@ -241,28 +233,6 @@ radical_reverse_lookup:
   comment_format:
     - xform/^(\w+)[[].*$/$1/
     - xform/^/~/
-
-# 英文输入方案
-easy_en:
-  # prefix: "/en"
-  prefix: "eN"
-  suffix: "'"
-  tag: easy_en
-  tips: "〔英文输入〕"
-  dictionary: easy_en
-  enable_user_dict: true
-  enable_sentence: false
-  enable_completion: true
-
-# 英文反查释意
-ecdict_reverse_lookup:
-  tags: [easy_en]
-  dictionary: ecdict
-  overwrite_comment: true           # 是否开启中文释意注解
-  comment_format:
-    - xform|\\r\\n| ; |
-    - xform|\\n| ; |
-    - erase|^.$|
 
 # 处理符合特定规则的输入码, 如网址、反查
 recognizer:
