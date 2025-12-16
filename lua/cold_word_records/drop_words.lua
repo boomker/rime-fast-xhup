@@ -22,5 +22,6 @@ local drop_words =
 	"行政区画",
 	"骈偶",
 	"file",
+	"台湾传统他",
 }
 return drop_words

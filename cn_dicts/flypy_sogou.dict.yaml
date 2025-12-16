@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-14
+version: 2025-12-16
 sort: by_weight
 ...
 
@@ -16,22 +16,27 @@ sort: by_weight
 阿黛	aa dd	100
 阿铛	aa dh	100
 阿电	aa dm	100
+阿杜	aa du	1
 阿浮	aa fu	100
 阿改	aa gd	100
 阿含	aa hj	100
 阿怀	aa hk	100
 阿化	aa hx	100
 阿潮	aa ic	100
+阿蝉	aa ij	1
 阿禅	aa ij	100
 阿船	aa ir	100
 阿纪	aa ji	100
+阿九	aa jq	1
 阿卡	aa ka	100
 阿枯	aa ku	100
+阿里	aa li	1
 阿璃	aa li	100
 阿瑠	aa lq	100
 阿驴	aa lv	100
 阿帽	aa mc	100
 阿妙	aa mn	100
+阿诺	aa no	1
 阿炮	aa pc	100
 阿漂	aa pn	100
 阿蒲	aa pu	100
@@ -43,13 +48,16 @@ sort: by_weight
 阿箬	aa ro	100
 阿巳	aa si	100
 阿散	aa sj	100
+阿泰	aa td	1
 阿条	aa tn	100
 阿升	aa ug	100
 阿术	aa uu	100
 阿数	aa uu	100
 阿兽	aa uz	100
+啊这	aa ve	1
 阿哲	aa ve	100
 阿纸	aa vi	100
+阿信	aa xb	1
 阿栩	aa xu	100
 阿崖	aa ya	100
 阿垚	aa yc	100
@@ -13348,35 +13356,61 @@ sort: by_weight
 走实	zz ui	100
 走戏	zz xi	100
 走鱼	zz yu	100
+阿巴斯	aa ba si	1
 阿贝贝	aa bw bw	100
+阿贝多	aa bw do	1
 阿迪了	aa di le	100
 阿多丸	aa do wj	100
+阿尔巴	aa er ba	1
 阿尔玛	aa er ma	100
 阿尔塞	aa er sd	100
+阿凡达	aa fj da	1
+阿富汗	aa fu hj	1
 阿菲夫	aa fw fu	100
 阿费夫	aa fw fu	100
 阿盖尔	aa gd er	100
+阿戈尔	aa ge er	1
+阿根廷	aa gf tk	1
 阿甘左	aa gj zo	100
+阿合奇	aa he qi	1
 阿基孚	aa ji fu	100
 阿吉雷	aa ji lw	100
+阿卡丽	aa ka li	1
+阿克萨	aa ke sa	1
+阿克尚	aa ke uh	1
+阿坎吉	aa kj ji	1
+阿奎那	aa kv na	1
 阿拉比	aa la bi	100
 阿拉梅	aa la mw	100
+阿劳霍	aa lc ho	1
 阿莱夫	aa ld fu	100
+阿勒颇	aa le po	1
+阿勒泰	aa le td	1
 阿里化	aa li hx	100
 阿丽莎	aa li ua	100
+阿里云	aa li yy	1
+阿联酋	aa lm qq	1
 阿洛娜	aa lo na	100
+阿隆索	aa ls so	1
+阿鲁纳	aa lu na	1
 阿马杜	aa ma du	100
+阿玛尼	aa ma ni	1
 阿莫林	aa mo lb	100
 阿莫斯	aa mo si	100
+阿美呀	aa mw ya	1
 阿尼斯	aa ni si	100
+阿尼亚	aa ni ya	1
+阿诺德	aa no de	1
 阿诺拉	aa no la	100
 阿努廷	aa nu tk	100
 阿帕特	aa pa te	100
 阿其那	aa qi na	100
 阿如那	aa ru na	100
+阿萨德	aa sa de	1
 阿萨拉	aa sa la	100
 啊萨拉	aa sa la	100
 阿萨辛	aa sa xb	100
+阿森纳	aa sf na	1
 阿斯麦	aa si md	100
 阿三哥	aa sj ge	100
 阿塔尔	aa ta er	100
@@ -13385,6 +13419,7 @@ sort: by_weight
 阿宙斯	aa vz si	100
 阿乌拉	aa wu la	100
 阿伟罗	aa ww lo	100
+阿维塔	aa ww ta	1
 阿为特	aa ww te	100
 阿兹克	aa zi ke	100
 爱伴侣	ai bj lv	100
@@ -24883,45 +24918,78 @@ sort: by_weight
 阿爸的刀	aa ba de dc	100
 阿巴斯港	aa ba si gh	100
 阿坝师范	aa ba ui fj	100
+阿拜多斯	aa bd do si	1
+阿波尼亚	aa bo ni ya	1
+阿勃梭鲁	aa bo so lu	1
+阿卜杜拉	aa bu du la	1
+阿布扎比	aa bu va bi	1
 阿策道歉	aa ce dc qm	100
+阿德莱德	aa de ld de	1
+阿德里安	aa de li an	1
 吖嘀吖嘀	aa di aa di	100
+阿迪达斯	aa di da si	1
+啊对对对	aa dv dv dv	1
 阿尔比恩	aa er bi en	100
 阿尔波拉	aa er bo la	100
+阿尔古斯	aa er gu si	1
 阿尔米隆	aa er mi ls	100
 阿尔梅达	aa er mw da	100
+阿尔特塔	aa er te ta	1
+阿尔图罗	aa er tu lo	1
 阿凡不达	aa fj bu da	100
 阿凡达色	aa fj da se	100
 阿夫迪亚	aa fu di ya	100
 阿格莱雅	aa ge ld ya	100
 阿格莱亚	aa ge ld ya	100
+阿根廷队	aa gf tk dv	1
+阿合奇县	aa he qi xm	1
 阿禅官宣	aa ij gr xr	100
 阿基维利	aa ji ww li	100
 阿娇复胖	aa jn fu ph	100
 阿娇锁骨	aa jn so gu	100
 阿舅奈斯	aa jq nd si	100
+阿贾克斯	aa jx ke si	1
 阿卡爆冷	aa ka bc lg	100
 阿克达拉	aa ke da la	100
+阿克塞县	aa ke sd xm	1
+阿康云医	aa kh yy yi	1
 阿夸毕业	aa kx bi ye	100
 阿拉贡队	aa la gs dv	100
 阿拉米扬	aa la mi yh	100
+阿拉木图	aa la mu tu	1
+阿拉斯加	aa la si jx	1
+阿拉斯托	aa la si to	1
 阿拉维斯	aa la ww si	100
+阿里巴巴	aa li ba ba	1
 阿里大涨	aa li da vh	100
 阿里公益	aa li gs yi	100
 阿里模式	aa li mo ui	100
 阿里千问	aa li qm wf	100
 阿里萨拉	aa li sa la	100
+阿里乌斯	aa li wu si	1
+阿兰德龙	aa lj de ls	1
 阿兰助攻	aa lj vu gs	100
 阿留状元	aa lq vl yr	100
 阿隆戈登	aa ls ge dg	100
+阿蕾奇诺	aa lw qi no	1
 阿米诺斯	aa mi no si	1
 阿米诺斯	aa mi no si	100
+阿美莉卡	aa mw li ka	1
+阿努比斯	aa nu bi si	1
 阿奇姆彭	aa qi mu pg	100
 阿切尔比	aa qp er bi	100
+阿塞拜疆	aa sd bd jl	1
 阿斯卡隆	aa si ka ls	100
+阿斯卡纶	aa si ka ly	1
 阿斯莫代	aa si mo dd	100
+阿斯帕斯	aa si pa si	1
 阿斯塔特	aa si ta te	100
 阿图什队	aa tu ui dv	100
+阿图什市	aa tu ui ui	1
+阿什拉夫	aa uf la fu	1
+阿扎伦卡	aa va ly ka	1
 阿吱阿吱	aa vi aa vi	100
+阿瓦雷兹	aa wa lw zi	1
 阿信直播	aa xb vi bo	100
 阿细跳月	aa xi tn yt	100
 艾艾精工	ai ai jk gs	100
@@ -40042,6 +40110,8 @@ sort: by_weight
 走向自己	zz xl zi ji	100
 阿达娃淘汰	aa da wa tc td	100
 阿黛尔采访	aa dd er cd fh	100
+阿尔巴尼斯	aa er ba ni si	1
+阿尔巴尼亚	aa er ba ni ya	1
 阿尔卡拉斯	aa er ka la si	100
 阿尔提乌斯	aa er ti wu si	100
 阿尔瓦雷斯	aa er wa lw si	100
@@ -40054,7 +40124,9 @@ sort: by_weight
 阿克萨洪水	aa ke sa hs uv	100
 阿可替尼片	aa ke ti ni pm	100
 阿坎吉失点	aa kj ji ui dm	100
+阿拉伯国家	aa la bo go jx	1
 阿拉德战记	aa la de vj ji	100
+阿拉斯加州	aa la si jx vz	1
 阿劳霍绝杀	aa lc ho jt ua	100
 阿勒泰暴雪	aa le td bc xt	100
 阿勒泰极光	aa le td ji gl	100
@@ -40069,13 +40141,16 @@ sort: by_weight
 阿玛尼高定	aa ma ni gc dk	100
 阿玛尼生平	aa ma ni ug pk	100
 阿玛特拉斯	aa ma te la si	100
+阿姆斯特朗	aa mu si te lh	1
 阿如那圈粉	aa ru na qr ff	100
 阿如那淘汰	aa ru na tc td	100
 阿瑟请开跑	aa se qk kd pc	100
 阿森纳球迷	aa sf na qq mi	100
 阿桑奇认罪	aa sh qi rf zv	100
+阿斯顿马丁	aa si dy ma dk	1
 阿条姐领奖	aa tn jp lk jl	100
 阿条姐头像	aa tn jp tz xl	100
+阿什哈巴德	aa ui ha ba de	1
 阿水走错了	aa uv zz co le	100
 阿哲生日会	aa ve ug ri hv	100
 阿信好会写	aa xb hc hv xp	100
@@ -51716,6 +51791,7 @@ sort: by_weight
 阿利森谈夺冠	aa li sf tj do gr	100
 阿狸是这儿吗	aa li ui ve er ma	100
 阿里山的姑娘	aa li uj de gu nl	100
+阿里云服务器	aa li yy fu wu qi	1
 阿兰德龙去世	aa lj de ls qu ui	100
 阿兰两射一传	aa lj ll ue yi ir	100
 阿兰梅开二度	aa lj mw kd er du	100
@@ -64647,6 +64723,7 @@ sort: by_weight
 张杰梵希雅强强联合	vh jp fj xi ya ql ql lm he	100
 中华人民共和国政府	vs hx rf mb gs he go vg fu	100
 于适欢迎来到我身边	yu ui hr yk ld dc wo uf bm	100
+阿卜耶伊临时安全部队	aa bu ye yi lb ui an qr bu dv	1
 阿米噶蒂朵喵喵手势舞	aa mi ga di do mn mn uz ui wu	100
 阿姆斯特丹泛欧交易所	aa mu si te dj fj ou jn yi so	100
 不能生同衾那就死同穴	bu ng ug ts qb na jq si ts xt	100

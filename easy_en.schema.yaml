@@ -78,7 +78,8 @@ easy_en:
 key_binder:
   import_preset: default
   bindings:
-    - {when: always, accept: Control+Shift+grave, select: .next}               # 在最近的两个方案之间切换
+    - {when: has_menu,  accept: semicolon,  send: 2}              # 分号用于第2候选
+    - {when: always, accept: Control+Shift+grave, select: .next}  # 在最近的两个方案之间切换
 
 punctuator:
   # import_preset: default
@@ -120,7 +121,7 @@ recognizer:
   import_preset: default
   patterns:
     uppercase: ""
-    easy_en: "^[a-zA-Z]+[%*_-']?[a-zA-Z]+$"
+    easy_en: "^[a-zA-Z]+[-_']*[*]?[a-zA-Z]*$"
 
 algebra_common:
   # - xform/^a/!/

@@ -1436,20 +1436,13 @@ preset_keys:
   Shift_L2: { label: "L", key_text_size: 26, send: Shift_L, shift_lock: click, functional: false }
   Return: { label: enter_labels, repeatable: true, send: Return, functional: false }
   Hide: { label: 隐藏, send: BACK }
-  BackSpace: { label: "⇦", repeatable: true, send: BackSpace }
-  space:
-    {
-      label: "",
-      preview: "{schema}",
-      repeatable: true,
-      functional: false,
-      send: space,
-    }
-  Escape: { label: Esc, send: Escape }
-  Home: { label: "行头", send: Home }
-  Insert: { label: Insert, send: Insert }
   Delete: { label: "⇨", send: Delete, repeatable: true }
+  BackSpace: { label: "⇦", repeatable: true, send: BackSpace }
+  space: { label: "", preview: "{schema}", repeatable: true, functional: false, send: space }
+  Escape: { label: Esc, send: Escape }
+  Home: { label: "行首", send: Home }
   End: { label: "行尾", send: End }
+  Insert: { label: Insert, send: Insert }
   Page_Up: { label: "上一页", send: Page_Up }
   Page_Down: { label: "下一页", send: Page_Down }
   Left: { label: "←", repeatable: true, send: Left }
@@ -1468,7 +1461,7 @@ preset_keys:
   redo: { label: 重做, send: Control+y } #>=Android 6.0
   undo: { label: 撤销, send: Control+z } #>=Android 6.0
   # rime組合鍵
-  F4: { label: 方案选单, send: F4 }
+  F4: { label: 方案选单, send: Alt+grave }
   BackToPreviousSyllable: { label: 刪音节, send: Control+BackSpace }
   CommitRawInput: { label: 编码, send: Control+Return }
   CommitScriptText: { label: 编码, send: Shift+Return }
@@ -1487,7 +1480,7 @@ preset_keys:
   Keyboard_letter: { label: 字母, send: Eisu_toggle, select: default }
   Keyboard_default: { label: 返回, send: Eisu_toggle, select: .default }
   Keyboard_switch: { label: 键盘, send: Eisu_toggle, select: .next }
-  Schema_switch: { label: 切换, send: Control+Shift+1 }
+  Schema_switch: { label: 切换, send: Control+Shift+grave }
   Color_switch: { label: 配色, send: PROG_RED }
   Help: { label: 说明, send: Help }
   Info: { label: 关于, send: INFO }
@@ -1659,11 +1652,11 @@ preset_keys:
   Commit_Dot: { label: ".", commit: ".", functional: false }
   Commit_Brace_L: { label: "{", commit: "{", functional: false }
   Commit_Brace_R: { label: "}", commit: "}", functional: false }
-  EnMode_Lua: { label: "英式", text: "eN", functional: false }
   Date_Lua: { label: "日期", text: "/wd", functional: false }
+  Calc_Lua: { label: "计算器", text: "cC", functional: false }
   Lunar_Lua: { label: "农历", text: "nL", functional: false }
   Number_Lua: { label: "中文数", text: "nN", functional: false }
-  Calc_Lua: { label: "计算器", text: "cC", functional: false }
+  EasyEnMode: { label: "英译", send: Control+g, functional: false }
   # Unicode_Lua: { label: "Uni", text: "U", functional: false }
   Alt_space: { label: "空格", repeatable: true, functional: false, send: space }
   Flyhe_readme: {
@@ -4770,7 +4763,7 @@ preset_keyboards:
           hint: "~",
         }
       - { click: "w" }
-      - { click: "e", long_click: EnMode_Lua, swipe_up: EnMode_Lua, }
+      - { click: "e", long_click: EasyEnMode, swipe_up: EasyEnMode, }
       - { click: "r", long_click: Mandarin_rl, swipe_up: Mandarin_rl, }
       - {
           click: "t",
@@ -4869,8 +4862,8 @@ preset_keyboards:
       - {
           click: "j",
           long_click: ";",
-          swipe_down: ";",
-          hint: ";",
+          swipe_down: ":",
+          hint: ":",
           # long_click: Keyboard_Hiragana,
           # swipe_left: "「",
           # swipe_right: "」",
@@ -5190,17 +5183,15 @@ preset_keyboards:
           key_text_size: 20,
         }
       - {
-          click: "",
+          click: Clear,
           label: "❌",
-          long_click: Clear,
-          hint: "長壓確認",
+          hint: "清空",
           key_symbol_color: on_key_text_color,
         }
       - { click: undo, key_text_size: 20 }
       - { click: redo, key_text_size: 20 }
       - {
           click: Return,
-          width: 40,
           key_text_size: 24,
           key_text_offset_y: -2,
           key_back_color: enter_bg_color,
