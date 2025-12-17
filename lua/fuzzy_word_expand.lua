@@ -15,13 +15,12 @@ function M.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
-    local flyhe_fast = Schema("flyhe_fast") -- schema_id
+    local flyhe_schema = Schema("flyhe_fast") -- schema_id
     env.reversedb = ReverseLookup(schema_id)
     env.mem = Memory(env.engine, schema, "translator")
-    env.char_mode_state = context:get_option("char_mode")
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
     env.expand_idiom_key = config:get_string("key_binder/simpy_expand_key") or "Control+q"
-    env.script_tran = Component.ScriptTranslator(env.engine, flyhe_fast, "translator", "script_translator")
+    env.script_tran = Component.ScriptTranslator(env.engine, flyhe_schema, "translator", "script_translator")
     env.idiom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@idiom_phrase")
     env.commit_idiom_notify = context.commit_notifier:connect(function(ctx)
         ctx:set_property("idiom_phrase_first", "0")
@@ -48,25 +47,22 @@ function P.func(key, env)
     local context = engine.context
     local composition = context.composition
     if composition:empty() then return 2 end
-    local preedit_code = context:get_script_text():gsub(" ", "")
+    local preedit_text = context:get_preedit().text
+    local preedit_code = preedit_text:gsub("[‸ ]", "")
+    local char_mode_state = context:get_option("char_mode")
+    local phrase_first_state = context:get_property("idiom_phrase_first")
 
-    if
-        context:has_menu()
-        and (#preedit_code >= 4)
-        and (preedit_code:match("^[%a' ]+$"))
-        and (key:repr() == env.expand_idiom_key)
-    then
-        local switch_val = (context:get_property("idiom_phrase_first") == "1") and "0" or "1"
+    -- 触发简码成语优先
+    if context:has_menu() and (preedit_code:match("^%l%l%l%l+$")) and (key:repr() == env.expand_idiom_key) then
+        local switch_val = (phrase_first_state == "1") and "0" or "1"
         context:set_property("idiom_phrase_first", tostring(switch_val))
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
     end
 
-    if context:has_menu() and
-        (key:repr() == env.char_mode_switch_key) and
-        (#preedit_code == 4) and (preedit_code:match("^[%l]+$"))
-    then
-        local switch_to_val = (not env.char_mode_state)
+    -- 触发单字优先
+    if context:has_menu() and (preedit_code:match("^%l%l%l%l$")) and (key:repr() == env.char_mode_switch_key) then
+        local switch_to_val = (not char_mode_state)
         context:set_option("char_mode", switch_to_val)
         context:refresh_non_confirmed_composition()
         return 1 -- kAccept
@@ -80,6 +76,7 @@ function T.func(input, seg, env)
     local composition = context.composition
     if composition:empty() then return end
 
+    -- -- 简拼候选
     if (input:len() >= 2) and (input:len() <= 5) then
         local word_cands = env.script_tran:query(input, seg) or nil
         if not word_cands then return end
@@ -93,7 +90,8 @@ function T.func(input, seg, env)
     end
 
     -- 四码时, 按下`Control+q`, 简拼成语优先
-    if (input:match("^%l%l%l%l") and (context:get_property("idiom_phrase_first") == "1")) then
+    local phrase_first_state = context:get_property("idiom_phrase_first")
+    if (input:match("^%l%l%l%l") and (phrase_first_state == "1")) then
         local idiom_phrase_iter = env.idiom_phrase_tran:query(input, seg)
         if not idiom_phrase_iter then return end
         for cand in idiom_phrase_iter:iter() do
@@ -120,6 +118,7 @@ function T.func(input, seg, env)
             end
         end
 
+        if table.len(entry_matched_tbl) < 1 then return end
         for _, de in ipairs(entry_matched_tbl) do
             local ph = Phrase(env.mem, "single_char", seg.start, seg._end, de)
             local cand = ph:toCandidate()

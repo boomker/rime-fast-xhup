@@ -74,13 +74,13 @@ function T.func(input, seg, env)
             for dictentry in word_cands:iter() do
                 idx = idx + 1
                 local entry_text = dictentry.text
-                if (utf8.len(entry_text) == 2) and (not entry_text:match("%a%d%p")) then
-                    local _cand_header_text = string.utf8_sub(entry_text, 1, 1)
-                    local _cand_tailer_text = string.utf8_sub(entry_text, 2, 2)
-                    local cand_header_code = _cand_header_text
-                        and env.reversedb:lookup(_cand_header_text):sub(4, 4)
-                    local cand_tailer_code = _cand_tailer_text
-                        and env.reversedb:lookup(_cand_tailer_text):sub(4, 5)
+                if (utf8.len(entry_text) == 2) and (not entry_text:match("[%a%d%p]")) then
+                    local cand_header_text = string.utf8_sub(entry_text, 1, 1)
+                    local cand_tailer_text = string.utf8_sub(entry_text, 2, 2)
+                    local cand_header_code = cand_header_text
+                        and env.reversedb:lookup(cand_header_text):sub(4, 4)
+                    local cand_tailer_code = cand_tailer_text
+                        and env.reversedb:lookup(cand_tailer_text):sub(4, 5)
                     local cand_shape_code = cand_tailer_code .. cand_header_code
                     word_shape_code_tbl[idx] = { entry_text, cand_shape_code }
                 end

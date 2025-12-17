@@ -13,8 +13,8 @@ schema:
     小鹤双拼+辅助码
     github.com:boomker/rime-fast-xhup
   dependencies:
-    - easy_en           # 英文输入方案
-    - flypy_radical     # 部件组字(反查)
+    - easy_en         # 英文输入方案
+    - flypy_radical   # 部件组字(反查)
 
 # 选项开关
 switches:
@@ -94,9 +94,9 @@ engine:
     - reverse_lookup_filter@radical_reverse_lookup
     - simplifier@tradition                            # 简繁切换
     - simplifier@emoji
+    - lua_filter@*fly_fixed
     - lua_filter@*reduce_emoji
     - lua_filter@*charset*filter
-    - lua_filter@*fly_fixed*filter
     - lua_filter@*charset*charset_hint
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter

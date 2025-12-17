@@ -1,43 +1,40 @@
 # Rime dictionary
 # encoding: utf-8
+#
+# 挂载英文输入方案的词库
+#
 
 ---
-name: flypy_ext_misc
-version: 2025.01.11
-
+name: flypy_melt_eng
+version: "2025-12-17"
 ...
-# 按需启用:
-# 数字参与中文造词, 方便输入一些特殊的 ID
-# 配合大写字母造词可以输出 `5G网络`, `3D打印` 等词汇
-# 示例: 输入 siSdian 得到 4S店, 输入 Hwu 得到 H5
-# V开头词条是响应 opencc/others.txt 的 emoji 集合
 
-A	A
-B	B
-C	C
-D	D
-E	E
-F	F
-G	G
-H	H
-I	I
-J	J
-K	K
-L	L
-M	M
-N	N
-O	O
-P	P
-Q	Q
-R	R
-S	S
-T	T
-U	U
-V	V
-W	W
-X	X
-Y	Y
-Z	Z
+A	aA
+B	bB
+C	cC
+D	dD
+E	eE
+F	fF
+G	gG
+H	hH
+I	iI
+J	jJ
+K	kK
+L	lL
+M	mM
+N	nN
+O	oO
+P	pP
+Q	qQ
+R	rR
+S	sS
+T	tT
+U	uU
+V	vV
+W	wW
+X	xX
+Y	yY
+Z	zZ
 
 0	lk
 1	yi
@@ -68,6 +65,7 @@ AE86
 H263
 H264
 M3U8
+
 00后
 10后
 20后
@@ -93,11 +91,68 @@ M3U8
 4G网络
 5G网络
 3G流量
+3C认证
+2B铅笔
+HB铅笔
 4G流量
 5G流量
 4G通信
 5G通信
 6G通信
+
+O不OK
+OK了吗
+我OK啊
+AD钙奶
+AV女优
+QQ号码
+QQ空间
+QQ邮箱
+QQ音乐
+QQ拼音
+QQ会员
+QQ好友
+QQ飞车
+QQ三国
+腾讯QQ
+公网IP
+AB型血
+AB血型
+IP地址
+IP电话
+YY语音
+PC版本
+我叫MT
+卡拉OK
+TV版本
+IT行业
+CT检查
+DJ舞曲
+V8引擎
+VIP会员
+X染色体
+Y染色体
+K歌之王
+阿Q精神
+阿Q正传
+Z逆变换
+逆Z变换
+哆啦A梦
+异维A酸
+芭比Q了
+芒果TV
+CNC加工
+DNS劫持
+DNS污染
+MAC地址
+ICP备案
+DNA检测
+UU加速器
+维生素E乳
+B型超声波
+T淋巴细胞
+单边Z变换
+双边Z变换
 
 V冷
 V包
