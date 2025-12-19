@@ -77,7 +77,7 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     -- -- 简拼候选
-    if (input:len() >= 2) and (input:len() <= 5) then
+    if (input:len() >= 2) and (input:len() <= 7) then
         local word_cands = env.script_tran:query(input, seg) or nil
         if not word_cands then return end
         for dictentry in word_cands:iter() do

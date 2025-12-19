@@ -39,14 +39,18 @@ function F.func(input, env)
             ) or ( -- 辅码筛字时, 过滤掉 emoji
                 preedit_code:match("^%l+[`/][%l`/]+$")
                 and (cand_dtype == "Shadow")
-            ) or ( -- 辅码模式下, 过滤掉长度超出预确认音节长度的候选
+            ) or ( -- 辅码模式下, 过滤掉长度超出音节长度的候选
                 preedit_code:match("^%l+[`/][%l`/]+$")
                 and (cand_text_len > syllable_len)
             ) or ( -- V模式下, 过滤掉中英混合词条
                 preedit_code:match("^V%a+$") and
                 cand_text:find("([\228-\233][\128-\191]-)")
-            ) or ( -- 候选词长度超出预确认音节长度 2 个以上的候选
+            ) or ( -- 候选词长度超出音节长度 1 个以上的候选
                 (cand.type == "completion") and
+                (cand_text_len - syllable_len > 1) and
+                cand_text:find("([\228-\233][\128-\191]-)")
+            ) or (
+                (segment:has_tag("abc")) and
                 (cand_text_len - syllable_len > 2) and
                 cand_text:find("([\228-\233][\128-\191]-)")
             )

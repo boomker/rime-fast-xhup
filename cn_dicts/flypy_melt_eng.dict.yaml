@@ -1,13 +1,90 @@
 # Rime dictionary
 # encoding: utf-8
 #
-# 挂载英文输入方案的词库
+# 挂载中英混合输入方案的词库
 #
 
 ---
 name: flypy_melt_eng
-version: "2025-12-17"
+version: "2025-12-19"
 ...
+
+α	af
+β	bt
+θ	xt
+
+0	lk
+1	yi
+2	er
+3	sj
+4	si
+5	wu
+6	lq
+7	qi
+8	ba
+9	jq
+10	ui
++	jx
+-	jm
+-	gh
+.	dm
+/	xg
+@	at
+&	he
+
+A	A
+B	B
+C	C
+D	D
+E	E
+F	F
+G	G
+H	H
+I	I
+J	J
+K	K
+L	L
+M	M
+N	N
+O	O
+P	P
+Q	Q
+R	R
+S	S
+T	T
+U	U
+V	V
+W	W
+X	X
+Y	Y
+Z	Z
+
+a	aA
+b	bB
+c	cC
+d	dD
+e	eE
+f	fF
+g	gG
+h	hH
+i	iI
+j	jJ
+k	kK
+l	lL
+m	mM
+n	nN
+o	oO
+p	pP
+q	qQ
+r	rR
+s	sS
+t	tT
+u	uU
+v	vV
+w	wW
+x	xX
+y	yY
+z	zZ
 
 A	aA
 B	bB
@@ -36,17 +113,6 @@ X	xX
 Y	yY
 Z	zZ
 
-0	lk
-1	yi
-2	er
-3	sj
-4	si
-5	wu
-6	lq
-7	qi
-8	ba
-9	jq
-
 3G
 4G
 5G
@@ -65,6 +131,18 @@ AE86
 H263
 H264
 M3U8
+Web3
+IPv4
+IPv6
+PM2.5
+HiFi
+WiFi-6
+3DMax
+utf-8
+UTF-8
+HTTP2
+HTTP3
+HTTP1.1
 
 00后
 10后
@@ -80,31 +158,122 @@ M3U8
 95后
 4S店
 4A级
-4A级
 5A级
-5A级
+2B铅笔
+2K电视
+2K分辨率
+2K显示器
 3A大作
 3A游戏
+3C认证
 3D打印
 3D电影
+3G流量
 3G网络
 4G网络
-5G网络
-3G流量
-3C认证
-2B铅笔
-HB铅笔
-4G流量
-5G流量
 4G通信
+4G流量
+4K电视
+4K分辨率
+4K显示器
+5G网络
+5G流量
 5G通信
 6G通信
+8K分辨率
+8K显示器
 
+v我50
+免root
+这TM的
+我TM服了
+B站大会员
+
+a4纸
+A4腰
+AB型
+AC号
+AD钙
+AV号
+BB机
+BB啥
+B+树
+QR码
+α粒子
+β粒子
+θ粒子
+A出口
+B出口
+C出口
+D出口
+E出口
+F出口
+A罩杯
+B罩杯
+C罩杯
+D罩杯
+E罩杯
+F罩杯
+G罩杯
+H罩杯
+做B超
+K线图
+日K线
+周K线
+月K线
+LAN口
+WAN口
+LED灯
+LED屏
+PIN码
+POS机
+PVC管
+SDK包
+SIM卡
+T细胞
+T恤衫
+TCP包
+UDP包
+UIM卡
+U形管
+U型锁
+X教授
+X射线
+X战警
+充Q币
+e招贷
+AVL树
+Fn键
+ALT键
+Alt键
+CMD键
+Cmd键
+End键
+END键
+ESC键
+Esc键
+TAB键
+Tab键
+HOME键
+Home键
+CTRL键
+Ctrl键
 O不OK
 OK了吗
 我OK啊
 AD钙奶
+AI绘画
+AI模型
+AI手机
+AI语料
+AI眼镜
+AI智能体
+多模态AI
 AV女优
+BC电池
+HJT电池
+MCU芯片
+MCN机构
 QQ号码
 QQ空间
 QQ邮箱
@@ -115,24 +284,186 @@ QQ好友
 QQ飞车
 QQ三国
 腾讯QQ
+Go语言
+Go程序
+Lua语言
+Lua脚本
+C++编程
+C++语言
+Java语言
+Java代码
+Bash脚本
 公网IP
+飞牛OS
 AB型血
 AB血型
+HB铅笔
+HDMI线
 IP地址
 IP电话
+IP经济
 YY语音
 PC版本
-我叫MT
-卡拉OK
+USIM卡
 TV版本
 IT行业
 CT检查
+CT扫描
+ST板块
 DJ舞曲
+HD高清
+JK制服
+UI设计
 V8引擎
-VIP会员
-X染色体
-Y染色体
-K歌之王
+我叫MT
+卡拉OK
+芒果TV
+
+小鹏G9
+小鹏G6
+小鹏G3
+小鹏P7
+小鹏P5
+仰望U8
+仰望U9
+仰望U7
+尊界S800
+享界S9
+尚界H5
+问界M9
+问界M7
+问界M5
+智界R7
+智界S7
+智己L6
+智己L7
+腾势D9
+腾势N9
+腾势N7
+理想L8
+理想L9
+理想L6
+理想L7
+理想i8
+理想i9
+理想i6
+理想i7
+理想MEGA
+奥迪A8
+奥迪A6
+奥迪A7
+奥迪A3
+奥迪A4
+奥迪A5
+奥迪Q8
+奥迪Q2
+奥迪Q7
+奥迪Q3
+奥迪Q5
+宝马X2
+宝马X6
+宝马X7
+宝马X3
+宝马X4
+宝马X5
+宝马X1
+宝马8系
+宝马2系
+宝马iX
+宝马i7
+宝马i3
+宝马i4
+宝马6系
+宝马7系
+宝马3系
+宝马4系
+宝马5系
+宝马1系
+奔驰A级
+奔驰B级
+奔驰C级
+奔驰E级
+奔驰S级
+奔驰V级
+奔驰EQB
+奔驰EQC
+奔驰EQE
+奔驰EQS
+奔驰GLA
+奔驰GLB
+奔驰GLC
+奔驰GLE
+奔驰GLS
+别克GL8
+蔚来EC8
+蔚来EC6
+蔚来EC7
+蔚来EP9
+蔚来ES8
+蔚来ES6
+蔚来ES7
+蔚来ET9
+蔚来ET7
+蔚来ET5
+蔚来ET5T
+丰田AE86
+保时捷911
+保时捷718
+沃尔沃S90
+沃尔沃S60
+沃尔沃V90
+沃尔沃V60
+沃尔沃XC90
+沃尔沃XC60
+沃尔沃XC40
+雷克萨斯ES
+雷克萨斯LC
+雷克萨斯LM
+雷克萨斯LS
+雷克萨斯LX
+雷克萨斯NX
+雷克萨斯RX
+凯迪拉克CT6
+凯迪拉克CT4
+凯迪拉克CT5
+凯迪拉克XT6
+凯迪拉克XT4
+凯迪拉克XT5
+
+A股板块
+A股指数
+ETF基金
+LOF基金
+北证50
+上证50
+科创50
+深证100
+沪深300
+中证500
+中证1000
+创业板50
+
+6G概念
+C2M概念
+CRO概念
+EDR概念
+ERP概念
+NFT概念
+NMN概念
+PPP概念
+F5G概念
+PCB概念
+PVDF概念
+AIGC概念
+Sora概念
+
+维生素A
+维生素B
+维生素C
+维生素D
+维生素E
+维生素K
+头文字D
 阿Q精神
 阿Q正传
 Z逆变换
@@ -140,19 +471,154 @@ Z逆变换
 哆啦A梦
 异维A酸
 芭比Q了
-芒果TV
+非常6+1
+永硕E盘
+小米SU7
+小米YU7
+ABS刹车
+ASCII码
+ARP协议
+TCP协议
+TCP传输
+TCP报文
+UDP传输
+UDP协议
+BGP协议
+SSH端口
+API调用
+API接口
+APP更新
+APP内购
+APP通知
+APP下载
+APP应用
+ATM取款
+B话真多
+B树索引
 CNC加工
+CNY账户
+CPU核数
+CPU温度
+CRM软件
+CRM系统
+CSS样式
+DNA比对
+DNA测序
+DNA分子
+DNA检测
+DNA鉴定
+DNA序列
+DNS配置
+DNS解析
 DNS劫持
 DNS污染
-MAC地址
+DoS攻击
+ERP系统
+ESP系统
+GDP增速
+GDP增长
+GPS导航
+GPS定位
+GPU加速
+GPU性能
+GRE考试
+Git提交
 ICP备案
-DNA检测
+IDE环境
+IPO上市
+KTV包间
+KTV包厢
+PET铜箔
+LCD屏幕
+LED屏幕
+MAC地址
+MP4视频
+NBA篮球
+NFC功能
+NFC支付
+OTA升级
+PDF文档
+PDF文件
+U盘存储
+X染色体
+Y染色体
+K歌之王
+RAM容量
+RNA分析
+RNA提取
+ROM空间
+SEM图像
+SMT贴片
+SQL语句
+SSD硬盘
+SSH公钥
+SSH私钥
+SUV车身
+SUV车型
+SVN仓库
+URL链接
+URL重定向
+USB接口
+USD汇率
+UTM投影
+VGA接口
+VIP会员
+VPN连接
+XML格式
+XRD测试
+X86架构
+SSL加密
+TLS加密
+IoT设备
+工业4.0
+BIOS设置
+BOSS直聘
+H5小程序
+QR码支付
 UU加速器
-维生素E乳
+OLED屏幕
+OLED电视
+OLED面板
+PEEK材料
+HDMI接口
+HTML代码
+ICMP协议
+SNMP协议
+SMTP协议
+POP3协议
+FTP传输
+SFTP传输
+GET请求
+PUT请求
+POST请求
+HTTP请求
+HTTP协议
+HTTPS协议
+JPEG图片
+JSON数据
+JSON格式
+JSON配置
+YAML配置
+TOML配置
+WiFi密码
+WiFi信号
+Word文档
+WORD文档
+ABS防抱死
+CPU散热器
 B型超声波
+B淋巴细胞
+维生素E乳
+PDF阅读器
+PDF转换器
+SDK工具包
+SQL数据库
+TypeC接口
 T淋巴细胞
 单边Z变换
 双边Z变换
+IoT物联网
+OSI七层模型
 
 V冷
 V包

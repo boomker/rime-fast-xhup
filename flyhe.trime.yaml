@@ -76,7 +76,7 @@ style:
   hanb_font: MiSans-L3.otf                          #後備字體
   #latin_font:                                      #候選項及註釋的拉丁字體
   key_font: MapleMonoNormal-NF-CN-Regular.ttf       #按鍵字體
-  symbol_font: MapleMonoNormal-NF-CN-Regular.ttf    #按鍵註釋字體
+  symbol_font: [MapleMonoNormal-NF-CN-Regular.ttf, iconfont.ttf]    #按鍵註釋字體
   preview_font: MapleMonoNormal-NF-CN-Regular.ttf   #按鍵氣泡字體
   #尺寸
   text_size: 14                   #編碼字號
@@ -1449,17 +1449,17 @@ preset_keys:
   Down: { label: "↓", repeatable: true, send: Down }
   Up: { label: "↑", repeatable: true, send: Up }
   Right: { label: "→", repeatable: true, send: Right }
-  select_all: { label: 全选, send: Control+a }
+  select_all: { label: ☑, send: Control+a }
   Clear: { label: 清除, text: "{Control+a}{BackSpace}" }
-  cut: { label: 剪切, send: Control+x }
+  cut: { label: ✁, send: Control+x }
   cut_all: { label: 全挪, text: "{Control+a}{Control+x}" }
-  copy: { label: 复制, send: Control+c }
+  copy: { label: ❐, send: Control+c }
   copy_all: { label: 全拷, text: "{Control+a}{Control+c}" }
-  paste: { label: 粘贴, send: Control+v }
+  paste: { label: ▣, send: Control+v }
   paste_text: { label: 粘贴文本, send: Control+Shift+Alt+v } #>=Android 6.0
   share_text: { label: 分享文本, send: Control+Alt+s } #>=Android 6.0
   redo: { label: 重做, send: Control+y } #>=Android 6.0
-  undo: { label: 撤销, send: Control+z } #>=Android 6.0
+  undo: { label: ⎌, send: Control+z } #>=Android 6.0
   # rime組合鍵
   F4: { label: 方案选单, send: Alt+grave }
   BackToPreviousSyllable: { label: 刪音节, send: Control+BackSpace }
@@ -1533,7 +1533,6 @@ preset_keys:
   Nothing: { label: "占位", send: "" } #當還沒想好放什麼的時候就放這個吧
   Keyboard_number: { label: "123", send: Eisu_toggle, select: number }
   Keyboard_basic_symbol: { label: "符号", send: Eisu_toggle, select: basic_symbol }
-  #Extra_keyboard: {label: 'αбʃ', send: Eisu_toggle, select: Greek}
   Keyboard_math_symbol: { label: "符号", send: Eisu_toggle, select: math_symbol }
   Keyboard_Greek: { label: "αβγ", send: Eisu_toggle, select: Greek }
   Keyboard_Greek_symbol: { label: "符号", send: Eisu_toggle, select: Greek_symbol }
@@ -1613,31 +1612,21 @@ preset_keys:
   IPA_tie_bar_above: { label: "◌͡◌", text: "͡", functional: false }
   IPA_tie_bar_below: { label: "◌͜◌", text: "͜", functional: false }
   # Liquid Keyboard
-  Keyboard_clipboard: { label: 剪贴, send: function, command: liquid_keyboard, option: "剪贴", }
-  liquid_keyboard_clipboard: {label: ⏍, send: function, command: liquid_keyboard, option: "剪贴"}
-  Keyboard_emoji: { label: 表情, send: function, command: liquid_keyboard, option: " 😀 " }
-  liquid_keyboard_emoji: { label: ☻, send: function, command: liquid_keyboard, option: " 😀 " }
-  Keyboard_kaomoji:
-    {
-      label: "颜符",
-      send: function,
-      command: liquid_keyboard,
-      option: "颜符",
-    }
-  Keyboard_symbol:
-    {
-      label: 符号,
-      send: function,
-      command: liquid_keyboard,
-      option: " 标点 ",
-    }
+  Keyboard_clipboard: { label: ⏍, send: function, command: liquid_keyboard, option: "剪贴", }
+  Keyboard_emoji: { label: ☻, send: function, command: liquid_keyboard, option: "😀" }
+  Keyboard_kaomoji: { label: "颜符", send: function, command: liquid_keyboard, option: "颜符", }
+  Keyboard_symbol: { label: 符号, send: function, command: liquid_keyboard, option: "标点", }
   Keyboard_greek_font: { label: 字型, send: function, command: liquid_keyboard, option: "希腊字" }
   Liquid_fixed_exit: { label: " ↶ ", send: function, command: liquid_keyboard, option: "-1" }
   Liquid_fixed_backspace: { label: " ⇦  ", repeatable: true, send: BackSpace }
   Liquid_fixed_space: { label: " ⎵  ", repeatable: true, functional: false, send: space }
   Liquid_fixed_left: { label: " ←  ", send: Left }
   Liquid_fixed_right: { label: " →  ", send: Right }
+  Liquid_fixed_up: { label: "↑", send: Up }
+  Liquid_fixed_down: { label: "↓", send: Down }
   Liquid_fixed_return: { label: " ↲  ", repeatable: true, send: Return, functional: false }
+  liquid_keyboard_emoji: { label: ☻, send: function, command: liquid_keyboard, option: "😀" }
+  liquid_keyboard_clipboard: {label: ⏍, send: function, command: liquid_keyboard, option: "剪贴" }
   Commit_Caret: { label: "^", commit: "^", functional: false }
   Commit_Hash: { label: "#", commit: "#", functional: false }
   Commit_At: { label: "@", commit: "@", functional: false }
@@ -1657,6 +1646,8 @@ preset_keys:
   Lunar_Lua: { label: "农历", text: "nL", functional: false }
   Number_Lua: { label: "中文数", text: "nN", functional: false }
   EasyEnMode: { label: "英译", send: Control+g, functional: false }
+  PinCandFunc: { label: "置顶", send: Control+t, functional: false }
+  DelCandFunc: { label: "删词", send: Control+d, functional: false }
   # Unicode_Lua: { label: "Uni", text: "U", functional: false }
   Alt_space: { label: "空格", repeatable: true, functional: false, send: space }
   Flyhe_readme: {
@@ -1670,7 +1661,7 @@ preset_keys:
   menu_keyboard: {label: 菜单, send: function, command: menu_keyboard}
 
 tool_bar:
-  button_spacing: 7             #按钮间距
+  button_spacing: 5             #按钮间距
   button_font: ["iconfont.ttf"] #按钮字体
 
   #🔴左侧固定主按钮:
@@ -1703,7 +1694,7 @@ tool_bar:
       style: "\uE1C1"
       # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
       font_size: 18
-      # padding: 10
+      padding: 10
     action: Keyboard_editor
 
   #🔴重做：
@@ -1754,7 +1745,14 @@ tool_bar:
       font_size: 18
     action: liquid_keyboard_emoji
 
-  #🔴剪贴：
+  #🔴数字：
+  number_button: &number_button
+    foreground:
+      style: "\uE010"
+      font_size: 20
+      padding: 10               #与背景边界的上下内边距，适用于字符形式前景
+    action: Keyboard_number
+  #🔴剪贴板:
   clipboard_button: &clipboard_button
     # background:
     #   bg_highlight: {__include: /tool_bar/primary_button/background/bg_highlight}
@@ -1765,9 +1763,8 @@ tool_bar:
       # fg_highlight: {__include: /tool_bar/primary_button/foreground/fg_highlight}
       font_size: 18
     action: liquid_keyboard_clipboard
-
   # 右侧按钮列表(从右向左排列)
-  buttons: [ *hide_button, *emoji_button, *clipboard_button, *edit_button, *redo_button, *undo_button ]
+  buttons: [ *hide_button, *number_button, *emoji_button, *clipboard_button, *edit_button, *redo_button, *undo_button ]
 
 liquid_keyboard:
   author: "Windy_D, Boomker"
@@ -1857,7 +1854,7 @@ liquid_keyboard:
     name: 常用
     type: HISTORY
   emoji_face:
-    name: " 😀 "
+    name: "😀"
     type: SINGLE
     keys:
       [
@@ -3758,7 +3755,7 @@ liquid_keyboard:
         "🇦🇨",
       ]
   punctuation:
-    name: " 标点 "
+    name: "标点"
     type: SINGLE
     keys: "¡!¿?⸘‽“”‘’‛‟.,‚„'\"′″´˝^°¸˛¨`˙˚ªº…:;&_¯­–‑—§#⁊¶†‡@%‰‱¦|/\\ˉˆ˘ˇ-‒~*❛❜❝❞❢❣❡⸰！？‼⁇⁈⁉＠％＆゠ー〜・‥：；．，、。゜゛＇＂〝〞〟․‐―⁃־‾_‗⁓〰‖‵‶‷‴⁗※＊⁕⁎⁑⁂＾ⸯ︐︑︒︓︔︕︖︰︙︱︲︳︴⁌⁍⁋⁁‸⁏⁖⁘⁙⁚‶⸀⸁⸂⸃⸄⸅⸆⸇⸈⸉⸊⸋⸌⸍⸎⸏⸐⸑⸒⸓⸔⸕⸖⸗⸚⸛⸜⸝⸞⸟⸪⸫⁝⁞⸬⸭⁜⸮؟؛؍،؞־ֿ׀׃׳״׆෴᛫᛬᛭᜵᜶𐩐𐩑𐩒𐩓𐩔𐩕𐩖𐩗𐩘𒑰𒑱𒑲𒑳᰻᰼᰽᰾᰿᱾᱿꩜꩝꩞꩟"
   bracket:
@@ -4762,17 +4759,10 @@ preset_keyboards:
           swipe_down: "~",
           hint: "~",
         }
-      - { click: "w" }
-      - { click: "e", long_click: EasyEnMode, swipe_up: EasyEnMode, }
-      - { click: "r", long_click: Mandarin_rl, swipe_up: Mandarin_rl, }
-      - {
-          click: "t",
-          # long_click: "〃",
-          # swipe_up: "〃",
-          # swipe_left: "ゝ",
-          # swipe_right: "ヽ",
-          # hint: "ゝ   ヽ",
-        }
+      - { click: "w", long_click: Liquid_fixed_up, swipe_up: Liquid_fixed_up }
+      - { click: "e", long_click: EasyEnMode, swipe_up: EasyEnMode }
+      - { click: "r", long_click: Mandarin_rl, swipe_up: Mandarin_rl }
+      - { click: "t", long_click: PinCandFunc, swipe_up: PinCandFunc }
       - {
           click: "y",
           long_click: redo,
@@ -4823,31 +4813,30 @@ preset_keyboards:
           long_click: "select_all",
           # hint: '/   \',
         }
-      - {
-          width: 11,
+      - { width: 11,
           click: "s",
-          # long_click: Keyboard_Greek,
-          # swipe_left: Commit_Brace_L,
-          # swipe_right: Commit_Brace_R,
-          # hint: "{   }",
+          long_click: Keyboard_symbol,
+          swipe_down: Liquid_fixed_down,
+          hint: "↓",
         }
       - {
           click: "d",
           long_click: Date_Lua,
           swipe_up: Date_Lua,
-          # hint: "日期",
-          # long_click: Keyboard_Cyrillic,
-          # hint: "[   ]",
+          swipe_down: DelCandFunc,
+          hint: "删词",
         }
       - {
           click: "f",
-          # long_click: Keyboard_IPA,
-          # hint: "(   )",
-          # key_text_color: on_key_text_color,
+          long_click: Keyboard_editor,
+          swipe_up: Keyboard_editor,
+          swipe_down: Keyboard_emoji,
+          hint: "表情",
         }
       - {
           click: "g",
-          long_click: Keyboard_editor,
+          long_click: Google,
+          swipe_up: Google,
           # swipe_left: "〈",
           # swipe_right: "〉",
           # hint: "〈   〉",
@@ -4855,6 +4844,7 @@ preset_keyboards:
       - {
           click: "h",
           long_click: Keyboard_number,
+          swipe_up: Keyboard_number,
           # swipe_left: "《",
           # swipe_right: "》",
           # hint: "《   》",
@@ -4904,33 +4894,13 @@ preset_keyboards:
           hilited_key_back_color: hilited_off_key_back_color,
           hilited_key_text_color: hilited_off_key_text_color,
         }
-      - {
-          click: "z",
-          long_click: undo,
-          swipe_down: Keyboard_kaomoji,
-          hint: "颜符",
-        }
-      - {
-          click: "x",
-          long_click: cut,
-          swipe_down: Keyboard_emoji,
-          hint: "表情",
-        }
-      - {
-          click: "c",
-          long_click: copy,
-          swipe_down: Keyboard_symbol,
-          hint: "符号",
-        }
-      - {
-          click: "v",
-          long_click: paste,
-          swipe_down: Keyboard_clipboard,
-          hint: "剪贴",
-        }
-      - { click: "b", long_click: "'", swipe_down: "'",  }
-      - { click: "n", long_click: '"', swipe_down: '"',  }
-      - { click: "m", long_click: "?", swipe_down: "?",  }
+      - { click: "z", long_click: undo, }
+      - { click: "x", long_click: cut, }
+      - { click: "c", long_click: copy, }
+      - { click: "v", long_click: paste, }
+      - { click: "b", long_click: Keyboard_clipboard,  }
+      - { click: "n", long_click: "'", swipe_down: "'",  }
+      - { click: "m", long_click: '"', swipe_down: '"',  }
       - {
           click: BackSpace,
           swipe_down: Delete,
@@ -4985,13 +4955,10 @@ preset_keyboards:
       - {
           click: ".",
           label: 。,
-          long_click: Commit_Dot,
+          long_click: "?",
+          swipe_up: "?",
           swipe_down: Commit_Dot,
           hint: ".",
-          # long_click: "?",
-          # swipe_up: "?",
-          # swipe_down: "・",
-          # hint: "・",
           key_text_color: one_color,
         }
       - {
@@ -5145,7 +5112,7 @@ preset_keyboards:
     key_symbol_offset_y: 1.6 #按鍵上方註釋偏移（下正上負）
     keys:
       #第一行
-      - { click: cut, long_click: cut_all, key_text_size: 20 }
+      - { click: cut, hint: "剪切", long_click: cut_all, key_text_size: 20 }
       - { click: Home, long_click: Page_Up, key_text_size: 20 }
       - { click: Up, key_text_size: 24 }
       - {
@@ -5163,13 +5130,13 @@ preset_keyboards:
           hilited_key_text_color: hilited_off_key_text_color,
         }
       #第二行
-      - { click: copy, long_click: copy_all, key_text_size: 20 }
+      - { click: copy, hint: "复制", long_click: copy_all, key_text_size: 20 }
       - { click: Left, key_text_size: 24 }
       - { click: Shift_L, label: "选择", key_text_size: 20 }
       - { click: Right, key_text_size: 24 }
-      - { click: Keyboard_clipboard, key_text_size: 20 }
+      - { click: Keyboard_clipboard, hint: "剪贴板", key_text_size: 20 }
       #第三行
-      - { click: paste, key_text_size: 20 }
+      - { click: paste, hint: "粘贴", key_text_size: 20 }
       - { click: End, long_click: Page_Down, key_text_size: 20 }
       - { click: Down, key_text_size: 24 }
       - { click: Alt_space, width: 40, key_text_size: 24 }
@@ -5188,8 +5155,8 @@ preset_keyboards:
           hint: "清空",
           key_symbol_color: on_key_text_color,
         }
-      - { click: undo, key_text_size: 20 }
-      - { click: redo, key_text_size: 20 }
+      - { click: undo, hint: "撤销", key_text_size: 20 }
+      - { click: redo, hint: "重做", key_text_size: 20 }
       - {
           click: Return,
           key_text_size: 24,
@@ -8183,90 +8150,6 @@ preset_keyboards:
           hilited_key_text_color: enter_pressed_text_color,
         }
 
-  flyhe-cancyn:
-    import_preset: flyhe
-
-  flyhe-daailoeng:
-    import_preset: flyhe
-
-  flyhe-default:
-    import_preset: flyhe
-
-  flyhe-dungfau:
-    import_preset: flyhe
-
-  flyhe-dungfung-dunggubou:
-    import_preset: flyhe
-
-  flyhe-dungfung-saigubou:
-    import_preset: flyhe
-
-  flyhe-dungfung-tungon:
-    import_preset: flyhe
-
-  flyhe-dungsing:
-    import_preset: flyhe
-
-  flyhe-dungsing-gosaa:
-    import_preset: flyhe
-
-  flyhe-dungsing-taaiping:
-    import_preset: flyhe
-
-  flyhe-dungsing-taanbui:
-    import_preset: flyhe
-
-  flyhe-fausaa-daaijauwai:
-    import_preset: flyhe
-
-  flyhe-fausaa-locung:
-    import_preset: flyhe
-
-  flyhe-guzan-hoizau:
-    import_preset: flyhe
-
-  flyhe-gwanaan:
-    import_preset: flyhe
-
-  flyhe-longmong:
-    import_preset: flyhe
-
-  flyhe-longmong-kwanon:
-    import_preset: flyhe
-
-  flyhe-naamtau-daisaa:
-    import_preset: flyhe
-
-  flyhe-naamtau-geusam:
-    import_preset: flyhe
-
-  flyhe-naamtau-naamsing:
-    import_preset: flyhe
-
-  flyhe-naamtau-paaihom:
-    import_preset: flyhe
-
-  flyhe-sekki:
-    import_preset: flyhe
-
-  flyhe-siulaam:
-    import_preset: flyhe
-
-  flyhe-siulaam-bofung:
-    import_preset: flyhe
-
-  flyhe-waanglaan:
-    import_preset: flyhe
-
-  flyhe-wongpou:
-    import_preset: flyhe
-
-  jyut6ping3-gw:
-    import_preset: flyhe
-
-  jyut6ping3-gw-cp:
-    import_preset: flyhe
-
   jyutsp:
     name: 粵雙37鍵
     author: "Boomker"
@@ -8903,15 +8786,6 @@ preset_keyboards:
           hilited_key_back_color: enter_pressed_bg_color,
           hilited_key_text_color: enter_pressed_text_color,
         }
-
-  quick5:
-    import_preset: cangjie5
-
-  quickcang5:
-    import_preset: cangjie5
-
-  ms_quick:
-    import_preset: cangjie5
 
   cangjie6:
     name: 蒼頡36鍵
@@ -10091,12 +9965,6 @@ preset_keyboards:
           hilited_key_back_color: enter_pressed_bg_color,
           hilited_key_text_color: enter_pressed_text_color,
         }
-
-  wanxiang_t9:
-    import_preset: t9
-
-  jyut6ping3-gw-t9:
-    import_preset: t9
 
   t9_symbol:
     name: 新基本符号鍵盤
