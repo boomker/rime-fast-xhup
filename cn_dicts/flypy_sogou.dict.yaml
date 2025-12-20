@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-16
+version: 2025-12-20
 sort: by_weight
 ...
 
@@ -17,6 +17,7 @@ sort: by_weight
 阿铛	aa dh	100
 阿电	aa dm	100
 阿杜	aa du	1
+阿福	aa fu	1
 阿浮	aa fu	100
 阿改	aa gd	100
 阿含	aa hj	100
@@ -63538,6 +63539,7 @@ sort: by_weight
 走路也能燃脂	zz lu ye ng rj vi	100
 邹阳当爸爸了	zz yh dh ba ba le	100
 奏一曲东风破	zz yi qu ds fg po	100
+阿尔忒弥斯美伢	aa er tw mi si mw ya	1
 阿联酋中央银行	aa lm qq vs yh yb hh	100
 阿宅的恋爱真难	aa vd de lm ai vf nj	100
 哎刀马刀马刀马	ai dc ma dc ma dc ma	100
