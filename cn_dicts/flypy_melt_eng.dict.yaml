@@ -23,7 +23,8 @@ version: "2025-12-19"
 7	qi
 8	ba
 9	jq
-10	ui
+0	ui
+0	oo
 +	jx
 -	jm
 -	gh

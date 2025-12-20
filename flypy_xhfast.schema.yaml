@@ -214,7 +214,8 @@ tradition:                          # 简繁转换
 
 # 部件拆字反查
 radical_lookup:
-  prefix: "~"
+  # prefix: "/rl"
+  prefix: "rL"
   suffix: "'"
   tips: 〔部件组字〕
   tag: radical_lookup
@@ -305,8 +306,6 @@ algebra_common:
   - erase/^m\[\w+$/            # 取消「呣 m」的独占
 
   ## 字表编码到输入码的转换规则
-  # - derive/^(\w+)\[(\w)(\w)$/$1\[$2$3/     # Flypy: AB[CD
-  # - derive/^(\w+)\[(\w)(\w)$/$1\[$2/       # Flypy: AB[C
   - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|        # Flypy: AB/CD
   - derive|^(\w+)\[(\w)(\w)$|$1/$2|          # Flypy: AB/C
   - derive/^(\w+)\[(\w)(\w)$/$1/             # Flypy: AB
@@ -314,10 +313,6 @@ algebra_common:
   # 响应 ` 造词
   - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
   - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
-
-  # 超级简拼, 开启后可能性能不佳, 视情况开启
-  # 输入3+个编码字符, 按下`Ctrl+0`展开超级简拼
-  # - abbrev/^(.).+$/$1/
 
 preedit_convert_rules:
   - xform/(\w)g/$1eng/

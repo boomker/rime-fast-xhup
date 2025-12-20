@@ -216,9 +216,10 @@ speller:
 
 algebra_common:
   ## 字表编码到输入码的转换规则
-  - xform/^([a-z])([a-z])$/$1$2/         # Flypy: AB
-  # - abbrev/^([a-z]).$/$1/
+  - xform/^([a-z])([a-z])$/$1$2/    # Flypy: AB
+  - xform/^([jy])u/$1v/
   - fuzz/^([a-z]).$/$1/
+  # - abbrev/^([a-z]).$/$1/
 
 preedit_convert_rules:
   - xform/(\w)g/$1eng/

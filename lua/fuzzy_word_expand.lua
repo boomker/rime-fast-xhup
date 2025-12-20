@@ -18,6 +18,7 @@ function M.init(env)
     local flyhe_schema = Schema("flyhe_fast") -- schema_id
     env.reversedb = ReverseLookup(schema_id)
     env.mem = Memory(env.engine, schema, "translator")
+    env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
     env.expand_idiom_key = config:get_string("key_binder/simpy_expand_key") or "Control+q"
     env.script_tran = Component.ScriptTranslator(env.engine, flyhe_schema, "translator", "script_translator")
@@ -77,7 +78,7 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     -- -- 简拼候选
-    if (input:len() >= 2) and (input:len() <= 7) then
+    if env.enable_fuzz_func and (input:len() >= 2) and (input:len() <= 7) then
         local word_cands = env.script_tran:query(input, seg) or nil
         if not word_cands then return end
         for dictentry in word_cands:iter() do

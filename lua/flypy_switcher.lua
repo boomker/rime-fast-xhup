@@ -18,7 +18,6 @@ function flypy_switcher.init(env)
     env.preedit_format = config:get_list("translator/preedit_format") or nil
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
     env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
-    env.cand_menu_layout = config:get_bool("style/horizontal") or true
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
@@ -26,8 +25,10 @@ function flypy_switcher.init(env)
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
     local switchOpt_pat = config:get_string("recognizer/patterns/switch_options") or "/so|sO"
     env.switch_options_trigger = switchOpt_pat:match("%^.?([a-zA-Z/|]+).*") or "/so|sO"
+    env.cand_menu_layout = config:get_bool("style/horizontal") or true
     env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
     env.word_auto_commit = config:get_bool("speller/auto_select_phrase") or false
+    env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
     env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
     env.switch_options_menu = {
@@ -40,20 +41,21 @@ function flypy_switcher.init(env)
         "切换半角全角符号",
         "切换简体繁体转换",
         "切换候选文字方向",
+        "开关候选注解提示",
+        "开关字集码区提示",
+        "开关单字优先功能",
+        "开关超级简拼功能",
+        "开关词组自动上屏",
+        "开关分号自动上屏",
+        "开关中英词条空格",
+        "禁用中英前置空格",
+        "恢复常规候选按键",
         "增加单页候选项数",
         "减少单页候选项数",
         "增加候选字号大小",
         "减少候选字号大小",
         "增加行间距的大小",
         "减少行间距的大小",
-        "开关候选注解提示",
-        "开关字集码区提示",
-        "开关单字优先功能",
-        "开关词组自动上屏",
-        "开关分号自动上屏",
-        "开关中英词条空格",
-        "禁用中英前置空格",
-        "恢复常规候选按键",
     }
 end
 
@@ -209,6 +211,9 @@ function processor.func(key, env)
         elseif cand_text == "开关词组自动上屏" then
             local switch_to_val = not env.word_auto_commit
             config:set_bool("speller/auto_select_phrase", switch_to_val)
+        elseif cand_text == "开关超级简拼功能" then
+            local switch_to_val = not env.enable_fuzz_func
+            config:set_bool("speller/enable_fuzz_algebra", switch_to_val)
         elseif cand_text == "开关字集码区提示" then
             local charset_hint_state = context:get_option("charset_hint")
             local switch_to_val = not charset_hint_state
