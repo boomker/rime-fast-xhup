@@ -53,9 +53,10 @@ function F.func(input, env)
                 (cand.type == "completion") and
                 (cand_text_len - syllable_len > 1) and
                 cand_text:find("([\228-\233][\128-\191]-)")
-            ) or (
+            ) or ( -- wo'jq'ui --> '我将诠释璀璨'
                 segment:has_tag("abc") and
                 (segment.prompt:len() < 1) and
+                (not cand_text:match("[%a%d%p]")) and
                 (cand_text_len - syllable_len > 2) and
                 cand_text:find("([\228-\233][\128-\191]-)")
             )
