@@ -2,8 +2,8 @@ local F = {}
 
 function F.init(env)
     local config = env.engine.schema.config
-    env.schema_id = config:get_string("schema/schema_id")
-    env.reversedb = ReverseLookup(env.schema_id)
+    -- env.schema_id = config:get_string("schema/schema_id")
+    -- env.reversedb = ReverseLookup(env.schema_id)
     env.top_mark = config:get_string("pin_word/comment_mark") or "🔝"
     env.custom_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
 end
@@ -52,12 +52,6 @@ function F.func(input, env)
             ) or ( -- 候选词长度超出音节长度 1 个以上的候选
                 (cand.type == "completion") and
                 (cand_text_len - syllable_len > 1) and
-                cand_text:find("([\228-\233][\128-\191]-)")
-            ) or ( -- wo'jq'ui --> '我将诠释璀璨'
-                segment:has_tag("abc") and
-                (segment.prompt:len() < 1) and
-                (not cand_text:match("[%a%d%p]")) and
-                (cand_text_len - syllable_len > 2) and
                 cand_text:find("([\228-\233][\128-\191]-)")
             )
         then

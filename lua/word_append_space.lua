@@ -185,7 +185,7 @@ end
 ---@diagnostic disable-next-line: unused-local
 local function cn_en_spacer(input, env)
     for cand in input:iter() do
-        if cand.text:find("([\228-\233][\128-\191]-)") and cand.text:find("[%a]") then
+        if cand.text:find("([\228-\233][\128-\191]-)") and cand.text:find("[%l%u]") and (not cand.text:match("%p")) then
             local function add_spaces(s)
                 -- 在中文字符后和英文字符前插入空格
                 s = s:gsub("([\228-\233][\128-\191]-)([%w%p])", "%1 %2")

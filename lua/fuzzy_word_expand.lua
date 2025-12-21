@@ -1,14 +1,27 @@
--- local logEnable, logger = pcall(require, "lib/logger")
--- if logEnable then
---     logger.writeLog('\n')
---     logger.writeLog('--- start ---')
---     logger.writeLog('log from fuzzy-word_expand.lua\n')
--- end
-
+require("lib.string")
 local M = {}
 local P = {}
 local T = {}
 local F = {}
+
+local function check_fuzzy_cand(env, entry_text, input)
+    if not entry_text then return false end
+    if utf8.len(entry_text) <= 1 then return false end
+    if (not entry_text:match("[%a%d%p]"))
+        and utf8.len(entry_text) ~= #input
+    then
+        return false
+    end
+    local tail_text = string.utf8_sub(entry_text, -1, -1)
+    if not tail_text then return false end
+    if not tail_text:match("[%a%d%p]") then
+        local _tail_code = env.reversedb:lookup(tail_text)
+        local tail_code = _tail_code:gsub("%l%[%l%l ?", "")
+        if tail_code:match(input:sub(-1, -1)) then return true end
+        return false
+    end
+    return true
+end
 
 function M.init(env)
     local context = env.engine.context
@@ -83,7 +96,7 @@ function T.func(input, seg, env)
         if not word_cands then return end
         for dictentry in word_cands:iter() do
             local entry_text = dictentry.text
-            if utf8.len(entry_text) == #input then
+            if check_fuzzy_cand(env, entry_text, input) then
                 local cand = Candidate("fuzzy_word", seg.start, seg._end, entry_text, "")
                 yield(cand)
             end

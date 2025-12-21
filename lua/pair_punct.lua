@@ -6,13 +6,6 @@
 -- 配置說明
 -- 在你的schema文件裏引入這個segmentor，需要放在abc_segmentor的前面
 
--- local logEnable, logger = pcall(require, "lib/logger")
--- if logEnable then
---     logger.writeLog('\n')
---     logger.writeLog('--- start ---')
---     logger.writeLog('log from pair_punct.lua\n')
--- end
-
 require("lib/rime_helper")
 local M = {}
 local processor = {}
@@ -214,7 +207,7 @@ function processor.func(key, env)
     local cand_menu_layout = config:get_bool("style/horizontal")
     local candidate_layout = config:get_string("style/candidate_list_layout")
     if context:has_menu() and (selected_cand_index > 0) and input_code:match("^[`<%(%[{]$") then
-        if env.system_name:lower():match("android") then
+        if env.system_name:lower():match("android") or env.dist_code:match("^fcitx%-rime$") then
             for o = 1, tonumber(selected_cand_index) do
                 env.engine:process_key(KeyEvent(tostring("Down")))
             end

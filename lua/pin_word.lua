@@ -103,20 +103,16 @@ function P.func(key, env)
 end
 
 function T.func(input, seg, env)
-    local reversedb = env.reversedb
-    local comment_text = env.pin_mark
     local input_code = input:gsub(" ", "")
     local pin_word_tab = env.pin_word_records[input_code] or nil
 
     if pin_word_tab and seg:has_tag("abc") then
         for _, w in ipairs(pin_word_tab) do
-            if
-                w:match("[%a%d%p]")
-                or (string.utf8_len(input_code) / string.utf8_len(w) ~= 2)
-                or (not reversedb:lookup(w):gsub("%[%l%l", ""):match(input_code))
+            if (utf8.len(input_code) / utf8.len(w) ~= 2) or w:match("[%a%d%p]") or
+                (not env.reversedb:lookup(w):gsub("%[%l%l", ""):match(input_code))
             then
                 -- 只对非完整编码的字词或不在码表里的字进行置顶, 否则会导致造词失效
-                local cand = Candidate("pin_word", seg.start, seg._end, w, comment_text)
+                local cand = Candidate("pin_word", seg.start, seg._end, w, env.pin_mark)
                 cand.quality = env.word_quality
                 yield(cand)
             end

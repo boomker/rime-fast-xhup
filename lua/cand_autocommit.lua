@@ -123,15 +123,6 @@ function T.func(input, seg, env)
     end
 end
 
---[[ function F.init(env)
-    env.memory = Memory(env.engine, env.engine.schema)
-end
-
-function F.fini(env)
-    env.memory:disconnect()
-    if env.memory then env.memory = nil end
-end ]]
-
 function F.func(input, env)
     local normal_cands = {}
     local symbol_cands = {}
