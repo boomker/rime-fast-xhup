@@ -127,6 +127,8 @@ upvalue	upvalue	100000
 nextchat	nextchat	100000
 NextChat	NextChat	100000
 Syncthing	Syncthing	100000
+flypy	flypy	100000
+flyhe	flyhe	100000
 xhfast	xhfast	100000
 chatbox	chatbox	100000
 grok	grok	100000
@@ -145,6 +147,7 @@ venv	venv	100000
 catppuccin	catppuccin	100000
 zoxide	zoxide	100000
 zawk	zawk	100000
+AWK	awk	100000
 fastfetch	fastfetch	100000
 truncate	truncate	100000
 Gerrit	Gerrit	100000
@@ -152,16 +155,11 @@ ArgoCD	ArgoCD	100000
 GitFlow	GitFlow	100000
 CodeReview	CodeReview	100000
 worktree	worktree	100000
-opacity	opacity	100000
 ETF	ETF	100000
 SVIP	SVIP	100000
-AWK	AWK	100000
 lazygit	lazygit	100000
-tmux	tmux	100000
 shader	shader	100000
-shell	shell	100000
 octagram	octagram	100000
-speller	speller	100000
-Alt-tab	Alt-tab	100000
+Alt-tab	Alttab	100000
 treesitter	treesitter	100000
 snipaste	snipaste	100000

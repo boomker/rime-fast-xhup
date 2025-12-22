@@ -23,5 +23,7 @@ local drop_words =
 	"骈偶",
 	"file",
 	"台湾传统他",
+	"w-l",
+	"p-r",
 }
 return drop_words

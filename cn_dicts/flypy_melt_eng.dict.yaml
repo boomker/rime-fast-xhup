@@ -6,14 +6,14 @@
 
 ---
 name: flypy_melt_eng
-version: "2025-12-19"
+version: "2025-12-22"
 ...
 
 α	af
 β	bt
 θ	xt
+γ	gm
 
-0	lk
 1	yi
 2	er
 3	sj
@@ -23,8 +23,12 @@ version: "2025-12-19"
 7	qi
 8	ba
 9	jq
+0	lk
 0	ui
 0	oo
+00	bd
+000	qm
+0000	wj
 +	jx
 -	jm
 -	gh
@@ -32,6 +36,10 @@ version: "2025-12-19"
 /	xg
 @	at
 &	he
+%	bf
+%	pc
+C#	cj
+F#	fj
 
 A	A
 B	B
@@ -181,6 +189,12 @@ M3U8
 Web3
 IPv4
 IPv6
+VIP1
+VIP2
+VIP3
+SVIP1
+SVIP2
+SVIP3
 HiFi
 500ml
 PM2.5
@@ -193,6 +207,7 @@ HTTP3
 HTTP1.1
 WiFi-6
 
+1L水
 00后
 10后
 20后
@@ -225,12 +240,18 @@ WiFi-6
 4K电视
 4K分辨率
 4K显示器
+500ml水
+502胶水
+1000ml水
 5G网络
 5G流量
 5G通信
 6G通信
 8K分辨率
 8K显示器
+100%确认
+304不锈钢
+316不锈钢
 
 嗑CP
 v我50
@@ -261,6 +282,7 @@ TG群
 α粒子
 β粒子
 θ粒子
+γ射线
 A出口
 B出口
 C出口
@@ -333,8 +355,6 @@ AI模型
 AI手机
 AI语料
 AI眼镜
-AI智能体
-多模态AI
 AHK脚本
 AVC编码
 AVC格式
@@ -342,6 +362,12 @@ AV1编码
 AV1格式
 HEVC编码
 HEVC格式
+RJ11接口
+RJ45接口
+T568B标准
+T568A标准
+RJ11水晶头
+RJ45水晶头
 HJT电池
 HBM内存
 MCU芯片
@@ -360,6 +386,8 @@ Go语言
 Go程序
 Lua语言
 Lua脚本
+C#语言
+C#编程
 C++编程
 C++语言
 Java语言
@@ -387,6 +415,7 @@ DJ舞曲
 HD高清
 JK制服
 UI设计
+UI界面
 V8引擎
 我叫MT
 卡拉OK
@@ -412,12 +441,12 @@ V8引擎
 东风-26D
 东风-31A
 空警-500
-
 FPV无人机
 
 挂D档
 挂P档
 挂R档
+Tesla汽车
 小鹏G9
 小鹏G6
 小鹏G3
@@ -562,6 +591,9 @@ Sora概念
 报错502
 报错503
 
+Pixel手机
+Redmi手机
+
 维生素A
 维生素B
 维生素C
@@ -676,6 +708,7 @@ USD汇率
 UTM投影
 VGA接口
 VIP会员
+SVIP会员
 VPN连接
 XML格式
 XRD测试
@@ -684,6 +717,9 @@ SSL加密
 TLS加密
 IoT设备
 工业4.0
+Rime方案
+Rime引擎
+Rime输入法
 BIOS设置
 BOSS直聘
 H5小程序
@@ -707,16 +743,20 @@ POST请求
 HTTP请求
 HTTP协议
 HTTPS协议
+多模态AI
+AI智能体
 JPEG图片
 JSON数据
 JSON格式
 JSON配置
+YAML格式
 YAML配置
+TOML格式
 TOML配置
+WPS连接
 WiFi密码
 WiFi信号
 Word文档
-WORD文档
 CBA直播
 CBA赛程
 NBA直播
