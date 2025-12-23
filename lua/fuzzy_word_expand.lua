@@ -12,6 +12,7 @@ local function check_fuzzy_cand(env, entry_text, input)
     then
         return false
     end
+    if (#input - utf8.len(entry_text) > 1) then return false end
     local tail_text = string.utf8_sub(entry_text, -1, -1)
     if not tail_text then return false end
     if not tail_text:match("[%a%d%p]") then

@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-20
+version: 2025-12-23
 sort: by_weight
 ...
 
@@ -24937,6 +24937,7 @@ sort: by_weight
 阿尔梅达	aa er mw da	100
 阿尔特塔	aa er te ta	1
 阿尔图罗	aa er tu lo	1
+阿尔维卡	aa er ww ka	1
 阿凡不达	aa fj bu da	100
 阿凡达色	aa fj da se	100
 阿夫迪亚	aa fu di ya	100
