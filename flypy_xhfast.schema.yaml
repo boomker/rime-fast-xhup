@@ -72,7 +72,7 @@ engine:
     - table_translator@easy_en
     - table_translator@idiom_phrase                   # 成语短语的首字母简拼
     - table_translator@custom_phrase                  # 自定义短语(固顶)
-    - table_translator@make_sentence                  # ~ 精准造词
+    - table_translator@make_sentence                  # ` 精准造词
     - table_translator@radical_lookup                 # /rl,rL 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
@@ -144,7 +144,7 @@ translator:
 
 # "`" 精准造词
 make_sentence:                      # 精准造词
-  prefix: "~"
+  prefix: "`"
   suffix: "'"
   tag: make_sentence
   tips: "〔精准造词〕"

@@ -14,7 +14,7 @@ local segmentor = {}
 local tag_prefix = "pair_punct_"
 
 local pairTable = {
-    ["a"] = { "`" },
+    -- ["a"] = { "`" },
     ["b"] = { "```" },
     ["c"] = { "'" },
     ["d"] = { '"' },

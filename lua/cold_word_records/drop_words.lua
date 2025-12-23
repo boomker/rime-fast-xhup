@@ -25,5 +25,6 @@ local drop_words =
 	"台湾传统他",
 	"w-l",
 	"p-r",
+	"词它",
 }
 return drop_words

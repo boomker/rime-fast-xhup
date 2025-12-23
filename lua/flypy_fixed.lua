@@ -33,9 +33,9 @@ function F.func(input, env)
             yield(cand:to_shadow_candidate(cand.type, ccand_text, env.custom_mark))
         elseif                                              -- 丢弃一些候选结果 去掉候选注解包含`太极️☯ ` 的候选项
             string.find(cand.comment, "☯")
-            or (                                            -- 开头大写的输入编码, 去掉只有单字母的候选
-                cand_text:match("^[A-Z]$") and
-                preedit_code:match("^[%u][%a]+")
+            or (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
+                cand_text:match("^[a-zA-Z]$")
+                and preedit_code:match("^[%a]+")
             ) or ( -- 'nL' --> '你L'
                 cand_text:match("[A-Z]$") and
                 preedit_code:match("^%l%u$") and
@@ -49,7 +49,11 @@ function F.func(input, env)
             ) or ( -- V模式下, 过滤掉中英混合词条
                 preedit_code:match("^V%a+$") and
                 cand_text:find("([\228-\233][\128-\191]-)")
-            ) or ( -- 候选词长度超出音节长度 1 个以上的候选
+            ) or ( -- 英文候选词长度超出编码长度 3 个以上的候选
+                (cand.type == "completion") and
+                cand_text:match("^[%a%p]+$") and
+                (cand_text_len - #preedit_code > 3)
+            ) or ( -- 中文候选词长度超出音节长度 1 个以上的候选
                 (cand.type == "completion") and
                 (cand_text_len - syllable_len > 1) and
                 cand_text:find("([\228-\233][\128-\191]-)")
