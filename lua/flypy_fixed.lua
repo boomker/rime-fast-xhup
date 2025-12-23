@@ -31,11 +31,14 @@ function F.func(input, env)
         elseif cand_text:match("<br>") then
             local ccand_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
             yield(cand:to_shadow_candidate(cand.type, ccand_text, env.custom_mark))
-        elseif                                              -- 丢弃一些候选结果 去掉候选注解包含`太极️☯ ` 的候选项
-            string.find(cand.comment, "☯")
-            or (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
+        elseif
+        -- string.find(cand.comment, "☯")                   丢弃一些候选结果 去掉候选注解包含`太极️☯ ` 的候选项
+            ( -- 多个大小写的输入编码, 去掉只有单字母的候选
                 cand_text:match("^[a-zA-Z]$")
                 and preedit_code:match("^[%a]+")
+            ) or ( -- 'bd/' --> '00'
+                preedit_code:match("^%l%l/$")
+                and cand_text:match("^[%d%u%p]+$")
             ) or ( -- 'nL' --> '你L'
                 cand_text:match("[A-Z]$") and
                 preedit_code:match("^%l%u$") and
