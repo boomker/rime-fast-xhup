@@ -37,8 +37,11 @@ function F.func(input, env)
                 cand_text:match("^[a-zA-Z]$")
                 and preedit_code:match("^[%a]+")
             ) or ( -- 'bd/' --> '00'
-                preedit_code:match("^%l%l/$")
-                and cand_text:match("^[%d%u%p]+$")
+                preedit_code:match("^%l%l.*$")
+                and (
+                    cand_text:match("^%a+#$") or
+                    cand_text:match("^%u?%d+$")
+                )
             ) or ( -- 'nL' --> '你L'
                 cand_text:match("[A-Z]$") and
                 preedit_code:match("^%l%u$") and

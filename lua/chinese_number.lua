@@ -1,13 +1,8 @@
 -- 来源 https://github.com/yanhuacuo/98wubi-tables > http://98wb.ysepan.com/
 -- 数字、金额大写 (任意大写字母引导+数字)
 
--- local logEnable, logger = pcall(require, "lib/logger")
--- if logEnable then
---     logger.writeLog('\n')
---     logger.writeLog('--- start ---')
---     logger.writeLog('log from chinese_number.lua\n')
--- end
-
+require("lib.rime_helper")
+local Env = require("lib/env_api")
 local n2c = {
     ["0"] = "〇",
     ["1"] = "一",
@@ -348,7 +343,6 @@ end
 local P = {}
 local T = {}
 local M = {}
-local Env = require("lib/env_api")
 
 function M.init(env)
     Env(env)
@@ -359,7 +353,7 @@ function M.init(env)
     local cn_pattern = config:get_string(cn_pattern_key) or "nN"
     local default_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
     local current_labels = config:get_string("menu/alternative_select_labels")
-    env.user_distribute_name = rime_api:get_distribution_code_name()
+    env.system_name = detect_os()
     env.alter_labels = env.alter_labels or current_labels or default_labels
     env.current_speller = config:get_string("speller/alphabet")
     M.speller_string = M.speller_string or env.current_speller -- 缓存speller
@@ -368,8 +362,8 @@ function M.init(env)
     env.alpha_select_keys = config:get_string("chinese_number/select_keys") or "sdfjklm"
     env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
+        if env.system_name:lower():match("android") then return end
         local segment = ctx.composition:back()
-        if env.user_distribute_name:lower():match("trime") then return end
         if segment and segment.prompt:match(env.prompt) then
             env:Config_set("speller/alphabet", M.speller_string)
             env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
@@ -403,9 +397,8 @@ function P.func(key, env)
     if composition:empty() then return 2 end
     local segment = composition:back()
     if not (segment and segment.menu) then return 2 end
+    if env.system_name:lower():match("android") then return 2 end
     if env.alter_select_keys == env.alpha_select_keys then return 2 end
-    if env.user_distribute_name:lower():match("trime") then return 2 end
-    if env.user_distribute_name:lower():match("fcitx%-rime") then return 2 end
 
     local alpha_labels = { "s", "d", "f", "j", "k", "l", "m" }
     local _speller_str = env.current_speller:gsub("[a-z%p]", "")

@@ -33,6 +33,7 @@ version: "2025-12-22"
 -	jm
 -	gh
 .	dm
+/	xg
 &	he
 %	bf
 %	pc
@@ -150,6 +151,10 @@ M2
 M3
 M4
 S3
+
+n8n
+KHz
+MHz
 F5G
 F10
 F11
@@ -168,15 +173,15 @@ K8S
 256MB
 512MB
 500GB
-n8n
-KHz
-MHz
 2.4G
 60Hz
 90Hz
 120Hz
 144Hz
 240Hz
+500ml
+60fps
+120fps
 AE86
 H263
 H264
@@ -191,11 +196,10 @@ IPv6
 VIP1
 VIP2
 VIP3
+HiFi
 SVIP1
 SVIP2
 SVIP3
-HiFi
-500ml
 PM2.5
 3DMax
 7-Zip
@@ -203,8 +207,9 @@ utf-8
 UTF-8
 HTTP2
 HTTP3
-HTTP1.1
 WiFi-6
+HTTP1.1
+GLM-4.7
 
 1L水
 00后
@@ -222,6 +227,8 @@ WiFi-6
 4S店
 4A级
 5A级
+2025年
+2026年
 2B铅笔
 2K电视
 2K分辨率
@@ -254,6 +261,8 @@ WiFi-6
 240Hz高刷
 304不锈钢
 316不锈钢
+1.6T光模块
+800G光模块
 
 嗑CP
 v我50
@@ -321,6 +330,7 @@ POS机
 PVC管
 SDK包
 SIM卡
+eSIM卡
 T细胞
 T恤衫
 TCP包
@@ -373,8 +383,6 @@ T568A标准
 RJ11水晶头
 RJ45水晶头
 HJT电池
-HBM内存
-MCU芯片
 MCN机构
 QQ号码
 QQ空间
@@ -397,14 +405,19 @@ C++语言
 Java语言
 Java代码
 Bash脚本
-公网IP
 飞牛OS
+iOS系统
+Win7系统
+Win11系统
+macOS系统
 AB型血
 AB血型
 HB铅笔
 HDMI线
-IP协议
+内网IP
+公网IP
 IP地址
+IP协议
 IP电话
 IP经济
 YY语音
@@ -446,6 +459,8 @@ V8引擎
 东风-26D
 东风-31A
 空警-500
+
+C919飞机
 FPV无人机
 
 L3级
@@ -578,6 +593,9 @@ LOF基金
 中证500
 中证1000
 创业板50
+10CM涨停
+20CM涨停
+30CM涨停
 
 6G概念
 C2M概念
@@ -615,6 +633,17 @@ Redmi手机
 Zip压缩
 7-Zip压缩
 
+PCB板
+HBM内存
+MCU芯片
+UPS电源
+H200芯片
+ASIC芯片
+M9覆铜板
+PCB电路板
+
+双buff
+叠buff
 非常6+1
 哆啦A梦
 头文字D
@@ -624,6 +653,7 @@ Zip压缩
 Z逆变换
 逆Z变换
 永硕E盘
+115网盘
 小米SU7
 小米YU7
 ABS刹车
@@ -650,6 +680,10 @@ CNC加工
 CNY账户
 CPU核数
 CPU温度
+GPU加速
+GPU性能
+国产CPU
+国产GPU
 CRM软件
 CRM系统
 CSS样式
@@ -676,8 +710,6 @@ GDP增速
 GDP增长
 GPS导航
 GPS定位
-GPU加速
-GPU性能
 GRE考试
 Git提交
 ICP备案
@@ -704,6 +736,11 @@ RAM容量
 RNA分析
 RNA提取
 ROM空间
+CBA直播
+CBA赛程
+NBA直播
+NBA赛程
+WPS连接
 SEM图像
 SMT贴片
 SQL语句
@@ -714,13 +751,12 @@ SUV车身
 SUV车型
 SVN仓库
 URL链接
-URL重定向
 USB接口
 USD汇率
 UTM投影
 VGA接口
 VIP会员
-SVIP会员
+VIP用户
 VPN连接
 XML格式
 XRD测试
@@ -728,10 +764,10 @@ X86架构
 SSL加密
 TLS加密
 IoT设备
+I/O设备
 工业4.0
 Rime方案
 Rime引擎
-Rime输入法
 BIOS设置
 BOSS直聘
 H5小程序
@@ -766,14 +802,12 @@ YAML格式
 YAML配置
 TOML格式
 TOML配置
-WPS连接
+Word文档
 WiFi密码
 WiFi信号
-Word文档
-CBA直播
-CBA赛程
-NBA直播
-NBA赛程
+IPv4地址
+IPv6地址
+URL重定向
 CBA常规赛
 NBA常规赛
 ABS防抱死
@@ -791,6 +825,7 @@ TypeC接口
 IoT物联网
 随身Wi-Fi
 江南Style
+Rime输入法
 OSI七层模型
 
 V冷
