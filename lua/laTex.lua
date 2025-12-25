@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 local snip_map = {
     ["`"] = " ",
     ["6"] = "\\partial ",
@@ -156,9 +157,8 @@ function T.func(input, seg, env)
         expr = expr:gsub("(([jvo])%2.)", snip_map2)
         expr = expr:gsub("(.)`%1", "%1%1")
         expr = expr:gsub("`", " ")
-        expr = "$" .. expr .. "$"
+        -- expr = "$" .. expr .. "$"
         expr = string.gsub(expr, " (%W)", "%1")
-        --- Candidate(type, start, end, text, comment)
         segment.prompt = "〔" .. tips .. "〕"
         yield(Candidate("math", seg.start, seg._end, expr, " "))
     end

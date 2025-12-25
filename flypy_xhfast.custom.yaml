@@ -17,7 +17,7 @@ patch:
 
   # 候选菜单布局样式
   style/+:
-    font_point: 18                    # 候选字大小
+    font_point: 17                    # 候选字大小
     line_spacing: 5                   # 行间距大小
     show_paging: false                # 是否显示分页符号
     inline_preedit: false             # 编码位是否嵌入候选框
@@ -29,14 +29,14 @@ patch:
       states: [🈚️, 😄]
       reset: 1
     - name: prediction  # 仅用于移动端
-      states: [联想关, 联想开]
+      states: [休想, 联想]
     - name: char_mode
-      states: [单字模式关, 单字模式开]
-    - name: charset_hint
-      states: [码区提示关, 码区提示开]
+      states: [词组优先, 单字优先]
     - name: charset
-      states: [通用字符集, 增廣字符集]
+      states: [通用字集, 增廣字集]
       reset: 1
+    - name: charset_hint
+      states: [码区隐藏, 码区显示]
 
   engine/+:
     processors/+:
@@ -72,8 +72,6 @@ patch:
     enclosed_cand_chars_c: "Shift+Control+9"   # 上屏（高亮字词）
     enclosed_cand_chars_d: "Shift+Control+0"   # 上屏〔高亮字词〕
     bindings/+:
-      - {when: has_menu,  accept: Tab, send: Right}
-      - {when: composing, accept: Tab, send: Right}
       - {when: composing, accept: grave, send: "`"}          # `键 逐字追加辅码
       - {when: has_menu,  accept: semicolon,  send: 2}       # 分号用于第2候选
       - {when: has_menu,  accept: apostrophe, send: 3}       # 单引号用于第3候选
@@ -81,13 +79,14 @@ patch:
       - {when: has_menu,  accept: period, send: Page_Down}   # 句号. 下一页
       # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 返回上一页
       # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
-      # - {when: has_menu,  accept: Tab, send: Control+Right}
-      # - {when: composing, accept: Tab, send: Control+Right}
+      - {when: has_menu,  accept: Tab, send: Control+Right}
+      - {when: composing, accept: Tab, send: Control+Right}
       - {when: composing, accept: Shift+Tab, send: Control+Left}
       - {when: composing, accept: Control+i, send: Control+Left}
       - {when: composing, accept: Control+o, send: Control+Right}
       - {when: composing, accept: Control+w, send: Control+BackSpace}
-      - {when: always,  accept: Control+Shift+g, select: easy_en}
+      - {when: always,    accept: Control+Shift+grave, select: .next}     # 在最近的两个方案之间切换
+      - {when: always,    accept: Control+Shift+g, select: easy_en}
       - {when: has_menu,  accept: Control+Shift+4, toggle: emoji}
       - {when: has_menu,  accept: Control+Shift+5, toggle: charset_hint}
       - {when: has_menu,  accept: Control+Shift+6, toggle: traditionalize}
@@ -95,9 +94,9 @@ patch:
   recognizer/+:
     patterns/+:
       timestamp: "^/uts$"                       # 时间戳
-      week: "^(/wk|week)$"
-      time: "^(/wt|time)$"
-      date: "^(/wd|date)$"
+      week: "^(/wk|week)$"                      # 星期
+      time: "^(/wt|time)$"                      # 时间
+      date: "^(/wd|date)$"                      # 日期
       history: "^(/hs|hH)$"                     # 上屏历史
       LaTeX: "^(/lt|lT)(.*)$"                   # LaTeX排版
       flypy_help: "^(/oh|oH)$"                  # 帮助菜单
@@ -106,14 +105,15 @@ patch:
       shortcuts_app: "^/jk[a-z]*$"              # 快捷指令(启动应用)
       shortcuts_cmd: "^/kj[a-z]*$"              # 快捷指令(执行命令)
       flypy_key_help: "^/ok[a-z]*$"             # 小鹤双拼键位帮助
-      easy_en: "^(/en|eN)[a-zA-Z*]+'?$"         # 英文方案(带中译)
-      radical_lookup: "^(~|rL)[a-z]+'?$"        # 单字部件拆字组字
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
-      chinese_number: "^(/nn|nN)[0-9.]+$"       # 中文大写数字(金额)
+      chinese_number: "^(/nn|nN)[0-9.-]+$"      # 中文大写数字(金额)
+      radical_lookup: "^(/rl|rL)[a-z]+'?$"      # 单字部件拆字(查拼音)
 
   punctuator/+:
     digit_separators: ".:"            # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
     # digit_separator_action: commit
+    symbol_menu_prefix: '/vs'
+    symbol_normal_prefix: '/'
     symbols/+:
     full_shape/+:
     half_shape/+:
@@ -136,6 +136,7 @@ patch:
 
   speller/+:
     auto_select_phrase: true          # 二字词组加辅码唯一时则自动上屏
+    enable_fuzz_algebra: true         # 是否开启简拼功能(候选字词含有中英数混杂项)
     algebra/+:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
 
@@ -152,11 +153,9 @@ patch:
       # - derive/^(.*)f/$1g/          # [zcs][h]en => [zcs][h]eng
 
   easy_en/+:                          # 英文单词输入方案
-    # prefix: "/en"
-    prefix: "eN"
     tips: "英文"
     wildcard: '*'
-    expand_word_count: 666             # 模糊匹配最多迭代数
+    expand_word_count: 666            # 模糊匹配最多迭代数
 
   custom_phrase/+:                    # 自定义短语
     comment_mark: " 📌"               # 注解标记
@@ -164,11 +163,6 @@ patch:
   flypy_key_help/+:                   # 小鹤双拼键位帮助
     prefix: "/ok"
     tips: "双拼查键"
-
-  radical_lookup/+:                   # 单字部件拆字组字
-    # prefix: "~"
-    prefix: "rL"
-    tips: 部件组字
 
   radical_reverse_lookup/+:           # 部件组字反查拼音
     overwrite_comment: false
@@ -178,9 +172,6 @@ patch:
     word_quality: 1000
     comment_mark: " ᵀᴼᴾ"              # 置顶词标记
     # comment_mark: " 🔝"             # 置顶词标记
-
-  char_mode:                          # 单字模式开关
-    toggle: "off"
 
   pair_symbol:                        # 符号配对开关
     toggle: "on"
@@ -212,6 +203,7 @@ patch:
     tag: calculator
     # prefix: "/="
     prefix: "cC"
+    suffix: "'"
     tips: "计算器"
 
   chinese_number:                     # 中文大写数字(金额)
@@ -220,7 +212,14 @@ patch:
     suffix: "'"
     tips: "中文数字"
     tag: chinese_number
-    select_keys: "sdfjkl"
+    select_keys: "sdfjklm"
+
+  chinese_lunar:                      # 中国农历(可反查)
+    tag: chinese_lunar
+    # prefix: "/nl"
+    prefix: "nL"
+    suffix: "'"
+    tips: "农历"
 
   predictor:                          # 候选字词联想预测
     db: predict.db

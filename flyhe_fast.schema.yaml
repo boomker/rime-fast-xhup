@@ -5,14 +5,14 @@
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: 2025.02.24
+  version: 2025.12.17
   author:
     - boomker
   description: |
-    小鹤双拼+辅助码
+    小鹤双拼+直接辅码
     github.com:boomker/rime-fast-xhup
-  dependencies:
-    - melt_eng          # 中英混合,副翻译器
+  # dependencies:
+  #   - melt_eng         # 中英Mix输入方案
 
 # 选项开关
 switches:
@@ -31,6 +31,7 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - lua_processor@*symbol_menu
     - ascii_composer
     - speller
     - selector
@@ -49,11 +50,11 @@ engine:
     - punct_translator
     - script_translator
     - reverse_lookup_translator
-    - table_translator@melt_eng
+    # - table_translator@melt_eng          # 英文输入
     - table_translator@idiom_phrase
     - table_translator@custom_phrase
   filters:
-    - simplifier@tradition                            # 简繁切换
+    - simplifier@traditionalize                       # 简繁切换
     - uniquifier                                      # 只能放到最后!
 
 # 八股文
@@ -71,37 +72,35 @@ grammar:
 # 主翻译器, 小鹤双拼
 translator:
   dictionary: flyhe_fast
-  spelling_hints: 1                 # `0`: 关闭单字编码提示
+  spelling_hints: 0                 # `0`: 关闭单字编码提示
   initial_quality: 1.3
+  enable_encoder: false
   enable_user_dict: true            # 开启用户词库
   enable_completion: true           # 启用输入补全
-  encode_commit_history: true       # 历史上屏自动编码成词
-  contextual_suggestions: true      # 开启语言模型优化候选
   enable_word_completion: true      # 4 音节以上的词条才补全
-  sentence_over_completion: true    # 逐键提示时智能组句〔仅script_translator有效〕
+  contextual_suggestions: true      # 开启语言模型优化候选
   # max_homophones: 7
   # max_homographs: 7
   # max_phrase_length: 5
-  # enable_encoder: false
+  # strict_spelling: true
   # always_show_comments: true
+  # encode_commit_history: true     # 历史上屏自动编码成词
+  # sentence_over_completion: true  # 逐键提示时智能组句〔仅script_translator有效〕
   # disable_user_dict_for_patterns:
   #   - '^[a-z][a-z]?$'             # 单字不调频
   # preedit_format:
   #   __include: preedit_convert_rules    # 输入码显示为全拼
   comment_format:
-    - xform/^\w+[[](\w+)$/~$1/      # 单字编码提示只显示辅助码部分
+    - xform/.*//                    # 单字编码提示只显示辅助码部分
 
-# 次翻译器, 英文
-melt_eng:                           # 英文输入
-  dictionary: melt_eng
-  initial_quality: 1.1
-  enable_encoder: false
-  enable_sentence: false
-  enable_user_dict: false
-  enable_completion: true           # 是否启用英文补全
-  encode_commit_history: false
-  comment_format:
-    - xform/.*//                    # 清空提示码(补全)
+# # # 次翻译器
+# melt_eng:
+#   dictionary: melt_eng              # 挂载词库 melt_eng.dict.yaml
+#   enable_sentence: false            # 禁止造句
+#   enable_user_dict: false           # 禁用用户词典
+#   initial_quality: 0.8              # 初始权重
+#   comment_format:                   # 自定义提示码
+#     - xform/.*//                    # 清空提示码
 
 # 自定义短语
 custom_phrase:                      # 自定义固顶字
@@ -122,10 +121,10 @@ idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
   enable_completion: false
 
 # 简体转繁体
-tradition:                          # 简繁转换
-  tips: none                    # 转换提示: all | char 仅单字显示 | none 不显示
-  tags: [abc]                   # 限制在对应 tag, 不对其他如反查的内容做简繁转换
-  opencc_config: s2t.json       # s2t.json | s2hk.json | s2tw.json | s2twp.json
+traditionalize:                     # 简繁转换
+  tips: none                        # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                       # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  opencc_config: s2t.json           # s2t.json | s2hk.json | s2tw.json | s2twp.json
   option_name: traditionalize
 
 # 处理符合特定规则的输入码，如网址、反查
@@ -194,10 +193,11 @@ key_binder:
     - {when: composing, accept: Control+i, send: Control+Left}
     - {when: composing, accept: Control+o, send: Control+Right}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
-    - {when: has_menu, accept: Control+Shift+slash, toggle: emoji}
+    - {when: always, accept: Control+Shift+grave, select: .next}               # 在最近的两个方案之间切换
     - {when: always, accept: "Control+comma", toggle: ascii_punct}
     - {when: always, accept: "Control+period", toggle: full_shape}
-    - {when: always, accept: "Control+slash", toggle: traditionalize}
+    - {when: has_menu, accept: Control+Shift+4, toggle: emoji}
+    - {when: has_menu, accept: "Control+Shift+5", toggle: traditionalize}
 
 # 拼写设定
 speller:
@@ -209,37 +209,17 @@ speller:
   algebra:
     __include: algebra_common
 
-    # 左右并击飞键音码规则, 注释以下三行使用原版小鹤双拼
+    # 左右飞键音码规则, 注释以下三行使用原版小鹤双拼
     # __patch:
     #   algebra/+:
     #     __include: flypy_chord_rule:/patch/speller/algebra
 
 algebra_common:
-  - erase/^ng\[kk$/            # 取消「唔 ng」的独占
-  - erase/^ng\[kx$/            # 取消「嗯 ng」的独占
-  - erase/^n\[\w+$/            # 取消「嗯 n」的独占
-  - erase/^m\[\w+$/            # 取消「呒 m」的独占
-  - erase/^m\[\w+$/            # 取消「呣 m」的独占
-
   ## 字表编码到输入码的转换规则
-  # - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|   # Flypy: AB/CD
-  # - derive|^(\w+)\[(\w)(\w)$|$1/$2|     # Flypy: AB/C
-  # - derive/^(\w+)\[(\w)(\w)$/$1~$3/     # Flypy: AB~D
-  - derive/^(\w+)\[(\w)(\w)$/$1~$2$3/     # Flypy: AB~CD
-  - derive/^(\w+)\[(\w)(\w)$/$1~$2/       # Flypy: AB~C
-  - derive/^(\w+)\[(\w)(\w)$/$1/          # Flypy: AB
-  - derive/~//                            # 直接辅码(ABC[D])
-
-  - derive/^([qx])v/$1u/
-  - derive/^([jy])u/$1v/
-
-  # 响应 ` 造词
-  # - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
-  # - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
-
-  # 超级简拼, 开启后可能性能不佳, 视情况开启
-  # 输入3+个编码字符, 按下`Ctrl+0`展开超级简拼
-  # - abbrev/^(.).+$/$1/
+  - xform/^([a-z])([a-z])$/$1$2/    # Flypy: AB
+  - xform/^([jy])u/$1v/
+  - fuzz/^([a-z]).$/$1/
+  # - abbrev/^([a-z]).$/$1/
 
 preedit_convert_rules:
   - xform/(\w)g/$1eng/

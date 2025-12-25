@@ -61,10 +61,8 @@ local function reset_state()
 end
 
 local function action_handler(env, action, system_type, fact_item)
-    local commit_history = env.engine.context.commit_history
     if ((action == "commit") or (system_type == "ios")) and fact_item then
         env.engine:commit_text(fact_item)
-        commit_history:push("raw", fact_item)
     elseif (action == "open") and (system_type ~= "ios") and fact_item then
         if fact_item:match("^http") then
             cmd(system_type, "", fact_item)
@@ -79,7 +77,6 @@ local function action_handler(env, action, system_type, fact_item)
         cmd(system_type, "exec", cmd_string)
     else
         env.engine:commit_text(fact_item)
-        commit_history:push("raw", fact_item)
     end
 end
 
@@ -263,10 +260,9 @@ function translator.func(input, seg, env)
     local app_launch_prefix = env.app_launch_prefix
     local all_command_items = env.all_command_items
     local composition = context.composition
-    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return 2 end
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return end
 
     local segment = composition:back()
-    if not (favorcmd_prefix or app_launch_prefix) then return end
     local all_app_items = all_command_items[system_name] or nil
     local app_items = all_app_items and all_app_items[input]
     if (not app_items) and (input:sub(1, app_launch_prefix:len()) == app_launch_prefix) then

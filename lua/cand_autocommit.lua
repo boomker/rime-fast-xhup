@@ -5,9 +5,9 @@ require("lib/rime_helper")
 local P = {}
 local T = {}
 local F = {}
-local word_auto_commit = {}
+local M = {}
 
-function word_auto_commit.init(env)
+function M.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
@@ -16,9 +16,11 @@ function word_auto_commit.init(env)
     env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
 end
 
-function word_auto_commit.fini(env)
-    env.script_tran:disconnect()
-    if env.script_tran then env.script_tran = nil end
+function M.fini(env)
+    if env.script_tran then
+        env.script_tran:disconnect()
+        env.script_tran = nil
+    end
 end
 
 function P.func(key, env)
@@ -36,9 +38,9 @@ function P.func(key, env)
 
     -- 按下 '/' 后, 数字键或符号键选单字时, 自动上屏
     local idx = segment.selected_index
-    local seleted_cand_index = get_selected_candidate_index(key_value, idx, page_size)
-    if (seleted_cand_index >= 0) and input_code:match("^%l+/$") and (caret_pos >= 3) then
-        context:select(seleted_cand_index)
+    local selected_cand_index = get_selected_candidate_index(key_value, idx, page_size)
+    if (selected_cand_index >= 0) and input_code:match("^%l+/$") and (caret_pos >= 3) then
+        context:select(selected_cand_index)
         local _cand_text = context:get_commit_text():utf8_sub(1, -2)
         local cand_txt = insert_space_to_candText(env, _cand_text)
         set_committed_cand_is_chinese(env)
@@ -59,7 +61,7 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
-    if input:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
+    if preedit_code:match("^%l%l%l%l/%l?%l?$") and (caret_pos >= 5) then
         local filtered_cand_text = ""
         local filtered_cand_count = 0
         local word_shape_code_tbl = {}
@@ -72,13 +74,13 @@ function T.func(input, seg, env)
             for dictentry in word_cands:iter() do
                 idx = idx + 1
                 local entry_text = dictentry.text
-                if (utf8.len(entry_text) == 2) and (not entry_text:match("%a%d%p")) then
-                    local _cand_header_text = string.utf8_sub(entry_text, 1, 1)
-                    local _cand_tailer_text = string.utf8_sub(entry_text, 2, 2)
-                    local cand_header_code = _cand_header_text
-                        and env.reversedb:lookup(_cand_header_text):sub(4, 4)
-                    local cand_tailer_code = _cand_tailer_text
-                        and env.reversedb:lookup(_cand_tailer_text):sub(4, 5)
+                if (utf8.len(entry_text) == 2) and (not entry_text:match("[%a%d%p]")) then
+                    local cand_header_text = string.utf8_sub(entry_text, 1, 1)
+                    local cand_tailer_text = string.utf8_sub(entry_text, 2, 2)
+                    local cand_header_code = cand_header_text
+                        and env.reversedb:lookup(cand_header_text):sub(4, 4)
+                    local cand_tailer_code = cand_tailer_text
+                        and env.reversedb:lookup(cand_tailer_text):sub(4, 5)
                     local cand_shape_code = cand_tailer_code .. cand_header_code
                     word_shape_code_tbl[idx] = { entry_text, cand_shape_code }
                 end
@@ -121,15 +123,6 @@ function T.func(input, seg, env)
     end
 end
 
--- function F.init(env)
---     env.memory = Memory(env.engine, env.engine.schema)
--- end
-
--- function F.fini(env)
---     env.memory:disconnect()
---     if env.memory then env.memory = nil end
--- end
-
 function F.func(input, env)
     local normal_cands = {}
     local symbol_cands = {}
@@ -149,9 +142,7 @@ function F.func(input, env)
             table.insert(single_char_cands, cand)
         end
 
-        if #normal_cands >= 150 then
-            break
-        end
+        if #normal_cands >= 200 then break end
         table.insert(normal_cands, cand)
     end
 
@@ -177,6 +168,7 @@ function F.func(input, env)
         for _, cand in ipairs(single_char_cands) do
             local input_shape_code = string.sub(preedit_code, 4):gsub("/", "")
             local current_cand_shape_code = cand.comment:match("%l") and cand.comment:sub(2):gsub("%[", "")
+            if not current_cand_shape_code then return end
             local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, "", 1)
             local comment = (string.len(remain_shape_code) > 0) and string.format("~%s", remain_shape_code) or " "
             ---@diagnostic disable-next-line: missing-parameter
@@ -191,18 +183,18 @@ end
 
 return {
     processor = {
-        init = word_auto_commit.init,
+        init = M.init,
         func = P.func,
-        fini = word_auto_commit.fini,
+        fini = M.fini,
     },
     translator = {
-        init = word_auto_commit.init,
+        init = M.init,
         func = T.func,
-        fini = word_auto_commit.fini,
+        fini = M.fini,
     },
     filter = {
-        init = word_auto_commit.init,
+        init = M.init,
         func = F.func,
-        fini = word_auto_commit.fini,
+        fini = M.fini,
     },
 }
