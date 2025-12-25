@@ -174,7 +174,7 @@ function filter.func(input, env)
             end
         end
 
-        if #cands >= 150 then break end
+        if #cands >= 200 then break end
     end
 
     for _, cand in ipairs(cands) do

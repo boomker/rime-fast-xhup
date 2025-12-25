@@ -632,11 +632,6 @@
                     "pattern": "(true|false)",
                     "description": "开关：动态模型。仅对 table_translator 生效。"
                 },
-                "prioritize_quality": {
-                    "type": "boolean",
-                    "pattern": "(true|false)",
-                    "description": "启用优先质量选项"
-                },
                 "enable_word_completion": {
                     "type": "boolean",
                     "pattern": "(true|false)",

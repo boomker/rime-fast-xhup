@@ -132,7 +132,7 @@ conf.pattern_time = {
 
 local function gen_day_pattern(time_delta)
     local pattern_days = {}
-	local offset_num = tostring(time_delta):match("^-") and time_delta or "+" .. time_delta
+    local offset_num = tostring(time_delta):match("^-") and time_delta or "+" .. time_delta
     for _, v in ipairs(conf.pattern_day) do
         local cp = v:gsub("年", "Y"):gsub("月", "M"):gsub(
             "{(year)}(.?){(month)}(.?){(day)}",
@@ -296,8 +296,7 @@ local input_prefixs = {
 
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
-    local config = env.engine.schema.config
-    local pin_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    -- local config = env.engine.schema.config
     if (composition:empty()) then return end
     local segment = composition:back()
 
@@ -308,8 +307,8 @@ function T.func(input, seg, env)
         local tip = "〔日期〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_date) do
-            local comment = getTimeStr(v)
-            local cand = Candidate("date", seg.start, seg._end, comment, "")
+            local cand_text = getTimeStr(v)
+            local cand = Candidate("date", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
@@ -323,8 +322,8 @@ function T.func(input, seg, env)
         local tip = "〔星期〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_week) do
-            local comment = getTimeStr(v)
-            local cand = Candidate("week", seg.start, seg._end, comment, "")
+            local cand_text = getTimeStr(v)
+            local cand = Candidate("week", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
@@ -338,8 +337,8 @@ function T.func(input, seg, env)
         local tip = "〔时间〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_time) do
-            local comment = getTimeStr(v)
-            local cand = Candidate("time", seg.start, seg._end, comment, pin_mark)
+            local cand_text = getTimeStr(v)
+            local cand = Candidate("time", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
             yield(cand)
@@ -361,8 +360,8 @@ function T.func(input, seg, env)
 
     -- 最近几天/周/月日期
     if input_prefixs[input] then
-		local time_delta = input_prefixs[input][1]
-		local new_pattern_days = gen_day_pattern(time_delta)
+        local time_delta = input_prefixs[input][1]
+        local new_pattern_days = gen_day_pattern(time_delta)
         segment.prompt = "〔" .. input_prefixs[input][2] .. "〕"
         for _, v in ipairs(new_pattern_days) do
             local datetime_val = getTimeStr(v)

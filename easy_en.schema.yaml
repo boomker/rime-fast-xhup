@@ -6,7 +6,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: 2025.01.11
+  version: 2025.12.15
   author:
     - Boomker <gmboomker@gmail.com>
   description: Easy English
@@ -15,7 +15,6 @@ schema:
 
 engine:
   processors:
-    # - lua_processor@*en-word_append_space
     - lua_processor@*flypy_switcher*processor
     - ascii_composer
     - key_binder
@@ -48,26 +47,16 @@ speller:
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA/
   delimiter: " "
   algebra:
-    - xform/^a/!/
-    - xform/^e/@/
-    - xform/^i/,/
-    - xform/^o/:/
-    - xform/^u/;/
-    - derive/[aeiou]//
-    - xlit/!@,:;/aeiou/
-    # 全小写
-    - derive/^.+$/\L$0/
-    # 全大写
-    - derive/^.+$/\U$0/
-    # 首字母大写
-    - derive/^./\U$0/
-    - derive/^([a-z]{2})/\U$1/
-    - erase/^.$/
+    # 拼写规则的本质，是把字典按照规则改写，而不是把输入的按键码转写
+    __include: algebra_flypy
 
 translator:
   dictionary: easy_en
+  spelling_hints: 0           # `0`: 关闭编码提示
   enable_encoder: false
   enable_sentence: false
+  enable_user_dict: true
+  enable_completion: true
   comment_format:
     - erase/^.$/
 
@@ -80,8 +69,19 @@ ecdict_reverse_lookup:
     - xform|\\n| ; |
     - erase|^.$|
 
+easy_en:
+  tag: easy_en
+  tips: "英文"
+  wildcard: '*'
+  expan_word_count: 666
+
 key_binder:
   import_preset: default
+  bindings:
+    - {when: has_menu,  accept: semicolon,  send: 2}              # 分号用于第2候选
+    - {when: paging,    accept: comma,  send: Page_Up}            # 逗号, 返回上一页
+    - {when: has_menu,  accept: period, send: Page_Down}          # 句号. 下一页
+    - {when: always, accept: Control+Shift+grave, select: .next}  # 在最近的两个方案之间切换
 
 punctuator:
   # import_preset: default
@@ -123,12 +123,45 @@ recognizer:
   import_preset: default
   patterns:
     uppercase: ""
-    easy_en: "^[a-zA-Z]+$"
+    easy_en: "^[a-zA-Z]+[-_']*[*]?[a-zA-Z]*$"
 
-easy_en:                          # 英文输入方案
-  prefix: "eN"
-  suffix: "'"
-  tag: easy_en
-  tips: "英文"
-  wildcard: '*'
-  expan_word_count: 666
+algebra_common:
+  # - xform/^a/!/
+  # - xform/^e/@/
+  # - xform/^i/,/
+  # - xform/^o/:/
+  # - xform/^u/;/
+  # - derive/[aeiou]//
+  # - xlit/!@,:;/aeiou/
+  # 全小写
+  - derive/^.+$/\L$0/
+  # 全大写
+  - derive/^.+$/\U$0/
+  # 首字母大写
+  - derive/^./\U$0/
+  - derive/^([a-z]{2})/\U$1/
+  - erase/^.$/
+
+algebra_flypy:
+  __include: algebra_common
+  __append:
+    - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
+    - derive/([1-9])0000(?!0)/$1wj/
+    - derive/([1-9])000(?!0)/$1fm/
+    - derive/([1-9])00(?!0)/$1bd/
+    - derive/([2-9])0(?!0)/$1ui/
+    - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
+    - derive/0/lk/
+    - derive/1/yi/
+    - derive/2/er/
+    - derive/3/sj/
+    - derive/4/si/
+    - derive/5/wu/
+    - derive/6/lq/
+    - derive/7/qi/
+    - derive/8/ba/
+    - derive/9/jq/
+    - derive/10/ui/
+    - derive/#/jk/
+    - derive/\./dm/
+    - derive/\+/jx/
