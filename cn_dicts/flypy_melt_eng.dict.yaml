@@ -252,6 +252,7 @@ GLM-4.7
 5G网络
 5G流量
 5G通信
+5G基站
 6G通信
 8K分辨率
 8K显示器
@@ -634,11 +635,13 @@ Zip压缩
 7-Zip压缩
 
 PCB板
+UPS电源
 HBM内存
 MCU芯片
-UPS电源
 H200芯片
 ASIC芯片
+FPGA芯片
+M8覆铜板
 M9覆铜板
 PCB电路板
 
@@ -720,6 +723,7 @@ KTV包厢
 PET铜箔
 LCD屏幕
 LED屏幕
+LED电视
 MAC地址
 MP4视频
 NBA篮球
@@ -754,13 +758,14 @@ URL链接
 USB接口
 USD汇率
 UTM投影
+DP接口
 VGA接口
 VIP会员
 VIP用户
 VPN连接
 XML格式
 XRD测试
-X86架构
+x86架构
 SSL加密
 TLS加密
 IoT设备
@@ -825,6 +830,7 @@ TypeC接口
 IoT物联网
 随身Wi-Fi
 江南Style
+AMD处理器
 Rime输入法
 OSI七层模型
 
