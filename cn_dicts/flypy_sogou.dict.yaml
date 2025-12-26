@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-24
+version: 2025-12-26
 sort: by_weight
 ...
 
@@ -64771,3 +64771,5 @@ sort: by_weight
 中国人民解放军空军航空大学	vs go rf mb jp fh jy ks jy hh ks da xt	100
 黑神话销售量发售周年突破一亿	hw uf hx xn uz ll fa uz vz nm tu po yi yi	100
 黑神话销售量发售周年突破一亿用户	hw uf hx xn uz ll fa uz vz nm tu po yi yi ys hu	100
+阿尔及利亚	aa er ji li ya	1
+阿尔塔	aa er ta	1
