@@ -6,7 +6,7 @@
 
 ---
 name: flypy_melt_eng
-version: "2025-12-22"
+version: "2025-12-26"
 ...
 
 α	af
@@ -197,6 +197,8 @@ VIP1
 VIP2
 VIP3
 HiFi
+DP1.4
+DP2.1
 SVIP1
 SVIP2
 SVIP3
@@ -472,7 +474,12 @@ L3级
 挂P档
 挂R档
 L3级智驾
+L4级智驾
+L5级智驾
 L3辅助驾驶
+L3自动驾驶
+L4自动驾驶
+L4自动驾驶
 Tesla汽车
 小鹏G9
 小鹏G6
