@@ -12,5 +12,6 @@ import_tables:
   - en_dicts/en                         # 英文base词库
   - en_dicts/easy_en                    # 英文主扩展
   - en_dicts/en_custom                  # 自定义自造词
+  - en_dicts/cn_en_flypy                # 中英混输词库
   - en_dicts/en_ext_private             # other 扩展
 ...
