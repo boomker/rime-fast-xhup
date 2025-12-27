@@ -1,6 +1,6 @@
+-- require("lib/metatable")
 local P = {}
 local T = {}
-require("lib/metatable")
 
 local function candidate_in_type(cand, excluded_types)
     local ct = cand:get_genuines()
