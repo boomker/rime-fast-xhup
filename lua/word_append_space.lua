@@ -1,5 +1,5 @@
 -- 为交替输出中英情况加空格
--- 为中英混输词条（cn_en.dict.yaml）自动空格
+-- 为中英混输词条自动空格
 -- 示例：`VIP中P` → `VIP 中 P`
 
 require("lib/rime_helper")
