@@ -1,5 +1,5 @@
 -- 为交替输出中英情况加空格
--- 为中英混输词条（cn_en.dict.yaml）自动空格
+-- 为中英混输词条自动空格
 -- 示例：`VIP中P` → `VIP 中 P`
 
 require("lib/rime_helper")
@@ -187,11 +187,16 @@ local function cn_en_spacer(input, env)
     for cand in input:iter() do
         if (cand.text:find("([\228-\233][\128-\191]-)") or cand.text:match("^%a+%d+%p?")) then
             local function add_spaces(s)
-                -- 在中文字符后和英文字符前插入空格
-                s = s:gsub("([\228-\233][\128-\191]-)([%w%p])", "%1 %2")
-                -- 在英文字符后和中文字符前插入空格
-                s = s:gsub("([%w%p])([\228-\233][\128-\191]-)", "%1 %2")
-                s = s:gsub("([%a][%a]+)([%d%p])", "%1 %2")
+                if cand.text:match("^%a+%d?") and cand.text:find("([\228-\233][\128-\191]-)") then
+                    -- 在英文字符后和中文字符前插入空格
+                    s = s:gsub("([%a%d])([\228-\233][\128-\191]-)", "%1 %2")
+                elseif cand.text:match("^%a+[%d%p]+") then
+                    s = s:gsub("([%u][%u][%u]+)([%d%p]+)", "%1 %2")
+                else
+                    -- 在中文字符后和英文字符前插入空格
+                    s = s:gsub("([\228-\233][\128-\191]-)([%a]+%p?)", "%1 %2")
+                    s = s:gsub("([%a%p])([\228-\233][\128-\191]-)", "%1 %2")
+                end
                 return s
             end
             cand = cand:to_shadow_candidate(cand.type, add_spaces(cand.text), cand.comment)
