@@ -29,8 +29,8 @@ end
 function T.init(env)
     local context = env.engine.context
     local en_schema = Schema("easy_en")
-    local user_data_dir = rime_api:get_user_data_dir()
     local dict_name = "en_dicts/en_custom.dict.yaml"
+    local user_data_dir = rime_api:get_user_data_dir()
     if detect_os():lower() == "windows" then
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name):gsub("/", "\\")
     elseif detect_os():lower() == "ios" then
@@ -40,16 +40,18 @@ function T.init(env)
     else
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
     end
+    env.enable_en_make_word = false
     env.en_memory = Memory(env.engine, en_schema)
     env.notifier_commit_en = context.commit_notifier:connect(function(ctx)
         local cand = ctx:get_selected_candidate()
         local cand_text = cand and cand.text
-        if cand and cand_text:match("^[%a%p]+$") then
+        if cand and cand_text:match("^[%a%p]+$") and env.enable_en_make_word then
             local file = assert(io.open(env.dict_path, "a"))
             local record = cand_text .. "\t" .. cand_text .. "\t100000"
 
             save_entry(env, cand_text)
             file:write(record .. "\n"):close()
+            env.enable_en_make_word = false
         end
     end)
 end
@@ -70,6 +72,7 @@ function T.func(input, seg, env)
         local inp = input:sub(1, -2):gsub(" ", "")
         local record = inp .. "\t" .. inp .. "\t100000"
         if not user_dict_exist(record, env.dict_path) then
+            env.enable_en_make_word = true
             yield(Candidate("en_custom", seg.start, seg._end, inp, "✅"))
         end
     end
