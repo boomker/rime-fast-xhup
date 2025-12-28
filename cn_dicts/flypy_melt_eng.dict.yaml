@@ -16,6 +16,7 @@ version: "2025-12-26"
 
 1	yi
 2	er
+2	to
 3	sj
 4	si
 5	wu
@@ -211,6 +212,8 @@ SVIP3
 utf-8
 UTF-8
 UTF-16
+V2rayN
+V2rayNG
 WiFi-6
 HTTP1.1
 HDMI2.0
@@ -361,14 +364,11 @@ n次方
 n次幂
 LAN口
 WAN口
-LED灯
-LED屏
 PIN码
 POS机
 PVC管
 SDK包
 SIM卡
-eSIM卡
 T细胞
 T恤衫
 TCP包
@@ -396,6 +396,8 @@ CTRL键
 Ctrl键
 Eject键
 Enter键
+Shift键
+Option键
 AD钙奶
 AV女优
 AI语料
@@ -406,7 +408,6 @@ AI手机
 AI眼镜
 BC电池
 HJT电池
-腾讯QQ
 QQ号码
 QQ空间
 QQ邮箱
@@ -416,6 +417,7 @@ QQ会员
 QQ好友
 QQ飞车
 QQ三国
+腾讯QQ
 
 C编程
 C语言
@@ -450,27 +452,28 @@ Edge浏览器
 AB型血
 AB血型
 HB铅笔
-内网IP
-公网IP
-IP地址
-IP协议
-IP电话
-IP经济
-YY语音
-PC版本
+eSIM卡
 USIM卡
-TV版本
 IT行业
 CT检查
 CT扫描
-ST板块
 DJ舞曲
 HD高清
 JK制服
+ST板块
+PC版本
+TV版本
 UI设计
 UI界面
 UX设计
 V8引擎
+YY语音
+IP经济
+IP电话
+IP协议
+IP地址
+内网IP
+公网IP
 我叫MT
 卡拉OK
 芒果TV
@@ -504,6 +507,8 @@ M4 Air	msair
 M4 Pro	mspro
 
 L3级
+L4级
+L5级
 挂D档
 挂P档
 挂R档
@@ -522,9 +527,9 @@ L4自动驾驶
 小鹏G9
 小鹏P5
 小鹏P7
+仰望U7
 仰望U8
 仰望U9
-仰望U7
 尊界S800
 享界S9
 尚界H5
@@ -684,6 +689,8 @@ HEVC格式
 7-Zip压缩
 
 PCB板
+LED灯
+LED屏
 DP接口
 HDMI线
 UPS电源
@@ -704,6 +711,8 @@ x86架构
 DDR3内存
 DDR4内存
 DDR5内存
+ASIC芯片
+CMOS芯片
 BIOS设置
 OLED屏幕
 OLED电视
@@ -712,7 +721,6 @@ HDMI接口
 RJ11接口
 RJ45接口
 H200芯片
-ASIC芯片
 FPGA芯片
 M8覆铜板
 M9覆铜板
@@ -732,13 +740,13 @@ RJ45水晶头
 双buff
 叠buff
 115网盘
+永硕E盘
 工业4.0
 非常6+1
 小米SU7
 小米YU7
 哆啦A梦
 头文字D
-永硕E盘
 阿Q精神
 阿Q正传
 芭比Q了

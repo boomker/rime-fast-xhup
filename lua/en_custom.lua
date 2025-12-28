@@ -14,7 +14,6 @@ local function user_dict_exist(word_record, path)
     return false
 end
 
-
 local function save_entry(env, code)
     local entry       = DictEntry()
     entry.text        = code -- 上屏英文本身
@@ -43,15 +42,18 @@ function T.init(env)
     env.enable_en_make_word = false
     env.en_memory = Memory(env.engine, en_schema)
     env.notifier_commit_en = context.commit_notifier:connect(function(ctx)
+        local segment = ctx.composition:back()
         local cand = ctx:get_selected_candidate()
         local cand_text = cand and cand.text
-        if cand and cand_text:match("^[%a%p]+$") and env.enable_en_make_word then
+        if (cand and segment and segment:has_tag("make_en_word")) or
+            (cand and cand_text:match("^%a[%a%p]+$") and env.enable_en_make_word)
+        then
+            env.enable_en_make_word = false
             local file = assert(io.open(env.dict_path, "a"))
             local record = cand_text .. "\t" .. cand_text .. "\t100000"
 
             save_entry(env, cand_text)
             file:write(record .. "\n"):close()
-            env.enable_en_make_word = false
         end
     end)
 end
@@ -68,6 +70,10 @@ function T.fini(env)
 end
 
 function T.func(input, seg, env)
+    if seg:has_tag("make_en_word") then -- 输入开头必须是 `~`
+        local cand_text = input:gsub(",", " ")
+        yield(Candidate("en_custom", seg.start, seg._end, cand_text, ""))
+    end
     if input:match("^%a[%a%p]+\\$") then -- 输入末尾必须是 `\`
         local inp = input:sub(1, -2):gsub(" ", "")
         local record = inp .. "\t" .. inp .. "\t100000"

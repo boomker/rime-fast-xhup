@@ -79,7 +79,6 @@ local function on_update_or_select(env)
                 -- pp_seg.menu:prepare(7)
                 local index = pp_seg.selected_index
                 local cand = pp_seg:get_candidate_at(index)
-                -- logger.writeLog("ct: " .. type(cand))
                 if cand then cand.preedit = opening_punct end
             end
             if segmentation:get_confirmed_position() >= pp_seg.start then
