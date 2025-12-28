@@ -57,6 +57,7 @@ engine:
     - abc_segmentor
     - affix_segmentor@LaTeX
     - affix_segmentor@calculator
+    - affix_segmentor@make_en_word
     - affix_segmentor@make_sentence
     - affix_segmentor@chinese_lunar
     - affix_segmentor@chinese_number
@@ -70,9 +71,10 @@ engine:
     - script_translator
     - reverse_lookup_translator
     - table_translator@easy_en
+    # - echo_translator@make_en_word
     - table_translator@idiom_phrase                   # 成语短语的首字母简拼
-    - table_translator@custom_phrase                  # 自定义短语(固顶)
     - table_translator@make_sentence                  # ` 精准造词
+    - table_translator@custom_phrase                  # 自定义短语(固顶)
     - table_translator@radical_lookup                 # /rl,rL 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
@@ -142,16 +144,7 @@ translator:
   comment_format:
     - xform/^\w+[[](\w+)$/~$1/        # 单字编码提示只显示辅助码部分
 
-# "`" 精准造词
-make_sentence:                      # 精准造词
-  prefix: "`"
-  suffix: "'"
-  tag: make_sentence
-  tips: "〔精准造词〕"
-  # enable_sentence: true
-  __include: /translator
-
-# 次翻译器, 英文
+# 次翻译器(英文)
 easy_en:
   dictionary: easy_en
   initial_quality: 0.8
@@ -161,6 +154,22 @@ easy_en:
   enable_completion: true
   comment_format:
     - xform/.*//                    # 清空提示码
+
+# "`" 精准造词
+make_sentence:                      # 精准造词
+  prefix: "`"
+  suffix: "'"
+  tag: make_sentence
+  tips: "〔精准造词〕"
+  # enable_sentence: true
+  __include: /translator
+
+# "~" 英文造词
+make_en_word:                      # 英文造词
+  prefix: "~"
+  tag: make_en_word
+  tips: "〔英文造词〕"
+  __include: /easy_en
 
 # 成语短语
 idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
@@ -239,7 +248,8 @@ radical_reverse_lookup:
 recognizer:
   import_preset: default
   patterns:
-    make_sentence: "`?[a-z]+[`][a-z`]*'?$"    # ` 引导精准造词
+    make_en_word: "^~[a-zA-Z0-9&,./_-]+$"     # ~ 引导精准造词
+    make_sentence: "`?[a-z]+[`][a-z`]*'?$"   # ` 引导精准造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
