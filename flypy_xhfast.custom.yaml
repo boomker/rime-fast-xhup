@@ -63,8 +63,9 @@ patch:
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
     remove_user_word: "Control+r"     # 用户词典里的字词调频为负
-    easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮字词
     simpy_expand_key: "Control+q"     # `8/Control+q` 简拼成语优先
+    easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮字词
+    symbol_menu_fallback: "slash"     # 符号二级菜单返回主菜单键
     select_first_character: "bracketleft"      # `9/bracketleft/minus` 以词定字(首字)
     select_last_character: "bracketright"      # `0/bracketright/equal` 以词定字(尾字)
     enclosed_cand_chars_a: "Shift+Control+7"   # 上屏「高亮字词」
@@ -75,6 +76,8 @@ patch:
       - {when: composing, accept: grave, send: "`"}          # `键 逐字追加辅码
       - {when: has_menu,  accept: semicolon,  send: 2}       # 分号用于第2候选
       - {when: has_menu,  accept: apostrophe, send: 3}       # 单引号用于第3候选
+      # - {when: has_menu,  accept: bracketleft, send: 3}    # 左方括号用于第3候选
+      # - {when: has_menu,  accept: bracketright, send: 4}   # 右方括号用于第4候选
       - {when: paging,    accept: comma,  send: Page_Up}     # 逗号, 返回上一页
       - {when: has_menu,  accept: period, send: Page_Down}   # 句号. 下一页
       # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 返回上一页
