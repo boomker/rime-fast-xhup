@@ -79,7 +79,6 @@ local function on_update_or_select(env)
                 -- pp_seg.menu:prepare(7)
                 local index = pp_seg.selected_index
                 local cand = pp_seg:get_candidate_at(index)
-                -- logger.writeLog("ct: " .. type(cand))
                 if cand then cand.preedit = opening_punct end
             end
             if segmentation:get_confirmed_position() >= pp_seg.start then
@@ -139,7 +138,7 @@ function processor.init(env)
     env.enclosed_a = config:get_string("key_binder/enclosed_cand_chars_a") or nil
     env.enclosed_b = config:get_string("key_binder/enclosed_cand_chars_b") or nil
     env.enclosed_c = config:get_string("key_binder/enclosed_cand_chars_c") or nil
-    env.enclosed_d = config:get_string("key_binder/enclosed_cand_chars_d") or nil
+    -- env.enclosed_d = config:get_string("key_binder/enclosed_cand_chars_d") or nil
 end
 
 function processor.func(key, env)
@@ -173,7 +172,7 @@ function processor.func(key, env)
 
     if context:has_menu() or context:is_composing() then
         local cand = context:get_selected_candidate()
-        if env.enclosed_a or env.enclosed_b or env.enclosed_c or env.enclosed_d then
+        if env.enclosed_a or env.enclosed_b or env.enclosed_c then
             local matched = false
             if key_value == env.enclosed_a then
                 matched = true
@@ -184,9 +183,9 @@ function processor.func(key, env)
             elseif key_value == env.enclosed_c then
                 matched = true
                 env.engine:commit_text("（" .. cand.text .. "）")
-            elseif key_value == env.enclosed_d then
-                matched = true
-                env.engine:commit_text("〔" .. cand.text .. "〕")
+                -- elseif key_value == env.enclosed_d then
+                --     matched = true
+                --     env.engine:commit_text("〔" .. cand.text .. "〕")
             end
             if matched then
                 context:clear()
