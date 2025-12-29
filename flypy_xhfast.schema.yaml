@@ -56,6 +56,7 @@ engine:
     - lua_segmentor@*pair_punct*segmentor
     - abc_segmentor
     - affix_segmentor@LaTeX
+    - affix_segmentor@easy_en
     - affix_segmentor@calculator
     - affix_segmentor@make_en_word
     - affix_segmentor@make_sentence
@@ -166,9 +167,9 @@ make_sentence:                      # 精准造词
   __include: /translator
 
 # "~" 英文造词
-make_en_word:                      # 英文造词
+make_en_word:                       # 英文造词
   prefix: "~"
-  suffix: "'"
+  suffix: ";"
   tag: make_en_word
   tips: "〔英文造词〕"
   __include: /easy_en
@@ -250,10 +251,11 @@ radical_reverse_lookup:
 recognizer:
   import_preset: default
   patterns:
-    make_en_word: "^~[a-zA-Z0-9&,./_-]+$"   # ~ 引导精准造词
-    make_sentence: "`?[a-z]+[`][a-z`]*'?$"  # ` 引导精准造词
+    make_sentence: "`?[a-z]+[`][a-z`]*'?$"                 # ` 引导精准造词
+    easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
+    make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'  # ~\ 引导英文造词
 
 # 标点符号
 punctuator:
@@ -291,14 +293,17 @@ key_binder:
     - {when: composing, accept: Control+e, send: End}
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
+    - {when: has_menu,  accept: Control+Shift+4, toggle: emoji}
     - {when: always, accept: "Shift+space", toggle: ascii_mode}
     - {when: always, accept: "Control+comma", toggle: ascii_punct}
     - {when: always, accept: "Control+period", toggle: full_shape}
+    - {when: has_menu, accept: Control+Shift+5, toggle: charset_hint}
+    - {when: has_menu, accept: Control+Shift+6, toggle: traditionalize}
 
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_-/`\*&
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_-/&
   # initials 定义仅作为始码的按键
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
