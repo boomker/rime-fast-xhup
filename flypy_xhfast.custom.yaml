@@ -75,7 +75,9 @@ patch:
     bindings/+:
       - {when: composing, accept: grave, send: "`"}          # `键 逐字追加辅码
       - {when: has_menu,  accept: semicolon,  send: 2}       # 分号用于第2候选
-      - {when: has_menu,  accept: apostrophe, send: 3}       # 单引号用于第3候选
+      - {when: has_menu,  accept: bracketleft, send: 3}      # 左方括号用于第3候选
+      - {when: has_menu,  accept: bracketright, send: 4}     # 右方括号用于第4候选
+      # - {when: has_menu,  accept: apostrophe, send: 3}     # 单引号用于第3候选
       - {when: paging,    accept: comma,  send: Page_Up}     # 逗号, 返回上一页
       - {when: has_menu,  accept: period, send: Page_Down}   # 句号. 下一页
       # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 返回上一页
