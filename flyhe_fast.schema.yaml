@@ -184,6 +184,8 @@ key_binder:
   bindings:
     - {when: has_menu, accept: semicolon, send: 2}         # 分号用于第2候选
     - {when: has_menu, accept: apostrophe, send: 3}        # 单引号用于第3候选
+    # - {when: has_menu,  accept: bracketleft, send: 3}    # 左方括号用于第3候选
+    # - {when: has_menu,  accept: bracketright, send: 4}   # 右方括号用于第4候选
     - {when: paging, accept: comma, send: Page_Up}         # 逗号上一页
     - {when: has_menu, accept: period, send: Page_Down}    # 句号下一页
     # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 上一页
@@ -195,11 +197,11 @@ key_binder:
     - {when: composing, accept: Control+i, send: Control+Left}
     - {when: composing, accept: Control+o, send: Control+Right}
     - {when: composing, accept: Control+w, send: Control+BackSpace}
-    - {when: always, accept: Control+Shift+grave, select: .next}               # 在最近的两个方案之间切换
-    - {when: always, accept: "Control+comma", toggle: ascii_punct}
-    - {when: always, accept: "Control+period", toggle: full_shape}
-    - {when: has_menu, accept: Control+Shift+4, toggle: emoji}
-    - {when: has_menu, accept: "Control+Shift+5", toggle: traditionalize}
+    - {when: has_menu,  accept: Control+Shift+4, toggle: emoji}
+    - {when: always,    accept: Control+Shift+0, select: .next} # 在最近的两个方案之间切换
+    - {when: always,    accept: "Control+comma", toggle: ascii_punct}
+    - {when: always,    accept: "Control+period", toggle: full_shape}
+    - {when: has_menu,  accept: "Control+Shift+5", toggle: traditionalize}
 
 # 拼写设定
 speller:
