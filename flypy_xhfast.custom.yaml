@@ -157,7 +157,6 @@ patch:
 
   easy_en/+:                          # 英文单词输入方案
     tips: "英文"
-    tag: easy_en
     wildcard: '*'
     expand_word_count: 666            # 模糊匹配最多迭代数
 
