@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-24
+version: 2025-12-28
 sort: by_weight
 ...
 
@@ -13365,6 +13365,7 @@ sort: by_weight
 阿尔巴	aa er ba	1
 阿尔玛	aa er ma	100
 阿尔塞	aa er sd	100
+阿尔塔	aa er ta	1
 阿凡达	aa fj da	1
 阿富汗	aa fu hj	1
 阿菲夫	aa fw fu	100
@@ -40114,6 +40115,7 @@ sort: by_weight
 阿黛尔采访	aa dd er cd fh	100
 阿尔巴尼斯	aa er ba ni si	1
 阿尔巴尼亚	aa er ba ni ya	1
+阿尔及利亚	aa er ji li ya	1
 阿尔卡拉斯	aa er ka la si	100
 阿尔提乌斯	aa er ti wu si	100
 阿尔瓦雷斯	aa er wa lw si	100
