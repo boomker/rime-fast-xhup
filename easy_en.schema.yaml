@@ -6,12 +6,16 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: 2025.12.15
+  version: 2025.12.30
   author:
     - Boomker <gmboomker@gmail.com>
   description: Easy English
   dependencies:
     - ecdict
+
+menu:
+  alternative_select_keys: "1;90567"      # 候选项选中快捷键
+  # alternative_select_keys: 1234567890   # 候选项选中快捷键
 
 engine:
   processors:
@@ -80,9 +84,10 @@ easy_en:
 key_binder:
   import_preset: default
   bindings:
-    - {when: has_menu,  accept: semicolon,  send: 2}            # 分号用于第2候选
-    - {when: has_menu,  accept: bracketleft, send: 3}           # 左方括号用于第3候选
-    - {when: has_menu,  accept: bracketright, send: 4}          # 右方括号用于第4候选
+    # - {when: has_menu,  accept: 3,  send: 3}                  # 数字3用于第3候选
+    # - {when: has_menu,  accept: 4,  send: 4}                  # 数字4用于第4候选
+    # - {when: has_menu,  accept: semicolon,  send: 2}          # 分号用于第2候选
+    # - {when: has_menu,  accept: apostrophe, send: 3}          # 单引号用于第3候选
     - {when: paging,    accept: comma,  send: Page_Up}          # 逗号, 返回上一页
     - {when: has_menu,  accept: period, send: Page_Down}        # 句号. 下一页
     - {when: always, accept: Control+Shift+0, select: .next}    # 在最近的两个方案之间切换
