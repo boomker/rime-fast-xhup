@@ -352,21 +352,22 @@ function M.init(env)
     local cn_pattern_key = "recognizer/patterns/chinese_number"
     local cn_pattern = config:get_string(cn_pattern_key) or "nN"
     local default_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
-    local current_labels = config:get_string("menu/alternative_select_labels")
     env.system_name = detect_os()
-    env.alter_labels = env.alter_labels or current_labels or default_labels
     env.current_speller = config:get_string("speller/alphabet")
-    M.speller_string = M.speller_string or env.current_speller -- 缓存speller
     env.prompt = config:get_string("chinese_number/tips") or "中文数字"
     env.trigger_prefix = cn_pattern:match("%^?%(?([a-zA-Z/|]+)%)?.*") or "nN"
+    env.current_labels = config:get_string("menu/alternative_select_labels")
+    env.current_select_keys = config:get_string("menu/alternative_select_keys")
+    env.alter_labels = env.alter_labels or env.current_labels or default_labels
+    M.speller_string = M.speller_string or env.current_speller -- 缓存speller
+    M.alter_select_keys = M.alter_select_keys or env.current_select_keys or "1234567"
     env.alpha_select_keys = config:get_string("chinese_number/select_keys") or "sdfjklm"
-    env.alter_select_keys = config:get_int("menu/alternative_select_keys") or 1234567890
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
         if env.system_name:lower():match("android") then return end
         local segment = ctx.composition:back()
         if segment and segment.prompt:match(env.prompt) then
             env:Config_set("speller/alphabet", M.speller_string)
-            env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
+            env:Config_set("menu/alternative_select_keys", M.alter_select_keys)
             env:Config_set("menu/alternative_select_labels", env.alter_labels)
             env.engine:apply_schema(Schema(schema.schema_id))
         end
@@ -388,7 +389,7 @@ function P.func(key, env)
     local composition = context.composition
 
     if (env.current_speller ~= M.speller_string) and (key:repr() == "Escape") then
-        env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
+        env:Config_set("menu/alternative_select_keys", M.alter_select_keys)
         env:Config_set("menu/alternative_select_labels", env.alter_labels)
         env:Config_set("speller/alphabet", M.speller_string)
         engine:apply_schema(Schema(schema.schema_id))
@@ -398,7 +399,7 @@ function P.func(key, env)
     local segment = composition:back()
     if not (segment and segment.menu) then return 2 end
     if env.system_name:lower():match("android") then return 2 end
-    if env.alter_select_keys == env.alpha_select_keys then return 2 end
+    if env.current_select_keys == env.alpha_select_keys then return 2 end
 
     local alpha_labels = { "s", "d", "f", "j", "k", "l", "m" }
     local _speller_str = env.current_speller:gsub("[a-z%p]", "")
