@@ -1,7 +1,7 @@
 -- pair_punct.lua
 -- author: kuroame, boomker
 -- license: MIT
--- 雙符成形
+-- 符号成对
 
 -- 配置說明
 -- 在你的schema文件裏引入這個segmentor，需要放在abc_segmentor的前面
@@ -151,7 +151,6 @@ function processor.func(key, env)
     local page_size = schema.page_size
     local preedit_text = context:get_script_text()
 
-    -- logger.write('kc: ' .. key.keycode .. ' | ' .. 'kv:' .. key_value)
     if env.pair_toggle == "off" then return 2 end
     local composition = context.composition
 
@@ -199,19 +198,33 @@ function processor.func(key, env)
 
     local selected_cand_index = get_selected_candidate_index(key_value, idx, select_keys, page_size)
     if context:has_menu() and (selected_cand_index > 0) and input_code:match("^[`<%(%[{]$") then
-        if env.system_name:lower():match("android") or env.dist_code:match("^fcitx%-rime$") then
+        local selected_cand = segment:get_candidate_at(selected_cand_index)
+        local cand_text = selected_cand and selected_cand.text
+        local symkey = nil
+        for k, v in pairs(pairTable) do
+            if (#v >= 1) and (v[1] == cand_text) then
+                symkey = k
+            end
+        end
+        if not symkey then return 2 end
+        if env.system_name:lower():match("android") then
             for o = 1, tonumber(selected_cand_index) do
                 env.engine:process_key(KeyEvent(tostring("Down")))
             end
-        elseif (candidate_layout == "stacked") or (cand_menu_layout == false) then
-            for i = 1, tonumber(selected_cand_index) do
-                env.engine:process_key(KeyEvent(tostring("Down")))
-            end
         else
-            for j = 1, tonumber(selected_cand_index) do
-                env.engine:process_key(KeyEvent(tostring("Right")))
-            end
+            context:clear()
+            context:push_input(pairTable[symkey][1])
+            return 1 -- kAccept
         end
+        -- elseif (candidate_layout == "stacked") or (cand_menu_layout == false) then
+        --     for i = 1, tonumber(selected_cand_index) do
+        --         env.engine:process_key(KeyEvent(tostring("Down")))
+        --     end
+        -- else
+        --     for j = 1, tonumber(selected_cand_index) do
+        --         env.engine:process_key(KeyEvent(tostring("Right")))
+        --     end
+        -- end
         return 1 -- kAccept
     end
 

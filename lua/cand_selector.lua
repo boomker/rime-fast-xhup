@@ -1,7 +1,7 @@
--- local logEnable, log = pcall(require, "lib/logger")
 require("lib/string")
 require("lib/metatable")
 require("lib/rime_helper")
+-- local logger = require("lib/logger")
 
 local T = {}
 local F = {}

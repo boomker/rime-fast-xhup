@@ -1,6 +1,7 @@
 {
-    "editor.fontFamily": "'Maple Mono NF CN'",
+    "editor.fontFamily": "'JetBrains Maple Mono', 'Maple Mono NF CN'",
     "yaml.schemas": {
+        "trime-schema.json": "*.trime.yaml",
         "rime-yaml-schema.json": "*.schema.yaml"
     },
     "files.associations": {
@@ -80,6 +81,7 @@
         ".vscode/"
     ],
     "cSpell.words": [
+        "actionlabel",
         "astralwelkin",
         "Atoi",
         "boomker",
@@ -100,7 +102,9 @@
         "Gukwan",
         "hanb",
         "hilited",
+        "iconfont",
         "keymap",
+        "logfile",
         "metatable",
         "ollama",
         "opencc",
@@ -121,11 +125,13 @@
         "symkey",
         "Trime",
         "Uniquified",
+        "unpair",
         "userdict",
         "vinho",
         "wanxiang",
         "xform",
         "xhfast",
-        "xhup"
+        "xhup",
+        "xlit"
     ]
 }
