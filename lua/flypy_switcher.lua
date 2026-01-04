@@ -9,17 +9,19 @@ function flypy_switcher.init(env)
     Env(env)
     local engine = env.engine
     local config = engine.schema.config
+    local default_selkey = "1234567890"
     env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+    env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
     env.user_distribute_name = rime_api:get_distribution_code_name()
     env.page_size = config:get_int("menu/page_size") or 7
     env.font_point = config:get_int("style/font_point") or 20
     env.line_spacing = config:get_int("style/line_spacing") or 5
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
-    env.preedit_format = config:get_list("translator/preedit_format") or nil
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
-    env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
+    env.preedit_format = config:get_list("translator/preedit_format") or nil
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
+    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
@@ -117,7 +119,8 @@ function processor.func(key, env)
     if segment.prompt:match("切换配置选项") then
         local key_value = key:repr()
         local idx = segment.selected_index
-        local index = get_selected_candidate_index(key_value, idx, page_size)
+        local select_keys = env.select_keys
+        local index = get_selected_candidate_index(key_value, idx, select_keys, page_size)
         if index < 0 then return 2 end
         local selected_cand = segment:get_candidate_at(index)
         local cand_text = selected_cand.text:gsub(" ", "")

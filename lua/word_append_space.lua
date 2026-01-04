@@ -6,6 +6,8 @@ require("lib/rime_helper")
 local space_leader_word = {}
 
 function space_leader_word.init(env)
+    local default_selkey = "1234567890"
+    local config = env.engine.schema.config
     env.return_keys = {
         ["Return"] = true,
         ["Shift+Return"] = true,
@@ -24,6 +26,7 @@ function space_leader_word.init(env)
         ["bracketleft"] = true,
     }
     reset_committed_cand_state(env)
+    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
 end
 
 function space_leader_word.func(key, env)
@@ -88,7 +91,8 @@ function space_leader_word.func(key, env)
     end
 
     local index = segment.selected_index or 7
-    local selected_cand_idx = get_selected_candidate_index(key_value, index, page_size)
+    local select_keys = env.select_keys
+    local selected_cand_idx = get_selected_candidate_index(key_value, index, select_keys, page_size)
 
     if (prev_cand_is_symbol == "1") or (prev_cand_is_null == "1") then
         local selected_cand = segment:get_candidate_at(selected_cand_idx)

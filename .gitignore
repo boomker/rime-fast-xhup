@@ -7,7 +7,7 @@ build/
 __pycache__/
 .DS_Store
 .stignore
-**/runLog.txt
+**/debug.log
 **/.ropeproject
 user.yaml
 wanxiang*.gram

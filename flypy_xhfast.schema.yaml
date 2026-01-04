@@ -40,7 +40,6 @@ engine:
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
     - lua_processor@*commit_history*processor
-    - lua_processor@*cand_autocommit*processor
     - lua_processor@*fuzzy_word_expand*processor
     - ascii_composer
     - recognizer
@@ -73,8 +72,8 @@ engine:
     - reverse_lookup_translator
     - table_translator@easy_en
     - table_translator@idiom_phrase                   # 成语短语的首字母简拼
-    - table_translator@make_sentence                  # ` 精准造词
     - table_translator@custom_phrase                  # 自定义短语(固顶)
+    - table_translator@make_sentence                  # ` 精准造词
     - table_translator@radical_lookup                 # /rl,rL 触发进入部件组字模式
     - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
@@ -86,11 +85,11 @@ engine:
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     # - lua_translator@*revert_commit_word            # 撤销已上屏字符(模拟退格键)
+    - lua_translator@*cand_selector*translator        # /,; 单字或二字词和表情自动上屏
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
     - lua_translator@*chinese_number*translator       # /nn,nN 触发大写金额数字
     - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
-    - lua_translator@*cand_autocommit*translator      # /,; 单字或二字词和表情自动上屏
     - lua_translator@*fuzzy_word_expand*translator    # ctrl-q 成语简拼展开优先
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
@@ -100,9 +99,9 @@ engine:
     - lua_filter@*reduce_emoji
     - lua_filter@*charset*filter
     - lua_filter@*charset*charset_hint
+    - lua_filter@*cand_selector*filter
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
-    - lua_filter@*cand_autocommit*filter
     - lua_filter@*fuzzy_word_expand*filter
     # - lua_filter@*rime_ollama_translator
     - lua_filter@*pin_word*filter
@@ -126,7 +125,7 @@ translator:
   spelling_hints: 1                   # >0 启用, `0`: 关闭单字编码提示
   max_word_length: 7                  # >0 启用, 过长短语不记整词, 只加元素权重
   core_word_length: 4                 # >0 启用, 按段学词 + 相邻段拼接
-  initial_quality: 1.3                # 初始词频
+  initial_quality: 1.3                # 初始权重
   enable_user_dict: true              # 开启用户词库(是否自动调频)
   enable_completion: true             # 启用输入补全
   enable_word_completion: true        # 4 音节以上的词条才补全
@@ -163,7 +162,6 @@ make_sentence:                      # 精准造词
   suffix: "'"
   tag: make_sentence
   tips: "〔精准造词〕"
-  # enable_sentence: true
   __include: /translator
 
 # "~" 英文造词
@@ -244,18 +242,17 @@ radical_reverse_lookup:
   tags: [abc, radical_lookup]
   overwrite_comment: false
   comment_format:
-    - xform/^(\w+)[[].*$/$1/
     - xform/^/~/
 
 # 处理符合特定规则的输入码, 如网址、反查
 recognizer:
   import_preset: default
   patterns:
-    make_sentence: "`?[a-z]+[`][a-z`]*'?$"                 # ` 引导精准造词
+    make_sentence: "^`?[a-z]+[`][a-z`]*$"                    # ` 引导精准造词
     easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
-    make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'  # ~\ 引导英文造词
+    make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'   # ~\ 引导英文造词
 
 # 标点符号
 punctuator:
@@ -308,12 +305,7 @@ speller:
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
-    __include: algebra_common
-
-  # 左右飞键音码规则, 注释以下三行使用原版小鹤双拼
-  __patch:
-    algebra/+:
-      __include: flypy_chord_rule:/patch/speller/algebra
+    __include: algebra_flyhe
 
 algebra_common:
   - erase/^ng\[kk$/            # 取消「唔 ng」的独占
@@ -330,6 +322,12 @@ algebra_common:
   # 响应 ` 造词
   - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
   - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
+
+algebra_flyhe:
+  __include: algebra_common
+  # 左右飞键音码规则, 注释以下两行使用原版小鹤双拼
+  __append:
+    __include: flypy_chord_rule:/patch
 
 preedit_convert_rules:
   - xform/(\w)g/$1eng/

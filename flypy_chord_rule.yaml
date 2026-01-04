@@ -1,73 +1,73 @@
 ---
 
 patch:
-  speller:
-    algebra:
-      ## 左右飞键音码规则
-      - derive/^(j)n/$1c/
-      - derive/^([jyn])t/$1d/         # t --> d
-      - derive/^([jmn])p/$1e/         # p --> e
-      - derive/^([djlnx])q/$1f/       # q --> f
-      - derive/^p([okibnmuhj])/e$1/
-      - derive/^q([pkibnmsxyl])/f$1/
-      - derive/^qt/fd/
-      - derive/^qu/fe/
-      - derive/^qr/fo/
-      - derive/^ko/kr/
-      - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
-      - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
-      - derive/^yh/wn/
-      - derive/^yj/wm/
-      - derive/^hj/aj/
-      - derive/^hy/hw/
-      - derive/^uj/ur/
-      - derive/^uy/uw/                # uy --> uw
-      - derive/^vx/ux/                # vx --> ux
-      - derive/^vs/us/                # vs --> us
-      - derive/^vd/ud/                # vd --> ud
-      - derive/^vf/vn/                # vf --> vn
-      - derive/^vg/vk/                # vg --> vk
-      - derive/^vr/vm/                # vr --> vm
-      - derive/^rv/rl/                # rv --> rl
-      - derive/^rz/rm/                # rz --> rm
-      - derive/^rf/rn/                # rf --> rn
-      - derive/^rg/rb/                # rg --> rb
-      - derive/^tg/rb/                # tg --> rb
-      - derive/^tk/rk/                # tk --> rk
-      - derive/^te/df/                # te --> df
-      - derive/^tw/dw/                # tw --> dw
-      - derive/^tv/dl/                # tv --> dl
-      - derive/^gr/gm/                # gr --> gm
-      - derive/^gf/gn/                # gf --> gn
-      - derive/^gy/gk/                # gy --> gk
-      - derive/^g([wv])/gi/           # g[wv] --> gi
-      - derive/^xt/xo/
-      - derive/^xs/xh/
-      - derive/^nh/nx/
-      - derive/^nu/nv/
-      - derive/^nj/xj/
-      - derive/^no/nr/
-      - derive/^lo/ng/
-      - derive/^lp/nl/
-      - derive/^ly/nw/
-      - derive/^lm/nz/
-      - derive/^li/lx/
-      - derive/^jm/jz/
-      - derive/^jb/ja/
-      - derive/^za/zl/
-      - derive/^ze/zn/
-      - derive/^zr/zm/
-      - derive/^z([ws])/zk/
-      - derive/^i([kl])/ix/
-      - derive/^mh/mx/
-      - derive/^mb/ms/
-      - derive/^mk/me/
-      - derive/^mo/mr/
-      - derive/^mu/mv/
-      - derive/^sz/sl/
-      - derive/^bw/bs/
-      - derive/^b([fgnm])/s$1/
-      - derive/^cs/ck/
-      - derive/^ce/cn/
-      - derive/^cr/cm/
-      - derive/^c([dz])/cl/
+  # speller:
+  #   algebra:
+  ## 左右飞键音码规则
+  - derive/^(j)n/$1c/
+  - derive/^([jyn])t/$1d/         # t --> d
+  - derive/^([jmn])p/$1e/         # p --> e
+  - derive/^([djlnx])q/$1f/       # q --> f
+  - derive/^p([okibnmuhj])/e$1/
+  - derive/^q([pkibnmsxyl])/f$1/
+  - derive/^qt/fd/
+  - derive/^qu/fe/
+  - derive/^qr/fo/
+  - derive/^ko/kr/
+  - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
+  - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
+  - derive/^yh/wn/
+  - derive/^yj/wm/
+  - derive/^hj/aj/
+  - derive/^hy/hw/
+  - derive/^uj/ur/
+  - derive/^uy/uw/                # uy --> uw
+  - derive/^vx/ux/                # vx --> ux
+  - derive/^vs/us/                # vs --> us
+  - derive/^vd/ud/                # vd --> ud
+  - derive/^vf/vn/                # vf --> vn
+  - derive/^vg/vk/                # vg --> vk
+  - derive/^vr/vm/                # vr --> vm
+  - derive/^rv/rl/                # rv --> rl
+  - derive/^rz/rm/                # rz --> rm
+  - derive/^rf/rn/                # rf --> rn
+  - derive/^rg/rb/                # rg --> rb
+  - derive/^tg/rb/                # tg --> rb
+  - derive/^tk/rk/                # tk --> rk
+  - derive/^te/df/                # te --> df
+  - derive/^tw/dw/                # tw --> dw
+  - derive/^tv/dl/                # tv --> dl
+  - derive/^gr/gm/                # gr --> gm
+  - derive/^gf/gn/                # gf --> gn
+  - derive/^gy/gk/                # gy --> gk
+  - derive/^g([wv])/gi/           # g[wv] --> gi
+  - derive/^xt/xo/
+  - derive/^xs/xh/
+  - derive/^nh/nx/
+  - derive/^nu/nv/
+  - derive/^nj/xj/
+  - derive/^no/nr/
+  - derive/^lo/ng/
+  - derive/^lp/nl/
+  - derive/^ly/nw/
+  - derive/^lm/nz/
+  - derive/^li/lx/
+  - derive/^jm/jz/
+  - derive/^jb/ja/
+  - derive/^za/zl/
+  - derive/^ze/zn/
+  - derive/^zr/zm/
+  - derive/^z([ws])/zk/
+  - derive/^i([kl])/ix/
+  - derive/^mh/mx/
+  - derive/^mb/ms/
+  - derive/^mk/me/
+  - derive/^mo/mr/
+  - derive/^mu/mv/
+  - derive/^sz/sl/
+  - derive/^bw/bs/
+  - derive/^b([fgnm])/s$1/
+  - derive/^cs/ck/
+  - derive/^ce/cn/
+  - derive/^cr/cm/
+  - derive/^c([dz])/cl/
