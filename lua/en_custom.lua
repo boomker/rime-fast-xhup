@@ -79,7 +79,9 @@ function T.func(input, seg, env)
         local record = inp .. "\t" .. inp .. "\t100000"
         if not user_dict_exist(record, env.dict_path) then
             env.enable_en_make_word = true
-            yield(Candidate("en_custom", seg.start, seg._end, inp, "✅"))
+            local en_cand = Candidate("en_custom", seg.start, seg._end, inp, " ᵀᴼᴾ")
+            en_cand.quality = 999
+            yield(en_cand)
         end
     end
 end

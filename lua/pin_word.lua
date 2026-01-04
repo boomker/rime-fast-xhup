@@ -43,8 +43,8 @@ function M.init(env)
     env.reversedb = ReverseLookup(schema_id)
     env.pin_word_records = ok and pin_word_records or {}
     env.word_quality = config:get_int("pin_word/word_quality") or 999
-    env.pin_mark = config:get_string("pin_word/comment_mark") or " 🔝"
-    env.comment_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
+    env.pin_mark = config:get_string("pin_word/comment_mark") or " ᵀᴼᴾ"
+    env.custom_phrase_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
     env.pin_cand_key = config:get_string("key_binder/pin_cand") or "Control+t"
     env.unpin_cand_key = config:get_string("key_binder/unpin_cand") or "Control+t"
     env.custom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@custom_phrase")
@@ -134,7 +134,7 @@ function F.func(input, env)
     local custom_phrase_cands = {}
     local pin_mark = env.pin_mark
     local context = env.engine.context
-    local custom_mark = env.comment_mark
+    local custom_mark = env.custom_phrase_mark
     local input_code = context.input:gsub(" ", "")
 
     for cand in input:iter() do
@@ -155,6 +155,8 @@ function F.func(input, env)
                     return table.find_index(pin_word_tab, a.text) < table.find_index(pin_word_tab, b.text)
                 end)
             end
+        elseif cand.comment:match(pin_mark) then
+            table.insert(pin_cands, cand)
         else
             table.insert(other_cands, cand)
         end

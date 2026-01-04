@@ -12,7 +12,7 @@ patch:
   menu/+:
     # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
-    alternative_select_keys: "1;90567"      # 候选项选中快捷键
+    alternative_select_keys: "1;34567"      # 候选项选中快捷键
     # alternative_select_keys: 1234567890   # 候选项选中快捷键
     page_size: 7                            # 自定义候选项个数
 
@@ -53,6 +53,7 @@ patch:
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
+    simpy_expand_key: "8"             # `8/Control+q` 简码成语优先
     char_mode: "Control+s"            # 单字模式优先
     pin_cand: "Control+t"             # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
@@ -63,24 +64,17 @@ patch:
     commit_comment: "Control+p"       # 注释上屏
     switch_english: "Control+g"       # 切换到英文输入方案
     remove_user_word: "Control+r"     # 用户词典里的字词调频为负
-    simpy_expand_key: "Control+q"     # `Control+q` 简码成语优先
     easydict_translate: "Control+y"   # 调用 Easydict 翻译高亮字词
     symbol_menu_fallback: "slash"     # 符号二级菜单返回主菜单键
-    select_first_character: "bracketleft"      # `bracketleft/minus` 以词定字(首字)
-    select_last_character: "bracketright"      # `bracketright/equal` 以词定字(尾字)
-    enclosed_cand_chars_a: "Shift+Control+7"   # 上屏「高亮字词」
-    enclosed_cand_chars_b: "Shift+Control+8"   # 上屏【高亮字词】
-    enclosed_cand_chars_c: "Shift+Control+9"   # 上屏（高亮字词）
+    select_first_character: "9"       # `9/minus` 以词定字(首字)
+    select_last_character: "0"        # `0/equal` 以词定字(尾字)
     bindings/+:
-      # - {when: has_menu,  accept: 3,  send: 3}                # 数字3用于第3候选
-      # - {when: has_menu,  accept: 4,  send: 4}                # 数字4用于第4候选
-      # - {when: has_menu,  accept: semicolon,  send: 2}        # 分号键用于第2候选
-      # - {when: has_menu,  accept: apostrophe, send: 3}        # 单引号用于第3候选
-      - {when: paging,    accept: comma,  send: Page_Up}        # 逗号, 返回上一页
-      - {when: has_menu,  accept: period, send: Page_Down}      # 句号. 下一页
-      # - {when: paging,    accept: minus,  send: Page_Up}      # 减号- 返回上一页
-      # - {when: has_menu,  accept: equal, send: Page_Down}     # 等号= 下一页
-      - {when: always, accept: Control+Shift+0, select: .next}  # 在最近的两个方案之间切换
+      # - {when: has_menu,  accept: apostrophe, send: 3}     # 单引号用于第3候选
+      - {when: paging,    accept: comma,  send: Page_Up}     # 逗号, 返回上一页
+      - {when: has_menu,  accept: period, send: Page_Down}   # 句号. 下一页
+      # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 返回上一页
+      # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
+      - {when: always, accept: Control+Shift+0, select: .next}
       - {when: always, accept: Control+Shift+g, select: easy_en}
       - {when: composing, accept: Tab,      send: Control+Right}
       - {when: composing, accept: Shift+Tab, send: Control+Left}

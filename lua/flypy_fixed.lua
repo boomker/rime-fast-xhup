@@ -4,7 +4,7 @@ function F.init(env)
     local config = env.engine.schema.config
     -- env.schema_id = config:get_string("schema/schema_id")
     -- env.reversedb = ReverseLookup(env.schema_id)
-    env.top_mark = config:get_string("pin_word/comment_mark") or "🔝"
+    env.top_mark = config:get_string("pin_word/comment_mark") or " ᵀᴼᴾ"
     env.custom_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
 end
 
@@ -26,16 +26,16 @@ function F.func(input, env)
         local cand_text_len = utf8.len(cand_text)
         local cand_dtype = cand:get_dynamic_type()
 
-        if cand.comment:match("^" .. env.top_mark .. "$") then
-            yield(cand)                                     -- 带有 top_mark 标记的候选词条, 优先显示
+        if cand.comment:match(env.top_mark) then
+            yield(cand)                                  -- 带有 top_mark 标记的候选词条, 优先显示
         elseif cand_text:match("<br>") then
-            local ccand_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
-            yield(cand:to_shadow_candidate(cand.type, ccand_text, env.custom_mark))
-        elseif
-        -- string.find(cand.comment, "☯")                   丢弃一些候选结果 去掉候选注解包含`太极️☯ ` 的候选项
-            ( -- 多个大小写的输入编码, 去掉只有单字母的候选
+            local br_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
+            yield(cand:to_shadow_candidate(cand.type, br_text, env.custom_mark))
+        elseif                                           -- 丢弃一些候选结果
+        -- string.find(cand.comment, "☯")                -- 候选注解包含`太极️☯ ` 的候选项
+            (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
                 cand_text:match("^[a-zA-Z]$")
-                and preedit_code:match("^[%a]+")
+                and preedit_code:match("^%a%a+")
             ) or ( -- 'bd/' --> '00'
                 preedit_code:match("^%l%l.*$")
                 and (
