@@ -1,4 +1,4 @@
-require("lib.string")
+require("lib/string")
 local M = {}
 local P = {}
 local T = {}

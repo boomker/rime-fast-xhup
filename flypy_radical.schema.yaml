@@ -5,13 +5,13 @@
 schema:
   schema_id: flypy_radical
   name: "飞鹤拆字"
-  version: "1.1.0"
+  version: "2.0.0"
   author: Mirtle
   description: |
     用拼音按顺序打出偏旁部件，组合出汉字
     码表：开放词典 / henrysting / Mirtle
     注音、校对、方案: Mirtle
-    仓库: https://github.com/mirtlecn/rime_radical_pinyin
+    仓库: https://github.com/mirtlecn/rime-radical-pinyin
 
 engine:
   processors:
@@ -33,7 +33,7 @@ key_binder:
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz"
-  delimiter: " "
+  delimiter: " '"
 
 translator:
   dictionary: flypy_radical
