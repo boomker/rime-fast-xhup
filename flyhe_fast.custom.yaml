@@ -4,7 +4,7 @@
 # 在此方案下，这里的配置具有最高优先级
 patch:
   "menu/page_size": 5                           # 自定义候选项个数
-  "menu/alternative_select_keys": "1;90567"     # 候选项选中快捷键
+  "menu/alternative_select_keys": "1;23567"     # 候选项选中快捷键
   # "menu/alternative_select_keys": 1234567890  # 候选项选中快捷键
   "style/font_point": 18                        # 候选字大小
   "style/line_spacing": 6                       # 行间距大小
@@ -13,3 +13,9 @@ patch:
   # "style/horizontal": true                    # 候选菜单横向布局(true)/纵向布局(false)
   "style/candidate_list_layout": linear         # 候选菜单横向(linear)/纵向(stacked)
   "style/text_orientation": horizontal          # 候选文字横向(horizontal)/纵向(vertical)
+
+  speller/+:
+    algebra/+:
+      ## 模糊音:
+      - derive/^([jy])v/$1u/
+      - derive/^([qx])u/$1v/

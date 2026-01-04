@@ -1,10 +1,10 @@
--- loggger.lua
+-- logger.lua
 
 -- -- 导入log模块记录日志
 -- local logEnable, log = pcall(require, "lib/logger")
 
 local M = {}
-local dbgFlg = false
+local dbgFlg = true
 local _initialized = false
 local user_data_dir = rime_api:get_user_data_dir()
 M.logDoc = user_data_dir .. '/debug.log'
@@ -60,8 +60,8 @@ M.write = function(logStr)
             f:write('\n')
         else
             local timeStamp = os.date("%Y/%m/%d %H:%M:%S")
-            local logmsg = string.format("[%s] [F:%s | L:%s]\t%s\n", timeStamp, filename, line, logStr)
-            f:write(logmsg)
+            local logMsg = string.format("[%s] [F:%s | L:%s]\t%s\n", timeStamp, filename, line, logStr)
+            f:write(logMsg)
         end
         f:close()
     end

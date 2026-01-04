@@ -1461,6 +1461,8 @@ preset_keys:
   share_text: { label: 分享文本, send: Control+Alt+s } #>=Android 6.0
   redo: { label: 重做, send: Control+y } #>=Android 6.0
   undo: {label: 撤销, functional: false, send: Control+z} #>=Android 6.0
+  # set_color_ink: { label: 切换到ink配色, send: function, command: set_color_scheme, option: "ink" }
+  set_theme: { label: 刷新主题, send: function, command: set_theme, option: "" } #空参数为刷新主题
   # rime組合鍵
   F4: { label: 方案选单, send: Alt+grave }
   BackToPreviousSyllable: { label: 刪音节, send: Control+BackSpace }
@@ -1647,6 +1649,7 @@ preset_keys:
   Calc_Lua: { label: "计算器", text: "cC", functional: false }
   Lunar_Lua: { label: "农历", text: "nL", functional: false }
   Number_Lua: { label: "中文数", text: "nN", functional: false }
+  History_Lua: { label: "上屏历史", text: "hH", functional: false }
   EasyEnMode: { label: "英译", send: Control+g, functional: false }
   PinCandFunc: { label: "置顶", send: Control+t, functional: false }
   DelCandFunc: { label: "删词", send: Control+d, functional: false }
@@ -1656,7 +1659,6 @@ preset_keys:
       label: 关于,
       command: run,
       option: "https://github.com/boomker/rime-fast-xhup",
-      # option: "https://github.com/HoengSaan/rime-gukwan",
     } #查看網頁: run 網址
   # For flyhe Reverse Lookup
   Mandarin_rl: { label: 反查, text: "rL", functional: false }
@@ -4846,9 +4848,10 @@ preset_keyboards:
           click: "h",
           long_click: Keyboard_number,
           swipe_up: Keyboard_number,
+          swipe_down: History_Lua,
+          hint: "历史",
           # swipe_left: "《",
           # swipe_right: "》",
-          # hint: "《   》",
         }
       - {
           click: "j",
@@ -4942,7 +4945,8 @@ preset_keyboards:
           click: ",",
           label: ，,
           # long_click: "、",
-          # swipe_up: "、",
+          swipe_down: "set_theme",
+          hint: "刷新",
           # key_text_color: one_color,
         }
       - {
