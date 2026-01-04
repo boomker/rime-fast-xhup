@@ -31,7 +31,7 @@ patch:
     comment_font_point: 14
     hilited_corner_radius: 8
     candidate_list_layout: stacked              # 候选排布: 层叠 stacked | 行 linear
-    label_font_face: 'Lucida Grande'
+    label_font_face: 'Maple Mono NF CN'
     font_face: "JetBrains Maple Mono, MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei, WenJinMinchoP0"
 
   # 皮肤主题
