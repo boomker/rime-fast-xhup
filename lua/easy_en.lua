@@ -58,7 +58,9 @@ function easy_en.translator(input, seg, env)
     if (composition:empty()) then return end
     local segment = composition:back()
     if segment:has_tag("easy_en") or (schema.schema_id == "easy_en") or input:match("^%l+%*%l+$") then
-        segment.prompt = "〔" .. env.prompt .. "〕"
+        if not (schema.schema_id == "easy_en") then
+            segment.prompt = "〔" .. env.prompt .. "〕"
+        end
         local tailer = string.match(input, "[^" .. env.wildcard .. "]+$") or ""
         local header = string.match(input, "^[^" .. env.wildcard .. "]+")
         env.mem:dict_lookup(header, true, env.expand_word_count) -- expand_search

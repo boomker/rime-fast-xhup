@@ -1,7 +1,7 @@
 -- 来源 https://github.com/yanhuacuo/98wubi-tables > http://98wb.ysepan.com/
 -- 数字、金额大写 (任意大写字母引导+数字)
 
-require("lib.rime_helper")
+require("lib/rime_helper")
 local Env = require("lib/env_api")
 local n2c = {
     ["0"] = "〇",
