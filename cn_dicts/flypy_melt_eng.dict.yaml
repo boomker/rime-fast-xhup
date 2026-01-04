@@ -513,6 +513,9 @@ IP地址
 
 C919飞机
 FPV无人机
+vivo手机
+OPPO手机
+meizu手机
 Pixel手机
 Redmi手机
 M4 Air	msair
@@ -703,8 +706,10 @@ HEVC格式
 PCB板
 LED灯
 LED屏
+骁龙8 
 DP接口
 HDMI线
+PWM调光
 UPS电源
 HBM内存
 MCU芯片
@@ -720,6 +725,7 @@ U盘存储
 x86架构
 国产CPU
 国产GPU
+麒麟9030
 DDR3内存
 DDR4内存
 DDR5内存
@@ -733,7 +739,11 @@ HDMI接口
 RJ11接口
 RJ45接口
 H200芯片
+F2.0光圈
+F2.1光圈
+F2.2光圈
 FPGA芯片
+P3广色域
 M8覆铜板
 M9覆铜板
 随身Wi-Fi
@@ -748,6 +758,8 @@ T568B标准
 LPDDR内存
 RJ11水晶头
 RJ45水晶头
+RYYB传感器
+OIS光学防抖
 
 双buff
 叠buff

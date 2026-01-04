@@ -51,12 +51,12 @@ local function get_app_obj(obj, obj_type)
 end
 
 local function reset_state()
-    launcher["main_menu_keys"] = nil -- {}
-    launcher["second_menu_keys"] = nil -- {}
-    launcher["main_menu_orders"] = nil -- {}
-    launcher["second_menu_orders"] = nil -- {}
-    launcher["main_menu_selected"] = nil -- {}
-    launcher["main_menu_selected_text"] = nil -- ""
+    launcher["main_menu_keys"] = nil            -- {}
+    launcher["second_menu_keys"] = nil          -- {}
+    launcher["main_menu_orders"] = nil          -- {}
+    launcher["second_menu_orders"] = nil        -- {}
+    launcher["main_menu_selected"] = nil        -- {}
+    launcher["main_menu_selected_text"] = nil   -- ""
     launcher["second_menu_selected_text"] = nil -- ""
 end
 
@@ -98,11 +98,13 @@ local function generateRandomString(length)
 end
 
 function launcher.init(env)
+    local default_selkey = "1234567890"
     local config = env.engine.schema.config
     local app_pattern = config:get_string("recognizer/patterns/shortcuts_app") or "/jk"
     local cmd_pattern = config:get_string("recognizer/patterns/shortcuts_cmd") or "/kj"
+    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
     env.system_name = detect_os()
-    env.shortcut_config = _ok_conf and shortcut_config or {nil, nil, nil}
+    env.shortcut_config = _ok_conf and shortcut_config or { nil, nil, nil }
     env.favor_cmd_prefix = cmd_pattern and cmd_pattern:match("%^([a-zA-Z/]+).*") or "/kj"
     env.app_launch_prefix = app_pattern and app_pattern:match("%^([a-zA-Z/]+).*") or "/jk"
     env._alprefix, env._fcprefix, env.all_command_items = table.unpack(env.shortcut_config)
@@ -190,15 +192,17 @@ function processor.func(key, env)
     end
 
     local selected_index = segment.selected_index or -1
-    local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, page_size)
+    local select_keys = env.select_keys
+    local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, select_keys, page_size)
     if selected_cand_idx < 0 then return 2 end
 
     if input_code:match("^" .. favorcmd_prefix) then
         if (input_code == favorcmd_prefix) and segment.prompt:match("快捷指令") then
             local cand = segment:get_candidate_at(selected_cand_idx)
-            local candidate_text = cand.text
-            local prompt = candidate_text:gsub(" ", ""):gsub("[%a%p]", "")
-            launcher["main_menu_selected_text"] = candidate_text:gsub(" ", "")
+            local cand_text = cand and cand.text or nil
+            if not cand_text then return 2 end
+            local prompt = cand_text:gsub(" ", ""):gsub("[%a%p]", "")
+            launcher["main_menu_selected_text"] = cand_text:gsub(" ", "")
             context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
             segment.prompt = "〔" .. prompt .. "〕"
             return 1

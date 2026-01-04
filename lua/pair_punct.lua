@@ -6,6 +6,7 @@
 -- 配置說明
 -- 在你的schema文件裏引入這個segmentor，需要放在abc_segmentor的前面
 
+local logEnable, logger = pcall(require, "lib/logger")
 require("lib/rime_helper")
 local M = {}
 local processor = {}
@@ -18,6 +19,8 @@ local pairTable = {
     ["b"] = { "```" },
     ["c"] = { "'" },
     ["d"] = { '"' },
+    [34] = { '"', '""' },
+    [39] = { "'", "''" },
     -- 闭合符号不一样的
     ["e"] = { "“", "”" },
     ["f"] = { "‘", "’" },
@@ -38,8 +41,6 @@ local pairTable = {
     ["v"] = { "〖", "〗" },
     ["w"] = { "《", "》" },
     ["x"] = { "〈", "〉" },
-    ["quotedbl"] = { '“', '”' },
-    ["apostrophe"] = { "‘", "’" },
 }
 
 local function get_key_char(segment)
@@ -132,79 +133,71 @@ end
 function processor.init(env)
     local schema = env.engine.schema
     local config = schema.config
+    local default_selkey = "1234567890"
     env.system_name = detect_os()
     env.dist_code = rime_api:get_distribution_code_name()
+    env.cand_menu_layout = config:get_bool("style/horizontal")
     env.pair_toggle = config:get_string("pair_symbol/toggle") or "off"
-    env.enclosed_a = config:get_string("key_binder/enclosed_cand_chars_a") or nil
-    env.enclosed_b = config:get_string("key_binder/enclosed_cand_chars_b") or nil
-    env.enclosed_c = config:get_string("key_binder/enclosed_cand_chars_c") or nil
-    -- env.enclosed_d = config:get_string("key_binder/enclosed_cand_chars_d") or nil
+    env.candidate_layout = config:get_string("style/candidate_list_layout")
+    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
 end
 
 function processor.func(key, env)
+    local key_code = key.keycode
     local key_value = key:repr()
     local schema = env.engine.schema
     local context = env.engine.context
-    local config = schema.config
     local input_code = context.input
-    local preedit_code = context:get_script_text()
     local page_size = schema.page_size
+    local preedit_text = context:get_script_text()
 
+    -- logger.write('kc: ' .. key.keycode .. ' | ' .. 'kv:' .. key_value)
     if env.pair_toggle == "off" then return 2 end
     local composition = context.composition
 
-    if key.keycode == 34 then key_value = "quotedbl" end
+    local special_key_map = {
+        [34] = "p", -- quotedbl
+        [39] = "p", -- apostrophe
+        ["space"] = "1",
+        ["return"] = "1",
+        ["Return"] = "1",
+    }
     local ascii_mode = context:get_option("ascii_mode")
-
-    if (key_value == "quotedbl") and composition:empty() and (not ascii_mode) then
-        if (env.dist_code:match("^fcitx%-rime$") or env.system_name:lower():match("android")) then
-            context:push_input(pairTable["d"][1])
-            context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
+    local unpair_flag = context:get_option("symbol_unpair_flag")
+    if (special_key_map[key_code] == "p") and composition:empty() and (not unpair_flag) then
+        if ascii_mode then
+            context:push_input(pairTable[key_code][2])
+            env.engine:process_key(KeyEvent(tostring("Left")))
         else
-            context:push_input(pairTable[key_value][1])
+            context:push_input(pairTable[key_code][1])
             context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         end
         return 1                                        -- kAccept
     end
 
-    if composition:empty() then return 2 end
-    local segment = composition:back()
-
-    if context:has_menu() or context:is_composing() then
-        local cand = context:get_selected_candidate()
-        if env.enclosed_a or env.enclosed_b or env.enclosed_c then
-            local matched = false
-            if key_value == env.enclosed_a then
-                matched = true
-                env.engine:commit_text("「" .. cand.text .. "」")
-            elseif key_value == env.enclosed_b then
-                matched = true
-                env.engine:commit_text("【" .. cand.text .. "】")
-            elseif key_value == env.enclosed_c then
-                matched = true
-                env.engine:commit_text("（" .. cand.text .. "）")
-                -- elseif key_value == env.enclosed_d then
-                --     matched = true
-                --     env.engine:commit_text("〔" .. cand.text .. "〕")
-            end
-            if matched then
-                context:clear()
-                return 1
-            end
+    if (special_key_map[key_value] == "1") then
+        if input_code:match("^%p%a+%p$") and ascii_mode then
+            env.engine:commit_text(input_code)
+        elseif input_code:match("^%p$") then
+            env.engine:commit_text(preedit_text)
+        else
+            return 2
         end
-    end
-
-    local idx = segment.selected_index
-    local selected_cand_index = get_selected_candidate_index(key_value, idx, page_size)
-
-    if context:has_menu() and (key_value == "space") and input_code:match("^%p$") then
-        env.engine:commit_text(preedit_code)
         context:clear()
         return 1
     end
 
-    local cand_menu_layout = config:get_bool("style/horizontal")
-    local candidate_layout = config:get_string("style/candidate_list_layout")
+    local segment = composition and composition:back()
+    if input_code:match("^[/~@%*%|]") then return 2 end
+    if not (segment and segment.menu) then return 2 end
+    if not input_code:match("%p") then return 2 end
+
+    local idx = segment.selected_index
+    local select_keys = env.select_keys
+    local cand_menu_layout = env.cand_menu_layout
+    local candidate_layout = env.candidate_layout
+
+    local selected_cand_index = get_selected_candidate_index(key_value, idx, select_keys, page_size)
     if context:has_menu() and (selected_cand_index > 0) and input_code:match("^[`<%(%[{]$") then
         if env.system_name:lower():match("android") or env.dist_code:match("^fcitx%-rime$") then
             for o = 1, tonumber(selected_cand_index) do
