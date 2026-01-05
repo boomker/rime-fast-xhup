@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2026-01-04
+version: 2026-01-05
 sort: by_weight
 ...
 
@@ -64776,3 +64776,4 @@ sort: by_weight
 阿尔瓦拉多	aa er wa la do	1
 阿耳忒弥斯	aa er tw mi si	1
 阿刁	aa dn	1
+阿丁	aa dk	1
