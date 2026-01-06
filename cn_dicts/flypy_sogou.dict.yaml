@@ -3,9 +3,10 @@
 
 ---
 name: flypy_sogou
-version: 2025-12-28
+version: 2026-01-05
 sort: by_weight
 ...
+
 
 阿赑	aa bi	100
 阿敖	aa ao	100
@@ -15,7 +16,9 @@ sort: by_weight
 阿脆	aa cv	100
 阿黛	aa dd	100
 阿铛	aa dh	100
+阿丁	aa dk	1
 阿电	aa dm	100
+阿刁	aa dn	1
 阿杜	aa du	1
 阿福	aa fu	1
 阿浮	aa fu	100
@@ -40118,6 +40121,8 @@ sort: by_weight
 阿尔及利亚	aa er ji li ya	1
 阿尔卡拉斯	aa er ka la si	100
 阿尔提乌斯	aa er ti wu si	100
+阿耳忒弥斯	aa er tw mi si	1
+阿尔瓦拉多	aa er wa la do	1
 阿尔瓦雷斯	aa er wa lw si	100
 阿凡达重映	aa fj da is yk	100
 阿夫迪夫卡	aa fu di fu ka	100

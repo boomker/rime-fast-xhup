@@ -1936,3 +1936,236 @@ Unified Modeling Language	UnifiedModelingLanguage
 Ollama	Ollama
 Omarchy	Omarchy
 LMArena	LMArena
+Google Earth	GoogleEarth
+Google Fi	GoogleFi
+Google Fi Wireless	GoogleFiWireless
+NotebookLM	NotebookLM
+Google NotebookLM	GoogleNotebookLM
+Clash for Windows	ClashForWindows
+Clash for Android	ClashForAndroid
+OpenClash	OpenClash
+passwall	passwall
+passwall2	passwall2
+Memcached	Memcached
+Vite+	Vite+
+Vitest	Vitest
+VuePress	VuePress
+VitePress	VitePress
+Oxc	Oxc
+NestJS	NestJS
+Next.js	Next.js
+Nuxt	Nuxt
+Jekyll	Jekyll
+DuckDB	DuckDB
+Vitess	Vitess
+SurrealDB	SurrealDB
+CockroachDB	CockroachDB
+ClickHouse	ClickHouse
+TiDB	TiDB
+GreptimeDB	GreptimeDB
+TDengine	TDengine
+TiKV	TiKV
+ShardingSphere	ShardingSphere
+Apache ShardingSphere	ApacheShardingSphere
+Dubbo	Dubbo
+Apache Dubbo	ApacheDubbo
+ZooKeeper	ZooKeeper
+Apache ZooKeeper	ApacheZooKeeper
+Apache Tomcat	ApacheTomcat
+Nacos	Nacos
+Swagger	Swagger
+Databend	Databend
+PostHog	PostHog
+Plausible	Plausible
+Plausible Analytics	PlausibleAnalytics
+n8n	n8n
+Supabase	Supabase
+Strapi	Strapi
+AppFlowy	AppFlowy
+Directus	Directus
+FastAPI	FastAPI
+Hono	Hono
+Fastify	Fastify
+Ruby on Rails	RubyonRails
+Symfony	Symfony
+Beego	Beego
+KoaJS	KoaJS
+SolidJS	SolidJS
+Qwik	Qwik
+Ember.js	Ember.js
+Backbone.js	Backbone.js
+Knockout.js	Knockout.js
+DataEase	DataEase
+Netdata	Netdata
+TimescaleDB	TimescaleDB
+InfluxDB	InfluxDB
+Neo4j	Neo4j
+nebula	nebula
+Gogs	Gogs
+GitBucket	GitBucket
+OpenCV	OpenCV
+Keras	Keras
+PaddleOCR	PaddleOCR
+Content Management System	ContentManagementSystem
+CMS	CMS
+Godot	Godot
+Godot Engine	GodotEngine
+Three.js	Three.js
+PixiJS	PixiJS
+TextMate	TextMate
+Docusaurus	Docusaurus
+Envoy	Envoy
+TradingView	TradingView
+ECharts	ECharts
+Apache ECharts	ECharts
+Apache ECharts	ApacheECharts
+CPython	CPython
+OpenJDK	OpenJDK
+OCaml	OCaml
+Clojure	Clojure
+CoffeeScript	CoffeeScript
+Starlark	Starlark
+MinIO	MinIO
+Storj	Storj
+Wasmtime	Wasmtime
+AssemblyScript	AssemblyScript
+WasmEdge	WasmEdge
+Playwright	Playwright
+Puppeteer	Puppeteer
+Appium	Appium
+JMeter	JMeter
+Apache JMeter	ApacheJMeter
+Tauri	Tauri
+React Native	ReactNative
+Ionic Framework	IonicFramework
+Apache Kafka	Kafka
+Apache Kafka	ApacheKafka
+RabbitMQ	RabbitMQ
+RocketMQ	RocketMQ
+gRPC	gRPC
+Excalidraw	Excalidraw
+PlantUML	PlantUML
+Meilisearch	Meilisearch
+etcd	etcd
+Shadcn	Shadcn
+Semantic UI	SemanticUI
+Nmap	Nmap
+Ansible	Ansible
+LevelDB	LevelDB
+RocksDB	RocksDB
+webpack	webpack
+Turbopack	Turbopack
+esbuild	esbuild
+Mongoose	Mongoose
+Sequelize	Sequelize
+Arduino	Arduino
+Raspberry Pi	RaspberryPi
+OpenTofu	OpenTofu
+Pulumi	Pulumi
+LM Studio	LMStudio
+LLM	LLM
+Large Language Model	LargeLanguageModel
+NLP	NLP
+Dify	Dify
+ComfyUI	ComfyUI
+Cherry Studio	CherryStudio
+Open WebUI	OpenWebUI
+OpenRouter	OpenRouter
+CUDA	CUDA
+CUDA Toolkit	CUDAToolkit
+WinGet	WinGet
+HandBrake	HandBrake
+Logi Options	LogiOptions
+Logi Options+	LogiOptions+
+Downie	Downie
+MindNode	MindNode
+Permute	Permute
+Proxyman	Proxyman
+TablePlus	TablePlus
+wget	wget
+yt-dlp	yt-dlp
+Blockchain	Blockchain
+ETH	ETH
+Ethereum	ETH
+Ethereum	Ethereum
+Monero	Monero
+Litecoin	Litecoin
+Aptos	Aptos
+Dogecoin	Dogecoin
+Ethena	Ethena
+Worldcoin	Worldcoin
+Bittensor	Bittensor
+Smart Contract	SmartContract
+CoinGecko	CoinGecko
+CoinMarketCap	CoinMarketCap
+CoinGlass	CoinGlass
+CoinDesk	CoinDesk
+CoinCheckup	CoinCheckup
+CoinCodex	CoinCodex
+Coinranking	Coinranking
+DefiLlama	DefiLlama
+Etherscan	Etherscan
+BscScan	BscScan
+Solscan	Solscan
+PolygonScan	PolygonScan
+Glassnode	Glassnode
+PANews	PANews
+Messari	Messari
+Chainalysis	Chainalysis
+CryptoQuant	CryptoQuant
+TokenInsight	TokenInsight
+Trust Wallet	TrustWallet
+imToken	imToken
+MakerDAO	MakerDAO
+Magic Eden	MagicEden
+Substack	Substack
+GameFi	GameFi
+Chromebook	Chromebook
+GitLab Runner	GitLabRunner
+CI/CD	CI/CD
+DevSecOps	DevSecOps
+gfwlist	gfwlist
+Android Auto	AndroidAuto
+Android TV	AndroidTV
+RHEL	RHEL
+Red Hat Enterprise Linux	RedHatEnterpriseLinux
+NixOS	NixOS
+USDT	USDT
+USDC	USDC
+USDe	USDe
+USDS	USDS
+Object Relational Mapping	ObjectRelationalMapping
+GitHub Codespaces	GitHubCodespaces
+Aevo	Aevo
+Bybit	Bybit
+Bitget	Bitget
+BitMart	BitMart
+Bitstamp	Bitstamp
+Deribit	Deribit
+Hyperliquid	Hyperliquid
+HashKey	HashKey
+Pionex	Pionex
+Polymarket	Polymarket
+Raydium	Raydium
+K3s	K3s
+ControlNet	ControlNet
+OpenSearch	OpenSearch
+Tailscale	Tailscale
+Shadowrocket	Shadowrocket
+Quantumult	Quantumult
+Quantumult X	QuantumultX
+V2Ray	V2Ray
+v2rayN	v2rayN
+v2rayA	v2rayA
+v2ray-core	v2ray-core
+Xray-core	Xray-core
+mihomo	mihomo
+trojan-go	trojan-go
+VLESS	VLESS
+Hysteria	Hysteria
+SagerNet	SagerNet
+MaxMind	MaxMind
+PM2.5	PM2.5
+PM10	PM10
+SARS-CoV-2	SARS-CoV-2
+Nano Banana	NanoBanana
