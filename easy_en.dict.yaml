@@ -6,7 +6,7 @@
 
 ---
 name: easy_en
-version: 2025.12.19
+version: 2026.01.05
 import_tables:
   - en_dicts/en_ext_lite              # 英文扩展词库
   - en_dicts/en                       # 英文base词库

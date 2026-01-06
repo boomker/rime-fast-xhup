@@ -132,9 +132,9 @@ patch:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
 
       ## 模糊音:
-      - derive/^([jqxy])v/$1u/
-      - derive/^([jqxy])u/$1v/
-      - derive/^([bnpy])b/$1k/        # in => ing
+      - derive/^([qx])v/$1u/
+      - derive/^([jy])u/$1v/
+      - derive/^([ny])b/$1k/          # in => ing
       - derive/^(i)g/$1f/             # eng => en
       - derive/^z([ry])/v$1/          # z => zh
       - derive/^c([az])/i$1/          # c => ch
@@ -170,8 +170,8 @@ patch:
     comment_mark: " ᵀᴼᴾ"              # 置顶词标记
     # comment_mark: " 🔝"             # 置顶词标记
 
-  pair_symbol:                        # 符号配对开关
-    toggle: "on"
+  pair_punct:                         # 符号配对开关
+    enable: true
 
   emoji_reduce:                       # Emoji 降频
     index: 6                          # 到 index 位置

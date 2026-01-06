@@ -6,7 +6,8 @@
 
 ---
 name: flypy_melt_eng
-version: "2025-12-26"
+version: "2026.01.05"
+
 ...
 
 α	af
@@ -221,9 +222,11 @@ SVIP3
 500GB
 3DMax
 7-Zip
+utf8
 utf-8
 UTF-8
 UTF-16
+v2rayA
 V2rayN
 V2rayNG
 WiFi-6
