@@ -125,7 +125,7 @@ translator:
   spelling_hints: 1                   # >0 启用, `0`: 关闭单字编码提示
   max_word_length: 7                  # >0 启用, 过长短语不记整词, 只加元素权重
   core_word_length: 4                 # >0 启用, 按段学词 + 相邻段拼接
-  initial_quality: 1.3                # 初始词频
+  initial_quality: 1.3                # 初始权重
   enable_user_dict: true              # 开启用户词库(是否自动调频)
   enable_completion: true             # 启用输入补全
   enable_word_completion: true        # 4 音节以上的词条才补全
@@ -242,7 +242,6 @@ radical_reverse_lookup:
   tags: [abc, radical_lookup]
   overwrite_comment: false
   comment_format:
-    - xform/^(\w+)[[].*$/$1/
     - xform/^/~/
 
 # 处理符合特定规则的输入码, 如网址、反查
@@ -278,8 +277,8 @@ punctuator:
     ")": [")", ）]
     "[": ['[', 「, 【, 〔, ［, 〚, 〘]
     "]": [']', 」, 】, 〕, ］, 〛, 〙]
-    "{": [『, 〖, ｛]
-    "}": [』, 〗, ｝]
+    "{": ['{', 〖, 『, ｛]
+    "}": ['}', 〗, 』, ｝]
     "#": "#"
     "=": "="
   symbols:

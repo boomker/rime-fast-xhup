@@ -6,7 +6,7 @@
 -- 配置說明
 -- 在你的schema文件裏引入這個segmentor，需要放在abc_segmentor的前面
 
-local logEnable, logger = pcall(require, "lib/logger")
+-- local logEnable, logger = pcall(require, "lib/logger")
 require("lib/rime_helper")
 local M = {}
 local processor = {}
@@ -16,19 +16,15 @@ local tag_prefix = "pair_punct_"
 
 local pairTable = {
     -- ["a"] = { "`" },
-    ["b"] = { "```" },
-    ["c"] = { "'" },
-    ["d"] = { '"' },
-    [34] = { '"', '""' },
-    [39] = { "'", "''" },
     -- 闭合符号不一样的
-    ["e"] = { "“", "”" },
-    ["f"] = { "‘", "’" },
     ["h"] = { "(", ")" },
     ["i"] = { "[", "]" },
     ["j"] = { "{", "}" },
     ["k"] = { "<", ">" },
     -- 闭合符号是全角的
+    ["d"] = { '“', '”' },
+    ["e"] = { "‘", "’" },
+    ["s"] = { "｛", "｝" },
     ["l"] = { "（", "）" },
     ["m"] = { "【", "】" },
     ["n"] = { "〔", "〕" },
@@ -36,11 +32,14 @@ local pairTable = {
     ["p"] = { "〘", "〙" },
     ["q"] = { "「", "」" },
     ["r"] = { "［", "］" },
-    ["s"] = { "｛", "｝" },
     ["u"] = { "『", "』" },
     ["v"] = { "〖", "〗" },
     ["w"] = { "《", "》" },
     ["x"] = { "〈", "〉" },
+    ['Y'] = {
+        [34] = { '“', '”' },
+        [39] = { "‘", "’" },
+    }
 }
 
 local function get_key_char(segment)
@@ -74,10 +73,6 @@ local function on_update_or_select(env)
             local opening_punct = punct_pair[1]
             local translation = env.echo_translator:query(opening_punct, pp_seg)
             if translation then
-                -- local menu = Menu()
-                -- menu:add_translation(translation)
-                -- pp_seg.menu = menu
-                -- pp_seg.menu:prepare(7)
                 local index = pp_seg.selected_index
                 local cand = pp_seg:get_candidate_at(index)
                 if cand then cand.preedit = opening_punct end
@@ -87,29 +82,55 @@ local function on_update_or_select(env)
             end
             ctx.composition:back().prompt = env.closing_punct
         end
+        if ctx.composition:back() and env.defer and env.closing_punct then
+            env.defer = false
+            ctx.composition:back().prompt = env.closing_punct
+        end
     end
 end
 
 local function on_commit(env)
     return function(ctx)
         if env.closing_punct then
-            local back = ctx.composition:back()
-            if back then back:get_selected_candidate() end
+            local prompt = ctx.composition:get_prompt()
             local segmentation = ctx.composition:toSegmentation()
             local pp_seg = get_pp_seg(segmentation)
             if pp_seg then
                 env.engine:commit_text(env.closing_punct)
+            elseif prompt and prompt:match("%p") then
+                env.engine:commit_text(env.closing_punct)
             end
+            env.defer = false
             env.closing_punct = nil
         end
     end
 end
 
+local function get_pair_punct_idx(op)
+    if not op then return nil end
+    for k, v in pairs(pairTable) do
+        if (#v >= 1) and (v[1] == op) then
+            return k
+        end
+    end
+    return nil
+end
+
+function processor.init(env)
+    local config         = env.engine.schema.config
+    env.system_name      = detect_os()
+    env.pair_toggle      = config:get_bool("pair_punct/enable") or false
+    env.select_keys      = config:get_string("menu/alternative_select_keys") or '123456789'
+end
+
 function segmentor.init(env)
-    env.closing_punct = nil
-    local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
-    local schema = Schema(schema_id)
+    local config        = env.engine.schema.config
+    local schema_id     = config:get_string("schema/schema_id")
+    local schema        = Schema(schema_id)
+    env.closing_punct   = nil
+    env.defer           = false
+    env.system_name      = detect_os()
+    env.pair_toggle     = config:get_bool("pair_punct/enable") or false
     env.echo_translator = Component.Translator(env.engine, schema, "", "echo_translator")
     env.update_notifier = env.engine.context.update_notifier:connect(on_update_or_select(env))
     env.select_notifier = env.engine.context.select_notifier:connect(on_update_or_select(env))
@@ -130,134 +151,91 @@ function M.fini(env)
     end
 end
 
-function processor.init(env)
-    local schema = env.engine.schema
-    local config = schema.config
-    local default_selkey = "1234567890"
-    env.system_name = detect_os()
-    env.dist_code = rime_api:get_distribution_code_name()
-    env.cand_menu_layout = config:get_bool("style/horizontal")
-    env.pair_toggle = config:get_string("pair_symbol/toggle") or "off"
-    env.candidate_layout = config:get_string("style/candidate_list_layout")
-    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
-end
-
 function processor.func(key, env)
-    local key_code = key.keycode
-    local key_value = key:repr()
-    local schema = env.engine.schema
-    local context = env.engine.context
+    local key_code   = key.keycode
+    local key_value  = key:repr()
+    local schema     = env.engine.schema
+    local context    = env.engine.context
     local input_code = context.input
-    local page_size = schema.page_size
-    local preedit_text = context:get_script_text()
+    local page_size  = schema.page_size
 
-    if env.pair_toggle == "off" then return 2 end
+    if not env.pair_toggle then return 2 end
+
     local composition = context.composition
-
-    local special_key_map = {
-        [34] = "p", -- quotedbl
-        [39] = "p", -- apostrophe
-        ["space"] = "1",
-        ["return"] = "1",
-        ["Return"] = "1",
-    }
-    local ascii_mode = context:get_option("ascii_mode")
-    local unpair_flag = context:get_option("symbol_unpair_flag")
-    if (special_key_map[key_code] == "p") and composition:empty() and (not unpair_flag) then
-        if ascii_mode then
-            context:push_input(pairTable[key_code][2])
-            env.engine:process_key(KeyEvent(tostring("Left")))
-        else
-            context:push_input(pairTable[key_code][1])
-            context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        end
-        return 1                                        -- kAccept
-    end
-
-    if (special_key_map[key_value] == "1") then
-        if input_code:match("^%p%a+%p$") and ascii_mode then
-            env.engine:commit_text(input_code)
-        elseif input_code:match("^%p$") then
-            env.engine:commit_text(preedit_text)
-        else
-            return 2
-        end
-        context:clear()
-        return 1
+    local ascii_mode  = context:get_option("ascii_mode")
+    local unpair_flag = context:get_option("punct_unpair_flag")
+    if (pairTable['Y'][key_code]) and composition:empty()
+        and (not env.system_name:lower():match("android"))
+        and (not ascii_mode) and (not unpair_flag)
+    then
+        context:pop_input(1)
+        context:push_input(pairTable['Y'][key_code][1])
+        return 1 -- kAccept
     end
 
     local segment = composition and composition:back()
-    if input_code:match("^[/~@%*%|]") then return 2 end
     if not (segment and segment.menu) then return 2 end
-    if not input_code:match("%p") then return 2 end
+    if not input_code:match('[<%(%[{]') then return 2 end
 
     local idx = segment.selected_index
-    local select_keys = env.select_keys
-    local cand_menu_layout = env.cand_menu_layout
-    local candidate_layout = env.candidate_layout
+    local select_keys = env.select_keys or "123456789"
 
     local selected_cand_index = get_selected_candidate_index(key_value, idx, select_keys, page_size)
-    if context:has_menu() and (selected_cand_index > 0) and input_code:match("^[`<%(%[{]$") then
+    if context:has_menu() and (selected_cand_index > 0) then
         local selected_cand = segment:get_candidate_at(selected_cand_index)
         local cand_text = selected_cand and selected_cand.text
-        local symkey = nil
-        for k, v in pairs(pairTable) do
-            if (#v >= 1) and (v[1] == cand_text) then
-                symkey = k
-            end
-        end
-        if not symkey then return 2 end
         if env.system_name:lower():match("android") then
-            for o = 1, tonumber(selected_cand_index) do
+            for i = 1, tonumber(selected_cand_index) do
                 env.engine:process_key(KeyEvent(tostring("Down")))
             end
+            return 1 -- kAccept
         else
-            context:clear()
-            context:push_input(pairTable[symkey][1])
+            context:pop_input(1)
+            context:push_input(cand_text)
             return 1 -- kAccept
         end
-        -- elseif (candidate_layout == "stacked") or (cand_menu_layout == false) then
-        --     for i = 1, tonumber(selected_cand_index) do
-        --         env.engine:process_key(KeyEvent(tostring("Down")))
-        --     end
-        -- else
-        --     for j = 1, tonumber(selected_cand_index) do
-        --         env.engine:process_key(KeyEvent(tostring("Right")))
-        --     end
-        -- end
-        return 1 -- kAccept
     end
 
     return 2
 end
 
 function segmentor.func(segmentation, env)
-    local symkey = nil
-    local cand_text = nil
+    local opening_punct = nil
+    local punct_index_key = nil
     local context = env.engine.context
-    local config = env.engine.schema.config
 
-    local pair_toggle = config:get_string("pair_symbol/toggle") or "off"
-    if pair_toggle == "off" then return true end
+    if not env.pair_toggle then return true end
     if segmentation:empty() then return true end
 
     local csp = segmentation:get_current_start_position() + 1
-    if context:has_menu() or context:is_composing() then
-        local cand = context:get_selected_candidate()
-        cand_text = cand and cand.text
-    end
-    local input = segmentation.input:sub(0, csp)
-    if cand_text and (input ~= cand_text) then input = cand_text end
-    for k, v in pairs(pairTable) do
-        if (#v >= 1) and (v[1] == input) then
-            symkey = k
-        end
-    end
-    if not symkey then return true end
     local match_start = segmentation:get_current_start_position()
     local match_end = segmentation:get_current_start_position() + 1
+    local input_code = segmentation.input:sub(0, csp)
+    opening_punct = string.utf8_sub(input_code, -1, -1) or nil
+    if (input_code:match("^%a+%p$")) then
+        opening_punct = nil
+    elseif not (opening_punct and opening_punct:match("[%a%d%p]")) then
+        opening_punct = input_code:gsub("%a", "")
+    elseif (input_code:match("^%a+%p%a$")) then
+        opening_punct = input_code:gsub("%a", "")
+        punct_index_key = get_pair_punct_idx(opening_punct)
+        local punct_pair = pairTable[punct_index_key]
+        if (not punct_pair) or (#punct_pair < 1) then return true end
+        env.closing_punct = (#punct_pair == 1) and punct_pair[1] or punct_pair[2]
+        env.defer = true
+        return true
+    end
+    if context:has_menu() and env.system_name:lower():match("android") then
+        local cand = context:get_selected_candidate()
+        local cand_text = cand and cand.text
+        if cand_text then
+            opening_punct = cand_text
+        end
+    end
+    punct_index_key = get_pair_punct_idx(opening_punct)
+    if not punct_index_key then return true end
     local seg = Segment(match_start, match_end)
-    seg.tags = Set({ tag_prefix .. symkey })
+    seg.tags = Set({ tag_prefix .. punct_index_key })
     segmentation:add_segment(seg)
     segmentation:forward()
     return true
