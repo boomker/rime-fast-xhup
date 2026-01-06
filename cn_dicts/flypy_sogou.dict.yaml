@@ -3,9 +3,10 @@
 
 ---
 name: flypy_sogou
-version: 2026-01-06
+version: 2026-01-05
 sort: by_weight
 ...
+
 
 阿赑	aa bi	100
 阿敖	aa ao	100
@@ -15,7 +16,9 @@ sort: by_weight
 阿脆	aa cv	100
 阿黛	aa dd	100
 阿铛	aa dh	100
+阿丁	aa dk	1
 阿电	aa dm	100
+阿刁	aa dn	1
 阿杜	aa du	1
 阿福	aa fu	1
 阿浮	aa fu	100
@@ -13365,6 +13368,7 @@ sort: by_weight
 阿尔巴	aa er ba	1
 阿尔玛	aa er ma	100
 阿尔塞	aa er sd	100
+阿尔塔	aa er ta	1
 阿凡达	aa fj da	1
 阿富汗	aa fu hj	1
 阿菲夫	aa fw fu	100
@@ -40114,8 +40118,11 @@ sort: by_weight
 阿黛尔采访	aa dd er cd fh	100
 阿尔巴尼斯	aa er ba ni si	1
 阿尔巴尼亚	aa er ba ni ya	1
+阿尔及利亚	aa er ji li ya	1
 阿尔卡拉斯	aa er ka la si	100
 阿尔提乌斯	aa er ti wu si	100
+阿耳忒弥斯	aa er tw mi si	1
+阿尔瓦拉多	aa er wa la do	1
 阿尔瓦雷斯	aa er wa lw si	100
 阿凡达重映	aa fj da is yk	100
 阿夫迪夫卡	aa fu di fu ka	100
@@ -64771,12 +64778,3 @@ sort: by_weight
 中国人民解放军空军航空大学	vs go rf mb jp fh jy ks jy hh ks da xt	100
 黑神话销售量发售周年突破一亿	hw uf hx xn uz ll fa uz vz nm tu po yi yi	100
 黑神话销售量发售周年突破一亿用户	hw uf hx xn uz ll fa uz vz nm tu po yi yi ys hu	100
-阿尔及利亚	aa er ji li ya	1
-阿尔塔	aa er ta	1
-阿尔瓦拉多	aa er wa la do	1
-阿耳忒弥斯	aa er tw mi si	1
-阿刁	aa dn	1
-阿丁	aa dk	1
-阿尔菲	aa er fw	1
-阿比奥顿	aa bi ao dy	1
-阿贝尔	aa bw er	1
