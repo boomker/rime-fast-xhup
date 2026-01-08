@@ -9,11 +9,11 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - 自创音码飞键规则，替换一些手指 _移动不和谐_ (别手)的小鹤音码组合, 实现左右手对侧击键, 更有节奏感
 - 支持一键展开简拼(仅限一些成语俗语), 按下 `Ctrl+q` 或 `8` 会优先将长词放到候选菜单前排
 - 支持简拼(7字以内), 包括中英数大小写混合词条. 比如输入 `wgtx` 会出现 【5G 通信】
-- ~~加入了长词优选功能, 常见成语短句排在第一页, ~~ 短单词(字母少于4个)不会第一页显示和补全
+- ~~加入了长词优选功能, 常见成语短句排在第一页,~~ 短单词(字母少于4个)不会第一页显示和补全
 - 支持多种常见格式的英文单词输入输出, 如：`Tool`, `TOOL`, `tool`, 比如输入 `TOol` 得到 `TOOL`
 - 支持中英混合输入自动添加空格, 特定英文符号 (,.!?:) 后面也会添加空格(目前待完善)
 - 支持英文单词「自造词」, 在单词末尾输入 `\`, 并上屏自造词, 输入英文单词即可得到候选, 无需重新部署
-  另有 `~` 前缀造词模式, 支持非典型英文单词(含数字、符号、空格, 比如:'iPhone 28'), 空格由逗号转义
+- 支持 `~` 前缀造词模式, 支持非典型英文单词(含数字、符号、空格, 比如:'iPhone 28'), 空格由逗号转义
 - 支持强制删词, 按下 `Ctrl+d` / `Ctrl+x` 触发将高亮词条彻底隐藏或置于末位, 立即生效
 - 支持词条降频, 按下 `Ctrl+j` 触发将高亮词条置于第4位(默认, 可配置), 立即生效
 - 支持词条置顶, 按下 `Ctrl+t` 触发一键置顶功能, 先置顶的词条优先级最高, 后置顶的次之, 立即见效
@@ -55,7 +55,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
   双形辅助码根据简体字字形给出，即使在繁体输入模式下也是如此。
 - ![小鹤辅助码](xhup.png)
 - 默认为单字（除了手动置顶的那些）显示其小鹤辅助码。可以在 配置文件里设置「关闭单字编码提示」。
-- 在 [这个页面](https://xh.flypy.com/#/xyx) 的尾部可以看到小鹤的双形拆分规则。另外，本项目只提供单字形码，
+- 在 [这个页面](https://flypy.cc/help/#/gz) 的尾部可以看到小鹤的双形拆分规则。另外，本项目只提供单字形码，
   对词组形码有需求的用户可以用下文中提到的转换脚本来生成带形码的词库。
 
 ### 文件说明
@@ -63,12 +63,12 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - 将这些文件放入 Rime 的用户目录下，重新部署（右键点击任务栏的 Rime 图标可见）即可。
   - librime 允许输入法指定用户文件夹的位置。用户文件夹的位置应使用绝对路径。请勿使用相对路径
   - 默认的用户目录:
-    weasel: `%APPDATA%\Rime` (Windows，小狼毫: 可以通过「开始菜单＼小狼毫输入法＼用户文件夹」打开)
-    squirrel: `~/Library/Rime` (macOS，鼠鬚管: 可以通过「系统输入法菜单／鼠鬚管／用户设定…」打开)
-    ibus-rime: `~/.config/ibus/rime`
-    fcitx-rime: `~/.config/fcitx/rime`
-    fcitx5-macOS: `~/.local/share/fcitx5/rime/` (macOS，fcitx5: 可以通过「Finder」打开)
-    android: `/sdcard/rime` (Android, 同文: 可以通过「文件管理器」打开)
+    * weasel: `%APPDATA%\Rime` (Windows，小狼毫: 可以通过「开始菜单＼小狼毫输入法＼用户文件夹」打开)
+    * squirrel: `~/Library/Rime` (macOS，鼠鬚管: 可以通过「系统输入法菜单／鼠鬚管／用户设定…」打开)
+    * ibus-rime: `~/.config/ibus/rime`
+    * fcitx-rime: `~/.config/fcitx/rime`
+    * fcitx5-macOS: `~/.local/share/fcitx5/rime/` (macOS，fcitx5: 可以通过「Finder」打开)
+    * android: `/sdcard/rime` (Android，同文: 可以通过「文件管理器」打开)
   - 如果 Rime 老用户之前已有较多配置文件，希望在不混淆各类配置的同时试用本项目的完整功能。
     可以考虑备份、重命名原来的用户目录，将本项目单独放在新建的用户目录下部署。
 - 一些设置项需要通过修改文件内容实现。推荐使用 VS Code，Sublime Text 等通用代码编辑器。
@@ -78,13 +78,15 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
   `flypy_xhfast.custom.yaml` 提供了一些常用设置项(补丁配置)。其余文件均用于附加功能。
 - `default.custom.yaml` 仅用于声明本方案的依赖方案。如果用户已经有同名的文件，并且其中设置了
   `schema_list` 选项，可以直接将本项目同名文件的内容添加到该选项下，而不必使用项目提供的这一文件。
-- `cn_dicts/*.dict.yaml`, 为中文词库词典文件。
-- `en_dicts/*.dict.yaml`, 为英文词库词典文件。
-- ~~`rime.lua` 文件用于涉及 Lua 的相关功能。~~
+- `cn_dicts/*.dict.yaml`, 为中文词库词典文件, 内含大词库可酌情注释停用(若有卡顿感)。
+- `en_dicts/*.dict.yaml`, 为英文词库词典文件, 内含英译中词库。
+- `easy_en.schema.yaml` 和 `easy_en.dict.yaml` 为作者基于 [easy-en](https://github.com/BlindingDark/rime-easy-en) 项目的英文输入方案修改得到的版本。
 - `scripts/flypy_dict_generator.py` 双拼词库转换程序，实现了汉字转小鹤双拼，小鹤音形码，简拼, 支持
   输出到 `yaml` 字典和 `txt` 自定义短语文件，可指定词库内容追加输出，可指定初始词频，或默认源词库的词频。
+- `fonts` , 为方案使用的字体文件, 需用户自行下载安装(推荐)。
+- `fcitx5-theme` , 为小企鹅(fcitx5-macos) 的皮肤主题目录, 内有仿微信输入法皮肤+液态玻璃效果(macOS Tahoe 支持)。
 - 方案自带 emoji 输出，提供了 `emoji_word.txt` 文件, 通过 OpenCC 来转换得来。
-- `easy_en.schema.yaml` 和 `easy_en.dict.yaml` 为作者基于 [easy-en](https://github.com/BlindingDark/rime-easy-en) 项目的英文输入方案修改得到的版本。
+- ~~`rime.lua` 文件用于涉及 Lua 的相关功能。~~
 
 ### 前缀模式
 
@@ -96,7 +98,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
     - 单词中输入 `*` 可以模糊匹配，比如：敲 `bea*l` 就可以看到 `beautiful` 这个单词。
 - `/jk` 前缀: 用于快速启动或切换程序, 目前只在 macOS 上测试过。
 - `/kj` 前缀: 用于输入常用短语(邮箱/手机号/银行卡号/收件地址); 和打开常用网站网址, 本地文件路径;
-  执行常见指令(开关系统设置) 等等, 可自行在 [配置文件](https://github.com/boomker/rime-fast-xhup/blob/main/lua/launcher_config.lua) 里添加。
+  执行常见指令(开关系统设置) 等等, 可自行在 [配置文件](https://github.com/boomker/rime-fast-xhup/blob/main/lua/shortcut_config.lua) 里添加。
 - `/hs` 前缀: 历史上屏记录, 充当简易输入记录器, 聊天记录回溯 😈, ~~不会记录 Emoji 表情~~。
 - `/so` 前缀: 方案选项切换功能菜单, 实现了方案中个性化配置与选项热切换或更改(免部署生效)。
 - `/nn` 前缀: 用于输入中文数字, 例如: 输入 `/nn` `123` 得到 “一百二十三”, “壹佰贰拾叁”等。
@@ -145,13 +147,13 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 1. - Q: Windows 系统部署项目失败, 一直处于部署中
    - A: 注释 **[flypy_xhfast.dict.yaml](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.dict.yaml)** 文件里的大词库
 2. - Q: 分号 `;` 为什么不能直接上屏, 不想使用 `;` 引导的标点符号输出方式
-   - A: 在 `custom` 配置文件里解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L105) 注释, 并将下一行注释掉. 或者在 `/so` 里进行切换
+   - A: 在 `custom` 配置文件里解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L114) 注释, 并将下一行注释掉. 或者在 `/so` 里进行切换
 3. - Q: 如何取消中英混合候选词条中的空格?
-   - A: 注释 `custom` 配置文件里的 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L45)
+   - A: 注释 `custom` 配置文件里的 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L50)
 4. - Q: 中英混合输出自动添加空格功能, 有时会在编辑区起始位置添加空格
-   - A: 这个功能目前还不够完善, 可以将 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L46) 注释掉
+   - A: 这个功能目前还不够完善, 可以将 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L51) 注释掉(默认已注释)
 5. - Q: 形码辅助引导符可以去掉吗? 想直接使用辅助码, 不用引导符(`/`)
-   - A: 默认直接辅助, 可以的, 解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L118) 注释即可
+   - A: 默认直接辅助, 可以的, 解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L132) 注释即可
 6. - Q: 快捷指令功能能在移动端支持触控点击吗?
    - A: 目前暂不支持
 7. - ~~Q: 符号配对功能在 Windows 下无法使用?~~
