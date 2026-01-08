@@ -72,7 +72,7 @@ function P.func(key, env)
     local phrase_first_state = context:get_property("idiom_phrase_first")
 
     -- 触发简码成语优先
-    if context:has_menu() and (preedit_code:match("^%l%l%l%l+$")) and (key:repr() == env.expand_idiom_key) then
+    if context:has_menu() and (preedit_code:match("^%l%l%l%l?%l?%l?$")) and (key:repr() == env.expand_idiom_key) then
         local switch_val = (phrase_first_state == "1") and "0" or "1"
         context:set_property("idiom_phrase_first", tostring(switch_val))
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
@@ -117,7 +117,7 @@ function T.func(input, seg, env)
     end
 
     -- 四码时, 按下`8/Control+q`, 简拼成语优先
-    if (input:match("^%l%l%l%l") and (phrase_first_state == "1")) then
+    if (input:match("^%l%l%l%l?%l?%l?$") and (phrase_first_state == "1")) then
         local idiom_phrase_iter = env.idiom_phrase_tran:query(input, seg)
         if not idiom_phrase_iter then return end
         for cand in idiom_phrase_iter:iter() do
