@@ -37,7 +37,7 @@ function processor.func(key, env)
     local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, select_keys, page_size)
     if (selected_cand_idx >= 0) then
         local cand_text = segment:get_candidate_at(selected_cand_idx).text
-        local _s, _e, second_prefix = cand_text:find(":?([a-z]+):?")
+        local _, _, second_prefix = cand_text:find(":?([a-z]+):?")
         context:pop_input(#trigger_prefix)
         context:push_input(symbol_normal_prefix .. second_prefix)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单

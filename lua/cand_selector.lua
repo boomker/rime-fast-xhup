@@ -17,7 +17,7 @@ function M.init(env)
     env.reversedb = ReverseLookup(schema_id)
     -- env.mem = Memory(env.engine, schema, "translator")
     env.word_auto_commit = config:get_bool("speller/auto_select_phrase") or false
-    env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "script_translator")
+    env.script_tran = Component.Translator(env.engine, schema, "", "script_translator@translator")
 end
 
 function M.fini(env)
