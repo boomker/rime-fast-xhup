@@ -24,14 +24,12 @@ end
 function P.func(key, env)
     local engine = env.engine
     local context = engine.context
-    local input_code = context.input
     local composition = context.composition
     if composition:empty() then return 2 end
     local segment = composition:back()
-    if not (segment and segment.menu) then return 2 end
-    if input_code:match("^/.*") then return 2 end
+    if (not segment) or (not segment:has_tag("abc")) then return 2 end
 
-    if (key:repr() == env.first_key) and (input_code:match("^[a-zA-Z]")) and (segment.prompt:len() < 1) then
+    if (key:repr() == env.first_key) then
         local cand = context:get_selected_candidate()
         local _cand_text, _commit_txt = cand.text, nil
         if _cand_text then
@@ -45,7 +43,7 @@ function P.func(key, env)
         return 1 -- kAccepted
     end
 
-    if (key:repr() == env.last_key) and (input_code:match("^[a-zA-Z]")) and (segment.prompt:len() < 1) then
+    if (key:repr() == env.last_key) then
         local cand = context:get_selected_candidate()
         local _cand_text, _commit_txt = cand.text, nil
         if _cand_text then

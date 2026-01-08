@@ -8,7 +8,6 @@
 
 -- local logEnable, logger = pcall(require, "lib/logger")
 require("lib/rime_helper")
-local M = {}
 local processor = {}
 local segmentor = {}
 
@@ -123,34 +122,6 @@ function processor.init(env)
     env.select_keys = config:get_string("menu/alternative_select_keys") or '123456789'
 end
 
-function segmentor.init(env)
-    local config        = env.engine.schema.config
-    local schema_id     = config:get_string("schema/schema_id")
-    local schema        = Schema(schema_id)
-    env.closing_punct   = nil
-    env.defer           = false
-    env.system_name     = detect_os()
-    env.pair_toggle     = config:get_bool("pair_punct/enable") or false
-    env.echo_translator = Component.Translator(env.engine, schema, "", "echo_translator")
-    env.update_notifier = env.engine.context.update_notifier:connect(on_update_or_select(env))
-    env.select_notifier = env.engine.context.select_notifier:connect(on_update_or_select(env))
-    env.commit_notifier = env.engine.context.commit_notifier:connect(on_commit(env))
-end
-
-function M.fini(env)
-    if env.echo_translator or env.update_notifier
-        or env.select_notifier or env.commit_notifier
-    then
-        env.update_notifier:disconnect()
-        env.select_notifier:disconnect()
-        env.commit_notifier:disconnect()
-        env.echo_translator = nil
-        env.update_notifier = nil
-        env.select_notifier = nil
-        env.commit_notifier = nil
-    end
-end
-
 function processor.func(key, env)
     local key_code   = key.keycode
     local key_value  = key:repr()
@@ -173,9 +144,9 @@ function processor.func(key, env)
         return 1 -- kAccept
     end
 
-    local segment = composition and composition:back()
     if not input_code:match('[<%(%[{]') then return 2 end
-    if (not segment) or (segment.prompt:len() >= 1) then return 2 end
+    local segment = composition and composition:back()
+    if (not segment) or (not segment:has_tag("punct")) then return 2 end
 
     local idx = segment.selected_index
     local select_keys = env.select_keys or "123456789"
@@ -199,6 +170,34 @@ function processor.func(key, env)
     return 2
 end
 
+function segmentor.init(env)
+    local config        = env.engine.schema.config
+    local schema_id     = config:get_string("schema/schema_id")
+    local schema        = Schema(schema_id)
+    env.closing_punct   = nil
+    env.defer           = false
+    env.system_name     = detect_os()
+    env.pair_toggle     = config:get_bool("pair_punct/enable") or false
+    env.echo_translator = Component.Translator(env.engine, schema, "", "echo_translator")
+    env.update_notifier = env.engine.context.update_notifier:connect(on_update_or_select(env))
+    env.select_notifier = env.engine.context.select_notifier:connect(on_update_or_select(env))
+    env.commit_notifier = env.engine.context.commit_notifier:connect(on_commit(env))
+end
+
+function segmentor.fini(env)
+    if env.echo_translator or env.update_notifier
+        or env.select_notifier or env.commit_notifier
+    then
+        env.update_notifier:disconnect()
+        env.select_notifier:disconnect()
+        env.commit_notifier:disconnect()
+        env.echo_translator = nil
+        env.update_notifier = nil
+        env.select_notifier = nil
+        env.commit_notifier = nil
+    end
+end
+
 function segmentor.func(segmentation, env)
     local opening_punct = nil
     local punct_index_key = nil
@@ -212,11 +211,12 @@ function segmentor.func(segmentation, env)
     local match_end = segmentation:get_current_start_position() + 1
     local input_code = segmentation.input:sub(0, csp)
     opening_punct = string.utf8_sub(input_code, -1, -1) or nil
-    if (input_code:match("^%a+%p$")) then
+
+    if (input_code:match("^%a[%a/]+%p$")) then
         opening_punct = nil
     elseif not (opening_punct and opening_punct:match("[%a%d%p]")) then
-        opening_punct = input_code:gsub("%a", "")
-    elseif (input_code:match("^%a+%p%a$")) then
+        opening_punct = input_code:gsub("[%a%d%p]+", "")
+    elseif (input_code:match('^%a+[<%(%[{]%a$')) then
         opening_punct = input_code:gsub("%a", "")
         punct_index_key = get_pair_punct_idx(opening_punct)
         local punct_pair = pairTable[punct_index_key]
@@ -232,6 +232,7 @@ function segmentor.func(segmentation, env)
             opening_punct = cand_text
         end
     end
+
     punct_index_key = get_pair_punct_idx(opening_punct)
     if not punct_index_key then return true end
     local seg = Segment(match_start, match_end)
@@ -242,6 +243,6 @@ function segmentor.func(segmentation, env)
 end
 
 return {
-    processor = { init = processor.init, func = processor.func, fini = M.fini },
-    segmentor = { init = segmentor.init, func = segmentor.func, fini = M.fini },
+    processor = { init = processor.init, func = processor.func },
+    segmentor = { init = segmentor.init, func = segmentor.func, fini = segmentor.fini },
 }
