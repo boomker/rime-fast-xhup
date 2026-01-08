@@ -102,9 +102,9 @@ function launcher.init(env)
     local config = env.engine.schema.config
     local app_pattern = config:get_string("recognizer/patterns/shortcuts_app") or "/jk"
     local cmd_pattern = config:get_string("recognizer/patterns/shortcuts_cmd") or "/kj"
-    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
     env.system_name = detect_os()
     env.shortcut_config = _ok_conf and shortcut_config or { nil, nil, nil }
+    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
     env.favor_cmd_prefix = cmd_pattern and cmd_pattern:match("%^([a-zA-Z/]+).*") or "/kj"
     env.app_launch_prefix = app_pattern and app_pattern:match("%^([a-zA-Z/]+).*") or "/jk"
     env._alprefix, env._fcprefix, env.all_command_items = table.unpack(env.shortcut_config)

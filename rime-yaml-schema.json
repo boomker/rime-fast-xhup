@@ -755,6 +755,14 @@
                 "max_homographs": {
                     "type": "integer",
                     "description": "最大同形词群长度（需要与 grammar 一起使用）。"
+                },
+                "max_word_length": {
+                    "type": "integer",
+                    "description": "过长短语不记整词, 只加元素权重"
+                },
+                "core_word_length": {
+                    "type": "integer",
+                    "description": "按段学词 + 相邻段拼接"
                 }
             }
         },

@@ -117,10 +117,10 @@ local function get_pair_punct_idx(op)
 end
 
 function processor.init(env)
-    local config         = env.engine.schema.config
-    env.system_name      = detect_os()
-    env.pair_toggle      = config:get_bool("pair_punct/enable") or false
-    env.select_keys      = config:get_string("menu/alternative_select_keys") or '123456789'
+    local config    = env.engine.schema.config
+    env.system_name = detect_os()
+    env.pair_toggle = config:get_bool("pair_punct/enable") or false
+    env.select_keys = config:get_string("menu/alternative_select_keys") or '123456789'
 end
 
 function segmentor.init(env)
@@ -129,7 +129,7 @@ function segmentor.init(env)
     local schema        = Schema(schema_id)
     env.closing_punct   = nil
     env.defer           = false
-    env.system_name      = detect_os()
+    env.system_name     = detect_os()
     env.pair_toggle     = config:get_bool("pair_punct/enable") or false
     env.echo_translator = Component.Translator(env.engine, schema, "", "echo_translator")
     env.update_notifier = env.engine.context.update_notifier:connect(on_update_or_select(env))
@@ -174,8 +174,8 @@ function processor.func(key, env)
     end
 
     local segment = composition and composition:back()
-    if not (segment and segment.menu) then return 2 end
     if not input_code:match('[<%(%[{]') then return 2 end
+    if (not segment) or (segment.prompt:len() >= 1) then return 2 end
 
     local idx = segment.selected_index
     local select_keys = env.select_keys or "123456789"
@@ -185,7 +185,7 @@ function processor.func(key, env)
         local selected_cand = segment:get_candidate_at(selected_cand_index)
         local cand_text = selected_cand and selected_cand.text
         if env.system_name:lower():match("android") then
-            for i = 1, tonumber(selected_cand_index) do
+            for _ = 1, tonumber(selected_cand_index) do
                 env.engine:process_key(KeyEvent(tostring("Down")))
             end
             return 1 -- kAccept
