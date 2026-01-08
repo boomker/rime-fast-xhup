@@ -1,3 +1,5 @@
+-- local _, logger = pcall(require, "lib/logger")
+
 require("lib/string")
 local M = {}
 local P = {}
@@ -6,7 +8,7 @@ local F = {}
 
 local function check_fuzzy_cand(env, cand, input)
     if not cand then return false end
-    if cand.quality < 0.5 then return false end
+    if cand.quality < 0.1 then return false end
     local cand_text = cand.text
     if utf8.len(cand_text) <= 1 then return false end
     if (not cand_text:match("[%a%d%p]"))
