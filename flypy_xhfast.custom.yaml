@@ -46,7 +46,7 @@ patch:
     filters/+:
   'engine/processors/@next': predictor
   'engine/translators/@before 0': predict_translator
-  # 注释下行, 以取消中英混合的候选词条里自动添加的空格
+  # 注释下行, 以取消中英混合候选词自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
   # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
