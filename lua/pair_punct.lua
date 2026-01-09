@@ -6,7 +6,6 @@
 -- 配置說明
 -- 在你的schema文件裏引入這個segmentor，需要放在abc_segmentor的前面
 
--- local logEnable, logger = pcall(require, "lib/logger")
 require("lib/rime_helper")
 local processor = {}
 local segmentor = {}

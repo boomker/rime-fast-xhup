@@ -44,6 +44,7 @@ engine:
     - ascii_composer
     - recognizer
     - key_binder
+    - lua_processor@*flypy_keybinder
     - speller
     - selector
     - navigator
@@ -60,9 +61,9 @@ engine:
     - affix_segmentor@make_en_word
     - affix_segmentor@make_sentence
     - affix_segmentor@chinese_lunar
+    - affix_segmentor@flypy_key_map
     - affix_segmentor@chinese_number
     - affix_segmentor@radical_lookup
-    - affix_segmentor@flypy_key_help
     - punct_segmentor
     - fallback_segmentor
   translators:
@@ -74,8 +75,8 @@ engine:
     - table_translator@idiom_phrase                   # 成语短语的首字母简拼
     - table_translator@custom_phrase                  # 自定义短语(固顶)
     - table_translator@make_sentence                  # ` 精准造词
+    - table_translator@flypy_key_map                  # /ok 触发进入双拼键位帮助
     - table_translator@radical_lookup                 # /rl,rL 触发进入部件组字模式
-    - table_translator@flypy_key_help                 # /ok 触发进入双拼键位帮助
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
     - lua_translator@*date_time                       # date,week,time 触发
     - lua_translator@*en_custom                       # \ 触发自定义单词入库
@@ -90,7 +91,7 @@ engine:
     - lua_translator@*chinese_number*translator       # /nn,nN 触发大写金额数字
     - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
-    - lua_translator@*fuzzy_word_expand*translator    # 8,ctrl-q,ctrl-s 简拼展开或单字优先
+    - lua_translator@*fuzzy_word_expand*translator    # 8,ctrl-s 简拼展开或单字优先
   filters:
     - reverse_lookup_filter@radical_reverse_lookup
     - simplifier@tradition                            # 简繁切换
@@ -117,7 +118,7 @@ grammar:
   collocation_penalty: -10        # 默认-12 对常见搭配词组施加惩罚值. 较高的负值会降低这些搭配被选中的概率, 防止频繁地出现某些固定搭配
   non_collocation_penalty: -20    # 默认-12 对非搭配词组施加的惩罚值. 较高的负值会降低非搭配词组被选中的概率, 避免不常见的词组组合
   weak_collocation_penalty: -45   # 默认-24 对弱搭配词组施加的惩罚值. 保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合
-  rear_penalty: -5                # 默认-18 对词组中后续词语的位置施加的惩罚值. 数值越小出现的概率 越低, 防止句子结构不自然
+  rear_penalty: -12               # 默认-18 对词组中后续词语的位置施加的惩罚值. 数值越小出现的概率 越低, 防止句子结构不自然
 
 # 主翻译器, 小鹤双拼
 translator:
@@ -198,10 +199,10 @@ custom_phrase:                      # 自定义短语, 包含固顶字
   enable_completion: false
 
 # 键位帮助
-flypy_key_help:                     # 小鹤双拼键位帮助
+flypy_key_map:                     # 小鹤双拼键位帮助
   prefix: "/ok"
   dictionary: ""
-  tag: flypy_key_help
+  tag: flypy_key_map
   tips: "小鹤双拼查键"
   db_class: stabledb
   user_dict: flypy_keymap
