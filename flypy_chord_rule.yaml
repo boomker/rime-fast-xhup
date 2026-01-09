@@ -4,7 +4,7 @@ patch:
   # speller:
   #   algebra:
   ## 左右飞键音码规则
-  - derive/^(j)n/$1c/
+  - derive/^(j)n/$1c/correction
   - derive/^([jyn])t/$1d/         # t --> d
   - derive/^([jmn])p/$1e/         # p --> e
   - derive/^([djlnx])q/$1f/       # q --> f
@@ -12,16 +12,16 @@ patch:
   - derive/^q([pkibnmsxyl])/f$1/
   - derive/^qt/fd/
   - derive/^qu/fe/
-  - derive/^qr/fo/
+  - derive/^qr/fo/correction
   - derive/^ko/kr/
   - derive/^([jki])y/$1w/         # [jki]y --> [jki]w
   - derive/^y([ikb])/w$1/         # y[ikb] --> w[ikb]
   - derive/^yh/wn/
   - derive/^yj/wm/
   - derive/^hj/aj/
-  - derive/^hy/hw/
+  - derive/^hy/hw/correction
   - derive/^uj/ur/
-  - derive/^uy/uw/                # uy --> uw
+  - derive/^uy/uw/correction      # uy --> uw
   - derive/^vx/ux/                # vx --> ux
   - derive/^vs/us/                # vs --> us
   - derive/^vd/ud/                # vd --> ud
@@ -36,7 +36,7 @@ patch:
   - derive/^tk/rk/                # tk --> rk
   - derive/^te/df/                # te --> df
   - derive/^tw/dw/                # tw --> dw
-  - derive/^tv/dl/                # tv --> dl
+  - derive/^tv/dl/correction      # tv --> dl
   - derive/^gr/gm/                # gr --> gm
   - derive/^gf/gn/                # gf --> gn
   - derive/^gy/gk/                # gy --> gk
@@ -44,14 +44,14 @@ patch:
   - derive/^xt/xo/
   - derive/^xs/xh/
   - derive/^nh/nx/
-  - derive/^nu/nv/
+  - derive/^nu/nv/correction
   - derive/^nj/xj/
-  - derive/^no/nr/
-  - derive/^lo/ng/
-  - derive/^lp/nl/
+  - derive/^no/nr/correction
+  - derive/^lo/ng/correction
+  - derive/^lp/nl/correction
   - derive/^ly/nw/
   - derive/^lm/nz/
-  - derive/^li/lx/
+  - derive/^li/lx/correction
   - derive/^jm/jz/
   - derive/^jb/ja/
   - derive/^za/zl/
@@ -61,7 +61,7 @@ patch:
   - derive/^i([kl])/ix/
   - derive/^mh/mx/
   - derive/^mb/ms/
-  - derive/^mk/me/
+  - derive/^mk/me/correction
   - derive/^mo/mr/
   - derive/^mu/mv/
   - derive/^sz/sl/
