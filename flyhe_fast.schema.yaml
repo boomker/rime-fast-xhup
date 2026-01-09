@@ -172,14 +172,12 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   bindings:
-    # - {when: has_menu,  accept: 3,  send: 3}             # 数字3用于第3候选
-    # - {when: has_menu,  accept: 4,  send: 4}             # 数字4用于第4候选
-    # - {when: has_menu, accept: semicolon, send: 2}       # 分号键用于第2候选
-    # - {when: has_menu, accept: apostrophe, send: 3}      # 单引号用于第3候选
-    - {when: paging, accept: comma, send: Page_Up}         # 逗号上一页
-    - {when: has_menu, accept: period, send: Page_Down}    # 句号下一页
-    # - {when: paging,    accept: minus,  send: Page_Up}   # 减号- 上一页
-    # - {when: has_menu,  accept: equal, send: Page_Down}  # 等号= 下一页
+    # - {when: has_menu, accept: ";", send: 2}              # 分号键用于第2候选
+    # - {when: has_menu, accept: "'", send: 3}              # 单引号用于第3候选
+    - {when: paging, accept: comma, send: Page_Up}          # 逗号上一页
+    - {when: has_menu, accept: "]", send: Page_Down}        # 句号下一页
+    # - {when: paging,    accept: minus,  send: Page_Up}    # 减号- 上一页
+    # - {when: has_menu,  accept: equal, send: Page_Down}   # 等号= 下一页
     - {when: composing, accept: Tab, send: Control+Right}
     - {when: composing, accept: Shift+Tab, send: Control+Left}
     - {when: composing, accept: Control+k, send: Shift+Delete}
@@ -190,7 +188,8 @@ key_binder:
     - {when: always,    accept: Control+Shift+0, select: .next}
     - {when: always,    accept: Control+comma, toggle: ascii_punct}
     - {when: always,    accept: Control+period, toggle: full_shape}
-    - {when: has_menu,  accept: Control+Shift+5, toggle: traditionalize}
+    - {when: has_menu,  accept: Control+Shift+5, toggle: charset_hint}
+    - {when: has_menu,  accept: Control+Shift+6, toggle: traditionalize}
 
 # 拼写设定
 speller:
