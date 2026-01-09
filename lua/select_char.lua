@@ -7,10 +7,12 @@ require("lib/rime_helper")
 local P = {}
 
 local function first_character(s)
+    if not s then return nil end
     return string.utf8_sub(s, 1, 1)
 end
 
 local function last_character(s)
+    if not s then return nil end
     return string.utf8_sub(s, -1, -1)
 end
 
@@ -24,19 +26,23 @@ end
 function P.func(key, env)
     local engine = env.engine
     local context = engine.context
+    local input_code = context.input
     local composition = context.composition
     if composition:empty() then return 2 end
+    if input_code:match("^cC$") then return 2 end
     local segment = composition:back()
     if (not segment) or (not segment:has_tag("abc")) then return 2 end
 
     if (key:repr() == env.first_key) then
         local cand = context:get_selected_candidate()
-        local _cand_text, _commit_txt = cand.text, nil
-        if _cand_text then
-            _commit_txt = first_character(_cand_text)
+        local _cand_text, _commit_txt = (cand and cand.text), nil
+        _commit_txt = _cand_text and first_character(_cand_text)
+        local cand_txt = _commit_txt and insert_space_to_candText(env, _commit_txt)
+        if cand_txt then
+            engine:commit_text(cand_txt)
+        else
+            return 2
         end
-        local cand_txt = insert_space_to_candText(env, _commit_txt)
-        engine:commit_text(cand_txt)
         context:clear()
 
         set_committed_cand_is_chinese(env)
@@ -45,12 +51,14 @@ function P.func(key, env)
 
     if (key:repr() == env.last_key) then
         local cand = context:get_selected_candidate()
-        local _cand_text, _commit_txt = cand.text, nil
-        if _cand_text then
-            _commit_txt = last_character(_cand_text)
+        local _cand_text, _commit_txt = (cand and cand.text), nil
+        _commit_txt = _cand_text and last_character(_cand_text)
+        local cand_txt = _commit_txt and insert_space_to_candText(env, _commit_txt)
+        if cand_txt then
+            engine:commit_text(cand_txt)
+        else
+            return 2
         end
-        local cand_txt = insert_space_to_candText(env, _commit_txt)
-        engine:commit_text(cand_txt)
         context:clear()
 
         set_committed_cand_is_chinese(env)
