@@ -1,4 +1,5 @@
 ---@diagnostic disable: lowercase-global
+
 function detect_os()
     local user_distribute_name = rime_api:get_distribution_code_name()
     if user_distribute_name:lower():match("weasel") then
@@ -69,11 +70,12 @@ function get_selected_candidate_index(key_value, selected_index, select_keys, pa
     local key_map = {
         ["space"] = "-1",
         ["return"] = "-1",
+        ["period"] = ".",
         ["semicolon"] = ";",
         ["apostrophe"] = "'",
     }
     local kv = key_map[key_value:lower()] or key_value
-    local key_name = select_keys:find(kv) or tonumber(kv)
+    local key_name = select_keys:find("[" .. kv .. "]") or tonumber(kv)
     if not key_name then
         return -1
     elseif key_name == -1 then

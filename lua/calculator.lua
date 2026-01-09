@@ -301,12 +301,7 @@ function T.func(input, seg, env)
     local trigger_tbl = env.prefix:match("|") and string.split(env.prefix, "|") or { env.prefix }
     if startsWith(input, trigger_tbl) or seg:has_tag("calculator") then
         segment.prompt = "〔" .. env.tips .. "〕"
-        if input:match("?h$") or input:match("^cC$") then
-            for _, fn in pairs(table.sorted_keys(methods_desc, "len")) do
-                local fd = methods_desc[fn]
-                yield(Candidate("calc", seg.start, seg._end, fn .. ":" .. fd, ""))
-            end
-        end
+        if input:match("?h$") or input:match("^/h$") then goto HELP end
         -- 提取算式
         local express = input:gsub(trigger_tbl[1], "") or input:gsub(trigger_tbl[2], "")
 
@@ -331,6 +326,16 @@ function T.func(input, seg, env)
             -- 处理加载错误
             yield(Candidate(input, seg.start, seg._end, express, "解析失败"))
         end
+    end
+    ::HELP::
+    if (input:match("?h$") or input:match("^/h$")) and seg:has_tag("calculator") then
+        for _, fn in pairs(table.sorted_keys(methods_desc, "len")) do
+            local fd = methods_desc[fn]
+            yield(Candidate("calc", seg.start, seg._end, fn .. ":" .. fd, ""))
+        end
+    end
+    if startsWith(input, trigger_tbl) or seg:has_tag("calculator") then
+        yield(Candidate("calc", seg.start, seg._end, "'/h'、'?h' 查看支持的函数", ""))
     end
 end
 

@@ -25,15 +25,15 @@ function flypy_switcher.init(env)
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
     env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
     env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
-    local switchOpt_pat = config:get_string("recognizer/patterns/switch_options") or "/so|sO"
-    env.switch_options_trigger = switchOpt_pat:match("%^.?([a-zA-Z/|]+).*") or "/so|sO"
+    local switchOpt_pat = config:get_string("recognizer/patterns/switch_option") or "/so|sO"
+    env.switch_option_trigger = switchOpt_pat:match("%^.?([a-zA-Z/|]+).*") or "/so|sO"
     env.cand_menu_layout = config:get_bool("style/horizontal") or true
     env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
     env.word_auto_commit = config:get_bool("speller/auto_select_phrase") or false
     env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
     env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
-    env.switch_options_menu = {
+    env.switch_option_menu = {
         "切换纵横布局样式",
         "切换预编码区样式",
         "切换预编码区格式",
@@ -259,13 +259,13 @@ function translator.func(input, seg, env)
     if composition:empty() then return end
     local segment = composition:back()
 
-    local trigger_pattern = env.switch_options_trigger
+    local trigger_pattern = env.switch_option_trigger
     local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or { "/so", "sO" }
 
-    if seg:has_tag("switch_options") or table.find(trigger_prefix_tbl, input) then
+    if seg:has_tag("switch_option") or table.find(trigger_prefix_tbl, input) then
         segment.prompt = "〔" .. "切换配置选项" .. "〕"
-        for _, text in ipairs(env.switch_options_menu) do
-            yield(Candidate("switch_options", seg.start, seg._end, text, ""))
+        for _, text in ipairs(env.switch_option_menu) do
+            yield(Candidate("switch_option", seg.start, seg._end, text, ""))
         end
     end
 end
