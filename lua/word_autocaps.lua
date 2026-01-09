@@ -7,17 +7,15 @@ local function autocap_filter(input, env)
         local preedit_code = env.engine.context:get_commit_text()
         if string.find(text, "^%l%l.*") and string.find(preedit_code, "^%u%u.*") then
             if string.len(text) == 2 then
-                ---@diagnostic disable-next-line: missing-parameter
-                local cand_2 = ShadowCandidate(cand, cand.type, preedit_code, "+")
+                local cand_2 = ShadowCandidate(cand, cand.type, preedit_code, "", false)
                 yield(cand_2)
             else
-                local cand_u = Candidate("cap", 0, preedit_code:len(), text:upper(), "+AU")
+                local cand_u = Candidate("cap", 0, preedit_code:len(), text:upper(), "~AU")
                 table.insert(u_cands, cand_u)
             end
-        elseif string.find(text, "^%l+$") and string.find(preedit_code, "^%u+") then
+        elseif string.find(text, "^%l+$") and string.find(preedit_code, "^%u") then
             local suffix = string.sub(text, string.len(preedit_code) + 1)
-            ---@diagnostic disable-next-line: missing-parameter
-            local cand_t = ShadowCandidate(cand, cand.type, preedit_code .. suffix, "~AT")
+            local cand_t = ShadowCandidate(cand, cand.type, preedit_code .. suffix, "~AT", false)
             table.insert(u_cands, cand_t)
         else
             yield(cand)
@@ -31,17 +29,13 @@ local function autocap_filter(input, env)
     end
 end
 
----@diagnostic disable-next-line: unused-local
 local function autocap_translator(input, seg, env)
-    if input:match("^%u%l%l?%l?%l?%l?%l?%l?%l?%l?%l?%l?$") and input:match("^[^V].*") then
-        local cand = Candidate("Word", seg.start, seg._end, input, "")
+    if rime_api.regex_match(input, "^[A-Z][a-zA-Z'_-]{1,19}") then
+        local cand = Candidate("Word", seg.start, seg._end, input, "~AT")
         yield(cand)
     elseif input:match("^%u%u%a+$") then
         local new_txt = input:upper()
-        yield(Candidate("word_caps", seg.start, seg._end, new_txt, "~AU"))
-        -- elseif input:match("^%u%l+%u%a?") then
-    elseif input:match("^%a+[.:_-]%/?%/?%/?%a+") then
-        yield(Candidate("en_custom", seg.start, seg._end, input, "~AC"))
+        yield(Candidate("WORD", seg.start, seg._end, new_txt, "~AU"))
     end
 end
 
