@@ -69,6 +69,7 @@ patch:
     select_first_character: "9"       # `9/minus` 以词定字(首字)
     select_last_character: "0"        # `0/equal` 以词定字(尾字)
     bindings/+:
+      # - {when: has_menu, accept: ";", send: 2}                # 引号; 用于第2候选
       # - {when: has_menu, accept: "'", send: 3}                # 引号' 用于第3候选
       - {when: paging,    accept: comma, send: Page_Up}         # 逗号, 返回上一页
       - {when: has_menu,  accept: ']', send: Page_Down}         # 括号] 下一页
@@ -82,7 +83,9 @@ patch:
       - {when: composing, accept: Control+i, send: Control+Left}
       - {when: composing, accept: Control+o, send: Control+Right}
       - {when: composing, accept: Control+w, send: Control+BackSpace}
-      - {match: "^cC.*$", accept: "'",  send_sequence: '{Page_Down}'}
+      # 以下按键绑定规则(含`tag` / `match`)需 flypy_keybinder 支持
+      - {tag: "calculator", accept: "'", send_sequence: '{Page_Down}'}
+      # - {match: "^cC.*$", accept: "'",  send_sequence: '{Page_Down}'}
 
   recognizer/+:
     patterns/+:
