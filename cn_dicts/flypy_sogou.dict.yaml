@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2026-01-09
+version: 2026-01-10
 sort: by_weight
 ...
 
@@ -64781,3 +64781,4 @@ sort: by_weight
 阿尔菲	aa er fw	1
 阿比奥顿	aa bi ao dy	1
 阿贝尔	aa bw er	1
+阿比	aa bi	1
