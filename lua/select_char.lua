@@ -26,12 +26,16 @@ end
 function P.func(key, env)
     local engine = env.engine
     local context = engine.context
-    local input_code = context.input
     local composition = context.composition
     if composition:empty() then return 2 end
-    if input_code:match("^cC$") then return 2 end
     local segment = composition:back()
-    if (not segment) or (not segment:has_tag("abc")) then return 2 end
+    if (not segment) then return 2 end
+    local tags = segment.tags
+    for tag, _ in pairs(tags) do
+        if (tag ~= "abc") and (tag ~= "paging") then
+            return 2
+        end
+    end
 
     if (key:repr() == env.first_key) then
         local cand = context:get_selected_candidate()

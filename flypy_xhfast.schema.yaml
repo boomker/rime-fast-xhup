@@ -30,6 +30,8 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - key_binder
+    - lua_processor@*flypy_keybinder
     - lua_processor@*select_char
     - lua_processor@*symbol_menu
     - lua_processor@*easy_en*processor
@@ -43,8 +45,6 @@ engine:
     - lua_processor@*fuzzy_word_expand*processor
     - ascii_composer
     - recognizer
-    - key_binder
-    - lua_processor@*flypy_keybinder
     - speller
     - selector
     - navigator
@@ -199,7 +199,7 @@ custom_phrase:                      # 自定义短语, 包含固顶字
   enable_completion: false
 
 # 键位帮助
-flypy_key_map:                     # 小鹤双拼键位帮助
+flypy_key_map:                      # 小鹤双拼键位帮助
   prefix: "/ok"
   dictionary: ""
   tag: flypy_key_map
