@@ -1,5 +1,4 @@
 -- author: ChaosAlphard, boomker
-
 require("lib/string")
 local T = {}
 
@@ -299,7 +298,7 @@ function T.func(input, seg, env)
     local segment = composition:back()
 
     local trigger_tbl = env.prefix:match("|") and string.split(env.prefix, "|") or { env.prefix }
-    if startsWith(input, trigger_tbl) or seg:has_tag("calculator") then
+    if seg:has_tag("calculator") then
         segment.prompt = "〔" .. env.tips .. "〕"
         if input:match("?h$") or input:match("^/h$") then goto HELP end
         -- 提取算式
@@ -335,6 +334,8 @@ function T.func(input, seg, env)
         end
     end
     if startsWith(input, trigger_tbl) or seg:has_tag("calculator") then
+        -- local cseg = Segment(seg.start, seg._end)
+        -- cseg.tags = Set({ "calc_help" })
         yield(Candidate("calc", seg.start, seg._end, "'/h'、'?h' 查看支持的函数", ""))
     end
 end
