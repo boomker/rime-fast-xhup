@@ -1,13 +1,14 @@
 require("lib/string")
 require("lib/metatable")
 require("lib/rime_helper")
--- local logger = require("lib/logger")
 
+local P = {}
 local T = {}
 local F = {}
 local M = {}
 
 function M.init(env)
+    M.single_char_cand_count = 0
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
@@ -15,29 +16,101 @@ function M.init(env)
     env.prev_word_shape_code_tbl = {}
     env.prev_word_pron_translation = nil
     env.reversedb = ReverseLookup(schema_id)
-    -- env.mem = Memory(env.engine, schema, "translator")
+    env.mem = Memory(env.engine, schema, "translator")
+    env.char_auto_commit = config:get_bool("speller/auto_select_char") or false
     env.word_auto_commit = config:get_bool("speller/auto_select_phrase") or false
+    env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
     env.script_tran = Component.Translator(env.engine, schema, "", "script_translator@translator")
 end
 
 function M.fini(env)
-    -- if env.mem then
-    --     env.mem:disconnect()
-    --     env.mem = nil
-    -- end
+    if env.mem then
+        env.mem:disconnect()
+        env.mem = nil
+    end
     if env.script_tran then
         env.script_tran:disconnect()
         env.script_tran = nil
     end
 end
 
+function P.func(key, env)
+    local engine = env.engine
+    local key_value = key:repr()
+    local context = engine.context
+    local composition = context.composition
+    if composition:empty() then return 2 end
+    local caret_pos = context.caret_pos
+    local preedit_text = context:get_preedit().text
+    local preedit_code = preedit_text:gsub("[‸ ]", "")
+    local char_mode_state = context:get_option("char_mode")
+
+    -- 触发单字优先
+    if context:has_menu() and (preedit_code:match("^%l%l%l%l$")) and (key:repr() == env.char_mode_switch_key) then
+        local switch_to_val = (not char_mode_state)
+        context:set_option("char_mode", switch_to_val)
+        context:refresh_non_confirmed_composition()
+        return 1 -- kAccept
+    end
+
+    -- 单字全码唯一自动顶屏(xyab?c?)
+    if (caret_pos == #preedit_code) and preedit_code:match("^%l%l%l%l?%l?$") and (M.single_char_cand_count == 1) then
+        local cand = context:get_selected_candidate()
+        local cand_text = cand and cand.text or ""
+        if env.char_auto_commit and (utf8.len(cand_text) == 1) then
+            if key_value:match("^[a-z]$") then
+                engine:commit_text(cand_text)
+                context:pop_input(#preedit_code)
+                context:push_input(key_value)
+                return 1 -- kAccepted
+            end
+        end
+        M.single_char_cand_count = 0
+    end
+    return 2 -- kNoop
+end
+
 function T.func(input, seg, env)
     local context = env.engine.context
-    -- local caret_pos = context.caret_pos
     local composition = context.composition
     -- local preedit_text = context:get_preedit().text
     -- local preedit_code = preedit_text:gsub("‸", "")
     if composition:empty() then return end
+
+    -- 四码时, 按下`Control+s`, 单字优先
+    local char_mode_state = context:get_option("char_mode")
+    if input:match("^%l%l%l%l$") and char_mode_state then
+        local entry_matched_tbl = {}
+        local yin_code = input:sub(1, 2)
+        local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search
+        if not ok then return end
+        for dictentry in env.mem:iter_dict() do
+            local entry_text = dictentry.text
+
+            if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
+                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
+                if reverse_char_code:match(input) then
+                    table.insert(entry_matched_tbl, dictentry)
+                end
+            end
+        end
+
+        if table.len(entry_matched_tbl) < 1 then return end
+
+        local prev_cand_text = ""
+        local single_char_cand_count = 0
+        for _, entry in ipairs(entry_matched_tbl) do
+            local ph = Phrase(env.mem, "single_char", seg.start, seg._end, entry)
+            local cand = ph:toCandidate()
+            cand.type = "single_char_" .. cand.type
+            yield(cand)
+            if prev_cand_text ~= cand.text then
+                prev_cand_text = cand.text
+                single_char_cand_count = single_char_cand_count + 1
+            end
+        end
+        M.single_char_cand_count = single_char_cand_count
+    end
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
     if input:match("^%l%l%l%l/%l?%l?$") then
@@ -126,6 +199,10 @@ function F.func(input, env)
             table.insert(single_char_cands, cand)
         end
 
+        if cand.type:match("^single_char") then
+            table.insert(single_char_cands, cand)
+        end
+
         if cand.type:match("^cs") then
             table.insert(preselecte_cands, cand)
         end
@@ -143,7 +220,7 @@ function F.func(input, env)
 
     -- 单字全码唯一自动上屏(xy/ab?)
     if (caret_pos == #preedit_code) and preedit_code:match("^%l%l/%l%l?$") then
-        if env.word_auto_commit and (#single_char_cands == 1) then
+        if env.char_auto_commit and (#single_char_cands == 1) then
             local cand_obj = single_char_cands[1]
             local cand_text = cand_obj.text
             local cand_text_fm = insert_space_to_candText(env, cand_text)
@@ -167,6 +244,10 @@ function F.func(input, env)
         for _, cand in ipairs(preselecte_cands) do
             yield(cand)
         end
+    elseif #single_char_cands > 0 then
+        for _, cand in ipairs(single_char_cands) do
+            yield(cand)
+        end
     end
 
     for _, cand in ipairs(normal_cands) do
@@ -175,6 +256,11 @@ function F.func(input, env)
 end
 
 return {
+    processor = {
+        init = M.init,
+        func = P.func,
+        fini = M.fini
+    },
     translator = {
         init = M.init,
         func = T.func,
