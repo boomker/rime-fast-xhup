@@ -131,6 +131,7 @@ end
 function F.func(input, env)
     local pin_cands = {}
     local other_cands = {}
+    local single_char_cands = {}
     local custom_phrase_cands = {}
     local pin_mark = env.pin_mark
     local context = env.engine.context
@@ -161,6 +162,10 @@ function F.func(input, env)
             table.insert(other_cands, cand)
         end
 
+        if cand.type:match("^single_char") then
+            table.insert(single_char_cands, cand)
+        end
+
         if #other_cands >= 200 then break end
     end
 
@@ -168,9 +173,11 @@ function F.func(input, env)
         for _, cand in ipairs(pin_cands) do
             yield(cand)
         end
-    end
-
-    if #custom_phrase_cands > 0 then
+    elseif #single_char_cands > 0 then
+        for _, cand in ipairs(single_char_cands) do
+            yield(cand)
+        end
+    elseif #custom_phrase_cands > 0 then
         for _, cand in ipairs(custom_phrase_cands) do
             yield(cand)
         end
