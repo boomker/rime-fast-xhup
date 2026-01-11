@@ -7,7 +7,7 @@ patch:
   "menu/alternative_select_keys": "1;.4567"     # 候选项选中快捷键
   # "menu/alternative_select_keys": 1234567890  # 候选项选中快捷键
   "style/font_point": 18                        # 候选字大小
-  "style/line_spacing": 6                       # 行间距大小
+  "style/line_spacing": 3                       # 行间距大小
   "style/show_paging": false                    # 是否显示分页符号
   "style/inline_preedit": true                  # 编码位是否嵌入候选框
   # "style/horizontal": true                    # 候选菜单横向布局(true)/纵向布局(false)

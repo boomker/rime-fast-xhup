@@ -131,7 +131,8 @@ patch:
         - "@139.com"
 
   speller/+:
-    auto_select_phrase: true          # 二字词组加辅码唯一时则自动上屏
+    auto_select_char: true            # 单字全码唯一时则自动顶屏(包括直接辅码)
+    auto_select_phrase: true          # 单字或词组加间接辅码唯一时则自动上屏
     enable_fuzz_algebra: true         # 是否开启简拼功能(候选字词含有中英数混杂项)
     algebra/+:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
@@ -167,7 +168,7 @@ patch:
 
   radical_reverse_lookup/+:           # 部件组字反查拼音
     overwrite_comment: false
-    dictionary: kMandarin             # 可自行更换反查词典
+    dictionary: flyhe_fast            # 可自行更换反查词典
 
   pin_word:                           # 词条置顶配置
     word_quality: 1000

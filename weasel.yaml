@@ -66,7 +66,7 @@ style:
   antialias_mode: default                  # 次像素反锯齿设定: default; force_dword; cleartype; grayscale; aliased
   preedit_type: composition                # 预编辑区内容: composition(编码);  preview(选中的候选); preview_all(全部候选)
   text_orientation: horizontal             # 文本排列方向, 效果和 `vertical_text` 相同: horizontal; vertical
-  candidate_list_layout: stacked           # stacked | linear  候选项排列方向(似乎只有在custom内才可以生效)
+  candidate_list_layout: linear            # stacked | linear  候选项排列方向(似乎只有在custom内才可以生效)
 
   layout:
     align_type: center                     # 标签、候选文字、注解文字之间的相对对齐方式: top ; center ; bottom
