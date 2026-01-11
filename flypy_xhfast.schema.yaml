@@ -38,6 +38,7 @@ engine:
     - lua_processor@*pin_word*processor
     - lua_processor@*shortcut*processor
     - lua_processor@*pair_punct*processor
+    - lua_processor@*cand_selector*processor
     - lua_processor@*chinese_number*processor
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
@@ -246,7 +247,7 @@ radical_lookup:
 
 # 部件拆字滤镜
 radical_reverse_lookup:
-  dictionary: kMandarin
+  dictionary: flyhe_fast      # kMandarin
   tags: [abc, radical_lookup]
   overwrite_comment: false
   comment_format:

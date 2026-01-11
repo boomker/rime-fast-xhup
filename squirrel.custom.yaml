@@ -21,16 +21,17 @@ patch:
     mutual_exclusive: false                     # 色不叠加: false | true
     alpha: 0.95                                 # 透明度, 0~1
     spacing: 10
-    font_point: 20
+    font_point: 16
     shadow_size: 5                              # 高亮候選詞增添陰影
-    line_spacing: 5
+    line_spacing: 3
     border_width: -1
     border_height: -1
     corner_radius: 10
-    label_font_point: 15
-    comment_font_point: 14
+    label_font_point: 14
+    comment_font_point: 13
     hilited_corner_radius: 8
     candidate_list_layout: stacked              # 候选排布: 层叠 stacked | 行 linear
+    candidate_format: '[label]. [candidate]  [comment]'
     label_font_face: 'Maple Mono NF CN'
     font_face: "JetBrains Maple Mono, MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei, WenJinMinchoP0"
 

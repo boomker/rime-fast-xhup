@@ -35,9 +35,7 @@ function M.init(env)
     local schema = Schema(schema_id)
     local flyhe_schema = Schema("flyhe_fast") -- schema_id
     env.reversedb = ReverseLookup(schema_id)
-    env.mem = Memory(env.engine, schema, "translator")
     env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
-    env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
     env.expand_idiom_key = config:get_string("key_binder/simpy_expand_key") or "Control+q"
     env.fuzz_tran = Component.Translator(env.engine, flyhe_schema, "", "script_translator@translator")
     env.idiom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@idiom_phrase")
@@ -55,10 +53,6 @@ function M.fini(env)
         env.fuzz_tran:disconnect()
         env.fuzz_tran = nil
     end
-    if env.mem then
-        env.mem:disconnect()
-        env.mem = nil
-    end
 end
 
 function P.func(key, env)
@@ -68,7 +62,6 @@ function P.func(key, env)
     if composition:empty() then return 2 end
     local preedit_text = context:get_preedit().text
     local preedit_code = preedit_text:gsub("[‸ ]", "")
-    local char_mode_state = context:get_option("char_mode")
     local phrase_first_state = context:get_property("idiom_phrase_first")
 
     -- 触发简码成语优先
@@ -77,14 +70,6 @@ function P.func(key, env)
         context:set_property("idiom_phrase_first", tostring(switch_val))
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
-    end
-
-    -- 触发单字优先
-    if context:has_menu() and (preedit_code:match("^%l%l%l%l$")) and (key:repr() == env.char_mode_switch_key) then
-        local switch_to_val = (not char_mode_state)
-        context:set_option("char_mode", switch_to_val)
-        context:refresh_non_confirmed_composition()
-        return 1 -- kAccept
     end
 
     return 2 -- kNoop
@@ -125,46 +110,16 @@ function T.func(input, seg, env)
             yield(cand)
         end
     end
-
-    -- 四码时, 按下`Control+s`, 单字优先
-    local char_mode_state = context:get_option("char_mode")
-    if input:match("^%l%l%l%l$") and char_mode_state then
-        local entry_matched_tbl = {}
-        local yin_code = input:sub(1, 2)
-        local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search
-        if not ok then return end
-        for dictentry in env.mem:iter_dict() do
-            local entry_text = dictentry.text
-
-            if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z]")) then
-                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
-                if reverse_char_code:match(input) then
-                    table.insert(entry_matched_tbl, dictentry)
-                end
-            end
-        end
-
-        if table.len(entry_matched_tbl) < 1 then return end
-        for _, de in ipairs(entry_matched_tbl) do
-            local ph = Phrase(env.mem, "single_char", seg.start, seg._end, de)
-            local cand = ph:toCandidate()
-            cand.type = "single_char_" .. cand.type
-            yield(cand)
-        end
-    end
 end
 
 ---@diagnostic disable-next-line: unused-local
 function F.func(input, env)
     local idiom_cands = {}
-    local schar_cands = {}
     local other_cands = {}
 
     for cand in input:iter() do
         if cand.type:match("^idiom_phrase") then
             table.insert(idiom_cands, cand)
-        elseif cand.type:match("^single_char") then
-            table.insert(schar_cands, cand)
         else
             table.insert(other_cands, cand)
         end
@@ -174,12 +129,6 @@ function F.func(input, env)
 
     if (#idiom_cands > 0) then
         for _, cand in ipairs(idiom_cands) do
-            yield(cand)
-        end
-    end
-
-    if (#schar_cands > 0) then
-        for _, cand in ipairs(schar_cands) do
             yield(cand)
         end
     end
