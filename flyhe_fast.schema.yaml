@@ -5,7 +5,7 @@
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: 2025.12.17
+  version: 2026.12.12
   author:
     - boomker
   description: |
@@ -31,13 +31,13 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - key_binder
     - lua_processor@*symbol_menu
     - ascii_composer
+    - recognizer
     - speller
     - selector
     - navigator
-    - recognizer
-    - key_binder
     - punctuator
     - express_editor
   segmentors:
@@ -53,19 +53,16 @@ engine:
     # - table_translator@melt_eng          # 英文输入
     - table_translator@idiom_phrase
   filters:
-    - simplifier@traditionalize                       # 简繁切换
-    - uniquifier                                      # 只能放到最后!
-
-# 八股文
+    - simplifier@traditionalize            # 简繁切换
+    - uniquifier                           # 只能放到最后!
 
 # 主翻译器, 小鹤双拼
 translator:
   dictionary: flyhe_fast
-  spelling_hints: 0                 # >0 启用, `0`: 关闭单字编码提示
+  spelling_hints: 1                 # >0 启用, `0`: 关闭单字编码提示
   max_word_length: 7                # >0 启用, 过长短语不记整词, 只加元素权重
   core_word_length: 4               # >0 启用, 按段学词 + 相邻段拼接
-  initial_quality: 1.2
-  enable_encoder: false
+  initial_quality: 1.1
   enable_sentence: false
   enable_user_dict: true            # 开启用户词库
   enable_completion: true           # 启用输入补全
@@ -80,10 +77,10 @@ translator:
   # always_show_comments: true      # 始终显示提示码〔仅script_translator有效〕
   # disable_user_dict_for_patterns:
   #   - '^[a-z][a-z]?$'             # 单字不调频
-  # preedit_format:
-  #   __include: preedit_convert_rules    # 输入码显示为全拼
+  preedit_format:
+    __include: preedit_convert_rules     # 输入码显示为全拼
   comment_format:
-    - xform/.*//                    # 单字编码提示只显示辅助码部分
+    - xform/^(.*)/~$1/
 
 # 次翻译器
 # melt_eng:

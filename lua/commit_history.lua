@@ -1,4 +1,3 @@
--- require("lib/metatable")
 local P = {}
 local T = {}
 
@@ -29,10 +28,16 @@ function P.func(key, env)
     local segment = composition:back()
     if segment.prompt:match(env.prompt) and (key:repr() == env.remove_user_word_key) then
         local cand = context:get_selected_candidate()
-        env.mem:user_lookup(cand.comment, true)
+        local cand_comment = cand and cand.comment
+        if (not cand) or (not cand_comment) then return end
+        env.mem:user_lookup(cand_comment, true)
         for entry in env.mem:iter_user() do
             if entry.text == cand.text then
-                env.mem:update_userdict(entry, -1, "")
+                local de       = DictEntry()
+                de.text        = cand.text
+                de.weight      = 0
+                de.custom_code = cand_comment:gsub("%s+$", "") .. " "
+                env.mem:update_userdict(de, -1, "")
             end
         end
     end
