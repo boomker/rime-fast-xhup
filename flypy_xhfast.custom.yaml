@@ -103,7 +103,7 @@ patch:
       calculator: "^(/=|cC)([^,;']*)$"          # 计算器(可查帮助)
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.-]+$"      # 中文大写数字(金额)
-      radical_lookup: "^(/rl|rL)[a-z]+'?$"      # 单字部件拆字(查拼音)
+      radical_lookup: "^(/rl|rL)[a-z]+'?$"      # 单字部件组字(查拼音)
 
   punctuator/+:
     digit_separators: ".:"            # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
@@ -131,8 +131,8 @@ patch:
         - "@139.com"
 
   speller/+:
-    auto_select_char: true            # 单字全码唯一时则自动顶屏(包括直接辅码)
-    auto_select_phrase: true          # 词组加间接辅码唯一时则自动上屏
+    auto_select_char: true            # 单字优先时全码唯一时则自动顶屏(小鹤音形效果)
+    auto_select_phrase: false         # 词组加间接辅码唯一时则自动上屏
     enable_fuzz_algebra: true         # 是否开启简拼功能(候选字词含有中英数混杂项)
     algebra/+:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)

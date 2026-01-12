@@ -1,5 +1,3 @@
--- local _, logger = pcall(require, "lib/logger")
-
 require("lib/string")
 local M = {}
 local P = {}
@@ -33,14 +31,24 @@ function M.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
-    local flyhe_schema = Schema("flyhe_fast") -- schema_id
+    local flyhe_schema = Schema("flyhe_fast")
     env.reversedb = ReverseLookup(schema_id)
+    env.mem = Memory(env.engine, flyhe_schema)
     env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
     env.expand_idiom_key = config:get_string("key_binder/simpy_expand_key") or "Control+q"
+    -- env.fuzz_tran = Component.Translator(env.engine, schema, "", "script_translator@flyhe_fast")
     env.fuzz_tran = Component.Translator(env.engine, flyhe_schema, "", "script_translator@translator")
     env.idiom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@idiom_phrase")
     env.commit_idiom_notify = context.commit_notifier:connect(function(ctx)
         ctx:set_property("idiom_phrase_first", "0")
+        local input_code = ctx.input
+        local cand = context:get_selected_candidate()
+        if (not input_code) or (not cand) then return end
+        local de       = DictEntry()
+        de.text        = cand.text
+        de.weight      = 1
+        de.custom_code = input_code .. " "
+        env.mem:update_userdict(de, 1, "")
     end)
 end
 
@@ -52,6 +60,10 @@ function M.fini(env)
     if env.fuzz_tran then
         env.fuzz_tran:disconnect()
         env.fuzz_tran = nil
+    end
+    if env.mem then
+        env.mem:disconnect()
+        env.mem = nil
     end
 end
 
