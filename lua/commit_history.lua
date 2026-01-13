@@ -45,8 +45,8 @@ function P.func(key, env)
 end
 
 function P.fini(env)
-    env.mem:disconnect()
     if env.mem then
+        env.mem:disconnect()
         env.mem = nil
     end
 end
