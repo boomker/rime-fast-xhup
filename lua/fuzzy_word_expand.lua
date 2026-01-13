@@ -32,15 +32,13 @@ local function update_flyhe_userdb(env, input_code, cand_text)
         local full_encode = ""
         for _, code in utf8.codes(text) do
             loop_count = loop_count + 1
+            local per_scode = input:sub(loop_count, loop_count)
             local per_text = utf8.char(code)
             local text_encode = env.reversedb:lookup(per_text)
             local text_ycode = text_encode:gsub("%[%l%l", "")
-            if input:sub(loop_count, loop_count) == text_ycode:sub(0, 1) then
-                full_encode = (full_encode:len() < 1) and text_ycode:sub(0, 2) or
-                    (full_encode .. " " .. text_ycode:sub(0, 2))
-            elseif (text_ycode:len() >= 4) and (input:sub(loop_count, loop_count) == text_ycode:sub(4, 4)) then
-                full_encode = (full_encode:len() < 1) and text_ycode:sub(4, 5) or
-                    (full_encode .. " " .. text_ycode:sub(4, 5))
+            if text_ycode:match(per_scode .. "[a-z]") then
+                full_encode = (full_encode:len() < 1) and text_ycode:match(per_scode .. "[a-z]") or
+                    (full_encode .. " " .. text_ycode:match(per_scode .. "[a-z]"))
             end
         end
         return full_encode
@@ -71,6 +69,7 @@ function M.init(env)
         local input_code = ctx.input
         local cand = context:get_selected_candidate()
         if (not input_code) or (not cand) then return end
+        if cand.type ~= "fuzzy_word" then return end
         update_flyhe_userdb(env, input_code, cand.text)
     end)
 end
