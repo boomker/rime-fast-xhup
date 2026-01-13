@@ -73,8 +73,6 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    -- local preedit_text = context:get_preedit().text
-    -- local preedit_code = preedit_text:gsub("‸", "")
     if composition:empty() then return end
 
     -- 四码时, 按下`Control+s`, 单字优先
@@ -259,7 +257,7 @@ return {
     processor = {
         init = M.init,
         func = P.func,
-        -- fini = M.fini
+        fini = M.fini
     },
     translator = {
         init = M.init,
@@ -269,6 +267,6 @@ return {
     filter = {
         init = M.init,
         func = F.func,
-        -- fini = M.fini,
+        fini = M.fini,
     },
 }

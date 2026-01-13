@@ -187,6 +187,6 @@ return {
     filter = {
         init = M.init,
         func = F.func,
-        -- fini = M.fini
+        fini = M.fini
     },
 }
