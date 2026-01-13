@@ -26,6 +26,33 @@ local function check_fuzzy_cand(env, cand, input)
     return true
 end
 
+local function update_flyhe_userdb(env, input_code, cand_text)
+    local function get_full_encode(input, text)
+        local loop_count = 0
+        local full_encode = ""
+        for _, code in utf8.codes(text) do
+            loop_count = loop_count + 1
+            local per_text = utf8.char(code)
+            local text_encode = env.reversedb:lookup(per_text)
+            local text_ycode = text_encode:gsub("%[%l%l", "")
+            if input:sub(loop_count, loop_count) == text_ycode:sub(0, 1) then
+                full_encode = (full_encode:len() < 1) and text_ycode:sub(0, 2) or
+                    (full_encode .. " " .. text_ycode:sub(0, 2))
+            elseif (text_ycode:len() >= 4) and (input:sub(loop_count, loop_count) == text_ycode:sub(4, 4)) then
+                full_encode = (full_encode:len() < 1) and text_ycode:sub(4, 5) or
+                    (full_encode .. " " .. text_ycode:sub(4, 5))
+            end
+        end
+        return full_encode
+    end
+    local full_encode = get_full_encode(input_code, cand_text)
+    local de          = DictEntry()
+    de.text           = cand_text
+    de.weight         = 1
+    de.custom_code    = full_encode .. " "
+    env.mem:update_userdict(de, 1, "")
+end
+
 function M.init(env)
     local context = env.engine.context
     local config = env.engine.schema.config
@@ -44,10 +71,7 @@ function M.init(env)
         local input_code = ctx.input
         local cand = context:get_selected_candidate()
         if (not input_code) or (not cand) then return end
-        local de       = DictEntry()
-        de.text        = cand.text
-        de.custom_code = input_code .. " "
-        env.mem:update_userdict(de, 1, "")
+        update_flyhe_userdb(env, input_code, cand.text)
     end)
 end
 
@@ -163,6 +187,6 @@ return {
     filter = {
         init = M.init,
         func = F.func,
-        fini = M.fini
+        -- fini = M.fini
     },
 }
