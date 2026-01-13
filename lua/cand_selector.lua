@@ -259,7 +259,7 @@ return {
     processor = {
         init = M.init,
         func = P.func,
-        fini = M.fini
+        -- fini = M.fini
     },
     translator = {
         init = M.init,
@@ -269,6 +269,6 @@ return {
     filter = {
         init = M.init,
         func = F.func,
-        fini = M.fini,
+        -- fini = M.fini,
     },
 }
