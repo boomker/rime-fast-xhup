@@ -30,42 +30,80 @@ local function update_flyhe_userdb(env, input_code, cand_text)
     local function get_full_encode(input, text)
         local loop_count = 0
         local full_encode = ""
+        local zero_text_exist = false
+        local zcsh_viu_map = {
+            ["v"] = "zh",
+            ["i"] = "ch",
+            ["u"] = "sh",
+        }
         for _, code in utf8.codes(text) do
-            loop_count = loop_count + 1
-            local per_scode = input:sub(loop_count, loop_count)
+            loop_count = (not zero_text_exist) and (loop_count + 1) or loop_count
+            local match_syllab_encode = nil
             local per_text = utf8.char(code)
-            local text_encode = env.reversedb:lookup(per_text)
-            local text_ycode = text_encode:gsub("%[%l%l", "")
-            if text_ycode:match(per_scode .. "[a-z]") then
-                full_encode = (full_encode:len() < 1) and text_ycode:match(per_scode .. "[a-z]") or
-                    (full_encode .. " " .. text_ycode:match(per_scode .. "[a-z]"))
+            local per_scode = input:sub(loop_count, loop_count)
+            local text_encode = env.reversedb_flyhe:lookup(per_text)
+            if tostring(per_text):match("0") then
+                if (per_scode == "") then
+                    per_scode = "o0"
+                elseif (not text_encode:match(per_scode)) then
+                    zero_text_exist = true
+                    per_scode = "o0"
+                end
+            else
+                per_scode = zcsh_viu_map[per_scode] or per_scode
             end
+            if per_text:match("^[A-Z]$") then
+                text_encode = text_encode:sub(3, 4)
+            end
+            if text_encode:match("^[a-zA-Z]+$") then
+                full_encode = (full_encode:len() < 1) and text_encode or (full_encode .. " " .. text_encode)
+            else
+                -- 多音字
+                if text_encode:match(" ") and text_encode:match("[a-z]") then
+                    local syllabs = string.split(text_encode, " ")
+                    for _, value in ipairs(syllabs) do
+                        if value:match("^" .. per_scode) then
+                            match_syllab_encode = value
+                        end
+                    end
+                else -- 单音字
+                    match_syllab_encode = text_encode
+                end
+                if match_syllab_encode then
+                    full_encode = (full_encode:len() < 1) and match_syllab_encode or
+                        (full_encode .. " " .. match_syllab_encode)
+                end
+            end
+        end
+        if full_encode:match("o0 o0 o0") then
+            full_encode = full_encode:gsub("o0 o0 o0", "qm")
+        elseif full_encode:match("o0 o0") then
+            full_encode = full_encode:gsub("o0 o0", "bd")
+        elseif full_encode:match("o0") then
+            full_encode = full_encode:gsub("o0", "ui")
         end
         return full_encode
     end
-    local full_encode = get_full_encode(input_code, cand_text)
+    local text        = cand_text:gsub(" ", "")
+    local full_encode = get_full_encode(input_code, text)
     local de          = DictEntry()
     de.text           = cand_text
     de.weight         = 1
     de.custom_code    = full_encode .. " "
-    env.mem:update_userdict(de, 1, "")
+    env.mem_flyhe:update_userdict(de, 1, "")
 end
 
-function M.init(env)
+function P.init(env)
     local context = env.engine.context
     local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
-    local schema = Schema(schema_id)
     local flyhe_schema = Schema("flyhe_fast")
-    env.reversedb = ReverseLookup(schema_id)
-    env.mem = Memory(env.engine, flyhe_schema)
-    env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
+    env.mem_flyhe = Memory(env.engine, flyhe_schema)
+    env.reversedb_flyhe = ReverseLookup("flyhe_fast")
     env.expand_idiom_key = config:get_string("key_binder/simpy_expand_key") or "Control+q"
-    -- env.fuzz_tran = Component.Translator(env.engine, schema, "", "script_translator@flyhe_fast")
-    env.fuzz_tran = Component.Translator(env.engine, flyhe_schema, "", "script_translator@translator")
-    env.idiom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@idiom_phrase")
-    env.commit_idiom_notify = context.commit_notifier:connect(function(ctx)
+
+    env.commit_fuzz_cand_notify = context.commit_notifier:connect(function(ctx)
         ctx:set_property("idiom_phrase_first", "0")
+
         local input_code = ctx.input
         local cand = context:get_selected_candidate()
         if (not input_code) or (not cand) then return end
@@ -74,18 +112,33 @@ function M.init(env)
     end)
 end
 
+function P.fini(env)
+    if env.commit_fuzz_cand_notify then
+        env.commit_fuzz_cand_notify:disconnect()
+        env.commit_fuzz_cand_notify = nil
+    end
+    if env.mem_flyhe then
+        env.mem_flyhe:disconnect()
+        env.mem_flyhe = nil
+    end
+end
+
+function M.init(env)
+    local config = env.engine.schema.config
+    local schema_id = config:get_string("schema/schema_id")
+    local schema = Schema(schema_id)
+    local flyhe_schema = Schema("flyhe_fast")
+    env.reversedb = ReverseLookup(schema_id)
+    env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
+    -- env.flyhe_fuzz_tran = Component.Translator(env.engine, schema, "", "script_translator@flyhe_fuzz")
+    env.flyhe_fuzz_tran = Component.Translator(env.engine, flyhe_schema, "", "script_translator@translator")
+    env.idiom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@idiom_phrase")
+end
+
 function M.fini(env)
-    if env.commit_idiom_notify then
-        env.commit_idiom_notify:disconnect()
-        env.commit_idiom_notify = nil
-    end
-    if env.fuzz_tran then
-        env.fuzz_tran:disconnect()
-        env.fuzz_tran = nil
-    end
-    if env.mem then
-        env.mem:disconnect()
-        env.mem = nil
+    if env.flyhe_fuzz_tran then
+        env.flyhe_fuzz_tran:disconnect()
+        env.flyhe_fuzz_tran = nil
     end
 end
 
@@ -119,7 +172,7 @@ function T.func(input, seg, env)
     if env.enable_fuzz_func and (input:match("^[a-z]+$"))
         and (input:len() >= 2) and (input:len() <= 7)
     then
-        local word_cands = env.fuzz_tran:query(input, seg) or nil
+        local word_cands = env.flyhe_fuzz_tran:query(input, seg) or nil
         if not word_cands then return end
 
         for cand in word_cands:iter() do
@@ -174,9 +227,9 @@ end
 
 return {
     processor = {
-        init = M.init,
+        init = P.init,
         func = P.func,
-        fini = M.fini
+        fini = P.fini
     },
     translator = {
         init = M.init,
@@ -184,8 +237,8 @@ return {
         fini = M.fini
     },
     filter = {
-        init = M.init,
+        -- init = M.init,
         func = F.func,
-        fini = M.fini
+        -- fini = M.fini
     },
 }
