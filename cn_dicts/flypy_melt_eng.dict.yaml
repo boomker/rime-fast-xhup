@@ -6,7 +6,7 @@
 
 ---
 name: flypy_melt_eng
-version: "2026.01.05"
+version: "2026.01.15"
 
 ...
 
@@ -26,8 +26,9 @@ version: "2026.01.05"
 8	ba
 9	jq
 0	lk
-0	oo
+0	o0
 0	ui
+10	ui
 00	bd
 11	uy
 12	ue
@@ -135,15 +136,21 @@ Z	zZ
 2B
 2D
 2K
-3G
-4G
-5G
 3A
 3D
+3G
+3M
+4A
+4B
 4D
+4G
+4H
 4K
-8K
+4X
+5A
+5G
 7z
+8K
 F1
 F2
 F3
@@ -166,13 +173,6 @@ M4
 M5
 S3
 
-n8n
-F5G
-F10
-F11
-F12
-K12
-K8S
 1KB
 1MB
 1GB
@@ -181,6 +181,14 @@ K8S
 3TB
 4TB
 8TB
+24H
+n8n
+F5G
+F10
+F11
+F12
+K12
+K8S
 KHz
 MHz
 2.4G
@@ -221,22 +229,22 @@ SVIP3
 512MB
 500GB
 3DMax
-7-Zip
+7-Zip	qzip
 utf8
-utf-8
-UTF-8
-UTF-16
+utf-8	utfb
+UTF-8	utfb
+UTF-16	utful
 v2rayA
 V2rayN
 V2rayNG
-WiFi-6
+WiFi-6	wifil
 HTTP1.1
-HDMI2.0
+HDMI2.0	hdmie
 HDMI2.1
 Qwen3
 Grok4
 Grok4.1
-GLM-4.7
+GLM-4.7	glmsdq
 GPT-5.1
 GPT-5.2
 Kimi-k2
@@ -322,6 +330,7 @@ v我50
 O不OK
 OK了吗
 我OK啊
+你OK吗
 这TM的
 免root
 我TM服了
@@ -929,145 +938,3 @@ IoT物联网
 江南Style
 Rime输入法
 OSI七层模型
-
-V冷
-V包
-V卷
-V奖
-V帽
-V果
-V球
-V肉
-V船
-V花
-V菜
-V虫
-V车
-V酒
-V雪
-V鞋
-V饭
-V鱼
-V鸟
-V中华
-V中餐
-V串串
-V乐器
-V亚裔
-V交通
-V元素
-V公交
-V分数
-V动物
-V午餐
-V发型
-V发色
-V叶子
-V器官
-V国旗
-V圆形
-V地铁
-V坚果
-V外汇
-V夜晚
-V夜空
-V天气
-V奖牌
-V奖项
-V娱乐
-V宗教
-V家禽
-V寒冷
-V工具
-V常用
-V帽子
-V心心
-V快餐
-V怪物
-V手势
-V拉丁
-V拉美
-V按键
-V数码
-V方形
-V日料
-V日用
-V早点
-V早餐
-V时钟
-V星号
-V星座
-V景点
-V月亮
-V有毒
-V服装
-V服饰
-V机械
-V植物
-V正餐
-V武器
-V气象
-V水果
-V汽车
-V火车
-V点心
-V热饮
-V牲畜
-V特殊
-V甜点
-V甜食
-V生肖
-V电器
-V电子
-V畜生
-V白人
-V眼镜
-V科学
-V粗粮
-V精灵
-V纸币
-V肤色
-V自然
-V节日
-V花朵
-V蔬菜
-V血型
-V衣服
-V表情
-V西餐
-V调料
-V货币
-V运动
-V野味
-V钞票
-V零食
-V面包
-V鞋子
-V颜色
-V餐具
-V饮料
-V黑人
-V东亚人
-V东亚裔
-V亚裔女
-V亚裔男
-V动物脸
-V多媒体
-V大自然
-V拉丁裔
-V拉美人
-V拉美裔
-V日本菜
-V棕色人
-V正方形
-V游乐园
-V白种人
-V穆斯林
-V运动员
-V阿拉伯
-V飞行器
-V黄种人
-V日式料理
-V棕色人种
-V野生动物
-V阿拉伯人

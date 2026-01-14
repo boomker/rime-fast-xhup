@@ -24,5 +24,6 @@ local drop_words =
 	"行政区画",
 	"台湾传统他",
 	"他人吃吗恩",
+	"娃您",
 }
 return drop_words

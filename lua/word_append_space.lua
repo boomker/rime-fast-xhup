@@ -189,12 +189,16 @@ end
 ---@diagnostic disable-next-line: unused-local
 local function cn_en_spacer(input, env)
     for cand in input:iter() do
-        if ((cand.text:find("([\228-\233][\128-\191]-)") and cand.text:match("[%a]")) or cand.text:match("^%a+%d+%p?")) then
+        local cand_text = cand.text
+        if ((cand_text:find("([\228-\233][\128-\191]-)") and cand_text:match("[%a]")) or cand_text:match("^%a+%d+%p?")) then
             local function add_spaces(s)
-                if cand.text:match("^%a+%d?") and cand.text:find("([\228-\233][\128-\191]-)") then
+                if s:match("^%a+%d?") and s:find("([\228-\233][\128-\191]-)") then
                     -- 在英文字符后和中文字符前插入空格
                     s = s:gsub("([%a%d])([\228-\233][\128-\191]-)", "%1 %2")
-                elseif cand.text:match("^%a+[%d%p]+") then
+                    if s:match("[%a%p]+$") then
+                        s = s:gsub("([\228-\233][\128-\191]-)([%a%p]+)", "%1 %2")
+                    end
+                elseif cand_text:match("^%a+[%d%p]+") then
                     s = s:gsub("([%u][%u][%u]+)([%d%p]+)", "%1 %2")
                 else
                     -- 在中文字符后和英文字符前插入空格
@@ -203,7 +207,7 @@ local function cn_en_spacer(input, env)
                 end
                 return s
             end
-            cand = cand:to_shadow_candidate(cand.type, add_spaces(cand.text), cand.comment)
+            cand = cand:to_shadow_candidate(cand.type, add_spaces(cand_text), cand.comment)
         end
         yield(cand)
     end
