@@ -16,6 +16,7 @@ end
 function P.init(env)
     local config = env.engine.schema.config
     env.mem = Memory(env.engine, env.engine.schema)
+    env.tag = config:get_string("history" .. "/tag") or "history"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
     env.remove_user_word_key = config:get_string("key_binder/remove_user_word") or "Control+r"
 end
@@ -26,16 +27,27 @@ function P.func(key, env)
     local composition = context.composition
     if composition:empty() then return 2 end
     local segment = composition:back()
-    if segment.prompt:match(env.prompt) and (key:repr() == env.remove_user_word_key) then
+    if not segment then return 2 end
+    local commit_history = context.commit_history
+    if context.input:match("^;f$") and (not commit_history:empty()) then
+        if key:repr() == "f" then
+            local ch_text = commit_history:latest_text()
+            if not ch_text then return 2 end
+            env.engine:commit_text(ch_text)
+            context:clear()
+            return 1
+        end
+    end
+    if segment:has_tag(env.tag) and (key:repr() == env.remove_user_word_key) then
         local cand = context:get_selected_candidate()
         local cand_comment = cand and cand.comment
-        if (not cand) or (not cand_comment) then return end
+        if (not cand) then return end
         env.mem:user_lookup(cand_comment, true)
         for entry in env.mem:iter_user() do
             if entry.text == cand.text then
-                local de       = DictEntry()
-                de.text        = cand.text
-                de.weight      = 0
+                local de = DictEntry()
+                de.text = cand.text
+                de.weight = 0
                 de.custom_code = cand_comment:gsub("%s+$", "") .. " "
                 env.mem:update_userdict(de, -1, "")
             end
@@ -86,7 +98,7 @@ function T.func(input, seg, env)
         segment.prompt = "〔" .. env.prompt .. "〕"
         local his_cands = env.history_list
         local comment_max_length = env.comment_max_length
-        if (not commit_history:empty()) then
+        if not commit_history:empty() then
             local ch_text = commit_history:back().text
             if ch_text ~= his_cands[#his_cands].text then
                 local cand = Candidate("history", seg.start, seg._end, ch_text, "")
