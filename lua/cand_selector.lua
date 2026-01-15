@@ -1,6 +1,7 @@
 require("lib/string")
 require("lib/metatable")
 require("lib/rime_helper")
+-- local _, logger = pcall(require, "lib/logger")
 
 local P = {}
 local T = {}
@@ -45,16 +46,25 @@ function P.func(key, env)
     local preedit_code = preedit_text:gsub("[‸ ]", "")
     local char_mode_state = context:get_option("char_mode")
 
+    if key:release() or key:alt() or key:ctrl() or key:caps() then return 2 end
     -- 触发单字优先
-    if context:has_menu() and (preedit_code:match("^%l%l%l%l$")) and (key:repr() == env.char_mode_switch_key) then
-        local switch_to_val = (not char_mode_state)
+    if
+        context:has_menu()
+        and (preedit_code:match("^%l%l%l%l$"))
+        and (key:repr() == env.char_mode_switch_key)
+    then
+        local switch_to_val = not char_mode_state
         context:set_option("char_mode", switch_to_val)
         context:refresh_non_confirmed_composition()
         return 1 -- kAccept
     end
 
     -- 单字全码唯一自动顶屏(xyab?c?)
-    if (caret_pos == #preedit_code) and preedit_code:match("^%l%l%l%l?%l?$") and (M.single_char_cand_count == 1) then
+    if
+        (caret_pos == #preedit_code)
+        and preedit_code:match("^%l%l%l%l?%l?$")
+        and (M.single_char_cand_count == 1)
+    then
         local cand = context:get_selected_candidate()
         local cand_text = cand and cand.text or ""
         if env.char_auto_commit and (utf8.len(cand_text) == 1) then
@@ -149,7 +159,9 @@ function T.func(input, seg, env)
             local cand_text = val[1]
             local word_shape_code = val[2]
             local input_shape_code = input:sub(6)
-            if idx == 1 then first_cand_confirmed_text = string.utf8_sub(cand_text, 1, 1) end
+            if idx == 1 then
+                first_cand_confirmed_text = string.utf8_sub(cand_text, 1, 1)
+            end
             local _p1 = input_shape_code and input_shape_code:sub(1, 1) or ""
             local _p2 = (input_shape_code:len() == 2) and (input_shape_code:sub(2)) or ""
             local _remain_code = word_shape_code:gsub(_p1, "", 1):gsub(_p2, "", 1)
@@ -166,7 +178,10 @@ function T.func(input, seg, env)
                 local cand = Candidate("cs", seg.start, seg._end, cand_text, comment)
                 cand.quality = 999
                 yield(cand)
-                if first_cand_confirmed_text and (word_shape_code:sub(1, 2):match("^" .. input_shape_code .. "$")) then
+                if
+                    first_cand_confirmed_text
+                    and (word_shape_code:sub(1, 2):match("^" .. input_shape_code .. "$"))
+                then
                     filtered_cand_text = first_cand_confirmed_text .. string.utf8_sub(cand_text, -1, -1)
                     local scand = Candidate("cs", seg.start, seg._end, filtered_cand_text, " ⭐️️")
                     cand.quality = 888
@@ -257,7 +272,7 @@ return {
     processor = {
         init = M.init,
         func = P.func,
-        fini = M.fini
+        fini = M.fini,
     },
     translator = {
         init = M.init,
