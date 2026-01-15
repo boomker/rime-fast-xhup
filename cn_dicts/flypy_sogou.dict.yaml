@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2026-01-05
+version: 2026-01-15
 sort: by_weight
 ...
 
@@ -829,10 +829,10 @@ sort: by_weight
 岑缨	cf yk	100
 蹭豆	cg dz	100
 蹭货	cg ho	100
-曾辉	cg hv	100
-曾科	cg ke	100
+曾辉	zg hv	100
+曾科	zg ke	100
 蹭暖	cg nr	100
-曾平	cg pk	100
+曾平	zg pk	100
 蹭图	cg tu	100
 层渊	cg yr	100
 苍盾	ch dy	100
@@ -16229,18 +16229,18 @@ sort: by_weight
 岑家村	cf jx cy	100
 岑伟宗	cf ww zs	100
 岑先丰	cf xm fg	100
-曾凡贵	cg fj gv	100
+曾凡贵	zg fj gv	100
 蹭饭图	cg fj tu	100
-曾繁振	cg fj vf	100
-曾国东	cg go ds	100
-曾建成	cg jm ig	100
+曾繁振	zg fj vf	100
+曾国东	zg go ds	100
+曾建成	zg jm ig	100
 蹭局势	cg ju ui	100
 蹭冷度	cg lg du	100
-曾茂森	cg mc sf	100
-曾石林	cg ui lb	100
-曾朝阳	cg vc yh	100
-曾杏婷	cg xk tk	100
-曾泽群	cg ze qy	100
+曾茂森	zg mc sf	100
+曾石林	zg ui lb	100
+曾朝阳	zg vc yh	100
+曾杏婷	zg xk tk	100
+曾泽群	zg ze qy	100
 藏大人	ch da rf	100
 藏灯牌	ch dg pd	100
 藏海转	ch hd vr	100
@@ -34961,7 +34961,7 @@ sort: by_weight
 国安战略	go an vj lt	100
 国安王刚	go an wh gh	100
 国奥科技	go ao ke ji	100
-果宝特攻	go bc te gs	100
+果宝特工	go bc te gs	100
 国宝时刻	go bc ui ke	100
 国宝疑云	go bc yi yy	100
 郭碧婷组	go bi tk zu	100
@@ -52118,9 +52118,9 @@ sort: by_weight
 财运滚滚来	cd yy gy gy ld	100
 策划面对面	ce hx mm dv mm	100
 侧睡的危害	ce uv de ww hd	100
-曾辉韩雨彤	cg hv hj yu ts	100
-曾舜晞审美	cg uy xi uf mw	100
-曾舜晞上脸	cg uy xi uh lm	100
+曾辉韩雨彤	zg hv hj yu ts	100
+曾舜晞审美	zg uy xi uf mw	100
+曾舜晞上脸	zg uy xi uh lm	100
 藏海表情包	ch hd bn qk bc	100
 藏海辞官了	ch hd ci gr le	100
 藏海的名义	ch hd de mk yi	100
@@ -52501,7 +52501,7 @@ sort: by_weight
 单位写错了	dj ww xp co le	100
 单休的优点	dj xq de yz dm	100
 单休违法吗	dj xq ww fa ma	100
-单依纯好听	dj yi iy hc tk	100
+单依纯好听	uj yi iy hc tk	100
 淡颜骨相美	dj yj gu xl mw	100
 丹羽宇一郎	dj yu yu yi lh	100
 蛋仔送外卖	dj zd ss wd md	100
@@ -66498,9 +66498,9 @@ sort: by_weight
 测评塞纳河水	ce pk sd na he uv	100
 岑矜李雾女儿	cf jb li wu nv er	100
 岑矜直球表白	cf jb vi qq bn bd	100
-曾输记管家婆	cg uu ji gr jx po	100
-曾舒记管家婆	cg uu ji gr jx po	100
-曾舜晞刘宇宁	cg uy xi lq yu nk	100
+曾输记管家婆	zg uu ji gr jx po	100
+曾舒记管家婆	zg uu ji gr jx po	100
+曾舜晞刘宇宁	zg uy xi lq yu nk	100
 藏不住的青春	ch bu vu de qk iy	100
 藏不住的心事	ch bu vu de xb ui	100
 苍古自由之誓	ch gu zi yz vi ui	100
@@ -66901,7 +66901,7 @@ sort: by_weight
 丹尼格林退役	dj ni ge lb tv yi	100
 但求不愧我心	dj qq bu kv wo xb	100
 单休后的周一	dj xq hz de vz yi	100
-单依纯发新歌	dj yi iy fa xb ge	100
+单依纯发新歌	uj yi iy fa xb ge	100
 蛋仔百万富翁	dj zd bd wj fu wg	100
 蛋仔必看系列	dj zd bi kj xi lp	100
 蛋仔岛被淹了	dj zd dc bw yj le	100
@@ -78596,7 +78596,7 @@ sort: by_weight
 养成系李莲花	yh ig xi li lm hx	100
 阳江受损严重	yh jl uz sy yj vs	100
 杨家玉大满贯	yh jx yu da mj gr	100
-杨坤签约乐华	yh ky qm yt le hx	100
+杨坤签约乐华	yh ky qm yt yt hx	100
 杨坤主动投案	yh ky vu ds tz an	100
 杨老一路走好	yh lc yi lu zz hc	100
 羊了个羊崩了	yh le ge yh bg le	100
@@ -84185,3 +84185,28 @@ sort: by_weight
 中国人民解放军空军航空大学	vs go rf mb jp fh jy ks jy hh ks da xt	100
 黑神话销售量发售周年突破一亿	hw uf hx xn uz ll fa uz vz nm tu po yi yi	100
 黑神话销售量发售周年突破一亿用户	hw uf hx xn uz ll fa uz vz nm tu po yi yi ys hu	100
+阿迪达斯	aa di da si	1
+阿巴斯	aa ba si	1
+阿富汗	aa fu hj	1
+啊对对对	aa dv dv dv	1
+阿贝尔	aa bw er	1
+阿耳忒弥斯	aa er tw mi si	1
+阿凡达	aa fj da	1
+阿尔及利亚	aa er ji li ya	1
+阿福	aa fu	1
+阿卜杜拉	aa bu du la	1
+阿尔巴	aa er ba	1
+阿尔特塔	aa er te ta	1
+阿杜	aa du	1
+阿德里安	aa de li an	1
+阿勃梭鲁	aa bo so lu	1
+阿斌	aa bb	1
+阿尔图罗	aa er tu lo	1
+阿德莱德	aa de ld de	1
+阿波尼亚	aa bo ni ya	1
+阿蝉	aa ij	1
+阿拜多斯	aa bd do si	1
+阿尔古斯	aa er gu si	1
+阿尔巴尼亚	aa er ba ni ya	1
+阿布扎比	aa bu va bi	1
+阿贝多	aa bw do	1
