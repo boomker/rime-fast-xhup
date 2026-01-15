@@ -1,5 +1,4 @@
 require("lib/string")
-local M = {}
 local P = {}
 local T = {}
 local F = {}
@@ -123,7 +122,7 @@ function P.fini(env)
     end
 end
 
-function M.init(env)
+function T.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
     local schema = Schema(schema_id)
@@ -135,7 +134,7 @@ function M.init(env)
     env.idiom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@idiom_phrase")
 end
 
-function M.fini(env)
+function T.fini(env)
     if env.flyhe_fuzz_tran then
         env.flyhe_fuzz_tran:disconnect()
         env.flyhe_fuzz_tran = nil
@@ -232,13 +231,11 @@ return {
         fini = P.fini
     },
     translator = {
-        init = M.init,
+        init = T.init,
         func = T.func,
-        fini = M.fini
+        fini = T.fini
     },
     filter = {
-        -- init = M.init,
         func = F.func,
-        -- fini = M.fini
     },
 }
