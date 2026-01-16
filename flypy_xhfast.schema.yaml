@@ -247,7 +247,7 @@ radical_lookup:
 
 # 部件拆字滤镜
 radical_reverse_lookup:
-  dictionary: flyhe_fast      # kMandarin
+  dictionary: flyhe_fast
   tags: [abc, radical_lookup]
   overwrite_comment: false
   comment_format:

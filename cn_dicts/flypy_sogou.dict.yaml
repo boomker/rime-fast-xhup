@@ -3,12 +3,13 @@
 
 ---
 name: flypy_sogou
-version: 2026-01-05
+version: 2026-01-15
 sort: by_weight
 ...
 
 
 阿敖	aa ao	100
+阿斌	aa bb	1
 阿比	aa bi	100
 阿赑	aa bi	100
 阿布	aa bu	100
@@ -19,6 +20,8 @@ sort: by_weight
 阿丁	aa dk	100
 阿电	aa dm	100
 阿刁	aa dn	100
+阿杜	aa du	1
+阿福	aa fu	1
 阿浮	aa fu	100
 阿改	aa gd	100
 阿哈	aa ha	100
@@ -26,6 +29,7 @@ sort: by_weight
 阿怀	aa hk	100
 阿化	aa hx	100
 阿潮	aa ic	100
+阿蝉	aa ij	1
 阿禅	aa ij	100
 阿船	aa ir	100
 阿纪	aa ji	100
@@ -829,10 +833,7 @@ sort: by_weight
 岑缨	cf yk	100
 蹭豆	cg dz	100
 蹭货	cg ho	100
-曾辉	cg hv	100
-曾科	cg ke	100
 蹭暖	cg nr	100
-曾平	cg pk	100
 蹭图	cg tu	100
 层渊	cg yr	100
 苍盾	ch dy	100
@@ -15029,10 +15030,13 @@ sort: by_weight
 怎谈	zf tj	100
 赠尔	zg er	100
 增户	zg hu	100
+曾辉	zg hv	100
 赠车	zg ie	100
 增臭	zg iz	100
 曾静	zg jk	100
+曾科	zg ke	100
 增能	zg ng	100
+曾平	zg pk	100
 增评	zg pk	100
 曾琦	zg qi	100
 增雪	zg xt	100
@@ -15208,13 +15212,19 @@ sort: by_weight
 邹炜	zz ww	100
 走戏	zz xi	100
 走鱼	zz yu	100
+阿巴斯	aa ba si	1
 阿贝贝	aa bw bw	100
+阿贝多	aa bw do	1
+阿贝尔	aa bw er	1
 阿迪了	aa di le	100
 阿多丸	aa do wj	100
+阿尔巴	aa er ba	1
 阿尔菲	aa er fw	100
 阿尔玛	aa er ma	100
 阿尔塞	aa er sd	100
 阿尔塔	aa er ta	100
+阿凡达	aa fj da	1
+阿富汗	aa fu hj	1
 阿菲夫	aa fw fu	100
 阿费夫	aa fw fu	100
 阿盖尔	aa gd er	100
@@ -15319,7 +15329,7 @@ sort: by_weight
 安工业	an gs ye	100
 安固云	an gu yy	100
 安圭伯	an gv bo	100
-暗河传	an he ir	100
+暗河传	an he vr	100
 暗河传	an he vr	100
 暗黑面	an hw mm	100
 暗黑四	an hw si	100
@@ -16229,18 +16239,9 @@ sort: by_weight
 岑家村	cf jx cy	100
 岑伟宗	cf ww zs	100
 岑先丰	cf xm fg	100
-曾凡贵	cg fj gv	100
 蹭饭图	cg fj tu	100
-曾繁振	cg fj vf	100
-曾国东	cg go ds	100
-曾建成	cg jm ig	100
 蹭局势	cg ju ui	100
 蹭冷度	cg lg du	100
-曾茂森	cg mc sf	100
-曾石林	cg ui lb	100
-曾朝阳	cg vc yh	100
-曾杏婷	cg xk tk	100
-曾泽群	cg ze qy	100
 藏大人	ch da rf	100
 藏灯牌	ch dg pd	100
 藏海转	ch hd vr	100
@@ -31352,15 +31353,24 @@ sort: by_weight
 泽善党	ze uj dh	100
 则攸之	ze yz vi	100
 啫啫煲	ze ze bc	100
+曾凡贵	zg fj gv	100
+曾繁振	zg fj vf	100
+曾国东	zg go ds	100
 增城区	zg ig qu	100
+曾建成	zg jm ig	100
 增距镜	zg ju jk	100
 赠礼码	zg li ma	100
+曾茂森	zg mc sf	100
 曾若冰	zg ro bk	100
 曾三仙	zg sj xm	100
+曾石林	zg ui lb	100
+曾朝阳	zg vc yh	100
 曾卓君	zg vo jy	100
 曾婉之	zg wj vi	100
+曾杏婷	zg xk tk	100
 增香酒	zg xl jq	100
 增益量	zg yi ll	100
+曾泽群	zg ze qy	100
 臧梵清	zh fj qk	100
 藏海传	zh hd vr	100
 藏香记	zh xl ji	100
@@ -31491,13 +31501,25 @@ sort: by_weight
 阿爸的刀	aa ba de dc	100
 阿巴斯港	aa ba si gh	100
 阿坝师范	aa ba ui fj	100
+阿拜多斯	aa bd do si	1
 阿比奥顿	aa bi ao dy	100
+阿波尼亚	aa bo ni ya	1
+阿勃梭鲁	aa bo so lu	1
+阿卜杜拉	aa bu du la	1
+阿布扎比	aa bu va bi	1
 阿策道歉	aa ce dc qm	100
+阿德莱德	aa de ld de	1
+阿德里安	aa de li an	1
 吖嘀吖嘀	aa di aa di	100
+阿迪达斯	aa di da si	1
+啊对对对	aa dv dv dv	1
 阿尔比恩	aa er bi en	100
 阿尔波拉	aa er bo la	100
+阿尔古斯	aa er gu si	1
 阿尔米隆	aa er mi ls	100
 阿尔梅达	aa er mw da	100
+阿尔特塔	aa er te ta	1
+阿尔图罗	aa er tu lo	1
 阿尔维卡	aa er ww ka	100
 阿凡不达	aa fj bu da	100
 阿凡达色	aa fj da se	100
@@ -34271,7 +34293,7 @@ sort: by_weight
 反转人生	fj vr rf ug	100
 反无人机	fj wu rf ji	100
 繁星计划	fj xk ji hx	100
-反向背调	fj xl bw tn	100
+反向背调	fj xl bw dn	100
 反向公关	fj xl gs gr	100
 反向购买	fj xl gz md	100
 反向春运	fj xl iy yy	100
@@ -34961,7 +34983,7 @@ sort: by_weight
 国安战略	go an vj lt	100
 国安王刚	go an wh gh	100
 国奥科技	go ao ke ji	100
-果宝特攻	go bc te gs	100
+果宝特工	go bc te gs	100
 国宝时刻	go bc ui ke	100
 国宝疑云	go bc yi yy	100
 郭碧婷组	go bi tk zu	100
@@ -45998,7 +46020,7 @@ sort: by_weight
 张萌演技	vh mg yj ji	100
 张淇唱跳	vh qi ih tn	100
 涨起来了	vh qi ld le	100
-长钱长投	vh qm ih tz	100
+长钱长投	ih qm ih tz	100
 张若昀帅	vh ro yy uk	100
 张睿语音	vh rv yu yb	100
 掌上衡水	vh uh hg uv	100
@@ -51256,8 +51278,11 @@ sort: by_weight
 阿达娃淘汰	aa da wa tc td	100
 阿黛尔采访	aa dd er cd fh	100
 阿尔巴尼斯	aa er ba ni si	100
+阿尔巴尼亚	aa er ba ni ya	1
+阿尔及利亚	aa er ji li ya	1
 阿尔卡拉斯	aa er ka la si	100
 阿尔提乌斯	aa er ti wu si	100
+阿耳忒弥斯	aa er tw mi si	1
 阿尔瓦拉多	aa er wa la do	100
 阿尔瓦雷斯	aa er wa lw si	100
 阿凡达重映	aa fj da is yk	100
@@ -51370,15 +51395,15 @@ sort: by_weight
 安东尼泰勒	an ds ni td le	100
 安东森球品	an ds sf qq pb	100
 安国寺景区	an go si jk qu	100
-暗河传打戏	an he ir da xi	100
-暗河传第二	an he ir di er	100
-暗河传官微	an he ir gr ww	100
-暗河传开播	an he ir kd bo	100
-暗河传开机	an he ir kd ji	100
-暗河传口碑	an he ir kz bw	100
-暗河传女主	an he ir nv vu	100
-暗河传特效	an he ir te xn	100
-暗河传下证	an he ir xx vg	100
+暗河传打戏	an he vr da xi	100
+暗河传第二	an he vr di er	100
+暗河传官微	an he vr gr ww	100
+暗河传开播	an he vr kd bo	100
+暗河传开机	an he vr kd ji	100
+暗河传口碑	an he vr kz bw	100
+暗河传女主	an he vr nv vu	100
+暗河传特效	an he vr te xn	100
+暗河传下证	an he vr xx vg	100
 暗河传登顶	an he vr dg dk	100
 安徽地震了	an hv di vf le	100
 安徽码上线	an hv ma uh xm	100
@@ -52118,9 +52143,6 @@ sort: by_weight
 财运滚滚来	cd yy gy gy ld	100
 策划面对面	ce hx mm dv mm	100
 侧睡的危害	ce uv de ww hd	100
-曾辉韩雨彤	cg hv hj yu ts	100
-曾舜晞审美	cg uy xi uf mw	100
-曾舜晞上脸	cg uy xi uh lm	100
 藏海表情包	ch hd bn qk bc	100
 藏海辞官了	ch hd ci gr le	100
 藏海的名义	ch hd de mk yi	100
@@ -52501,7 +52523,6 @@ sort: by_weight
 单位写错了	dj ww xp co le	100
 单休的优点	dj xq de yz dm	100
 单休违法吗	dj xq ww fa ma	100
-单依纯好听	dj yi iy hc tk	100
 淡颜骨相美	dj yj gu xl mw	100
 丹羽宇一郎	dj yu yu yi lh	100
 蛋仔送外卖	dj zd ss wd md	100
@@ -55894,7 +55915,6 @@ sort: by_weight
 九九艳阳天	jq jq yj yh tm	100
 旧矿工故事	jq kl gs gu ui	100
 九珑台小区	jq ls td xn qu	100
-九腔十八调	jq ql ui ba tn	100
 九千米爱情	jq qm mi ai qk	100
 就去学校了	jq qu xt xn le	100
 九三大阅兵	jq sj da yt bk	100
@@ -60895,6 +60915,7 @@ sort: by_weight
 单依纯第一	uj yi iy di yi	100
 单依纯疯了	uj yi iy fg le	100
 单依纯歌手	uj yi iy ge uz	100
+单依纯好听	uj yi iy hc tk	100
 单依纯唱功	uj yi iy ih gs	100
 单依纯济南	uj yi iy ji nj	100
 单依纯哭了	uj yi iy ku le	100
@@ -65429,11 +65450,14 @@ sort: by_weight
 曾凡博替补	zg fj bo ti bu	100
 曾凡博受伤	zg fj bo uz uh	100
 曾辉发红包	zg hv fa hs bc	100
+曾辉韩雨彤	zg hv hj yu ts	100
 曾敬骅演技	zg jk hx yj ji	100
 曾黎工作室	zg li gs zo ui	100
 曾梦雪哭戏	zg mg xt ku xi	100
 曾庆杰手滑	zg qk jp uz hx	100
 增强运动会	zg ql yy ds hv	100
+曾舜晞审美	zg uy xi uf mw	100
+曾舜晞上脸	zg uy xi uh lm	100
 曾舜晞直播	zg uy xi vi bo	100
 曾舜晞小号	zg uy xi xn hc	100
 曾志伟道歉	zg vi ww dc qm	100
@@ -65748,8 +65772,8 @@ sort: by_weight
 艾薇儿进村了	ai ww er jb cy le	100
 艾滋女孩日记	ai zi nv hd ri ji	100
 安东尼奥车祸	an ds ni ao ie ho	100
-暗河传读口型	an he ir du kz xk	100
-暗河传云包场	an he ir yy bc ih	100
+暗河传读口型	an he vr du kz xk	100
+暗河传云包场	an he vr yy bc ih	100
 暗河传大结局	an he vr da jp ju	100
 安徽高考录取	an hv gc kc lu qu	100
 安徽弘大律所	an hv hs da lv so	100
@@ -66498,9 +66522,6 @@ sort: by_weight
 测评塞纳河水	ce pk sd na he uv	100
 岑矜李雾女儿	cf jb li wu nv er	100
 岑矜直球表白	cf jb vi qq bn bd	100
-曾输记管家婆	cg uu ji gr jx po	100
-曾舒记管家婆	cg uu ji gr jx po	100
-曾舜晞刘宇宁	cg uy xi lq yu nk	100
 藏不住的青春	ch bu vu de qk iy	100
 藏不住的心事	ch bu vu de xb ui	100
 苍古自由之誓	ch gu zi yz vi ui	100
@@ -66901,7 +66922,6 @@ sort: by_weight
 丹尼格林退役	dj ni ge lb tv yi	100
 但求不愧我心	dj qq bu kv wo xb	100
 单休后的周一	dj xq hz de vz yi	100
-单依纯发新歌	dj yi iy fa xb ge	100
 蛋仔百万富翁	dj zd bd wj fu wg	100
 蛋仔必看系列	dj zd bi kj xi lp	100
 蛋仔岛被淹了	dj zd dc bw yj le	100
@@ -67071,7 +67091,7 @@ sort: by_weight
 短剧里生孩子	dr ju li ug hd zi	100
 短剧折腰开拍	dr ju ve yc kd pd	100
 短剧折腰选角	dr ju ve yc xr jt	100
-短剧演员背调	dr ju yj yr bw tn	100
+短剧演员背调	dr ju yj yr bw dn	100
 短剧演员片酬	dr ju yj yr pm iz	100
 段嘉许回来了	dr jx xu hv ld le	100
 断眉官宣结婚	dr mw gr xr jp hy	100
@@ -74971,6 +74991,7 @@ sort: by_weight
 单依纯毕业了	uj yi iy bi ye le	100
 单依纯的李白	uj yi iy de li bd	100
 单依纯发红包	uj yi iy fa hs bc	100
+单依纯发新歌	uj yi iy fa xb ge	100
 单依纯哽咽了	uj yi iy gg ye le	100
 单依纯好会扭	uj yi iy hc hv nq	100
 单依纯好会选	uj yi iy hc hv xr	100
@@ -78596,7 +78617,7 @@ sort: by_weight
 养成系李莲花	yh ig xi li lm hx	100
 阳江受损严重	yh jl uz sy yj vs	100
 杨家玉大满贯	yh jx yu da mj gr	100
-杨坤签约乐华	yh ky qm yt le hx	100
+杨坤签约乐华	yh ky qm yt yt hx	100
 杨坤主动投案	yh ky vu ds tz an	100
 杨老一路走好	yh lc yi lu zz hc	100
 羊了个羊崩了	yh le ge yh bg le	100
@@ -79722,6 +79743,9 @@ sort: by_weight
 曾黎直播种菜	zg li vi bo vs cd	100
 曾黎转型作家	zg li vr xk zo jx	100
 曾师从杨振宁	zg ui cs yh vf nk	100
+曾输记管家婆	zg uu ji gr jx po	100
+曾舒记管家婆	zg uu ji gr jx po	100
+曾舜晞刘宇宁	zg uy xi lq yu nk	100
 曾舜晞你骂我	zg uy xi ni ma wo	100
 曾舜晞张康乐	zg uy xi vh kh le	100
 曾舜晞音乐节	zg uy xi yb yt jp	100

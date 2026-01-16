@@ -45,6 +45,7 @@ function P.func(key, env)
     local preedit_code = preedit_text:gsub("[‸ ]", "")
     local char_mode_state = context:get_option("char_mode")
 
+    if key:release() or key:alt() or key:ctrl() or key:caps() then return 2 end
     -- 触发单字优先
     if
         context:has_menu()
@@ -85,7 +86,7 @@ function T.func(input, seg, env)
 
     -- 四码时, 按下`Control+s`, 单字优先
     local char_mode_state = context:get_option("char_mode")
-    if input:match("^%l%l%l%l$") and char_mode_state then
+    if input:match("^%l%l%l%l?$") and char_mode_state then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local ok = env.mem:dict_lookup(yin_code, true, 300) -- expand_search
