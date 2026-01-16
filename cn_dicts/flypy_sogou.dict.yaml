@@ -3,7 +3,7 @@
 
 ---
 name: flypy_sogou
-version: 2026-01-16
+version: 2026-01-15
 sort: by_weight
 ...
 
@@ -15329,7 +15329,7 @@ sort: by_weight
 安工业	an gs ye	100
 安固云	an gu yy	100
 安圭伯	an gv bo	100
-暗河传	an he ir	100
+暗河传	an he vr	100
 暗河传	an he vr	100
 暗黑面	an hw mm	100
 暗黑四	an hw si	100
@@ -34293,7 +34293,7 @@ sort: by_weight
 反转人生	fj vr rf ug	100
 反无人机	fj wu rf ji	100
 繁星计划	fj xk ji hx	100
-反向背调	fj xl bw tn	100
+反向背调	fj xl bw dn	100
 反向公关	fj xl gs gr	100
 反向购买	fj xl gz md	100
 反向春运	fj xl iy yy	100
@@ -46020,7 +46020,7 @@ sort: by_weight
 张萌演技	vh mg yj ji	100
 张淇唱跳	vh qi ih tn	100
 涨起来了	vh qi ld le	100
-长钱长投	vh qm ih tz	100
+长钱长投	ih qm ih tz	100
 张若昀帅	vh ro yy uk	100
 张睿语音	vh rv yu yb	100
 掌上衡水	vh uh hg uv	100
@@ -51395,15 +51395,15 @@ sort: by_weight
 安东尼泰勒	an ds ni td le	100
 安东森球品	an ds sf qq pb	100
 安国寺景区	an go si jk qu	100
-暗河传打戏	an he ir da xi	100
-暗河传第二	an he ir di er	100
-暗河传官微	an he ir gr ww	100
-暗河传开播	an he ir kd bo	100
-暗河传开机	an he ir kd ji	100
-暗河传口碑	an he ir kz bw	100
-暗河传女主	an he ir nv vu	100
-暗河传特效	an he ir te xn	100
-暗河传下证	an he ir xx vg	100
+暗河传打戏	an he vr da xi	100
+暗河传第二	an he vr di er	100
+暗河传官微	an he vr gr ww	100
+暗河传开播	an he vr kd bo	100
+暗河传开机	an he vr kd ji	100
+暗河传口碑	an he vr kz bw	100
+暗河传女主	an he vr nv vu	100
+暗河传特效	an he vr te xn	100
+暗河传下证	an he vr xx vg	100
 暗河传登顶	an he vr dg dk	100
 安徽地震了	an hv di vf le	100
 安徽码上线	an hv ma uh xm	100
@@ -55915,7 +55915,6 @@ sort: by_weight
 九九艳阳天	jq jq yj yh tm	100
 旧矿工故事	jq kl gs gu ui	100
 九珑台小区	jq ls td xn qu	100
-九腔十八调	jq ql ui ba tn	100
 九千米爱情	jq qm mi ai qk	100
 就去学校了	jq qu xt xn le	100
 九三大阅兵	jq sj da yt bk	100
@@ -65773,8 +65772,8 @@ sort: by_weight
 艾薇儿进村了	ai ww er jb cy le	100
 艾滋女孩日记	ai zi nv hd ri ji	100
 安东尼奥车祸	an ds ni ao ie ho	100
-暗河传读口型	an he ir du kz xk	100
-暗河传云包场	an he ir yy bc ih	100
+暗河传读口型	an he vr du kz xk	100
+暗河传云包场	an he vr yy bc ih	100
 暗河传大结局	an he vr da jp ju	100
 安徽高考录取	an hv gc kc lu qu	100
 安徽弘大律所	an hv hs da lv so	100
@@ -67092,7 +67091,7 @@ sort: by_weight
 短剧里生孩子	dr ju li ug hd zi	100
 短剧折腰开拍	dr ju ve yc kd pd	100
 短剧折腰选角	dr ju ve yc xr jt	100
-短剧演员背调	dr ju yj yr bw tn	100
+短剧演员背调	dr ju yj yr bw dn	100
 短剧演员片酬	dr ju yj yr pm iz	100
 段嘉许回来了	dr jx xu hv ld le	100
 断眉官宣结婚	dr mw gr xr jp hy	100

@@ -247,8 +247,8 @@ radical_lookup:
 
 # 部件拆字滤镜
 radical_reverse_lookup:
-  dictionary: flyhe_fast      # kMandarin
-  tags: [abc, radical_lookup]
+  dictionary: flyhe_fast
+  tags: [abc, radical_lookup]          # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
   comment_format:
     - xform/^/~/
@@ -309,7 +309,7 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_/&
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_-/&
   # initials 定义仅作为始码的按键
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
@@ -335,8 +335,8 @@ algebra_common:
 algebra_flypy:
   __include: algebra_common
   # 左右飞键音码规则, 注释以下两行使用原版小鹤双拼
-  # __append:
-  #   __include: flypy_chord_rule:/patch
+  __append:
+    __include: flypy_chord_rule:/patch
 
 preedit_convert_rules:
   - xform/(\w)g/$1eng/
