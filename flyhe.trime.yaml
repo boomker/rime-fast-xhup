@@ -8,7 +8,7 @@
 # Learn how to use flyhe in the readme file, available on the project's github page.
 # Source: https://github.com/HoengSaan/trime-gukwan
 
-config_version: "3.3"
+config_version: "2026.01.17"
 name: 飞鹤
 author: "Boomker <gmboomker@gmail.com>"
 
@@ -4733,27 +4733,27 @@ preset_keyboards:
           swipe_down: "……",
           hint: "……",
         }
-      - { click: "7", long_click: "&", swipe_up: "&" }
+      - { click: "7", long_click: "&", swipe_up: "&", swipe_down: "-", hint: "-", }
       - {
           click: "8",
           long_click: "*",
           swipe_up: "*",
-          swipe_down: "-",
-          hint: "-",
+          swipe_down: "+",
+          hint: "+",
         }
       - {
           click: "9",
           long_click: "(",
           swipe_up: "(",
-          swipe_down: "+",
-          hint: "+",
+          swipe_down: "<",
+          hint: "<",
         }
       - {
           click: "0",
           long_click: ")",
           swipe_up: ")",
-          swipe_down: "/",
-          hint: "/",
+          swipe_down: ">",
+          hint: ">",
         }
       #第二行
       - {
@@ -4774,31 +4774,24 @@ preset_keyboards:
         }
       - {
           click: "u",
-          long_click: "≈",
-          swipe_up: "≈",
-          # swipe_left: "×",
-          # swipe_right: "÷",
-          # hint: "×   ÷",
+          long_click: "_",
+          swipe_up: "_",
+          swipe_down: "U",
+          hint: "ˊ 2",
         }
       - {
           click: "i",
-          long_click: "_",
-          swipe_up: "_",
-          swipe_down: "[",
-          hint: "[",
-          # swipe_left: "{",
-          # swipe_right: "}",
-          # hint: "{   }",
+          long_click: "=",
+          swipe_up: "=",
+          swipe_down: "I",
+          hint: "ˉ 1",
         }
       - {
           click: "o",
-          long_click: "=",
-          swipe_up: "=",
-          swipe_down: "]",
-          hint: "]",
-          # swipe_left: "[",
-          # swipe_right: "]",
-          # hint: "[   ]",
+          long_click: "/",
+          # swipe_up: "=",
+          swipe_down: "/",
+          hint: "/",
         }
       - {
           click: "p",
@@ -4867,24 +4860,20 @@ preset_keyboards:
       - {
           width: 11,
           click: "k",
-          long_click: "<",
-          swipe_down: "{",
-          hint: "{",
+          long_click: "{",
+          swipe_up: "{",
+          swipe_down: "[",
+          hint: "[",
           # long_click: Keyboard_Katakana,
-          # swipe_left: "『",
-          # swipe_right: "』",
-          # hint: "『   』",
         }
       - {
           width: 12,
           click: "l",
-          long_click: ">",
-          swipe_down: "}",
-          hint: "}",
+          long_click: "}",
+          swipe_up: "}",
+          swipe_down: "]",
+          hint: "]",
           # long_click: Keyboard_Hangul,
-          # swipe_left: "【",
-          # swipe_right: "】",
-          # hint: "【   】",
         }
       - { width: 2 }
       #第四行
@@ -4903,8 +4892,8 @@ preset_keyboards:
       - { click: "c", long_click: copy, label_symbol: ❐,}
       - { click: "v", long_click: paste, label_symbol: ▣,}
       - { click: "b", long_click: clipboard_window, label_symbol: ⏍, }
-      - { click: "n", long_click: "'", swipe_down: "'",  }
-      - { click: "m", long_click: '"', swipe_down: '"',  }
+      - { click: "n", long_click: "'", swipe_down: "N", hint: "ˇ 3" }
+      - { click: "m", long_click: '"', swipe_down: 'M', hint: "ˋ 4" }
       - {
           click: BackSpace,
           swipe_down: Delete,
