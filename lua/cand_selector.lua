@@ -1,7 +1,6 @@
 require("lib/string")
 require("lib/metatable")
 require("lib/rime_helper")
--- local _, logger = pcall(require, "lib/logger")
 
 local P = {}
 local T = {}
@@ -121,7 +120,7 @@ function T.func(input, seg, env)
                 for _, y_code in ipairs(yin_code_tbl) do
                     if y_code:match("^" .. stone_code) or (zcs_tone and y_code:match("^" .. zcs_tone)) then
                         local tone_code = y_code:gsub("[a-z]+", "")
-                        local tone_code_point = utf8.codepoint(tone_code)
+                        local tone_code_point = (tone_code:len() > 0) and utf8.codepoint(tone_code, 1) or 252
                         table.insert(char_tone_codepoint_tbl, tone_code_point)
                     end
                 end
