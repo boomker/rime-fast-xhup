@@ -77,7 +77,7 @@ end
 
 table.find = function(tab, elm, func)
     for i, v in ipairs(tab) do
-        if elm == v then
+        if tostring(elm) == tostring(v) then
             return v, i
         end
     end
@@ -89,16 +89,16 @@ table.find_index = function(tab, elm, ...)
 end
 
 table.find_all = function(tab, elm, ...)
-    local tmptab = setmetatable({}, { __index = table })
+    local tmp_tab = setmetatable({}, { __index = table })
     local _func = (type(elm) == "function" and elm) or function(v, _, ...)
         return v == elm
     end
     for k, v in pairs(tab) do
         if _func(v, k, ...) then
-            tmptab:insert(v)
+            tmp_tab:insert(v)
         end
     end
-    return tmptab
+    return tmp_tab
 end
 
 table.select = table.find_all

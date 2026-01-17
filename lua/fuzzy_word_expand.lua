@@ -30,26 +30,26 @@ local function update_flyhe_userdb(env, input_code, cand_text)
         local loop_count = 0
         local full_encode = ""
         local zero_text_exist = false
-        local zcsh_viu_map = {
+        local zcs_viu_map = {
             ["v"] = "zh",
             ["i"] = "ch",
             ["u"] = "sh",
         }
         for _, code in utf8.codes(text) do
             loop_count = (not zero_text_exist) and (loop_count + 1) or loop_count
-            local match_syllab_encode = nil
+            local match_slab_encode = nil
             local per_text = utf8.char(code)
-            local per_scode = input:sub(loop_count, loop_count)
+            local per_encode = input:sub(loop_count, loop_count)
             local text_encode = env.reversedb_flyhe:lookup(per_text)
             if tostring(per_text):match("0") then
-                if (per_scode == "") then
-                    per_scode = "o0"
-                elseif (not text_encode:match(per_scode)) then
+                if (per_encode == "") then
+                    per_encode = "o0"
+                elseif (not text_encode:match(per_encode)) then
                     zero_text_exist = true
-                    per_scode = "o0"
+                    per_encode = "o0"
                 end
             else
-                per_scode = zcsh_viu_map[per_scode] or per_scode
+                per_encode = zcs_viu_map[per_encode] or per_encode
             end
             if per_text:match("^[A-Z]$") then
                 text_encode = text_encode:sub(3, 4)
@@ -59,18 +59,18 @@ local function update_flyhe_userdb(env, input_code, cand_text)
             else
                 -- 多音字
                 if text_encode:match(" ") and text_encode:match("[a-z]") then
-                    local syllabs = string.split(text_encode, " ")
-                    for _, value in ipairs(syllabs) do
-                        if value:match("^" .. per_scode) then
-                            match_syllab_encode = value
+                    local slabs = string.split(text_encode, " ")
+                    for _, value in ipairs(slabs) do
+                        if value:match("^" .. per_encode) then
+                            match_slab_encode = value
                         end
                     end
                 else -- 单音字
-                    match_syllab_encode = text_encode
+                    match_slab_encode = text_encode
                 end
-                if match_syllab_encode then
-                    full_encode = (full_encode:len() < 1) and match_syllab_encode or
-                        (full_encode .. " " .. match_syllab_encode)
+                if match_slab_encode then
+                    full_encode = (full_encode:len() < 1) and match_slab_encode or
+                        (full_encode .. " " .. match_slab_encode)
                 end
             end
         end

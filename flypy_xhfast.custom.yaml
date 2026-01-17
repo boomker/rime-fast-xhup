@@ -131,8 +131,6 @@ patch:
         - "@139.com"
 
   speller/+:
-    auto_select_char: true            # 单字优先时全码唯一时则自动顶屏(小鹤音形效果)
-    auto_select_phrase: false         # 词组加间接辅码唯一时则自动上屏
     enable_fuzz_algebra: true         # 是否开启简拼功能(候选字词含有中英数混杂项)
     algebra/+:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
@@ -207,6 +205,11 @@ patch:
     prefix: "cC"
     suffix: "'"
     tips: "计算器"
+
+  cand_selector:                      # 候选选择器
+    auto_select_char: true            # 单字优先时全码唯一时则自动顶屏(小鹤音形效果)
+    auto_select_phrase: false         # 词组加间接辅码唯一时则自动上屏(默认关闭)
+    tone_filter_code: "IUNM"          # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
 
   chinese_number:                     # 中文大写数字(金额)
     # prefix: "/nn"
