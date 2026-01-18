@@ -1,25 +1,25 @@
 ---@diagnostic disable: lowercase-global
 
 function detect_os()
-    local user_distribute_name = rime_api:get_distribution_code_name()
-    if user_distribute_name:lower():match("weasel") then
+    local user_data_dir = rime_api.get_user_data_dir() or ""
+    local rime_distribute_name = rime_api:get_distribution_code_name()
+    if rime_distribute_name:lower():match("weasel") then
         return "Windows"
-    elseif user_distribute_name:lower():match("squirrel") then
+    elseif rime_distribute_name:lower():match("squirrel") then
         return "MacOS"
     elseif
-        user_distribute_name:lower():match("fcitx%-rime")
-        and io.popen("uname -s"):read("*l"):lower():match("darwin")
-    then
+        rime_distribute_name:lower():match("fcitx%-rime")
+        and user_data_dir:match("local/share/fcitx5/rime") then
         return "MacOS"
-    elseif user_distribute_name:lower():match("^fcitx%-rime$") then
+    elseif rime_distribute_name:lower():match("^fcitx%-rime$") then
         return "Android"
-    elseif user_distribute_name:lower():match("trime") then
+    elseif rime_distribute_name:lower():match("trime") then
         return "Android"
-    elseif user_distribute_name:lower():match("^fcitx$") then
+    elseif rime_distribute_name:lower():match("^fcitx$") then
         return "Linux"
-    elseif user_distribute_name:lower():match("ibus") then
+    elseif rime_distribute_name:lower():match("ibus") then
         return "Linux"
-    elseif user_distribute_name:lower():match("hamster") then
+    elseif rime_distribute_name:lower():match("hamster") then
         return "iOS"
     else
         return "Unknown"
