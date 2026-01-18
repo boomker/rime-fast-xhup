@@ -17,7 +17,8 @@ function M.init(env)
     env.reversedb                  = ReverseLookup(schema_id)
     env.reversedb_flyhe            = ReverseLookup("flyhe_fast")
     env.mem                        = Memory(env.engine, schema, "translator")
-    env.tone_format                = config:get_list("cand_selector/tone_convert_format")
+    env.preedit_fmt_rules          = config:get_list("preedit_convert_rules")
+    env.tone_format_rule           = config:get_list("cand_selector/tone_convert_format")
     env.char_mode_switch_key       = config:get_string("key_binder/char_mode") or "Control+s"
     env.word_lookup_limit          = config:get_int("cand_selector/word_lookup_limit") or 666
     env.char_auto_commit           = config:get_bool("cand_selector/auto_select_char") or false
@@ -96,32 +97,28 @@ function T.func(input, seg, env)
         local entry_matched_tbl = {}
         local yin_code = input:match("^(.-)/")
         local fm_code = input:match("/(.+)$")
+        local ym_proj = Projection()
         local fm_proj = Projection()
-        local fmc = fm_proj:load(env.tone_format) and fm_proj:apply(fm_code, true) or nil
+        local ymc = ym_proj:load(env.preedit_fmt_rules) and ym_proj:apply(yin_code, true) or nil
+        local fmc = fm_proj:load(env.tone_format_rule) and fm_proj:apply(fm_code, true) or nil
         local define_tone_filter_code = fmc and fmc:match("%d") and "1234" or "IUNM"
+
         local tone_codepoint_map = {
             [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252, }, -- "āōēīūǖü"
             [define_tone_filter_code:sub(2, 2)] = { 225, 243, 233, 237, 250, 472, },      -- "áóéíúǘ"
             [define_tone_filter_code:sub(3, 3)] = { 462, 466, 283, 464, 468, 474, },      -- "ǎǒěǐǔǚ"
             [define_tone_filter_code:sub(4, 4)] = { 224, 242, 232, 236, 249, 476, },      -- "àòèìùǜ"
         }
-        local zcs_viu_map = {
-            ["v"] = "zh",
-            ["i"] = "ch",
-            ["u"] = "sh",
-        }
-        local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
+        local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit)             -- expand_search
         if not ok then return end
 
-        local shengmu_code = yin_code:sub(1, 1)
-        local zcs_tone = zcs_viu_map[shengmu_code]
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
             if (utf8.len(entry_text) ~= 1) or entry_text:match("[a-zA-Z%p]") then goto continue end
 
             local reverse_char_encode = env.reversedb_flyhe:lookup(entry_text)
             for per_encode in reverse_char_encode:gmatch("%S+") do
-                if per_encode:match("^" .. shengmu_code) or (zcs_tone and per_encode:match("^" .. zcs_tone)) then
+                if per_encode:match("^" .. ymc:sub(1, 1)) and (utf8.len(per_encode) == #ymc) then
                     local tone_code = per_encode:gsub("[a-z]+", "")
                     local tone_codepoint = (#tone_code > 0) and utf8.codepoint(tone_code, 1) or 252
                     if table.find_index(tone_codepoint_map[fmc], tone_codepoint) then
@@ -270,7 +267,7 @@ function F.func(input, env)
     local preedit_code = context.input
     local caret_pos = context.caret_pos
     local fm_code = preedit_code:match("/(.+)$")
-    local fm_replaced_code = fm_code and fm_project:load(env.tone_format) and fm_project:apply(fm_code, true) or ""
+    local fm_replaced_code = fm_code and fm_project:load(env.tone_format_rule) and fm_project:apply(fm_code, true) or ""
     local new_preedit_code = fm_code and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code or preedit_code
 
     for cand in input:iter() do
