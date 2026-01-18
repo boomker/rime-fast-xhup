@@ -55,7 +55,7 @@ local function update_flyhe_userdb(env, input_code, cand_text)
                 text_encode = text_encode:sub(3, 4)
             end
             if text_encode:match("^[a-zA-Z]+$") then
-                full_encode = (full_encode:len() < 1) and text_encode or (full_encode .. " " .. text_encode)
+                full_encode = (#full_encode < 1) and text_encode or (full_encode .. " " .. text_encode)
             else
                 -- 多音字
                 if text_encode:match(" ") and text_encode:match("[a-z]") then
@@ -69,7 +69,7 @@ local function update_flyhe_userdb(env, input_code, cand_text)
                     match_slab_encode = text_encode
                 end
                 if match_slab_encode then
-                    full_encode = (full_encode:len() < 1) and match_slab_encode or
+                    full_encode = (#full_encode < 1) and match_slab_encode or
                         (full_encode .. " " .. match_slab_encode)
                 end
             end
@@ -176,13 +176,13 @@ function T.func(input, seg, env)
 
         for cand in word_cands:iter() do
             if check_fuzzy_cand(env, cand, input) then
-                local fcand = nil
+                local fuzz_cand = nil
                 if (phrase_first_state == "1") then
-                    fcand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
+                    fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
                 else
-                    fcand = Candidate("fuzzy_word", seg.start, seg._end, cand.text, "")
+                    fuzz_cand = Candidate("fuzzy_word", seg.start, seg._end, cand.text, "")
                 end
-                yield(fcand)
+                yield(fuzz_cand)
             end
         end
     end

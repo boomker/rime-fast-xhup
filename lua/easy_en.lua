@@ -21,7 +21,7 @@ function easy_en.init(env)
     env.prompt = config:get_string("easy_en/tips") or "英文"
     env.wildcard = config:get_string("easy_en/wildcard") or "*"
     env.mem = Memory(env.engine, easy_en_schema, "translator")
-    env.expand_word_count = config:get_int("easy_en/expand_word_count") or 666
+    env.expand_word_count = config:get_int("easy_en/word_search_limit") or 666
     env.easydict_translate_key = config:get_string("key_binder/easydict_translate") or "Control+y"
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
 end
@@ -65,8 +65,8 @@ function easy_en.translator(input, seg, env)
         local header = string.match(input, "^[^" .. env.wildcard .. "]+")
         env.mem:dict_lookup(header, true, env.expand_word_count) -- expand_search
         for dictentry in env.mem:iter_dict() do
-            local codetail = string.match(dictentry.comment:lower(), tailer .. "$") or ""
-            if tailer and (codetail == tailer) then
+            local code_tail = string.match(dictentry.comment:lower(), tailer .. "$") or ""
+            if tailer and (code_tail == tailer) then
                 local ph = Phrase(env.mem, "expand_en_word", seg.start, seg._end, dictentry)
                 ph.comment = dictentry.comment:lower()
                 yield(ph:toCandidate())

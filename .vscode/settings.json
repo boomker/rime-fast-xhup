@@ -123,6 +123,7 @@
         "sdcard",
         "segmentor",
         "segmentors",
+        "shengmu",
         "simpy",
         "sinti",
         "stabledb",
@@ -139,6 +140,7 @@
         "xhfast",
         "xhup",
         "xlit",
-        "yyds"
+        "yyds",
+        "zyxwvutsrqponmlkjihgfedcba"
     ]
 }
