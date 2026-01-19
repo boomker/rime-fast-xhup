@@ -281,8 +281,9 @@ function F.func(input, env)
     local use_mask = context:get_option("mask_hint")
     local use_tone = context:get_option("tone_hint")
     local comment_off = context:get_option("comment_off")
+    local yinma_code = input_code:match("/") and input_code:match("^(.-)/") or input_code
     local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
-    local full_pinyin_code = preedit_proj:load(env.preedit_fmt_rules) and preedit_proj:apply(input_code, true) or nil
+    local full_pinyin_code = preedit_proj:load(env.preedit_fmt_rules) and preedit_proj:apply(yinma_code, true) or nil
 
     for cand in input:iter() do
         local cand_text = cand.text
@@ -294,7 +295,9 @@ function F.func(input, env)
             local comments = env.reversedb_flyhe:lookup(cand_text)
             if (utf8.len(comments) < 1) or (comments:match("%u")) then goto continue end
             for comment in comments:gsub("[%d%p]+", ""):gmatch("%S+") do
-                if (#input_code == 1) and (comment:match("^" .. full_pinyin_code:sub(1, 1))) then
+                if (#yinma_code == 1) and (comment:match("^" .. full_pinyin_code:sub(1, 1))) then
+                    table.insert(comment_tbl, comment)
+                elseif (comment:match("^" .. full_pinyin_code:sub(1, 1))) and (utf8.len(comment) == 1) then
                     table.insert(comment_tbl, comment)
                 elseif (comment:match("^" .. full_pinyin_code:sub(1, 1))) and (utf8.len(comment) == #full_pinyin_code) then
                     table.insert(comment_tbl, comment)
