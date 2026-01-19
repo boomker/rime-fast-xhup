@@ -246,7 +246,6 @@ function P.func(key, env)
             env:Config_set("engine/processors", processors)
         end
         config:save_to_file(rime_api.get_user_data_dir() .. "/build/flypy_xhfast.schema.yaml")
-        -- config:load_from_file(rime_api.get_user_data_dir() .. "/build/flypy_xhfast.schema.yaml")
         engine:apply_schema(Schema(schema.schema_id))
         return 1 -- kAccept
     end
@@ -295,7 +294,7 @@ function F.func(input, env)
             local comments = env.reversedb_flyhe:lookup(cand_text)
             if (utf8.len(comments) < 1) or (comments:match("%u")) then goto continue end
             for comment in comments:gsub("[%d%p]+", ""):gmatch("%S+") do
-                if (#yinma_code == 1) and (comment:match("^" .. full_pinyin_code:sub(1, 1))) then
+                if (comment:match("^" .. full_pinyin_code:sub(1, 1))) and (#yinma_code == 1) then
                     table.insert(comment_tbl, comment)
                 elseif (comment:match("^" .. full_pinyin_code:sub(1, 1))) and (utf8.len(comment) == 1) then
                     table.insert(comment_tbl, comment)
@@ -307,12 +306,17 @@ function F.func(input, env)
             end
             local final_comment = (#comment_tbl > 0) and table.concat(comment_tbl, " ") or "~"
             cand.comment = " " .. final_comment:gsub(" $", "")
-            ::continue::
         elseif comment_off and (utf8.len(cand_text) == 1) then
             cand.comment = ""
         end
+        ::continue::
         yield(cand)
     end
+end
+
+function F.tags_match(seg, env)
+    if seg.tags["abc"] then return true end
+    return false
 end
 
 return {
@@ -330,5 +334,6 @@ return {
         init = M.init,
         func = F.func,
         -- fini = M.fini,
+        tags_match = F.tags_match
     },
 }
