@@ -104,12 +104,13 @@ engine:
     - lua_filter@*cand_selector*filter
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
+    - lua_filter@*flypy_switcher*filter
     - lua_filter@*fuzzy_word_expand*filter
     # - lua_filter@*rime_ollama_translator
     - lua_filter@*pin_word*filter
     - uniquifier                                      # 只能放到最后!
 
-# 八股文
+# 语法模型
 grammar:
   language: wanxiang-lts-zh-hans
   # language: zh-hans-t-essay-bgw
@@ -248,7 +249,7 @@ radical_lookup:
 # 部件拆字滤镜
 radical_reverse_lookup:
   dictionary: flyhe_fast
-  tags: [abc, radical_lookup]          # 去掉`abc`即为正常输入不显示拼音
+  tags: [abc, radical_lookup]       # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
   comment_format:
     - xform/^/~/

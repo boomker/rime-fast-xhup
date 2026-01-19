@@ -1,39 +1,42 @@
-local processor = {}
-local translator = {}
-local flypy_switcher = {}
 require("lib/metatable")
 require("lib/rime_helper")
 local Env = require("lib/env_api")
+local M = {}
+local P = {}
+local T = {}
+local F = {}
 
-function flypy_switcher.init(env)
+function M.init(env)
     Env(env)
-    local engine = env.engine
-    local config = engine.schema.config
-    local default_selkey = "1234567890"
-    env.normal_labels = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
-    env.alter_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
-    env.user_distribute_name = rime_api:get_distribution_code_name()
-    env.page_size = config:get_int("menu/page_size") or 7
-    env.font_point = config:get_int("style/font_point") or 20
-    env.line_spacing = config:get_int("style/line_spacing") or 5
-    env.comment_hints = config:get_int("translator/spelling_hints") or 1
-    env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
-    env.preedit_format = config:get_list("translator/preedit_format") or nil
-    env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
-    env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
-    env.select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
-    env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
-    env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
-    env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
-    local switchOpt_pat = config:get_string("recognizer/patterns/switch_option") or "/so|sO"
-    env.switch_option_trigger = switchOpt_pat:match("%^.?([a-zA-Z/|]+).*") or "/so|sO"
-    env.cand_menu_layout = config:get_bool("style/horizontal") or true
-    env.inline_preedit_style = config:get_bool("style/inline_preedit") or false
-    env.word_auto_commit = config:get_bool("speller/auto_select_phrase") or false
-    env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
+    local engine             = env.engine
+    local config             = engine.schema.config
+    local schema_id          = config:get_string("schema/schema_id")
+    env.normal_labels        = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+    env.alter_labels         = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
+    env.rime_dist_name       = rime_api:get_distribution_code_name()
+    env.reversedb            = ReverseLookup(schema_id)
+    env.reversedb_flyhe      = ReverseLookup("flyhe_fast")
+    env.page_size            = config:get_int("menu/page_size") or 7
+    env.font_point           = config:get_int("style/font_point") or 18
+    env.line_spacing         = config:get_int("style/line_spacing") or 5
+    env.comment_hints        = config:get_int("translator/spelling_hints") or 1
+    env.preedit_fmt_rules    = config:get_list("preedit_convert_rules")
+    env.preedit_format       = config:get_list("translator/preedit_format") or nil
+    env.easy_en_prompt       = config:get_string("easy_en/tips") or "英文"
+    env.text_orientation     = config:get_string("style/text_orientation") or "horizontal"
+    env.candidate_layout     = config:get_string("style/candidate_list_layout") or "stacked"
+    env.switch_comment_key   = config:get_string("key_binder/switch_comment") or "Control+n"
+    env.commit_comment_key   = config:get_string("key_binder/commit_comment") or "Control+p"
+    env.switch_english_key   = config:get_string("key_binder/switch_english") or "Control+g"
+    env.select_keys          = config:get_string("menu/alternative_select_keys") or "1234567890"
+    env.cand_horizontal      = config:get_bool("style/horizontal") or true
+    env.preedit_style        = config:get_bool("style/inline_preedit") or false
+    env.word_auto_commit     = config:get_bool("speller/auto_select_phrase") or false
+    env.enable_fuzz_func     = config:get_bool("speller/enable_fuzz_algebra") or false
     env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
     env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
-    env.switch_option_menu = {
+    env.switch_option_prefix = config:get_string("recognizer/patterns/switch_option"):match("%^.?([a-zA-Z/|]+).*")
+    env.switch_option_menu   = {
         "切换纵横布局样式",
         "切换预编码区样式",
         "切换预编码区格式",
@@ -61,7 +64,7 @@ function flypy_switcher.init(env)
     }
 end
 
-function processor.func(key, env)
+function P.func(key, env)
     local engine = env.engine
     local schema = engine.schema
     local config = schema.config
@@ -102,15 +105,13 @@ function processor.func(key, env)
         return 1
     end
 
-    if (key:repr() == env.switch_english_key) and (schema.schema_id ~= "easy_en") then
+    if (key:repr() == env.switch_english_key) then
+        if (schema.schema_id ~= "easy_en") then
+            env.engine:apply_schema(Schema("easy_en"))
+        elseif (schema.schema_id == "easy_en") then
+            env.engine:apply_schema(Schema("flypy_xhfast"))
+        end
         context:clear()
-        env.engine:apply_schema(Schema("easy_en"))
-        context:push_input(preedit_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1                                    -- kAccept
-    elseif (key:repr() == env.switch_english_key) and (schema.schema_id == "easy_en") then
-        context:clear()
-        env.engine:apply_schema(Schema("flypy_xhfast"))
         context:push_input(preedit_code)
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1                                    -- kAccept
@@ -127,8 +128,8 @@ function processor.func(key, env)
 
         if cand_text == "切换纵横布局样式" then
             local switch_to_val = nil
-            if env.user_distribute_name:lower():match("weasel") then
-                if env.cand_menu_layout then
+            if env.rime_dist_name:lower():match("weasel") then
+                if env.cand_horizontal then
                     switch_to_val = false
                 else
                     switch_to_val = true
@@ -151,7 +152,7 @@ function processor.func(key, env)
             end
             config:set_string("style/text_orientation", switch_to_val) -- 重写 horizontal
         elseif cand_text == "切换预编码区样式" then
-            local switch_to_val = not env.inline_preedit_style
+            local switch_to_val = not env.preedit_style
             config:set_bool("style/inline_preedit", switch_to_val) -- 重写 inline_preedit
         elseif cand_text == "切换预编码区格式" then
             if (not env.preedit_format) or (env.preedit_format and env.preedit_format.size <= 1) then
@@ -253,13 +254,13 @@ function processor.func(key, env)
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
-function translator.func(input, seg, env)
+function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
     if composition:empty() then return end
     local segment = composition:back()
 
-    local trigger_pattern = env.switch_option_trigger
+    local trigger_pattern = env.switch_option_prefix or "/so|sO"
     local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or { "/so", "sO" }
 
     if seg:has_tag("switch_option") or table.find(trigger_prefix_tbl, input) then
@@ -270,15 +271,61 @@ function translator.func(input, seg, env)
     end
 end
 
+function F.func(input, env)
+    local context = env.engine.context
+    local composition = context.composition
+    if composition:empty() then return end
+
+    local input_code = context.input
+    local preedit_proj = Projection()
+    local use_mask = context:get_option("mask_hint")
+    local use_tone = context:get_option("tone_hint")
+    local comment_off = context:get_option("comment_off")
+    local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
+    local full_pinyin_code = preedit_proj:load(env.preedit_fmt_rules) and preedit_proj:apply(input_code, true) or nil
+
+    for cand in input:iter() do
+        local cand_text = cand.text
+        if use_mask and (env.comment_hints > 0) and (utf8.len(cand_text) == 1) then
+            local comment = env.reversedb:lookup(cand_text):sub(-2, -1)
+            cand.comment = "~" .. comment
+        elseif use_tone and (env.comment_hints > 0) and (utf8.len(cand_text) == 1) then
+            local comment_tbl = {}
+            local comments = env.reversedb_flyhe:lookup(cand_text)
+            if (utf8.len(comments) < 1) or (comments:match("%u")) then goto continue end
+            for comment in comments:gsub("[%d%p]+", ""):gmatch("%S+") do
+                if (#input_code == 1) and (comment:match("^" .. full_pinyin_code:sub(1, 1))) then
+                    table.insert(comment_tbl, comment)
+                elseif (comment:match("^" .. full_pinyin_code:sub(1, 1))) and (utf8.len(comment) == #full_pinyin_code) then
+                    table.insert(comment_tbl, comment)
+                elseif (not comment:match("^[a-z]")) and rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$") then
+                    table.insert(comment_tbl, comment)
+                end
+            end
+            local final_comment = (#comment_tbl > 0) and table.concat(comment_tbl, " ") or "~"
+            cand.comment = " " .. final_comment:gsub(" $", "")
+            ::continue::
+        elseif comment_off and (utf8.len(cand_text) == 1) then
+            cand.comment = ""
+        end
+        yield(cand)
+    end
+end
+
 return {
     processor = {
-        init = flypy_switcher.init,
-        func = processor.func,
-        -- fini = flypy_switcher.fini,
+        init = M.init,
+        func = P.func,
+        -- fini = M.fini,
     },
     translator = {
-        init = flypy_switcher.init,
-        func = translator.func,
-        -- fini = flypy_switcher.fini,
+        init = M.init,
+        func = T.func,
+        -- fini = M.fini,
+    },
+    filter = {
+        init = M.init,
+        func = F.func,
+        -- fini = M.fini,
     },
 }

@@ -64,7 +64,7 @@ function P.func(key, env)
         return 1 -- kAccept
     end
 
-    -- 单字全码唯一自动顶屏(abxy?c?)
+    -- 单字全码唯一自动顶屏(abx[yc]?)
     if
         (caret_pos == #preedit_code)
         and preedit_code:match("^%l%l%l%l?%l?$")
@@ -99,9 +99,9 @@ function T.func(input, seg, env)
         local fm_code = input:match("/(.+)$")
         local ym_proj = Projection()
         local fm_proj = Projection()
-        local ymc = ym_proj:load(env.preedit_fmt_rules) and ym_proj:apply(yin_code, true) or nil
-        local fmc = fm_proj:load(env.tone_format_rule) and fm_proj:apply(fm_code, true) or nil
-        local define_tone_filter_code = fmc and fmc:match("%d") and "1234" or "IUNM"
+        local mask_code = fm_proj:load(env.tone_format_rule) and fm_proj:apply(fm_code, true) or nil
+        local full_pinyin_code = ym_proj:load(env.preedit_fmt_rules) and ym_proj:apply(yin_code, true) or nil
+        local define_tone_filter_code = mask_code and mask_code:match("%d") and "1234" or "IUNM"
 
         local tone_codepoint_map = {
             [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252, }, -- "āōēīūǖü"
@@ -118,10 +118,10 @@ function T.func(input, seg, env)
 
             local reverse_char_encode = env.reversedb_flyhe:lookup(entry_text)
             for per_encode in reverse_char_encode:gmatch("%S+") do
-                if per_encode:match("^" .. ymc:sub(1, 1)) and (utf8.len(per_encode) == #ymc) then
+                if per_encode:match("^" .. full_pinyin_code:sub(1, 1)) and (utf8.len(per_encode) == #full_pinyin_code) then
                     local tone_code = per_encode:gsub("[a-z]+", "")
                     local tone_codepoint = (#tone_code > 0) and utf8.codepoint(tone_code, 1) or 252
-                    if table.find_index(tone_codepoint_map[fmc], tone_codepoint) then
+                    if table.find_index(tone_codepoint_map[mask_code], tone_codepoint) then
                         table.insert(entry_matched_tbl, dictentry)
                     end
                 end
