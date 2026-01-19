@@ -102,6 +102,7 @@ function T.func(input, seg, env)
         local mask_code = fm_proj:load(env.tone_format_rule) and fm_proj:apply(fm_code, true) or nil
         local full_pinyin_code = ym_proj:load(env.preedit_fmt_rules) and ym_proj:apply(yin_code, true) or nil
         local define_tone_filter_code = mask_code and mask_code:match("%d") and "1234" or "IUNM"
+        local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
 
         local tone_codepoint_map = {
             [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252, }, -- "āōēīūǖü"
@@ -117,8 +118,13 @@ function T.func(input, seg, env)
             if (utf8.len(entry_text) ~= 1) or entry_text:match("[a-zA-Z%p]") then goto continue end
 
             local reverse_char_encode = env.reversedb_flyhe:lookup(entry_text)
+            if (utf8.len(reverse_char_encode) < 1) or (reverse_char_encode:match("%u")) then goto continue end
             for per_encode in reverse_char_encode:gmatch("%S+") do
-                if per_encode:match("^" .. full_pinyin_code:sub(1, 1)) and (utf8.len(per_encode) == #full_pinyin_code) then
+                if (
+                        (utf8.len(per_encode) == #full_pinyin_code) and
+                        per_encode:match("^" .. full_pinyin_code:sub(1, 1))
+                    ) or rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
+                then
                     local tone_code = per_encode:gsub("[a-z]+", "")
                     local tone_codepoint = (#tone_code > 0) and utf8.codepoint(tone_code, 1) or 252
                     if table.find_index(tone_codepoint_map[mask_code], tone_codepoint) then
