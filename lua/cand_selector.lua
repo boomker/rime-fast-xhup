@@ -82,6 +82,20 @@ function P.func(key, env)
         end
         context:set_property("matched_char_cand_count", "0")
     end
+
+    -- 单字全码唯一自动顶屏(ab/xy?)
+    if env.char_auto_commit and
+        preedit_code:match("^%l%l/%l?%l?$") and
+        (context:get_property("matched_char_cand_count") == "1")
+    then
+        context:set_property("matched_char_cand_count", "0")
+        local cand = context:get_selected_candidate()
+        local cand_text = cand and cand.text or ""
+        engine:commit_text(cand_text)
+        context:clear()
+        return 1
+    end
+
     return 2 -- kNoop
 end
 
@@ -153,11 +167,13 @@ function T.func(input, seg, env)
         end
     end
 
-    -- 四码时, 按下`Control+s`, 单字优先
+    -- 四码时, 按下`Control+s`, 单字优先; 按下`/`, 单字过滤
     local char_mode_state = context:get_option("char_mode")
-    if input:match("^%l%l%l%l?$") and char_mode_state then
+    if (input:match("^%l%l%l%l?$") and char_mode_state) or (input:match("^%l%l/%l%l?$")) then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
+        local yx_code = input:match("/") and input:gsub("/", "") or ""
+        local pattern = (#yx_code > 0) and "%f[%w]" .. yx_code .. "%w?%f[%W]" or "~"
         local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
         if not ok then return end
 
@@ -166,7 +182,9 @@ function T.func(input, seg, env)
 
             if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z%p]")) then
                 local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
-                if reverse_char_code:match(input) then
+                if reverse_char_code:match(input) and char_mode_state then
+                    table.insert(entry_matched_tbl, dictentry)
+                elseif reverse_char_code:match(pattern) then
                     table.insert(entry_matched_tbl, dictentry)
                 end
             end
@@ -186,6 +204,11 @@ function T.func(input, seg, env)
                 matched_char_cand_count = matched_char_cand_count + 1
             end
         end
+
+        -- 单字全码唯一自动顶屏(ab/xy?)
+        -- if env.char_auto_commit and (#yx_code > 0) and (matched_char_cand_count == 1) then
+        --     env.engine:commit_text(prev_cand_text)
+        -- end
         context:set_property("matched_char_cand_count", tostring(matched_char_cand_count))
     end
 
@@ -271,7 +294,6 @@ function F.func(input, env)
     local fm_project = Projection()
     local context = env.engine.context
     local preedit_code = context.input
-    local caret_pos = context.caret_pos
     local fm_code = preedit_code:match("/(.+)$")
     local fm_replaced_code = fm_code and fm_project:load(env.tone_format_rule) and fm_project:apply(fm_code, true) or ""
     local new_preedit_code = fm_code and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code or preedit_code
@@ -280,11 +302,6 @@ function F.func(input, env)
         -- 符号自动上屏(;[a-z])
         if preedit_code:match("^;%l+$") and not symbol_cands[cand] then
             table.insert(symbol_cands, cand)
-        end
-
-        -- 单字全码唯一自动上屏(xy/ab?)
-        if (not single_char_cands[cand]) and preedit_code:match("^%l%l/%l%l?$") then
-            table.insert(single_char_cands, cand)
         end
 
         if cand.type:match("^single_char") then
@@ -309,30 +326,7 @@ function F.func(input, env)
     if preedit_code:match("^;%l+$") and (#symbol_cands == 1) then
         env.engine:commit_text(symbol_cands[1].text)
         context:clear()
-        return 1 -- kAccepted
-    end
-
-    -- 单字全码唯一自动上屏(xy/ab?)
-    if (caret_pos == #preedit_code) and preedit_code:match("^%l%l/%l%l?$") then
-        if env.char_auto_commit and (#single_char_cands == 1) then
-            local cand_obj = single_char_cands[1]
-            local cand_text = cand_obj.text
-            local cand_text_fm = insert_space_to_candText(env, cand_text)
-            set_committed_cand_is_chinese(env)
-            env.engine:commit_text(cand_text_fm)
-            context:clear()
-            return 1 -- kAccepted
-        end
-
-        for _, cand in ipairs(single_char_cands) do
-            local input_shape_code = preedit_code:sub(4)
-            local current_cand_shape_code = cand.comment:match("%l") and cand.comment:sub(2):gsub("%[", "")
-            if not current_cand_shape_code then return end
-
-            local remain_shape_code, _ = string.gsub(current_cand_shape_code, input_shape_code, "", 1)
-            local comment = (#remain_shape_code > 0) and string.format("~%s", remain_shape_code) or " "
-            yield(ShadowCandidate(cand, cand.type, cand.text, comment, false))
-        end
+        return
     end
 
     if #preselected_cands > 0 then
