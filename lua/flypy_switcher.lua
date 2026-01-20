@@ -280,7 +280,7 @@ function F.func(input, env)
     local use_mask = context:get_option("mask_hint")
     local use_tone = context:get_option("tone_hint")
     local comment_off = context:get_option("comment_off")
-    local yinma_code = input_code:match("/") and input_code:match("^(.-)/") or input_code
+    local yinma_code = input_code:gsub("%p", ""):sub(1, 2)
     local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
     local full_pinyin_code = preedit_proj:load(env.preedit_fmt_rules) and preedit_proj:apply(yinma_code, true) or nil
 
@@ -288,7 +288,7 @@ function F.func(input, env)
         local cand_text = cand.text
         if use_mask and (env.comment_hints > 0) and (utf8.len(cand_text) == 1) then
             local comment = env.reversedb:lookup(cand_text):sub(-2, -1)
-            cand.comment = "~" .. comment
+            cand.comment = " " .. comment
         elseif use_tone and (env.comment_hints > 0) and (utf8.len(cand_text) == 1) then
             local comment_tbl = {}
             local comments = env.reversedb_flyhe:lookup(cand_text)
@@ -304,8 +304,8 @@ function F.func(input, env)
                     table.insert(comment_tbl, comment)
                 end
             end
-            local final_comment = (#comment_tbl > 0) and table.concat(comment_tbl, " ") or "~"
-            cand.comment = " " .. final_comment:gsub(" $", "")
+            local final_comment = (#comment_tbl > 0) and table.concat(comment_tbl, " ") or ""
+            cand.comment = (#final_comment > 0) and " " .. final_comment:gsub(" $", "") or ""
         elseif comment_off and (utf8.len(cand_text) == 1) then
             cand.comment = ""
         end
