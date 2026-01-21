@@ -120,9 +120,9 @@ function T.func(input, seg, env)
 
         local tone_codepoint_map = {
             [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252, }, -- "āōēīūǖü"
-            [define_tone_filter_code:sub(2, 2)] = { 225, 243, 233, 237, 250, 472, },      -- "áóéíúǘ"
-            [define_tone_filter_code:sub(3, 3)] = { 462, 466, 283, 464, 468, 474, },      -- "ǎǒěǐǔǚ"
-            [define_tone_filter_code:sub(4, 4)] = { 224, 242, 232, 236, 249, 476, },      -- "àòèìùǜ"
+            [define_tone_filter_code:sub(2, 2)] = { 225, 243, 233, 237, 250, 472, 324, }, -- "áóéíúǘń"
+            [define_tone_filter_code:sub(3, 3)] = { 462, 466, 283, 464, 468, 474, 328, }, -- "ǎǒěǐǔǚň"
+            [define_tone_filter_code:sub(4, 4)] = { 224, 242, 232, 236, 249, 476, 505, }, -- "àòèìùǜǹ"
         }
         local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit)             -- expand_search
         if not ok then return end
@@ -181,7 +181,7 @@ function T.func(input, seg, env)
             local entry_text = dictentry.text
 
             if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z%p]")) then
-                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("%[", "")
+                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("`", "")
                 if reverse_char_code:match(input) and char_mode_state then
                     table.insert(entry_matched_tbl, dictentry)
                 elseif reverse_char_code:match(pattern) then
@@ -206,9 +206,11 @@ function T.func(input, seg, env)
         end
 
         -- 单字全码唯一自动顶屏(ab/xy?)
-        -- if env.char_auto_commit and (#yx_code > 0) and (matched_char_cand_count == 1) then
-        --     env.engine:commit_text(prev_cand_text)
-        -- end
+        if env.char_auto_commit and (#yx_code > 0) and (matched_char_cand_count == 1) then
+            env.engine:commit_text(prev_cand_text)
+            context:clear()
+            return
+        end
         context:set_property("matched_char_cand_count", tostring(matched_char_cand_count))
     end
 

@@ -97,6 +97,7 @@ engine:
     - reverse_lookup_filter@radical_lookup
     - simplifier@tradition                            # 简繁切换
     - simplifier@emoji
+    - lua_filter@*flypy_switcher*filter
     - lua_filter@*flypy_fixed
     - lua_filter@*reduce_emoji
     - lua_filter@*charset*filter
@@ -104,7 +105,6 @@ engine:
     - lua_filter@*cand_selector*filter
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
-    - lua_filter@*flypy_switcher*filter
     - lua_filter@*fuzzy_word_expand*filter
     # - lua_filter@*rime_ollama_translator
     - lua_filter@*pin_word*filter
@@ -318,20 +318,10 @@ speller:
     __include: algebra_flypy
 
 algebra_common:
-  - erase/^ng\[kk$/            # 取消「唔 ng」的独占
-  - erase/^ng\[kx$/            # 取消「嗯 ng」的独占
-  - erase/^n\[\w+$/            # 取消「嗯 n」的独占
-  - erase/^m\[\w+$/            # 取消「呒 m」的独占
-  - erase/^m\[\w+$/            # 取消「呣 m」的独占
-
   ## 字表编码到输入码的转换规则
-  - derive|^(\w+)\[(\w)(\w)$|$1/$2$3|        # Flypy: AB/CD
-  - derive|^(\w+)\[(\w)(\w)$|$1/$2|          # Flypy: AB/C
-  - derive/^(\w+)\[(\w)(\w)$/$1/             # Flypy: AB
-
-  # 响应 ` 造词
-  - derive/^(\w+)\[(\w)(\w)$/$1`$2$3/        # Flypy: AB`CD
-  - derive/^(\w+)\[(\w)(\w)$/$1`$2/          # Flypy: AB`C
+  - derive|^(\w+)`(\w)(\w)$|$1/$2$3|        # Flypy: AB/CD
+  - derive|^(\w+)`(\w)(\w)$|$1/$2|          # Flypy: AB/C
+  - derive/^(\w+)`(\w)(\w)$/$1/             # Flypy: AB
 
 algebra_flypy:
   __include: algebra_common
