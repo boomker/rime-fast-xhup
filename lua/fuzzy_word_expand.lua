@@ -18,7 +18,7 @@ local function check_fuzzy_cand(env, cand, input)
     if not tail_text then return false end
     if not tail_text:match("[%a%d%p]") then
         local _tail_code = env.reversedb:lookup(tail_text)
-        local tail_code = _tail_code:gsub("%l%[%l%l ?", "")
+        local tail_code = _tail_code:gsub("%l`%l%l ?", "")
         if tail_code:match(input:sub(-1, -1)) then return true end
         return false
     end

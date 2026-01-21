@@ -109,7 +109,7 @@ function T.func(input, seg, env)
     if pin_word_tab and seg:has_tag("abc") then
         for _, w in ipairs(pin_word_tab) do
             if (utf8.len(input_code) / utf8.len(w) ~= 2) or w:match("[%a%d%p]") or
-                (not env.reversedb:lookup(w):gsub("%[%l%l", ""):match(input_code))
+                (not env.reversedb:lookup(w):gsub("`%l%l", ""):match(input_code))
             then
                 -- 只对非完整编码的字词或不在码表里的字进行置顶, 否则会导致造词失效
                 local cand = Candidate("pin_word", seg.start, seg._end, w, env.pin_mark)

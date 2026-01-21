@@ -2,7 +2,6 @@ local pin_word_records =
 { 	["ng"] = { "能", },
 	["e"] = { "嗯", },
 	["than"] = { "than", },
-	["sg"] = { "僧", },
 	["build"] = { "build", },
 	["buffer"] = { "buffer", "buffers", },
 	["naxp"] = { "那些", "哪些", },
