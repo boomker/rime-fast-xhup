@@ -3,11 +3,10 @@
 
 ---
 name: flyhe_fast
-version: 2026.01.11
+version: 2026.01.22
 
 import_tables:
   - cn_dicts/flyhe_chars        # 字表
   - cn_dicts/flypy_base         # 基础词库
-  - cn_dicts/flypy_sogou        # 网络流行热词
-  - cn_dicts/flypy_stock        # A 股市场股票
-  - cn_dicts/flypy_melt_eng     # 大写字母和数字派生
+  - cn_dicts/flypy_melt_eng     # 中英数字派生
+  - cn_dicts/ext/flypy_stock    # A 股市场股票
