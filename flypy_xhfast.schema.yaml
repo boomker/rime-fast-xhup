@@ -234,11 +234,11 @@ tradition:                          # 简繁转换
 
 # 部件拆字反查
 flypy_radical:
-  # prefix: "/rl"
+  # prefix: "/fr"
   prefix: "rL"
   suffix: "'"
   tips: 〔部件组字〕
-  tag: radical_lookup
+  tag: flypy_radical
   dictionary: flypy_radical
   enable_sentence: false
   enable_user_dict: false
@@ -249,7 +249,7 @@ flypy_radical:
 # 部件拆字滤镜
 radical_lookup:
   dictionary: flyhe_fast
-  tags: [abc, radical_lookup]       # 去掉`abc`即为正常输入不显示拼音
+  tags: [abc, flypy_radical]       # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
   comment_format:
     - xform/^/~/

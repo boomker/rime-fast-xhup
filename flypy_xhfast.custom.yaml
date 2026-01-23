@@ -42,7 +42,6 @@ patch:
       states: [辅码开, 声调开, 注释关]
       reset: 2
 
-
   engine/+:
     processors/+:
     segmentors/+:
@@ -100,14 +99,14 @@ patch:
       history: "^(/hs|hH)$"                     # 上屏历史
       LaTeX: "^(/lt|lT)(.*)$"                   # LaTeX排版
       flypy_help: "^(/oh|oH)$"                  # 帮助菜单
+      flypy_key_map: "^/ok[a-z]*$"              # 小鹤双拼键位帮助
       switch_option: "^(/so|sO)$"               # 切换配置选项
       shortcuts_app: "^/jk[a-z]*$"              # 快捷指令(启动应用)
       shortcuts_cmd: "^/kj[a-z]*$"              # 快捷指令(执行命令)
-      flypy_key_map: "^/ok[a-z]*$"              # 小鹤双拼键位帮助
       calculator: "^(/=|cC)([^,;']*)$"          # 计算器(可查帮助)
+      flypy_radical: "^(/fr|rL)[a-z]+$"         # 单字部件组字(查拼音)
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.-]+$"      # 中文大写数字(金额)
-      radical_lookup: "^(/rl|rL)[a-z]+'?$"      # 单字部件组字(查拼音)
 
   punctuator/+:
     digit_separators: ".:"            # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
@@ -168,7 +167,7 @@ patch:
     prefix: "/ok"
     tips: "双拼查键"
 
-  radical_reverse_lookup/+:           # 部件组字反查拼音
+  radical_lookup/+:                   # 部件组字反查拼音
     overwrite_comment: false
     dictionary: flyhe_fast            # 可自行更换反查词典
 

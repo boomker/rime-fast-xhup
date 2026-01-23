@@ -6,6 +6,7 @@
 
 ---
 name: ecdict
-version: 2025.01.11
+version: 2026.01.15
+
 import_tables:
-  - en_dicts/ecdict
+  - en_dicts/ecdict                   # 英译中词库
