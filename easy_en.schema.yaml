@@ -6,7 +6,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: 2025.12.30
+  version: 2026.01.23
   author:
     - Boomker <gmboomker@gmail.com>
   description: Easy English
@@ -14,7 +14,7 @@ schema:
     - ecdict
 
 menu:
-  alternative_select_keys: "1;90567"      # 候选项选中快捷键
+  alternative_select_keys: "1;.4567"      # 候选项选中快捷键
   # alternative_select_keys: 1234567890   # 候选项选中快捷键
 
 engine:
@@ -43,7 +43,7 @@ engine:
     - lua_translator@*word_autocaps*translator
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
   filters:
-    - reverse_lookup_filter@ecdict_reverse_lookup     # 反查英文单词/词组的中文释义
+    - reverse_lookup_filter@easy_en-ecdict            # 反查英文单词/词组的中文释义
     - lua_filter@*easy_en*filter
     - lua_filter@*word_autocaps*filter
     - uniquifier
@@ -67,7 +67,7 @@ translator:
     - erase/^.$/
 
 # 英文反查释意
-ecdict_reverse_lookup:
+easy_en-ecdict:
   overwrite_comment: true     # 是否开启中文释意注解
   dictionary: ecdict
   comment_format:
@@ -79,7 +79,7 @@ easy_en:
   tag: easy_en
   tips: "英文"
   wildcard: '*'
-  expan_word_count: 666
+  word_search_limit: 666
 
 key_binder:
   import_preset: default

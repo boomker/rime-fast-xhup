@@ -33,9 +33,8 @@ function M.init(env)
     env.preedit_style        = config:get_bool("style/inline_preedit") or false
     env.word_auto_commit     = config:get_bool("speller/auto_select_phrase") or false
     env.enable_fuzz_func     = config:get_bool("speller/enable_fuzz_algebra") or false
-    env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
-    env.cn_comment_overwrite = config:get_bool("radical_reverse_lookup/overwrite_comment") or false
-    env.switch_option_prefix = config:get_string("recognizer/patterns/switch_option"):match("%^.?([a-zA-Z/|]+).*")
+    env.en_comment_overwrite = config:get_bool("easy_en-ecdict/overwrite_comment") or false
+    env.cn_comment_overwrite = config:get_bool("radical_lookup/overwrite_comment") or false
     env.switch_option_menu   = {
         "切换纵横布局样式",
         "切换预编码区样式",
@@ -77,19 +76,19 @@ function P.func(key, env)
 
     if context:has_menu() and (key:repr() == env.switch_comment_key) then
         if segment.prompt:match(env.easy_en_prompt) and env.en_comment_overwrite then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", false) -- 重写英文注释为空
+            config:set_bool("easy_en-ecdict/overwrite_comment", false) -- 重写英文注释为空
         elseif segment.prompt:match(env.easy_en_prompt) and not env.en_comment_overwrite then
-            config:set_bool("ecdict_reverse_lookup/overwrite_comment", true)  -- 重写英文注释为中文
+            config:set_bool("easy_en-ecdict/overwrite_comment", true)  -- 重写英文注释为中文
         elseif (not env.cn_comment_overwrite) and (env.comment_hints > 0) then
-            config:set_bool("radical_reverse_lookup/overwrite_comment", true) -- 重写注释为注音
+            config:set_bool("radical_lookup/overwrite_comment", true)  -- 重写注释为注音
         elseif env.cn_comment_overwrite and (env.comment_hints > 0) then
             config:set_int("translator/spelling_hints", 0)
-            config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
-            env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
+            config:set_bool("radical_lookup/overwrite_comment", false) -- 重写注释为空
+            env:Config_set("radical_lookup/comment_format/@last", "xform/^.+$//")
         else
             config:set_int("translator/spelling_hints", 1) -- 重写注释为小鹤形码
-            config:set_bool("radical_reverse_lookup/overwrite_comment", false)
-            env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^/~/")
+            config:set_bool("radical_lookup/overwrite_comment", false)
+            env:Config_set("radical_lookup/comment_format/@last", "xform/^/~/")
         end
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(preedit_code)
@@ -205,12 +204,12 @@ function P.func(key, env)
         elseif cand_text == "开关候选注解提示" then
             if (env.comment_hints > 0) then
                 config:set_int("translator/spelling_hints", 0)
-                config:set_bool("radical_reverse_lookup/overwrite_comment", false) -- 重写注释为空
-                env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^.+$//")
+                config:set_bool("radical_lookup/overwrite_comment", false) -- 重写注释为空
+                env:Config_set("radical_lookup/comment_format/@last", "xform/^.+$//")
             else
                 config:set_int("translator/spelling_hints", 1)
-                config:set_bool("radical_reverse_lookup/overwrite_comment", false)
-                env:Config_set("radical_reverse_lookup/comment_format/@last", "xform/^/~/")
+                config:set_bool("radical_lookup/overwrite_comment", false)
+                env:Config_set("radical_lookup/comment_format/@last", "xform/^/~/")
             end
         elseif cand_text == "开关词组自动上屏" then
             local switch_to_val = not env.word_auto_commit
@@ -259,10 +258,7 @@ function T.func(input, seg, env)
     if composition:empty() then return end
     local segment = composition:back()
 
-    local trigger_pattern = env.switch_option_prefix or "/so|sO"
-    local trigger_prefix_tbl = trigger_pattern:match("|") and string.split(trigger_pattern, "|") or { "/so", "sO" }
-
-    if seg:has_tag("switch_option") or table.find(trigger_prefix_tbl, input) then
+    if seg:has_tag("switch_option") or (input == "/so") or (input == "sO") then
         segment.prompt = "〔" .. "切换配置选项" .. "〕"
         for _, text in ipairs(env.switch_option_menu) do
             yield(Candidate("switch_option", seg.start, seg._end, text, ""))
