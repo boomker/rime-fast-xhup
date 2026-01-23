@@ -10,7 +10,7 @@ patch:
   "style/color_scheme_dark": catppuccin_macchiato     # 黑暗主题
   "style/display_tray_icon": false
   "style/font_point": 16                              # 候选字大小
-  "style/line_spacing": 5                             # 行间距大小
+  "style/line_spacing": 3                             # 行间距大小
   "style/horizontal": true
   "style/fullscreen": false
   "style/show_paging": false                          # 是否显示分页符号
@@ -30,4 +30,3 @@ patch:
   "style/candidate_list_layout": linear               # 候选菜单横向(linear)/纵向(stacked)
   "style/label_font_face":  'Lucida Grande'           # 标签字体
   "style/font_face": "MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei"
-  

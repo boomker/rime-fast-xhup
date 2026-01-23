@@ -21,18 +21,19 @@ patch:
     mutual_exclusive: false                     # 色不叠加: false | true
     alpha: 0.95                                 # 透明度, 0~1
     spacing: 10
-    font_point: 20
+    font_point: 16
     shadow_size: 5                              # 高亮候選詞增添陰影
-    line_spacing: 5
+    line_spacing: 3
     border_width: -1
     border_height: -1
     corner_radius: 10
-    label_font_point: 15
-    comment_font_point: 14
+    label_font_point: 14
+    comment_font_point: 13
     hilited_corner_radius: 8
     candidate_list_layout: stacked              # 候选排布: 层叠 stacked | 行 linear
-    label_font_face: 'Lucida Grande'
-    font_face: "MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei, WenJinMinchoP0"
+    candidate_format: '[label]. [candidate]  [comment]'
+    label_font_face: 'Maple Mono NF CN'
+    font_face: "JetBrains Maple Mono, MiSans, MiSans L3, MiSans Latin, LXGWNeoXiHei, WenJinMinchoP0"
 
   # 皮肤主题
   preset_color_schemes:
@@ -133,27 +134,27 @@ patch:
     com.apple.Terminal:               # 终端
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     org.alacritty:                    # alacritty 终端
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     com.github.wez.wezterm:
       ascii_mode: true
       ascii_punct: true
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     com.mitchellh.ghostty:
       ascii_mode: true
       ascii_punct: true
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     net.kovidgoyal.kitty:
       ascii_mode: true
       ascii_punct: true
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     com.googlecode.iterm2:            # iterm2
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     com.apple.Stickies:
       ascii_mode: false
     com.apple.TextEdit:
@@ -162,21 +163,23 @@ patch:
       vim_mode: true
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     com.microsoft.VSCode:
       vim_mode: true
       ascii_mode: true
       ascii_punct: true
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     com.trae.app:                     # trae
       vim_mode: true
       ascii_mode: true
       ascii_punct: true
-      symbol_unpair_flag: true
+      punct_unpair_flag: true
     com.DanPristupov.Fork:
       ascii_mode: true
       ascii_punct: true
     com.surteesstudios.Bartender:
+      ascii_mode: true
+    com.antiless.cleanclip.mac:
       ascii_mode: true
     com.microsoft.edgemac:
       ascii_mode: false
