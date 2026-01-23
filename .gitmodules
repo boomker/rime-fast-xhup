@@ -1,0 +1,3 @@
+[submodule "cn_dicts/ext"]
+	path = cn_dicts/ext
+	url = git@github.com:boomker/Rime-flyhe-dict.git
