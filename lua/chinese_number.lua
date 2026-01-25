@@ -29,7 +29,9 @@ local function format_number_comma(num)
     local int_part, dec_part = string.match(str, "^(-?%d+)(%.?%d*)$")
 
     -- 如果解析失败（例如输入非数字），直接返回原值
-    if not int_part then return num end
+    if not int_part then
+        return num
+    end
 
     -- 3. 循环处理整数部分，插入逗号
     while true do
@@ -149,7 +151,9 @@ local function decNumber2cnChar(num, flag)
             "玖",
         }
     end
-    if not tostring(num) then return "" end
+    if not tostring(num) then
+        return ""
+    end
     for pos = 1, string.len(num) do
         result = result .. wordFigure[tonumber(string.sub(num, pos, pos) + 1)]
     end
@@ -260,8 +264,12 @@ local function number2cnChar(num, flag, digitUnit, wordFigure)
 end
 
 local function sign2char(str)
-    if not str then return "" end
-    if str == "-" then return "负" end
+    if not str then
+        return ""
+    end
+    if str == "-" then
+        return "负"
+    end
     return ""
 end
 
@@ -275,63 +283,71 @@ local function number_translator(num)
     local numberPart = splitNumPart(num)
     local result = {}
     table.insert(result, {
-        sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 1) .. decimalNumber2cuChar(numberPart.dec, {
-            [1] = "角",
-            [2] = "分",
-            [3] = "厘",
-            [4] = "毫",
-        }, {
-            [0] = "零",
-            "壹",
-            "贰",
-            "叁",
-            "肆",
-            "伍",
-            "陆",
-            "柒",
-            "捌",
-            "玖",
-        }),
+        sign2char(numberPart.sign)
+            .. number2cnChar(numberPart.int, 1)
+            .. decimalNumber2cuChar(numberPart.dec, {
+                [1] = "角",
+                [2] = "分",
+                [3] = "厘",
+                [4] = "毫",
+            }, {
+                [0] = "零",
+                "壹",
+                "贰",
+                "叁",
+                "肆",
+                "伍",
+                "陆",
+                "柒",
+                "捌",
+                "玖",
+            }),
         "〔金额大写〕",
     })
     table.insert(result, {
-        sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 0) .. decimalNumber2cuChar(numberPart.dec, {
-            [1] = "角",
-            [2] = "分",
-            [3] = "厘",
-            [4] = "毫",
-        }, {
-            [0] = "〇",
-            "一",
-            "二",
-            "三",
-            "四",
-            "五",
-            "六",
-            "七",
-            "八",
-            "九",
-        }),
+        sign2char(numberPart.sign)
+            .. number2cnChar(numberPart.int, 0)
+            .. decimalNumber2cuChar(numberPart.dec, {
+                [1] = "角",
+                [2] = "分",
+                [3] = "厘",
+                [4] = "毫",
+            }, {
+                [0] = "〇",
+                "一",
+                "二",
+                "三",
+                "四",
+                "五",
+                "六",
+                "七",
+                "八",
+                "九",
+            }),
         "〔金额小写〕",
     })
     if numberPart.dot then
         table.insert(result, {
-            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 1, { "萬", "億" }, { "零", "壹", "拾", "点" })
-            .. decNumber2cnChar(numberPart.dec, 1),
+            sign2char(numberPart.sign)
+                .. number2cnChar(numberPart.int, 1, { "萬", "億" }, { "零", "壹", "拾", "点" })
+                .. decNumber2cnChar(numberPart.dec, 1),
             "〔数字大写〕",
         })
         table.insert(result, {
-            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "点" })
-            .. decNumber2cnChar(numberPart.dec, 0),
+            sign2char(numberPart.sign)
+                .. number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "点" })
+                .. decNumber2cnChar(numberPart.dec, 0),
             "〔数字小写〕",
         })
     else
         table.insert(result, {
-            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 1, { "萬", "億" }, { "零", "壹", "拾", "" }),
+            sign2char(numberPart.sign)
+                .. number2cnChar(numberPart.int, 1, { "萬", "億" }, { "零", "壹", "拾", "" }),
             "〔数字大写〕",
         })
         table.insert(result, {
-            sign2char(numberPart.sign) .. number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "" }),
+            sign2char(numberPart.sign)
+                .. number2cnChar(numberPart.int, 0, { "万", "亿" }, { "〇", "一", "十", "" }),
             "〔数字小写〕",
         })
     end
@@ -349,13 +365,12 @@ function M.init(env)
     local schema = env.engine.schema
     local context = env.engine.context
     local config = env.engine.schema.config
-    local cn_pattern_key = "recognizer/patterns/chinese_number"
-    local cn_pattern = config:get_string(cn_pattern_key) or "nN"
     local default_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
     env.system_name = detect_os()
     env.current_speller = config:get_string("speller/alphabet")
     env.prompt = config:get_string("chinese_number/tips") or "中文数字"
-    env.trigger_prefix = cn_pattern:match("%^?%(?([a-zA-Z/|]+)%)?.*") or "nN"
+    env.tag = config:get_string("chinese_number/tag") or "chinese_number"
+    env.trigger_prefix = config:get_string("chinese_number/prefix") or "nN"
     env.current_labels = config:get_string("menu/alternative_select_labels")
     env.current_select_keys = config:get_string("menu/alternative_select_keys")
     env.alter_labels = env.alter_labels or env.current_labels or default_labels
@@ -363,7 +378,9 @@ function M.init(env)
     M.alter_select_keys = M.alter_select_keys or env.current_select_keys or "1234567"
     env.alpha_select_keys = config:get_string("chinese_number/select_keys") or "sdfjklm"
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
-        if env.system_name:lower():match("android") then return end
+        if env.system_name:lower():match("android") then
+            return
+        end
         local segment = ctx.composition:back()
         if segment and segment.prompt:match(env.prompt) then
             env:Config_set("speller/alphabet", M.speller_string)
@@ -395,17 +412,24 @@ function P.func(key, env)
         engine:apply_schema(Schema(schema.schema_id))
         return 1 -- kAccepted 收下此key
     end
-    if composition:empty() then return 2 end
+    if composition:empty() then
+        return 2
+    end
     local segment = composition:back()
-    if not (segment and segment.menu) then return 2 end
-    if env.system_name:lower():match("android") then return 2 end
-    if env.current_select_keys == env.alpha_select_keys then return 2 end
+    if not (segment and segment.menu) then
+        return 2
+    end
+    if env.system_name:lower():match("android") then
+        return 2
+    end
+    if env.current_select_keys == env.alpha_select_keys then
+        return 2
+    end
 
     local alpha_labels = { "s", "d", "f", "j", "k", "l", "m" }
     local _speller_str = env.current_speller:gsub("[a-z%p]", "")
     local speller_str = _speller_str:gsub("[" .. env.trigger_prefix .. "]", "")
-    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or { "/nn", "nN" }
-    if table.find(prefix_tbl, input_code) or segment.prompt:match(env.prompt) then
+    if segment.tags[env.tag] or input_code:match("^" .. env.trigger_prefix) then
         env:Config_set("menu/alternative_select_keys", env.alpha_select_keys)
         env:Config_set("menu/alternative_select_labels", alpha_labels)
         env:Config_set("speller/alphabet", speller_str)
@@ -419,8 +443,7 @@ end
 function T.func(input, seg, env)
     local payload_str, numberPart
     local segment = env.engine.context.composition:back()
-    local prefix_tbl = env.trigger_prefix:match("|") and string.split(env.trigger_prefix, "|") or { "/nn", "nN" }
-    if seg:has_tag("chinese_number") or table.find(prefix_tbl, input) then
+    if seg:has_tag(env.tag) or input:match("^" .. env.trigger_prefix) then
         segment.prompt = "〔" .. env.prompt .. "〕"
         payload_str = input:gsub("[%a/]+", "")
         numberPart = (payload_str:len() > 0) and number_translator(payload_str) or nil

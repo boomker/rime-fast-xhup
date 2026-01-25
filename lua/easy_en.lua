@@ -18,12 +18,13 @@ end
 function easy_en.init(env)
     local config = env.engine.schema.config
     local easy_en_schema = Schema("easy_en") -- schema_id
+    env.tag = config:get_string("easy_en/tag") or "easy_en"
     env.prompt = config:get_string("easy_en/tips") or "英文"
     env.wildcard = config:get_string("easy_en/wildcard") or "*"
     env.mem = Memory(env.engine, easy_en_schema, "translator")
     env.expand_word_count = config:get_int("easy_en/word_search_limit") or 666
+    env.en_comment_overwrite = config:get_bool("easy_en-ecdict/overwrite_comment") or false
     env.easydict_translate_key = config:get_string("key_binder/easydict_translate") or "Control+y"
-    env.en_comment_overwrite = config:get_bool("ecdict_reverse_lookup/overwrite_comment") or false
 end
 
 function easy_en.fini(env)
@@ -37,7 +38,9 @@ function easy_en.processor(key, env)
     local engine = env.engine
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then return 2 end
+    if composition:empty() then
+        return 2
+    end
 
     if context:has_menu() and (key:repr() == env.easydict_translate_key) then
         local cand = context:get_selected_candidate()
@@ -55,9 +58,11 @@ function easy_en.translator(input, seg, env)
     local engine = env.engine
     local schema = engine.schema
     local composition = engine.context.composition
-    if (composition:empty()) then return end
+    if composition:empty() then
+        return
+    end
     local segment = composition:back()
-    if segment:has_tag("easy_en") or (schema.schema_id == "easy_en") or input:match("^%l+%*%l+$") then
+    if segment:has_tag(env.tag) or (schema.schema_id == "easy_en") or input:match("^%l+%*%l+$") then
         if not (schema.schema_id == "easy_en") then
             segment.prompt = "〔" .. env.prompt .. "〕"
         end
@@ -90,7 +95,9 @@ function easy_en.filter(input, env)
             yield(cand)
         end
 
-        if #en_cands >= 200 then break end -- 防止候选太多, 输入卡顿
+        if #en_cands >= 200 then
+            break
+        end -- 防止候选太多, 输入卡顿
     end
 
     for _, cand in ipairs(en_cands) do

@@ -5,7 +5,7 @@ local T = {}
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
     local segment = composition:back()
-    if seg:has_tag("flypy_help") or (input == "/oh") or (input == "oH") then
+    if seg:has_tag("flypy_help") then
         local table = {
             { "帮助菜单", "→ /oh" },
             { "小鹤键位", "→ /ok" },
@@ -16,7 +16,7 @@ function T.func(input, seg, env)
             { "上下翻页", "→ ,]键" },
             { "二三候选", "→ ;.键" },
             { "计算器🆚", "→ /=  | cC" },
-            { "组字反查", "→ /rl | rL" },
+            { "组字反查", "→ /fr | rL" },
             { "LaTeX 式", "→ /lt | lT" },
             { "中文数字", "→ /nn | nN" },
             { "选项切换", "→ /so | sO" },

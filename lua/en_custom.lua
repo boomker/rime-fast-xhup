@@ -15,9 +15,9 @@ local function user_dict_exist(word_record, path)
 end
 
 local function save_entry(env, code)
-    local entry       = DictEntry()
-    entry.text        = code -- 上屏英文本身
-    entry.weight      = 1
+    local entry = DictEntry()
+    entry.text = code -- 上屏英文本身
+    entry.weight = 1
     entry.custom_code = code -- 编码 + 空格
     env.en_memory:update_userdict(entry, 1, "")
     if code:match("%u") then
@@ -27,6 +27,7 @@ end
 
 function T.init(env)
     local context = env.engine.context
+    local config = env.engine.schema.config
     local en_schema = Schema("easy_en")
     local dict_name = "en_dicts/en_custom.dict.yaml"
     local user_data_dir = rime_api:get_user_data_dir()
@@ -34,19 +35,21 @@ function T.init(env)
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name):gsub("/", "\\")
     elseif detect_os():lower() == "ios" then
         user_data_dir =
-        "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+            "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
     else
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
     end
     env.enable_en_make_word = false
     env.en_memory = Memory(env.engine, en_schema)
+    env.tag = config:get_string("make_en_word/tag") or "make_en_word"
     env.notifier_commit_en = context.commit_notifier:connect(function(ctx)
         local segment = ctx.composition:back()
         local cand = ctx:get_selected_candidate()
         local cand_text = cand and cand.text
-        if (cand and segment and segment:has_tag("make_en_word")) or
-            (cand and cand_text:match("^%a[%a%p]+$") and env.enable_en_make_word)
+        if
+            (cand and segment and segment:has_tag(env.tag))
+            or (cand and cand_text:match("^%a[%a%p]+$") and env.enable_en_make_word)
         then
             env.enable_en_make_word = false
             local file = assert(io.open(env.dict_path, "a"))
@@ -70,7 +73,7 @@ function T.fini(env)
 end
 
 function T.func(input, seg, env)
-    if seg:has_tag("make_en_word") then -- 输入开头必须是 `~`
+    if seg:has_tag(env.tag) then -- 输入开头必须是 `~`
         local cand_text = input:gsub(",", " ")
         yield(Candidate("en_custom", seg.start, seg._end, cand_text, ""))
     end

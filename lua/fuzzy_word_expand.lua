@@ -4,22 +4,32 @@ local T = {}
 local F = {}
 
 local function check_fuzzy_cand(env, cand, input)
-    if not cand then return false end
-    if cand.quality < 0.1 then return false end
-    local cand_text = cand.text
-    if utf8.len(cand_text) <= 1 then return false end
-    if (not cand_text:match("[%a%d%p]"))
-        and utf8.len(cand_text) ~= #input
-    then
+    if not cand then
         return false
     end
-    if (#input - utf8.len(cand_text) > 1) then return false end
+    if cand.quality < 0.1 then
+        return false
+    end
+    local cand_text = cand.text
+    if utf8.len(cand_text) <= 1 then
+        return false
+    end
+    if (not cand_text:match("[%a%d%p]")) and utf8.len(cand_text) ~= #input then
+        return false
+    end
+    if #input - utf8.len(cand_text) > 1 then
+        return false
+    end
     local tail_text = string.utf8_sub(cand_text, -1, -1)
-    if not tail_text then return false end
+    if not tail_text then
+        return false
+    end
     if not tail_text:match("[%a%d%p]") then
         local _tail_code = env.reversedb:lookup(tail_text)
-        local tail_code = _tail_code:gsub("%l`%l%l ?", "")
-        if tail_code:match(input:sub(-1, -1)) then return true end
+        local tail_code = _tail_code:gsub("%l~%l%l ?", "")
+        if tail_code:match(input:sub(-1, -1)) then
+            return true
+        end
         return false
     end
     return true
@@ -42,9 +52,9 @@ local function update_flyhe_userdb(env, input_code, cand_text)
             local per_encode = input:sub(loop_count, loop_count)
             local text_encode = env.reversedb_flyhe:lookup(per_text)
             if tostring(per_text):match("0") then
-                if (per_encode == "") then
+                if per_encode == "" then
                     per_encode = "o0"
-                elseif (not text_encode:match(per_encode)) then
+                elseif not text_encode:match(per_encode) then
                     zero_text_exist = true
                     per_encode = "o0"
                 end
@@ -69,8 +79,8 @@ local function update_flyhe_userdb(env, input_code, cand_text)
                     match_slab_encode = text_encode
                 end
                 if match_slab_encode then
-                    full_encode = (#full_encode < 1) and match_slab_encode or
-                        (full_encode .. " " .. match_slab_encode)
+                    full_encode = (#full_encode < 1) and match_slab_encode
+                        or (full_encode .. " " .. match_slab_encode)
                 end
             end
         end
@@ -83,12 +93,12 @@ local function update_flyhe_userdb(env, input_code, cand_text)
         end
         return full_encode
     end
-    local text        = cand_text:gsub(" ", "")
+    local text = cand_text:gsub(" ", "")
     local full_encode = get_full_encode(input_code, text)
-    local de          = DictEntry()
-    de.text           = cand_text
-    de.weight         = 1
-    de.custom_code    = full_encode .. " "
+    local de = DictEntry()
+    de.text = cand_text
+    de.weight = 1
+    de.custom_code = full_encode .. " "
     env.mem_flyhe:update_userdict(de, 1, "")
 end
 
@@ -105,8 +115,12 @@ function P.init(env)
 
         local input_code = ctx.input
         local cand = context:get_selected_candidate()
-        if (not input_code) or (not cand) then return end
-        if cand.type ~= "fuzzy_word" then return end
+        if (not input_code) or not cand then
+            return
+        end
+        if cand.type ~= "fuzzy_word" then
+            return
+        end
         update_flyhe_userdb(env, input_code, cand.text)
     end)
 end
@@ -145,17 +159,23 @@ function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then return 2 end
+    if composition:empty() then
+        return 2
+    end
     local preedit_text = context:get_preedit().text
     local preedit_code = preedit_text:gsub("[‸ ]", "")
     local phrase_first_state = context:get_property("idiom_phrase_first")
 
     -- 触发简码成语优先
-    if context:has_menu() and (preedit_code:match("^%l%l%l%l?%l?%l?$")) and (key:repr() == env.expand_idiom_key) then
+    if
+        context:has_menu()
+        and (preedit_code:match("^%l%l%l%l?%l?%l?$"))
+        and (key:repr() == env.expand_idiom_key)
+    then
         local switch_val = (phrase_first_state == "1") and "0" or "1"
         context:set_property("idiom_phrase_first", tostring(switch_val))
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1                                    -- kAccept
+        return 1 -- kAccept
     end
 
     return 2 -- kNoop
@@ -164,20 +184,22 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
 
     -- 简拼候选, 按下`8/Control+q`, 简拼优先
     local phrase_first_state = context:get_property("idiom_phrase_first")
-    if env.enable_fuzz_func and (input:match("^[a-z]+$"))
-        and (input:len() >= 2) and (input:len() <= 7)
-    then
+    if env.enable_fuzz_func and (input:match("^[a-z]+$")) and (input:len() >= 2) and (input:len() <= 7) then
         local word_cands = env.flyhe_fuzz_tran:query(input, seg) or nil
-        if not word_cands then return end
+        if not word_cands then
+            return
+        end
 
         for cand in word_cands:iter() do
             if check_fuzzy_cand(env, cand, input) then
                 local fuzz_cand = nil
-                if (phrase_first_state == "1") then
+                if phrase_first_state == "1" then
                     fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
                 else
                     fuzz_cand = Candidate("fuzzy_word", seg.start, seg._end, cand.text, "")
@@ -188,9 +210,11 @@ function T.func(input, seg, env)
     end
 
     -- 四码时, 按下`8/Control+q`, 简拼成语优先
-    if (input:match("^%l%l%l%l?%l?%l?$") and (phrase_first_state == "1")) then
+    if input:match("^%l%l%l%l?%l?%l?$") and (phrase_first_state == "1") then
         local idiom_phrase_iter = env.idiom_phrase_tran:query(input, seg)
-        if not idiom_phrase_iter then return end
+        if not idiom_phrase_iter then
+            return
+        end
         for cand in idiom_phrase_iter:iter() do
             cand.type = "idiom_phrase_" .. cand.type
             yield(cand)
@@ -210,10 +234,12 @@ function F.func(input, env)
             table.insert(other_cands, cand)
         end
 
-        if #other_cands >= 200 then break end
+        if #other_cands >= 200 then
+            break
+        end
     end
 
-    if (#idiom_cands > 0) then
+    if #idiom_cands > 0 then
         for _, cand in ipairs(idiom_cands) do
             yield(cand)
         end
@@ -228,12 +254,12 @@ return {
     processor = {
         init = P.init,
         func = P.func,
-        fini = P.fini
+        fini = P.fini,
     },
     translator = {
         init = T.init,
         func = T.func,
-        fini = T.fini
+        fini = T.fini,
     },
     filter = {
         func = F.func,

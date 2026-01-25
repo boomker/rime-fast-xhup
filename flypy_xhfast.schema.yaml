@@ -56,14 +56,21 @@ engine:
     - matcher
     - lua_segmentor@*pair_punct*segmentor
     - abc_segmentor
+    - affix_segmentor@date
+    - affix_segmentor@week
+    - affix_segmentor@time
     - affix_segmentor@LaTeX
     - affix_segmentor@easy_en
+    - affix_segmentor@flypy_help
     - affix_segmentor@calculator
+    - affix_segmentor@shortcut_cmd
+    - affix_segmentor@shortcut_app
     - affix_segmentor@make_en_word
     - affix_segmentor@make_sentence
     - affix_segmentor@chinese_lunar
     - affix_segmentor@flypy_key_map
     - affix_segmentor@flypy_radical
+    - affix_segmentor@flypy_switcher
     - affix_segmentor@chinese_number
     - punct_segmentor
     - fallback_segmentor
@@ -251,8 +258,8 @@ radical_lookup:
   dictionary: flyhe_fast
   tags: [abc, flypy_radical]       # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
-  comment_format:
-    - xform/^/~/
+  # comment_format:
+  #   - xform/^/~/
 
 # 处理符合特定规则的输入码, 如网址、反查
 recognizer:
@@ -319,9 +326,12 @@ speller:
 
 algebra_common:
   ## 字表编码到输入码的转换规则
-  - derive|^(\w+)`(\w)(\w)$|$1/$2$3|        # Flypy: AB/CD
-  - derive|^(\w+)`(\w)(\w)$|$1/$2|          # Flypy: AB/C
-  - derive/^(\w+)`(\w)(\w)$/$1/             # Flypy: AB
+  - derive|^(\w+)~(\w)(\w)$|$1/$2$3|        # Flypy: AB/CD
+  - derive|^(\w+)~(\w)(\w)$|$1/$2|          # Flypy: AB/C
+  - derive/^(\w+)~(\w)(\w)$/$1/             # Flypy: AB
+
+  - derive|^(\w+)~(\w)(\w)$|$1`$2$3|        # Flypy: AB`CD
+  - derive|^(\w+)~(\w)(\w)$|$1`$2|          # Flypy: AB`C
 
 algebra_flypy:
   __include: algebra_common

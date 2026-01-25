@@ -12,7 +12,7 @@ local function get_record_filename()
         return string.format("%s\\lua\\pin_word_record.lua", user_data_dir)
     elseif system_name:lower():match("ios") then
         user_data_dir =
-        "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+            "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
     else
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
@@ -23,16 +23,18 @@ local function write_word_to_file(env)
     local filename = get_record_filename()
     local record_header = string.format("local pin_word_records =\n")
     local record_tailer = string.format("\nreturn pin_word_records")
-    if not filename then return false end
+    if not filename then
+        return false
+    end
 
-    local fd = assert(io.open(filename, "w"))            --打开
+    local fd = assert(io.open(filename, "w")) --打开
     fd:setvbuf("line")
-    fd:write(record_header)                              --写入文件头部
+    fd:write(record_header) --写入文件头部
     -- fd:flush() --刷新
     local record = table.serialize(env.pin_word_records) -- lua 的 table 对象 序列化为字符串
-    fd:write(record)                                     --写入 序列化的字符串
-    fd:write(record_tailer)                              --写入文件尾部, 结束记录
-    fd:close()                                           --关闭
+    fd:write(record) --写入 序列化的字符串
+    fd:write(record_tailer) --写入文件尾部, 结束记录
+    fd:close() --关闭
 end
 
 function M.init(env)
@@ -62,7 +64,9 @@ function P.func(key, env)
     if context:has_menu() and pin_unpin_keymap[key:repr()] then
         local cand = context:get_selected_candidate()
         local cand_text = cand.text:gsub(" ", "")
-        if not cand then return 2 end
+        if not cand then
+            return 2
+        end
 
         if not env.pin_word_records[preedit_code] then
             env.pin_word_records[preedit_code] = {}
@@ -96,7 +100,9 @@ function P.func(key, env)
             write_word_to_file(env)
         end
 
-        if key_accepted then return 1 end
+        if key_accepted then
+            return 1
+        end
     end
 
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
@@ -108,8 +114,10 @@ function T.func(input, seg, env)
 
     if pin_word_tab and seg:has_tag("abc") then
         for _, w in ipairs(pin_word_tab) do
-            if (utf8.len(input_code) / utf8.len(w) ~= 2) or w:match("[%a%d%p]") or
-                (not env.reversedb:lookup(w):gsub("`%l%l", ""):match(input_code))
+            if
+                (utf8.len(input_code) / utf8.len(w) ~= 2)
+                or w:match("[%a%d%p]")
+                or (not env.reversedb:lookup(w):gsub("~%l%l", ""):match(input_code))
             then
                 -- 只对非完整编码的字词或不在码表里的字进行置顶, 否则会导致造词失效
                 local cand = Candidate("pin_word", seg.start, seg._end, w, env.pin_mark)
@@ -121,7 +129,9 @@ function T.func(input, seg, env)
 
     -- 自定义短语的置顶字词加类型标记
     env.custom_tran = env.custom_phrase_tran:query(input, seg)
-    if not env.custom_tran then return end
+    if not env.custom_tran then
+        return
+    end
     for cand in env.custom_tran:iter() do
         cand.type = "custom_phrase_" .. cand.type
         yield(cand)
@@ -166,7 +176,9 @@ function F.func(input, env)
             table.insert(single_char_cands, cand)
         end
 
-        if #other_cands >= 200 then break end
+        if #other_cands >= 200 then
+            break
+        end
     end
 
     if #pin_cands > 0 then
