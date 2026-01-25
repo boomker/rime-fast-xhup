@@ -321,10 +321,8 @@ function F.func(input, env)
     local fm_code = preedit_code:match("/(.+)$")
     local fm_replaced_code = fm_code
             and fm_project:load(env.tone_format_rule)
-            and fm_project:apply(fm_code, true)
-        or ""
-    local new_preedit_code = fm_code and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code
-        or preedit_code
+            and fm_project:apply(fm_code, true) or ""
+    local new_preedit_code = fm_code and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code or preedit_code
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])

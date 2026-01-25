@@ -55,7 +55,7 @@ end
 function P.func(key, env)
     local engine = env.engine
     local context = engine.context
-    local preedit_code = context:get_script_text():gsub(" ", "")
+    local preedit_code = context.input
     local pin_unpin_keymap = {
         [env.pin_cand_key] = "pin",
         [env.unpin_cand_key] = "unpin",

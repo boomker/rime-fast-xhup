@@ -6,14 +6,9 @@
 
 ---
 name: flypy_melt_eng
-version: "2026.01.15"
+version: "2026.01.25"
 
 ...
-
-α	af
-β	bt
-θ	xt
-γ	gm
 
 1	yi
 2	er
@@ -364,10 +359,6 @@ TG群
 拍CT
 做B超
 充Q币
-α粒子
-β粒子
-θ粒子
-γ射线
 e招贷
 AVL树
 A出口

@@ -45,6 +45,7 @@ function M.init(env)
         "切换半角全角符号",
         "切换简体繁体转换",
         "切换候选文字方向",
+        "切换大小字集启用",
         "开关候选注解提示",
         "开关字集码区提示",
         "开关单字优先功能",
@@ -74,27 +75,28 @@ function P.func(key, env)
         return 2
     end
     local segment = composition:back()
-    local preedit_code = context:get_script_text():gsub(" ", "")
+    local preedit_code = context.input
 
+    if key:release() or key:alt() or key:caps() then
+        return 2
+    end
     if context:has_menu() and (key:repr() == env.switch_comment_key) then
         if segment.prompt:match(env.easy_en_prompt) and env.en_comment_overwrite then
             config:set_bool("easy_en-ecdict/overwrite_comment", false) -- 重写英文注释为空
         elseif segment.prompt:match(env.easy_en_prompt) and not env.en_comment_overwrite then
             config:set_bool("easy_en-ecdict/overwrite_comment", true) -- 重写英文注释为中文
-        elseif (not env.cn_comment_overwrite) and (env.comment_hints > 0) then
-            config:set_bool("radical_lookup/overwrite_comment", true) -- 重写注释为注音
-        elseif env.cn_comment_overwrite and (env.comment_hints > 0) then
-            config:set_int("translator/spelling_hints", 0)
-            config:set_bool("radical_lookup/overwrite_comment", false) -- 重写注释为空
-            env:Config_set("radical_lookup/comment_format/@last", "xform/^.+$//")
-        else
-            config:set_int("translator/spelling_hints", 1) -- 重写注释为小鹤形码
-            config:set_bool("radical_lookup/overwrite_comment", false)
-            env:Config_set("radical_lookup/comment_format/@last", "xform/^/~/")
+        elseif (env:Config_get("switches/@last/reset") ~= 0) and (env.comment_hints > 0) then
+            context:set_option("mask_hint", true) -- 重写注释为辅码
+            env:Config_set("switches/@last/reset", 0)
+            env:Config_set("radical_lookup/overwrite_comment", false)
+        elseif (env:Config_get("switches/@last/reset") ~= 1) and (env.comment_hints > 0) then
+            context:set_option("tone_hint", true)
+            env:Config_set("switches/@last/reset", 1)
+            env:Config_set("radical_lookup/overwrite_comment", true) -- 重写注释为注音
         end
+        config:save_to_file(rime_api.get_user_data_dir() .. "/build/" .. schema.schema_id .. ".schema.yaml")
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(preedit_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1 -- kAccept
     end
 
@@ -114,7 +116,6 @@ function P.func(key, env)
         end
         context:clear()
         context:push_input(preedit_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
         return 1 -- kAccept
     end
 
@@ -176,15 +177,24 @@ function P.func(key, env)
         elseif cand_text == "切换中英标点输出" then
             local ascii_punct_state = context:get_option("ascii_punct")
             local switch_to_val = not ascii_punct_state
+            local ascii_punct_val = env:Config_get("switches/@1/reset")
+            local ascii_punct_setval = (ascii_punct_val > 0) and 0 or 1
             context:set_option("ascii_punct", switch_to_val)
+            env:Config_set("switches/@1/reset", ascii_punct_setval)
         elseif cand_text == "切换半角全角符号" then
             local full_shape_state = context:get_option("full_shape")
             local switch_to_val = not full_shape_state
+            local full_shape_val = env:Config_get("switches/@2/reset")
+            local full_shape_setval = (full_shape_val > 0) and 0 or 1
             context:set_option("full_shape", switch_to_val)
+            env:Config_set("switches/@2/reset", full_shape_setval)
         elseif cand_text == "切换简体繁体转换" then
             local simp_tran_state = context:get_option("traditionalize")
             local switch_to_val = not simp_tran_state
+            local simp_tran_val = env:Config_get("switches/@3/reset")
+            local simp_tran_setval = (simp_tran_val > 0) and 0 or 1
             context:set_option("traditionalize", switch_to_val)
+            env:Config_set("switches/@3/reset", simp_tran_setval)
         elseif cand_text == "增加候选字体大小" then
             config:set_int("style/font_point", (env.font_point + 1))
         elseif cand_text == "减少候选字体大小" then
@@ -221,14 +231,31 @@ function P.func(key, env)
         elseif cand_text == "开关超级简拼功能" then
             local switch_to_val = not env.enable_fuzz_func
             config:set_bool("speller/enable_fuzz_algebra", switch_to_val)
-        elseif cand_text == "开关字集码区提示" then
-            local charset_hint_state = context:get_option("charset_hint")
-            local switch_to_val = not charset_hint_state
-            context:set_option("charset_hint", switch_to_val)
         elseif cand_text == "开关单字优先功能" then
             local char_mode_state = context:get_option("char_mode")
             local switch_to_val = not char_mode_state
+            local char_mode_val = env:Config_get("switches/@6/reset")
+            if char_mode_val then
+                local char_mode_setval = (char_mode_val > 0) and 0 or 1
+                env:Config_set("switches/@6/reset", char_mode_setval)
+            end
             context:set_option("char_mode", switch_to_val)
+        elseif cand_text == "切换大小字集启用" then
+            local charset_state = context:get_option("charset")
+            local switch_to_val = not charset_state
+            local charset_val = env:Config_get("switches/@7/reset")
+            local charset_setval = (charset_val > 0) and 0 or 1
+            context:set_option("charset", switch_to_val)
+            env:Config_set("switches/@7/reset", charset_setval)
+        elseif cand_text == "开关字集码区提示" then
+            local charset_hint_state = context:get_option("charset_hint")
+            local switch_to_val = not charset_hint_state
+            local charset_hint_val = env:Config_get("switches/@8/reset")
+            if charset_hint_val then
+                local charset_hint_setval = (charset_hint_val > 0) and 0 or 1
+                env:Config_set("switches/@8/reset", charset_hint_setval)
+            end
+            context:set_option("charset_hint", switch_to_val)
         elseif cand_text == "开关中英词条空格" then
             local filters = env:Config_get("engine/filters")
             local target_filter = "lua_filter@*word_append_space*filter"
@@ -248,7 +275,7 @@ function P.func(key, env)
             end
             env:Config_set("engine/processors", processors)
         end
-        config:save_to_file(rime_api.get_user_data_dir() .. "/build/flypy_xhfast.schema.yaml")
+        config:save_to_file(rime_api.get_user_data_dir() .. "/build/" .. schema.schema_id .. ".schema.yaml")
         engine:apply_schema(Schema(schema.schema_id))
         return 1 -- kAccept
     end

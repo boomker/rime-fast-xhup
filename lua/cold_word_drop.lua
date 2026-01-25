@@ -100,7 +100,7 @@ end
 function processor.func(key, env)
     local engine = env.engine
     local context = engine.context
-    local preedit_code = context:get_script_text()
+    local preedit_code = context.input
     local action_map = {
         [env.drop_cand_key] = "drop",
         [env.hide_cand_key] = "hide",
