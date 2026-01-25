@@ -8,23 +8,23 @@ local F = {}
 local M = {}
 
 function M.init(env)
-    local config                   = env.engine.schema.config
-    local schema_id                = config:get_string("schema/schema_id")
-    local schema                   = Schema(schema_id)
-    env.prev_word_pron_code        = ""
-    env.prev_word_shape_code_tbl   = {}
+    local config = env.engine.schema.config
+    local schema_id = config:get_string("schema/schema_id")
+    local schema = Schema(schema_id)
+    env.prev_word_pron_code = ""
+    env.prev_word_shape_code_tbl = {}
     env.prev_word_pron_translation = nil
-    env.reversedb                  = ReverseLookup(schema_id)
-    env.reversedb_flyhe            = ReverseLookup("flyhe_fast")
-    env.mem                        = Memory(env.engine, schema, "translator")
-    env.preedit_fmt_rules          = config:get_list("preedit_convert_rules")
-    env.tone_format_rule           = config:get_list("cand_selector/tone_convert_format")
-    env.char_mode_switch_key       = config:get_string("key_binder/char_mode") or "Control+s"
-    env.word_lookup_limit          = config:get_int("cand_selector/word_lookup_limit") or 666
-    env.char_auto_commit           = config:get_bool("cand_selector/auto_select_char") or false
-    env.word_auto_commit           = config:get_bool("cand_selector/auto_select_phrase") or false
-    env.unmatched_show_mark        = config:get_string("cand_selector/if_unmatched_show_mark") or ""
-    env.script_tran                = Component.Translator(env.engine, schema, "", "script_translator@translator")
+    env.reversedb = ReverseLookup(schema_id)
+    env.reversedb_flyhe = ReverseLookup("flyhe_fast")
+    env.mem = Memory(env.engine, schema, "translator")
+    env.preedit_fmt_rules = config:get_list("preedit_convert_rules")
+    env.tone_format_rule = config:get_list("cand_selector/tone_convert_format")
+    env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
+    env.word_lookup_limit = config:get_int("cand_selector/word_lookup_limit") or 666
+    env.char_auto_commit = config:get_bool("cand_selector/auto_select_char") or false
+    env.word_auto_commit = config:get_bool("cand_selector/auto_select_phrase") or false
+    env.unmatched_show_mark = config:get_string("cand_selector/if_unmatched_show_mark") or ""
+    env.script_tran = Component.Translator(env.engine, schema, "", "script_translator@translator")
 end
 
 function M.fini(env)
@@ -43,14 +43,18 @@ function P.func(key, env)
     local key_value = key:repr()
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then return 2 end
+    if composition:empty() then
+        return 2
+    end
 
     local caret_pos = context.caret_pos
     local preedit_text = context:get_preedit().text
     local preedit_code = preedit_text:gsub("[‸ ]", "")
     local char_mode_state = context:get_option("char_mode")
 
-    if key:release() or key:alt() or key:caps() then return 2 end
+    if key:release() or key:alt() or key:caps() then
+        return 2
+    end
 
     -- 触发单字优先
     if
@@ -84,9 +88,10 @@ function P.func(key, env)
     end
 
     -- 单字全码唯一自动顶屏(ab/xy?)
-    if env.char_auto_commit and
-        preedit_code:match("^%l%l/%l?%l?$") and
-        (context:get_property("matched_char_cand_count") == "1")
+    if
+        env.char_auto_commit
+        and preedit_code:match("^%l%l/%l?%l?$")
+        and (context:get_property("matched_char_cand_count") == "1")
     then
         context:set_property("matched_char_cand_count", "0")
         local cand = context:get_selected_candidate()
@@ -104,7 +109,9 @@ function T.func(input, seg, env)
     local composition = context.composition
     context:set_property("enable_tone_match", "0")
     context:set_property("matched_char_cand_count", "0")
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
 
     -- 二码时, 按下`/` 后补大写字母过滤出指定声调的候选
     if input:match("^%l%l/[%u%d]") then
@@ -119,25 +126,33 @@ function T.func(input, seg, env)
         local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
 
         local tone_codepoint_map = {
-            [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252, }, -- "āōēīūǖü"
-            [define_tone_filter_code:sub(2, 2)] = { 225, 243, 233, 237, 250, 472, 324, }, -- "áóéíúǘń"
-            [define_tone_filter_code:sub(3, 3)] = { 462, 466, 283, 464, 468, 474, 328, }, -- "ǎǒěǐǔǚň"
-            [define_tone_filter_code:sub(4, 4)] = { 224, 242, 232, 236, 249, 476, 505, }, -- "àòèìùǜǹ"
+            [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252 }, -- "āōēīūǖü"
+            [define_tone_filter_code:sub(2, 2)] = { 225, 243, 233, 237, 250, 472, 324 }, -- "áóéíúǘń"
+            [define_tone_filter_code:sub(3, 3)] = { 462, 466, 283, 464, 468, 474, 328 }, -- "ǎǒěǐǔǚň"
+            [define_tone_filter_code:sub(4, 4)] = { 224, 242, 232, 236, 249, 476, 505 }, -- "àòèìùǜǹ"
         }
-        local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit)             -- expand_search
-        if not ok then return end
+        local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
+        if not ok then
+            return
+        end
 
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
-            if (utf8.len(entry_text) ~= 1) or entry_text:match("[a-zA-Z%p]") then goto continue end
+            if (utf8.len(entry_text) ~= 1) or entry_text:match("[a-zA-Z%p]") then
+                goto continue
+            end
 
             local reverse_char_encode = env.reversedb_flyhe:lookup(entry_text)
-            if (utf8.len(reverse_char_encode) < 1) or (reverse_char_encode:match("%u")) then goto continue end
+            if (utf8.len(reverse_char_encode) < 1) or (reverse_char_encode:match("%u")) then
+                goto continue
+            end
             for per_encode in reverse_char_encode:gmatch("%S+") do
-                if (
-                        (utf8.len(per_encode) == #full_pinyin_code) and
-                        per_encode:match("^" .. full_pinyin_code:sub(1, 1))
-                    ) or rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
+                if
+                    (
+                        (utf8.len(per_encode) == #full_pinyin_code)
+                        and per_encode:match("^" .. full_pinyin_code:sub(1, 1))
+                    )
+                    or rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
                 then
                     local tone_code = per_encode:gsub("[a-z]+", "")
                     local tone_codepoint = (#tone_code > 0) and utf8.codepoint(tone_code, 1) or 252
@@ -175,13 +190,15 @@ function T.func(input, seg, env)
         local yx_code = input:match("/") and input:gsub("/", "") or ""
         local pattern = (#yx_code > 0) and "%f[%w]" .. yx_code .. "%w?%f[%W]" or "~"
         local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
-        if not ok then return end
+        if not ok then
+            return
+        end
 
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
 
             if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z%p]")) then
-                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("`", "")
+                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("~", "")
                 if reverse_char_code:match(input) and char_mode_state then
                     table.insert(entry_matched_tbl, dictentry)
                 elseif reverse_char_code:match(pattern) then
@@ -190,7 +207,9 @@ function T.func(input, seg, env)
             end
         end
 
-        if table.len(entry_matched_tbl) < 1 then return end
+        if table.len(entry_matched_tbl) < 1 then
+            return
+        end
 
         local prev_cand_text = ""
         local matched_char_cand_count = 0
@@ -248,7 +267,9 @@ function T.func(input, seg, env)
             env.prev_word_shape_code_tbl = word_shape_code_tbl
         end
 
-        if table.len(env.prev_word_shape_code_tbl) < 1 then return end
+        if table.len(env.prev_word_shape_code_tbl) < 1 then
+            return
+        end
 
         for idx, val in ipairs(env.prev_word_shape_code_tbl) do
             local cand_text = val[1]
@@ -278,7 +299,8 @@ function T.func(input, seg, env)
                     and (word_shape_code:sub(1, 2):match("^" .. input_shape_code .. "$"))
                 then
                     filtered_cand_text = first_cand_confirmed_text .. string.utf8_sub(cand_text, -1, -1)
-                    local star_cand = Candidate("pre_select", seg.start, seg._end, filtered_cand_text, " ⭐️️")
+                    local star_cand =
+                        Candidate("pre_select", seg.start, seg._end, filtered_cand_text, " ⭐️️")
                     star_cand.quality = 888
                     yield(star_cand)
                 end
@@ -297,8 +319,12 @@ function F.func(input, env)
     local context = env.engine.context
     local preedit_code = context.input
     local fm_code = preedit_code:match("/(.+)$")
-    local fm_replaced_code = fm_code and fm_project:load(env.tone_format_rule) and fm_project:apply(fm_code, true) or ""
-    local new_preedit_code = fm_code and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code or preedit_code
+    local fm_replaced_code = fm_code
+            and fm_project:load(env.tone_format_rule)
+            and fm_project:apply(fm_code, true)
+        or ""
+    local new_preedit_code = fm_code and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code
+        or preedit_code
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])

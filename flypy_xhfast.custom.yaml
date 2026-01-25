@@ -93,16 +93,16 @@ patch:
   recognizer/+:
     patterns/+:
       timestamp: "^/uts$"                       # 时间戳
+      date: "^(/wd|date|rq)$"                   # 日期
       week: "^(/wk|week)$"                      # 星期
       time: "^(/wt|time)$"                      # 时间
-      date: "^(/wd|date)$"                      # 日期
       history: "^(/hs|hH)$"                     # 上屏历史
       LaTeX: "^(/lt|lT)(.*)$"                   # LaTeX排版
       flypy_help: "^(/oh|oH)$"                  # 帮助菜单
+      shortcut_cmd: "^/kj[a-z]*$"               # 快捷指令(执行命令)
+      shortcut_app: "^/jk[a-z]*$"               # 快捷指令(启动应用)
       flypy_key_map: "^/ok[a-z]*$"              # 小鹤双拼键位帮助
-      switch_option: "^(/so|sO)$"               # 切换配置选项
-      shortcuts_app: "^/jk[a-z]*$"              # 快捷指令(启动应用)
-      shortcuts_cmd: "^/kj[a-z]*$"              # 快捷指令(执行命令)
+      flypy_switcher: "^(/so|sO)$"              # 切换配置选项
       calculator: "^(/=|cC)([^,;']*)$"          # 计算器(可查帮助)
       flypy_radical: "^(/fr|rL)[a-z]+$"         # 单字部件组字(查拼音)
       chinese_lunar:  "^(/nl|nL)[0-9]*$"        # 中国农历(可反查)
@@ -153,6 +153,7 @@ patch:
   easy_en/+:                          # 英文单词输入方案
     tips: "英文"
     wildcard: '*'
+    # tag: easy_en
     word_search_limit: 666            # 模糊匹配最多迭代数
 
   custom_phrase/+:                    # 自定义短语
@@ -212,11 +213,11 @@ patch:
       - xlit/IUNM/1234/
 
   chinese_number:                     # 中文大写数字(金额)
+    tag: chinese_number
     # prefix: "/nn"
     prefix: "nN"
     suffix: "'"
     tips: "中文数字"
-    tag: chinese_number
     select_keys: "sdfjklm"
 
   chinese_lunar:                      # 中国农历(可反查)
@@ -230,3 +231,5 @@ patch:
     db: predict.db
     max_candidates: 7                 # 联想的候选项个数
     max_iterations: 1                 # 联想预测的次数
+
+

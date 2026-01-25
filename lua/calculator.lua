@@ -7,6 +7,7 @@ function T.init(env)
     env.name_space = env.name_space:gsub("^*", "")
     local _calc_pat = config:get_string("recognizer/patterns/calculator") or nil
     env.prefix = _calc_pat and _calc_pat:match("%^.?([a-zA-Z/|=]+).*") or "cC"
+    env.tag = config:get_string("calculator/tag") or "calculator"
     env.tips = config:get_string("calculator/tips") or "计算器"
 end
 
@@ -209,7 +210,9 @@ methods_desc["log"] = "x作为底数的对数"
 -- 自然数e为底的对数
 local function loge(x)
     -- 不能为负数或0
-    if x <= 0 then return nil end
+    if x <= 0 then
+        return nil
+    end
 
     return math.log(x)
 end
@@ -219,7 +222,9 @@ methods_desc["loge"] = "e作为底数的对数"
 -- 10为底的对数
 local function logt(x)
     -- 不能为负数或0
-    if x <= 0 then return nil end
+    if x <= 0 then
+        return nil
+    end
 
     return math.log(x) / math.log(10)
 end
@@ -231,7 +236,9 @@ local function avg(...)
     local data = { ... }
     local n = select("#", ...)
     -- 样本数量不能为0
-    if n == 0 then return nil end
+    if n == 0 then
+        return nil
+    end
 
     -- 计算总和
     local sum = 0
@@ -249,7 +256,9 @@ local function variance(...)
     local data = { ... }
     local n = select("#", ...)
     -- 样本数量不能为0
-    if n == 0 then return nil end
+    if n == 0 then
+        return nil
+    end
 
     -- 计算均值
     local sum = 0
@@ -272,8 +281,12 @@ methods_desc["var"] = "方差"
 -- 阶乘
 local function factorial(x)
     -- 不能为负数
-    if x < 0 then return nil end
-    if x == 0 or x == 1 then return 1 end
+    if x < 0 then
+        return nil
+    end
+    if x == 0 or x == 1 then
+        return 1
+    end
 
     local result = 1
     for i = 1, x do
@@ -294,19 +307,27 @@ end
 -- 简单计算器
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
     local segment = composition:back()
 
     local trigger_tbl = env.prefix:match("|") and string.split(env.prefix, "|") or { env.prefix }
-    if seg:has_tag("calculator") then
+    if seg:has_tag(env.tag) then
         segment.prompt = "〔" .. env.tips .. "〕"
-        if input:match("?h$") or input:match("^/h$") then goto HELP end
+        if input:match("?h$") or input:match("^/h$") then
+            goto HELP
+        end
         -- 提取算式
         local express = input:gsub(trigger_tbl[1], "") or input:gsub(trigger_tbl[2], "")
 
         -- 算式长度 < 2 直接终止(没有计算意义)
-        if (string.len(express) < 2) and not calc_methods[express] then return end
-        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then return end
+        if (string.len(express) < 2) and not calc_methods[express] then
+            return
+        end
+        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then
+            return
+        end
         local code = replaceToFactorial(express)
 
         local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)
@@ -327,13 +348,13 @@ function T.func(input, seg, env)
         end
     end
     ::HELP::
-    if (input:match("?h$") or input:match("^/h$")) and seg:has_tag("calculator") then
+    if (input:match("?h$") or input:match("^/h$")) and seg:has_tag(env.tag) then
         for _, fn in pairs(table.sorted_keys(methods_desc, "len")) do
             local fd = methods_desc[fn]
             yield(Candidate("calc", seg.start, seg._end, fn .. ":" .. fd, ""))
         end
     end
-    if startsWith(input, trigger_tbl) or seg:has_tag("calculator") then
+    if startsWith(input, trigger_tbl) or seg:has_tag(env.tag) then
         -- local cseg = Segment(seg.start, seg._end)
         -- cseg.tags = Set({ "calc_help" })
         yield(Candidate("calc", seg.start, seg._end, "'/h'、'?h' 查看支持的函数", ""))
