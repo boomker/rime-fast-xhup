@@ -27,7 +27,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - 支持斜杠 `/` 过滤二字词组(匹配两位形码), 比如输入 `uiui/oz`「适时」会排第一候选
 - 支持分号 `;` 前缀快捷输出符号, 比如输入 `;d` 自动上屏 `、` , `;j` 上屏 `#`  可自行配置
 - 支持 `/vs` 前缀快捷输出常用符号列表, 减轻记忆负担, 可在 `symbols.custom.yaml` 文件里自定义
-- 支持 Emoji 表情智能显示, 首页表情降频到第6位; 支持微信内专属应用表情显示(其他应用隐藏)
+- 支持 Emoji 表情智能显示, 首页表情降频到第6位(可配置); 支持微信内专属表情显示(其他应用隐藏)
 - 支持成对符号输出且上屏字词居于符号内部(现已支持多个平台客户端), 如: `()`, `【】`, `''`等
 - 支持 `/jk` 前缀触发启动或切换 App 应用; 输入 `/kj` 可见快捷操作菜单(部分操作仅支持 macOS)
 
@@ -74,7 +74,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
   `flypy_xhfast.custom.yaml` 提供了一些常用设置项(补丁配置)。其余文件均用于附加功能。
 - `default.custom.yaml` 仅用于声明本方案的依赖方案。如果用户已经有同名的文件，并且其中设置了
   `schema_list` 选项，可以直接将本项目同名文件的内容添加到该选项下，而不必使用项目提供的这一文件。
-- `cn_dicts/*.dict.yaml`, 为中文词库词典文件, 内含大词库可酌情注释停用(若有卡顿感)。
+- `cn_dicts/*.dict.yaml`, 为中文词库词典文件, 内含大词库默认已注释**停用**, 根据用户需求可自行取消注释启用。
 - `en_dicts/*.dict.yaml`, 为英文词库词典文件, 内含英译中词库。
 - `easy_en.schema.yaml` 和 `easy_en.dict.yaml` 为作者基于 [easy-en](https://github.com/BlindingDark/rime-easy-en) 项目的英文输入方案修改得到的版本。
 - `scripts/flypy_dict_generator.py` 双拼词库转换程序，实现了汉字转小鹤双拼，小鹤音形码，简拼, 支持
@@ -103,7 +103,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - `date`, `time`,  `week`, `/wd`, /`wt`, `/wk`, `/nl`, `/uts` 可以输出当天的日期时间, 星期, 农历, 时间戳等。
 - `/wqt` `/wzt` `/wmt` `/wht` `/wuz` `/wxz` `/wuy` `/wxy` 等可输出最近(昨天, 上周, 上个月等)的日期时间。
 - `/=` 前缀: 计算器, 支持加减乘除法, 开方、幂次方、阶乘、正弦余弦函数等多种运算(可查支持的函数运算)。
-- `/rl` 前缀：部件组字模式 (类似搜狗拼音的 u 拆字模式)，其中部件按照小鹤双拼输入。
+- `/fr` 前缀：部件组字模式 (类似搜狗拼音的 u 拆字模式)，其中部件按照小鹤双拼输入。
 - `` ` `` 前缀: 用于造词, 词库中不存在的词条, 可通过输入音码(支持逐音节选字)或加上形码得到。
 - `~` 前缀: 英文造词模式, 用于手动新造一个不存在词库里的单词(可以包含数字、符号、空格)。
 - `@` 前缀: 显示常用邮箱后缀域名, 用于快捷输入。可自行添加自己公司邮箱域名后缀。
@@ -166,7 +166,14 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
     - A: 在 [`squirrel.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/main/squirrel.custom.yaml) 或 [`weasel.yaml`](https://github.com/boomker/rime-fast-xhup/blob/main/weasel.yaml) 配置可以正常显示的字体, 推荐 [`MiSans`](https://hyperos.mi.com/font/download)
 13. ~~- Q: `rL` 反查出来的字没有注音, 部署日志中提示缺少  `kMandarin` 反查词典文件~~
     ~~- A: 请自行到这个[项目](https://github.com/mirtlecn/rime-radical-pinyin/releases)下载反查注音文件, 或将 `others` 下的 `kMandarin.reverse.bin` 移动到 `build` 目录里~~
-14. - Q: 自定义修改候选项数量、候选菜单方向、外观主题等配置应该从何着手？
+14. - Q: 如何更新扩展大词库?
+    - A: 执行如下命令:
+    ```bash
+      git submodule update --init --recursive
+      git pull --recurse-submodules
+    ```
+      拉取扩展词库后, 还需启用大词库(即取消[注释](https://github.com/boomker/rime-fast-xhup/blob/dd5f3c3578583e731cdc680395e05402efa36bf6/flypy_xhfast.dict.yaml#L13-L20)), 取消注释后, 需重新部署输入法
+15. - Q: 自定义修改候选项数量、候选菜单方向、外观主题等配置应该从何着手？
     - A: 多个方案统一全局配置修改候选项数量、候选菜单方向, 应该修改[default.custom.yaml文件](./default.custom.yaml). 外观主题、字体大小等样式则是修改[weasel.custom.yaml](./weasel.custom.yaml) (Windows小狼毫) [squirrel.custom.yaml](./squirrel.custom.yaml)(macOS鼠须管). 单独为某个方案修改, 应该修改具体的方案文件 `***.schema.yaml` 所对应的补丁文件 `***.custom.yaml`. 如: **飞鹤快拼**的方案文件是 [flypy_xhfast.schema.yaml](./flypy_xhfast.schema.yaml), 对应的补丁文件是 [flypy_xhfast.custom.yaml](./flypy_xhfast.custom.yaml). 此文件具有最高优先级, 会覆盖其他所有文件的配置.
 
 ### 鸣谢
