@@ -31,7 +31,7 @@ switches:
 engine:
   processors:
     - key_binder
-    - lua_processor@*flypy_keybinder
+    - lua_processor@*keybinder
     - lua_processor@*select_char
     - lua_processor@*symbol_menu
     - lua_processor@*easy_en*processor
