@@ -290,31 +290,35 @@ local input_prefixs = {
     ["/wjt"] = { 0, "今天" },
     ["/wmt"] = { 1, "明天" },
     ["/wht"] = { 2, "后天" },
-    ["/wuz"] = { -7, "上周" },
     ["/wxz"] = { 7, "下周" },
-    ["/wlk"] = { -7, "上周" },
     ["/wnk"] = { 7, "下周" },
-    ["/wuy"] = { get_month_sameday("before"), "上个月今天" },
+    ["/wuz"] = { -7, "上周" },
+    ["/wlk"] = { -7, "上周" },
     ["/wxy"] = { get_month_sameday("after"), "下个月今天" },
-    ["/wlm"] = { get_month_sameday("before"), "上个月今天" },
     ["/wnm"] = { get_month_sameday("after"), "下个月今天" },
+    ["/wuy"] = { get_month_sameday("before"), "上个月今天" },
+    ["/wlm"] = { get_month_sameday("before"), "上个月今天" },
 }
 
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
     local segment = composition:back()
-    if seg:has_tag("easy_en") then
-        return
-    end
+    if seg:has_tag("easy_en") then return end
 
     -- 日期
-    if seg:has_tag("date") then
+    if seg:has_tag("date") or seg:has_tag("date_time") then
         local tip = "〔日期〕"
         segment.prompt = tip
-        for _, v in ipairs(conf.pattern_date) do
+        segment.tags = segment.tags - Set({"abc"})
+        local date_data = {}
+        if input:match("[%+%-]?%d+") then
+            local time_delta = input:match("([%+%-]?%d+)$"):gsub("^%+", "")
+            date_data = gen_day_pattern(time_delta)
+        else
+            date_data = conf.pattern_date
+        end
+        for _, v in ipairs(date_data) do
             local cand_text = getTimeStr(v)
             local cand = Candidate("date", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
@@ -324,7 +328,7 @@ function T.func(input, seg, env)
     end
 
     -- 星期
-    if seg:has_tag("week") or (input == "/wk") then
+    if seg:has_tag("week") then
         local tip = "〔星期〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_week) do
@@ -337,7 +341,7 @@ function T.func(input, seg, env)
     end
 
     -- 时间
-    if seg:has_tag("time") or (input == "/wt") then
+    if seg:has_tag("time") then
         local tip = "〔时间〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_time) do
@@ -350,7 +354,7 @@ function T.func(input, seg, env)
     end
 
     -- 时间戳
-    if seg:has_tag("timestamp") or (input == "timestamp") or (input == "/uts") then
+    if seg:has_tag("timestamp") then
         local tip = "〔时间戳〕"
         segment.prompt = tip
         local text = string.format("%d", os.time())
@@ -361,7 +365,9 @@ function T.func(input, seg, env)
     end
 
     -- 最近几天/周/月日期
-    if input_prefixs[input] then
+    if input_prefixs[input] or seg:has_tag("week_before_after")
+        or seg:has_tag("date_before_after") or seg:has_tag("month_before_after")
+    then
         local time_delta = input_prefixs[input][1]
         local new_pattern_days = gen_day_pattern(time_delta)
         segment.prompt = "〔" .. input_prefixs[input][2] .. "〕"

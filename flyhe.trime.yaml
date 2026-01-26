@@ -1645,9 +1645,9 @@ preset_keys:
   Commit_Dot: { label: ".", commit: ".", functional: false }
   Commit_Brace_L: { label: "{", commit: "{", functional: false }
   Commit_Brace_R: { label: "}", commit: "}", functional: false }
-  Date_Lua: { label: "日期", text: "/wd", functional: false }
-  Calc_Lua: { label: "计算器", text: "cC", functional: false }
+  Date_Lua: { label: "日期", text: "orq", functional: false }
   Lunar_Lua: { label: "农历", text: "nL", functional: false }
+  Calc_Lua: { label: "计算器", text: "cC", functional: false }
   Number_Lua: { label: "中文数", text: "nN", functional: false }
   History_Lua: { label: "上屏历史", text: "hH", functional: false }
   EasyEnMode: { label: "英译", send: Control+g, functional: false }
@@ -4986,9 +4986,11 @@ preset_keyboards:
           swipe_up: Commit_Dollar,
         }
       - {
-          click: "(",
+          label: "(",
+          click: '(',
           long_click: "<",
           swipe_up: "<",
+          # popup: ["(){Left}", "{}{Left}"],
         }
       - { click: "1", width: 18, repeatable: true, key_text_size: 24 }
       - { click: "2", width: 18, repeatable: true, key_text_size: 24 }
@@ -5058,8 +5060,8 @@ preset_keyboards:
           click: Keyboard_math_symbol,
           width: 17.25,
           long_click: Calc_Lua,
-          # swipe_down: Unicode_Lua,
-          # hint: "Unicode",
+          swipe_down: Date_Lua,
+          hint: "日期",
           key_back_color: off_key_back_color,
           key_text_color: off_key_text_color,
           hilited_key_back_color: hilited_off_key_back_color,
@@ -5069,7 +5071,9 @@ preset_keyboards:
           click: "0",
           width: 36,
           repeatable: true,
-          hint: "欲使脚本须方案支持",
+          swipe_down: Escape,
+          hint: "下滑清空 🆑️ 输入",
+          # hint: "欲使脚本须方案支持",
           key_symbol_color: on_key_text_color,
           key_text_size: 24,
         }

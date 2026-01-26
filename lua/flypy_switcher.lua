@@ -178,23 +178,29 @@ function P.func(key, env)
             local ascii_punct_state = context:get_option("ascii_punct")
             local switch_to_val = not ascii_punct_state
             local ascii_punct_val = env:Config_get("switches/@1/reset")
-            local ascii_punct_setval = (ascii_punct_val > 0) and 0 or 1
+            if ascii_punct_val then
+                local ascii_punct_setval = (ascii_punct_val > 0) and 0 or 1
+                env:Config_set("switches/@1/reset", ascii_punct_setval)
+            end
             context:set_option("ascii_punct", switch_to_val)
-            env:Config_set("switches/@1/reset", ascii_punct_setval)
         elseif cand_text == "切换半角全角符号" then
             local full_shape_state = context:get_option("full_shape")
             local switch_to_val = not full_shape_state
             local full_shape_val = env:Config_get("switches/@2/reset")
-            local full_shape_setval = (full_shape_val > 0) and 0 or 1
+            if full_shape_val then
+                local full_shape_setval = (full_shape_val > 0) and 0 or 1
+                env:Config_set("switches/@2/reset", full_shape_setval)
+            end
             context:set_option("full_shape", switch_to_val)
-            env:Config_set("switches/@2/reset", full_shape_setval)
         elseif cand_text == "切换简体繁体转换" then
             local simp_tran_state = context:get_option("traditionalize")
             local switch_to_val = not simp_tran_state
             local simp_tran_val = env:Config_get("switches/@3/reset")
-            local simp_tran_setval = (simp_tran_val > 0) and 0 or 1
+            if simp_tran_val then
+                local simp_tran_setval = (simp_tran_val > 0) and 0 or 1
+                env:Config_set("switches/@3/reset", simp_tran_setval)
+            end
             context:set_option("traditionalize", switch_to_val)
-            env:Config_set("switches/@3/reset", simp_tran_setval)
         elseif cand_text == "增加候选字体大小" then
             config:set_int("style/font_point", (env.font_point + 1))
         elseif cand_text == "减少候选字体大小" then
@@ -292,6 +298,7 @@ function T.func(input, seg, env)
     local segment = composition:back()
 
     if seg:has_tag("flypy_switcher") then
+        segment.tags = segment.tags - Set({"abc"})
         segment.prompt = "〔" .. "切换配置选项" .. "〕"
         for _, text in ipairs(env.switch_option_menu) do
             yield(Candidate("switch_option", seg.start, seg._end, text, ""))

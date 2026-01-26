@@ -307,17 +307,14 @@ end
 -- 简单计算器
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
     local segment = composition:back()
 
     local trigger_tbl = env.prefix:match("|") and string.split(env.prefix, "|") or { env.prefix }
     if seg:has_tag(env.tag) then
+        segment.tags = segment.tags - Set({"abc"})
         segment.prompt = "〔" .. env.tips .. "〕"
-        if input:match("?h$") or input:match("^/h$") then
-            goto HELP
-        end
+        if input:match("?h$") or input:match("^/h$") then goto HELP end
         -- 提取算式
         local express = input:gsub(trigger_tbl[1], "") or input:gsub(trigger_tbl[2], "")
 
@@ -355,6 +352,7 @@ function T.func(input, seg, env)
         end
     end
     if startsWith(input, trigger_tbl) or seg:has_tag(env.tag) then
+        segment.tags = segment.tags - Set({"abc"})
         -- local cseg = Segment(seg.start, seg._end)
         -- cseg.tags = Set({ "calc_help" })
         yield(Candidate("calc", seg.start, seg._end, "'/h'、'?h' 查看支持的函数", ""))
