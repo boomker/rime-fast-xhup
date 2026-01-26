@@ -113,8 +113,9 @@ function T.func(input, seg, env)
         return
     end
 
+    local input_code = context.input
     -- 二码时, 按下`/` 后补大写字母过滤出指定声调的候选
-    if input:match("^%l%l/[%u%d]") then
+    if input_code:match("^%l%l/[%u%d]") then
         local entry_matched_tbl = {}
         local yin_code = input:match("^(.-)/")
         local fm_code = input:match("/(.+)$")
@@ -183,8 +184,9 @@ function T.func(input, seg, env)
     end
 
     -- 四码时, 按下`Control+s`, 单字优先; 按下`/`, 单字过滤
+    -- logger.write("input: " .. input .. ", ci: " .. context.input)
     local char_mode_state = context:get_option("char_mode")
-    if (input:match("^%l%l%l%l?$") and char_mode_state) or (input:match("^%l%l/%l%l?$")) then
+    if (input_code:match("^%l%l%l%l?$") and char_mode_state) or (input_code:match("^%l%l/%l%l?$")) then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local yx_code = input:match("/") and input:gsub("/", "") or ""
@@ -234,7 +236,7 @@ function T.func(input, seg, env)
     end
 
     -- 四码二字词, 通过形码过滤候选项并 给词条加权重后 yield
-    if input:match("^%l%l%l%l/%l?%l?$") then
+    if input_code:match("^%l%l%l%l/%l?%l?$") then
         local filtered_cand_text = ""
         local filtered_cand_count = 0
         local first_cand_confirmed_text = nil

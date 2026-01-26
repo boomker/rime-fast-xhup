@@ -5,7 +5,7 @@
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: 2026.01.13
+  version: 2026.02.26
   author:
     - boomker
   description: |
@@ -41,22 +41,20 @@ engine:
     - punctuator
     - express_editor
   segmentors:
-    - matcher
-    - abc_segmentor
-    - affix_segmentor@flypy_switcher
     - ascii_segmentor
+    - matcher
+    - matcher@date_time_seg
+    - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
     - punct_translator
     - script_translator
-    # - reverse_lookup_translator
-    # - table_translator@melt_eng          # 英文输入
-    - table_translator@idiom_phrase
-    - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
+    # - table_translator@melt_eng                     # 英文输入
+    - lua_translator@*date_time                       # date/rq,week,time 触发
   filters:
-    - simplifier@traditionalize            # 简繁切换
-    - uniquifier                           # 只能放到最后!
+    - simplifier@traditionalize                       # 简繁切换
+    - uniquifier                                      # 只能放到最后!
 
 # 主翻译器, 小鹤双拼
 translator:
@@ -94,7 +92,7 @@ translator:
 #     - xform/.*//                    # 清空提示码
 
 # 自定义短语
-custom_phrase:                      # 自定义固顶字
+custom_phrase:                                        # 自定义固顶字
   dictionary: ""
   db_class: stabledb
   user_dict: custom_phrase
@@ -102,34 +100,34 @@ custom_phrase:                      # 自定义固顶字
   enable_sentence: false
   enable_completion: false
 
-# 成语短语
-idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
-  dictionary: ""
-  db_class: stabledb
-  user_dict: idiom_phrase
-  initial_quality: 0.8
-  enable_sentence: false
-  enable_completion: false
-
 # 简体转繁体
-traditionalize:                     # 简繁转换
-  tips: none                        # 转换提示: all | char 仅单字显示 | none 不显示
-  tags: [abc]                       # 限制在对应 tag, 不对其他如反查的内容做简繁转换
-  opencc_config: s2t.json           # s2t.json | s2hk.json | s2tw.json | s2twp.json
+traditionalize:                                       # 简繁转换
+  tips: none                                          # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                                         # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  opencc_config: s2t.json                             # s2t.json | s2hk.json | s2tw.json | s2twp.json
   option_name: traditionalize
 
 # 处理符合特定规则的输入码，如网址、反查
 recognizer:
   import_preset: default
   patterns:
-    flypy_switcher: "^(/so|sO)$"    # 切换配置选项
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
+date_time_seg:
+  patterns:
+    time: "^(/wt|time|osj)$"                    # 时间
+    week: "^(/wk|week|oxq)$"                    # 星期
+    date: "^(/wd|date|orq)$"                    # 日期
+    timestamp: "^(/wts|/uts|timestamp|ots)$"    # 时间戳
+    week_before_after: "^/(wuz|wlk|wxz|wnk)$"   # 上周下周
+    date_before_after: "^/(wqt|wzt|wmt|wht)$"   # [前昨明后]天
+    month_before_after: "^/(wuy|wlm|wxy|wnm)$"  # 上个月下个月
+
 # 标点符号
 punctuator:
-  digit_separators: ".:"            # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
-  # digit_separator_action: commit
+  digit_separators: ".:"                              # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
+  # digit_separator_action: commit                    # 上一行指定的符号在按下数字后的动作行为
   import_preset: symbols
   full_shape:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
@@ -175,7 +173,7 @@ key_binder:
     # - {when: has_menu, accept: ";", send: 2}              # 分号键用于第2候选
     # - {when: has_menu, accept: "'", send: 3}              # 单引号用于第3候选
     - {when: paging, accept: comma, send: Page_Up}          # 逗号上一页
-    - {when: has_menu, accept: "]", send: Page_Down}        # 句号下一页
+    - {when: has_menu, accept: period, send: Page_Down}     # 句号. 下一页
     # - {when: paging,    accept: minus,  send: Page_Up}    # 减号- 上一页
     # - {when: has_menu,  accept: equal, send: Page_Down}   # 等号= 下一页
     - {when: composing, accept: Tab, send: Control+Right}
@@ -183,9 +181,9 @@ key_binder:
     - {when: composing, accept: Control+k, send: Shift+Delete}
     - {when: composing, accept: Control+i, send: Control+Left}
     - {when: composing, accept: Control+o, send: Control+Right}
-    - {when: composing, accept: Control+w, send: Control+BackSpace}
-    - {when: has_menu,  accept: Control+Shift+4, toggle: emoji}
     - {when: always,    accept: Control+Shift+0, select: .next}
+    - {when: always,    accept: Control+Shift+G, select: easy_en}
+    - {when: composing, accept: Control+w, send: Control+BackSpace}
     - {when: always,    accept: Control+comma, toggle: ascii_punct}
     - {when: always,    accept: Control+period, toggle: full_shape}
     - {when: has_menu,  accept: Control+Shift+5, toggle: charset_hint}

@@ -54,11 +54,7 @@ engine:
   segmentors:
     - ascii_segmentor
     - matcher
-    - lua_segmentor@*pair_punct*segmentor
-    - abc_segmentor
-    - affix_segmentor@date
-    - affix_segmentor@week
-    - affix_segmentor@time
+    - matcher@date_time_seg
     - affix_segmentor@LaTeX
     - affix_segmentor@easy_en
     - affix_segmentor@flypy_help
@@ -72,6 +68,8 @@ engine:
     - affix_segmentor@flypy_radical
     - affix_segmentor@flypy_switcher
     - affix_segmentor@chinese_number
+    - lua_segmentor@*pair_punct*segmentor
+    - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
@@ -86,8 +84,8 @@ engine:
     - table_translator@flypy_key_map                  # /ok 触发进入双拼键位帮助
     - table_translator@flypy_radical                  # /rl,rL 触发进入部件组字模式
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
-    - lua_translator@*date_time                       # date,week,time 触发
-    - lua_translator@*en_custom                       # \ 触发自定义单词入库
+    - lua_translator@*date_time                       # date/orq,week,time 触发
+    - lua_translator@*en_custom                       # ~,\ 触发自定义单词入库
     - lua_translator@*calculator                      # /=,cC 触发简易计算器
     - lua_translator@*chinese_lunar                   # /nl,nL 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh,oH 触发进入帮助菜单
@@ -258,7 +256,7 @@ radical_lookup:
   dictionary: flyhe_fast
   tags: [abc, flypy_radical]       # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
-  # comment_format:
+  comment_format:
   #   - xform/^/~/
 
 # 处理符合特定规则的输入码, 如网址、反查

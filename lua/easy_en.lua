@@ -94,6 +94,7 @@ function easy_en.filter(input, env)
         else
             yield(cand)
         end
+        if #en_cands >= env.expand_word_count then break end -- 防止候选太多, 输入卡顿
     end
 
     for _, cand in ipairs(en_cands) do

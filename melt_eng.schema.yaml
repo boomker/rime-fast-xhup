@@ -1,20 +1,26 @@
-# Rime schema
+﻿# Rime schema
 # vim: set sw=2 sts=2 et:
 # encoding: utf-8
----
+#
+# 复制自 https://github.com/tumuyan/rime-melt，修改了拼写派生
+# 感谢 @[Mirtle](https://github.com/mirtlecn) 贡献的极其好用的拼写派生
 
 schema:
   schema_id: melt_eng
   name: melt_eng
-  version: "0.2.3"
+  version: "2025-12-20"
   author:
-    - Boomker <gmboomker@gmail.com>
-  description:
-    只包含少量常用词汇,方便中英文混合输入度方案调用
+    - Patrick <ipatrickmac@gmail.com>
+    - tumuyan <tumuyan@21cn.com>
+  description: melt_eng, 中英文混合输入度方案调用
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ASCII-OFF, ASCII-ON]
 
 engine:
   processors:
-    # - lua_processor@*en-word_append_space
     - ascii_composer
     - key_binder
     - speller
@@ -31,20 +37,20 @@ engine:
   translators:
     - table_translator
     - punct_translator
-    - lua_translator@*word_autocaps*translator
   filters:
-    - lua_filter@*word_autocaps*filter
     - uniquifier
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+  # initials 定义仅作为始码的按键
+  initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
-    # 拼写规则的本质，是把字典按照规则改写，而不是把输入的按键码转写
-    __include: algebra_flypy
+    __include: algebra_flypy          # 小鹤双拼
 
 translator:
   dictionary: melt_eng
+  spelling_hints: 0
 
 key_binder:
   import_preset: default
@@ -55,79 +61,20 @@ punctuator:
 recognizer:
   import_preset: default
 
-algebra_common:
-  # 数字派生
-  - derive/1([4-7|9])/$1teen/
-  - derive/11/eleven/
-  - derive/12/twelve/
-  - derive/13/thirteen/
-  - derive/15/fifteen/
-  - derive/18/eighteen/
-  - derive/0/o/       # 如 1000 -> oneooo
-  - derive/0/O/
-  - derive/0/zero/
-  - derive/1/one/
-  - derive/10/ten/
-  - derive/2/to/
-  - derive/2/two/
-  - derive/3/three/
-  - derive/4/for/
-  - derive/4/four/
-  - derive/5/five/
-  - derive/6/six/
-  - derive/7/seven/
-  - derive/8/eight/
-  - derive/9/nine/
-  # 符号派生
-  - derive/\+/plus/
-  - derive/\./dot/
-  - derive/@/at/
-  - derive/-/hyphen/
-  - derive/#/hash/
-  - derive/#/sharp/
-  # - derive/♯/sharp/
-  - derive / slash
-  - derive/&/and/
-  - derive/%/percent/
-  # 派生无单个特殊字符的拼写
-  - derive/[.]//
-  - derive/[+]//
-  - derive/[@]//
-  - derive/[-]//
-  - derive/[_]//
-  # 派生无任何非字母数字字符的拼写
-  - derive/[^a-zA-Z0-9]//
-  # 禁用非英文、数字开头的编码
-  - erase/^[^a-zA-Z0-9].+$/
-  # 全小写
-  - derive/^.+$/\L$0/
-  # 全大写
-  - derive/^.+$/\U$0/
-  # 首字母大写
-  - derive/^./\U$0/
-  # 前 2~10 个字母大写
-  - derive/^([a-z]{2})/\U$1/
-  - derive/^([a-z]{3})/\U$1/
-  - derive/^([a-z]{4})/\U$1/
-  - derive/^([a-z]{5})/\U$1/
-  - derive/^([a-z]{6})/\U$1/
-  - derive/^([a-z]{7})/\U$1/
-  - derive/^([a-z]{8})/\U$1/
-  - derive/^([a-z]{9})/\U$1/
-  - derive/^([a-z]{10})/\U$1/
 
 algebra_flypy:
-  __include: algebra_common
   __append:
     - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
     - derive/([1-9])0000(?!0)/$1wj/
-    - derive/([1-9])000(?!0)/$1fm/
+    - derive/([1-9])000(?!0)/$1qm/
     - derive/([1-9])00(?!0)/$1bd/
     - derive/([2-9])0(?!0)/$1ui/
     - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
+    - derive/10/ui/
     - derive/0/lk/
     - derive/1/yi/
     - derive/2/er/
+    - derive/2/ll/
     - derive/3/sj/
     - derive/4/si/
     - derive/5/wu/
@@ -135,7 +82,11 @@ algebra_flypy:
     - derive/7/qi/
     - derive/8/ba/
     - derive/9/jq/
-    - derive/10/ui/
+    - derive/@/at/
+    - derive / xg
     - derive/#/jk/
+    - derive/&/he/
+    - derive/-/gh/
+    - derive/-/jm/
     - derive/\./dm/
     - derive/\+/jx/

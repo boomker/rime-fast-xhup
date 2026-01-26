@@ -270,9 +270,7 @@ function translator.func(input, seg, env)
     local app_launch_prefix = env.app_launch_prefix
     local all_command_items = env.all_command_items
     local composition = context.composition
-    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then
-        return
-    end
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return end
 
     local segment = composition:back()
     local all_app_items = all_command_items[system_name] or nil
@@ -281,15 +279,14 @@ function translator.func(input, seg, env)
         local app_trigger_key = "/j" .. input:gsub(app_launch_prefix, "", 1)
         app_items = all_app_items and all_app_items[app_trigger_key]
     end
-    if (not app_items) and (input == app_launch_prefix) then
-        app_items = all_app_items
-    end
+    if (not app_items) and (input == app_launch_prefix) then app_items = all_app_items end
 
     -- 应用闪切
     if app_items then
+        segment.tags = segment.tags - Set({"abc"})
+        segment.prompt = "〔应用闪切〕"
         local res_tbl = get_app_obj(app_items, "name")
         for _, value in ipairs(res_tbl) do
-            segment.prompt = "〔应用闪切〕"
             local cand = Candidate("shortcut", seg.start, seg._end, value, "")
             cand.quality = 999
             yield(cand)
@@ -304,6 +301,7 @@ function translator.func(input, seg, env)
         and not segment.prompt:match("快捷指令")
     then
         reset_state()
+        segment.tags = segment.tags - Set({"abc"})
         segment.prompt = "〔快捷指令〕"
 
         launcher["main_menu_keys"] = {}

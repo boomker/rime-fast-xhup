@@ -444,6 +444,7 @@ function T.func(input, seg, env)
     local payload_str, numberPart
     local segment = env.engine.context.composition:back()
     if seg:has_tag(env.tag) or input:match("^" .. env.trigger_prefix) then
+        segment.tags = segment.tags - Set({"abc"})
         segment.prompt = "〔" .. env.prompt .. "〕"
         payload_str = input:gsub("[%a/]+", "")
         numberPart = (payload_str:len() > 0) and number_translator(payload_str) or nil
