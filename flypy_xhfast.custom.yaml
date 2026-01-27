@@ -40,7 +40,7 @@ patch:
       states: [码区隐藏, 码区显示]
     - options: [mask_hint, tone_hint, comment_off]
       states: [辅码开, 声调开, 注释关]
-      reset: 2
+      reset: 1
 
   engine/+:
     processors/+:

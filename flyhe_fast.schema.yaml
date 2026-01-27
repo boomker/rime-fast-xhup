@@ -11,8 +11,8 @@ schema:
   description: |
     小鹤双拼+直接辅码
     github.com:boomker/rime-fast-xhup
-  # dependencies:
-  #   - melt_eng         # 中英Mix输入方案
+  dependencies:
+    # - melt_eng         # 中英Mix输入方案
 
 # 选项开关
 switches:
@@ -27,12 +27,16 @@ switches:
   - name: extended_charset
     states: [通用, 增廣]
     reset: 1
+  - name: char_mode
+    states: [词组优先, 单字优先]
 
 # 输入引擎
 engine:
   processors:
     - key_binder
+    - lua_processor@*select_char
     - lua_processor@*symbol_menu
+    - lua_processor@*cand_selector*processor
     - ascii_composer
     - recognizer
     - speller
@@ -51,9 +55,11 @@ engine:
     - punct_translator
     - script_translator
     # - table_translator@melt_eng                     # 英文输入
-    - lua_translator@*date_time                       # date/rq,week,time 触发
+    - lua_translator@*date_time                       # date/orq,week,time 触发
+    - lua_translator@*cand_selector*translator        # /,; 单字或二字词和表情自动上屏
   filters:
     - simplifier@traditionalize                       # 简繁切换
+    - lua_filter@*cand_selector*filter
     - uniquifier                                      # 只能放到最后!
 
 # 主翻译器, 小鹤双拼
@@ -83,13 +89,13 @@ translator:
     - xform/^(.*)/~$1/
 
 # 次翻译器
-# melt_eng:
-#   dictionary: melt_eng              # 挂载词库 melt_eng.dict.yaml
-#   enable_sentence: false            # 禁止造句
-#   enable_user_dict: false           # 禁用用户词典
-#   initial_quality: 0.8              # 初始权重
-#   comment_format:                   # 自定义提示码
-#     - xform/.*//                    # 清空提示码
+melt_eng:
+  dictionary: melt_eng              # 挂载词库 melt_eng.dict.yaml
+  enable_sentence: false            # 禁止造句
+  enable_user_dict: false           # 禁用用户词典
+  initial_quality: 0.8              # 初始权重
+  comment_format:                   # 自定义提示码
+    - xform/.*//                    # 清空提示码
 
 # 自定义短语
 custom_phrase:                                        # 自定义固顶字

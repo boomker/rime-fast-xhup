@@ -21,11 +21,10 @@ function F.func(input, env)
 
     for cand in input:iter() do
         local cand_type = cand.type
-        local cand_text = cand.text:gsub(" ", "")
+        local cand_text = cand.text
         local cand_text_len = utf8.len(cand_text)
         local cand_dtype = cand:get_dynamic_type()
 
-        -- logger.write("ct: " .. cand_text .. ", cdt: " .. cand_dtype .. ", ctype: " .. cand_type)
         if cand.comment:match(env.top_mark) then
             yield(cand)                                  -- 带有 top_mark 标记的候选词条, 优先显示
         elseif cand_text:match("<br>") then
@@ -50,11 +49,12 @@ function F.func(input, env)
             ) or ( -- 单个英文候选词长度少于 3 个字母的候选
                 (cand_text_len < 3) and cand_text:match("^%l+$") and preedit_code:match("^%l+$")
             ) or ( -- 单个英文候选词长度超出编码长度 3 个以上的候选
-                preedit_code:match("^[%u%l]%l*$") and cand_text:match("^[%a%p]+$") and
+                cand_text:match("^[%a%p%s]+$") and
+                preedit_code:match("^[%u%l]%l*$") and
                 (cand_text_len - #preedit_code > 3)
             ) or ( -- 单个中文候选词长度超出音节长度 1 个以上的候选
                 (cand_type == "completion") and (cand_text_len - syllable_len > 1) and
-                cand_text:find("([\228-\233][\128-\191]-)")
+                (not cand_text:find("[a-zA-Z]")) and cand_text:find("([\228-\233][\128-\191]-)")
             )
         then
             drop_cand = true

@@ -9,7 +9,8 @@ local M = {}
 
 function M.init(env)
     local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
+    -- local schema_id = config:get_string("schema/schema_id")
+    local schema_id = "flypy_xhfast"
     local schema = Schema(schema_id)
     env.prev_word_pron_code = ""
     env.prev_word_shape_code_tbl = {}
@@ -43,18 +44,14 @@ function P.func(key, env)
     local key_value = key:repr()
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
 
     local caret_pos = context.caret_pos
     local preedit_text = context:get_preedit().text
     local preedit_code = preedit_text:gsub("[‸ ]", "")
     local char_mode_state = context:get_option("char_mode")
 
-    if key:release() or key:alt() or key:caps() then
-        return 2
-    end
+    if key:release() or key:alt() or key:caps() then return 2 end
 
     -- 触发单字优先
     if
@@ -112,8 +109,16 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     local input_code = context.input
+    local segment = composition:toSegmentation()
+    local has_finished_seg = segment:has_finished_segmentation()
+
+    if has_finished_seg then
+        local seg_start = segment:get_confirmed_position() + 1
+        input_code = input_code:sub(seg_start, #input_code)
+    end
+
     -- 二码时, 按下`/` 后补大写字母过滤出指定声调的候选
-    if input_code:match("^%l%l/[%u%d]") then
+    if input_code:match("^%l%l/[%u]") then
         local entry_matched_tbl = {}
         local yin_code = input:match("^(.-)/")
         local fm_code = input:match("/(.+)$")
@@ -123,6 +128,7 @@ function T.func(input, seg, env)
         local full_pinyin_code = ym_proj:load(env.preedit_fmt_rules) and ym_proj:apply(yin_code, true) or nil
         local define_tone_filter_code = mask_code and mask_code:match("%d") and "1234" or "IUNM"
         local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
+        if mask_code == fm_code then return end
 
         local tone_codepoint_map = {
             [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252 }, -- "āōēīūǖü"
@@ -131,9 +137,7 @@ function T.func(input, seg, env)
             [define_tone_filter_code:sub(4, 4)] = { 224, 242, 232, 236, 249, 476, 505 }, -- "àòèìùǜǹ"
         }
         local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
-        if not ok then
-            return
-        end
+        if not ok then return end
 
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
@@ -181,8 +185,7 @@ function T.func(input, seg, env)
         end
     end
 
-    -- 四码时, 按下`Control+s`, 单字优先; 按下`/`, 单字过滤
-    -- logger.write("input: " .. input .. ", ci: " .. context.input)
+    -- 四码时, 按下`Control+s`, 单字优先; `ab/xy?`, 单字过滤
     local char_mode_state = context:get_option("char_mode")
     if (input_code:match("^%l%l%l%l?$") and char_mode_state) or (input_code:match("^%l%l/%l%l?$")) then
         local entry_matched_tbl = {}
@@ -190,9 +193,7 @@ function T.func(input, seg, env)
         local yx_code = input:match("/") and input:gsub("/", "") or ""
         local pattern = (#yx_code > 0) and "%f[%w]" .. yx_code .. "%w?%f[%W]" or "~"
         local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
-        if not ok then
-            return
-        end
+        if not ok then return end
 
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
@@ -265,9 +266,7 @@ function T.func(input, seg, env)
             env.prev_word_shape_code_tbl = word_shape_code_tbl
         end
 
-        if table.len(env.prev_word_shape_code_tbl) < 1 then
-            return
-        end
+        if table.len(env.prev_word_shape_code_tbl) < 1 then return end
 
         for idx, val in ipairs(env.prev_word_shape_code_tbl) do
             local cand_text = val[1]
@@ -316,11 +315,12 @@ function F.func(input, env)
     local fm_project = Projection()
     local context = env.engine.context
     local preedit_code = context.input
-    local fm_code = preedit_code:match("/(.+)$")
+    local fm_code = preedit_code:match("/(.)$")
+    local tone_filte_mode = preedit_code:match("%l%l/%u") and true or false
     local fm_replaced_code = fm_code
             and fm_project:load(env.tone_format_rule)
             and fm_project:apply(fm_code, true) or ""
-    local new_preedit_code = fm_code and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code or preedit_code
+    local new_preedit_code = tone_filte_mode and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code or preedit_code
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])
