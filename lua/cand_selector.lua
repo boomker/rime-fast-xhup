@@ -109,6 +109,14 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     local input_code = context.input
+    local segment = composition:toSegmentation()
+    local has_finished_seg = segment:has_finished_segmentation()
+
+    if has_finished_seg then
+        local seg_start = segment:get_confirmed_position() + 1
+        input_code = input_code:sub(seg_start, #input_code)
+    end
+
     -- 二码时, 按下`/` 后补大写字母过滤出指定声调的候选
     if input_code:match("^%l%l/[%u]") then
         local entry_matched_tbl = {}
