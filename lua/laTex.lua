@@ -139,17 +139,19 @@ local snip_charmap = {
 local T = {}
 function T.func(input, seg, env)
     local config = env.engine.schema.config
-    local composition = env.engine.context.composition
+    local context = env.engine.context
+    local composition = context.composition
     if composition:empty() then
         return
     end
     local segment = composition:back()
 
+    local input_code = context.input
     local laTex_pattern = "recognizer/patterns/LaTeX"
     local tag = config:get_string("LaTeX/tag") or "LaTeX"
     local tips = config:get_string("LaTeX/tips") or "LaTeX公式"
     local trigger = config:get_string(laTex_pattern):match("%^.?[a-zA-Z/]+.*") or "^/lt"
-    local expr, n = input:gsub("^" .. trigger .. "(.*)$", "%1"):gsub("^lT", "")
+    local expr, n = input_code:gsub("^" .. trigger .. "(.*)$", "%1"):gsub("^lT", "")
     if (n ~= 0) or seg:has_tag(tag) then
         -- expr = expr:gsub('%W', snip_charmap) --- 启用特殊符号替换
         expr = expr:gsub("ooa(.)", "^{%1+1}")

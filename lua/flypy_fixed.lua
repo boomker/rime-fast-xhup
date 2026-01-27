@@ -25,6 +25,7 @@ function F.func(input, env)
         local cand_text_len = utf8.len(cand_text)
         local cand_dtype = cand:get_dynamic_type()
 
+        -- logger.write("ct: " .. cand_text .. ", cdt: " .. cand_dtype .. ", ctype: " .. cand_type)
         if cand.comment:match(env.top_mark) then
             yield(cand)                                  -- 带有 top_mark 标记的候选词条, 优先显示
         elseif cand_text:match("<br>") then
@@ -34,10 +35,11 @@ function F.func(input, env)
             (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
                 cand_text:match("^[a-zA-Z]$") and preedit_code:match("^%a%a+")
             ) or ( -- 'github' --> 'xx18'
-                cand_text:match("[%d%p]") and preedit_code:match("^%l+$")
-                and (cand_type ~= "fuzzy_word") and (cand_dtype == "Sentence")
-            ) or ( -- 'qphr' --> '000'
-                cand_text:match("^[%d%p]+$") and preedit_code:match("^%l+$")
+                cand_text:match("[%d%p]") and preedit_code:match("^%l+$") and
+                (cand_type ~= "fuzzy_word") and (cand_dtype == "Sentence")
+            ) or ( -- 'qphr' --> '000', 'uw' --> '15'
+                cand_text:match("^%d+$") and preedit_code:match("^%l+$") and
+                ((cand_type == "fuzzy_word") or (cand_dtype == "Phrase"))
             ) or ( -- 'nL' --> '你L'
                 cand_text:match("[A-Z]$") and preedit_code:match("^%l%u$") and
                 cand_text:find("([\228-\233][\128-\191]-)")

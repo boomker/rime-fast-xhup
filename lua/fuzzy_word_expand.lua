@@ -184,20 +184,19 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
 
     -- 简拼候选, 按下`8/Control+q`, 简拼优先
+    local input_code = context.input
     local phrase_first_state = context:get_property("idiom_phrase_first")
-    if env.enable_fuzz_func and (input:match("^[a-z]+$")) and (input:len() >= 2) and (input:len() <= 7) then
+    if env.enable_fuzz_func and (input_code:match("^[a-z]+$")) and (input_code:len() >= 2) and (input_code:len() <= 7) then
         local word_cands = env.flyhe_fuzz_tran:query(input, seg) or nil
         if not word_cands then
             return
         end
 
         for cand in word_cands:iter() do
-            if check_fuzzy_cand(env, cand, input) then
+            if check_fuzzy_cand(env, cand, input_code) then
                 local fuzz_cand = nil
                 if phrase_first_state == "1" then
                     fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
@@ -210,11 +209,10 @@ function T.func(input, seg, env)
     end
 
     -- 四码时, 按下`8/Control+q`, 简拼成语优先
-    if input:match("^%l%l%l%l?%l?%l?$") and (phrase_first_state == "1") then
+    if input_code:match("^%l%l%l%l?%l?%l?$") and (phrase_first_state == "1") then
         local idiom_phrase_iter = env.idiom_phrase_tran:query(input, seg)
-        if not idiom_phrase_iter then
-            return
-        end
+        if not idiom_phrase_iter then return end
+
         for cand in idiom_phrase_iter:iter() do
             cand.type = "idiom_phrase_" .. cand.type
             yield(cand)
