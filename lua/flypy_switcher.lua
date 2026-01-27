@@ -292,9 +292,7 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
     local segment = composition:back()
 
     if seg:has_tag("flypy_switcher") then
@@ -309,9 +307,7 @@ end
 function F.func(input, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
 
     local input_code = context.input
     local preedit_proj = Projection()

@@ -4,9 +4,8 @@ local T = {}
 local function candidate_in_type(cand, excluded_types)
     local ct = cand:get_genuines()
     local cand_txt = cand.text
-    if cand_txt:match("[%p]") then
-        return true
-    end
+    if cand_txt:match("[%p]") then return true end
+
     for _, c in pairs(ct) do
         if table.find_index(excluded_types, c.type) then
             return true
@@ -27,20 +26,17 @@ function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
+
     local segment = composition:back()
-    if not segment then
-        return 2
-    end
+    if not segment then return 2 end
+
     local commit_history = context.commit_history
     if context.input:match("^;f$") and (not commit_history:empty()) then
         if key:repr() == "f" then
             local ch_text = commit_history:latest_text()
-            if not ch_text then
-                return 2
-            end
+            if not ch_text then return 2 end
+
             env.engine:commit_text(ch_text)
             context:clear()
             return 1
@@ -49,9 +45,8 @@ function P.func(key, env)
     if segment:has_tag(env.tag) and (key:repr() == env.remove_user_word_key) then
         local cand = context:get_selected_candidate()
         local cand_comment = cand and cand.comment
-        if not cand then
-            return
-        end
+        if not cand then return end
+
         env.mem:user_lookup(cand_comment, true)
         for entry in env.mem:iter_user() do
             if entry.text == cand.text then
@@ -100,15 +95,13 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then
-        return
-    end
-    if #env.history_list < 1 then
-        return
-    end
+    if composition:empty() then return end
+    if #env.history_list < 1 then return end
+
     local segment = composition:back()
+    local input_code = context.input
     local commit_history = context.commit_history
-    if seg:has_tag(env.tag) or (input == env.trigger_prefix) then
+    if seg:has_tag(env.tag) or (input_code == env.trigger_prefix) then
         segment.prompt = "〔" .. env.prompt .. "〕"
         local his_cands = env.history_list
         local comment_max_length = env.comment_max_length

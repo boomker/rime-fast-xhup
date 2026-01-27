@@ -108,13 +108,13 @@ patch:
       flypy_radical: "^(/fr|rL)[a-z]+$"           # 单字部件组字(查拼音)
       chinese_lunar:  "^(/nl|nL)[0-9]*$"          # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.-]+$"        # 中文大写数字(金额)
-      date_time: '^(/wd|date|orq)[-]?[0-9\+]*$'   # 日期(可查前后指定N日)
+      date_time: '^(/wd|date|orq)[-]?[0-9\+]+$'   # 日期(可查前后指定N日)
 
   date_time_seg:
     patterns:
       time: "^(/wt|time|osj)$"                    # 时间
       week: "^(/wk|week|oxq)$"                    # 星期
-      date: "^(/wd|date|orq)$"                    # 日期
+      date: '^(/wd|date|orq)[-]?[\+]?$'           # 日期
       timestamp: "^(/wts|/uts|timestamp|ots)$"    # 时间戳
       week_before_after: "^/(wuz|wlk|wxz|wnk)$"   # 上周下周
       date_before_after: "^/(wqt|wzt|wmt|wht)$"   # [前昨明后]天

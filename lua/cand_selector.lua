@@ -109,9 +109,7 @@ function T.func(input, seg, env)
     local composition = context.composition
     context:set_property("enable_tone_match", "0")
     context:set_property("matched_char_cand_count", "0")
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
 
     local input_code = context.input
     -- 二码时, 按下`/` 后补大写字母过滤出指定声调的候选
@@ -209,9 +207,7 @@ function T.func(input, seg, env)
             end
         end
 
-        if table.len(entry_matched_tbl) < 1 then
-            return
-        end
+        if table.len(entry_matched_tbl) < 1 then return end
 
         local prev_cand_text = ""
         local matched_char_cand_count = 0

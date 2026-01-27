@@ -594,11 +594,13 @@ end
 
 -- 农历
 function T.func(input, seg, env)
-    local composition = env.engine.context.composition
+    local context = env.engine.context
+    local composition = context.composition
     if composition:empty() then return end
     local segment = composition:back()
 
-    if seg:has_tag(env.tag) or input:match("^" .. env.prefix) then
+    local input_code = context.input
+    if seg:has_tag(env.tag) or input_code:match("^" .. env.prefix .. "$") then
         segment.tags = segment.tags - Set({"abc"})
         segment.prompt = "〔" .. env.prompt .. "〕"
         local solarDateTable = {}
