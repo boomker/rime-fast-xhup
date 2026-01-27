@@ -27,12 +27,16 @@ switches:
   - name: extended_charset
     states: [通用, 增廣]
     reset: 1
+  - name: char_mode
+    states: [词组优先, 单字优先]
 
 # 输入引擎
 engine:
   processors:
     - key_binder
+    - lua_processor@*select_char
     - lua_processor@*symbol_menu
+    - lua_processor@*cand_selector*processor
     - ascii_composer
     - recognizer
     - speller
@@ -52,8 +56,10 @@ engine:
     - script_translator
     # - table_translator@melt_eng                     # 英文输入
     - lua_translator@*date_time                       # date/rq,week,time 触发
+    - lua_translator@*cand_selector*translator        # /,; 单字或二字词和表情自动上屏
   filters:
     - simplifier@traditionalize                       # 简繁切换
+    - lua_filter@*cand_selector*filter
     - uniquifier                                      # 只能放到最后!
 
 # 主翻译器, 小鹤双拼

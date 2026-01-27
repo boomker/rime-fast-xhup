@@ -45,9 +45,10 @@ function P.func(key, env)
     if segment:has_tag(env.tag) and (key:repr() == env.remove_user_word_key) then
         local cand = context:get_selected_candidate()
         local cand_comment = cand and cand.comment
-        if not cand then return end
+        if (not cand) or (cand_comment:len() < 1) then return end
 
-        env.mem:user_lookup(cand_comment, true)
+        local ok = env.mem:user_lookup(cand_comment, true)
+        if not ok then return 2 end
         for entry in env.mem:iter_user() do
             if entry.text == cand.text then
                 local de = DictEntry()

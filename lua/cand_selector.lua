@@ -9,7 +9,8 @@ local M = {}
 
 function M.init(env)
     local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
+    -- local schema_id = config:get_string("schema/schema_id")
+    local schema_id = "flypy_xhfast"
     local schema = Schema(schema_id)
     env.prev_word_pron_code = ""
     env.prev_word_shape_code_tbl = {}
@@ -176,7 +177,7 @@ function T.func(input, seg, env)
         end
     end
 
-    -- 四码时, 按下`Control+s`, 单字优先; 按下`/`, 单字过滤
+    -- 四码时, 按下`Control+s`, 单字优先; `ab/xy?`, 单字过滤
     local char_mode_state = context:get_option("char_mode")
     if (input_code:match("^%l%l%l%l?$") and char_mode_state) or (input_code:match("^%l%l/%l%l?$")) then
         local entry_matched_tbl = {}
