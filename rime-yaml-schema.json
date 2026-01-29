@@ -102,6 +102,7 @@
                                     "gbk",
                                     "emoji",
                                     "charset",
+                                    "char_mode",
                                     "ascii_mode",
                                     "full_shape",
                                     "ascii_punct",
@@ -275,6 +276,12 @@
                                     "matcher"
                                 ],
                                 "description": "与 processor 中的 recognizer 搭配，标识符合特定规则的段落，如网址、反查等。"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^matcher@\\w+",
+                                "description": "用户自定义标识器。可定义多个。需添加 @{tag} 后缀，如 matcher@foo。",
+                                "example": "matcher@foo"
                             },
                             {
                                 "type": "string",

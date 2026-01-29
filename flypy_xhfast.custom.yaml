@@ -12,9 +12,8 @@ patch:
   menu/+:
     # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
-    alternative_select_keys: "1;.4567"      # 候选项选中快捷键
-    # alternative_select_keys: 1234567890   # 候选项选中快捷键
-    page_size: 7                            # 自定义候选项个数
+    alternative_select_keys: 1234567  # 候选项选中快捷键
+    page_size: 7                      # 自定义候选项个数
 
   # 候选菜单布局样式
   style/+:
@@ -72,8 +71,6 @@ patch:
     select_first_character: "9"       # `9/minus` 以词定字(首字)
     select_last_character: "0"        # `0/equal` 以词定字(尾字)
     bindings/+:
-      # - {when: has_menu, accept: ";", send: 2}                # 引号; 用于第2候选
-      # - {when: has_menu, accept: "'", send: 3}                # 引号' 用于第3候选
       - {when: paging,    accept: comma, send: Page_Up}         # 逗号, 返回上一页
       - {when: has_menu,  accept: ']', send: Page_Down}         # 括号] 下一页
       # - {when: paging,    accept: minus,  send: Page_Up}      # 减号- 返回上一页
@@ -87,13 +84,14 @@ patch:
       - {when: composing, accept: Control+o, send: Control+Right}
       - {when: composing, accept: Control+w, send: Control+BackSpace}
       # 以下按键绑定规则(含`tag` / `match`)需 keybinder(lua) 支持
-      - {tag: "abc", accept: "2", send_sequence: '{Control+2}'}
-      - {tag: "abc", accept: "3", send_sequence: '{Control+3}'}
       - {tag: "date_time", accept: "s", send_sequence: '{Control+3}'}
       - {tag: "date_time", accept: "d", send_sequence: '{Control+4}'}
       - {tag: "date_time", accept: "f", send_sequence: '{Control+5}'}
       - {tag: "calculator", accept: "'", send_sequence: '{Page_Down}'}
       # - {match: "^cC.*$", accept: "'",  send_sequence: '{Page_Down}'}
+      # - {when: has_menu, accept: "'", send_sequence: '{Control+3}'}      # 引号. 用于第3候选
+      - {when: has_menu,    accept: ";", send_sequence: '{Control+2}'}     # 引号; 用于第2候选
+      - {when: has_menu,    accept: ".", send_sequence: '{Control+3}'}     # 引号. 用于第3候选
 
   recognizer/+:
     patterns/+:
@@ -108,13 +106,13 @@ patch:
       flypy_radical: "^(/fr|rL)[a-z]+$"           # 单字部件组字(查拼音)
       chinese_lunar:  "^(/nl|nL)[0-9]*$"          # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.-]+$"        # 中文大写数字(金额)
-      date_time: '^(/wd|date|orq)[-]?[0-9\+]+$'   # 日期(可查前后指定N日)
+      date_time: '^(/wd|date|orq)[-\+][0-9]+$'    # 日期(可查前后指定N日)
 
   date_time_seg:
     patterns:
       time: "^(/wt|time|osj)$"                    # 时间
       week: "^(/wk|week|oxq)$"                    # 星期
-      date: '^(/wd|date|orq)[-]?[\+]?$'           # 日期
+      date: '^(/wd|date|orq)[-\+]?$'              # 日期
       timestamp: "^(/wts|/uts|timestamp|ots)$"    # 时间戳
       week_before_after: "^/(wuz|wlk|wxz|wnk)$"   # 上周下周
       date_before_after: "^/(wqt|wzt|wmt|wht)$"   # [前昨明后]天

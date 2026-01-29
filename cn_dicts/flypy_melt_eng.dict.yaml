@@ -1,13 +1,11 @@
 # Rime dictionary
 # encoding: utf-8
-#
 # 挂载中英混合输入方案的词库
 #
 
 ---
 name: flypy_melt_eng
 version: "2026.01.25"
-
 ...
 
 1	yi
