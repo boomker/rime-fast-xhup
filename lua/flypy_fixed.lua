@@ -7,17 +7,17 @@ function F.init(env)
 end
 
 function F.func(input, env)
-    local seglen = 0
     local drop_cand = false
     local context = env.engine.context
     local composition = context.composition
-
     if composition:empty() then return end
+
     local segment = composition:back()
-    seglen = segment and segment.length
-    local preedit_code = context.input
-    local _, symbol_count = preedit_code:gsub("[`']", "")
-    local syllable_len = (seglen > 1) and math.ceil(seglen / 2) or (#preedit_code - symbol_count)
+    local raw_input_code = context.input
+    local seglen = segment and segment.length or 0
+    local _, symbol_count = raw_input_code:gsub("[`']", "")
+    local encode_limit_length = (#raw_input_code > 3) and #raw_input_code or 3
+    local syllable_len = (seglen > 1) and math.ceil(seglen / 2) or (#raw_input_code - symbol_count)
 
     for cand in input:iter() do
         local cand_type = cand.type
@@ -32,26 +32,19 @@ function F.func(input, env)
             yield(cand:to_shadow_candidate(cand_type, br_text, env.custom_mark))
         elseif                                           -- 丢弃一些候选结果
             (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
-                cand_text:match("^[a-zA-Z]$") and preedit_code:match("^%a%a+")
+                cand_text:match("^[a-zA-Z]$") and raw_input_code:match("^%a%a+")
             ) or ( -- 'github' --> 'xx18'
-                cand_text:match("[%d%p]") and preedit_code:match("^%l+$") and
-                (cand_type ~= "fuzzy_word") and (cand_dtype == "Sentence")
+                (cand_type ~= "fuzzy_word") and (cand_dtype == "Sentence") and
+                cand_text:find("[%d%p]") and raw_input_code:match("^[%l%p]+$")
             ) or ( -- 'qphr' --> '000', 'uw' --> '15'
-                cand_text:match("^%d+$") and preedit_code:match("^%l+$") and
-                ((cand_type == "fuzzy_word") or (cand_dtype == "Phrase"))
-            ) or ( -- 'nL' --> '你L'
-                cand_text:match("[A-Z]$") and preedit_code:match("^%l%u$") and
-                cand_text:find("([\228-\233][\128-\191]-)")
-            ) or ( -- 辅码筛字时, 过滤掉 emoji
-                (cand_dtype == "Shadow") and preedit_code:match("%l+[`/][%l`/]+$")
-            ) or ( -- 辅码模式下, 过滤掉长度超出音节长度的候选
-                (cand_text_len > syllable_len) and preedit_code:match("%l+[`/][%l`/]+$")
-            ) or ( -- 单个英文候选词长度少于 3 个字母的候选
-                (cand_text_len < 3) and cand_text:match("^%l+$") and preedit_code:match("^%l+$")
-            ) or ( -- 单个英文候选词长度超出编码长度 3 个以上的候选
-                cand_text:match("^[%a%p%s]+$") and
-                preedit_code:match("^[%u%l]%l*$") and
-                (cand_text_len - #preedit_code > 3)
+                cand_text:match("^[0-9]+$") and raw_input_code:match("^[a-z]+$")
+            ) or ( -- 间接辅码筛字时, 过滤掉 emoji
+                (cand_dtype == "Shadow") and raw_input_code:match("%l+[`/][%l`/]+$")
+            ) or ( -- 单个英文候选词长度少于 4 个字母的候选
+                cand_text:match("^%l?%l?%l?$") and raw_input_code:match("^%l+$")
+            ) or ( -- 单个英文候选词长度超出编码长度一倍以上的候选
+                (cand_text_len - #raw_input_code > encode_limit_length) and
+                cand_text:match("^[%a%p%s]+$") and raw_input_code:match("^%a%l*$")
             ) or ( -- 单个中文候选词长度超出音节长度 1 个以上的候选
                 (cand_type == "completion") and (cand_text_len - syllable_len > 1) and
                 (not cand_text:find("[a-zA-Z]")) and cand_text:find("([\228-\233][\128-\191]-)")

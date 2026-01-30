@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2026.01.07
+  version: 2026.02.29
   author:
     - boomker
   description: |
@@ -68,6 +68,7 @@ engine:
     - affix_segmentor@flypy_radical
     - affix_segmentor@flypy_switcher
     - affix_segmentor@chinese_number
+    - affix_segmentor@free_make_word
     - lua_segmentor@*pair_punct*segmentor
     - abc_segmentor
     - punct_segmentor
@@ -80,13 +81,14 @@ engine:
     - table_translator@easy_en
     - table_translator@idiom_phrase                   # 成语短语的首字母简拼
     - table_translator@custom_phrase                  # 自定义短语(固顶)
-    - table_translator@make_sentence                  # ` 精准造词
     - table_translator@flypy_key_map                  # /ok 触发进入双拼键位帮助
     - table_translator@flypy_radical                  # /rl,rL 触发进入部件组字模式
+    - table_translator@make_sentence                  # ` 精准造词
+    - table_translator@free_uses_word                 # 自由用词(free_make_word)
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
     - lua_translator@*date_time                       # date/orq,week,time 触发
-    - lua_translator@*en_custom                       # ~,\ 触发自定义单词入库
     - lua_translator@*calculator                      # /=,cC 触发简易计算器
+    - lua_translator@*cn_en_custom                    # `/,~,\ 触发自定义单词入库
     - lua_translator@*chinese_lunar                   # /nl,nL 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh,oH 触发进入帮助菜单
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
@@ -165,21 +167,42 @@ easy_en:
   enable_user_dict: true
   enable_completion: true
   comment_format:
-    - xform/.*//                    # 清空提示码
+    - xform/.*//                      # 清空提示码
+
+free_uses_word:                       # 自由用词
+  dictionary: flypy_xhfast
+  initial_quality: 1.5
+  enable_user_dict: true
+  enable_sentence: false
+  enable_completion: false            # 是否启用输入补全(逐键提示,即不完整编码)
+  contextual_suggestions: false       # 是否开启语法模型优化候选〔需grammar〕
+  user_dict: free_user_dict
+
+free_make_word:                       # 自由造词
+  __include: translator
+  prefix: "`/"
+  spelling_hints: 20
+  initial_quality: 1.0
+  enable_user_dict: true
+  contextual_suggestions: false       # 是否开启语法模型优化候选〔需grammar〕
+  user_dict: free_user_dict
+  tag: free_make_word
+  tips: "〔自由造词〕"
 
 # "`" 精准造词
-make_sentence:                      # 精准造词
+make_sentence:                        # 精准造词
   __include: translator
   initial_quality: 1.0
   enable_sentence: true
   enable_user_dict: false
+  contextual_suggestions: false       # 是否开启语法模型优化候选〔需grammar〕
   prefix: "`"
   suffix: "'"
   tag: make_sentence
   tips: "〔精准造词〕"
 
 # "~" 英文造词
-make_en_word:                       # 英文造词
+make_en_word:                         # 英文造词
   __include: easy_en
   initial_quality: 0.5
   prefix: "~"
@@ -188,7 +211,7 @@ make_en_word:                       # 英文造词
   tips: "〔英文造词〕"
 
 # 成语短语
-idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
+idiom_phrase:                         # 成语, 俗语缩写, 实现简拼
   dictionary: ""
   db_class: stabledb
   user_dict: idiom_phrase
@@ -197,7 +220,7 @@ idiom_phrase:                       # 成语, 俗语缩写, 实现简拼
   enable_completion: false
 
 # 自定义短语
-custom_phrase:                      # 自定义短语, 包含固顶字
+custom_phrase:                        # 自定义短语, 包含固顶字
   dictionary: ""
   db_class: stabledb
   user_dict: custom_phrase
@@ -206,7 +229,7 @@ custom_phrase:                      # 自定义短语, 包含固顶字
   enable_completion: false
 
 # 键位帮助
-flypy_key_map:                      # 小鹤双拼键位帮助
+flypy_key_map:                        # 小鹤双拼键位帮助
   prefix: "/ok"
   dictionary: ""
   tag: flypy_key_map
@@ -218,7 +241,7 @@ flypy_key_map:                      # 小鹤双拼键位帮助
   enable_completion: true
 
 # Emoji
-emoji:                              # Emoji转换
+emoji:                                # Emoji转换
   tag: emoji
   tags: [abc]
   tips: all
@@ -231,14 +254,14 @@ emoji:                              # Emoji转换
     # - xform/.*//
 
 # 简体转繁体
-tradition:                          # 简繁转换
-  tips: none                        # 转换提示: all | char 仅单字显示 | none 不显示
-  tags: [abc]                       # 限制在对应 tag, 不对其他如反查的内容做简繁转换
-  opencc_config: s2t.json           # s2t.json | s2hk.json | s2tw.json | s2twp.json
+tradition:                            # 简繁转换
+  tips: none                          # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  opencc_config: s2t.json             # s2t.json | s2hk.json | s2tw.json | s2twp.json
   option_name: traditionalize
 
 # 部件拆字反查
-flypy_radical:
+flypy_radical:                        # 部件拆字反查
   # prefix: "/fr"
   prefix: "rL"
   suffix: "'"
@@ -252,9 +275,9 @@ flypy_radical:
     - erase/^.*$//
 
 # 部件拆字滤镜
-radical_lookup:
+radical_lookup:                       # 部件拆字滤镜
   dictionary: flyhe_fast
-  tags: [abc, flypy_radical]       # 去掉`abc`即为正常输入不显示拼音
+  tags: [abc, flypy_radical]          # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
   comment_format:
   #   - xform/^/~/
@@ -263,11 +286,12 @@ radical_lookup:
 recognizer:
   import_preset: default
   patterns:
-    make_sentence: "^`?[a-z]+[`][a-z`]*$"                   # ` 引导精准造词
-    easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"
+    make_sentence: "^`?[a-z]+[`][a-z`]*$"                   # `  引导精准造词
+    free_make_word: "^`/[a-z]+[a-zA-Z=]+$"                  # `/ 引导自由造词
+    easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"                # * 进入英文模式
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
-    make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'   # ~\ 引导英文造词
+    make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'   # ~,\ 引导英文造词
 
 # 标点符号
 punctuator:
@@ -315,7 +339,7 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA_-/&
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA&=_-/
   # initials 定义仅作为始码的按键
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"

@@ -1,13 +1,11 @@
 # Rime dictionary
 # encoding: utf-8
-#
 # 挂载中英混合输入方案的词库
 #
 
 ---
 name: flypy_melt_eng
 version: "2026.01.25"
-
 ...
 
 1	yi
@@ -35,17 +33,15 @@ version: "2026.01.25"
 18	ub
 19	uj
 000	qm
-@	at
-+	jx
--	jm
--	gh
-.	dm
-/	xg
-&	he
-%	bf
-%	pc
-C#	cj
-F#	fj
+@	aT
++	jX
+-	jM
+-	gH
+.	dM
+/	xG
+&	hE
+%	bF
+%	pC
 
 A	A
 B	B
@@ -441,8 +437,9 @@ QQ三国
 
 C编程
 C语言
-C#编程
-C#语言
+C#编程	cjbi
+C#语言	cjyy
+F#语言	fjyy
 Go程序
 Go语言
 Vue框架
