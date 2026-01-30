@@ -4,8 +4,7 @@
 # 在此方案下，这里的配置具有最高优先级
 patch:
   "menu/page_size": 5                           # 自定义候选项个数
-  "menu/alternative_select_keys": "1;.4567"     # 候选项选中快捷键
-  # "menu/alternative_select_keys": 1234567890  # 候选项选中快捷键
+  "menu/alternative_select_keys": 1234567       # 候选项选中快捷键
   "style/font_point": 18                        # 候选字大小
   "style/line_spacing": 4                       # 行间距大小
   "style/show_paging": false                    # 是否显示分页符号

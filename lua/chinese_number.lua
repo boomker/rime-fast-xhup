@@ -378,9 +378,7 @@ function M.init(env)
     M.alter_select_keys = M.alter_select_keys or env.current_select_keys or "1234567"
     env.alpha_select_keys = config:get_string("chinese_number/select_keys") or "sdfjklm"
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
-        if env.system_name:lower():match("android") then
-            return
-        end
+        if env.system_name:lower():match("android") then return end
         local segment = ctx.composition:back()
         if segment and segment.prompt:match(env.prompt) then
             env:Config_set("speller/alphabet", M.speller_string)

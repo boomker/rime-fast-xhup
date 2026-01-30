@@ -191,9 +191,7 @@ function T.func(input, seg, env)
     local phrase_first_state = context:get_property("idiom_phrase_first")
     if env.enable_fuzz_func and (input_code:match("^[a-z]+$")) and (input_code:len() >= 2) and (input_code:len() <= 7) then
         local word_cands = env.flyhe_fuzz_tran:query(input, seg) or nil
-        if not word_cands then
-            return
-        end
+        if not word_cands then return end
 
         for cand in word_cands:iter() do
             if check_fuzzy_cand(env, cand, input_code) then

@@ -117,7 +117,7 @@ traditionalize:                     # 简繁转换
 recognizer:
   import_preset: default
   patterns:
-    date_time: '^(/wd|date|orq)[-]?[0-9\+]+$'   # 日期(可查前后指定N日)
+    date_time: '^(/wd|date|orq)[-\+][0-9]*$'    # 日期(可查前后指定N日)
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
 
@@ -125,7 +125,7 @@ date_time_seg:
   patterns:
     time: "^(/wt|time|osj)$"                    # 时间
     week: "^(/wk|week|oxq)$"                    # 星期
-    date: '^(/wd|date|orq)[-]?[\+]?$'           # 日期
+    date: '^(/wd|date|orq)$'                    # 日期
     timestamp: "^(/wts|/uts|timestamp|ots)$"    # 时间戳
     week_before_after: "^/(wuz|wlk|wxz|wnk)$"   # 上周下周
     date_before_after: "^/(wqt|wzt|wmt|wht)$"   # [前昨明后]天
@@ -177,12 +177,12 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   bindings:
-    # - {when: has_menu, accept: ";", send: 2}              # 分号键用于第2候选
-    # - {when: has_menu, accept: "'", send: 3}              # 单引号用于第3候选
-    - {when: paging, accept: comma, send: Page_Up}          # 逗号上一页
-    - {when: has_menu, accept: period, send: Page_Down}     # 句号. 下一页
-    # - {when: paging,    accept: minus,  send: Page_Up}    # 减号- 上一页
-    # - {when: has_menu,  accept: equal, send: Page_Down}   # 等号= 下一页
+    - {when: paging, accept: comma, send: Page_Up}                      # 逗号上一页
+    - {when: has_menu, accept: period, send: Page_Down}                 # 句号. 下一页
+    # - {when: paging,    accept: minus,  send: Page_Up}                # 减号- 上一页
+    # - {when: has_menu,  accept: equal, send: Page_Down}               # 等号= 下一页
+    - {when: has_menu, accept: "'", send_sequence: '{Control+3}'}       # 引号' 用于第3候选
+    - {when: has_menu,    accept: ";", send_sequence: '{Control+2}'}    # 引号; 用于第2候选
     - {when: composing, accept: Tab, send: Control+Right}
     - {when: composing, accept: Shift+Tab, send: Control+Left}
     - {when: composing, accept: Control+k, send: Shift+Delete}
