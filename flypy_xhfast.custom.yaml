@@ -12,7 +12,7 @@ patch:
   menu/+:
     # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
-    alternative_select_keys: 1234567  # 候选项选中快捷键
+    # alternative_select_keys: 1234567  # 候选项选中快捷键
     page_size: 7                      # 自定义候选项个数
 
   # 候选菜单布局样式
@@ -48,6 +48,7 @@ patch:
     filters/+:
   'engine/processors/@next': predictor
   'engine/translators/@before 0': predict_translator
+  'engine/processors/@before 0': lua_processor@*keybinder
   # 注释下行, 以取消中英混合候选词自动添加的空格
   'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
@@ -71,8 +72,11 @@ patch:
     select_first_character: "9"       # `9/minus` 以词定字(首字)
     select_last_character: "0"        # `0/equal` 以词定字(尾字)
     bindings/+:
+      - {when: has_menu,  accept: ";", send: Control+2}         # 分号; 用于第2候选
+      - {when: has_menu,  accept: "'", send: Control+3}         # 引号' 用于第3候选
       - {when: paging,    accept: comma, send: Page_Up}         # 逗号, 返回上一页
       - {when: has_menu,  accept: ']', send: Page_Down}         # 括号] 下一页
+      # - {when: has_menu,  accept: ".", send: Control+3}       # 句号. 用于第3候选
       # - {when: paging,    accept: minus,  send: Page_Up}      # 减号- 返回上一页
       # - {when: paging,    accept: equal,  send: Page_Down}    # 等号= 下一页
       # - {when: has_menu,  accept: period, send: Page_Down}    # 句号. 下一页
@@ -83,15 +87,31 @@ patch:
       - {when: composing, accept: Control+i, send: Control+Left}
       - {when: composing, accept: Control+o, send: Control+Right}
       - {when: composing, accept: Control+w, send: Control+BackSpace}
+
       # 以下按键绑定规则(含`tag` / `match`)需 keybinder(lua) 支持
-      - {tag: "date_time", accept: "s", send_sequence: '{Control+3}'}
-      - {tag: "date_time", accept: "d", send_sequence: '{Control+4}'}
-      - {tag: "date_time", accept: "f", send_sequence: '{Control+5}'}
-      - {tag: "calculator", accept: "'", send_sequence: '{Page_Down}'}
-      # - {match: "^cC.*$", accept: "'",  send_sequence: '{Page_Down}'}
-      # - {when: has_menu, accept: "'", send_sequence: '{Control+3}'}      # 引号. 用于第3候选
-      - {when: has_menu,    accept: ";", send_sequence: '{Control+2}'}     # 引号; 用于第2候选
-      - {when: has_menu,    accept: ".", send_sequence: '{Control+3}'}     # 引号. 用于第3候选
+      - {tag: date_time, accept: "s", send_sequence: '{Control+3}'}
+      - {tag: date_time, accept: "d", send_sequence: '{Control+4}'}
+      - {tag: date_time, accept: "f", send_sequence: '{Control+5}'}
+      - {tag: calculator, accept: "'", send: '{Page_Down}'}
+      - {tag: calculator, accept: "Shift+B", send_sequence: '00'}
+      - {tag: calculator, accept: "Shift+H", send_sequence: '00'}
+      - {tag: calculator, accept: "Shift+Q", send_sequence: '000'}
+      - {tag: calculator, accept: "Shift+K", send_sequence: '000'}
+      - {tag: calculator, accept: "Shift+W", send_sequence: '0000'}
+      # - {tag: chinese_number, accept: ".", send_sequence: '.'}
+      - {tag: chinese_number, accept: "o", send_sequence: '0'}
+      - {tag: chinese_number, accept: "i", send_sequence: '1'}
+      - {tag: chinese_number, accept: "b", send_sequence: '00'}
+      - {tag: chinese_number, accept: "h", send_sequence: '00'}
+      - {tag: chinese_number, accept: "q", send_sequence: '000'}
+      - {tag: chinese_number, accept: "k", send_sequence: '000'}
+      - {tag: chinese_number, accept: "w", send_sequence: '0000'}
+      - {tag: chinese_number, accept: "s", send_sequence: '{Control+1}'}
+      - {tag: chinese_number, accept: "d", send_sequence: '{Control+2}'}
+      - {tag: chinese_number, accept: "f", send_sequence: '{Control+3}'}
+      - {tag: chinese_number, accept: "j", send_sequence: '{Control+4}'}
+      - {tag: chinese_number, accept: "u", send_sequence: '{Control+5}'}
+      - {tag: chinese_number, accept: "m", send_sequence: '{Control+6}'}
 
   recognizer/+:
     patterns/+:
@@ -228,7 +248,7 @@ patch:
     prefix: "nN"
     suffix: "'"
     tips: "中文数字"
-    select_keys: "sdfjklm"
+    select_keys: "sdfjum"
 
   chinese_lunar:                      # 中国农历(可反查)
     tag: chinese_lunar

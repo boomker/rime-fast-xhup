@@ -1,6 +1,7 @@
 -- 来源 https://github.com/yanhuacuo/98wubi-tables > http://98wb.ysepan.com/
 -- 数字、金额大写 (任意大写字母引导+数字)
 
+require("lib/string")
 require("lib/rime_helper")
 local Env = require("lib/env_api")
 local n2c = {
@@ -356,11 +357,10 @@ local function number_translator(num)
     return result
 end
 
-local P = {}
 local T = {}
 local M = {}
 
-function M.init(env)
+function T.init(env)
     Env(env)
     local schema = env.engine.schema
     local context = env.engine.context
@@ -371,79 +371,52 @@ function M.init(env)
     env.prompt = config:get_string("chinese_number/tips") or "中文数字"
     env.tag = config:get_string("chinese_number/tag") or "chinese_number"
     env.trigger_prefix = config:get_string("chinese_number/prefix") or "nN"
-    env.current_labels = config:get_string("menu/alternative_select_labels")
-    env.current_select_keys = config:get_string("menu/alternative_select_keys")
-    env.alter_labels = env.alter_labels or env.current_labels or default_labels
-    M.speller_string = M.speller_string or env.current_speller -- 缓存speller
-    M.alter_select_keys = M.alter_select_keys or env.current_select_keys or "1234567"
-    env.alpha_select_keys = config:get_string("chinese_number/select_keys") or "sdfjklm"
+    env.current_labels = env:Config_get("menu/alternative_select_labels")
+    env.current_select_keys = env:Config_get("menu/alternative_select_keys")
+    env.alter_select_keys = env:Config_get("chinese_number/select_keys") or "sdfjum"
+    env.alter_select_labels = string.to_table(env.alter_select_keys)
+    M.original_labels = M.original_labels or env.current_labels or default_labels
+    M.original_select_keys = M.original_select_keys or env.current_select_keys or "1234567"
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
-        if env.system_name:lower():match("android") then return end
+        if env.system_name:lower():match("android") then
+            return
+        end
         local segment = ctx.composition:back()
         if segment and segment.prompt:match(env.prompt) then
-            env:Config_set("speller/alphabet", M.speller_string)
-            env:Config_set("menu/alternative_select_keys", M.alter_select_keys)
-            env:Config_set("menu/alternative_select_labels", env.alter_labels)
+            env:Config_set("menu/alternative_select_labels", M.original_labels)
+            env:Config_set("menu/alternative_select_keys", M.original_select_keys)
             env.engine:apply_schema(Schema(schema.schema_id))
         end
     end)
 end
 
-function M.fini(env)
+function T.fini(env)
     if env.notifier_commit_number then
         env.notifier_commit_number:disconnect()
         env.notifier_commit_number = nil
     end
 end
 
-function P.func(key, env)
+function T.func(input, seg, env)
     local engine = env.engine
     local schema = engine.schema
     local context = engine.context
     local input_code = context.input
     local composition = context.composition
-
-    if (env.current_speller ~= M.speller_string) and (key:repr() == "Escape") then
-        env:Config_set("menu/alternative_select_keys", M.alter_select_keys)
-        env:Config_set("menu/alternative_select_labels", env.alter_labels)
-        env:Config_set("speller/alphabet", M.speller_string)
-        engine:apply_schema(Schema(schema.schema_id))
-        return 1 -- kAccepted 收下此key
-    end
-    if composition:empty() then
-        return 2
-    end
-    local segment = composition:back()
-    if not (segment and segment.menu) then
-        return 2
-    end
-    if env.system_name:lower():match("android") then
-        return 2
-    end
-    if env.current_select_keys == env.alpha_select_keys then
-        return 2
-    end
-
-    local alpha_labels = { "s", "d", "f", "j", "k", "l", "m" }
-    local _speller_str = env.current_speller:gsub("[a-z%p]", "")
-    local speller_str = _speller_str:gsub("[" .. env.trigger_prefix .. "]", "")
-    if segment.tags[env.tag] or input_code:match("^" .. env.trigger_prefix) then
-        env:Config_set("menu/alternative_select_keys", env.alpha_select_keys)
-        env:Config_set("menu/alternative_select_labels", alpha_labels)
-        env:Config_set("speller/alphabet", speller_str)
-        engine:apply_schema(Schema(schema.schema_id))
-        context:push_input(input_code)
-        context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单
-    end
-    return 2
-end
-
-function T.func(input, seg, env)
+    local segment = composition:toSegmentation():back()
     local payload_str, numberPart
-    local segment = env.engine.context.composition:back()
+
     if seg:has_tag(env.tag) or input:match("^" .. env.trigger_prefix) then
-        segment.tags = segment.tags - Set({"abc"})
+        segment.tags = segment.tags - Set({ "abc" })
         segment.prompt = "〔" .. env.prompt .. "〕"
+        if (env.system_name:lower() ~= "android") and (env.current_select_keys ~= env.alter_select_keys) then
+            env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
+            env:Config_set("menu/alternative_select_labels", env.alter_select_labels)
+            engine:apply_schema(Schema(schema.schema_id))
+            context:pop_input(#input_code)
+            context:push_input(input_code)
+        end
+
         payload_str = input:gsub("[%a/]+", "")
         numberPart = (payload_str:len() > 0) and number_translator(payload_str) or nil
         if numberPart and #numberPart > 0 then
@@ -455,6 +428,5 @@ function T.func(input, seg, env)
 end
 
 return {
-    processor = { init = M.init, func = P.func, fini = M.fini },
-    translator = { init = M.init, func = T.func, fini = M.fini },
+    translator = { init = T.init, func = T.func, fini = T.fini },
 }

@@ -95,6 +95,7 @@
         "dictentry",
         "Easydict",
         "ecdict",
+        "favorcmd",
         "fcitx",
         "fini",
         "flyhe",

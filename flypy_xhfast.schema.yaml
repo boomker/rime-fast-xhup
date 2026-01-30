@@ -31,7 +31,6 @@ switches:
 engine:
   processors:
     - key_binder
-    - lua_processor@*keybinder
     - lua_processor@*select_char
     - lua_processor@*symbol_menu
     - lua_processor@*easy_en*processor
@@ -39,7 +38,6 @@ engine:
     - lua_processor@*shortcut*processor
     - lua_processor@*pair_punct*processor
     - lua_processor@*cand_selector*processor
-    - lua_processor@*chinese_number*processor
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
     - lua_processor@*commit_history*processor

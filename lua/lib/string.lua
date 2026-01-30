@@ -20,6 +20,14 @@ function string.split(str, sp, sp1)
     return tab
 end
 
+function string.to_table(str)
+    local t = {}
+    for char in str:gmatch(".") do
+        table.insert(t, char)
+    end
+    return t
+end
+
 function utf8.gsub(str, si, ei)
     local function index(ustr, i)
         return i >= 0 and (ustr:utf8_offset(i) or ustr:len() + 1) or
@@ -81,6 +89,7 @@ function utf8.chars(word)
 end
 
 string.split = string.split
+string.to_table = string.to_table
 string.utf8_len = utf8.len
 string.utf8_offset = utf8.offset
 string.utf8_gsub = utf8.gsub
