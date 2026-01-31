@@ -11,6 +11,7 @@ local P = {}
 ---@field accept KeyEvent
 ---@field send KeySequence
 ---@field send_sequence KeySequence
+---@field sequence_text string
 
 ---解析配置文件中的按键绑定配置
 ---@param value ConfigMap
@@ -27,12 +28,13 @@ local function parse(value)
     local key_event = accept and KeyEvent(accept:get_string())
     local send_key_event = send_key and KeySequence(send_key:get_string())
     local sequence = send_sequence and KeySequence(send_sequence:get_string())
+    local sequence_text = send_sequence and send_sequence:get_string()
     if match_pattern and key_event and sequence then
-        return { match = match_pattern, accept = key_event, send_sequence = sequence }
+        return { match = match_pattern, accept = key_event, send_sequence = sequence, sequence_text = sequence_text }
     elseif tag_match and key_event and sequence then
-        return { tag = tag_match, accept = key_event, send_sequence = sequence }
-    elseif tag_match and send_key then
-        return { tag = tag_match, accept = key_event, send_sequence = send_key_event }
+        return { tag = tag_match, accept = key_event, send_sequence = sequence, sequence_text = sequence_text }
+    elseif tag_match and key_event and send_key then
+        return { tag = tag_match, accept = key_event, send_sequence = send_key_event, sequence_text = send_key:get_string() }
     end
     return nil
 end
@@ -77,7 +79,11 @@ function P.func(key_event, env)
         if key_event:eq(binding.accept) and (match_input or match_tag) then
             env.redirecting = true
             for _, key in ipairs(binding.send_sequence:toKeyEvent()) do
-                env.engine:process_key(key)
+                if key:repr() == binding.accept:repr() then
+                    context:push_input(binding.sequence_text)
+                else
+                    env.engine:process_key(key)
+                end
             end
             env.redirecting = false
             return 1

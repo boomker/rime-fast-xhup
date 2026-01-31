@@ -366,8 +366,6 @@ function T.init(env)
     local context = env.engine.context
     local config = env.engine.schema.config
     local default_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
-    env.system_name = detect_os()
-    env.current_speller = config:get_string("speller/alphabet")
     env.prompt = config:get_string("chinese_number/tips") or "中文数字"
     env.tag = config:get_string("chinese_number/tag") or "chinese_number"
     env.trigger_prefix = config:get_string("chinese_number/prefix") or "nN"
@@ -378,7 +376,6 @@ function T.init(env)
     M.original_labels = M.original_labels or env.current_labels or default_labels
     M.original_select_keys = M.original_select_keys or env.current_select_keys or "1234567"
     env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
-        if env.system_name:lower():match("android") then return end
         local segment = ctx.composition:back()
         if segment and segment.prompt:match(env.prompt) then
             env:Config_set("menu/alternative_select_labels", M.original_labels)
@@ -401,19 +398,17 @@ function T.func(input, seg, env)
     local context = engine.context
     local input_code = context.input
     local composition = context.composition
-    local segment = composition:toSegmentation():back()
+    local segment = composition:back()
     local payload_str, numberPart
 
-    if seg:has_tag(env.tag) or input:match("^" .. env.trigger_prefix) then
-        segment.tags = segment.tags - Set({"abc"})
+    if seg:has_tag(env.tag) or input_code:match("^" .. env.trigger_prefix .. "$") then
+        segment.tags = segment.tags - Set({ "abc" })
+        segment.tags = segment.tags + Set({ "chinese_number" })
         segment.prompt = "〔" .. env.prompt .. "〕"
-        if (env.system_name:lower() ~= "android")
-            and (env.current_select_keys ~= env.alter_select_keys)
-        then
+        if (env.current_select_keys ~= env.alter_select_keys) and (input_code:match("%d")) then
             env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
             env:Config_set("menu/alternative_select_labels", env.alter_select_labels)
             engine:apply_schema(Schema(schema.schema_id))
-            context:pop_input(#input_code)
             context:push_input(input_code)
         end
 

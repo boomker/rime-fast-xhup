@@ -353,8 +353,7 @@ function T.func(input, seg, env)
     end
     if startsWith(input, trigger_tbl) or seg:has_tag(env.tag) then
         segment.tags = segment.tags - Set({"abc"})
-        -- local cseg = Segment(seg.start, seg._end)
-        -- cseg.tags = Set({ "calc_help" })
+        segment.tags = segment.tags + Set({"calculator"})
         yield(Candidate("calc", seg.start, seg._end, "'/h'、'?h' 查看支持的函数", ""))
     end
 end
