@@ -9,6 +9,7 @@ local P = {}
 ---@field tag string
 ---@field match string
 ---@field accept KeyEvent
+---@field send KeySequence
 ---@field send_sequence KeySequence
 
 ---解析配置文件中的按键绑定配置
@@ -18,16 +19,20 @@ local function parse(value)
     local tag = value:get_value("tag")
     local match = value:get_value("match")
     local accept = value:get_value("accept")
+    local send_key = value:get_value("send")
     local send_sequence = value:get_value("send_sequence")
     if (not match) and (not tag) then return nil end
     local tag_match = tag and tag:get_string()
     local match_pattern = match and match:get_string()
     local key_event = accept and KeyEvent(accept:get_string())
+    local send_key_event = send_key and KeySequence(send_key:get_string())
     local sequence = send_sequence and KeySequence(send_sequence:get_string())
     if match_pattern and key_event and sequence then
         return { match = match_pattern, accept = key_event, send_sequence = sequence }
     elseif tag_match and key_event and sequence then
         return { tag = tag_match, accept = key_event, send_sequence = sequence }
+    elseif tag_match and send_key then
+        return { tag = tag_match, accept = key_event, send_sequence = send_key_event }
     end
     return nil
 end

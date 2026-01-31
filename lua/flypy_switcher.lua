@@ -71,15 +71,12 @@ function P.func(key, env)
     local context = engine.context
     local page_size = schema.page_size
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
+
     local segment = composition:back()
     local preedit_code = context.input
+    if key:release() or key:alt() or key:caps() then return 2 end
 
-    if key:release() or key:alt() or key:caps() then
-        return 2
-    end
     if context:has_menu() and (key:repr() == env.switch_comment_key) then
         if segment.prompt:match(env.easy_en_prompt) and env.en_comment_overwrite then
             config:set_bool("easy_en-ecdict/overwrite_comment", false) -- 重写英文注释为空

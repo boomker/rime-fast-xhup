@@ -32,7 +32,7 @@ function E:get_status()
     stat.has_menu = ctx:has_menu()
     -- old version check ( Projection userdata)
     local ok, empty
-    if rime_api.Version() < 100 then
+    if rime_api.get_rime_version() < 100 then
         ok, empty = pcall(comp.empty)
         empty = ok and empty or comp:empty() --  empty=  ( ok ) ? empty : comp:empty()
     else
@@ -47,7 +47,7 @@ end
 --    type 4 只能單向轉換
 --
 --  check base_type
---  conver ConfigItem of obj  to list { {path= string, value= string} ...}
+--  convert ConfigItem of obj  to list { {path= string, value= string} ...}
 
 local function select_capi(num_type)
     num_type = (type(num_type) == "number") and (num_type > 0) and (num_type <= 3) and num_type or 1
@@ -57,9 +57,9 @@ end
 
 function E:Config_get(path, _type)
     local item = self.engine.schema.config:get_item(path)
-    local conv_func = select_capi(_type)
+    local convert_func = select_capi(_type)
 
-    return conv_func(item)
+    return convert_func(item)
 end
 
 function E:Config_set(path, obj)
