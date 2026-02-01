@@ -184,15 +184,17 @@ function segmentor.init(env)
 end
 
 function segmentor.fini(env)
-    if env.echo_translator or env.update_notifier
-        or env.select_notifier or env.commit_notifier
-    then
+    if env.echo_translator then env.echo_translator = nil end
+    if env.update_notifier then
         env.update_notifier:disconnect()
-        env.select_notifier:disconnect()
-        env.commit_notifier:disconnect()
-        env.echo_translator = nil
         env.update_notifier = nil
+     end
+    if env.select_notifier then
+        env.select_notifier:disconnect()
         env.select_notifier = nil
+     end
+     if env.commit_notifier then
+        env.commit_notifier:disconnect()
         env.commit_notifier = nil
     end
 end

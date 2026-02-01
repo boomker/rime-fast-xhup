@@ -77,7 +77,6 @@ engine:
     - reverse_lookup_translator
     - script_translator
     - table_translator@easy_en
-    - table_translator@idiom_phrase                   # 成语短语的首字母简拼
     - table_translator@custom_phrase                  # 自定义短语(固顶)
     - table_translator@flypy_key_map                  # /ok 触发进入双拼键位帮助
     - table_translator@flypy_radical                  # /rl,rL 触发进入部件组字模式
@@ -168,7 +167,7 @@ easy_en:
     - xform/.*//                      # 清空提示码
 
 free_uses_word:                       # 自由用词
-  dictionary: flypy_xhfast
+  __include: translator
   initial_quality: 1.5
   enable_user_dict: true
   enable_sentence: false
@@ -180,7 +179,6 @@ free_make_word:                       # 自由造词
   __include: translator
   prefix: "`/"
   spelling_hints: 20
-  initial_quality: 1.0
   enable_user_dict: true
   contextual_suggestions: false       # 是否开启语法模型优化候选〔需grammar〕
   user_dict: free_user_dict
@@ -207,15 +205,6 @@ make_en_word:                         # 英文造词
   suffix: ";"
   tag: make_en_word
   tips: "〔英文造词〕"
-
-# 成语短语
-idiom_phrase:                         # 成语, 俗语缩写, 实现简拼
-  dictionary: ""
-  db_class: stabledb
-  user_dict: idiom_phrase
-  initial_quality: 0.8
-  enable_sentence: false
-  enable_completion: false
 
 # 自定义短语
 custom_phrase:                        # 自定义短语, 包含固顶字
@@ -285,7 +274,7 @@ recognizer:
   import_preset: default
   patterns:
     make_sentence: "^`?[a-z]+[`][a-z`]*$"                   # `  引导精准造词
-    free_make_word: "^`/[a-z]+[a-zA-Z=]+$"                  # `/ 引导自由造词
+    free_make_word: '^[a-zA-Z/]+`[a-zA-Z=]+$'                # `= 引导自由造词
     easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"                # * 进入英文模式
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
@@ -337,7 +326,7 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA&=_/
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA&_/
   # initials 定义仅作为始码的按键
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
