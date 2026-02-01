@@ -1,4 +1,5 @@
 require("lib/rime_helper")
+local _, logger = pcall(require, "lib/logger")
 
 local T = {}
 
@@ -16,7 +17,7 @@ end
 
 local function save_entry(env, cand_or_text)
     local text = (type(cand_or_text) == string) and cand_or_text or cand_or_text.text
-    if text:match("[a-zA-Z]") then
+    if text:match("^[a-zA-Z]+$") then
         local entry = DictEntry()
         entry.text = text -- 上屏英文本身
         entry.weight = 1
@@ -26,6 +27,7 @@ local function save_entry(env, cand_or_text)
             save_entry(env, text:lower())
         end
     else
+        logger.write("save_entry: " .. text)
         local entry = DictEntry()
         entry.text = text -- 上屏文
         entry.weight = 1
@@ -57,10 +59,10 @@ function T.init(env)
     env.en_tag = config:get_string("make_en_word/tag") or "make_en_word"
     env.cn_tag = config:get_string("free_make_word/tag") or "free_make_word"
     env.cn_make_word_prefix = config:get_string("free_make_word/prefix") or "`/"
-    env.free_make_word_tran = Component.Translator(env.engine, cn_schema, "", "script_translator@free_make_word")
+    env.free_make_word_tran =
+        Component.Translator(env.engine, cn_schema, "", "script_translator@free_make_word")
 
     local function handle_save_userdict(ctx)
-
         local segment = ctx.composition:back()
         local cand = ctx:get_selected_candidate()
         if not cand then return end
@@ -70,8 +72,9 @@ function T.init(env)
             if cand.comment:match("^[a-zA-Z]+$") then
                 save_entry(env, cand)
             end
-        elseif segment:has_tag(env.en_tag) or
-            (cand_text:match("^%a[%a%p]+$") and env.enable_en_make_word)
+        elseif
+            segment:has_tag(env.en_tag)
+            or (cand_text:match("^%a[%a%p]+$") and env.enable_en_make_word)
         then
             env.enable_en_make_word = false
             local file = assert(io.open(env.dict_path, "a"))
@@ -82,13 +85,13 @@ function T.init(env)
         end
     end
 
-    env.notifier_commit_en = context.commit_notifier:connect(handle_save_userdict)
+    env.notifier_commit_make_word = context.commit_notifier:connect(handle_save_userdict)
 end
 
 function T.fini(env)
-    if env.notifier_commit_en then
-        env.notifier_commit_en:disconnect()
-        env.notifier_commit_en = nil
+    if env.notifier_commit_make_word then
+        env.notifier_commit_make_word:disconnect()
+        env.notifier_commit_make_word = nil
     end
     if env.en_memory then
         env.en_memory:disconnect()
@@ -105,22 +108,14 @@ function T.fini(env)
 end
 
 function T.func(input, seg, env)
-
     local context = env.engine.context
     local raw_input_code = context.input
     local composition = context.composition
     if composition:empty() then return end
 
     local segment = composition:back()
-    -- local has_finished_seg = segment:has_finished_segmentation()
-
-    -- if has_finished_seg then
-    --     local seg_start = segment:get_confirmed_position() + 1
-    --     raw_input_code = raw_input_code:sub(seg_start, #raw_input_code)
-    -- end
     if seg:has_tag(env.cn_tag) then -- 输入必须 ``/`
-        local prefix = env.cn_make_word_prefix
-        local query_encode = raw_input_code:match("^" .. prefix .. "([^=]+)")
+        local query_encode = raw_input_code:match("^" .. "([^`=]+)")
         local cand_comment = raw_input_code:match("=(.+)$") or " ~造词中..."
         local word_cands = env.free_make_word_tran:query(query_encode, segment) or nil
         if not word_cands then return end

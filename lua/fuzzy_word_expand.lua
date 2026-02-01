@@ -145,7 +145,6 @@ function T.init(env)
     env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
     -- env.flyhe_fuzz_tran = Component.Translator(env.engine, schema, "", "script_translator@flyhe_fuzz")
     env.flyhe_fuzz_tran = Component.Translator(env.engine, flyhe_schema, "", "script_translator@translator")
-    env.idiom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@idiom_phrase")
 end
 
 function T.fini(env)
@@ -206,16 +205,6 @@ function T.func(input, seg, env)
         end
     end
 
-    -- 四码时, 按下`8/Control+q`, 简拼成语优先
-    if input_code:match("^%l%l%l%l?%l?%l?$") and (phrase_first_state == "1") then
-        local idiom_phrase_iter = env.idiom_phrase_tran:query(input, seg)
-        if not idiom_phrase_iter then return end
-
-        for cand in idiom_phrase_iter:iter() do
-            cand.type = "idiom_phrase_" .. cand.type
-            yield(cand)
-        end
-    end
 end
 
 ---@diagnostic disable-next-line: unused-local

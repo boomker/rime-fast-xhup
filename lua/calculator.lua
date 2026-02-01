@@ -312,7 +312,7 @@ function T.func(input, seg, env)
 
     local trigger_tbl = env.prefix:match("|") and string.split(env.prefix, "|") or { env.prefix }
     if seg:has_tag(env.tag) then
-        segment.tags = segment.tags - Set({"abc"})
+        segment.tags = segment.tags - Set({ "abc" })
         segment.prompt = "〔" .. env.tips .. "〕"
         if input:match("?h$") or input:match("^/h$") then goto HELP end
         -- 提取算式
@@ -352,8 +352,8 @@ function T.func(input, seg, env)
         end
     end
     if startsWith(input, trigger_tbl) or seg:has_tag(env.tag) then
-        segment.tags = segment.tags - Set({"abc"})
-        segment.tags = segment.tags + Set({"calculator"})
+        segment.tags = segment.tags - Set({ "abc" })
+        segment.tags = segment.tags + Set({ "calculator" })
         yield(Candidate("calc", seg.start, seg._end, "'/h'、'?h' 查看支持的函数", ""))
     end
 end

@@ -4990,7 +4990,6 @@ preset_keyboards:
           click: '(',
           long_click: "<",
           swipe_up: "<",
-          # popup: ["(){Left}", "{}{Left}"],
         }
       - { click: "1", width: 18, repeatable: true, key_text_size: 24 }
       - { click: "2", width: 18, repeatable: true, key_text_size: 24 }
