@@ -139,7 +139,6 @@ end
 function T.init(env)
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
-    local schema = Schema(schema_id)
     local flyhe_schema = Schema("flyhe_fast")
     env.reversedb = ReverseLookup(schema_id)
     env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
@@ -149,8 +148,8 @@ end
 
 function T.fini(env)
     if env.flyhe_fuzz_tran then
-        env.flyhe_fuzz_tran:disconnect()
         env.flyhe_fuzz_tran = nil
+        -- env.flyhe_fuzz_tran:disconnect()
     end
 end
 

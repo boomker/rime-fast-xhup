@@ -102,8 +102,8 @@ function T.fini(env)
         env.cn_memory = nil
     end
     if env.free_make_word_tran then
-        env.free_make_word_tran:disconnect()
         env.free_make_word_tran = nil
+       -- env.free_make_word_tran:disconnect()
     end
 end
 

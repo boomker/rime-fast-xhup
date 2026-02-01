@@ -23,9 +23,7 @@ local function write_word_to_file(env)
     local filename = get_record_filename()
     local record_header = string.format("local pin_word_records =\n")
     local record_tailer = string.format("\nreturn pin_word_records")
-    if not filename then
-        return false
-    end
+    if not filename then return false end
 
     local fd = assert(io.open(filename, "w")) --打开
     fd:setvbuf("line")
@@ -50,6 +48,13 @@ function M.init(env)
     env.pin_cand_key = config:get_string("key_binder/pin_cand") or "Control+t"
     env.unpin_cand_key = config:get_string("key_binder/unpin_cand") or "Control+t"
     env.custom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@custom_phrase")
+end
+
+function M.fini(env)
+    if env.custom_phrase_tran then
+        env.custom_phrase_tran = nil
+        -- env.custom_phrase_tran:disconnect()
+    end
 end
 
 function P.func(key, env)
