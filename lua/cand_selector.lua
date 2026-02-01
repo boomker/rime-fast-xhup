@@ -34,8 +34,8 @@ function M.fini(env)
         env.mem = nil
     end
     if env.script_tran then
-        env.script_tran:disconnect()
         env.script_tran = nil
+        -- env.script_tran:disconnect()
     end
 end
 
