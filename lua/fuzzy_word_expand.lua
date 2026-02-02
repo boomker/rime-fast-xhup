@@ -149,7 +149,6 @@ end
 function T.fini(env)
     if env.flyhe_fuzz_tran then
         env.flyhe_fuzz_tran = nil
-        -- env.flyhe_fuzz_tran:disconnect()
     end
 end
 

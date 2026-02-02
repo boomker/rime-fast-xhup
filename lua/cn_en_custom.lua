@@ -1,5 +1,4 @@
 require("lib/rime_helper")
-local _, logger = pcall(require, "lib/logger")
 
 local T = {}
 
@@ -27,7 +26,6 @@ local function save_entry(env, cand_or_text)
             save_entry(env, text:lower())
         end
     else
-        logger.write("save_entry: " .. text)
         local entry = DictEntry()
         entry.text = text -- 上屏文
         entry.weight = 1
@@ -103,7 +101,6 @@ function T.fini(env)
     end
     if env.free_make_word_tran then
         env.free_make_word_tran = nil
-       -- env.free_make_word_tran:disconnect()
     end
 end
 
