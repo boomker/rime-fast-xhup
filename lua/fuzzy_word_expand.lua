@@ -106,8 +106,8 @@ function P.init(env)
     local context = env.engine.context
     local config = env.engine.schema.config
     local flyhe_schema = Schema("flyhe_fast")
-    env.mem_flyhe = Memory(env.engine, flyhe_schema)
     env.reversedb_flyhe = ReverseLookup("flyhe_fast")
+    env.mem_flyhe = Memory(env.engine, flyhe_schema, "translator")
     env.expand_idiom_key = config:get_string("key_binder/simpy_expand_key") or "Control+q"
 
     env.commit_fuzz_cand_notify = context.commit_notifier:connect(function(ctx)
