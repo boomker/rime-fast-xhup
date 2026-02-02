@@ -53,7 +53,6 @@ end
 function M.fini(env)
     if env.custom_phrase_tran then
         env.custom_phrase_tran = nil
-        -- env.custom_phrase_tran:disconnect()
     end
 end
 
@@ -206,7 +205,7 @@ function F.func(input, env)
 end
 
 return {
-    processor = { init = M.init, func = P.func },
-    translator = { init = M.init, func = T.func },
-    filter = { init = M.init, func = F.func },
+    processor   = { init = M.init, func = P.func, fini = M.fini},
+    translator  = { init = M.init, func = T.func, fini = M.fini},
+    filter      = { init = M.init, func = F.func, fini = M.fini},
 }
