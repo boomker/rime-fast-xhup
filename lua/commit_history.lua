@@ -68,6 +68,7 @@ function P.fini(env)
     if env.mem then
         env.mem:disconnect()
         env.mem = nil
+        collectgarbage('collect')
     end
 end
 

@@ -133,6 +133,7 @@ function P.fini(env)
     if env.mem_flyhe then
         env.mem_flyhe:disconnect()
         env.mem_flyhe = nil
+        collectgarbage('collect')
     end
 end
 

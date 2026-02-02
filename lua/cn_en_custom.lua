@@ -87,17 +87,21 @@ function T.init(env)
 end
 
 function T.fini(env)
-    if env.notifier_commit_make_word then
-        env.notifier_commit_make_word:disconnect()
-        env.notifier_commit_make_word = nil
-    end
-    if env.en_memory then
-        env.en_memory:disconnect()
-        env.en_memory = nil
-    end
     if env.cn_memory then
         env.cn_memory:disconnect()
         env.cn_memory = nil
+        collectgarbage('collect')
+    end
+
+    if env.en_memory then
+        env.en_memory:disconnect()
+        env.en_memory = nil
+        collectgarbage('collect')
+    end
+
+    if env.notifier_commit_make_word then
+        env.notifier_commit_make_word:disconnect()
+        env.notifier_commit_make_word = nil
     end
     if env.free_make_word_tran then
         env.free_make_word_tran = nil
