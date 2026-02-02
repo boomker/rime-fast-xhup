@@ -30,6 +30,8 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - ascii_composer
+    - recognizer
     - key_binder
     - lua_processor@*select_char
     - lua_processor@*symbol_menu
@@ -42,8 +44,6 @@ engine:
     - lua_processor@*cold_word_drop*processor
     - lua_processor@*commit_history*processor
     - lua_processor@*fuzzy_word_expand*processor
-    - ascii_composer
-    - recognizer
     - speller
     - selector
     - navigator

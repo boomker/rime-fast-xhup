@@ -16,7 +16,9 @@ end
 
 function P.init(env)
     local config = env.engine.schema.config
-    env.mem = Memory(env.engine, env.engine.schema)
+    local schema_id = config:get_string("schema/schema_id")
+    local schema = Schema(schema_id)
+    env.mem = Memory(env.engine, schema, "translator")
     env.tag = config:get_string("history" .. "/tag") or "history"
     env.prompt = config:get_string("history" .. "/tips") or "上屏历史"
     env.remove_user_word_key = config:get_string("key_binder/remove_user_word") or "Control+r"

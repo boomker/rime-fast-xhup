@@ -37,8 +37,8 @@ end
 function T.init(env)
     local context = env.engine.context
     local config = env.engine.schema.config
-    local cn_schema = Schema("flypy_xhfast")
     local en_schema = Schema("easy_en")
+    local cn_schema = Schema("flypy_xhfast")
     local dict_name = "en_dicts/en_custom.dict.yaml"
     local user_data_dir = rime_api:get_user_data_dir()
     if detect_os():lower() == "windows" then
@@ -53,7 +53,7 @@ function T.init(env)
 
     env.enable_en_make_word = false
     env.en_memory = Memory(env.engine, en_schema)
-    env.cn_memory = Memory(env.engine, env.engine.schema, "free_make_word")
+    env.cn_memory = Memory(env.engine, cn_schema, "free_make_word")
     env.en_tag = config:get_string("make_en_word/tag") or "make_en_word"
     env.cn_tag = config:get_string("free_make_word/tag") or "free_make_word"
     env.cn_make_word_prefix = config:get_string("free_make_word/prefix") or "`/"
