@@ -89,9 +89,6 @@ patch:
       - {when: composing, accept: Control+w, send: Control+BackSpace}
 
       # 以下按键绑定规则(含`tag` / `match`)需 keybinder(lua) 支持
-      - {tag: date_time, accept: "s", send_sequence: '{Control+3}'}
-      - {tag: date_time, accept: "d", send_sequence: '{Control+4}'}
-      - {tag: date_time, accept: "f", send_sequence: '{Control+5}'}
       - {tag: calculator, accept: "'", send: '{Page_Down}'}
       - {tag: calculator, accept: "Shift+U", send_sequence: '10'}
       - {tag: calculator, accept: "Shift+B", send_sequence: '00'}
@@ -99,7 +96,9 @@ patch:
       - {tag: calculator, accept: "Shift+Q", send_sequence: '000'}
       - {tag: calculator, accept: "Shift+K", send_sequence: '1000'}
       - {tag: calculator, accept: "Shift+W", send_sequence: '0000'}
-      - {tag: chinese_number, accept: "period", send_sequence: '.'}
+      - {tag: date_time,  accept: "s", send_sequence: '{Control+3}'}
+      - {tag: date_time,  accept: "d", send_sequence: '{Control+4}'}
+      - {tag: date_time,  accept: "f", send_sequence: '{Control+5}'}
       - {tag: chinese_number, accept: "o", send_sequence: '0'}
       - {tag: chinese_number, accept: "i", send_sequence: '1'}
       - {tag: chinese_number, accept: "b", send_sequence: '00'}
@@ -107,6 +106,7 @@ patch:
       - {tag: chinese_number, accept: "q", send_sequence: '000'}
       - {tag: chinese_number, accept: "k", send_sequence: '1000'}
       - {tag: chinese_number, accept: "w", send_sequence: '0000'}
+      - {tag: chinese_number, accept: "period", send_sequence: '.'}
       - {tag: chinese_number, accept: "s", send_sequence: '{Control+1}'}
       - {tag: chinese_number, accept: "d", send_sequence: '{Control+2}'}
       - {tag: chinese_number, accept: "f", send_sequence: '{Control+3}'}

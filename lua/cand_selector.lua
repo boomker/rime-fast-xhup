@@ -32,6 +32,7 @@ function M.fini(env)
     if env.mem then
         env.mem:disconnect()
         env.mem = nil
+        collectgarbage('collect')
     end
     if env.script_tran then
         env.script_tran = nil
