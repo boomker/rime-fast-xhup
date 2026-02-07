@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2026.02.29
+  version: 2026.02.07
   author:
     - boomker
   description: |
@@ -85,7 +85,7 @@ engine:
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
     - lua_translator@*date_time                       # date/orq,week,time 触发
     - lua_translator@*calculator                      # /=,cC 触发简易计算器
-    - lua_translator@*cn_en_custom                    # `/,~,\ 触发自定义单词入库
+    - lua_translator@*cn_en_custom                    # `=,~,\ 触发自定义单词入库
     - lua_translator@*chinese_lunar                   # /nl,nL 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh,oH 触发进入帮助菜单
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
@@ -175,9 +175,9 @@ free_uses_word:                       # 自由用词
   contextual_suggestions: false       # 是否开启语法模型优化候选〔需grammar〕
   user_dict: free_user_dict
 
+# "`=" 自由造词
 free_make_word:                       # 自由造词
   __include: translator
-  prefix: "`/"
   spelling_hints: 20
   enable_user_dict: true
   contextual_suggestions: false       # 是否开启语法模型优化候选〔需grammar〕
@@ -273,9 +273,9 @@ radical_lookup:                       # 部件拆字滤镜
 recognizer:
   import_preset: default
   patterns:
-    make_sentence: "^`?[a-z]+[`][a-z`]*$"                   # `  引导精准造词
-    free_make_word: '^[a-zA-Z/]+`[a-zA-Z=]+$'                # `= 引导自由造词
-    easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"                # * 进入英文模式
+    make_sentence: "^`?[a-z]+`[a-z`]*$"                     # `  引导精准造词
+    easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"                # *  进入英文模式
+    free_make_word: "^[a-zA-Z/`]+`=[a-zA-Z]*$"              # `= 引导自由造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
     make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'   # ~,\ 引导英文造词
@@ -287,26 +287,26 @@ punctuator:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
   half_shape:
     # __include: default:/punctuator/half_shape       # 从 default.yaml 导入配置
+    "#": "#"
     ",": {commit: "，"}
     ".": {commit: "。"}
     ";": {commit: "；"}
-    "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
-    ">": [">", 》, 〉, », ⟩, ˃, ˲]
-    "/": ["/", ／, ÷]
-    "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
-    "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
-    "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
-    "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
-    "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
-    "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
     "(": ["(", （]
     ")": [")", ）]
-    "[": ['[', 「, 【, 〔, ［, 〚, 〘]
-    "]": [']', 」, 】, 〕, ］, 〛, 〙]
+    "/": ["/", ／, ÷]
     "{": ['{', 〖, 『, ｛]
     "}": ['}', 〗, 』, ｝]
-    "#": "#"
-    "=": "="
+    "=": ["=", "≡", "≤", "≥"]
+    "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
+    ">": [">", 》, 〉, », ⟩, ˃, ˲]
+    "[": ['[', 「, 【, 〔, ［, 〚, 〘]
+    "]": [']', 」, 】, 〕, ］, 〛, 〙]
+    "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
+    "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
+    "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
+    "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
+    "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
+    "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
   symbols:
     __include: symbols.custom:/symbols
 

@@ -36,7 +36,7 @@ switcher:
 # true   切换大写
 # false  切换中英
 # macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法。
-#
+
 # 切换中英：
 # 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
 # noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
@@ -52,7 +52,31 @@ ascii_composer:
     Control_L: noop
     Control_R: noop
     Caps_Lock: clear        # commit_code | commit_text | clear
-###################################################################################
+
+# 处理输入栏内光标的移动
+# 需要 librime >= 1.16.0 才有 no_loop 等属性，才会自动在方案引用 default:/{navigator,selector}
+# 在边界按音节移动，在音节内部按字符移动  rewind | forward
+# 按字符移动（循环）       left_by_char | right_by_char
+# 按字符移动（不循环）     left_by_char_no_loop | right_by_char_no_loop
+# 按音节跳转（循环）       left_by_syllable | right_by_syllable
+# 按音节跳转（不循环）     left_by_syllable_no_loop | right_by_syllable_no_loop
+# 首尾跳转               home | end
+navigator:
+  bindings:
+    Left: left_by_char_no_loop
+    Right: right_by_char_no_loop
+    Shift+Left: left_by_syllable
+    Shift+Right: right_by_syllable
+    # 其他键 KP_Left KP_Right Home KP_Home End KP_End
+
+# 选字处理器，感觉这个没有自定义的必要
+# selector:
+#   bindings:
+#     Up: previous_candidate # 上一个
+#     Down: next_candidate   # 下一个
+#     Prior: previous_page   # 上一页
+#     Next: next_page        # 下一页
+#     # 其他键 KP_Up KP_Down KP_Prior KP_Next Home KP_Home End KP_End
 
 # 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。
 # 写在 default.yaml 里，方便多个方案引用，就是不用每个方案都写一遍了。
@@ -153,8 +177,6 @@ key_binder:
   # select_first_character: "bracketleft"     # 左中括号 [
   # select_last_character: "bracketright"     # 右中括号 ]
   bindings:
-    # - {when: has_menu, accept: semicolon, send: 2}
-    # - {when: has_menu,  accept: apostrophe, send: 3}       ## 单引号用于第3候选
     # Tab / Shift+Tab 切换光标至下/上一个拼音
     # - {when: composing, accept: Shift+Tab, send: Control+Left}
     # - {when: composing, accept: Tab, send: Control+Right}
@@ -222,7 +244,7 @@ key_binder:
 # - { when: always, accept: Shift+space, toggle: ascii_mode }
 # - { when: always, accept: Control+comma, toggle: full_shape }
 # - { when: always, accept: Control+period, toggle: ascii_punct }
-# - { when: always, accept: Control+slash, toggle: traditionalization }
+# - { when: always, accept: Control+slash, toggle: simplification }
 
 # 按键速查
 # https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
