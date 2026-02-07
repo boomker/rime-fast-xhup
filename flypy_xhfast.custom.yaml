@@ -80,13 +80,13 @@ patch:
       # - {when: paging,    accept: minus,  send: Page_Up}      # 减号- 返回上一页
       # - {when: paging,    accept: equal,  send: Page_Down}    # 等号= 下一页
       # - {when: has_menu,  accept: period, send: Page_Down}    # 句号. 下一页
-      - {when: always, accept: Control+Shift+0, select: .next}
-      - {when: always, accept: Control+Shift+G, select: easy_en}
-      - {when: composing, accept: Tab,      send: Control+Right}
-      - {when: composing, accept: Shift+Tab, send: Control+Left}
-      - {when: composing, accept: Control+i, send: Control+Left}
-      - {when: composing, accept: Control+o, send: Control+Right}
-      - {when: composing, accept: Control+w, send: Control+BackSpace}
+      - {when: always,    accept: Control+Shift+0, select: .next}
+      - {when: always,    accept: Control+Shift+E, select: easy_en}
+      - {when: composing, accept: Shift+Tab,    send: Shift+Left}
+      - {when: composing, accept: Control+i,    send: Shift+Left}
+      - {when: composing, accept: Tab,          send: Shift+Right}
+      - {when: composing, accept: Control+o,    send: Shift+Right}
+      - {when: composing, accept: Control+w,    send: Control+BackSpace}
 
       # 以下按键绑定规则(含`tag` / `match`)需 keybinder(lua) 支持
       - {tag: calculator, accept: "'", send: '{Page_Down}'}

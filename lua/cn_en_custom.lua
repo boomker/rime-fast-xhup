@@ -56,7 +56,6 @@ function T.init(env)
     env.cn_memory = Memory(env.engine, cn_schema, "free_make_word")
     env.en_tag = config:get_string("make_en_word/tag") or "make_en_word"
     env.cn_tag = config:get_string("free_make_word/tag") or "free_make_word"
-    env.cn_make_word_prefix = config:get_string("free_make_word/prefix") or "`/"
     env.free_make_word_tran =
         Component.Translator(env.engine, cn_schema, "", "script_translator@free_make_word")
 
@@ -90,7 +89,7 @@ function T.fini(env)
     if env.cn_memory then
         env.cn_memory:disconnect()
         env.cn_memory = nil
-        collectgarbage('collect')
+        -- collectgarbage('collect')
     end
 
     if env.en_memory then
@@ -115,8 +114,8 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     local segment = composition:back()
-    if seg:has_tag(env.cn_tag) then -- 输入必须 ``/`
-        local query_encode = raw_input_code:match("^" .. "([^`=]+)")
+    if seg:has_tag(env.cn_tag) then -- 输入必须含有 '`='
+        local query_encode = raw_input_code:match("^" .. "(.*)%`=")
         local cand_comment = raw_input_code:match("=(.+)$") or " ~造词中..."
         local word_cands = env.free_make_word_tran:query(query_encode, segment) or nil
         if not word_cands then return end
