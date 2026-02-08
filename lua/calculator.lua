@@ -315,16 +315,19 @@ function T.func(input, seg, env)
         segment.tags = segment.tags - Set({ "abc" })
         segment.prompt = "〔" .. env.tips .. "〕"
         if input:match("?h$") or input:match("^/h$") then goto HELP end
+
         -- 提取算式
-        local express = input:gsub(trigger_tbl[1], "") or input:gsub(trigger_tbl[2], "")
+        local express = ""
+        local raw_input = env.engine.context.input
+        if raw_input:match("^" .. trigger_tbl[1]) then
+            express = raw_input:gsub("^" .. trigger_tbl[1], "")
+        else
+            express = raw_input:gsub("^" .. trigger_tbl[2], "")
+        end
 
         -- 算式长度 < 2 直接终止(没有计算意义)
-        if (string.len(express) < 2) and not calc_methods[express] then
-            return
-        end
-        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then
-            return
-        end
+        if (string.len(express) < 2) and not calc_methods[express] then return end
+        if (string.len(express) == 2) and (express:match("^%d[^%!]$")) then return end
         local code = replaceToFactorial(express)
 
         local loaded_func, load_error = load("return " .. code, "calculate", "t", calc_methods)

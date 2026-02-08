@@ -140,27 +140,29 @@ punctuator:
     __include: default:/punctuator/full_shape         # 从 default.yaml 导入配置
   half_shape:
     # __include: default:/punctuator/half_shape       # 从 default.yaml 导入配置
-    ";": {commit: "；"}
+    "#": "#"
+    "_": "_"
     ",": {commit: "，"}
     ".": {commit: "。"}
-    "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
-    ">": [">", 》, 〉, », ⟩, ˃, ˲]
-    "/": ["/", ／, ÷]
-    "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
-    "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
-    "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
-    "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
-    "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
-    "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
+    ";": {commit: "；"}
+    # ";": [";", "；"]
     "(": ["(", （]
     ")": [")", ）]
-    "[": ['[', 「, 【, 〔, ［, 〚, 〘]
-    "]": [']', 」, 】, 〕, ］, 〛, 〙]
+    "/": ["/", ／, ÷]
     "{": ['{', 〖, 『, ｛]
     "}": ['}', 〗, 』, ｝]
-    "#": "#"
-    "=": "="
-    '\': ['､', '、', '\', '＼', '\r', '\n', '\t']
+    '\': ['､', '、', '\', '＼']
+    "=": ["=", "≡", "≤", "≥", "≠"]
+    "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
+    ">": [">", 》, 〉, », ⟩, ˃, ˲]
+    "[": ['[', 「, 【, 〔, ［, 〚, 〘]
+    "]": [']', 」, 】, 〕, ］, 〛, 〙]
+    "`": ["`", "```", ‵, ‶, ‷, ′, ″, ‴, ⁗]
+    "|": ["|", ·, ・, ｜, "§", "¦", "‖", ︴]
+    "*": ["*", ＊, ·, ・, ×, ※, ❂, ⁂, ☮, ☯, ☣]
+    "$": [￥, "$", "€", "£", "¥", "¢", "¤", ₩]
+    "%": ["%", ％, "°", "℃", ‰, ‱, ℉, ℅, ℆, ℀, ℁, ⅍]
+    "~": ["~", ～, ˜, ˷, ⸯ, ≈, ≋, ≃, ≅, ≇, ∽, ⋍, ≌, ﹏, ﹋, ﹌, ︴]
     "@":
       - "@"
       # - "@xxx.com"
@@ -178,11 +180,12 @@ punctuator:
 key_binder:
   bindings:
     - {when: paging, accept: comma, send: Page_Up}                      # 逗号上一页
-    - {when: has_menu, accept: period, send: Page_Down}                 # 句号. 下一页
+    # - {when: has_menu, accept: period, send: Page_Down}               # 句号. 下一页
     # - {when: paging,    accept: minus,  send: Page_Up}                # 减号- 上一页
     # - {when: has_menu,  accept: equal, send: Page_Down}               # 等号= 下一页
-    - {when: has_menu, accept: "'", send_sequence: '{Control+3}'}       # 引号' 用于第3候选
+    # - {when: has_menu, accept: "'", send_sequence: '{Control+3}'}     # 引号' 用于第3候选
     - {when: has_menu,    accept: ";", send_sequence: '{Control+2}'}    # 引号; 用于第2候选
+    - {when: has_menu,    accept: ".", send_sequence: '{Control+3}'}    # 句号. 用于第3候选
     - {when: composing, accept: Tab, send: Control+Right}
     - {when: composing, accept: Shift+Tab, send: Control+Left}
     - {when: composing, accept: Control+k, send: Shift+Delete}

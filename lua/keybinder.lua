@@ -1,4 +1,18 @@
 local P = {}
+local Shift_Key_Map = {
+    ["<"] = "Shift+less",
+    [">"] = "Shift+greater",
+    ["{"] = "Shift+braceleft",
+    ["}"] = "Shift+braceright",
+    ["("] = "Shift+parenleft",
+    [")"] = "Shift+parenright",
+    ["|"] = "Shift+bar",
+    ["!"] = "Shift+exclam",
+    ["%"] = "Shift+percent",
+    ["?"] = "Shift+question",
+    ["&"] = "Shift+ampersand",
+    ["^"] = "Shift+asciicircum",
+}
 
 ---@class KeyBinderEnv: Env
 ---@field redirecting boolean
@@ -25,7 +39,9 @@ local function parse(value)
     if (not match) and (not tag) then return nil end
     local tag_match = tag and tag:get_string()
     local match_pattern = match and match:get_string()
-    local key_event = accept and KeyEvent(accept:get_string())
+    local accept_str = accept and accept:get_string()
+    local accept_key = accept and (Shift_Key_Map[accept_str] or accept_str)
+    local key_event = accept_key and KeyEvent(accept_key)
     local send_key_event = send_key and KeySequence(send_key:get_string())
     local sequence = send_sequence and KeySequence(send_sequence:get_string())
     local sequence_text = send_sequence and send_sequence:get_string()
@@ -35,6 +51,8 @@ local function parse(value)
         return { tag = tag_match, accept = key_event, send_sequence = sequence, sequence_text = sequence_text }
     elseif tag_match and key_event and send_key then
         return { tag = tag_match, accept = key_event, send_sequence = send_key_event, sequence_text = send_key:get_string() }
+    elseif match_pattern and key_event and send_key then
+        return { match = match_pattern, accept = key_event, send_sequence = send_key_event, sequence_text = send_key:get_string() }
     end
     return nil
 end
