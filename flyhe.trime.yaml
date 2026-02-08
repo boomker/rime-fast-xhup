@@ -1466,10 +1466,10 @@ preset_keys:
   # rime組合鍵
   F4: { label: 方案选单, send: Alt+grave }
   BackToPreviousSyllable: { label: 刪音节, send: Control+BackSpace }
-  CommitRawInput: { label: 编码, send: Control+Return }
+  ResetCandWeight: { label: 忘词, send: Shift+Delete }
   CommitScriptText: { label: 编码, send: Shift+Return }
+  CommitRawInput: { label: 编码, send: Control+Return }
   CommitComment: { label: 编码, send: Control+Shift+Return }
-  DeleteCandidate: { label: 刪词, send: Control+Delete }
   # rime状态
   Mode_switch: { toggle: ascii_mode, send: Mode_switch, states: [中文, 西文] }
   Zenkaku_Hankaku: { toggle: full_shape, send: Mode_switch, states: [半角, 全角] }
@@ -1625,11 +1625,12 @@ preset_keys:
   Liquid_fixed_exit: { label: " ↶ ", send: function, command: liquid_keyboard, option: "-1" }
   Liquid_fixed_backspace: { label: " ⇦  ", repeatable: true, send: BackSpace }
   Liquid_fixed_space: { label: " ⎵  ", repeatable: true, functional: false, send: space }
-  Liquid_fixed_left: { label: " ←  ", send: Left }
-  Liquid_fixed_right: { label: " →  ", send: Right }
+  Liquid_fixed_left: { label: " ← ", send: Left }
+  Liquid_fixed_right: { label: " → ", send: Right }
   Liquid_fixed_up: { label: "↑", send: Up }
   Liquid_fixed_down: { label: "↓", send: Down }
-  Liquid_fixed_return: { label: " ↲  ", repeatable: true, send: Return, functional: false }
+  Liquid_fixed_tab: { label: " ⇥ ", send: Tab }
+  Liquid_fixed_return: { label: " ↲ ", repeatable: true, send: Return, functional: false }
   liquid_keyboard_emoji: { label: ☻, send: function, command: liquid_keyboard, option: "😀" }
   Commit_Caret: { label: "^", commit: "^", functional: false }
   Commit_Hash: { label: "#", commit: "#", functional: false }
@@ -1649,10 +1650,11 @@ preset_keys:
   Lunar_Lua: { label: "农历", text: "nL", functional: false }
   Calc_Lua: { label: "计算器", text: "cC", functional: false }
   Number_Lua: { label: "中文数", text: "nN", functional: false }
-  History_Lua: { label: "上屏历史", text: "hH", functional: false }
+  History_Lua: { label: "历史", text: "hH", functional: false }
   EasyEnMode: { label: "英译", send: Control+g, functional: false }
   PinCandFunc: { label: "置顶", send: Control+t, functional: false }
   DelCandFunc: { label: "删词", send: Control+d, functional: false }
+  HideCandFunc: { label: "藏词", send: Control+x, functional: false }
   # Unicode_Lua: { label: "Uni", text: "U", functional: false }
   Alt_space: { label: "空格", repeatable: true, functional: false, send: space }
   Flyhe_readme: {
@@ -4763,10 +4765,10 @@ preset_keyboards:
           swipe_down: "~",
           hint: "~",
         }
-      - { click: "w", long_click: Liquid_fixed_up, swipe_up: Liquid_fixed_up }
-      - { click: "e", long_click: EasyEnMode, swipe_up: EasyEnMode }
-      - { click: "r", long_click: Mandarin_rl, swipe_up: Mandarin_rl }
-      - { click: "t", long_click: PinCandFunc, swipe_up: PinCandFunc }
+      - { click: "w", long_click: Liquid_fixed_up, swipe_up: Liquid_fixed_up, swipe_down: BackToPreviousSyllable, hint: "BS" }
+      - { click: "e", long_click: EasyEnMode, swipe_up: EasyEnMode, swipe_down: Liquid_fixed_left, hint: "←" }
+      - { click: "r", long_click: Mandarin_rl, swipe_up: Mandarin_rl, swipe_down: Liquid_fixed_right, hint: "→"}
+      - { click: "t", long_click: PinCandFunc, swipe_up: PinCandFunc, swipe_down: Liquid_fixed_tab, hint: "⇥" }
       - {
           click: "y",
           long_click: redo,
@@ -4833,18 +4835,15 @@ preset_keyboards:
           click: "g",
           long_click: Google,
           swipe_up: Google,
-          # swipe_left: "〈",
-          # swipe_right: "〉",
-          # hint: "〈   〉",
+          swipe_down: "ResetCandWeight",
+          hint: "忘词",
         }
       - {
           click: "h",
-          long_click: Keyboard_number,
-          swipe_up: Keyboard_number,
-          swipe_down: History_Lua,
-          hint: "历史",
-          # swipe_left: "《",
-          # swipe_right: "》",
+          long_click: History_Lua,
+          swipe_up: History_Lua,
+          swipe_down: HideCandFunc,
+          hint: "藏词",
         }
       - {
           click: "j",
@@ -4933,10 +4932,11 @@ preset_keyboards:
       - {
           click: ",",
           label: ，,
-          # long_click: "、",
+          long_click: Keyboard_number,
+          swipe_up: Keyboard_number,
           swipe_down: "set_theme",
           hint: "刷新",
-          # key_text_color: one_color,
+          key_text_color: one_color,
         }
       - {
           click: space,
