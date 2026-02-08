@@ -81,9 +81,9 @@ end
 ---@return ProcessResult
 function P.func(key_event, env)
     local context = env.engine.context
-    local input_code = context.input
+    local raw_input = context.input
     if env.redirecting then return 2 end
-    if not input_code then return 2 end
+    if not raw_input then return 2 end
 
     if not (context.composition or context.composition:back()) then return 2 end
     local segment = context.composition:back()
@@ -93,7 +93,7 @@ function P.func(key_event, env)
     for _, binding in ipairs(env.bindings) do
         -- 只有当按键和当前输入的模式都匹配的时候，才起作用
         local match_tag = (not tags:empty()) and binding.tag and tags[binding.tag]
-        local match_input = binding.match and rime_api.regex_match(input_code, binding.match)
+        local match_input = binding.match and rime_api.regex_match(raw_input, binding.match)
         if key_event:eq(binding.accept) and (match_input or match_tag) then
             env.redirecting = true
             for _, key in ipairs(binding.send_sequence:toKeyEvent()) do

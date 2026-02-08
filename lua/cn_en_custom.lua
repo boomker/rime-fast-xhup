@@ -62,9 +62,7 @@ function T.init(env)
     local function handle_save_userdict(ctx)
         local segment = ctx.composition:back()
         local cand = ctx:get_selected_candidate()
-        if not cand then
-            return
-        end
+        if not cand then return end
 
         local cand_text = cand.text
         if segment:has_tag(env.cn_tag) then
@@ -91,13 +89,13 @@ function T.fini(env)
     if env.cn_memory then
         env.cn_memory:disconnect()
         env.cn_memory = nil
-        collectgarbage("collect")
+        -- collectgarbage('collect')
     end
 
     if env.en_memory then
         env.en_memory:disconnect()
         env.en_memory = nil
-        collectgarbage("collect")
+        collectgarbage('collect')
     end
 
     if env.notifier_commit_make_word then
@@ -113,18 +111,14 @@ function T.func(input, seg, env)
     local context = env.engine.context
     local raw_input_code = context.input
     local composition = context.composition
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
 
     local segment = composition:back()
     if seg:has_tag(env.cn_tag) then -- 输入必须含有 '`='
         local query_encode = raw_input_code:match("^" .. "(.*)%`=")
         local cand_comment = raw_input_code:match("=(.+)$") or " ~造词中..."
         local word_cands = env.free_make_word_tran:query(query_encode, segment) or nil
-        if not word_cands then
-            return
-        end
+        if not word_cands then return end
 
         for cand in word_cands:iter() do
             local free_cand = Candidate("cn_custom", seg.start, seg._end, cand.text, cand_comment)
