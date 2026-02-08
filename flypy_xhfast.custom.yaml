@@ -89,7 +89,11 @@ patch:
       - {when: composing, accept: Control+w,    send: Control+BackSpace}
 
       # 以下按键绑定规则(含`tag` / `match`)需 keybinder(lua) 支持
+      - {match: "^/$",    accept: "/", send: '{Down}'}
+      - {match: "^=$",    accept: "=", send: '{Down}'}
       - {tag: calculator, accept: "'", send: '{Page_Down}'}
+      - {tag: calculator, accept: "(", send_sequence: '(){Left}'}
+      - {match: "^.*\\)$", accept: ")", send_sequence: '{Right}'}
       - {tag: calculator, accept: "Shift+U", send_sequence: '10'}
       - {tag: calculator, accept: "Shift+B", send_sequence: '00'}
       - {tag: calculator, accept: "Shift+H", send_sequence: '100'}
@@ -123,7 +127,7 @@ patch:
       shortcut_app: "^/jk[a-z]*$"                 # 快捷指令(启动应用)
       flypy_key_map: "^/ok[a-z]*$"                # 小鹤双拼键位帮助
       flypy_switcher: "^(/so|sO)$"                # 切换方案配置选项
-      calculator: "^(/=|cC)([^,;']*)$"            # 计算器(可查帮助)
+      calculator: "^(=|cC)([^,;']*)$"             # 计算器(可查帮助)
       flypy_radical: "^(/fr|rL)[a-z]+$"           # 单字部件组字(查拼音)
       chinese_lunar:  "^(/nl|nL)[0-9]*$"          # 中国农历(可反查)
       chinese_number: "^(/nn|nN)[0-9.-]+$"        # 中文大写数字(金额)
@@ -165,7 +169,6 @@ patch:
         - "@139.com"
 
   speller/+:
-    enable_fuzz_algebra: true         # 是否开启简拼功能(候选字词含有中英数混杂项)
     algebra/+:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
 
@@ -235,18 +238,24 @@ patch:
 
   calculator:                         # 简易计算器
     tag: calculator
-    # prefix: "/="
+    # prefix: "="
     prefix: "cC"
     suffix: "'"
     tips: "计算器"
 
   cand_selector:                      # 候选选择器
     word_lookup_limit: 666            # 检索最多迭代数
-    auto_select_char: true            # 单字优先时全码唯一时则自动顶屏(小鹤音形效果)
-    auto_select_phrase: false         # 词组加间接辅码唯一时则自动上屏(默认关闭)
+    auto_select_char: true            # 单字优先时全码唯一则自动顶屏(小鹤音形效果)
+    auto_select_phrase: false         # 词组加间接辅码唯一则自动上屏(默认关闭)
     if_unmatched_show_mark: "⭕️"      # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
     tone_convert_format:              # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
       - xlit/IUNM/1234/
+
+  flypy_fuzzy:                        # 候选选择器
+    enable_fuzz_func: true            # 是否开启简拼功能(支持中英数混合)
+    fuzz_start_length: 2              # 简拼开始长度
+    fuzz_max_length: 7                # 简拼最大长度
+    word_lookup_limit: 666            # 检索最多迭代数
 
   chinese_number:                     # 中文大写数字(金额)
     tag: chinese_number
@@ -267,5 +276,3 @@ patch:
     db: predict.db
     max_candidates: 7                 # 联想的候选项个数
     max_iterations: 1                 # 联想预测的次数
-
-

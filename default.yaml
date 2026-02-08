@@ -45,13 +45,13 @@ switcher:
 # commit_text  上屏拼出的词句，然后切换到英文
 # inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
 ascii_composer:
-  good_old_caps_lock: true  # true | false
-  switch_key:               # commit_code | commit_text | inline_ascii | clear | noop
-    Shift_R: inline_ascii
-    Shift_L: noop
+  good_old_caps_lock: true    # true | false
+  switch_key:                 # commit_code | commit_text | inline_ascii | clear | noop
     Control_L: noop
     Control_R: noop
-    Caps_Lock: clear        # commit_code | commit_text | clear
+    Shift_L: noop
+    Shift_R: inline_ascii
+    Caps_Lock: commit_code
 
 # 处理输入栏内光标的移动
 # 需要 librime >= 1.16.0 才有 no_loop 等属性，才会自动在方案引用 default:/{navigator,selector}
@@ -60,7 +60,7 @@ ascii_composer:
 # 按字符移动（不循环）     left_by_char_no_loop | right_by_char_no_loop
 # 按音节跳转（循环）       left_by_syllable | right_by_syllable
 # 按音节跳转（不循环）     left_by_syllable_no_loop | right_by_syllable_no_loop
-# 首尾跳转               home | end
+# 首尾跳转                 home | end
 navigator:
   bindings:
     Left: left_by_char_no_loop
@@ -244,7 +244,7 @@ key_binder:
 # - { when: always, accept: Shift+space, toggle: ascii_mode }
 # - { when: always, accept: Control+comma, toggle: full_shape }
 # - { when: always, accept: Control+period, toggle: ascii_punct }
-# - { when: always, accept: Control+slash, toggle: simplification }
+# - { when: always, accept: Control+slash, toggle: traditionalize }
 
 # 按键速查
 # https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md

@@ -36,11 +36,11 @@ engine:
     - lua_processor@*pin_word*processor
     - lua_processor@*shortcut*processor
     - lua_processor@*pair_punct*processor
+    - lua_processor@*flypy_fuzzy*processor
     - lua_processor@*cand_selector*processor
     - lua_processor@*flypy_switcher*processor
     - lua_processor@*cold_word_drop*processor
     - lua_processor@*commit_history*processor
-    - lua_processor@*fuzzy_word_expand*processor
     - ascii_composer
     - recognizer
     - key_binder
@@ -84,19 +84,19 @@ engine:
     - table_translator@free_uses_word                 # 自由用词(free_make_word)
     - lua_translator@*laTex                           # /lt 触发进入 LaTeX
     - lua_translator@*date_time                       # date/orq,week,time 触发
-    - lua_translator@*calculator                      # /=,cC 触发简易计算器
+    - lua_translator@*calculator                      # =,cC 触发简易计算器
     - lua_translator@*cn_en_custom                    # `=,~,\ 触发自定义单词入库
     - lua_translator@*chinese_lunar                   # /nl,nL 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh,oH 触发进入帮助菜单
     - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     # - lua_translator@*revert_commit_word            # 撤销已上屏字符(模拟退格键)
-    - lua_translator@*cand_selector*translator        # /,; 单字或二字词和表情自动上屏
+    - lua_translator@*flypy_fuzzy*translator          # 8,ctrl-q 简拼优先前排
+    - lua_translator@*cand_selector*translator        # /,; 单字和表情自动上屏
     - lua_translator@*word_autocaps*translator        # A-Z 大写开头触发单词大写
     - lua_translator@*chinese_number*translator       # /nn,nN 触发大写金额数字
     - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
-    - lua_translator@*fuzzy_word_expand*translator    # 8,ctrl-s 简拼展开或单字优先
   filters:
     - reverse_lookup_filter@radical_lookup
     - simplifier@tradition                            # 简繁切换
@@ -105,11 +105,11 @@ engine:
     - lua_filter@*flypy_fixed
     - lua_filter@*reduce_emoji
     - lua_filter@*charset*filter
+    - lua_filter@*flypy_fuzzy*filter
     - lua_filter@*charset*charset_hint
     - lua_filter@*cand_selector*filter
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
-    - lua_filter@*fuzzy_word_expand*filter
     # - lua_filter@*rime_ollama_translator
     - lua_filter@*pin_word*filter
     - uniquifier                                      # 只能放到最后!
@@ -296,7 +296,7 @@ punctuator:
     "/": ["/", ／, ÷]
     "{": ['{', 〖, 『, ｛]
     "}": ['}', 〗, 』, ｝]
-    "=": ["=", "≡", "≤", "≥"]
+    "=": ["=", "≡", "≠", "≤", "≥"]
     "<": ["<", 《, 〈, «, ⟨, ˂, ˱]
     ">": [">", 》, 〉, », ⟩, ˃, ˲]
     "[": ['[', 「, 【, 〔, ［, 〚, 〘]

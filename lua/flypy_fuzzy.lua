@@ -4,32 +4,21 @@ local T = {}
 local F = {}
 
 local function check_fuzzy_cand(env, cand, input)
-    if not cand then
-        return false
-    end
-    if cand.quality < 0.1 then
-        return false
-    end
+    if not cand then return false end
+    if cand.quality < 0.1 then return false end
+
     local cand_text = cand.text
-    if utf8.len(cand_text) <= 1 then
-        return false
-    end
-    if (not cand_text:match("[%a%d%p]")) and utf8.len(cand_text) ~= #input then
-        return false
-    end
-    if #input - utf8.len(cand_text) > 1 then
-        return false
-    end
+    if utf8.len(cand_text) <= 1 then return false end
+    if #input - utf8.len(cand_text) > 1 then return false end
+    if (not cand_text:match("[%a%d%p]")) and (utf8.len(cand_text) ~= #input) then return false end
+
     local tail_text = string.utf8_sub(cand_text, -1, -1)
-    if not tail_text then
-        return false
-    end
+    if not tail_text then return false end
+
     if not tail_text:match("[%a%d%p]") then
         local _tail_code = env.reversedb:lookup(tail_text)
         local tail_code = _tail_code:gsub("%l~%l%l ?", "")
-        if tail_code:match(input:sub(-1, -1)) then
-            return true
-        end
+        if tail_code:match(input:sub(-1, -1)) then return true end
         return false
     end
     return true
@@ -142,7 +131,10 @@ function T.init(env)
     local schema_id = config:get_string("schema/schema_id")
     local flyhe_schema = Schema("flyhe_fast")
     env.reversedb = ReverseLookup(schema_id)
-    env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
+    env.fuzz_start_length = config:get_int("flypy_fuzzy/fuzz_start_length") or 2
+    env.fuzz_max_length = config:get_int("flypy_fuzzy/fuzz_max_length") or 7
+    env.word_lookup_limit = config:get_int("flypy_fuzzy/word_lookup_limit") or 666
+    env.enable_fuzz_func = config:get_bool("flypy_fuzzy/enable_fuzz_func") or false
     -- env.flyhe_fuzz_tran = Component.Translator(env.engine, schema, "", "script_translator@flyhe_fuzz")
     env.flyhe_fuzz_tran = Component.Translator(env.engine, flyhe_schema, "", "script_translator@translator")
 end
@@ -157,23 +149,22 @@ function P.func(key, env)
     local engine = env.engine
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then
-        return 2
-    end
+    if composition:empty() then return 2 end
+
     local preedit_text = context:get_preedit().text
     local preedit_code = preedit_text:gsub("[‸ ]", "")
     local phrase_first_state = context:get_property("idiom_phrase_first")
 
-    -- 触发简码成语优先
+    -- 简拼候选, 按下`8/Control+q`, 简拼优先
     if
         context:has_menu()
-        and (preedit_code:match("^%l%l%l%l?%l?%l?$"))
         and (key:repr() == env.expand_idiom_key)
+        and (preedit_code:match("^%l%l%l%l?%l?%l?$"))
     then
         local switch_val = (phrase_first_state == "1") and "0" or "1"
         context:set_property("idiom_phrase_first", tostring(switch_val))
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        return 1 -- kAccept
+        return 1                                    -- kAccept
     end
 
     return 2 -- kNoop
@@ -185,25 +176,30 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     -- 简拼候选, 按下`8/Control+q`, 简拼优先
-    local input_code = context.input
+    local raw_input = context.input
     local phrase_first_state = context:get_property("idiom_phrase_first")
-    if env.enable_fuzz_func and (input_code:match("^[a-z]+$")) and (input_code:len() >= 2) and (input_code:len() <= 7) then
+    local match_pattern = string.format("^[a-z]{%d,%d}$", env.fuzz_start_length, env.fuzz_max_length)
+    if env.enable_fuzz_func and rime_api.regex_match(raw_input, match_pattern) then
         local word_cands = env.flyhe_fuzz_tran:query(input, seg) or nil
         if not word_cands then return end
 
+        local loop_count = 0
+        local fuzz_cand = nil
         for cand in word_cands:iter() do
-            if check_fuzzy_cand(env, cand, input_code) then
-                local fuzz_cand = nil
-                if phrase_first_state == "1" then
-                    fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
-                else
-                    fuzz_cand = Candidate("fuzzy_word", seg.start, seg._end, cand.text, "")
-                end
-                yield(fuzz_cand)
+            if not check_fuzzy_cand(env, cand, raw_input) then goto Continue end
+
+            if phrase_first_state == "1" then
+                fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
+            else
+                fuzz_cand = Candidate("fuzzy_word", seg.start, seg._end, cand.text, "")
             end
+            yield(fuzz_cand)
+
+            loop_count = loop_count + 1
+            if loop_count >= env.word_lookup_limit then break end
+            ::Continue::
         end
     end
-
 end
 
 ---@diagnostic disable-next-line: unused-local
@@ -218,9 +214,7 @@ function F.func(input, env)
             table.insert(other_cands, cand)
         end
 
-        if #other_cands >= 200 then
-            break
-        end
+        if #other_cands >= 200 then break end
     end
 
     if #idiom_cands > 0 then
@@ -229,9 +223,7 @@ function F.func(input, env)
         end
     end
 
-    for _, cand in ipairs(other_cands) do
-        yield(cand)
-    end
+    for _, cand in ipairs(other_cands) do yield(cand) end
 end
 
 return {
