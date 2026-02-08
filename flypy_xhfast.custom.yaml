@@ -246,7 +246,7 @@ patch:
     tone_convert_format:              # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
       - xlit/IUNM/1234/
 
-  flypy_fuzzy:                        # 候选选择器
+  flypy_fuzzy:                        # 简拼翻译器
     enable_fuzz_func: true            # 是否开启简拼功能(支持中英数混合)
     fuzz_start_length: 2              # 简拼开始长度
     fuzz_max_length: 7                # 简拼最大长度

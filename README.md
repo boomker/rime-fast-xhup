@@ -8,17 +8,18 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 
 - 自创音码飞键规则，替换一些手指 _移动不和谐_ (别手)的小鹤音码组合, 实现左右手对侧击键, 更有节奏感
 - 支持一键展开简拼(仅限一些成语俗语), 按下 `Ctrl+q` 或 `8` 会优先将长词放到候选菜单前排
-- 支持以词定字, 按下 `9`(首字)、`0`(末字) , 即可将当前高亮词条的首字或末字上屏
-- 支持简拼(7字以内), 包括中英数大小写混合词条. 比如输入 `wgtx` 会出现 【5G 通信】
+- 支持以词定字, 按下 `9`(首字, 可配置)、`0`(末字, 可配置) , 即可将当前高亮词条的首字或末字上屏
+- 支持简拼(7字以内, 可配置), 包括中英数大小写混合词条. 比如输入 `wgtx` 会出现 【5G 通信】
 - 短单词(字母少于4个)或长单词不会显示和补全, 可在编码末位补上单引号`'`, 即可出现被过滤的单词
 - 支持多种常见格式的英文单词输入输出, 如：`Tool`, `TOOL`, `tool`, 比如输入 `TOol` 得到 `TOOL`
-- 支持中英混合输入自动添加空格, 特定英文符号 (,.!?:) 后面也会添加空格(目前待完善)
+- ~~支持中英混合输入自动添加空格, 特定英文符号 (,.!?:) 后面也会添加空格(目前待完善)~~
 - 支持英文单词「自造词」, 在单词末尾输入 `\`, 并上屏自造词, 输入英文单词即可得到候选, 无需重新部署
-- 支持 `~` 前缀造词模式, 支持非典型英文单词(含数字、符号、空格, 比如:'iPhone 28'), 空格由逗号转义
+- 支持 `~` 前缀造词模式, 支持非典型英文单词(含数字、符号、空格, 比如: 'iPhone 28'), 空格由逗号转义
+- 支持 `` `= `` 自由造词, 输入 `` vsgovsyhdmuitd`=cctv `` 上屏高亮的词条后, 下次输入`cctv`可得「中国中央电视台」
 - 支持强制删词, 按下 `Ctrl+d` / `Ctrl+x` 触发将高亮词条彻底隐藏或置于末位, 立即生效
 - 支持词条降频, 按下 `Ctrl+j` 触发将高亮词条置于第4位(默认, 可配置), 立即生效
 - 支持词条置顶, 按下 `Ctrl+t` 触发一键置顶功能, 先置顶的词条优先级最高, 后置顶的次之, 立即见效
-- 支持注解切换, 按下 `Ctrl+n` 触发注解轮切功能, 可显示带调拼音、鹤形码、无注解, 立即见效
+- 支持注解切换, 按下 `Ctrl+n` 触发注解轮切功能, 可显示带调拼音、鹤形码、~~无注解~~, 立即见效
 - 支持注解上屏, 按下 `Ctrl+p` 可上屏带调拼音、鹤形码(仅限单字开启反查显示带调拼音时)
 - 支持单字模式, 按下 `Ctrl+s`  即可切换到四码(音形码)匹配单字优先, 默认开启顶屏上字(全码唯一时)
 - 支持中英切换, 按下 `Ctrl+g` 可从中文输入方案一键切换到英文输入方案, 同时显示英文中译
@@ -77,11 +78,10 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - `cn_dicts/*.dict.yaml`, 为中文词库词典文件, 内含大词库默认已注释**停用**, 根据用户需求可自行取消注释启用。
 - `en_dicts/*.dict.yaml`, 为英文词库词典文件, 内含英译中词库。
 - `easy_en.schema.yaml` 和 `easy_en.dict.yaml` 为作者基于 [easy-en](https://github.com/BlindingDark/rime-easy-en) 项目的英文输入方案修改得到的版本。
-- `scripts/flypy_dict_generator.py` 双拼词库转换程序，实现了汉字转小鹤双拼，小鹤音形码，简拼, 支持
-  输出到 `yaml` 字典和 `txt` 自定义短语文件，可指定词库内容追加输出，可指定初始词频，或默认源词库的词频。
 - `fonts` , 为方案使用的字体文件, 需用户自行下载安装(推荐)。
 - `fcitx5-theme` , 为小企鹅的[皮肤主题](https://github.com/fcitx-contrib/fcitx5-theme-collection)目录, 内有仿微信输入法皮肤+液态玻璃效果(macOS Tahoe 支持)。
 - 方案自带 emoji 输出，提供了 `emoji_word.txt` 文件, 通过 OpenCC 来转换得来。
+- `flypy_dict_generator.py` 双拼词库转换程序([戳这里](https://github.com/boomker/Rime-flyhe-dict/blob/fb93da28b8b832e87d93946368253c2c15fd7d4f/tools/python/flypy_dict_generator.py))，实现了汉字转小鹤双拼，小鹤音形码，简拼, 支持输出到 `yaml` 字典和 `txt` 自定义短语文件，可指定词库内容追加输出，可指定初始词频，或默认源词库的词频。
 - ~~`rime.lua` 文件用于涉及 Lua 的相关功能。~~
 
 ### 前缀模式
@@ -102,7 +102,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 - `/wf` 前缀: 微信表情列表; `/mba` `/mbs` `/mbc` 前缀: Markdown 代码块快捷输入。
 - `date`, `time`,  `week`, `/wd`, /`wt`, `/wk`, `/nl`, `/uts` 可以输出当天的日期时间, 星期, 农历, 时间戳等。
 - `/wqt` `/wzt` `/wmt` `/wht` `/wuz` `/wxz` `/wuy` `/wxy` 等可输出最近(昨天, 上周, 上个月等)的日期时间。
-- `/=` 前缀: 计算器, 支持加减乘除法, 开方、幂次方、阶乘、正弦余弦函数等多种运算(可查支持的函数运算)。
+- `=` 前缀: 计算器, 支持加减乘除法, 开方、幂次方、阶乘、正弦余弦函数等多种运算(可查支持的函数运算)。
 - `/fr` 前缀：部件组字模式 (类似搜狗拼音的 u 拆字模式)，其中部件按照小鹤双拼输入。
 - `` ` `` 前缀: 用于造词, 词库中不存在的词条, 可通过输入音码(支持逐音节选字)或加上形码得到。
 - `~` 前缀: 英文造词模式, 用于手动新造一个不存在词库里的单词(可以包含数字、符号、空格)。
@@ -143,13 +143,13 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 1. - Q: Windows 系统部署项目失败, 一直处于部署中
    - A: 注释掉 **[flypy_xhfast.dict.yaml](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.dict.yaml)** 文件里的大词库, 重新部署即可
 2. - Q: 分号 `;` 为什么不能直接上屏, 不想使用 `;` 引导的标点符号输出方式
-   - A: 在 `custom` 配置文件里解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L121) 注释, 并将下一行注释掉, 或者在 `/so` 里进行切换
+   - A: 在 `custom` 配置文件里解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L157) 注释, 并将下一行注释掉, 或者在 `/so` 里进行切换
 3. - Q: 如何取消中英混合候选词条中的空格?
    - A: 注释 `custom` 配置文件里的 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L53)
 4. - Q: 中英混合输出自动添加空格功能, 有时会在编辑区起始位置添加空格
    - A: 这个功能目前还不够完善, 可以将 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L55) 注释掉(默认已注释)
 5. - Q: 形码辅助引导符可以去掉吗? 想直接使用辅助码, 不用引导符(`/`)
-   - A: 默认直接辅助, 可以的, 解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L139) 注释即可
+   - A: 默认直接辅助, 可以的, 解开 [这行](https://github.com/boomker/rime-fast-xhup/blob/main/flypy_xhfast.custom.yaml#L173) 注释即可
 6. - Q: 快捷指令功能能在移动端支持触控点击吗?
    - A: 目前暂不支持
 7. - Q: 在微信聊天里, 有一些候选项带有中括号 `[]` 是怎么回事?
@@ -163,12 +163,13 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 11. - Q: 候选菜单里有无法显示的像「问号」一样的候选字
     - A: 在 [`squirrel.custom.yaml`](https://github.com/boomker/rime-fast-xhup/blob/main/squirrel.custom.yaml) 或 [`weasel.yaml`](https://github.com/boomker/rime-fast-xhup/blob/main/weasel.yaml) 配置可以正常显示的字体, 推荐 [`MiSans`](https://hyperos.mi.com/font/download)
 12. - Q: 如何更新扩展大词库?
-    - A: 执行如下命令:
+    - A: 首先需启用大词库(即取消[注释](https://github.com/boomker/rime-fast-xhup/blob/dd5f3c3578583e731cdc680395e05402efa36bf6/flypy_xhfast.dict.yaml#L13-L20)), 然后执行如下命令, 最后还需重新部署输入法
     ```bash
       git submodule update --init --recursive
       git pull --recurse-submodules
+      # 或
+      git submodule update --remote
     ```
-      拉取扩展词库后, 还需启用大词库(即取消[注释](https://github.com/boomker/rime-fast-xhup/blob/dd5f3c3578583e731cdc680395e05402efa36bf6/flypy_xhfast.dict.yaml#L13-L20)), 取消注释后, 需重新部署输入法
 13. - Q: 自定义修改候选项数量、候选菜单方向、外观主题等配置应该从何着手？
     - A: 多个方案统一全局配置修改候选项数量、候选菜单方向, 应该修改[default.custom.yaml文件](./default.custom.yaml). 外观主题、字体大小等样式则是修改[weasel.custom.yaml](./weasel.custom.yaml) (Windows小狼毫) [squirrel.custom.yaml](./squirrel.custom.yaml)(macOS鼠须管). 单独为某个方案修改, 应该修改具体的方案文件 `***.schema.yaml` 所对应的补丁文件 `***.custom.yaml`. 如: **飞鹤快拼**的方案文件是 [flypy_xhfast.schema.yaml](./flypy_xhfast.schema.yaml), 对应的补丁文件是 [flypy_xhfast.custom.yaml](./flypy_xhfast.custom.yaml). 此文件具有最高优先级, 会覆盖其他所有文件的配置.
 
