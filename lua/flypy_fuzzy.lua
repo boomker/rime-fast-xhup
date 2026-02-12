@@ -97,7 +97,7 @@ function P.init(env)
     local flyhe_schema = Schema("flyhe_fast")
     env.reversedb_flyhe = ReverseLookup("flyhe_fast")
     env.mem_flyhe = Memory(env.engine, flyhe_schema, "translator")
-    env.expand_idiom_key = config:get_string("key_binder/simpy_expand_key") or "Control+q"
+    env.expand_idiom_key = config:get_string("key_binder/fuzz_algebra_first") or "Control+q"
 
     env.commit_fuzz_cand_notify = context.commit_notifier:connect(function(ctx)
         ctx:set_property("idiom_phrase_first", "0")
@@ -214,7 +214,7 @@ function F.func(input, env)
             table.insert(other_cands, cand)
         end
 
-        if #other_cands >= 200 then break end
+        if #other_cands >= 666 then break end
     end
 
     if #idiom_cands > 0 then

@@ -210,9 +210,7 @@ methods_desc["log"] = "x作为底数的对数"
 -- 自然数e为底的对数
 local function loge(x)
     -- 不能为负数或0
-    if x <= 0 then
-        return nil
-    end
+    if x <= 0 then return nil end
 
     return math.log(x)
 end
@@ -222,9 +220,7 @@ methods_desc["loge"] = "e作为底数的对数"
 -- 10为底的对数
 local function logt(x)
     -- 不能为负数或0
-    if x <= 0 then
-        return nil
-    end
+    if x <= 0 then return nil end
 
     return math.log(x) / math.log(10)
 end
@@ -236,9 +232,7 @@ local function avg(...)
     local data = { ... }
     local n = select("#", ...)
     -- 样本数量不能为0
-    if n == 0 then
-        return nil
-    end
+    if n == 0 then return nil end
 
     -- 计算总和
     local sum = 0
@@ -256,9 +250,7 @@ local function variance(...)
     local data = { ... }
     local n = select("#", ...)
     -- 样本数量不能为0
-    if n == 0 then
-        return nil
-    end
+    if n == 0 then return nil end
 
     -- 计算均值
     local sum = 0
@@ -304,6 +296,75 @@ local function replaceToFactorial(str)
     return str:gsub("([0-9]+)!", "fact(%1)")
 end
 
+-- 银行家舍入法
+local function round(x, dc)
+    local cdc = dc or 1
+    local fraction = x / cdc
+    local integer = math.floor(fraction)
+    local remainder = fraction - integer
+    if remainder < 0.5 then
+        return integer * cdc
+    elseif remainder > 0.5 then
+        return (integer + 1) * cdc
+    else
+        if integer % 2 == 0 then
+            return integer * cdc
+        else
+            return (integer + 1) * cdc
+        end
+    end
+end
+
+-- 将普通数字转换为科学记数法字符串
+-- @param num: 要转换的数字
+-- @param precision: 小数精度（默认为2）
+-- @return: 科学记数法字符串
+local function toScientific(num, precision)
+    precision = precision or 2
+
+    if num == 0 then
+        return string.format("0.%se+0", string.rep("0", precision))
+    end
+
+    -- 获取符号
+    local sign = num < 0 and "-" or ""
+    num = math.abs(num)
+
+    -- 计算指数
+    local exponent
+    if num == 1 then
+        exponent = 0
+    else
+        exponent = math.floor(math.log(num) / math.log(10))
+    end
+
+    -- 计算尾数
+    local mantissa = num / (10 ^ exponent)
+
+    -- 格式化输出
+    local format_str = "%s%." .. precision .. "fe%+d"
+    return string.format(format_str, sign, mantissa, exponent)
+end
+
+-- 格式化数字（自动选择科学记数法或普通格式）
+-- @param num: 要格式化的数字
+-- @param threshold: 使用科学记数法的阈值（默认1e6或1e-3）
+-- @param precision: 小数精度
+local function scientific_format(num, threshold, precision)
+    num = type(num) == "number" and num or tonumber(num)
+    threshold = threshold or 1000000
+    precision = precision or 2
+
+    local absNum = math.abs(num)
+
+    -- 如果数字很大或很小，使用科学记数法
+    if (absNum >= threshold) or ((absNum < (1 / threshold)) and (absNum ~= 0)) then
+        return toScientific(num, precision)
+    else
+        return num
+    end
+end
+
 -- 简单计算器
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
@@ -335,9 +396,14 @@ function T.func(input, seg, env)
             yield(Candidate("calc", seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
         elseif loaded_func then
             local success, result = pcall(loaded_func)
+            local round_val = string.format("%.2f", round(result, 0.01))
             if success then
-                yield(Candidate("calc", seg.start, seg._end, tostring(result), ""))
-                yield(Candidate("calc", seg.start, seg._end, express .. "=" .. tostring(result), ""))
+                yield(Candidate("calc", seg.start, seg._end, tostring(result), "答案"))
+                yield(Candidate("calc", seg.start, seg._end, round_val, "近似值"))
+                yield(Candidate("calc", seg.start, seg._end, tostring(scientific_format(result)), "科学记数"))
+                yield(Candidate("calc", seg.start, seg._end, express .. " = " .. tostring(result), "等式"))
+                yield(Candidate("calc", seg.start, seg._end, express .. " ≈ " .. round_val, "约等式"))
+                yield(Candidate("calc", seg.start, seg._end, express .. " = " .. tostring(scientific_format(result)), "科学记数等式"))
             else
                 -- 处理执行错误
                 yield(Candidate("calc", seg.start, seg._end, express, "执行错误"))

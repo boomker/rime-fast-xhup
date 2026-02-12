@@ -1,6 +1,6 @@
 -- 输入的内容大写前2个字符，自动转小写词条为全词大写；大写第一个字符，自动转写小写词条为首字母大写
 
-local function autocap_filter(input, env)
+local function autocaps_filter(input, env)
     local u_cands = {}
     for cand in input:iter() do
         local text = cand.text
@@ -21,7 +21,7 @@ local function autocap_filter(input, env)
             yield(cand)
         end
 
-        if #u_cands >= 200 then break end
+        if #u_cands >= 666 then break end
     end
 
     for _, cand in ipairs(u_cands) do
@@ -29,7 +29,7 @@ local function autocap_filter(input, env)
     end
 end
 
-local function autocap_translator(input, seg, env)
+local function autocaps_translator(input, seg, env)
     if rime_api.regex_match(input, "^[A-Z][a-zA-Z'_-]{1,19}") then
         local cand = Candidate("Word", seg.start, seg._end, input, "~AT")
         yield(cand)
@@ -39,4 +39,4 @@ local function autocap_translator(input, seg, env)
     end
 end
 
-return { filter = autocap_filter, translator = autocap_translator }
+return { filter = autocaps_filter, translator = autocaps_translator }

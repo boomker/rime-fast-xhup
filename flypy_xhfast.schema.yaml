@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2026.02.08
+  version: 2026.02.12
   author:
     - boomker
   description: |
@@ -228,7 +228,7 @@ flypy_key_map:                        # 小鹤双拼键位帮助
   enable_completion: true
 
 # Emoji
-emoji:                                # Emoji转换
+emoji:                                # Emoji 转换
   tag: emoji
   tags: [abc]
   tips: all
@@ -237,8 +237,7 @@ emoji:                                # Emoji转换
   inherit_comment: false
   # show_in_comment: false
   allow_erase_comment: true
-  comment_format:
-    # - xform/.*//
+  # comment_format: xform/.*//
 
 # 简体转繁体
 tradition:                            # 简繁转换
@@ -266,8 +265,7 @@ radical_lookup:                       # 部件拆字滤镜
   dictionary: flyhe_fast
   tags: [abc, flypy_radical]          # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
-  comment_format:
-  #   - xform/^/~/
+  # comment_format: xform/^/~/
 
 # 处理符合特定规则的输入码, 如网址、反查
 recognizer:
@@ -313,15 +311,17 @@ punctuator:
 # 从 default 继承快捷键
 key_binder:
   bindings:
-    - {when: composing, accept: Control+e, send: End}
+    - {when: composing, accept: Control+a, send: Home}
+    - {when: composing, accept: Control+e, send: "End"}
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
-    - {when: has_menu,  accept: Control+Shift+4, toggle: emoji}
-    - {when: always, accept: "Shift+space", toggle: ascii_mode}
-    - {when: always, accept: "Control+comma", toggle: ascii_punct}
-    - {when: always, accept: "Control+period", toggle: full_shape}
-    - {when: has_menu, accept: Control+Shift+5, toggle: charset_hint}
-    - {when: has_menu, accept: Control+Shift+6, toggle: traditionalize}
+    - {when: has_menu,  accept: Control+Shift+4,    toggle: emoji}
+    - {when: always,    accept: Control+semicolon,  toggle: char_mode}
+    - {when: always,    accept: Shift+space,        toggle: ascii_mode}
+    - {when: always,    accept: Control+period,     toggle: full_shape}
+    - {when: always,    accept: Control+comma,      toggle: ascii_punct}
+    - {when: has_menu,  accept: Control+Shift+5,    toggle: charset_hint}
+    - {when: has_menu,  accept: Control+Shift+6,    toggle: traditionalize}
 
 # 拼写设定
 speller:

@@ -32,7 +32,7 @@ function M.fini(env)
     if env.mem then
         env.mem:disconnect()
         env.mem = nil
-        collectgarbage('collect')
+        collectgarbage("collect")
     end
     if env.script_tran then
         env.script_tran = nil
@@ -44,14 +44,18 @@ function P.func(key, env)
     local key_value = key:repr()
     local context = engine.context
     local composition = context.composition
-    if composition:empty() then return 2 end
+    if composition:empty() then
+        return 2
+    end
 
     local caret_pos = context.caret_pos
     local preedit_text = context:get_preedit().text
     local preedit_code = preedit_text:gsub("[‸ ]", "")
     local char_mode_state = context:get_option("char_mode")
 
-    if key:release() or key:alt() or key:caps() then return 2 end
+    if key:release() or key:alt() or key:caps() then
+        return 2
+    end
 
     -- 触发单字优先
     if
@@ -98,6 +102,37 @@ function P.func(key, env)
         return 1
     end
 
+    local segment = composition:toSegmentation()
+    local cs_pos = segment:get_current_start_position()
+    local input_syllable_code = "-"
+    if utf8.len(preedit_text) > 5 then
+        local editing_preedit = preedit_text:match("[a-z' ]+")
+        -- 提取开头两个字符
+        input_syllable_code = string.sub(editing_preedit, 1, 2)
+
+        -- 提取所有空格后的两个字符
+        for chars in string.gmatch(editing_preedit, " (%w%w)") do
+            input_syllable_code = input_syllable_code .. " " .. chars
+        end
+
+        -- 添加末尾分号
+        input_syllable_code = input_syllable_code .. string.sub(editing_preedit, -1)
+    end
+    if rime_api.regex_match(input_syllable_code, "^[a-z ]{5, 55}'$") and key_value:match("^[a-z]$") then
+        local idx_s, idx_e = (" " .. input_syllable_code):find(" " .. key_value .. "[a-z]")
+        if (not idx_s) or not idx_e then
+            return 2
+        end
+        local new_pos = idx_s - (idx_e / 3)
+        if cs_pos < 1 then
+            context.caret_pos = math.floor(new_pos)
+        else
+            context.caret_pos = cs_pos + math.floor(new_pos)
+        end
+        -- env.engine:process_key(KeyEvent("space"))
+        return 1 -- kNoop
+    end
+
     return 2 -- kNoop
 end
 
@@ -106,7 +141,9 @@ function T.func(input, seg, env)
     local composition = context.composition
     context:set_property("enable_tone_match", "0")
     context:set_property("matched_char_cand_count", "0")
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
 
     local input_code = context.input
     local segment = composition:toSegmentation()
@@ -128,7 +165,9 @@ function T.func(input, seg, env)
         local full_pinyin_code = ym_proj:load(env.preedit_fmt_rules) and ym_proj:apply(yin_code, true) or nil
         local define_tone_filter_code = mask_code and mask_code:match("%d") and "1234" or "IUNM"
         local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
-        if mask_code == fm_code then return end
+        if mask_code == fm_code then
+            return
+        end
 
         local tone_codepoint_map = {
             [define_tone_filter_code:sub(1, 1)] = { 257, 333, 275, 299, 363, 470, 252 }, -- "āōēīūǖü"
@@ -137,7 +176,9 @@ function T.func(input, seg, env)
             [define_tone_filter_code:sub(4, 4)] = { 224, 242, 232, 236, 249, 476, 505 }, -- "àòèìùǜǹ"
         }
         local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
-        if not ok then return end
+        if not ok then
+            return
+        end
 
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
@@ -193,7 +234,9 @@ function T.func(input, seg, env)
         local yx_code = input:match("/") and input:gsub("/", "") or ""
         local pattern = (#yx_code > 0) and "%f[%w]" .. yx_code .. "%w?%f[%W]" or "~"
         local ok = env.mem:dict_lookup(yin_code, true, env.word_lookup_limit) -- expand_search
-        if not ok then return end
+        if not ok then
+            return
+        end
 
         for dictentry in env.mem:iter_dict() do
             local entry_text = dictentry.text
@@ -208,7 +251,9 @@ function T.func(input, seg, env)
             end
         end
 
-        if table.len(entry_matched_tbl) < 1 then return end
+        if table.len(entry_matched_tbl) < 1 then
+            return
+        end
 
         local prev_cand_text = ""
         local matched_char_cand_count = 0
@@ -266,7 +311,9 @@ function T.func(input, seg, env)
             env.prev_word_shape_code_tbl = word_shape_code_tbl
         end
 
-        if table.len(env.prev_word_shape_code_tbl) < 1 then return end
+        if table.len(env.prev_word_shape_code_tbl) < 1 then
+            return
+        end
 
         for idx, val in ipairs(env.prev_word_shape_code_tbl) do
             local cand_text = val[1]
@@ -314,17 +361,19 @@ function F.func(input, env)
     local tone_matched_cands = {}
     local fm_project = Projection()
     local context = env.engine.context
-    local preedit_code = context.input
-    local fm_code = preedit_code:match("/(.)$")
-    local tone_filte_mode = preedit_code:match("%l%l/%u") and true or false
+    local raw_input = context.input
+    local fm_code = raw_input:match("/(.)$")
+    local tone_filter_mode = raw_input:match("%l%l/%u") and true or false
     local fm_replaced_code = fm_code
             and fm_project:load(env.tone_format_rule)
-            and fm_project:apply(fm_code, true) or ""
-    local new_preedit_code = tone_filte_mode and preedit_code:match("^(.-)/") .. "/" .. fm_replaced_code or preedit_code
+            and fm_project:apply(fm_code, true)
+        or ""
+    local new_preedit_code = tone_filter_mode and raw_input:match("^(.-)/") .. "/" .. fm_replaced_code
+        or raw_input
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])
-        if preedit_code:match("^;%l+$") and not symbol_cands[cand] then
+        if raw_input:match("^;%l+$") and not symbol_cands[cand] then
             table.insert(symbol_cands, cand)
         end
 
@@ -340,14 +389,14 @@ function F.func(input, env)
             table.insert(preselected_cands, cand)
         end
 
-        if #normal_cands >= 200 then
+        if #normal_cands >= 666 then
             break
         end
         table.insert(normal_cands, cand)
     end
 
     -- 符号自动上屏(;[a-z]+)
-    if preedit_code:match("^;%l+$") and (#symbol_cands == 1) then
+    if raw_input:match("^;%l+$") and (#symbol_cands == 1) then
         env.engine:commit_text(symbol_cands[1].text)
         context:clear()
         return

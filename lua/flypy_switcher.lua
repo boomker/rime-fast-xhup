@@ -22,7 +22,7 @@ function M.init(env)
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
     env.preedit_fmt_rules = config:get_list("preedit_convert_rules")
-    env.preedit_format = config:get_list("translator/preedit_format") or nil
+    env.preedit_format = config:get_list("translator/preedit_format")
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
@@ -35,6 +35,12 @@ function M.init(env)
     env.enable_fuzz_func = config:get_bool("speller/enable_fuzz_algebra") or false
     env.en_comment_overwrite = config:get_bool("easy_en-ecdict/overwrite_comment") or false
     env.cn_comment_overwrite = config:get_bool("radical_lookup/overwrite_comment") or false
+end
+
+function T.init(env)
+    Env(env)
+    local config = env.engine.schema.config
+    env.preedit_format = config:get_list("translator/preedit_format")
     env.switch_option_menu = {
         "切换纵横布局样式",
         "切换预编码区样式",
@@ -62,6 +68,29 @@ function M.init(env)
         "增加行间距的大小",
         "减少行间距的大小",
     }
+    env.pfo_notifier = env.engine.context.option_update_notifier:connect(
+        function(ctx, name)
+            if name == "preedit_format" then
+                if ctx:get_option(name) then
+                    if (not env.preedit_format) or (env.preedit_format.size <= 1) and (ctx:get_property("preedit_format_state") ~= "0") then
+                        env:Config_set("translator/preedit_format", env:Config_get("preedit_convert_rules"))
+                        env:Config_set("switches/@9/reset", 1)
+                        ctx:set_property("preedit_format_state", "1")
+                    end
+                else
+                    if env.preedit_format and (env.preedit_format.size > 1) and (ctx:get_property("preedit_format_state") ~= "1") then
+                        env:Config_set("translator/preedit_format", "")
+                        env:Config_set("switches/@9/reset", 0)
+                        ctx:set_property("preedit_format_state", "0")
+                    end
+                end
+            end
+        end
+    )
+end
+
+function T.fini(env)
+    env.pfo_notifier:disconnect()
 end
 
 function P.func(key, env)
@@ -73,17 +102,18 @@ function P.func(key, env)
     local composition = context.composition
     if composition:empty() then return 2 end
 
+    local key_val = key:repr()
     local segment = composition:back()
     local preedit_code = context.input
     if key:release() or key:alt() or key:caps() then return 2 end
 
-    if context:has_menu() and (key:repr() == env.switch_comment_key) then
+    if context:has_menu() and (key_val == env.switch_comment_key) then
         if segment.prompt:match(env.easy_en_prompt) and env.en_comment_overwrite then
             config:set_bool("easy_en-ecdict/overwrite_comment", false) -- 重写英文注释为空
         elseif segment.prompt:match(env.easy_en_prompt) and not env.en_comment_overwrite then
-            config:set_bool("easy_en-ecdict/overwrite_comment", true) -- 重写英文注释为中文
+            config:set_bool("easy_en-ecdict/overwrite_comment", true)  -- 重写英文注释为中文
         elseif (env:Config_get("switches/@last/reset") ~= 0) and (env.comment_hints > 0) then
-            context:set_option("mask_hint", true) -- 重写注释为辅码
+            context:set_option("mask_hint", true)                      -- 重写注释为辅码
             env:Config_set("switches/@last/reset", 0)
             env:Config_set("radical_lookup/overwrite_comment", false)
         elseif (env:Config_get("switches/@last/reset") ~= 1) and (env.comment_hints > 0) then
@@ -97,7 +127,7 @@ function P.func(key, env)
         return 1 -- kAccept
     end
 
-    if context:has_menu() and (key:repr() == env.commit_comment_key) then
+    if context:has_menu() and (key_val == env.commit_comment_key) then
         local cand = context:get_selected_candidate()
         local cand_comment = cand.comment:gsub("[~〔〕]", "")
         engine:commit_text(cand_comment)
@@ -105,22 +135,20 @@ function P.func(key, env)
         return 1
     end
 
-    if key:repr() == env.switch_english_key then
+    if key_val == env.switch_english_key then
         if schema.schema_id ~= "easy_en" then
             env.engine:apply_schema(Schema("easy_en"))
         elseif schema.schema_id == "easy_en" then
             env.engine:apply_schema(Schema("flypy_xhfast"))
         end
-        context:clear()
         context:push_input(preedit_code)
         return 1 -- kAccept
     end
 
     if segment.prompt:match("切换配置选项") then
-        local key_value = key:repr()
         local idx = segment.selected_index
         local select_keys = env.select_keys
-        local index = get_selected_candidate_index(key_value, idx, select_keys, page_size)
+        local index = get_selected_candidate_index(key_val, idx, select_keys, page_size)
         if index < 0 then return 2 end
         local selected_cand = segment:get_candidate_at(index)
         local cand_text = selected_cand.text:gsub(" ", "")
@@ -154,9 +182,14 @@ function P.func(key, env)
             local switch_to_val = not env.preedit_style
             config:set_bool("style/inline_preedit", switch_to_val) -- 重写 inline_preedit
         elseif cand_text == "切换预编码区格式" then
-            if (not env.preedit_format) or (env.preedit_format and env.preedit_format.size <= 1) then
-                env:Config_set("translator/preedit_format", config:get_list("preedit_convert_rules"))
+            local preedit_format_state = context:get_option("preedit_format")
+            if (not preedit_format_state) or (not env.preedit_format) then
+                context:set_option("preedit_format", true)
+                env:Config_set("switches/@9/reset", 1)
+                env:Config_set("translator/preedit_format", env:Config_get("preedit_convert_rules"))
             else
+                context:set_option("preedit_format", false)
+                env:Config_set("switches/@9/reset", 0)
                 env:Config_set("translator/preedit_format", "")
             end
         elseif cand_text == "切换候选序号样式" then
@@ -281,6 +314,15 @@ function P.func(key, env)
         return 1 -- kAccept
     end
 
+    local preedit_format_state = context:get_property("preedit_format_state")
+    if (preedit_format_state and preedit_format_state:match("^[01]$")) and (key_val:match("^[a-z]$")) then
+        env.engine:apply_schema(Schema(schema.schema_id))
+        context:set_property("preedit_format_state", "-")
+        context:push_input(preedit_code)
+        context:push_input(tostring(key_val))
+        return 1 -- kAccept
+    end
+
     return 2 -- kNoop, 不做任何操作, 交给下个组件处理
 end
 
@@ -291,7 +333,7 @@ function T.func(input, seg, env)
     local segment = composition:back()
 
     if seg:has_tag("flypy_switcher") then
-        segment.tags = segment.tags - Set({"abc"})
+        segment.tags = segment.tags - Set({ "abc" })
         segment.prompt = "〔" .. "切换配置选项" .. "〕"
         for _, text in ipairs(env.switch_option_menu) do
             yield(Candidate("switch_option", seg.start, seg._end, text, ""))
@@ -304,14 +346,15 @@ function F.func(input, env)
     local composition = context.composition
     if composition:empty() then return end
 
-    local input_code = context.input
+    local raw_input = context.input
     local preedit_proj = Projection()
     local use_mask = context:get_option("mask_hint")
     local use_tone = context:get_option("tone_hint")
     local comment_off = context:get_option("comment_off")
-    local yinma_code = input_code:gsub("%p", ""):sub(1, 2)
-    local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
-    local full_pinyin_code = preedit_proj:load(env.preedit_fmt_rules) and preedit_proj:apply(yinma_code, true) or nil
+    local yinma_code = raw_input:gsub("%p", ""):sub(1, 2)
+    local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eng))"
+    local char_pinyin_code = preedit_proj:load(env.preedit_fmt_rules) and preedit_proj:apply(yinma_code, true) or yinma_code
+    local fpy_head_code = char_pinyin_code:sub(1, 1)
 
     for cand in input:iter() do
         local cand_text = cand.text
@@ -321,22 +364,20 @@ function F.func(input, env)
         elseif use_tone and (env.comment_hints > 0) and (utf8.len(cand_text) == 1) then
             local comment_tbl = {}
             local comments = env.reversedb_flyhe:lookup(cand_text)
-            if (utf8.len(comments) < 1) or (comments:match("%u")) then
-                goto continue
-            end
+            if (utf8.len(comments) < 1) or (comments:match("%u")) then goto continue end
             for comment in comments:gsub("[%d%p]+", ""):gmatch("%S+") do
-                if (comment:match("^" .. full_pinyin_code:sub(1, 1))) and (#yinma_code == 1) then
+                if (comment:match("^" .. fpy_head_code)) and (#yinma_code == 1) then
                     table.insert(comment_tbl, comment)
-                elseif (comment:match("^" .. full_pinyin_code:sub(1, 1))) and (utf8.len(comment) == 1) then
+                elseif (comment:match("^" .. fpy_head_code)) and (utf8.len(comment) == 1) then
                     table.insert(comment_tbl, comment)
                 elseif
-                    (comment:match("^" .. full_pinyin_code:sub(1, 1)))
-                    and (utf8.len(comment) == #full_pinyin_code)
+                    (comment:match("^" .. fpy_head_code)) and
+                    (utf8.len(comment) == utf8.len(char_pinyin_code))
                 then
                     table.insert(comment_tbl, comment)
                 elseif
-                    (not comment:match("^[a-z]"))
-                    and rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
+                    (not comment:match("^[a-z]")) and
+                    rime_api.regex_match(char_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
                 then
                     table.insert(comment_tbl, comment)
                 end
@@ -363,9 +404,9 @@ return {
         -- fini = M.fini,
     },
     translator = {
-        init = M.init,
+        init = T.init,
         func = T.func,
-        -- fini = M.fini,
+        fini = T.fini,
     },
     filter = {
         init = M.init,

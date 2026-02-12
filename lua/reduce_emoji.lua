@@ -8,24 +8,24 @@ function F.init(env)
 end
 
 function F.func(input, env)
-    local emoji_cands = {}
-    local other_cands = {}
+    local emoji_cands    = {}
+    local other_cands    = {}
     local top_cand_count = 0
-    local engine = env.engine
-    local preedit_code = engine.context.input:gsub(" ", "")
-    local emoji_toggle = engine.context:get_option("emoji")
-    local wechat_flag = engine.context:get_option("wechat_flag")
-    local focus_app = engine.context:get_property("client_app")
+    local engine         = env.engine
+    local raw_input      = engine.context.input
+    local emoji_toggle   = engine.context:get_option("emoji")
+    local wechat_flag    = engine.context:get_option("wechat_flag")
+    local focus_app      = engine.context:get_property("client_app")
 
     for cand in input:iter() do
         if top_cand_count <= env.emoji_pos then
             if cand.comment:match(env.pin_mark) then
                 yield(cand)
-            elseif preedit_code:match("^%u%a+") then
+            elseif raw_input:match("^%u%a+") then
                 yield(cand)
             elseif
-                emoji_toggle
-                and (cand:get_dynamic_type() == "Shadow")
+                emoji_toggle and
+                (cand:get_dynamic_type() == "Shadow")
             then
                 table.insert(emoji_cands, cand)
             else
@@ -35,7 +35,7 @@ function F.func(input, env)
         else
             table.insert(other_cands, cand)
         end
-        if #other_cands >= 200 then break end
+        if #other_cands >= 666 then break end
     end
 
     for _, emoji_cand in ipairs(emoji_cands) do

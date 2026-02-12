@@ -37,6 +37,9 @@ patch:
       reset: 1
     - name: charset_hint
       states: [码区隐藏, 码区显示]
+    - name: preedit_format
+      states: [双拼显示, 全拼显示]
+      reset: 0  # 切换后重置为默认状态
     - options: [mask_hint, tone_hint, comment_off]
       states: [辅码开, 声调开, 注释关]
       reset: 2
@@ -56,8 +59,8 @@ patch:
 
   key_binder/+:
     import_preset: default            # 从 default.yaml 继承通用的
-    simpy_expand_key: "8"             # `8/Control+q` 简码成语优先
-    char_mode: "Control+s"            # 单字模式优先
+    fuzz_algebra_first: "8"           # `8/Control+q` 简拼优先
+    char_mode: "Control+s"            # 单字/词组优先模式切换
     pin_cand: "Control+t"             # 候选词置顶
     unpin_cand: "Control+t"           # 候选词取消置顶
     drop_cand: "Control+d"            # 强制删词, 无视输入的编码
@@ -92,6 +95,7 @@ patch:
       - {match: "^/$",    accept: "/", send: '{Down}'}
       - {match: "^=$",    accept: "=", send: '{Down}'}
       - {tag: calculator, accept: "'", send: '{Page_Down}'}
+      - {tag: calculator, accept: "Control+d", send: '{Delete}'}
       - {tag: calculator, accept: "(", send_sequence: '(){Left}'}
       - {match: "^.*\\)$", accept: ")", send_sequence: '{Right}'}
       - {tag: calculator, accept: "Shift+U", send_sequence: '10'}
@@ -100,6 +104,10 @@ patch:
       - {tag: calculator, accept: "Shift+Q", send_sequence: '000'}
       - {tag: calculator, accept: "Shift+K", send_sequence: '1000'}
       - {tag: calculator, accept: "Shift+W", send_sequence: '0000'}
+      - {tag: calculator, accept: "Shift+J", send_sequence: '{Control+3}'}
+      - {tag: calculator, accept: "Shift+I", send_sequence: '{Control+4}'}
+      - {tag: calculator, accept: "Shift+O", send_sequence: '{Control+5}'}
+      - {tag: calculator, accept: "Shift+L", send_sequence: '{Control+6}'}
       - {tag: date_time,  accept: "s", send_sequence: '{Control+3}'}
       - {tag: date_time,  accept: "d", send_sequence: '{Control+4}'}
       - {tag: date_time,  accept: "f", send_sequence: '{Control+5}'}
