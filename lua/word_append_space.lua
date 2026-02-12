@@ -41,7 +41,7 @@ function space_leader_word.func(key, env)
 
     if input_code:match("^/.*") then return 2 end
 
-    local commit_history = context.commit_history
+
     local current_focus_app = context:get_property("client_app")
     local prev_cand_is_null = context:get_property("prev_cand_is_null")
     local prev_cand_is_word = context:get_property("prev_cand_is_word")
@@ -70,14 +70,12 @@ function space_leader_word.func(key, env)
         if (prev_cand_is_chinese == "1") or (prev_cand_is_word == "1") or (prev_cand_is_preedit == "1") then
             cand_text = " " .. input_code
             engine:commit_text(cand_text)
-            commit_history:push("raw", cand_text)
         elseif (prev_cand_is_symbol == "1") and input_code:match("^%p+$") then
             engine:commit_text(cand_text)
-            commit_history:push("raw", cand_text)
+
             commit_text_is_symbol = true
         else
             engine:commit_text(cand_text)
-            commit_history:push("raw", cand_text)
         end
         reset_committed_cand_state(env)
         if commit_text_is_symbol then
@@ -105,7 +103,7 @@ function space_leader_word.func(key, env)
         else
             set_committed_cand_is_chinese(env)
         end
-        commit_history:push(key)
+
         context:set_property("prev_focus_app", current_focus_app)
         context:clear()
         return 1
@@ -133,7 +131,7 @@ function space_leader_word.func(key, env)
         context:set_property("prev_cand_is_null", "1")
         context:set_property("prev_focus_app", current_focus_app)
         engine:commit_text(cand_text)
-        commit_history:push(selected_cand.type, cand_text)
+
         context:clear()
         return 1 -- kAccepted
     end
@@ -150,7 +148,7 @@ function space_leader_word.func(key, env)
                 context:set_property("prev_cand_is_chinese", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 engine:commit_text(ccand_text:match("^ "))
-                commit_history:push(key)
+
                 context:clear()
                 return 1 -- kAccepted
             elseif cand_text:match("^%p?%a+") then
@@ -159,7 +157,7 @@ function space_leader_word.func(key, env)
                 context:set_property("prev_cand_is_word", "1")
                 context:set_property("prev_focus_app", current_focus_app)
                 engine:commit_text(ccand_text:match("^ "))
-                commit_history:push(key)
+
                 context:clear()
                 return 1 -- kAccepted
             end
@@ -172,7 +170,7 @@ function space_leader_word.func(key, env)
             context:set_property("prev_cand_is_word", "1")
             context:set_property("prev_focus_app", current_focus_app)
             engine:commit_text(ccand_text:match("^ "))
-            commit_history:push(key)
+
             context:clear()
             return 1 -- kAccepted
         end

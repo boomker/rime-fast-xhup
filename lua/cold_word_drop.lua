@@ -5,7 +5,7 @@ local cold_word_drop = {}
 local processor = {}
 local filter = {}
 
-local function get_record_filername(record_type)
+local function get_record_filename(record_type)
     local path_sep = "/"
     local user_data_dir = rime_api:get_user_data_dir()
     local user_distribute_name = rime_api:get_distribution_code_name()
@@ -29,7 +29,7 @@ local function get_record_filername(record_type)
 end
 
 local function write_word_to_file(env, record_type)
-    local filename = get_record_filername(record_type)
+    local filename = get_record_filename(record_type)
     local record_header = string.format("local %s_words =\n", record_type)
     local record_tailer = string.format("\nreturn %s_words", record_type)
     if not filename then
@@ -109,9 +109,8 @@ function processor.func(key, env)
 
     if context:has_menu() and action_map[key:repr()] then
         local cand = context:get_selected_candidate()
-        if not cand then
-            return 2
-        end
+        if not cand then return 2 end
+
         local action_type = action_map[key:repr()]
         local ctx_map = {
             ["word"] = cand.text,
@@ -120,9 +119,7 @@ function processor.func(key, env)
         local res = append_word_to_droplist(env, ctx_map, action_type)
 
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        if not res then
-            return 2
-        end
+        if not res then return 2 end
 
         if res then
             -- 期望被删的词和隐藏的词条写入文件(drop_words.lua, hide_words.lua)
@@ -139,7 +136,7 @@ function filter.func(input, env)
     local cands = {}
     local engine = env.engine
     local context = engine.context
-    local preedit_str = context.input
+    local raw_input = context.input
     local drop_words = env.drop_words
     local hide_words = env.hide_words
     local word_reduce_idx = env.word_reduce_idx
@@ -147,7 +144,7 @@ function filter.func(input, env)
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
-        local preedit_code = cand.preedit:gsub(" ", "") or preedit_str
+        local preedit_code = cand.preedit:gsub(" ", "") or raw_input
 
         local reduce_freq_list = reduce_freq_words[cand_text] or {}
         if word_reduce_idx > 1 then
@@ -156,8 +153,8 @@ function filter.func(input, env)
                 table.insert(cands, cand)
             elseif
                 not (
-                    table.find_index(drop_words, cand_text)
-                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+                    table.find_index(drop_words, cand_text) or
+                    (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
                 )
             then
                 yield(cand)
@@ -166,15 +163,15 @@ function filter.func(input, env)
         else
             if
                 not (
-                    table.find_index(drop_words, cand_text)
-                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+                    table.find_index(drop_words, cand_text) or
+                    (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
                 )
             then
                 table.insert(cands, cand)
             end
         end
 
-        if #cands >= 200 then break end
+        if #cands >= 666 then break end
     end
 
     for _, cand in ipairs(cands) do

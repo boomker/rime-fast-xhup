@@ -1625,12 +1625,12 @@ preset_keys:
   Liquid_fixed_exit: { label: " ↶ ", send: function, command: liquid_keyboard, option: "-1" }
   Liquid_fixed_backspace: { label: " ⇦  ", repeatable: true, send: BackSpace }
   Liquid_fixed_space: { label: " ⎵  ", repeatable: true, functional: false, send: space }
-  Liquid_fixed_left: { label: " ← ", send: Left }
-  Liquid_fixed_right: { label: " → ", send: Right }
+  Liquid_fixed_left: { label: " ←  ", send: Left }
+  Liquid_fixed_right: { label: " →  ", send: Right }
   Liquid_fixed_up: { label: "↑", send: Up }
   Liquid_fixed_down: { label: "↓", send: Down }
   Liquid_fixed_tab: { label: " ⇥ ", send: Tab }
-  Liquid_fixed_return: { label: " ↲ ", repeatable: true, send: Return, functional: false }
+  Liquid_fixed_return: { label: " ↲  ", repeatable: true, send: Return, functional: false }
   liquid_keyboard_emoji: { label: ☻, send: function, command: liquid_keyboard, option: "😀" }
   Commit_Caret: { label: "^", commit: "^", functional: false }
   Commit_Hash: { label: "#", commit: "#", functional: false }
