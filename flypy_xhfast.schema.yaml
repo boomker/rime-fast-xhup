@@ -30,6 +30,7 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - lua_processor@*easy_navigator
     - lua_processor@*select_char
     - lua_processor@*symbol_menu
     - lua_processor@*easy_en*processor
@@ -88,7 +89,7 @@ engine:
     - lua_translator@*cn_en_custom                    # `=,~,\ 触发自定义单词入库
     - lua_translator@*chinese_lunar                   # /nl,nL 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh,oH 触发进入帮助菜单
-    - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
+    - lua_translator@*easy_en*translator              # * 号触发英文模糊匹配
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     # - lua_translator@*revert_commit_word            # 撤销已上屏字符(模拟退格键)
     - lua_translator@*flypy_fuzzy*translator          # 8,ctrl-q 简拼优先前排
@@ -273,7 +274,7 @@ recognizer:
   patterns:
     make_sentence: "^`?[a-z]+`[a-z`]*$"                     # `  引导精准造词
     easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"                # *  进入英文模式
-    free_make_word: "^[a-zA-Z/`]+`=[a-zA-Z]*$"              # `= 引导自由造词
+    free_make_word: '^[a-zA-Z/`]+`=[a-zA-Z/-]*$'            # `= 引导自由造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
     make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'   # ~,\ 引导英文造词
@@ -316,8 +317,8 @@ key_binder:
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
     - {when: has_menu,  accept: Control+Shift+4,    toggle: emoji}
+    # - {when: always,  accept: Shift+space,    toggle: ascii_mode}
     - {when: always,    accept: Control+semicolon,  toggle: char_mode}
-    - {when: always,    accept: Shift+space,        toggle: ascii_mode}
     - {when: always,    accept: Control+period,     toggle: full_shape}
     - {when: always,    accept: Control+comma,      toggle: ascii_punct}
     - {when: has_menu,  accept: Control+Shift+5,    toggle: charset_hint}

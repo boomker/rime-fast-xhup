@@ -83,6 +83,7 @@
     "cSpell.words": [
         "actionlabel",
         "asciicircum",
+        "asciitilde",
         "astralwelkin",
         "Atoi",
         "autocaps",
@@ -141,6 +142,7 @@
         "quotedbl",
         "repr",
         "reversedb",
+        "rfind",
         "rtmp",
         "sdcard",
         "segmentor",

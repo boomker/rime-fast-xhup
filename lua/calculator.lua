@@ -298,7 +298,7 @@ end
 
 -- 银行家舍入法
 local function round(x, dc)
-    local cdc = dc or 1
+    local cdc = tonumber(dc) or 1
     local fraction = x / cdc
     local integer = math.floor(fraction)
     local remainder = fraction - integer
@@ -396,8 +396,8 @@ function T.func(input, seg, env)
             yield(Candidate("calc", seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
         elseif loaded_func then
             local success, result = pcall(loaded_func)
-            local round_val = string.format("%.2f", round(result, 0.01))
             if success then
+                local round_val = string.format("%.2f", round(result, 0.01))
                 yield(Candidate("calc", seg.start, seg._end, tostring(result), "答案"))
                 yield(Candidate("calc", seg.start, seg._end, round_val, "近似值"))
                 yield(Candidate("calc", seg.start, seg._end, tostring(scientific_format(result)), "科学记数"))

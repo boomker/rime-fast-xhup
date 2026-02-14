@@ -1,4 +1,3 @@
--- local _, logger = pcall(require, "lib/logger")
 require("lib/string")
 require("lib/metatable")
 require("lib/rime_helper")
@@ -49,7 +48,7 @@ function P.func(key, env)
 
     local caret_pos = context.caret_pos
     local preedit_text = context:get_preedit().text
-    local preedit_code = preedit_text:gsub("[‸ ]", "")
+    local preedit_code = preedit_text:gsub("[‸]", "")
     local char_mode_state = context:get_option("char_mode")
 
     if key:release() or key:alt() or key:caps() then return 2 end
@@ -99,37 +98,6 @@ function P.func(key, env)
         return 1
     end
 
-    local segment = composition:toSegmentation()
-    local cs_pos = segment:get_current_start_position()
-    local input_syllable_code = "-"
-    if (utf8.len(preedit_text) > 5) then
-        local editing_preedit = preedit_text:match("[a-z' ]+")
-        -- 提取开头两个字符
-        input_syllable_code = string.sub(editing_preedit, 1, 2)
-
-        -- 提取所有空格后的两个字符
-        for chars in string.gmatch(editing_preedit, " (%w%w)") do
-            input_syllable_code = input_syllable_code .. " " .. chars
-        end
-
-        -- 添加末尾分号
-        input_syllable_code = input_syllable_code .. string.sub(editing_preedit, -1)
-    end
-    -- logger.write("ca_pos: " .. caret_pos .. ", cs_pos: " .. cs_pos .. ", isc: " .. input_syllable_code)
-    if rime_api.regex_match(input_syllable_code, "^[a-z ]{5, 55}'$") and key_value:match("^[a-z]$") then
-        local idx_s, idx_e = (" " .. input_syllable_code):find(" " .. key_value .. "[a-z]")
-        if (not idx_s) or (not idx_e) then return 2 end
-        local new_pos = idx_s - (idx_e / 3)
-        -- logger.write("pos: " .. idx_s .. ", idx_e: " .. idx_e)
-        if cs_pos < 1 then
-            context.caret_pos = math.floor(new_pos)
-        else
-            context.caret_pos = cs_pos + math.floor(new_pos)
-        end
-        -- env.engine:process_key(KeyEvent("space"))
-        return 1 -- kNoop
-    end
-
     return 2 -- kNoop
 end
 
@@ -141,11 +109,9 @@ function T.func(input, seg, env)
     if composition:empty() then return end
 
     local input_code = context.input
-    local segment = composition:toSegmentation()
-    local has_finished_seg = segment:has_finished_segmentation()
-
-    if has_finished_seg then
-        local seg_start = segment:get_confirmed_position() + 1
+    local segmentation = composition:toSegmentation()
+    local seg_start = segmentation:get_confirmed_position() + 1
+    if seg_start > 1 then
         input_code = input_code:sub(seg_start, #input_code)
     end
 
