@@ -87,6 +87,7 @@
         "Atoi",
         "autocaps",
         "boomker",
+        "bopomofo",
         "braceleft",
         "braceright",
         "bracketleft",
@@ -101,6 +102,7 @@
         "droplist",
         "Easydict",
         "ecdict",
+        "Eisu",
         "entrys",
         "exclam",
         "favorcmd",
@@ -168,6 +170,7 @@
         "xlit",
         "yinma",
         "yyds",
+        "Zdict",
         "zyxwvutsrqponmlkjihgfedcba"
     ]
 }
