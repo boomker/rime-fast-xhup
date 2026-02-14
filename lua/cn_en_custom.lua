@@ -62,18 +62,20 @@ function T.init(env)
     local function handle_save_userdict(ctx)
         local segment = ctx.composition:back()
         local cand = ctx:get_selected_candidate()
+        local commit_text = ctx:get_commit_text()
         if not cand then return end
 
-        local cand_text = cand.text
+        cand.text = commit_text or cand.text
         if segment:has_tag(env.cn_tag) then
-            if cand.comment:match("^[a-zA-Z]+$") then
+            if cand.comment:match("^[a-zA-Z%-]+$") then
                 save_entry(env, cand)
             end
         elseif
-            segment:has_tag(env.en_tag)
-            or (cand_text:match("^%a[%a%p]+$") and env.enable_en_make_word)
+            segment:has_tag(env.en_tag) or
+            (cand.text:match("^%a[%a%p]+$") and env.enable_en_make_word)
         then
             env.enable_en_make_word = false
+            local cand_text = cand.text
             local file = assert(io.open(env.dict_path, "a"))
             local record = cand_text .. "\t" .. cand_text .. "\t100000"
 
@@ -82,7 +84,16 @@ function T.init(env)
         end
     end
 
-    env.notifier_commit_make_word = context.commit_notifier:connect(handle_save_userdict)
+    env.cn_make_word_commit_notifier = context.commit_notifier:connect(handle_save_userdict)
+    --[[
+    env.cn_make_word_state_notifier = context.property_update_notifier:connect(
+        function(ctx, name)
+            if name == "cn_word_making" then
+                local state = (ctx:get_property("cn_word_making") == "true") and true or false
+                ctx:set_option("_auto_commit", not state)
+            end
+        end
+    ) ]]
 end
 
 function T.fini(env)
@@ -98,10 +109,17 @@ function T.fini(env)
         collectgarbage('collect')
     end
 
-    if env.notifier_commit_make_word then
-        env.notifier_commit_make_word:disconnect()
-        env.notifier_commit_make_word = nil
+    if env.cn_make_word_commit_notifier then
+        env.cn_make_word_commit_notifier:disconnect()
+        env.cn_make_word_commit_notifier = nil
     end
+
+    --[[
+    if env.cn_make_word_state_notifier then
+        env.cn_make_word_state_notifier:disconnect()
+        env.cn_make_word_state_notifier = nil
+    end ]]
+
     if env.free_make_word_tran then
         env.free_make_word_tran = nil
     end
@@ -109,15 +127,16 @@ end
 
 function T.func(input, seg, env)
     local context = env.engine.context
-    local raw_input_code = context.input
     local composition = context.composition
     if composition:empty() then return end
 
-    local segment = composition:back()
+    local segmentation = composition:toSegmentation()
+    local seg_start = segmentation:get_confirmed_position() + 1
+    local raw_input_code = (seg_start > 1) and context.input:sub(seg_start) or context.input
     if seg:has_tag(env.cn_tag) then -- 输入必须含有 '`='
         local query_encode = raw_input_code:match("^" .. "(.*)%`=")
         local cand_comment = raw_input_code:match("=(.+)$") or " ~造词中..."
-        local word_cands = env.free_make_word_tran:query(query_encode, segment) or nil
+        local word_cands = env.free_make_word_tran:query(query_encode, seg)
         if not word_cands then return end
 
         for cand in word_cands:iter() do

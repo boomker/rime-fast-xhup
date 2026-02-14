@@ -68,9 +68,16 @@ function T.init(env)
         "增加行间距的大小",
         "减少行间距的大小",
     }
-    env.pfo_notifier = env.engine.context.option_update_notifier:connect(
+    env.option_notifier = env.engine.context.option_update_notifier:connect(
         function(ctx, name)
-            if name == "preedit_format" then
+            if name == "charset" then
+                local charset_state = ctx:get_option("charset")
+                if charset_state then
+                    env:Config_set("switches/@7/reset", 1)
+                else
+                    env:Config_set("switches/@7/reset", 0)
+                end
+            elseif name == "preedit_format" then
                 if ctx:get_option(name) then
                     if (not env.preedit_format) or (env.preedit_format.size <= 1) and (ctx:get_property("preedit_format_state") ~= "0") then
                         env:Config_set("translator/preedit_format", env:Config_get("preedit_convert_rules"))
@@ -84,13 +91,22 @@ function T.init(env)
                         ctx:set_property("preedit_format_state", "0")
                     end
                 end
+            elseif (name == "mask_hint") and ctx:get_option("mask_hint") and (env:Config_get("switches/@last/reset") ~= 0) then
+                env:Config_set("switches/@last/reset", 0)
+                env:Config_set("radical_lookup/overwrite_comment", false)
+            elseif (name == "tone_hint") and ctx:get_option("tone_hint") and (env:Config_get("switches/@last/reset") ~= 1) then
+                env:Config_set("switches/@last/reset", 1)
+                env:Config_set("radical_lookup/overwrite_comment", true)
+            elseif (name == "comment_off") and ctx:get_option("comment_off") and (env:Config_get("switches/@last/reset") ~= 2) then
+                env:Config_set("switches/@last/reset", 2)
+                env:Config_set("radical_lookup/overwrite_comment", false)
             end
         end
     )
 end
 
 function T.fini(env)
-    env.pfo_notifier:disconnect()
+    env.option_notifier:disconnect()
 end
 
 function P.func(key, env)

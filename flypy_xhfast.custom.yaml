@@ -94,7 +94,9 @@ patch:
       # 以下按键绑定规则(含`tag` / `match`)需 keybinder(lua) 支持
       - {match: "^/$",    accept: "/", send: '{Down}'}
       - {match: "^=$",    accept: "=", send: '{Down}'}
-      - {tag: calculator, accept: "'", send: '{Page_Down}'}
+      - {match: "^[a-z/]+'$", accept: ",", send: '{Shift+Left}'}
+      - {match: "^[a-z/]+'$", accept: ".", send: '{Shift+Right}'}
+      - {tag: calculator, accept: "'",     send: '{Page_Down}'}
       - {tag: calculator, accept: "Control+d", send: '{Delete}'}
       - {tag: calculator, accept: "(", send_sequence: '(){Left}'}
       - {match: "^.*\\)$", accept: ")", send_sequence: '{Right}'}
@@ -104,13 +106,6 @@ patch:
       - {tag: calculator, accept: "Shift+Q", send_sequence: '000'}
       - {tag: calculator, accept: "Shift+K", send_sequence: '1000'}
       - {tag: calculator, accept: "Shift+W", send_sequence: '0000'}
-      - {tag: calculator, accept: "Shift+J", send_sequence: '{Control+3}'}
-      - {tag: calculator, accept: "Shift+I", send_sequence: '{Control+4}'}
-      - {tag: calculator, accept: "Shift+O", send_sequence: '{Control+5}'}
-      - {tag: calculator, accept: "Shift+L", send_sequence: '{Control+6}'}
-      - {tag: date_time,  accept: "s", send_sequence: '{Control+3}'}
-      - {tag: date_time,  accept: "d", send_sequence: '{Control+4}'}
-      - {tag: date_time,  accept: "f", send_sequence: '{Control+5}'}
       - {tag: chinese_number, accept: "o", send_sequence: '0'}
       - {tag: chinese_number, accept: "i", send_sequence: '1'}
       - {tag: chinese_number, accept: "b", send_sequence: '00'}
@@ -119,12 +114,19 @@ patch:
       - {tag: chinese_number, accept: "k", send_sequence: '1000'}
       - {tag: chinese_number, accept: "w", send_sequence: '0000'}
       - {tag: chinese_number, accept: "period", send_sequence: '.'}
-      - {tag: chinese_number, accept: "s", send_sequence: '{Control+1}'}
-      - {tag: chinese_number, accept: "d", send_sequence: '{Control+2}'}
-      - {tag: chinese_number, accept: "f", send_sequence: '{Control+3}'}
-      - {tag: chinese_number, accept: "j", send_sequence: '{Control+4}'}
-      - {tag: chinese_number, accept: "u", send_sequence: '{Control+5}'}
-      - {tag: chinese_number, accept: "m", send_sequence: '{Control+6}'}
+      - {tag: chinese_number, accept: "s",   send_sequence: '{Control+e}{Control+1}'}
+      - {tag: chinese_number, accept: "d",   send_sequence: '{Control+e}{Control+2}'}
+      - {tag: chinese_number, accept: "f",   send_sequence: '{Control+e}{Control+3}'}
+      - {tag: chinese_number, accept: "j",   send_sequence: '{Control+e}{Control+4}'}
+      - {tag: chinese_number, accept: "u",   send_sequence: '{Control+e}{Control+5}'}
+      - {tag: chinese_number, accept: "m",   send_sequence: '{Control+e}{Control+6}'}
+      - {tag: date_time,      accept: "s",   send_sequence: '{Control+e}{Control+3}'}
+      - {tag: date_time,      accept: "d",   send_sequence: '{Control+e}{Control+4}'}
+      - {tag: date_time,      accept: "f",   send_sequence: '{Control+e}{Control+5}'}
+      - {tag: calculator, accept: "Shift+J", send_sequence: '{Control+e}{Control+3}'}
+      - {tag: calculator, accept: "Shift+I", send_sequence: '{Control+e}{Control+4}'}
+      - {tag: calculator, accept: "Shift+O", send_sequence: '{Control+e}{Control+5}'}
+      - {tag: calculator, accept: "Shift+L", send_sequence: '{Control+e}{Control+6}'}
 
   recognizer/+:
     patterns/+:

@@ -18,3 +18,23 @@ patch:
       ## 模糊音:
       - derive/^([jy])v/$1u/
       - derive/^([qx])u/$1v/
+
+  punctuator/+:
+    digit_separators: ".:"                      # 指定要转换为英文半角的符号, 若双击则恢复全角(中文)
+    # digit_separator_action: commit            # 上一行指定的符号在按下数字后的动作行为
+    symbol_menu_prefix: '/vs'
+    symbol_normal_prefix: '/'
+
+  key_binder/+:
+    import_preset: default            # 从 default.yaml 继承通用的
+    symbol_menu_fallback: "slash"     # 符号二级菜单返回主菜单键
+    select_first_character: "9"       # `9/minus` 以词定字(首字)
+    select_last_character: "0"        # `0/equal` 以词定字(尾字)
+
+  cand_selector:                      # 候选选择器
+    word_lookup_limit: 666            # 检索最多迭代数
+    auto_select_char: true            # 单字优先时全码唯一则自动顶屏(小鹤音形效果)
+    auto_select_phrase: false         # 词组加间接辅码唯一则自动上屏(默认关闭)
+    if_unmatched_show_mark: "⭕️"      # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
+    tone_convert_format:              # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
+      - xlit/IUNM/1234/

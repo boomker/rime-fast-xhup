@@ -20,6 +20,16 @@ function string.split(str, sp, sp1)
     return tab
 end
 
+function string.rfind(s, pattern)
+    local rev_s = s:reverse()
+    local rev_p = pattern:reverse()
+    local pos = rev_s:find(rev_p, 1, true)
+    if pos then
+        return #s - pos - #pattern + 2
+    end
+    return nil
+end
+
 function string.to_table(str)
     local t = {}
     for char in str:gmatch(".") do

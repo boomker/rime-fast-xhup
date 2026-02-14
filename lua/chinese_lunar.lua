@@ -596,18 +596,25 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
     local segment = composition:back()
 
     local input_code = context.input
     if seg:has_tag(env.tag) or input_code:match("^" .. env.prefix .. "$") then
-        segment.tags = segment.tags - Set({"abc"})
+        segment.tags = segment.tags - Set({ "abc" })
         segment.prompt = "〔" .. env.prompt .. "〕"
         local solarDateTable = {}
-        if input:gsub("[%a%/]", ""):match("^[12]%d%d%d%d%d%d%d$") then
+        if input:gsub("[%a%/]", ""):match("^[12]0%d%d%d%d%d%d$") then
             solarDateTable = solar2LunarByTime(input:gsub("[%a%/]", ""))
+        elseif input:gsub("[%a%/]", ""):match("^[12][1-9].*$") then
+            yield(Candidate("lunar_error", seg.start, seg._end, "输入的日期有误", ""))
         else
             solarDateTable = solar2LunarByTime(os.date("%Y%m%d"))
+        end
+        if (#solarDateTable == 0) or (solarDateTable.lunarDate_YMD == "") then
+            return
         end
         local lunar_date = Candidate("lunar", seg.start, seg._end, solarDateTable.lunarDate_4, "")
         local lunar_ymd = Candidate("lunar", seg.start, seg._end, solarDateTable.lunarDate_YMD, "")

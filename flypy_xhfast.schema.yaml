@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2026.02.12
+  version: 2026.02.14
   author:
     - boomker
   description: |
@@ -30,6 +30,7 @@ switches:
 # 输入引擎
 engine:
   processors:
+    - lua_processor@*easy_navigator
     - lua_processor@*select_char
     - lua_processor@*symbol_menu
     - lua_processor@*easy_en*processor
@@ -273,7 +274,7 @@ recognizer:
   patterns:
     make_sentence: "^`?[a-z]+`[a-z`]*$"                     # `  引导精准造词
     easy_en: "^[a-zA-Z]+[-_']*[*][a-zA-Z]*$"                # *  进入英文模式
-    free_make_word: "^[a-zA-Z/`]+`=[a-zA-Z]*$"              # `= 引导自由造词
+    free_make_word: '^[a-zA-Z/`]+`=[a-zA-Z/-]*$'            # `= 引导自由造词
     punct: "^(/([0-9]0?|[A-Za-z]+))|(;[A-Za-z]+)$"
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
     make_en_word: '^(~[a-zA-Z0-9&,./_-]+)|([a-zA-Z]+\\)$'   # ~,\ 引导英文造词
@@ -316,8 +317,8 @@ key_binder:
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
     - {when: has_menu,  accept: Control+Shift+4,    toggle: emoji}
+    # - {when: always,  accept: Shift+space,    toggle: ascii_mode}
     - {when: always,    accept: Control+semicolon,  toggle: char_mode}
-    - {when: always,    accept: Shift+space,        toggle: ascii_mode}
     - {when: always,    accept: Control+period,     toggle: full_shape}
     - {when: always,    accept: Control+comma,      toggle: ascii_punct}
     - {when: has_menu,  accept: Control+Shift+5,    toggle: charset_hint}
@@ -326,7 +327,7 @@ key_binder:
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏, 可以加在 alphabet, 或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA&_/
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA&_-/
   # initials 定义仅作为始码的按键
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
