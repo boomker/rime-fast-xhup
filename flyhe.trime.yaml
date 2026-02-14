@@ -8,22 +8,22 @@
 # Learn how to use flyhe in the readme file, available on the project's github page.
 # Source: https://github.com/HoengSaan/trime-gukwan
 
-config_version: "2026.01.17"
+config_version: "2026.02.15"
 name: 飞鹤
 author: "Boomker <gmboomker@gmail.com>"
 
 height:
-  - &36_key_height 42
-  # - &symbol_key_height 36
-  - &sub_key_height 28
-  - &hor_gap 4
+  - &26_key_height 38
+  - &26_key_vert_gap 5
+  - &36_key_height 40
   - &36_key_vert_gap 6
+  # - &symbol_key_height 36
+  - &hor_gap 4
+  - &sub_key_height 28
   - &ipa_key_height 36
+  - &ipa_key_vert_gap 2
   - &ipa_key_width 8.33333333333333
   - &ipa_2_key_width 16.666666666666666
-  - &26_key_height 44
-  - &26_key_vert_gap 9
-  - &ipa_key_vert_gap 2
 
 round_corner:
   - &main_round 12
@@ -37,13 +37,17 @@ shift:
 style:
   #功能設定
   auto_caps: false           #自動句首大寫: true|false|ascii
-  candidate_use_cursor: true #高亮候選項
-  comment_on_top: true       #編碼提示在上方/右側
   horizontal: true           #水平模式
+  comment_on_top: true       #編碼提示在上方/右側
+  reset_ascii_mode: true     #自動轉回中文
+  candidate_use_cursor: true #高亮候選項
+  proximity_correction: true #避免按到縫隙
   keyboards:                 #用到的鍵盤
     - .default
     - default
+    - flyhe36
     - number
+    - editor
     - basic_symbol
     - math_symbol
     - Greek
@@ -55,7 +59,6 @@ style:
     - IPA3
     - IPA_symbol_1
     - IPA_symbol_2
-    - editor
     - hiragana
     - katakana
     - hangul
@@ -63,10 +66,8 @@ style:
     - t9_symbol
     - English
     - English_ASCII
-  proximity_correction: true #避免按到縫隙
-  reset_ascii_mode: true     #自動轉回中文
-  latin_locale: en_US        #這些
   locale: zh_CN              #沒什麼
+  latin_locale: en_US        #這些
   speech_opencc_config: none #好說的
   #字體
   text_font: MiSans-Regular.otf                     #打出編碼字體
@@ -104,7 +105,7 @@ style:
   keyboard_padding_bottom: 5      #豎屏下鍵盤下端到屏幕下緣間距
   keyboard_padding_land: 50       #橫屏下鍵盤左右到屏幕左右間距
   keyboard_padding_land_bottom: 5 #橫屏下鍵盤下端到屏幕下緣間距
-  keyboard_height: 300            #豎屏鍵盤高度
+  keyboard_height: 280            #豎屏鍵盤高度
   keyboard_height_land: 160       #橫屏下鍵盤鎖定高度
   enter_label_mode: 0             #回車鍵標籤模式：0 自定義 | 1 僅ActionLabel | 2 ActionLabel優先 | 3 ActionLabel後備
   enter_labels:                   #自定義回車鍵標籤
@@ -1534,33 +1535,34 @@ preset_keys:
   Deploy: { label: 部署, command: broadcast, option: "com.osfans.trime.deploy" }
   Sync: { label: 同步, command: broadcast, option: "com.osfans.trime.sync" }
   Nothing: { label: "占位", send: "" } #當還沒想好放什麼的時候就放這個吧
+  Keyboard_flyhe36: { label: "36键中", send: Eisu_toggle, select: flyhe36 }
+  Keyboard_English: { label: "36键英", send: Eisu_toggle, select: English }
   Keyboard_number: { label: "123", send: Eisu_toggle, select: number }
-  Keyboard_basic_symbol: { label: "符号", send: Eisu_toggle, select: basic_symbol }
+  Keyboard_editor: { label: "编辑", send: Eisu_toggle, select: editor }
+  Keyboard_t9_symbol: { label: "符号", send: Eisu_toggle, select: t9_symbol }
   Keyboard_math_symbol: { label: "符号", send: Eisu_toggle, select: math_symbol }
-  Keyboard_Greek: { label: "αβγ", send: Eisu_toggle, select: Greek }
+  Keyboard_basic_symbol: { label: "符号", send: Eisu_toggle, select: basic_symbol }
+  Keyboard_English_ASCII: { label: "英", send: Eisu_toggle, select: English_ASCII }
   Keyboard_Greek_symbol: { label: "符号", send: Eisu_toggle, select: Greek_symbol }
-  Keyboard_Cyrillic: { label: "абг", send: Eisu_toggle, select: Cyrillic }
   Keyboard_Cyrillic_symbol: { label: "符号", send: Eisu_toggle, select: Cyrillic_symbol }
-  Keyboard_IPA: { label: "ɑɔə", send: Eisu_toggle, select: IPA1 }
+  Keyboard_Greek: { label: "αβγ", send: Eisu_toggle, select: Greek }
+  Keyboard_Cyrillic: { label: "абг", send: Eisu_toggle, select: Cyrillic }
   Keyboard_Greek_Selected: { label: "αβγ", send: "", functional: false }
   Keyboard_Cyrillic_Selected: { label: "абг", send: "", functional: false }
+  Keyboard_IPA: { label: "ɑɔə", send: Eisu_toggle, select: IPA1 }
+  Keyboard_IPA1: { label: "1/3", send: Eisu_toggle, select: IPA1 }
+  Keyboard_IPA2: { label: "2/3", send: Eisu_toggle, select: IPA2 }
+  Keyboard_IPA3: { label: "3/3", send: Eisu_toggle, select: IPA3 }
   Keyboard_IPA_Selected: { label: "ɑɔə", send: "", functional: false }
-  Keyboard_IPA1: { label: "3/3", send: Eisu_toggle, select: IPA1 }
-  Keyboard_IPA2: { label: "1/3", send: Eisu_toggle, select: IPA2 }
-  Keyboard_IPA3: { label: "2/3", send: Eisu_toggle, select: IPA3 }
   Keyboard_IPA_symbol_1: { label: "/ [ {", send: Eisu_toggle, select: IPA_symbol_1 }
   Keyboard_IPA_symbol_2: { label: "◌̥◌ʰ", send: Eisu_toggle, select: IPA_symbol_2 }
-  Keyboard_editor: { label: "编辑", send: Eisu_toggle, select: editor }
-  Keyboard_Hiragana: { label: "いろは", send: Eisu_toggle, select: Hiragana }
-  Keyboard_Hiragana_Selected: { label: "いろは", send: "", functional: false }
-  Keyboard_Katakana: { label: "イロハ", send: Eisu_toggle, select: Katakana }
-  Keyboard_Katakana_Selected: { label: "イロハ", send: "", functional: false }
   Keyboard_Hangul: { label: "조선말", send: Eisu_toggle, select: Hangul }
+  Keyboard_Hiragana: { label: "いろは", send: Eisu_toggle, select: Hiragana }
+  Keyboard_Katakana: { label: "イロハ", send: Eisu_toggle, select: Katakana }
   Keyboard_Hangul_Selected: { label: "조선말", send: "", functional: false }
+  Keyboard_Hiragana_Selected: { label: "いろは", send: "", functional: false }
+  Keyboard_Katakana_Selected: { label: "イロハ", send: "", functional: false }
   Keyboard_fancy: { label: "分词", send: apostrophe, functional: false }
-  Keyboard_t9_symbol: { label: "符号", send: Eisu_toggle, select: t9_symbol }
-  Keyboard_English: { label: "36", send: Eisu_toggle, select: English }
-  Keyboard_English_ASCII: { label: "英", send: Eisu_toggle, select: English_ASCII }
   # IPA Keyboard
   IPA_exhigh: { label: "◌̋", text: "̋" }
   IPA_high: { label: "◌́", text: "́" }
@@ -4685,11 +4687,230 @@ liquid_keyboard:
 
 preset_keyboards:
   default:
-    name: 通用36鍵
+    name: 飞鹤26鍵
     author: "Boomker"
+    width: 10
     ascii_mode: 0
     reset_ascii_mode: true
+    height: *26_key_height
+    vertical_gap: *26_key_vert_gap
+    key_text_offset_y: -.6 #按鍵文本偏移（下正上負）
+    key_hint_offset_y: *lower_hint_shift #按鍵下方註釋偏移（下正上負）
+    key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
+    keys:
+      #第1行
+      - {
+          click: "q",
+          long_click: "`",
+          swipe_up: "`",
+          swipe_down: "~",
+          hint: "~",
+        }
+      - { click: "w", long_click: Liquid_fixed_up, swipe_up: Liquid_fixed_up, swipe_down: BackToPreviousSyllable, hint: "BS" }
+      - { click: "e", long_click: EasyEnMode, swipe_up: EasyEnMode, swipe_down: Liquid_fixed_left, hint: "←" }
+      - { click: "r", long_click: Mandarin_rl, swipe_up: Mandarin_rl, swipe_down: Liquid_fixed_right, hint: "→"}
+      - { click: "t", long_click: PinCandFunc, swipe_up: PinCandFunc, swipe_down: Liquid_fixed_tab, hint: "⇥" }
+      - { click: "y", long_click: redo, label_symbol: ↷ }
+      - {
+          click: "u",
+          long_click: "_",
+          swipe_up: "_",
+          swipe_down: "U",
+          hint: "ˊ 2",
+        }
+      - {
+          click: "i",
+          long_click: "=",
+          swipe_up: "=",
+          swipe_down: "I",
+          hint: "ˉ 1",
+        }
+      - {
+          click: "o",
+          long_click: "/",
+          # swipe_up: "=",
+          swipe_down: "/",
+          hint: "/",
+        }
+      - {
+          click: "p",
+          long_click: "|",
+          swipe_up: "|",
+          swipe_down: '\',
+          hint: '\',
+        }
+      #第2行
+      - { width: 2 }
+      - {
+          width: 12,
+          click: "a",
+          long_click: "select_all",
+          label_symbol: ☑,
+          # hint: '/   \',
+        }
+      - { width: 11,
+          click: "s",
+          long_click: Keyboard_symbol,
+          swipe_down: Liquid_fixed_down,
+          hint: "↓",
+        }
+      - {
+          click: "d",
+          long_click: Date_Lua,
+          swipe_up: Date_Lua,
+          swipe_down: DelCandFunc,
+          hint: "删词",
+        }
+      - {
+          click: "f",
+          long_click: Keyboard_editor,
+          swipe_up: Keyboard_editor,
+          swipe_down: Keyboard_emoji,
+          hint: "表情",
+        }
+      - {
+          click: "g",
+          long_click: Google,
+          swipe_up: Google,
+          swipe_down: "ResetCandWeight",
+          hint: "忘词",
+        }
+      - {
+          click: "h",
+          long_click: History_Lua,
+          swipe_up: History_Lua,
+          swipe_down: HideCandFunc,
+          hint: "藏词",
+        }
+      - {
+          click: "j",
+          long_click: ";",
+          swipe_down: ":",
+          hint: ":",
+          # long_click: Keyboard_Hiragana,
+          # swipe_left: "「",
+          # swipe_right: "」",
+          # hint: "「   」",
+          # key_text_color: on_key_text_color,
+        }
+      - {
+          width: 11,
+          click: "k",
+          long_click: "{",
+          swipe_up: "{",
+          swipe_down: "[",
+          hint: "[",
+          # long_click: Keyboard_Katakana,
+        }
+      - {
+          width: 12,
+          click: "l",
+          long_click: "}",
+          swipe_up: "}",
+          swipe_down: "]",
+          hint: "]",
+          # long_click: Keyboard_Hangul,
+        }
+      - { width: 2 }
+      #第3行
+      - {
+          click: Shift_L,
+          double_click: Shift_L2,
+          width: 14,
+          key_text_offset_y: 0,
+          key_back_color: off_key_back_color,
+          key_text_color: off_key_text_color,
+          hilited_key_back_color: hilited_off_key_back_color,
+          hilited_key_text_color: hilited_off_key_text_color,
+        }
+      - { click: "z", long_click: undo, label_symbol: ↶,}
+      - { click: "x", long_click: cut, label_symbol: ✁,}
+      - { click: "c", long_click: copy, label_symbol: ❐,}
+      - { click: "v", long_click: paste, label_symbol: ▣,}
+      - { click: "b", long_click: clipboard_window, label_symbol: ⏍, }
+      - { click: "n", long_click: "'", swipe_down: "N", hint: "ˇ 3" }
+      - { click: "m", long_click: '"', swipe_down: 'M', hint: "ˋ 4" }
+      - {
+          click: BackSpace,
+          swipe_down: Delete,
+          hint: "⇨",
+          width: 16,
+          key_text_offset_y: 0,
+          key_back_color: off_key_back_color,
+          key_text_color: off_key_text_color,
+          hilited_key_back_color: hilited_off_key_back_color,
+          hilited_key_text_color: hilited_off_key_text_color,
+        }
+      #第4行
+      - {
+          click: Keyboard_basic_symbol,
+          width: 12.5,
+          key_text_offset_y: 0,
+          long_click: Theme_settings,
+          swipe_down: Color_switch,
+          hint: "配色",
+          key_back_color: off_key_back_color,
+          key_text_color: off_key_text_color,
+          hilited_key_back_color: hilited_off_key_back_color,
+          hilited_key_text_color: hilited_off_key_text_color,
+        }
+      - {
+          click: Schema_switch,
+          width: 12.5,
+          key_text_offset_y: 0,
+          long_click: IME_switch,
+          swipe_down: Menu,
+          hint: "方案",
+          key_back_color: off_key_back_color,
+          key_text_color: off_key_text_color,
+          hilited_key_back_color: hilited_off_key_back_color,
+          hilited_key_text_color: hilited_off_key_text_color,
+        }
+      - {
+          click: ",",
+          label: ，,
+          hint: "刷新",
+          long_click: Keyboard_number,
+          swipe_up: Keyboard_number,
+          swipe_down: "set_theme",
+          key_text_color: one_color,
+        }
+      - {
+          click: space,
+          width: 39,
+          swipe_up: Up,
+          swipe_left: Left,
+          swipe_right: Right,
+          # swipe_down: Down,
+          swipe_down: Keyboard_flyhe36,
+          hint: "下滑开关26/36键",
+        }
+      - {
+          click: ".",
+          label: 。,
+          long_click: "?",
+          swipe_up: "?",
+          swipe_down: Commit_Dot,
+          hint: ".",
+          key_text_color: one_color,
+        }
+      - {
+          click: Return,
+          width: 16,
+          key_text_size: 24,
+          key_text_offset_y: -2,
+          key_back_color: enter_bg_color,
+          key_text_color: enter_text_color,
+          hilited_key_back_color: enter_pressed_bg_color,
+          hilited_key_text_color: enter_pressed_text_color,
+        }
+
+  flyhe36:
+    name: 通用36鍵
+    author: "Boomker"
     width: 10
+    ascii_mode: 0
+    reset_ascii_mode: true
     key_text_offset_y: -.6 #按鍵文本偏移（下正上負）
     key_hint_offset_y: *lower_hint_shift #按鍵下方註釋偏移（下正上負）
     key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
@@ -4932,19 +5153,21 @@ preset_keyboards:
       - {
           click: ",",
           label: ，,
+          hint: "刷新",
           long_click: Keyboard_number,
           swipe_up: Keyboard_number,
           swipe_down: "set_theme",
-          hint: "刷新",
           key_text_color: one_color,
         }
       - {
           click: space,
           width: 39,
-          swipe_up: Up,
           swipe_left: Left,
           swipe_right: Right,
-          swipe_down: Down,
+          swipe_up: Up,
+          # swipe_down: Down,
+          swipe_down: Keyboard_default,
+          hint: "下滑开关26/36键",
         }
       - {
           click: ".",
@@ -7819,1311 +8042,6 @@ preset_keyboards:
         }
       - { width: 6.5 }
 
-  flyhe:
-    name: 飞鹤36鍵
-    author: "Boomker"
-    ascii_mode: 0
-    reset_ascii_mode: true
-    width: 10
-    key_text_offset_y: -.6 #按鍵文本偏移（下正上負）
-    key_hint_offset_y: *lower_hint_shift #按鍵下方註釋偏移（下正上負）
-    key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
-    keys:
-      #第一行
-      - { click: "1", long_click: "!", swipe_up: "!" }
-      - {
-          click: "2",
-          long_click: "@",
-          swipe_up: "@",
-          # swipe_left: "©",
-          # swipe_right: "®",
-          # hint: "©   ®",
-        }
-      - {
-          click: "3",
-          long_click: "#",
-          swipe_up: "#",
-          # swipe_left: "℃",
-          # swipe_right: "℉",
-          # hint: "℃   ℉",
-        }
-      - {
-          click: "4",
-          long_click: "$",
-          swipe_up: "$",
-          # swipe_left: "¢",
-          # swipe_right: "€",
-          # hint: "¢   €",
-        }
-      - {
-          click: "5",
-          long_click: "%",
-          swipe_up: "%",
-          # swipe_left: "£",
-          # swipe_right: "₿",
-          # hint: "£   ₿",
-        }
-      - {
-          click: "6",
-          long_click: Commit_Caret,
-          swipe_up: Commit_Caret,
-          swipe_down: "……",
-          hint: "……",
-        }
-      - { click: "7", long_click: "&", swipe_up: "&" }
-      - {
-          click: "8",
-          long_click: "*",
-          swipe_up: "*",
-          swipe_down: "-",
-          hint: "-",
-        }
-      - {
-          click: "9",
-          long_click: "(",
-          swipe_up: "(",
-          swipe_down: "+",
-          hint: "+",
-        }
-      - {
-          click: "0",
-          long_click: ")",
-          swipe_up: ")",
-          swipe_down: "/",
-          hint: "/",
-        }
-      #第二行
-      - {
-          click: "q",
-          long_click: "`",
-          swipe_up: "`",
-          swipe_down: "~",
-          hint: "~",
-        }
-      - {
-          click: "w",
-          # long_click: Kunyomi_rl,
-          # swipe_left: Hiragana_rl,
-          # swipe_right: Katakana_rl,
-          # hint: "平   片",
-        }
-      - {
-          click: "e",
-          # long_click: Cantonese_rl,
-          # swipe_left: Mandarin_rl,
-          # swipe_right: Cangjie_rl,
-          # hint: "普   倉",
-        }
-      - {
-          click: "r",
-          # long_click: Radical_rl,
-          # swipe_left: Japanese_rl,
-          # swipe_right: Kaomoji_rl,
-          # hint: "和   顏",
-        }
-      - {
-          click: "t",
-          long_click: "〃",
-          swipe_up: "〃",
-          # swipe_left: "ゝ",
-          # swipe_right: "ヽ",
-          # hint: "ゝ   ヽ",
-        }
-      - {
-          click: "y",
-          long_click: redo,
-          label_symbol: ↷,
-        }
-      - {
-          click: "u",
-          long_click: "≈",
-          swipe_up: "≈",
-          # swipe_left: "×",
-          # swipe_right: "÷",
-          # hint: "×   ÷",
-        }
-      - {
-          click: "i",
-          long_click: "_",
-          swipe_up: "_",
-          # swipe_left: "{",
-          # swipe_right: "}",
-          # hint: "{   }",
-        }
-      - {
-          click: "o",
-          long_click: "=",
-          swipe_up: "=",
-          # swipe_left: "[",
-          # swipe_right: "]",
-          # hint: "[   ]",
-        }
-      - {
-          click: "p",
-          long_click: "|",
-          swipe_up: "|",
-          swipe_down: '\',
-          hint: '\',
-        }
-      #第三行
-      - { width: 5 }
-      - {
-          click: "a",
-          long_click: "select_all",
-          label_symbol: ☑,
-          # hint: '/   \',
-        }
-      - {
-          click: "s",
-          long_click: Keyboard_Greek,
-          # swipe_left: Commit_Brace_L,
-          # swipe_right: Commit_Brace_R,
-          # hint: "{   }",
-        }
-      - {
-          click: "d",
-          long_click: Keyboard_Cyrillic,
-          hint: "[   ]",
-        }
-      - {
-          click: "f",
-          long_click: Keyboard_IPA,
-          hint: "(   )",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "g",
-          long_click: Keyboard_editor,
-          # swipe_left: "〈",
-          # swipe_right: "〉",
-          # hint: "〈   〉",
-        }
-      - {
-          click: "h",
-          long_click: Keyboard_number,
-          # swipe_left: "《",
-          # swipe_right: "》",
-          # hint: "《   》",
-        }
-      - {
-          click: "j",
-          long_click: Keyboard_Hiragana,
-          # swipe_left: "「",
-          # swipe_right: "」",
-          # hint: "「   」",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "k",
-          long_click: Keyboard_Katakana,
-          # swipe_left: "『",
-          # swipe_right: "』",
-          # hint: "『   』",
-        }
-      - {
-          click: "l",
-          long_click: Keyboard_Hangul,
-          # swipe_left: "【",
-          # swipe_right: "】",
-          # hint: "【   】",
-        }
-      - { width: 5 }
-      #第四行
-      - {
-          click: Shift_L,
-          width: 14,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: "z",
-          long_click: undo,
-          label_symbol: ↶,
-          swipe_down: Keyboard_kaomoji,
-          hint: "颜符",
-        }
-      - {
-          click: "x",
-          long_click: cut,
-          label_symbol: ✁,
-          swipe_down: Keyboard_emoji,
-          hint: "表情",
-        }
-      - {
-          click: "c",
-          long_click: copy,
-          label_symbol: ❐,
-          swipe_down: Keyboard_symbol,
-          hint: "符号",
-        }
-      - {
-          click: "v",
-          long_click: paste,
-          label_symbol: ▣,
-          swipe_down: clipboard_window,
-          hint: "剪贴",
-        }
-      - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
-      - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }
-      - { click: "m", swipe_left: "<", swipe_right: ">", hint: "<   >" }
-      - {
-          click: BackSpace,
-          swipe_down: Delete,
-          hint: "⇨",
-          width: 16,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      #第五行
-      - {
-          click: Keyboard_basic_symbol,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: Theme_settings,
-          swipe_down: Color_switch,
-          hint: "配色",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: Schema_switch,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: IME_switch,
-          swipe_down: Menu,
-          hint: "方案",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: ",",
-          label: ，,
-          long_click: "、",
-          swipe_up: "、",
-          key_text_color: one_color,
-        }
-      - {
-          click: space,
-          width: 39,
-          swipe_up: Up,
-          swipe_left: Left,
-          swipe_right: Right,
-          swipe_down: Down,
-        }
-      - {
-          click: ".",
-          label: 。,
-          long_click: "?",
-          swipe_up: "?",
-          swipe_down: "・",
-          hint: "･",
-          key_text_color: one_color,
-        }
-      - {
-          click: Return,
-          width: 16,
-          key_text_size: 24,
-          key_text_offset_y: -2,
-          key_back_color: enter_bg_color,
-          key_text_color: enter_text_color,
-          hilited_key_back_color: enter_pressed_bg_color,
-          hilited_key_text_color: enter_pressed_text_color,
-        }
-
-  jyutsp:
-    name: 粵雙37鍵
-    author: "Boomker"
-    ascii_mode: 0
-    reset_ascii_mode: true
-    width: 10
-    key_text_offset_y: -.6 #按鍵文本偏移（下正上負）
-    key_hint_offset_y: *lower_hint_shift #按鍵下方註釋偏移（下正上負）
-    key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
-    keys:
-      #第一行
-      - { click: "1", long_click: "!", swipe_up: "!" }
-      - {
-          click: "2",
-          long_click: "@",
-          swipe_up: "@",
-          swipe_left: "©",
-          swipe_right: "®",
-          hint: "©   ®",
-        }
-      - {
-          click: "3",
-          long_click: "#",
-          swipe_up: "#",
-          swipe_left: "℃",
-          swipe_right: "℉",
-          hint: "℃   ℉",
-        }
-      - {
-          click: "4",
-          long_click: "$",
-          swipe_up: "$",
-          swipe_left: "¢",
-          swipe_right: "€",
-          hint: "¢   €",
-        }
-      - {
-          click: "5",
-          long_click: "%",
-          swipe_up: "%",
-          swipe_left: "£",
-          swipe_right: "₿",
-          hint: "£   ₿",
-        }
-      - {
-          click: "6",
-          long_click: Commit_Caret,
-          swipe_up: Commit_Caret,
-          swipe_down: "……",
-          hint: "……",
-        }
-      - { click: "7", long_click: "&", swipe_up: "&" }
-      - {
-          click: "8",
-          long_click: "*",
-          swipe_up: "*",
-          swipe_down: "-",
-          hint: "-",
-        }
-      - {
-          click: "9",
-          long_click: "(",
-          swipe_up: "(",
-          swipe_down: "+",
-          hint: "+",
-        }
-      - {
-          click: "0",
-          long_click: ")",
-          swipe_up: ")",
-          swipe_down: "/",
-          hint: "/",
-        }
-      #第二行
-      - {
-          click: "q",
-          long_click: "`",
-          swipe_up: "`",
-          swipe_down: "~",
-          hint: "~",
-        }
-      - { click: "w" }
-      - { click: "e" }
-      - { click: "r" }
-      - {
-          click: "t",
-          long_click: "〃",
-          swipe_up: "〃",
-          swipe_left: "ゝ",
-          swipe_right: "ヽ",
-          hint: "ゝ   ヽ",
-        }
-      - {
-          click: "y",
-          long_click: redo,
-          label_symbol: ↷,
-        }
-      - {
-          click: "u",
-          long_click: "≈",
-          swipe_up: "≈",
-          swipe_left: "×",
-          swipe_right: "÷",
-          hint: "×   ÷",
-        }
-      - {
-          click: "i",
-          long_click: "_",
-          swipe_up: "_",
-          swipe_left: "{",
-          swipe_right: "}",
-          hint: "{   }",
-        }
-      - {
-          click: "o",
-          long_click: "=",
-          swipe_up: "=",
-          swipe_left: "[",
-          swipe_right: "]",
-          hint: "[   ]",
-        }
-      - {
-          click: "p",
-          long_click: "|",
-          swipe_up: "|",
-          swipe_down: '\',
-          hint: '\',
-        }
-      - { click: ";" }
-      #第三行
-      - {
-          click: "a",
-          long_click: "select_all",
-          label_symbol: ☑,
-          # hint: '/   \',
-        }
-      - {
-          click: "s",
-          long_click: Keyboard_Greek,
-          swipe_left: Commit_Brace_L,
-          swipe_right: Commit_Brace_R,
-          hint: "{   }",
-        }
-      - {
-          click: "d",
-          long_click: Keyboard_Cyrillic,
-          hint: "[   ]",
-        }
-      - {
-          click: "f",
-          long_click: Keyboard_IPA,
-          hint: "(   )",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "g",
-          long_click: Keyboard_editor,
-          swipe_left: "〈",
-          swipe_right: "〉",
-          hint: "〈   〉",
-        }
-      - {
-          click: "h",
-          long_click: Keyboard_number,
-          swipe_left: "《",
-          swipe_right: "》",
-          hint: "《   》",
-        }
-      - {
-          click: "j",
-          long_click: Keyboard_Hiragana,
-          swipe_left: "「",
-          swipe_right: "」",
-          hint: "「   」",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "k",
-          long_click: Keyboard_Katakana,
-          swipe_left: "『",
-          swipe_right: "』",
-          hint: "『   』",
-        }
-      - {
-          click: "l",
-          long_click: Keyboard_Hangul,
-          swipe_left: "【",
-          swipe_right: "】",
-          hint: "【   】",
-        }
-      #第四行
-      - {
-          click: Shift_L,
-          width: 14,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: "z",
-          long_click: undo,
-          label_symbol: ↶,
-          swipe_down: Keyboard_kaomoji,
-          hint: "颜符",
-        }
-      - {
-          click: "x",
-          long_click: cut,
-          label_symbol: ✁,
-          swipe_down: Keyboard_emoji,
-          hint: "表情",
-        }
-      - {
-          click: "c",
-          long_click: copy,
-          label_symbol: ❐,
-          swipe_down: Keyboard_symbol,
-          hint: "符号",
-        }
-      - {
-          click: "v",
-          long_click: paste,
-          label_symbol: ▣,
-          swipe_down: clipboard_window,
-          hint: "剪贴",
-        }
-      - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
-      - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }
-      - { click: "m", swipe_left: "<", swipe_right: ">", hint: "<   >" }
-      - {
-          click: BackSpace,
-          swipe_down: Delete,
-          hint: "⇨",
-          width: 16,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      #第五行
-      - {
-          click: Keyboard_basic_symbol,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: Theme_settings,
-          swipe_down: Color_switch,
-          hint: "配色",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: Schema_switch,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: IME_switch,
-          swipe_down: Menu,
-          hint: "方案",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: ",",
-          label: ，,
-          long_click: "、",
-          swipe_up: "、",
-          key_text_color: one_color,
-        }
-      - {
-          click: space,
-          width: 39,
-          swipe_up: Up,
-          swipe_left: Left,
-          swipe_right: Right,
-          swipe_down: Down,
-        }
-      - {
-          click: ".",
-          label: 。,
-          long_click: "?",
-          swipe_up: "?",
-          swipe_down: "・",
-          hint: "・",
-          key_text_color: one_color,
-        }
-      - {
-          click: Return,
-          width: 16,
-          key_text_size: 24,
-          key_text_offset_y: -2,
-          key_back_color: enter_bg_color,
-          key_text_color: enter_text_color,
-          hilited_key_back_color: enter_pressed_bg_color,
-          hilited_key_text_color: enter_pressed_text_color,
-        }
-
-  cangjie5:
-    name: 倉頡36鍵
-    author: "Boomker"
-    ascii_mode: 0
-    reset_ascii_mode: true
-    width: 10
-    key_text_offset_y: -.6 #按鍵文本偏移（下正上負）
-    key_hint_offset_y: *lower_hint_shift #按鍵下方註釋偏移（下正上負）
-    key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
-    keys:
-      #第一行
-      - { click: "1", long_click: "!", swipe_up: "!" }
-      - {
-          click: "2",
-          long_click: "@",
-          swipe_up: "@",
-          swipe_left: "©",
-          swipe_right: "®",
-          hint: "©   ®",
-        }
-      - {
-          click: "3",
-          long_click: "#",
-          swipe_up: "#",
-          swipe_left: "℃",
-          swipe_right: "℉",
-          hint: "℃   ℉",
-        }
-      - {
-          click: "4",
-          long_click: "$",
-          swipe_up: "$",
-          swipe_left: "¢",
-          swipe_right: "€",
-          hint: "¢   €",
-        }
-      - {
-          click: "5",
-          long_click: "%",
-          swipe_up: "%",
-          swipe_left: "£",
-          swipe_right: "₿",
-          hint: "£   ₿",
-        }
-      - {
-          click: "6",
-          long_click: Commit_Caret,
-          swipe_up: Commit_Caret,
-          swipe_down: "……",
-          hint: "……",
-        }
-      - { click: "7", long_click: "&", swipe_up: "&" }
-      - {
-          click: "8",
-          long_click: "*",
-          swipe_up: "*",
-          swipe_down: "-",
-          hint: "-",
-        }
-      - {
-          click: "9",
-          long_click: "(",
-          swipe_up: "(",
-          swipe_down: "+",
-          hint: "+",
-        }
-      - {
-          click: "0",
-          long_click: ")",
-          swipe_up: ")",
-          swipe_down: "/",
-          hint: "/",
-        }
-      #第二行
-      - {
-          click: "q",
-          label: "手",
-          long_click: "`",
-          swipe_up: "`",
-          swipe_down: "~",
-          hint: "~",
-        }
-      - { click: "w", label: "田" }
-      - { click: "e", label: "水" }
-      - { click: "r", label: "口" }
-      - {
-          click: "t",
-          label: "廿",
-          long_click: "〃",
-          swipe_up: "〃",
-          swipe_left: "ゝ",
-          swipe_right: "ヽ",
-          hint: "ゝ   ヽ",
-        }
-      - {
-          click: "y",
-          label: "卜",
-          long_click: redo,
-          label_symbol: ↷,
-        }
-      - {
-          click: "u",
-          label: "山",
-          long_click: "≈",
-          swipe_up: "≈",
-          swipe_left: "×",
-          swipe_right: "÷",
-          hint: "×   ÷",
-        }
-      - {
-          click: "i",
-          label: "戈",
-          long_click: "_",
-          swipe_up: "_",
-          swipe_left: "{",
-          swipe_right: "}",
-          hint: "{   }",
-        }
-      - {
-          click: "o",
-          label: "人",
-          long_click: "=",
-          swipe_up: "=",
-          swipe_left: "[",
-          swipe_right: "]",
-          hint: "[   ]",
-        }
-      - {
-          click: "p",
-          label: "心",
-          long_click: "|",
-          swipe_up: "|",
-          swipe_down: '\',
-          hint: '\',
-        }
-      #第三行
-      - { width: 5 }
-      - {
-          click: "a",
-          label: "日",
-          long_click: "select_all",
-          label_symbol: ☑,
-          # hint: '/   \',
-        }
-      - {
-          click: "s",
-          label: "尸",
-          long_click: Keyboard_Greek,
-          swipe_left: Commit_Brace_L,
-          swipe_right: Commit_Brace_R,
-          hint: "{   }",
-        }
-      - {
-          click: "d",
-          label: "木",
-          long_click: Keyboard_Cyrillic,
-          hint: "[   ]",
-        }
-      - {
-          click: "f",
-          label: "火",
-          long_click: Keyboard_IPA,
-          hint: "(   )",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "g",
-          label: "土",
-          long_click: Keyboard_editor,
-          swipe_left: "〈",
-          swipe_right: "〉",
-          hint: "〈   〉",
-        }
-      - {
-          click: "h",
-          label: "竹",
-          long_click: Keyboard_number,
-          swipe_left: "《",
-          swipe_right: "》",
-          hint: "《   》",
-        }
-      - {
-          click: "j",
-          label: "十",
-          long_click: Keyboard_Hiragana,
-          swipe_left: "「",
-          swipe_right: "」",
-          hint: "「   」",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "k",
-          label: "大",
-          long_click: Keyboard_Katakana,
-          swipe_left: "『",
-          swipe_right: "』",
-          hint: "『   』",
-        }
-      - {
-          click: "l",
-          label: "中",
-          long_click: Keyboard_Hangul,
-          swipe_left: "【",
-          swipe_right: "】",
-          hint: "【   】",
-        }
-      - { width: 5 }
-      #第四行
-      - {
-          click: Shift_L,
-          width: 14,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: "z",
-          label: "重",
-          long_click: undo,
-          label_symbol: ↶,
-          swipe_down: Keyboard_kaomoji,
-          hint: "颜符",
-        }
-      - {
-          click: "x",
-          label: "難",
-          long_click: cut,
-          label_symbol: ✁,
-          swipe_down: Keyboard_emoji,
-          hint: "表情",
-        }
-      - {
-          click: "c",
-          label: "金",
-          long_click: copy,
-          label_symbol: ❐,
-          swipe_down: Keyboard_symbol,
-          hint: "符号",
-        }
-      - {
-          click: "v",
-          label: "女",
-          long_click: paste,
-          label_symbol: ▣,
-          swipe_down: clipboard_window,
-          hint: "剪贴",
-        }
-      - {
-          click: "b",
-          label: "月",
-          swipe_left: ";",
-          swipe_right: ":",
-          hint: ";   :",
-        }
-      - {
-          click: "n",
-          label: "弓",
-          swipe_left: "'",
-          swipe_right: '"',
-          hint: '''   "',
-        }
-      - {
-          click: "m",
-          label: "一",
-          swipe_left: "<",
-          swipe_right: ">",
-          hint: "<   >",
-        }
-      - {
-          click: BackSpace,
-          swipe_down: Delete,
-          hint: "⇨",
-          width: 16,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      #第五行
-      - {
-          click: Keyboard_basic_symbol,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: Theme_settings,
-          swipe_down: Color_switch,
-          hint: "配色",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: Schema_switch,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: IME_switch,
-          swipe_down: Menu,
-          hint: "方案",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: ",",
-          label: ，,
-          long_click: "、",
-          swipe_up: "、",
-          key_text_color: one_color,
-        }
-      - {
-          click: space,
-          width: 39,
-          swipe_up: Up,
-          swipe_left: Left,
-          swipe_right: Right,
-          swipe_down: Down,
-        }
-      - {
-          click: ".",
-          label: 。,
-          long_click: "?",
-          swipe_up: "?",
-          swipe_down: "・",
-          hint: "・",
-          key_text_color: one_color,
-        }
-      - {
-          click: Return,
-          width: 16,
-          key_text_size: 24,
-          key_text_offset_y: -2,
-          key_back_color: enter_bg_color,
-          key_text_color: enter_text_color,
-          hilited_key_back_color: enter_pressed_bg_color,
-          hilited_key_text_color: enter_pressed_text_color,
-        }
-
-  cangjie6:
-    name: 蒼頡36鍵
-    author: "Boomker"
-    ascii_mode: 0
-    reset_ascii_mode: true
-    width: 10
-    key_text_offset_y: -.6 #按鍵文本偏移（下正上負）
-    key_hint_offset_y: *lower_hint_shift #按鍵下方註釋偏移（下正上負）
-    key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
-    keys:
-      #第一行
-      - { click: "1", long_click: "!", swipe_up: "!" }
-      - {
-          click: "2",
-          long_click: "@",
-          swipe_up: "@",
-          swipe_left: "©",
-          swipe_right: "®",
-          hint: "©   ®",
-        }
-      - {
-          click: "3",
-          long_click: "#",
-          swipe_up: "#",
-          swipe_left: "℃",
-          swipe_right: "℉",
-          hint: "℃   ℉",
-        }
-      - {
-          click: "4",
-          long_click: "$",
-          swipe_up: "$",
-          swipe_left: "¢",
-          swipe_right: "€",
-          hint: "¢   €",
-        }
-      - {
-          click: "5",
-          long_click: "%",
-          swipe_up: "%",
-          swipe_left: "£",
-          swipe_right: "₿",
-          hint: "£   ₿",
-        }
-      - {
-          click: "6",
-          long_click: Commit_Caret,
-          swipe_up: Commit_Caret,
-          swipe_down: "……",
-          hint: "……",
-        }
-      - { click: "7", long_click: "&", swipe_up: "&" }
-      - {
-          click: "8",
-          long_click: "*",
-          swipe_up: "*",
-          swipe_down: "-",
-          hint: "-",
-        }
-      - {
-          click: "9",
-          long_click: "(",
-          swipe_up: "(",
-          swipe_down: "+",
-          hint: "+",
-        }
-      - {
-          click: "0",
-          long_click: ")",
-          swipe_up: ")",
-          swipe_down: "/",
-          hint: "/",
-        }
-      #第二行
-      - {
-          click: "q",
-          label: "手",
-          long_click: "`",
-          swipe_up: "`",
-          swipe_down: "~",
-          hint: "~",
-        }
-      - { click: "w", label: "田" }
-      - { click: "e", label: "水" }
-      - { click: "r", label: "口" }
-      - {
-          click: "t",
-          label: "廿",
-          long_click: "〃",
-          swipe_up: "〃",
-          swipe_left: "ゝ",
-          swipe_right: "ヽ",
-          hint: "ゝ   ヽ",
-        }
-      - {
-          click: "y",
-          label: "卜",
-          long_click: redo,
-          label_symbol: ↷,
-        }
-      - {
-          click: "u",
-          label: "山",
-          long_click: "≈",
-          swipe_up: "≈",
-          swipe_left: "×",
-          swipe_right: "÷",
-          hint: "×   ÷",
-        }
-      - {
-          click: "i",
-          label: "戈",
-          long_click: "_",
-          swipe_up: "_",
-          swipe_left: "{",
-          swipe_right: "}",
-          hint: "{   }",
-        }
-      - {
-          click: "o",
-          label: "人",
-          long_click: "=",
-          swipe_up: "=",
-          swipe_left: "[",
-          swipe_right: "]",
-          hint: "[   ]",
-        }
-      - {
-          click: "p",
-          label: "心",
-          long_click: "|",
-          swipe_up: "|",
-          swipe_down: '\',
-          hint: '\',
-        }
-      #第三行
-      - { width: 5 }
-      - {
-          click: "a",
-          label: "日",
-          long_click: "select_all",
-          label_symbol: ☑,
-          # hint: '/   \',
-        }
-      - {
-          click: "s",
-          label: "尸",
-          long_click: Keyboard_Greek,
-          swipe_left: Commit_Brace_L,
-          swipe_right: Commit_Brace_R,
-          hint: "{   }",
-        }
-      - {
-          click: "d",
-          label: "木",
-          long_click: Keyboard_Cyrillic,
-          hint: "[   ]",
-        }
-      - {
-          click: "f",
-          label: "火",
-          long_click: Keyboard_IPA,
-          hint: "(   )",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "g",
-          label: "土",
-          long_click: Keyboard_editor,
-          swipe_left: "〈",
-          swipe_right: "〉",
-          hint: "〈   〉",
-        }
-      - {
-          click: "h",
-          label: "的",
-          long_click: Keyboard_number,
-          swipe_left: "《",
-          swipe_right: "》",
-          hint: "《   》",
-        }
-      - {
-          click: "j",
-          label: "十",
-          long_click: Keyboard_Hiragana,
-          swipe_left: "「",
-          swipe_right: "」",
-          hint: "「   」",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "k",
-          label: "大",
-          long_click: Keyboard_Katakana,
-          swipe_left: "『",
-          swipe_right: "』",
-          hint: "『   』",
-        }
-      - {
-          click: "l",
-          label: "中",
-          long_click: Keyboard_Hangul,
-          swipe_left: "【",
-          swipe_right: "】",
-          hint: "【   】",
-        }
-      - { width: 5 }
-      #第四行
-      - {
-          click: Shift_L,
-          width: 14,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: "z",
-          label: "片",
-          long_click: undo,
-          label_symbol: ↶,
-          swipe_down: Keyboard_kaomoji,
-          hint: "颜符",
-        }
-      - {
-          click: "x",
-          label: "止",
-          long_click: cut,
-          label_symbol: ✁,
-          swipe_down: Keyboard_emoji,
-          hint: "表情",
-        }
-      - {
-          click: "c",
-          label: "金",
-          long_click: copy,
-          label_symbol: ❐,
-          swipe_down: Keyboard_symbol,
-          hint: "符号",
-        }
-      - {
-          click: "v",
-          label: "女",
-          long_click: paste,
-          label_symbol: ▣,
-          swipe_down: clipboard_window,
-          hint: "剪贴",
-        }
-      - {
-          click: "b",
-          label: "月",
-          swipe_left: ";",
-          swipe_right: ":",
-          hint: ";   :",
-        }
-      - {
-          click: "n",
-          label: "弓",
-          swipe_left: "'",
-          swipe_right: '"',
-          hint: '''   "',
-        }
-      - {
-          click: "m",
-          label: "一",
-          swipe_left: "<",
-          swipe_right: ">",
-          hint: "<   >",
-        }
-      - {
-          click: BackSpace,
-          swipe_down: Delete,
-          hint: "⇨",
-          width: 16,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      #第五行
-      - {
-          click: Keyboard_basic_symbol,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: Theme_settings,
-          swipe_down: Color_switch,
-          hint: "配色",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: Schema_switch,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: IME_switch,
-          swipe_down: Menu,
-          hint: "方案",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: ",",
-          label: ，,
-          long_click: "、",
-          swipe_up: "、",
-          key_text_color: one_color,
-        }
-      - {
-          click: space,
-          width: 39,
-          swipe_up: Up,
-          swipe_left: Left,
-          swipe_right: Right,
-          swipe_down: Down,
-        }
-      - {
-          click: ".",
-          label: 。,
-          long_click: "?",
-          swipe_up: "?",
-          swipe_down: "・",
-          hint: "・",
-          key_text_color: one_color,
-        }
-      - {
-          click: Return,
-          width: 16,
-          key_text_size: 24,
-          key_text_offset_y: -2,
-          key_back_color: enter_bg_color,
-          key_text_color: enter_text_color,
-          hilited_key_back_color: enter_pressed_bg_color,
-          hilited_key_text_color: enter_pressed_text_color,
-        }
-
   bopomofo:
     name: 注音40鍵
     author: "Boomker"
@@ -9452,312 +8370,6 @@ preset_keyboards:
           swipe_right: Right,
           swipe_down: Down,
         }
-      - {
-          click: BackSpace,
-          width: 12.5,
-          swipe_down: Delete,
-          hint: "⇨",
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: Return,
-          width: 12.5,
-          key_text_size: 24,
-          key_text_offset_y: -2,
-          key_back_color: enter_bg_color,
-          key_text_color: enter_text_color,
-          hilited_key_back_color: enter_pressed_bg_color,
-          hilited_key_text_color: enter_pressed_text_color,
-        }
-
-  array30:
-    name: 行列40鍵
-    author: "Boomker"
-    ascii_mode: 0
-    reset_ascii_mode: true
-    width: 10
-    key_text_offset_y: -.6 #按鍵文本偏移（下正上負）
-    key_hint_offset_y: *lower_hint_shift #按鍵下方註釋偏移（下正上負）
-    key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
-    keys:
-      #第一行
-      - { click: "1", long_click: "!", swipe_up: "!" }
-      - {
-          click: "2",
-          long_click: "@",
-          swipe_up: "@",
-          swipe_left: "©",
-          swipe_right: "®",
-          hint: "©   ®",
-        }
-      - {
-          click: "3",
-          long_click: "#",
-          swipe_up: "#",
-          swipe_left: "℃",
-          swipe_right: "℉",
-          hint: "℃   ℉",
-        }
-      - {
-          click: "4",
-          long_click: "$",
-          swipe_up: "$",
-          swipe_left: "¢",
-          swipe_right: "€",
-          hint: "¢   €",
-        }
-      - {
-          click: "5",
-          long_click: "%",
-          swipe_up: "%",
-          swipe_left: "£",
-          swipe_right: "₿",
-          hint: "£   ₿",
-        }
-      - {
-          click: "6",
-          long_click: Commit_Caret,
-          swipe_up: Commit_Caret,
-          swipe_down: "……",
-          hint: "……",
-        }
-      - { click: "7", long_click: "&", swipe_up: "&" }
-      - {
-          click: "8",
-          long_click: "*",
-          hint: "-",
-        }
-      - {
-          click: "9",
-          long_click: "(",
-          swipe_up: "(",
-          swipe_down: "+",
-          hint: "+",
-        }
-      - {
-          click: "0",
-          long_click: ")",
-          swipe_up: ")",
-          swipe_down: "/",
-          hint: "/",
-        }
-      #第二行
-      - {
-          click: "q",
-          long_click: "`",
-          swipe_up: "`",
-          swipe_down: "~",
-          hint: "~",
-        }
-      - { click: "w" }
-      - { click: "e" }
-      - { click: "r" }
-      - {
-          click: "t",
-          long_click: "〃",
-          swipe_up: "〃",
-          swipe_left: "ゝ",
-          swipe_right: "ヽ",
-          hint: "ゝ   ヽ",
-        }
-      - {
-          click: "y",
-          long_click: redo,
-          label_symbol: ↷,
-        }
-      - {
-          click: "u",
-          long_click: "≈",
-          swipe_up: "≈",
-          swipe_left: "×",
-          swipe_right: "÷",
-          hint: "×   ÷",
-        }
-      - {
-          click: "i",
-          long_click: "_",
-          swipe_up: "_",
-          swipe_left: "{",
-          swipe_right: "}",
-          hint: "{   }",
-        }
-      - {
-          click: "o",
-          long_click: "=",
-          swipe_up: "=",
-          swipe_left: "[",
-          swipe_right: "]",
-          hint: "[   ]",
-        }
-      - {
-          click: "p",
-          long_click: "|",
-          swipe_up: "|",
-          swipe_down: '\',
-          hint: '\',
-        }
-      #第三行
-      - {
-          click: "a",
-          long_click: "select_all",
-          label_symbol: ☑,
-          # hint: '/   \',
-        }
-      - {
-          click: "s",
-          long_click: Keyboard_Greek,
-          swipe_left: Commit_Brace_L,
-          swipe_right: Commit_Brace_R,
-          hint: "{   }",
-        }
-      - {
-          click: "d",
-          long_click: Keyboard_Cyrillic,
-          hint: "[   ]",
-        }
-      - {
-          click: "f",
-          long_click: Keyboard_IPA,
-          hint: "(   )",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "g",
-          long_click: Keyboard_editor,
-          swipe_left: "〈",
-          swipe_right: "〉",
-          hint: "〈   〉",
-        }
-      - {
-          click: "h",
-          long_click: Keyboard_number,
-          swipe_left: "《",
-          swipe_right: "》",
-          hint: "《   》",
-        }
-      - {
-          click: "j",
-          long_click: Keyboard_Hiragana,
-          swipe_left: "「",
-          swipe_right: "」",
-          hint: "「   」",
-          key_text_color: on_key_text_color,
-        }
-      - {
-          click: "k",
-          long_click: Keyboard_Katakana,
-          swipe_left: "『",
-          swipe_right: "』",
-          hint: "『   』",
-        }
-      - {
-          click: "l",
-          long_click: Keyboard_Hangul,
-          swipe_left: "【",
-          swipe_right: "】",
-          hint: "【   】",
-        }
-      - { click: ";", key_text_color: one_color }
-      #第四行
-      - {
-          click: "z",
-          long_click: undo,
-          label_symbol: ↶,
-          swipe_down: Keyboard_kaomoji,
-          hint: "颜符",
-        }
-      - {
-          click: "x",
-          long_click: cut,
-          label_symbol: ✁,
-          swipe_down: Keyboard_emoji,
-          hint: "表情",
-        }
-      - {
-          click: "c",
-          long_click: copy,
-          label_symbol: ❐,
-          swipe_down: Keyboard_symbol,
-          hint: "符号",
-        }
-      - {
-          click: "v",
-          long_click: paste,
-          label_symbol: ▣,
-          swipe_down: clipboard_window,
-          hint: "剪贴",
-        }
-      - { click: "b", swipe_left: ";", swipe_right: ":", hint: ";   :" }
-      - { click: "n", swipe_left: "'", swipe_right: '"', hint: '''   "' }
-      - { click: "m" }
-      - {
-          click: ",",
-          long_click: "、",
-          swipe_up: "、",
-          swipe_down: "<",
-          hint: "<",
-          key_text_color: one_color,
-        }
-      - {
-          click: ".",
-          long_click: "・",
-          swipe_up: "・",
-          swipe_down: ">",
-          hint: ">",
-          key_text_color: one_color,
-        }
-      - {
-          click: "/",
-          long_click: "?",
-          swipe_up: "?",
-          key_text_color: one_color,
-        }
-      #第五行
-      - {
-          click: Keyboard_basic_symbol,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: Theme_settings,
-          swipe_down: Color_switch,
-          hint: "配色",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: Schema_switch,
-          width: 12.5,
-          key_text_offset_y: 0,
-          long_click: IME_switch,
-          swipe_down: Menu,
-          hint: "方案",
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: Shift_L,
-          key_text_offset_y: 0,
-          key_back_color: off_key_back_color,
-          key_text_color: off_key_text_color,
-          hilited_key_back_color: hilited_off_key_back_color,
-          hilited_key_text_color: hilited_off_key_text_color,
-        }
-      - {
-          click: space,
-          width: 30,
-          swipe_up: Up,
-          swipe_left: Left,
-          swipe_right: Right,
-          swipe_down: Down,
-        }
-      # - { click: "-", swipe_down: { commit: "_" }, key_text_color: one_color }
       - {
           click: BackSpace,
           width: 12.5,
