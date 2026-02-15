@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2026.02.14
+  version: 2026.02.15
   author:
     - boomker
   description: |
@@ -120,27 +120,27 @@ grammar:
   language: wanxiang-lts-zh-hans
   # language: zh-hans-t-essay-bgw
   # language: zh-hans-t-huayu-v7-bgw
-  collocation_max_length: 6       # 命中的最长词组
-  collocation_min_length: 3       # 命中的最短词组, 搭配词频健全的词库时候应当最小值设为3避开2字高频词
+  collocation_max_length: 7       # 命中的最长词组
+  collocation_min_length: 2       # 命中的最短词组, 搭配词频健全的词库时候应当最小值设为3避开2字高频词
   collocation_penalty: -10        # 默认-12 对常见搭配词组施加惩罚值. 较高的负值会降低这些搭配被选中的概率, 防止频繁地出现某些固定搭配
   non_collocation_penalty: -20    # 默认-12 对非搭配词组施加的惩罚值. 较高的负值会降低非搭配词组被选中的概率, 避免不常见的词组组合
-  weak_collocation_penalty: -45   # 默认-24 对弱搭配词组施加的惩罚值. 保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合
+  weak_collocation_penalty: -35   # 默认-24 对弱搭配词组施加的惩罚值. 保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合
   rear_penalty: -12               # 默认-18 对词组中后续词语的位置施加的惩罚值. 数值越小出现的概率 越低, 防止句子结构不自然
 
 # 主翻译器, 小鹤双拼
 translator:
   dictionary: flypy_xhfast
   spelling_hints: 1                   # >0 启用, `0`: 关闭单字编码提示
+  max_homophones: 8                   # 最大同音簇长度〔需配合 grammar 使用〕
+  max_homographs: 8                   # 最大同形簇长度〔需配合 grammar 使用〕
   max_word_length: 7                  # >0 启用, 过长短语不记整词, 只加元素权重
   core_word_length: 4                 # >0 启用, 按段学词 + 相邻段拼接
   initial_quality: 1.3                # 初始权重(建议数值设定超过副翻译器,造词)
-  enable_sentence: false              # 是否开启自动造句
+  enable_sentence: false              # 是否开启自动造句(主翻译器关闭)
   enable_user_dict: true              # 开启用户词库(是否自动调频)
   enable_completion: true             # 是否启用输入补全(逐键提示,即不完整编码)
   enable_word_completion: true        # 4 音节以上的词条才补全(脚本过滤过长候选)
   contextual_suggestions: true        # 是否开启语法模型优化候选〔需grammar〕
-  # max_homophones: 7                 # 最大同音簇长度〔需配合 grammar 使用〕
-  # max_homographs: 7                 # 最大同形簇长度〔需配合 grammar 使用〕
   # max_phrase_length: 5              # 最大自动成词词长〔仅table_translator有效〕
   # strict_spelling: true             # 配合fuzz(简拼)运算〔仅table_translator有效〕
   # enable_encoder: false             # 是否开启自动造词〔仅table_translator有效〕

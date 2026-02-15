@@ -81,6 +81,18 @@ navigator:
 # 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。
 # 写在 default.yaml 里，方便多个方案引用，就是不用每个方案都写一遍了。
 
+editor:
+  bindings:
+    Escape: cancel                        # Esc 键：取消输入
+    space: confirm                        # 空格键：上屏候选项
+    Delete: delete                        # Delete 键：向后删除
+    BackSpace: revert                     # 退格键：向前删除（撤消上次输入）
+    Return: commit_raw_input              # 回车键：上屏原始输入(不含空格)
+    Shift+Delete: delete_candidate        # Shift+Delete 键：降权候选项
+    Shift+Return: commit_script_text      # Shift+回车键：上屏变换后输入(经过 preedit转换, 含空格)
+    Control+BackSpace: back_syllable      # Ctrl+退格键：删除一个音节
+    Control+Shift+Return: commit_comment  # Ctrl+Shift+回车键：上屏 comment
+
 # 标点符号
 # 设置为一个映射，就自动上屏；设置为多个映射，如 '/' : [ '/', ÷ ] 则进行复选。
 #   full_shape: 全角没改，使用预设值
