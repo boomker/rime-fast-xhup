@@ -386,17 +386,29 @@ function T.func(input, seg, env)
             local cand_text = get_current_time(v)
             if enable_time_prefix then
                 cand_text = time_prefix .. cand_text
-                cand_text = cand_text:gsub("(%d%d):(%d%d):?(%d*)", function(h, m, s)
-                    local hour_12 = tonumber(h)
-                    if hour_12 > 12 then
-                        hour_12 = hour_12 - 12
-                    end
-                    if s and s ~= "" then
-                        return string.format("%d:%s:%s", hour_12, m, s)
-                    else
-                        return string.format("%d:%s", hour_12, m)
-                    end
-                end)
+                if cand_text:match(":") then
+                    cand_text = cand_text:gsub("(%d%d):(%d%d):?(%d*)", function(h, m, s)
+                        local hour_12 = tonumber(h)
+                        if hour_12 > 12 then hour_12 = hour_12 - 12 end
+                        if s and #s > 0 then
+                            return string.format("%d:%s:%s", hour_12, m, s)
+                        else
+                            return string.format("%d:%s", hour_12, m)
+                        end
+                    end)
+                else
+                    -- Note: 拆开来匹配, Lua 的 gsub 能更稳定, 不会出现崩溃问题
+                    cand_text = cand_text:gsub("(%d%d)点(%d%d)分(%d+)秒", function(h, m, s)
+                        local hour_12 = tonumber(h)
+                        if hour_12 > 12 then hour_12 = hour_12 - 12 end
+                        return string.format("%d点%s分%s秒", hour_12, m, s)
+                    end)
+                    cand_text = cand_text:gsub("(%d%d)点(%d%d)分", function(h, m)
+                        local hour_12 = tonumber(h)
+                        if hour_12 > 12 then hour_12 = hour_12 - 12 end
+                        return string.format("%d点%s分", hour_12, m)
+                    end)
+                end
             end
             local cand = Candidate("time", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
