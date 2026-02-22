@@ -33,7 +33,7 @@ function F.func(input, env)
         elseif                                           -- 丢弃一些候选结果
             (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
                 cand_text:match("^[a-zA-Z]$") and raw_input_code:match("^%a%a+")
-            ) or ( -- 'github' --> 'xx18'
+            ) or (                                       -- 'github' --> 'xx18'
                 (cand_type ~= "fuzzy_word") and (cand_dtype == "Sentence") and
                 cand_text:find("[%d%p]") and raw_input_code:match("^[%l%p]+$")
             ) or ( -- 'qphr' --> '000', 'uw' --> '15'
@@ -57,6 +57,11 @@ function F.func(input, env)
     end
 
     if drop_cand then drop_cand = false end
+end
+
+function F.tags_match(seg, env)
+    if seg.tags["date"] or seg.tags["date_time"] or seg.tags["time"] or seg.tags["week"] or seg.tags["timestamp"] then return false end
+    return true
 end
 
 return F
