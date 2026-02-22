@@ -373,11 +373,15 @@ function T.func(input, seg, env)
         local total_minutes = hour * 60 + minute
         local time_prefix = ""
         local enable_time_prefix = input:match("[a-z]$") and env.enable_time_prefix or false
-        if total_minutes >= 1 and total_minutes <= 480 then
+        if total_minutes >= 1 and total_minutes <= 359 then
             time_prefix = "凌晨 "
-        elseif total_minutes >= 481 and total_minutes <= 720 then
+        elseif total_minutes >= 360 and total_minutes <= 479 then
+            time_prefix = "早上 "
+        elseif total_minutes >= 480 and total_minutes <= 719 then
             time_prefix = "上午 "
-        elseif total_minutes >= 721 and total_minutes <= 1080 then
+        elseif total_minutes >= 720 and total_minutes <= 779 then
+            time_prefix = "中午 "
+        elseif total_minutes >= 780 and total_minutes <= 1080 then
             time_prefix = "下午 "
         else
             time_prefix = "夜晚 "
