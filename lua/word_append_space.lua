@@ -197,7 +197,7 @@ local function cn_en_spacer(input, env)
                         s = s:gsub("([\228-\233][\128-\191]-)([%a%p]+)", "%1 %2")
                     end
                 elseif cand_text:match("^%a+[%d%p]+") then
-                    s = s:gsub("([%u][%u][%u]+)([%d%p]+)", "%1 %2")
+                    s = s:gsub("([%a][%a][%a]+)([%d%p]+)", "%1 %2")
                 else
                     -- 在中文字符后和英文字符前插入空格
                     s = s:gsub("([\228-\233][\128-\191]-)([%a]+%p?)", "%1 %2")

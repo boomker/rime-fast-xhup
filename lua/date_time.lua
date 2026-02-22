@@ -1,8 +1,8 @@
 --[[
 
-读取系统时间
+读取系统时间或时间戳
 
-  dt/rq => 日期、time => 时间、week => 星期
+  date/orq => 日期、time/osj => 时间、week/oxq => 星期、timestamp/ots => 时间戳
 
 --
 参考：
@@ -83,18 +83,18 @@ local conf = {
         "December",
     },
     month_en_st = {
-        "Jan.",
-        "Feb.",
-        "Mar.",
-        "Apr.",
-        "May.",
-        "Jun.",
-        "Jul.",
-        "Aug.",
-        "Sept.",
-        "Oct.",
-        "Nov.",
-        "Dec.",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
     },
 }
 
@@ -104,22 +104,14 @@ conf.pattern_date = {
     "{year}/{month}/{day}", -- 2022/09/05
     "{year}.{month}.{day}", -- 2022.09.05
     "{year}-{month}-{day}", -- 2022-09-05
-    "{month_en} {day_en_st},{year}", -- September 05th,2022
-    "{month_en_st} {day_en_st},{year}", -- Sept.05th,2022
+    "{month_en} {day_en_st}, {year}", -- September 05th,2022
+    "{month_en_st} {day_en_st}, {year}", -- Sept.05th,2022
     "{year.number_cn}年{month.arith.number_cn}月{day.arith.number_cn}日", -- 二〇二二年十一月二十五日
 }
 
-conf.pattern_day = {
-    "{year}年{month}月{day}日", -- 2022年09月05日
-    "{year}{month}{day}", -- 20220905
-    "{year}{month}{day}{hour}{min}", -- 202209051836
-    "{year}{month}{day}{hour}{min}{sec}", -- 20220905183658
-    "{year}-{month}-{day} {hour}:{min}:{sec}", -- 2022-09-05 18:36:58
-}
-
 conf.pattern_week = {
-    "{week_cn}", -- 星期一
-    "{week_en}", -- Monday
+    "{week_cn}",    -- 星期一
+    "{week_en}",    -- Monday
     "{week_en_st}", -- Mon.
 }
 
@@ -130,24 +122,25 @@ conf.pattern_time = {
     "{hour}点{min}分{sec}秒", -- 18点37分06秒
 }
 
-local function gen_day_pattern(time_delta)
+local function gen_day_pattern(time_delta, date_patterns)
     local pattern_days = {}
-    local offset_num = tostring(time_delta):match("^-") and time_delta or "+" .. time_delta
-    for _, v in ipairs(conf.pattern_day) do
-        local cp = v:gsub("年", "Y")
-            :gsub("月", "M")
-            :gsub(
-                "{(year)}(.?){(month)}(.?){(day)}",
-                "{%1~}" .. "%2" .. "{%3~}" .. "%4" .. "{%5" .. offset_num .. "}"
-            )
-            :gsub("Y", "年")
-            :gsub("M", "月")
+    local offset_day = tostring(time_delta)
+    date_patterns = date_patterns or conf.pattern_date
+    for _, v in ipairs(date_patterns) do
+        local cp = v:gsub("{(.-)}", function(capture)
+            if capture:match("^year") or capture:match("^month") then
+                return "{" .. capture .. "~}"
+            elseif capture:match("^day") then
+                return "{" .. capture .. offset_day .. "}"
+            end
+            return "{" .. capture .. "}"
+        end)
         table.insert(pattern_days, cp)
     end
     return pattern_days
 end
 
-local function get_month_sameday(time_oriented)
+local function get_month_delta(time_oriented)
     local offset_days = nil
     local this_year = os.date("%Y", os.time())
     local this_month = os.date("%m", os.time())
@@ -202,47 +195,54 @@ local function get_month_sameday(time_oriented)
     return offset_days
 end
 
-local function getTimeStr(str)
+local function get_current_time(datetime_fmt_string)
+    local raw_datetime_str = datetime_fmt_string
     while true do
-        local pattern = string.match(str, "%b{}")
+        local pattern = string.match(datetime_fmt_string, "%b{}")
         local replace_index = nil
         local replace_value = ""
         local flag = false -- 处理链，以flag基准，判断是否处理下去
 
         if pattern then
-            if string.match(pattern, "^{year~") then
-                replace_index = "YY"
-            elseif string.match(pattern, "^{month~") then
-                replace_index = "mm"
-            elseif string.match(pattern, "^{day[%+%-]%d+") then
+            if string.match(pattern, "^{year.*~}$") then
+                local offset = tonumber(raw_datetime_str:match("{day[^}]-([-+]?%d+)}"))
+                local calculated_datetime = os.date("%Y%m%d", os.time() + offset * 86400) -- [+-]N日
+                replace_index = tostring(calculated_datetime):sub(1, 4)
+            elseif string.match(pattern, "^{month.*~}$") then
+                local offset = tonumber(raw_datetime_str:match("{day[^}]-([-+]?%d+)}"))
+                local calculated_datetime = os.date("%Y%m%d", os.time() + offset * 86400) -- [+-]N日
+                replace_index = tostring(calculated_datetime):sub(5, 6)
+            elseif string.match(pattern, "^{day[^}]-([-+]?%d+)}") then
                 local offset = tonumber(pattern:match("%-?%d+"))
-                replace_index = os.date("%Y%m%d", os.time() + offset * 86400) -- [+-]N日
+                local calculated_datetime = os.date("%Y%m%d", os.time() + offset * 86400) -- [+-]N日
+                replace_index = tostring(calculated_datetime):sub(7, 8)
             elseif string.find(pattern, "^{year") then
-                replace_index = os.date("%Y") -- 年
+                replace_index = os.date("%Y")     -- 年
             elseif string.find(pattern, "^{month") then
-                replace_index = os.date("%m") -- 月
+                replace_index = os.date("%m")     -- 月
             elseif string.find(pattern, "^{day") then
-                replace_index = os.date("%d") -- 日
+                replace_index = os.date("%d")     -- 日
             elseif string.find(pattern, "^{week") then
                 replace_index = os.date("%w") + 1 -- 周
             elseif string.find(pattern, "^{hour") then
-                replace_index = os.date("%H") -- 时
+                replace_index = os.date("%H")     -- 时
             elseif string.find(pattern, "^{min") then
-                replace_index = os.date("%M") -- 分
+                replace_index = os.date("%M")     -- 分
             elseif string.find(pattern, "^{sec") then
-                replace_index = os.date("%S") -- 秒
+                replace_index = os.date("%S")     -- 秒
             end
 
-            if replace_index then
-                local _ni = tonumber(replace_index)
+            local date_time_val = tonumber(replace_index)
+            if date_time_val and (date_time_val > 0) then
                 -- 值：转换为中文，e.g. 0=>〇，1=>一，...
-                if (not flag) and string.find(pattern, ".number_cn}$") then
-                    if string.find(pattern, ".arith.number_cn}$") then
+                local pattern_trim = string.match(pattern, "{(.+)}"):gsub("[~%+%-]?%d?$", "")
+                if (not flag) and string.find(pattern_trim, ".number_cn$") then
+                    if string.find(pattern_trim, ".arith.number_cn$") then
                         -- 21 => 二十一
-                        replace_value = number_to_cn.convert_arab_to_chinese(_ni)
+                        replace_value = number_to_cn.convert_arab_to_chinese(date_time_val)
                     else
                         -- 21 => 二一
-                        local _nis = tostring(_ni)
+                        local _nis = tostring(date_time_val)
                         for i = 1, _nis:len() do
                             local _ni_digit = tonumber(_nis:sub(i, i))
                             replace_value = replace_value .. number_to_cn.convert_arab_to_chinese(_ni_digit)
@@ -253,33 +253,49 @@ local function getTimeStr(str)
                 end
 
                 -- 值：根据conf的prop转换
-                if not flag then
-                    local prop_name = string.match(pattern, "{(.+)}")
-                    local prop = conf[prop_name]
-                    if prop then
-                        replace_value = prop[_ni]
+                if (not flag) then
+                    local prop_name = string.match(pattern, "{(.+)}"):gsub("[~%+%-]?%d?$", "")
+                    local prop_tbl = conf[prop_name]
+                    if prop_tbl and (#prop_tbl > 0) then
+                        replace_value = prop_tbl[date_time_val]
                         flag = true
                     end
                 end
             end
 
             -- 默认值
-            if not flag then
-                replace_value = tostring(replace_index)
-            end
-            if pattern:match("^{day[%+%-]%d+") then
-                str = replace_value and str:gsub("YY", replace_value:sub(1, 4))
-                str = replace_value and str:gsub("mm", replace_value:sub(5, 6))
-                local dd = replace_index and replace_value:sub(7, 8)
-                replace_value = dd or replace_value
-            end
-            local cpattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
-            str = replace_value and string.gsub(str, cpattern, replace_value)
+            if not flag then replace_value = tostring(replace_index) end
+            local new_pattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
+            datetime_fmt_string = replace_value and string.gsub(datetime_fmt_string, new_pattern, replace_value)
         else
             break
         end
     end
-    return str
+    return datetime_fmt_string
+end
+
+local function list_2_table(list)
+    if (not list) or (list.size == 0) then return false end
+    local ret = {}
+    for i = 1, list.size do
+        local item = list:get_at(i - 1)
+        if not item then goto continue end
+        local value = item:get_value():get_string()
+        if not value then goto continue end
+        value = value:gsub("{(.-)}", function(capture)
+            if capture:match("_cn") then
+                if capture:match("^year") then
+                    capture = capture:gsub("_cn", ".number_cn")
+                elseif capture:match("^month") or capture:match("^day") then
+                    capture = capture:gsub("_cn", ".arith.number_cn")
+                end
+            end
+            return "{" .. capture .. "}"
+        end)
+        table.insert(ret, value)
+        ::continue::
+    end
+    return ret
 end
 
 local T = {}
@@ -294,11 +310,21 @@ local input_prefixs = {
     ["/wnk"] = { 7, "下周" },
     ["/wuz"] = { -7, "上周" },
     ["/wlk"] = { -7, "上周" },
-    ["/wxy"] = { get_month_sameday("after"), "下个月今天" },
-    ["/wnm"] = { get_month_sameday("after"), "下个月今天" },
-    ["/wuy"] = { get_month_sameday("before"), "上个月今天" },
-    ["/wlm"] = { get_month_sameday("before"), "上个月今天" },
+    ["/wxy"] = { get_month_delta("after"), "下个月今天" },
+    ["/wnm"] = { get_month_delta("after"), "下个月今天" },
+    ["/wuy"] = { get_month_delta("before"), "上个月今天" },
+    ["/wlm"] = { get_month_delta("before"), "上个月今天" },
 }
+
+function T.init(env)
+    local config = env.engine.schema.config
+    local date_format_list = config:get_list("date_time/date_format")
+    local time_format_list = config:get_list("date_time/time_format")
+    local enable_time_prefix = config:get_bool("date_time/enable_time_prefix")
+    env.date_format_tbl = date_format_list and list_2_table(date_format_list) or conf.pattern_date
+    env.time_format_tbl = time_format_list and list_2_table(time_format_list) or conf.pattern_time
+    env.enable_time_prefix = enable_time_prefix or false
+end
 
 function T.func(input, seg, env)
     local composition = env.engine.context.composition
@@ -310,16 +336,14 @@ function T.func(input, seg, env)
     if seg:has_tag("date") or seg:has_tag("date_time") then
         local tip = "〔日期〕"
         segment.prompt = tip
-        segment.tags = segment.tags - Set({"abc"})
-        local date_data = {}
+        segment.tags = segment.tags - Set({ "abc" })
+        local date_fmt_tbl = env.date_format_tbl or conf.pattern_date
         if input:match("[%+%-]?%d+") then
-            local time_delta = input:match("([%+%-]?%d+)$"):gsub("^%+", "")
-            date_data = gen_day_pattern(time_delta)
-        else
-            date_data = conf.pattern_date
+            local time_delta = input:match("([%+%-]%d+)$")
+            date_fmt_tbl = gen_day_pattern(time_delta, date_fmt_tbl)
         end
-        for _, v in ipairs(date_data) do
-            local cand_text = getTimeStr(v)
+        for _, v in ipairs(date_fmt_tbl) do
+            local cand_text = get_current_time(v)
             local cand = Candidate("date", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
@@ -332,7 +356,7 @@ function T.func(input, seg, env)
         local tip = "〔星期〕"
         segment.prompt = tip
         for _, v in ipairs(conf.pattern_week) do
-            local cand_text = getTimeStr(v)
+            local cand_text = get_current_time(v)
             local cand = Candidate("week", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
@@ -344,8 +368,36 @@ function T.func(input, seg, env)
     if seg:has_tag("time") then
         local tip = "〔时间〕"
         segment.prompt = tip
-        for _, v in ipairs(conf.pattern_time) do
-            local cand_text = getTimeStr(v)
+        local hour = tonumber(os.date("%H"))
+        local minute = tonumber(os.date("%M"))
+        local total_minutes = hour * 60 + minute
+        local time_prefix = ""
+        local enable_time_prefix = input:match("[a-z]$") and env.enable_time_prefix or false
+        if total_minutes >= 1 and total_minutes <= 480 then
+            time_prefix = "凌晨 "
+        elseif total_minutes >= 481 and total_minutes <= 720 then
+            time_prefix = "上午 "
+        elseif total_minutes >= 721 and total_minutes <= 1080 then
+            time_prefix = "下午 "
+        else
+            time_prefix = "夜晚 "
+        end
+        for _, v in ipairs(env.time_format_tbl or conf.pattern_time) do
+            local cand_text = get_current_time(v)
+            if enable_time_prefix then
+                cand_text = time_prefix .. cand_text
+                cand_text = cand_text:gsub("(%d%d):(%d%d):?(%d*)", function(h, m, s)
+                    local hour_12 = tonumber(h)
+                    if hour_12 > 12 then
+                        hour_12 = hour_12 - 12
+                    end
+                    if s and s ~= "" then
+                        return string.format("%d:%s:%s", hour_12, m, s)
+                    else
+                        return string.format("%d:%s", hour_12, m)
+                    end
+                end)
+            end
             local cand = Candidate("time", seg.start, seg._end, cand_text, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
@@ -368,11 +420,12 @@ function T.func(input, seg, env)
     if input_prefixs[input] or seg:has_tag("week_before_after")
         or seg:has_tag("date_before_after") or seg:has_tag("month_before_after")
     then
-        local time_delta = input_prefixs[input][1]
-        local new_pattern_days = gen_day_pattern(time_delta)
+        local _delta = input_prefixs[input][1]
+        local time_delta = tostring(_delta):match("^[%+%-]") and _delta or "+" .. _delta
+        local new_pattern_days = gen_day_pattern(time_delta, env.date_format_tbl)
         segment.prompt = "〔" .. input_prefixs[input][2] .. "〕"
         for _, v in ipairs(new_pattern_days) do
-            local datetime_val = getTimeStr(v)
+            local datetime_val = get_current_time(v)
             local cand = Candidate("date", seg.start, seg._end, datetime_val, "")
             cand.preedit = string.sub(input, seg._start + 1, seg._end)
             cand.quality = 999
