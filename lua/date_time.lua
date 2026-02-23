@@ -230,6 +230,8 @@ local function get_current_time(datetime_fmt_string)
                 replace_index = os.date("%M")     -- 分
             elseif string.find(pattern, "^{sec") then
                 replace_index = os.date("%S")     -- 秒
+            elseif string.find(pattern, "^{TS") then
+                replace_index = "TS"
             end
 
             local date_time_val = tonumber(replace_index)
@@ -370,30 +372,47 @@ function T.func(input, seg, env)
         segment.prompt = tip
         local hour = tonumber(os.date("%H"))
         local minute = tonumber(os.date("%M"))
-        local total_minutes = hour * 60 + minute
+        local second = tonumber(os.date("%S"))
+        local total_seconds = hour * 3600 + minute * 60 + second
         local time_prefix = ""
         local enable_time_prefix = input:match("[a-z]$") and env.enable_time_prefix or false
-        if total_minutes >= 1 and total_minutes <= 359 then
+        if total_seconds >= 1 and total_seconds <= 3600 then
+            time_prefix = "午夜 "
+        elseif total_seconds >= 3601 and total_seconds <= 21600 then
             time_prefix = "凌晨 "
-        elseif total_minutes >= 360 and total_minutes <= 479 then
+        elseif total_seconds >= 21601 and total_seconds <= 28800 then
             time_prefix = "早上 "
-        elseif total_minutes >= 480 and total_minutes <= 719 then
+        elseif total_seconds >= 28801 and total_seconds <= 43200 then
             time_prefix = "上午 "
-        elseif total_minutes >= 720 and total_minutes <= 779 then
+        elseif total_seconds >= 43201 and total_seconds <= 46800 then
             time_prefix = "中午 "
-        elseif total_minutes >= 780 and total_minutes <= 1080 then
+        elseif total_seconds >= 46801 and total_seconds <= 64800 then
             time_prefix = "下午 "
         else
             time_prefix = "夜晚 "
         end
         for _, v in ipairs(env.time_format_tbl or conf.pattern_time) do
             local cand_text = get_current_time(v)
-            if enable_time_prefix then
+            local has_ts = cand_text:match("TS")
+            if has_ts then
+                local ts_suffix = ""
+                if hour >= 0 and hour < 12 then
+                    ts_suffix = "AM"
+                else
+                    ts_suffix = "PM"
+                end
+                cand_text = cand_text:gsub("TS", ts_suffix)
+            end
+            if enable_time_prefix and (not has_ts) then
                 cand_text = time_prefix .. cand_text
+            end
+
+            if has_ts or enable_time_prefix then
                 if cand_text:match(":") then
                     cand_text = cand_text:gsub("(%d%d):(%d%d):?(%d*)", function(h, m, s)
                         local hour_12 = tonumber(h)
                         if hour_12 > 12 then hour_12 = hour_12 - 12 end
+                        if hour_12 == 0 then hour_12 = 12 end
                         if s and #s > 0 then
                             return string.format("%d:%s:%s", hour_12, m, s)
                         else
@@ -401,17 +420,33 @@ function T.func(input, seg, env)
                         end
                     end)
                 else
-                    -- Note: 拆开来匹配, Lua 的 gsub 能更稳定, 不会出现崩溃问题
-                    cand_text = cand_text:gsub("(%d%d)点(%d%d)分(%d+)秒", function(h, m, s)
-                        local hour_12 = tonumber(h)
-                        if hour_12 > 12 then hour_12 = hour_12 - 12 end
-                        return string.format("%d点%s分%s秒", hour_12, m, s)
-                    end)
-                    cand_text = cand_text:gsub("(%d%d)点(%d%d)分", function(h, m)
-                        local hour_12 = tonumber(h)
-                        if hour_12 > 12 then hour_12 = hour_12 - 12 end
-                        return string.format("%d点%s分", hour_12, m)
-                    end)
+                    local function to_12h(ts)
+                        local h24_h12_map = {
+                            ["13"] = "1",
+                            ["14"] = "2",
+                            ["15"] = "3",
+                            ["16"] = "4",
+                            ["17"] = "5",
+                            ["18"] = "6",
+                            ["19"] = "7",
+                            ["20"] = "8",
+                            ["21"] = "9",
+                            ["22"] = "10",
+                            ["23"] = "11",
+                            ["0"] = "12",
+                        }
+                        local result = ts
+                        for h24, h12 in pairs(h24_h12_map) do
+                            -- 用 boost regex 字面量匹配中文，$1/$2 引用分组
+                            -- (?<!\d) 防止 "1" 匹配到 "11"、"21" 等的一部分
+                            -- (?!\d) 防止 "1" 匹配到 "13" 等
+                            result = rime_api.regex_replace(result,
+                            "(?<!\\d)" .. h24 .. "(?!\\d)(点|时)(\\d+)分(\\d+)?(\\s)?", h12 .. "$1$2分$3$4")
+                        end
+                        return result
+                    end
+
+                    cand_text = to_12h(cand_text)
                 end
             end
             local cand = Candidate("time", seg.start, seg._end, cand_text, "")
