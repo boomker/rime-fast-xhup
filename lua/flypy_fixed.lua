@@ -60,8 +60,12 @@ function F.func(input, env)
 end
 
 function F.tags_match(seg, env)
-    if seg.tags["date"] or seg.tags["date_time"] or seg.tags["time"] or seg.tags["week"] or seg.tags["timestamp"] then return false end
-    return true
+    if seg.tags["date"] or seg.tags["date_time"]
+        or seg.tags["time"] or seg.tags["week"]
+        or seg.tags["timestamp"] or seg.tags["chinese_lunar"] then
+        return false
+    end
+    return false
 end
 
 return F
