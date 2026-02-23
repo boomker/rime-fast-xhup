@@ -8,19 +8,18 @@
 # Learn how to use flyhe in the readme file, available on the project's github page.
 # Source: https://github.com/HoengSaan/trime-gukwan
 
-config_version: "2026.02.15"
+config_version: "2026.02.23"
 name: 飞鹤
 author: "Boomker <gmboomker@gmail.com>"
 
 height:
-  - &26_key_height 38
+  - &26_key_height 35
   - &26_key_vert_gap 5
-  - &36_key_height 40
-  - &36_key_vert_gap 6
-  # - &symbol_key_height 36
+  - &36_key_height 48
+  - &36_key_vert_gap 5
   - &hor_gap 4
-  - &sub_key_height 28
-  - &ipa_key_height 36
+  - &sub_key_height 35
+  - &ipa_key_height 40
   - &ipa_key_vert_gap 2
   - &ipa_key_width 8.33333333333333
   - &ipa_2_key_width 16.666666666666666
@@ -105,7 +104,7 @@ style:
   keyboard_padding_bottom: 5      #豎屏下鍵盤下端到屏幕下緣間距
   keyboard_padding_land: 50       #橫屏下鍵盤左右到屏幕左右間距
   keyboard_padding_land_bottom: 5 #橫屏下鍵盤下端到屏幕下緣間距
-  keyboard_height: 280            #豎屏鍵盤高度
+  keyboard_height: 288            #豎屏鍵盤高度
   keyboard_height_land: 160       #橫屏下鍵盤鎖定高度
   enter_label_mode: 0             #回車鍵標籤模式：0 自定義 | 1 僅ActionLabel | 2 ActionLabel優先 | 3 ActionLabel後備
   enter_labels:                   #自定義回車鍵標籤
@@ -4916,7 +4915,7 @@ preset_keyboards:
     key_symbol_offset_y: *upper_hint_shift #按鍵上方註釋偏移（下正上負）
     keys:
       #第一行
-      - { click: "1", long_click: "!", swipe_up: "!" }
+      - { click: "1", long_click: "!", swipe_up: "!", height: *sub_key_height, key_symbol_offset_x: 5 }
       - {
           click: "2",
           long_click: "@",
@@ -4924,6 +4923,7 @@ preset_keyboards:
           # swipe_left: "©",
           # swipe_right: "®",
           # hint: "©   ®",
+          key_symbol_offset_x: 5,
         }
       - {
           click: "3",
@@ -4932,6 +4932,7 @@ preset_keyboards:
           # swipe_left: "℃",
           # swipe_right: "℉",
           # hint: "℃   ℉",
+          key_symbol_offset_x: 5,
         }
       - {
           click: "4",
@@ -4940,6 +4941,7 @@ preset_keyboards:
           # swipe_left: "¢",
           # swipe_right: "€",
           # hint: "¢   €",
+          key_symbol_offset_x: 5,
         }
       - {
           click: "5",
@@ -4948,6 +4950,7 @@ preset_keyboards:
           # swipe_left: "£",
           # swipe_right: "₿",
           # hint: "£   ₿",
+          key_symbol_offset_x: 5,
         }
       - {
           click: "6",
@@ -4955,14 +4958,16 @@ preset_keyboards:
           swipe_up: Commit_Caret,
           swipe_down: "……",
           hint: "……",
+          key_symbol_offset_x: 5,
         }
-      - { click: "7", long_click: "&", swipe_up: "&", swipe_down: "-", hint: "-", }
+      - { click: "7", long_click: "&", swipe_up: "&", swipe_down: "-", hint: "-", key_symbol_offset_x: 5, }
       - {
           click: "8",
           long_click: "*",
           swipe_up: "*",
           swipe_down: "+",
           hint: "+",
+          key_symbol_offset_x: 5,
         }
       - {
           click: "9",
@@ -4970,6 +4975,7 @@ preset_keyboards:
           swipe_up: "(",
           swipe_down: "<",
           hint: "<",
+          key_symbol_offset_x: 5,
         }
       - {
           click: "0",
@@ -4977,6 +4983,7 @@ preset_keyboards:
           swipe_up: ")",
           swipe_down: ">",
           hint: ">",
+          key_symbol_offset_x: 5,
         }
       #第二行
       - {
