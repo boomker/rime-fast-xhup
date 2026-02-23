@@ -433,7 +433,7 @@ function T.func(input, seg, env)
                             ["21"] = "9",
                             ["22"] = "10",
                             ["23"] = "11",
-                            ["0"] = "12",
+                            ["00"] = "12",
                         }
                         local result = ts
                         for h24, h12 in pairs(h24_h12_map) do
