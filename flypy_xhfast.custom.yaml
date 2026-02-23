@@ -294,12 +294,15 @@ patch:
       - "{year}.{month}.{day} {hour}:{min}:{sec}"         # 2026.02.22 14:30:45
       - "{year}年{month}月{day}日 {hour}点{min}分{sec}秒" # 2026年02月22日 18点37分06秒
     time_format:
-      # 时间格式: hour: 18; min: 30; sec: 45
+      # 时间格式: hour: 18; min: 30; sec: 45; TS: AM/PM
       - "{hour}:{min}"            # 18:30
+      - "{hour}:{min} {TS}"       # 6:30 PM
+      - "{hour}:{min}:{sec} {TS}" # 6:30:45 PM
       - "{hour}:{min}:{sec}"      # 18:30:45
       - "{hour}点{min}分"         # 18点37分
       - "{hour}点{min}分{sec}秒"  # 18点37分06秒
-    # 时间前缀: 凌晨, 上午, 下午, 夜晚
+      - "{hour}时{min}分{sec}秒"  # 18时37分06秒
+    # 时间前缀: 凌晨, 早上, 上午, 中午, 下午, 夜晚, 午夜
     enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
 
   predictor:                          # 候选字词联想预测
