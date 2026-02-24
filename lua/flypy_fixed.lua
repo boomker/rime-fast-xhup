@@ -51,7 +51,7 @@ function F.func(input, env)
             drop_cand = true
         elseif -- 单个英文候选词长度超出编码长度一倍以上的候选
             (cand_text_len - #raw_input_code >= cand_limit_length) and
-            cand_text:match("^[%a%p%s]+$") and raw_input_code:match("^%a%l*$")
+            cand_text:match("^[%a%p%s]+$") and raw_input_code:match("^%a%a%l*$")
         then
             table.insert(too_long_cand_list, cand)
         else
