@@ -12,12 +12,13 @@ function F.func(input, env)
     local composition = context.composition
     if composition:empty() then return end
 
+    local too_long_cand_list = {}
     local segment = composition:back()
     local raw_input_code = context.input
-    local seglen = segment and segment.length or 0
+    local segment_len = segment and segment.length or 0
     local _, symbol_count = raw_input_code:gsub("[`']", "")
-    local encode_limit_length = (#raw_input_code > 3) and #raw_input_code or 3
-    local syllable_len = (seglen > 1) and math.ceil(seglen / 2) or (#raw_input_code - symbol_count)
+    local cand_limit_length = (#raw_input_code > 3) and #raw_input_code or 3
+    local syllable_len = (segment_len > 1) and math.ceil(segment_len / 2) or (#raw_input_code - symbol_count)
 
     for cand in input:iter() do
         local cand_type = cand.type
@@ -42,29 +43,28 @@ function F.func(input, env)
                 (cand_dtype == "Shadow") and raw_input_code:match("%l+[`/][%l`/]+$")
             ) or ( -- 单个英文候选词长度少于 4 个字母的候选
                 cand_text:match("^%l?%l?%l?$") and raw_input_code:match("^%l+$")
-            ) or ( -- 单个英文候选词长度超出编码长度一倍以上的候选
-                (cand_text_len - #raw_input_code > encode_limit_length) and
-                cand_text:match("^[%a%p%s]+$") and raw_input_code:match("^%a%l*$")
             ) or ( -- 单个中文候选词长度超出音节长度 1 个以上的候选
                 (cand_type == "completion") and (cand_text_len - syllable_len > 1) and
                 (not cand_text:find("[a-zA-Z]")) and cand_text:find("([\228-\233][\128-\191]-)")
             )
         then
             drop_cand = true
+        elseif -- 单个英文候选词长度超出编码长度一倍以上的候选
+            (cand_text_len - #raw_input_code >= cand_limit_length) and
+            cand_text:match("^[%a%p%s]+$") and raw_input_code:match("^%a%l*$")
+        then
+            table.insert(too_long_cand_list, cand)
         else
             yield(cand)
         end
     end
+    for _, cand in ipairs(too_long_cand_list) do yield(cand) end
 
     if drop_cand then drop_cand = false end
 end
 
 function F.tags_match(seg, env)
-    if seg.tags["date"] or seg.tags["date_time"]
-        or seg.tags["time"] or seg.tags["week"]
-        or seg.tags["timestamp"] or seg.tags["chinese_lunar"] then
-        return false
-    end
+    if seg.tags["abc"] then return true end
     return false
 end
 

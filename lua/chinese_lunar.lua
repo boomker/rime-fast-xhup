@@ -7,7 +7,7 @@ local tianGan = { "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬",
 local diZhi = { "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥" }
 
 --属相名称
-local shengXiao = { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" }
+local animalSign = { "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪" }
 
 --农历日期名
 local lunarDayShuXu = {
@@ -318,7 +318,7 @@ lunarDate.year：对应农历年份
 lunarDate.month：对应农历月份
 lunarDate.day：对应农历的日期
 lunarDate.leap：是否为农历的闰年
-lunarDate.year_shengXiao：用生肖表示的农历年份
+lunarDate.year_animalSign：用生肖表示的农历年份
 lunarDate.year_ganZhi：用干支表示的农历年份
 lunarDate.month_shuXu：农历月份的名称
 lunarDate.month_ganZhi：用干支表示的农历月份
@@ -343,7 +343,7 @@ local function solar2Lunar(solarYear, solarMonth, solarDay)
     lunarDate.month              = 0
     lunarDate.day                = 0
     lunarDate.leap               = false
-    lunarDate.year_shengXiao     = ""
+    lunarDate.year_animalSign     = ""
     lunarDate.year_ganZhi        = ""
     lunarDate.month_shuXu        = ""
     lunarDate.month_ganZhi       = ""
@@ -445,7 +445,7 @@ local function solar2Lunar(solarYear, solarMonth, solarDay)
     lunarDate.jiJieLogo = jiJieLogos[lunarDate.month]
 
     --确定年份的生肖
-    lunarDate.year_shengXiao = shengXiao[(((lunarDate.year - 4) % 60) % 12) + 1]
+    lunarDate.year_animalSign = animalSign[(((lunarDate.year - 4) % 60) % 12) + 1]
     --确定年份的干支
     lunarDate.year_ganZhi = tianGan[(((lunarDate.year - 4) % 60) % 10) + 1]
         .. diZhi[(((lunarDate.year - 4) % 60) % 12) + 1]
@@ -463,14 +463,14 @@ local function solar2Lunar(solarYear, solarMonth, solarDay)
     lunarDate.lunarDate_1 = lunarDate.year_ganZhi
         .. "年" .. lunarDate.month_shuXu .. "月" .. lunarDate.day_shuXu
     --提供国标第二类计年表示格式：兔年四月十一
-    lunarDate.lunarDate_2 = lunarDate.year_shengXiao
+    lunarDate.lunarDate_2 = lunarDate.year_animalSign
         .. "年" .. lunarDate.month_shuXu .. "月" .. lunarDate.day_shuXu
     --提供国标第三类计年表示格式：癸卯年四月丁亥日
     lunarDate.lunarDate_3 = lunarDate.year_ganZhi
         .. "年" .. lunarDate.month_shuXu .. "月" .. lunarDate.day_ganZhi .. "日"
     --提供非国标的第四类计年表示格式：癸卯(兔)年四月十一
     lunarDate.lunarDate_4 = lunarDate.year_ganZhi
-        .. "(" .. lunarDate.year_shengXiao .. ")年"
+        .. "(" .. lunarDate.year_animalSign .. ")年"
         .. lunarDate.month_shuXu .. "月" .. lunarDate.day_shuXu
 
     return lunarDate

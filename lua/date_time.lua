@@ -6,10 +6,8 @@
 
 --
 参考：
-  1. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
-  2. https://www.zhihu.com/question/268770492/answer/2190114796
-  3. https://zhuanlan.zhihu.com/p/471429749
-  4. https://github.com/xkinput/Rime_JD/blob/master/rime/lua/date.lua
+  1. https://github.com/xkinput/Rime_JD/blob/master/rime/lua/date.lua
+  2. https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md
 
 --]]
 
@@ -357,6 +355,7 @@ function T.func(input, seg, env)
     if seg:has_tag("week") then
         local tip = "〔星期〕"
         segment.prompt = tip
+        segment.tags = segment.tags - Set({ "abc" })
         for _, v in ipairs(conf.pattern_week) do
             local cand_text = get_current_time(v)
             local cand = Candidate("week", seg.start, seg._end, cand_text, "")
@@ -370,6 +369,7 @@ function T.func(input, seg, env)
     if seg:has_tag("time") then
         local tip = "〔时间〕"
         segment.prompt = tip
+        segment.tags = segment.tags - Set({ "abc" })
         local hour = tonumber(os.date("%H"))
         local minute = tonumber(os.date("%M"))
         local second = tonumber(os.date("%S"))
@@ -460,6 +460,7 @@ function T.func(input, seg, env)
     if seg:has_tag("timestamp") then
         local tip = "〔时间戳〕"
         segment.prompt = tip
+        segment.tags = segment.tags - Set({ "abc" })
         local text = string.format("%d", os.time())
         local cand = Candidate("timestamp", seg.start, seg._end, text, "")
         cand.preedit = string.sub(input, seg._start + 1, seg._end)
