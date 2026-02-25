@@ -237,14 +237,20 @@ function P.func(key, env)
             end
             context:set_option("full_shape", switch_to_val)
         elseif cand_text == "切换简体繁体转换" then
-            local simp_tran_state = context:get_option("traditionalize")
-            local switch_to_val = not simp_tran_state
-            local simp_tran_val = env:Config_get("switches/@3/reset")
-            if simp_tran_val then
-                local simp_tran_setval = (simp_tran_val > 0) and 0 or 1
-                env:Config_set("switches/@3/reset", simp_tran_setval)
+            local simp_trad_state = context:get_option("zh_simp")
+            local switch_to_val = not simp_trad_state
+            local simp_trad_val = env:Config_get("switches/@3/reset")
+            if simp_trad_val then
+                local simp_trad_setval = (simp_trad_val > 0) and 0 or 1
+                env:Config_set("switches/@3/reset", simp_trad_setval)
             end
-            context:set_option("traditionalize", switch_to_val)
+            if simp_trad_state then
+                context:set_option("zh_simp", switch_to_val)
+                context:set_option("zh_trad", simp_trad_state)
+            else
+                context:set_option("zh_simp", switch_to_val)
+                context:set_option("zh_trad", simp_trad_state)
+            end
         elseif cand_text == "增加候选字体大小" then
             config:set_int("style/font_point", (env.font_point + 1))
         elseif cand_text == "减少候选字体大小" then

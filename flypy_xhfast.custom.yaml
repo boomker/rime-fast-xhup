@@ -41,7 +41,10 @@ patch:
       states: [双拼显示, 全拼显示]
       reset: 0  # 切换后重置为默认状态
     - options: [mask_hint, tone_hint, comment_off]
-      states: [辅码开, 声调开, 注释关]
+      states:
+        - 注解类型 ➜ 辅码
+        - 注解类型 ➜ 声调
+        - 注解类型 ➜ 空白
       reset: 2
 
   engine/+:
@@ -139,9 +142,9 @@ patch:
       flypy_key_map: "^/ok[a-z]*$"                # 小鹤双拼键位帮助
       flypy_switcher: "^(/so|sO)$"                # 切换方案配置选项
       calculator: "^(=|cC)([^,;']*)$"             # 计算器(可查帮助)
-      flypy_radical: "^(/fr|rL)[a-z]+$"           # 单字部件组字(查拼音)
-      chinese_lunar:  "^(/nl|nL)[0-9]*$"          # 中国农历(可反查)
-      chinese_number: "^(/nn|nN)[0-9.-]+$"        # 中文大写数字(金额)
+      flypy_radical: "^(`L|rL|oL)[a-z]+$"         # 单字部件组字(查拼音)
+      chinese_lunar:  "^(/nl|nL|cL)[0-9]*$"       # 中国农历(可反查)
+      chinese_number: "^(/nn|nN|oN)[0-9.-]+$"     # 中文大写数字(金额)
       date_time: '^(/wd|date|orq)[-\+][0-9]+$'    # 日期(可查前后指定N日)
 
   date_time_seg:
@@ -282,8 +285,8 @@ patch:
     date_format:
       # 年份格式: year_cn: 二〇二六年; year: 2026
       # 月份格式: month_cn: 二月; month: 02; month_en: February; month_en_st: Feb.
-      # 当日格式: day_cn: 二十二; day: 22; day_en_st: 22th
-      # 星期格式: week_cn: 星期日; week_en: Sunday; week_en_st: Sun.
+      # 星期格式: week_cn: 星期日; week_cn_st: 周日; week_en: Sunday; week_en_st: Sun.
+      # 当日格式: day_cn: 二十二日; day: 22; day_en_st: 22th
       - "{year}年{month}月{day}日"                        # 2026年02月22日
       - "{year}/{month}/{day}"                            # 2026/02/22
       - "{year}.{month}.{day}"                            # 2026.02.22

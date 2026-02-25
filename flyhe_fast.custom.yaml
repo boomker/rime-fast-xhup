@@ -38,3 +38,30 @@ patch:
     if_unmatched_show_mark: "⭕️"      # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
     tone_convert_format:              # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
       - xlit/IUNM/1234/
+
+  date_time:
+    date_format:
+      # 年份格式: year_cn: 二〇二六年; year: 2026
+      # 月份格式: month_cn: 二月; month: 02; month_en: February; month_en_st: Feb.
+      # 星期格式: week_cn: 星期日; week_cn_st: 周日; week_en: Sunday; week_en_st: Sun.
+      # 当日格式: day_cn: 二十二日; day: 22; day_en_st: 22th
+      - "{year}年{month}月{day}日"                        # 2026年02月22日
+      - "{year}/{month}/{day}"                            # 2026/02/22
+      - "{year}.{month}.{day}"                            # 2026.02.22
+      - "{year_cn}年{month_cn}月{day_cn}日"               # 二〇二六年二月二十二日
+      - "{month_en_st} {day_en_st}, {year}"               # Feb 05th, 2026
+      - "{day_en_st} {month_en}, {year}"                  # 22th February, 2026
+      - "{month_en} {day_en_st}, {year}"                  # February 22th, 2026
+      - "{year}.{month}.{day} {hour}:{min}:{sec}"         # 2026.02.22 14:30:45
+      - "{year}年{month}月{day}日 {hour}点{min}分{sec}秒" # 2026年02月22日 18点37分06秒
+    time_format:
+      # 时间格式: hour: 18; min: 30; sec: 45; TS: AM/PM
+      - "{hour}:{min}"            # 18:30
+      - "{hour}:{min} {TS}"       # 6:30 PM
+      - "{hour}:{min}:{sec} {TS}" # 6:30:45 PM
+      - "{hour}:{min}:{sec}"      # 18:30:45
+      - "{hour}点{min}分"         # 18点37分
+      - "{hour}点{min}分{sec}秒"  # 18点37分06秒
+      - "{hour}时{min}分{sec}秒"  # 18时37分06秒
+    # 时间前缀: 凌晨, 早上, 上午, 中午, 下午, 夜晚, 午夜
+    enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)

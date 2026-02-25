@@ -133,9 +133,8 @@ function T.func(input, seg, env)
 
     -- 自定义短语的置顶字词加类型标记
     env.custom_tran = env.custom_phrase_tran:query(input, seg)
-    if not env.custom_tran then
-        return
-    end
+    if not env.custom_tran then return end
+
     for cand in env.custom_tran:iter() do
         cand.type = "custom_phrase_" .. cand.type
         yield(cand)

@@ -5,7 +5,7 @@
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: 2026.02.29
+  version: 2026.02.25
   author:
     - boomker
   description: |
@@ -55,7 +55,7 @@ engine:
     - punct_translator
     - script_translator
     # - table_translator@melt_eng                     # 英文输入
-    - lua_translator@*date_time                       # date/orq,week,time 触发
+    - lua_translator@*date_time                       # date/orq,week/oxq,time/osj 触发
     - lua_translator@*cand_selector*translator        # /,; 单字或二字词和表情自动上屏
   filters:
     - simplifier@traditionalize                       # 简繁切换
