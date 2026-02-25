@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2026.02.15
+  version: 2026.02.25
   author:
     - boomker
   description: |
@@ -24,8 +24,12 @@ switches:
     states: [。, .]
   - name: full_shape
     states: [半, 全]
-  - name: traditionalize
-    states: [简, 繁]
+  - options: [zh_simp, zh_trad, zh_hk, zh_tw]
+    states:
+      - 字型 → 简体
+      - 字型 → 繁体
+      - 字型 → 港繁
+      - 字型 → 台繁
 
 # 输入引擎
 engine:
@@ -100,7 +104,10 @@ engine:
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
   filters:
     - reverse_lookup_filter@radical_lookup
-    - simplifier@tradition                            # 简繁切换
+    - simplifier@zh_simp                          # 繁体转换简体
+    - simplifier@zh_trad                          # 简体转换繁体
+    - simplifier@zh_hk                            # 简体转换港繁
+    - simplifier@zh_tw                            # 简体转换台繁
     - simplifier@emoji
     - lua_filter@*flypy_switcher*filter
     - lua_filter@*flypy_fixed
@@ -230,26 +237,45 @@ flypy_key_map:                        # 小鹤双拼键位帮助
 
 # Emoji
 emoji:                                # Emoji 转换
-  tag: emoji
   tags: [abc]
-  tips: all
+  tips: all                           # 转换提示: all | char 仅单字显示 | none 不显示
   option_name: emoji
   opencc_config: emoji.json
   inherit_comment: false
-  # show_in_comment: false
-  allow_erase_comment: true
+  show_in_comment: false
   # comment_format: xform/.*//
 
-# 简体转繁体
-tradition:                            # 简繁转换
+# 繁体转简体
+zh_simp:                              # 繁体转简体
   tips: none                          # 转换提示: all | char 仅单字显示 | none 不显示
-  tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做简繁转换
+  tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做繁转简
+  option_name: zh_simp
+  opencc_config: t2s.json             # s2t.json | s2hk.json | s2tw.json | s2twp.json
+
+# 简体转通用繁体
+zh_trad:                              # 简体转通用繁体
+  tips: char                          # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做繁转简
+  option_name: zh_trad
   opencc_config: s2t.json             # s2t.json | s2hk.json | s2tw.json | s2twp.json
-  option_name: traditionalize
+
+# 简体转香港繁体
+zh_hk:                                # 简体转香港繁体
+  tips: char                          # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做繁转简
+  option_name: zh_hk
+  opencc_config: s2hk.json             # s2t.json | s2hk.json | s2tw.json | s2twp.json
+
+# 简体转台湾繁体
+zh_tw:                                # 简体转台湾繁体
+  tips: char                          # 转换提示: all | char 仅单字显示 | none 不显示
+  tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做繁转简
+  option_name: zh_tw
+  opencc_config: s2tw.json             # s2t.json | s2hk.json | s2tw.json | s2twp.json
 
 # 部件拆字反查
 flypy_radical:                        # 部件拆字反查
-  # prefix: "/fr"
+  # prefix: "`L"
   prefix: "rL"
   suffix: "'"
   tips: 〔部件组字〕
@@ -316,13 +342,13 @@ key_binder:
     - {when: composing, accept: Control+e, send: "End"}
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
+    # - {when: always,  accept: Shift+space,  toggle: ascii_mode}
     - {when: has_menu,  accept: Control+Shift+4,    toggle: emoji}
-    # - {when: always,  accept: Shift+space,    toggle: ascii_mode}
+    - {when: has_menu,  accept: Control+Shift+5,    toggle: zh_simp}
     - {when: always,    accept: Control+semicolon,  toggle: char_mode}
     - {when: always,    accept: Control+period,     toggle: full_shape}
     - {when: always,    accept: Control+comma,      toggle: ascii_punct}
-    - {when: has_menu,  accept: Control+Shift+5,    toggle: charset_hint}
-    - {when: has_menu,  accept: Control+Shift+6,    toggle: traditionalize}
+    - {when: has_menu,  accept: Control+Shift+6,    toggle: charset_hint}
 
 # 拼写设定
 speller:

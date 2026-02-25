@@ -56,6 +56,15 @@ local conf = {
         "星期五",
         "星期六",
     },
+    week_cn_st = {
+        "周日",
+        "周一",
+        "周二",
+        "周三",
+        "周四",
+        "周五",
+        "周六",
+    },
     week_en = {
         "Sunday",
         "Monday",
@@ -111,6 +120,7 @@ conf.pattern_week = {
     "{week_cn}",    -- 星期一
     "{week_en}",    -- Monday
     "{week_en_st}", -- Mon.
+    "{week_cn_st}", -- 周一
 }
 
 conf.pattern_time = {
