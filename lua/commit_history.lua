@@ -49,7 +49,7 @@ function P.func(key, env)
         local cand_comment = cand and cand.comment
         if (not cand) or (cand_comment:len() < 1) then return end
 
-        local ok = env.mem:user_lookup(cand_comment, true)
+        local ok = env.mem:user_lookup(cand_comment, false)
         if not ok then return 2 end
         for entry in env.mem:iter_user() do
             if entry.text == cand.text then

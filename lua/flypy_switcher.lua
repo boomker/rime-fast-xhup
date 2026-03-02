@@ -26,8 +26,7 @@ function M.init(env)
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
     env.switch_comment_key = config:get_string("key_binder/switch_comment") or "Control+n"
-    env.commit_comment_key = config:get_string("key_binder/commit_comment") or "Control+p"
-    env.switch_english_key = config:get_string("key_binder/switch_english") or "Control+g"
+    env.switch_english_key = config:get_string("key_binder/switch_cn_en_schema") or "Control+g"
     env.select_keys = config:get_string("menu/alternative_select_keys") or "1234567890"
     env.cand_horizontal = config:get_bool("style/horizontal") or true
     env.preedit_style = config:get_bool("style/inline_preedit") or false
@@ -141,14 +140,6 @@ function P.func(key, env)
         engine:apply_schema(Schema(schema.schema_id))
         context:push_input(preedit_code)
         return 1 -- kAccept
-    end
-
-    if context:has_menu() and (key_val == env.commit_comment_key) then
-        local cand = context:get_selected_candidate()
-        local cand_comment = cand.comment:gsub("[~〔〕]", "")
-        engine:commit_text(cand_comment)
-        context:clear()
-        return 1
     end
 
     if key_val == env.switch_english_key then

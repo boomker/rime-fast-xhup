@@ -10,6 +10,7 @@
 patch:
   # 方案列表
   schema_list:
+    - schema: flypy_reverse
     - schema: flypy_xhfast
     - schema: flyhe_fast
     - schema: easy_en

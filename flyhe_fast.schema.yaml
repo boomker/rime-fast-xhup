@@ -5,7 +5,7 @@
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: 2026.02.25
+  version: 2026.03.02
   author:
     - boomker
   description: |
@@ -65,6 +65,8 @@ engine:
 # 主翻译器, 小鹤双拼
 translator:
   dictionary: flyhe_fast
+  # dictionary: flypy_xhfast
+  # prism: flyhe_fast               # 多方案共用一个词库时,为避免冲突,需要用 prism 指定一个名字
   spelling_hints: 1                 # >0 启用, `0`: 关闭单字编码提示
   max_word_length: 7                # >0 启用, 过长短语不记整词, 只加元素权重
   core_word_length: 4               # >0 启用, 按段学词 + 相邻段拼接

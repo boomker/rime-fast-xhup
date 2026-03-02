@@ -102,15 +102,18 @@ function P.init(env)
     env.commit_fuzz_cand_notify = context.commit_notifier:connect(function(ctx)
         ctx:set_property("idiom_phrase_first", "0")
 
-        local input_code = ctx.input
+        local raw_input = ctx.input
         local cand = context:get_selected_candidate()
-        if (not input_code) or not cand then
+        if (not raw_input) or (not cand)
+            or (
+                (cand.type ~= "fuzzy_word")
+                and (cand.type ~= "idiom_phrase")
+            )
+        then
             return
         end
-        if cand.type ~= "fuzzy_word" then
-            return
-        end
-        update_flyhe_userdb(env, input_code, cand.text)
+
+        update_flyhe_userdb(env, raw_input, cand.text)
     end)
 end
 
