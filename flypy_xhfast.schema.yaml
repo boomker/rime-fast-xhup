@@ -6,7 +6,7 @@
 schema:
   schema_id: flypy_xhfast
   name: 飞鹤快拼
-  version: 2026.02.25
+  version: 2026.03.02
   author:
     - boomker
   description: |
@@ -161,7 +161,7 @@ translator:
     - xform/(.*)/$1/                  # 注释这行,开启下行显示全拼
   # __include: preedit_convert_rules  # 编辑区输入码显示为全拼
   comment_format:
-    - xform/^\w+.(\w+)$/~$1/          # 单字编码提示只显示辅助码部分
+    - xform/^\w+.(\w+)(.*)$/~$1/      # 单字编码提示只显示辅助码部分
 
 # 次翻译器(英文)
 easy_en:
@@ -188,6 +188,7 @@ free_make_word:                       # 自由造词
   __include: translator
   spelling_hints: 20
   enable_user_dict: true
+  always_show_comments: true
   contextual_suggestions: false       # 是否开启语法模型优化候选〔需grammar〕
   user_dict: free_user_dict
   tag: free_make_word
@@ -289,7 +290,7 @@ flypy_radical:                        # 部件拆字反查
 
 # 部件拆字滤镜
 radical_lookup:                       # 部件拆字滤镜
-  dictionary: flyhe_fast
+  dictionary: flypy_reverse
   tags: [abc, flypy_radical]          # 去掉`abc`即为正常输入不显示拼音
   overwrite_comment: false
   # comment_format: xform/^/~/

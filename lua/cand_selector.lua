@@ -125,7 +125,7 @@ function T.func(input, seg, env)
         local mask_code = fm_proj:load(env.tone_format_rule) and fm_proj:apply(fm_code, true) or nil
         local full_pinyin_code = ym_proj:load(env.preedit_fmt_rules) and ym_proj:apply(yin_code, true) or nil
         local define_tone_filter_code = mask_code and mask_code:match("%d") and "1234" or "IUNM"
-        local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eeng))"
+        local zero_shengmu_pattern = "([aoe]|(a[aoin])|(aang)|(o[ou])|(oian)|(e[erin])|(eng))"
         if mask_code == fm_code then return end
 
         local tone_codepoint_map = {

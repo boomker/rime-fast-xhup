@@ -131,6 +131,8 @@ patch:
       ascii_mode: true
     com.runningwithcrayons.Alfred:    # alfred
       ascii_mode: true
+    wcowin.OneClip:
+      ascii_mode: true
     com.apple.Terminal:               # 终端
       ascii_mode: true
       ascii_punct: true               # 中文状态输出英文标点(半角)
@@ -181,9 +183,9 @@ patch:
     com.DanPristupov.Fork:
       ascii_mode: true
       ascii_punct: true
-    com.surteesstudios.Bartender:
+    com.stonerl.Thaw:
       ascii_mode: true
-    com.antiless.cleanclip.mac:
+    com.surteesstudios.Bartender:
       ascii_mode: true
     com.microsoft.edgemac:
       ascii_mode: false

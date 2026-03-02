@@ -1,0 +1,22 @@
+
+# Rime schema
+# encoding: utf-8
+---
+
+# 方案说明
+schema:
+  schema_id: flypy_reverse
+  name: 飞鹤快拼
+  version: 2026.02.28
+  author:
+    - boomker
+  description: |
+    小鹤双拼+辅助码
+    github.com:boomker/rime-fast-xhup
+
+translator:
+  enable_encoder: false
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: false
+  dictionary: flypy_reverse

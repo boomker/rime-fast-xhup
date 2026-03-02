@@ -17,7 +17,7 @@ function processor.func(key, env)
     local segment = composition:back()
     if not (segment and segment.menu) then return kNoop end
 
-    local default_selkey = "1234567890"
+    local default_select_key = "1234567890"
     local trigger_prefix = config:get_string("punctuator/symbol_menu_prefix") or '/vs'
     local symbol_normal_prefix = config:get_string("punctuator/symbol_normal_prefix") or '/'
     local fallback_key = config:get_string("key_binder/symbol_menu_fallback") or "slash"
@@ -33,7 +33,7 @@ function processor.func(key, env)
 
     if not (input_code:match("^" .. trigger_prefix)) then return kNoop end
     local selected_index = segment.selected_index or -1
-    local select_keys = config:get_string("menu/alternative_select_keys") or default_selkey
+    local select_keys = config:get_string("menu/alternative_select_keys") or default_select_key
     local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, select_keys, page_size)
     if (selected_cand_idx >= 0) then
         local cand_text = segment:get_candidate_at(selected_cand_idx).text
