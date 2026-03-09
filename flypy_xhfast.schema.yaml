@@ -93,7 +93,7 @@ engine:
     - lua_translator@*cn_en_custom                    # `=,~,\ 触发自定义单词入库
     - lua_translator@*chinese_lunar                   # /nl,nL 触发显示中国农历
     - lua_translator@*flypy_help_menu                 # /oh,oH 触发进入帮助菜单
-    - lua_translator@*easy_en*translator              # * 号触发英文模糊输入
+    - lua_translator@*easy_en*translator              # * 号触发英文模糊匹配
     - lua_translator@*shortcut*translator             # /jk, /kj 触发快捷命令
     # - lua_translator@*revert_commit_word            # 撤销已上屏字符(模拟退格键)
     - lua_translator@*flypy_fuzzy*translator          # 8,ctrl-q 简拼优先前排
@@ -104,10 +104,10 @@ engine:
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
   filters:
     - reverse_lookup_filter@radical_lookup
-    - simplifier@zh_simp                          # 繁体转换简体
-    - simplifier@zh_trad                          # 简体转换繁体
-    - simplifier@zh_hk                            # 简体转换港繁
-    - simplifier@zh_tw                            # 简体转换台繁
+    - simplifier@zh_simp                              # 繁体转换简体
+    - simplifier@zh_trad                              # 简体转换繁体
+    - simplifier@zh_hk                                # 简体转换港繁
+    - simplifier@zh_tw                                # 简体转换台繁
     - simplifier@emoji
     - lua_filter@*flypy_switcher*filter
     - lua_filter@*flypy_fixed
