@@ -104,10 +104,10 @@ engine:
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
   filters:
     - reverse_lookup_filter@radical_lookup
-    - simplifier@zh_simp                          # 繁体转换简体
-    - simplifier@zh_trad                          # 简体转换繁体
-    - simplifier@zh_hk                            # 简体转换港繁
-    - simplifier@zh_tw                            # 简体转换台繁
+    - simplifier@zh_simp                              # 繁体转换简体
+    - simplifier@zh_trad                              # 简体转换繁体
+    - simplifier@zh_hk                                # 简体转换港繁
+    - simplifier@zh_tw                                # 简体转换台繁
     - simplifier@emoji
     - lua_filter@*flypy_switcher*filter
     - lua_filter@*flypy_fixed

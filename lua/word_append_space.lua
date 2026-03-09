@@ -187,7 +187,8 @@ end
 ---@diagnostic disable-next-line: unused-local
 local function cn_en_spacer(input, env)
     for cand in input:iter() do
-        local cand_text = cand.text
+        local current_cand = cand
+        local cand_text = current_cand.text
         if ((cand_text:find("([\228-\233][\128-\191]-)") and cand_text:match("[%a]")) or cand_text:match("^%a+%d+%p?")) then
             local function add_spaces(s)
                 if s:match("^%a+%d?") and s:find("([\228-\233][\128-\191]-)") then
@@ -197,6 +198,7 @@ local function cn_en_spacer(input, env)
                         s = s:gsub("([\228-\233][\128-\191]-)([%a%p]+)", "%1 %2")
                     end
                 elseif s:match("^%a+[%d%p]+") then
+                    if s:match("^%a%d") then return s end
                     s = s:gsub("([%a]+)([%d]+)([^_%-])", function(a, d, next_char)
                         if next_char and (next_char ~= "") then
                             return a .. " " .. d .. next_char
@@ -209,9 +211,13 @@ local function cn_en_spacer(input, env)
                 end
                 return s
             end
-            cand = cand:to_shadow_candidate(cand.type, add_spaces(cand_text), cand.comment)
+            current_cand = current_cand:to_shadow_candidate(
+                current_cand.type,
+                add_spaces(cand_text),
+                current_cand.comment
+            )
         end
-        yield(cand)
+        yield(current_cand)
     end
 end
 

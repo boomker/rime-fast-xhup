@@ -113,9 +113,9 @@ table.delete = function(tab, elm, ...)
 end
 
 table.reduce = function(tab, func, arg)
-    local new, _ = arg, arg
+    local new, acc = arg, arg
     for _, v in ipairs(tab) do
-        new, _ = func(v, new)
+        new, acc = func(v, new)
     end
     return new, arg
 end
@@ -173,7 +173,7 @@ function table.sorted_keys(t, compareFunc)
             return a > b
         elseif compareFunc == 'len' then
             if #a == #b then
-                return a < b  -- 当长度相同，按字母表顺序排序
+                return a < b -- 当长度相同，按字母表顺序排序
             else
                 return #a < #b
             end

@@ -69,7 +69,7 @@ navigator:
     Shift+Right: right_by_syllable
     # 其他键 KP_Left KP_Right Home KP_Home End KP_End
 
-# 选字处理器，感觉这个没有自定义的必要
+# 选字处理器
 # selector:
 #   bindings:
 #     Up: previous_candidate # 上一个

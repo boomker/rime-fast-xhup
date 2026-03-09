@@ -30,6 +30,7 @@ patch:
       reset: 1
     - name: prediction  # 仅用于移动端
       states: [休想, 联想]
+      reset: 0
     - name: char_mode
       states: [词组优先, 单字优先]
     - name: charset

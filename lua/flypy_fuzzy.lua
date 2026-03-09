@@ -154,15 +154,14 @@ function P.func(key, env)
     local composition = context.composition
     if composition:empty() then return 2 end
 
-    local preedit_text = context:get_preedit().text
-    local preedit_code = preedit_text:gsub("[‸ ]", "")
+    local raw_input = context.input
     local phrase_first_state = context:get_property("idiom_phrase_first")
 
     -- 简拼候选, 按下`8/Control+q`, 简拼优先
     if
         context:has_menu()
         and (key:repr() == env.expand_idiom_key)
-        and (preedit_code:match("^%l%l%l%l?%l?%l?$"))
+        and (raw_input:match("^%l%l%l%l?%l?%l?$"))
     then
         local switch_val = (phrase_first_state == "1") and "0" or "1"
         context:set_property("idiom_phrase_first", tostring(switch_val))
@@ -183,7 +182,7 @@ function T.func(input, seg, env)
     local phrase_first_state = context:get_property("idiom_phrase_first")
     local match_pattern = string.format("^[a-z]{%d,%d}$", env.fuzz_start_length, env.fuzz_max_length)
     if env.enable_fuzz_func and rime_api.regex_match(raw_input, match_pattern) then
-        local word_cands = env.flyhe_fuzz_tran:query(input, seg) or nil
+        local word_cands = env.flyhe_fuzz_tran:query(raw_input, seg) or nil
         if not word_cands then return end
 
         local loop_count = 0
