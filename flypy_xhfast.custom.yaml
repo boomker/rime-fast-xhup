@@ -10,10 +10,11 @@
 patch:
   # 候选菜单
   menu/+:
+    page_size: 7                        # 自定义候选项个数
+    candidate_cycle: true
     # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
     # alternative_select_keys: 1234567  # 候选项选中快捷键
-    page_size: 7                        # 自定义候选项个数
 
   # 候选菜单布局样式
   style/+:
@@ -207,7 +208,7 @@ patch:
     tips: "英文"
     wildcard: '*'
     # tag: easy_en
-    word_search_limit: 666            # 模糊匹配最多迭代数
+    word_search_limit: 300            # 模糊匹配最多迭代数
 
   custom_phrase/+:                    # 自定义短语
     comment_mark: " 📌"               # 注解标记
@@ -258,7 +259,7 @@ patch:
     tips: "计算器"
 
   cand_selector:                      # 候选选择器
-    word_lookup_limit: 666            # 检索最多迭代数
+    word_lookup_limit: 300            # 检索最多迭代数
     auto_select_char: true            # 单字优先时全码唯一则自动顶屏(小鹤音形效果)
     auto_select_phrase: false         # 词组加间接辅码唯一则自动上屏(默认关闭)
     if_unmatched_show_mark: "⭕️"      # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
@@ -269,7 +270,7 @@ patch:
     enable_fuzz_func: true            # 是否开启简拼功能(支持中英数混合)
     fuzz_start_length: 2              # 简拼开始长度
     fuzz_max_length: 7                # 简拼最大长度
-    word_lookup_limit: 666            # 检索最多迭代数
+    word_lookup_limit: 300            # 检索最多迭代数
 
   chinese_number:                     # 中文大写数字(金额)
     tag: chinese_number

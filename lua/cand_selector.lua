@@ -7,28 +7,61 @@ local T = {}
 local F = {}
 local M = {}
 
-function M.init(env)
-    local config = env.engine.schema.config
-    -- local schema_id = config:get_string("schema/schema_id")
-    local schema_id = "flypy_xhfast"
-    local schema = Schema(schema_id)
+local function get_shape_cache_limit(env)
+    local limit = env.word_shape_cache_limit or env.word_lookup_limit or 50
+    if limit < 1 then return 1 end
+    return limit
+end
+
+local function clear_word_shape_cache(env)
     env.prev_word_pron_code = ""
     env.prev_word_shape_code_tbl = {}
-    env.prev_word_pron_translation = nil
-    env.reversedb = ReverseLookup(schema_id)
-    env.reversedb_flyhe = ReverseLookup("flyhe_fast")
-    env.mem = Memory(env.engine, schema, "translator")
-    env.preedit_fmt_rules = config:get_list("preedit_convert_rules")
-    env.tone_format_rule = config:get_list("cand_selector/tone_convert_format")
+end
+
+local function ensure_translator_resources(env)
+    if env.mem and env.script_tran and env.reversedb and env.reversedb_flyhe then return end
+
+    local schema_id = "flypy_xhfast"
+    local schema = Schema(schema_id)
+    local config = env.engine.schema.config
+    env.reversedb = env.reversedb or ReverseLookup(schema_id)
+    env.reversedb_flyhe = env.reversedb_flyhe or ReverseLookup("flyhe_fast")
+    env.mem = env.mem or Memory(env.engine, schema, "translator")
+    if not env.script_tran then
+        env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "")
+    end
+    env.preedit_fmt_rules = env.preedit_fmt_rules or config:get_list("preedit_convert_rules")
+    env.tone_format_rule = env.tone_format_rule or config:get_list("cand_selector/tone_convert_format")
+end
+
+function M.init(env)
+    local config = env.engine.schema.config
     env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
-    env.word_lookup_limit = config:get_int("cand_selector/word_lookup_limit") or 666
+    env.word_lookup_limit = config:get_int("cand_selector/word_lookup_limit") or 50
+    env.word_shape_cache_limit = config:get_int("cand_selector/word_shape_cache_limit") or 50
     env.char_auto_commit = config:get_bool("cand_selector/auto_select_char") or false
     env.word_auto_commit = config:get_bool("cand_selector/auto_select_phrase") or false
     env.unmatched_show_mark = config:get_string("cand_selector/if_unmatched_show_mark") or ""
-    env.script_tran = Component.Translator(env.engine, schema, "", "script_translator@translator")
+    env.prev_word_pron_code = ""
+    env.prev_word_shape_code_tbl = {}
+end
+
+function P.init(env)
+    M.init(env)
+end
+
+function T.init(env)
+    M.init(env)
+    ensure_translator_resources(env)
+end
+
+function F.init(env)
+    M.init(env)
+    env.tone_format_rule = env.engine.schema.config:get_list("cand_selector/tone_convert_format")
 end
 
 function M.fini(env)
+    clear_word_shape_cache(env)
     if env.mem then
         env.mem:disconnect()
         env.mem = nil
@@ -36,6 +69,12 @@ function M.fini(env)
     end
     if env.script_tran then
         env.script_tran = nil
+    end
+    if env.reversedb then
+        env.reversedb = nil
+    end
+    if env.reversedb_flyhe then
+        env.reversedb_flyhe = nil
     end
 end
 
@@ -47,8 +86,8 @@ function P.func(key, env)
     if composition:empty() then return 2 end
 
     local caret_pos = context.caret_pos
-    local preedit_text = context:get_preedit().text
-    local preedit_code = preedit_text:gsub("[‸]", "")
+    local raw_input_code = context.input
+    -- local preedit_text = context:get_preedit().text
     local char_mode_state = context:get_option("char_mode")
 
     if key:release() or key:alt() or key:caps() then return 2 end
@@ -56,7 +95,7 @@ function P.func(key, env)
     -- 触发单字优先
     if
         context:has_menu()
-        and (preedit_code:match("^%l%l%l%l?$"))
+        and (raw_input_code:match("^%l%l%l%l?$"))
         and (key:repr() == env.char_mode_switch_key)
     then
         local switch_to_val = not char_mode_state
@@ -67,8 +106,8 @@ function P.func(key, env)
 
     -- 单字全码唯一自动顶屏(abx[yc]?)
     if
-        (caret_pos == #preedit_code)
-        and preedit_code:match("^%l%l%l%l?%l?$")
+        (caret_pos == #raw_input_code)
+        and raw_input_code:match("^%l%l%l%l?%l?$")
         and (context:get_property("matched_char_cand_count") == "1")
     then
         local cand = context:get_selected_candidate()
@@ -76,7 +115,7 @@ function P.func(key, env)
         if env.char_auto_commit and (utf8.len(cand_text) == 1) then
             if key_value:match("^[a-z]$") then
                 engine:commit_text(cand_text)
-                context:pop_input(#preedit_code)
+                context:pop_input(#raw_input_code)
                 context:push_input(key_value)
                 return 1 -- kAccepted
             end
@@ -87,7 +126,7 @@ function P.func(key, env)
     -- 单字全码唯一自动顶屏(ab/xy?)
     if
         env.char_auto_commit
-        and preedit_code:match("^%l%l/%l?%l?$")
+        and raw_input_code:match("^%l%l/%l?%l?$")
         and (context:get_property("matched_char_cand_count") == "1")
     then
         context:set_property("matched_char_cand_count", "0")
@@ -102,6 +141,7 @@ function P.func(key, env)
 end
 
 function T.func(input, seg, env)
+    ensure_translator_resources(env)
     local context = env.engine.context
     local composition = context.composition
     context:set_property("enable_tone_match", "0")
@@ -151,9 +191,9 @@ function T.func(input, seg, env)
                 if
                     (
                         (utf8.len(per_encode) == #full_pinyin_code)
-                        and per_encode:match("^" .. full_pinyin_code:sub(1, 1))
+                        and (full_pinyin_code and per_encode:match("^" .. full_pinyin_code:sub(1, 1)))
                     )
-                    or rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
+                    or full_pinyin_code and rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
                 then
                     local tone_code = per_encode:gsub("[a-z]+", "")
                     local tone_codepoint = (#tone_code > 0) and utf8.codepoint(tone_code, 1) or 252
@@ -197,11 +237,16 @@ function T.func(input, seg, env)
             local entry_text = dictentry.text
 
             if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z%p]")) then
-                local reverse_char_code = env.reversedb:lookup(entry_text):gsub("~", "")
-                if reverse_char_code:match(input) and char_mode_state then
-                    table.insert(entry_matched_tbl, dictentry)
-                elseif reverse_char_code:match(pattern) then
-                    table.insert(entry_matched_tbl, dictentry)
+                local reverse_char_code = (env.reversedb:lookup(entry_text) or ""):gsub("~", "")
+                if reverse_char_code ~= "" then
+                    if reverse_char_code:match(input) and char_mode_state then
+                        table.insert(entry_matched_tbl, dictentry)
+                    elseif reverse_char_code:match(pattern) then
+                        table.insert(entry_matched_tbl, dictentry)
+                    end
+                end
+                if table.len(entry_matched_tbl) >= env.word_lookup_limit then
+                    break
                 end
             end
         end
@@ -239,29 +284,34 @@ function T.func(input, seg, env)
         local word_pron_code = input:sub(1, 4)
         local hit_query_cache = (env.prev_word_pron_code == word_pron_code)
         if not hit_query_cache then
-            local word_pron_translation = env.script_tran:query(word_pron_code, seg)
+            clear_word_shape_cache(env)
             env.prev_word_pron_code = word_pron_code
-            env.prev_word_pron_translation = word_pron_translation
-        end
+            if input:match("^%l+/$") then
+                local word_pron_translation = env.script_tran:query(word_pron_code, seg)
+                if not word_pron_translation then return end
 
-        if (not hit_query_cache) and env.prev_word_pron_translation and input:match("^%l+/$") then
-            local idx = 0
-            local word_shape_code_tbl = {}
-            for cand in env.prev_word_pron_translation:iter() do
-                idx = idx + 1
-                local cand_text = cand.text
-                if (utf8.len(cand_text) == 2) and (not cand_text:match("[%a%d%p]")) then
-                    local cand_header_text = string.utf8_sub(cand_text, 1, 1)
-                    local cand_tailer_text = string.utf8_sub(cand_text, 2, 2)
-                    local cand_header_code = cand_header_text
-                        and env.reversedb:lookup(cand_header_text):sub(4, 5)
-                    local cand_tailer_code = cand_tailer_text
-                        and env.reversedb:lookup(cand_tailer_text):sub(4, 5)
-                    local cand_shape_code = cand_tailer_code .. cand_header_code
-                    word_shape_code_tbl[idx] = { cand_text, cand_shape_code }
+                local idx = 0
+                local word_shape_code_tbl = {}
+                local cache_limit = get_shape_cache_limit(env)
+                for cand in word_pron_translation:iter() do
+                    local cand_text = cand.text
+                    if (utf8.len(cand_text) == 2) and (not cand_text:match("[%a%d%p]")) then
+                        local cand_header_text = string.utf8_sub(cand_text, 1, 1)
+                        local cand_tailer_text = string.utf8_sub(cand_text, 2, 2)
+                        local cand_header_code = cand_header_text
+                            and (env.reversedb:lookup(cand_header_text) or ""):sub(4, 5)
+                        local cand_tailer_code = cand_tailer_text
+                            and (env.reversedb:lookup(cand_tailer_text) or ""):sub(4, 5)
+                        if #cand_header_code > 0 and #cand_tailer_code > 0 then
+                            local cand_shape_code = cand_tailer_code .. cand_header_code
+                            idx = idx + 1
+                            word_shape_code_tbl[idx] = { cand_text, cand_shape_code }
+                            if idx >= cache_limit then break end
+                        end
+                    end
                 end
+                env.prev_word_shape_code_tbl = word_shape_code_tbl
             end
-            env.prev_word_shape_code_tbl = word_shape_code_tbl
         end
 
         if table.len(env.prev_word_shape_code_tbl) < 1 then return end
@@ -319,6 +369,7 @@ function F.func(input, env)
         and fm_project:load(env.tone_format_rule)
         and fm_project:apply(fm_code, true) or ""
     local new_preedit_code = tone_filter_mode and raw_input:match("^(.-)/") .. "/" .. fm_replaced_code or raw_input
+    local normal_limit = math.min(env.word_lookup_limit or 100, 200)
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])
@@ -338,7 +389,7 @@ function F.func(input, env)
             table.insert(preselected_cands, cand)
         end
 
-        if #normal_cands >= 666 then break end
+        if #normal_cands >= normal_limit then break end
         table.insert(normal_cands, cand)
     end
 
@@ -373,17 +424,17 @@ end
 
 return {
     processor = {
-        init = M.init,
+        init = P.init,
         func = P.func,
         fini = M.fini,
     },
     translator = {
-        init = M.init,
+        init = T.init,
         func = T.func,
         fini = M.fini,
     },
     filter = {
-        init = M.init,
+        init = F.init,
         func = F.func,
         fini = M.fini,
     },

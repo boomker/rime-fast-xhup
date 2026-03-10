@@ -144,7 +144,7 @@ function filter.func(input, env)
 
     for cand in input:iter() do
         local cand_text = cand.text:gsub(" ", "")
-        local preedit_code = cand.preedit:gsub(" ", "") or raw_input
+        local preedit_code = raw_input or cand.preedit:gsub(" ", "")
 
         local reduce_freq_list = reduce_freq_words[cand_text] or {}
         if word_reduce_idx > 1 then

@@ -5,6 +5,24 @@ local T = {}
 local F = {}
 local M = {}
 
+local function get_filter_limit(env)
+    local limit = env.candidate_cache_limit or 100
+    if limit < 1 then return 1 end
+    return limit
+end
+
+local function ensure_translator_resources(env)
+    if env.custom_phrase_tran and env.reversedb then return end
+
+    local config = env.engine.schema.config
+    local schema_id = config:get_string("schema/schema_id")
+    env.reversedb = env.reversedb or ReverseLookup(schema_id)
+    local schema = Schema(schema_id)
+    if not env.custom_phrase_tran then
+        env.custom_phrase_tran = Component.TableTranslator(env.engine, schema, "custom_phrase", "")
+    end
+end
+
 local function get_record_filename()
     local system_name = detect_os()
     local user_data_dir = rime_api:get_user_data_dir()
@@ -37,22 +55,35 @@ end
 
 function M.init(env)
     local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
     local ok, pin_word_records = pcall(require, "pin_word_record")
-    local schema = Schema(schema_id)
-    env.reversedb = ReverseLookup(schema_id)
     env.pin_word_records = ok and pin_word_records or {}
     env.word_quality = config:get_int("pin_word/word_quality") or 999
     env.pin_mark = config:get_string("pin_word/comment_mark") or " ᵀᴼᴾ"
     env.custom_phrase_mark = config:get_string("custom_phrase/comment_mark") or " 📌"
     env.pin_cand_key = config:get_string("key_binder/pin_cand") or "Control+t"
     env.unpin_cand_key = config:get_string("key_binder/unpin_cand") or "Control+t"
-    env.custom_phrase_tran = Component.Translator(env.engine, schema, "", "table_translator@custom_phrase")
+    env.candidate_cache_limit = config:get_int("pin_word/candidate_cache_limit") or 100
+end
+
+function P.init(env)
+    M.init(env)
+end
+
+function T.init(env)
+    M.init(env)
+    ensure_translator_resources(env)
+end
+
+function F.init(env)
+    M.init(env)
 end
 
 function M.fini(env)
     if env.custom_phrase_tran then
         env.custom_phrase_tran = nil
+    end
+    if env.reversedb then
+        env.reversedb = nil
     end
 end
 
@@ -113,15 +144,16 @@ function P.func(key, env)
 end
 
 function T.func(input, seg, env)
+    ensure_translator_resources(env)
     local input_code = input:gsub(" ", "")
     local pin_word_tab = env.pin_word_records[input_code] or nil
 
     if pin_word_tab and seg:has_tag("abc") then
         for _, w in ipairs(pin_word_tab) do
+            local reverse_code = (env.reversedb:lookup(w) or ""):gsub("~%l%l", "")
             if
-                (utf8.len(input_code) / utf8.len(w) ~= 2)
-                or w:match("[%a%d%p]")
-                or (not env.reversedb:lookup(w):gsub("~%l%l", ""):match(input_code))
+                (utf8.len(input_code) / utf8.len(w) ~= 2) or w:match("[%a%d%p]+")
+                or ((#reverse_code == 2) and (not reverse_code:match(input_code)))
             then
                 -- 只对非完整编码的字词或不在码表里的字进行置顶, 否则会导致造词失效
                 local cand = Candidate("pin_word", seg.start, seg._end, w, env.pin_mark)
@@ -132,12 +164,16 @@ function T.func(input, seg, env)
     end
 
     -- 自定义短语的置顶字词加类型标记
-    env.custom_tran = env.custom_phrase_tran:query(input, seg)
-    if not env.custom_tran then return end
+    local custom_tran = env.custom_phrase_tran and env.custom_phrase_tran:query(input, seg) or nil
+    if not custom_tran then return end
 
-    for cand in env.custom_tran:iter() do
+    local yielded = 0
+    local limit = get_filter_limit(env)
+    for cand in custom_tran:iter() do
         cand.type = "custom_phrase_" .. cand.type
         yield(cand)
+        yielded = yielded + 1
+        if yielded >= limit then break end
     end
 end
 
@@ -149,6 +185,8 @@ function F.func(input, env)
     local pin_mark            = env.pin_mark
     local custom_mark         = env.custom_phrase_mark
     local raw_input           = env.engine.context.input
+    local pin_word_tab        = env.pin_word_records[raw_input] or nil
+    local other_limit         = get_filter_limit(env)
 
     for cand in input:iter() do
         local cand_text = cand.text
@@ -157,7 +195,6 @@ function F.func(input, env)
             table.insert(custom_phrase_cands, cand)
         end
 
-        local pin_word_tab = env.pin_word_records[raw_input] or nil
         if pin_word_tab and table.find_index(pin_word_tab, cand_text) then
             if #pin_cands < #pin_word_tab then
                 cand.comment = pin_mark
@@ -171,14 +208,16 @@ function F.func(input, env)
         elseif cand.comment:match(pin_mark) then
             table.insert(pin_cands, cand)
         else
-            table.insert(other_cands, cand)
+            if #other_cands < other_limit then
+                table.insert(other_cands, cand)
+            else
+                break
+            end
         end
 
         if cand.type:match("^single_char") then
             table.insert(single_char_cands, cand)
         end
-
-        if #other_cands >= 666 then break end
     end
 
     if #pin_cands > 0 then
@@ -201,7 +240,7 @@ function F.func(input, env)
 end
 
 return {
-    processor  = { init = M.init, func = P.func, fini = M.fini },
-    translator = { init = M.init, func = T.func, fini = M.fini },
-    filter     = { init = M.init, func = F.func, fini = M.fini },
+    processor  = { init = P.init, func = P.func, fini = M.fini },
+    translator = { init = T.init, func = T.func, fini = M.fini },
+    filter     = { init = F.init, func = F.func, fini = M.fini },
 }

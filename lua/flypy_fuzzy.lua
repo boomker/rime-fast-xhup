@@ -2,6 +2,26 @@ require("lib/string")
 local P = {}
 local T = {}
 local F = {}
+local M = {}
+
+local function ensure_processor_resources(env)
+    if env.mem_flyhe and env.reversedb_flyhe then return end
+
+    local flyhe_schema = Schema("flyhe_fast")
+    env.reversedb_flyhe = env.reversedb_flyhe or ReverseLookup("flyhe_fast")
+    env.mem_flyhe = env.mem_flyhe or Memory(env.engine, flyhe_schema, "translator")
+end
+
+local function ensure_translator_resources(env)
+    if env.flyhe_fuzz_tran and env.reversedb then return end
+
+    local config = env.engine.schema.config
+    local flyhe_schema = Schema("flyhe_fast")
+    local schema_id = config:get_string("schema/schema_id")
+    env.reversedb = env.reversedb or ReverseLookup(schema_id)
+    env.flyhe_fuzz_tran = env.flyhe_fuzz_tran or
+        Component.ScriptTranslator(env.engine, flyhe_schema, "translator", "")
+end
 
 local function check_fuzzy_cand(env, cand, input)
     if not cand then return false end
@@ -91,14 +111,21 @@ local function update_flyhe_userdb(env, input_code, cand_text)
     env.mem_flyhe:update_userdict(de, 1, "")
 end
 
-function P.init(env)
-    local context = env.engine.context
+function M.init(env)
     local config = env.engine.schema.config
-    local flyhe_schema = Schema("flyhe_fast")
-    env.reversedb_flyhe = ReverseLookup("flyhe_fast")
-    env.mem_flyhe = Memory(env.engine, flyhe_schema, "translator")
     env.expand_idiom_key = config:get_string("key_binder/fuzz_algebra_first") or "Control+q"
+    env.fuzz_start_length = config:get_int("flypy_fuzzy/fuzz_start_length") or 2
+    env.fuzz_max_length = config:get_int("flypy_fuzzy/fuzz_max_length") or 7
+    env.word_lookup_limit = config:get_int("flypy_fuzzy/word_lookup_limit") or 100
+    env.fuzz_scan_limit = config:get_int("flypy_fuzzy/fuzz_scan_limit") or 100
+    env.enable_fuzz_func = config:get_bool("flypy_fuzzy/enable_fuzz_func") or false
+end
 
+function P.init(env)
+    M.init(env)
+    ensure_processor_resources(env)
+
+    local context = env.engine.context
     env.commit_fuzz_cand_notify = context.commit_notifier:connect(function(ctx)
         ctx:set_property("idiom_phrase_first", "0")
 
@@ -117,7 +144,7 @@ function P.init(env)
     end)
 end
 
-function P.fini(env)
+function M.fini(env)
     if env.commit_fuzz_cand_notify then
         env.commit_fuzz_cand_notify:disconnect()
         env.commit_fuzz_cand_notify = nil
@@ -127,25 +154,20 @@ function P.fini(env)
         env.mem_flyhe = nil
         collectgarbage('collect')
     end
-end
-
-function T.init(env)
-    local config = env.engine.schema.config
-    local schema_id = config:get_string("schema/schema_id")
-    local flyhe_schema = Schema("flyhe_fast")
-    env.reversedb = ReverseLookup(schema_id)
-    env.fuzz_start_length = config:get_int("flypy_fuzzy/fuzz_start_length") or 2
-    env.fuzz_max_length = config:get_int("flypy_fuzzy/fuzz_max_length") or 7
-    env.word_lookup_limit = config:get_int("flypy_fuzzy/word_lookup_limit") or 666
-    env.enable_fuzz_func = config:get_bool("flypy_fuzzy/enable_fuzz_func") or false
-    -- env.flyhe_fuzz_tran = Component.Translator(env.engine, schema, "", "script_translator@flyhe_fuzz")
-    env.flyhe_fuzz_tran = Component.Translator(env.engine, flyhe_schema, "", "script_translator@translator")
-end
-
-function T.fini(env)
     if env.flyhe_fuzz_tran then
         env.flyhe_fuzz_tran = nil
     end
+    if env.reversedb then
+        env.reversedb = nil
+    end
+    if env.reversedb_flyhe then
+        env.reversedb_flyhe = nil
+    end
+end
+
+function T.init(env)
+    M.init(env)
+    ensure_translator_resources(env)
 end
 
 function P.func(key, env)
@@ -173,6 +195,8 @@ function P.func(key, env)
 end
 
 function T.func(input, seg, env)
+    ensure_translator_resources(env)
+
     local context = env.engine.context
     local composition = context.composition
     if composition:empty() then return end
@@ -185,11 +209,14 @@ function T.func(input, seg, env)
         local word_cands = env.flyhe_fuzz_tran:query(raw_input, seg) or nil
         if not word_cands then return end
 
-        local loop_count = 0
+        local yielded_count = 0
+        local scanned_count = 0
         local fuzz_cand = nil
         for cand in word_cands:iter() do
-            if not check_fuzzy_cand(env, cand, raw_input) then goto Continue end
+            scanned_count = scanned_count + 1
+            if scanned_count > env.fuzz_scan_limit then break end
 
+            if not check_fuzzy_cand(env, cand, raw_input) then goto Continue end
             if phrase_first_state == "1" then
                 fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
             else
@@ -197,8 +224,8 @@ function T.func(input, seg, env)
             end
             yield(fuzz_cand)
 
-            loop_count = loop_count + 1
-            if loop_count >= env.word_lookup_limit then break end
+            yielded_count = yielded_count + 1
+            if yielded_count >= env.word_lookup_limit then break end
             ::Continue::
         end
     end
@@ -232,14 +259,16 @@ return {
     processor = {
         init = P.init,
         func = P.func,
-        fini = P.fini,
+        fini = M.fini,
     },
     translator = {
         init = T.init,
         func = T.func,
-        fini = T.fini,
+        fini = M.fini,
     },
     filter = {
+        init = M.init,
         func = F.func,
+        fini = M.fini,
     },
 }

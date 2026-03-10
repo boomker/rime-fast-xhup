@@ -3,10 +3,10 @@
 # 覆盖 flyhe_fast.schema.yaml 的部分参数。
 # 在此方案下，这里的配置具有最高优先级
 patch:
-  "menu/page_size": 5                           # 自定义候选项个数
   "menu/alternative_select_keys": 1234567       # 候选项选中快捷键
+  "menu/page_size": 5                           # 自定义候选项个数
   "style/font_point": 18                        # 候选字大小
-  "style/line_spacing": 4                       # 行间距大小
+  "style/line_spacing": 5                       # 行间距大小
   "style/show_paging": false                    # 是否显示分页符号
   "style/inline_preedit": true                  # 编码位是否嵌入候选框
   # "style/horizontal": true                    # 候选菜单横向布局(true)/纵向布局(false)
@@ -26,17 +26,17 @@ patch:
     symbol_normal_prefix: '/'
 
   key_binder/+:
-    import_preset: default            # 从 default.yaml 继承通用的
-    symbol_menu_fallback: "slash"     # 符号二级菜单返回主菜单键
-    select_first_character: "9"       # `9/minus` 以词定字(首字)
-    select_last_character: "0"        # `0/equal` 以词定字(尾字)
+    import_preset: default                      # 从 default.yaml 继承通用的
+    select_first_character: "9"                 # `9/minus` 以词定字(首字)
+    select_last_character: "0"                  # `0/equal` 以词定字(尾字)
+    symbol_menu_fallback: "Control+p"           # 符号二级菜单返回主菜单键
 
-  cand_selector:                      # 候选选择器
-    word_lookup_limit: 666            # 检索最多迭代数
-    auto_select_char: true            # 单字优先时全码唯一则自动顶屏(小鹤音形效果)
-    auto_select_phrase: false         # 词组加间接辅码唯一则自动上屏(默认关闭)
-    if_unmatched_show_mark: "⭕️"      # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
-    tone_convert_format:              # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
+  cand_selector:                                # 候选选择器
+    word_lookup_limit: 666                      # 检索最多迭代数
+    auto_select_char: true                      # 单字优先时全码唯一则自动顶屏(小鹤音形效果)
+    auto_select_phrase: false                   # 词组加间接辅码唯一则自动上屏(默认关闭)
+    if_unmatched_show_mark: "⭕️"                # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
+    tone_convert_format:                        # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
       - xlit/IUNM/1234/
 
   date_time:
