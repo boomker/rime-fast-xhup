@@ -16,6 +16,7 @@ end
 
 local function save_entry(env, cand_or_text)
     local text = (type(cand_or_text) == string) and cand_or_text or cand_or_text.text
+    if not text or text == "" then return end
     if text:match("^[a-zA-Z%p ]+$") then
         local entry = DictEntry()
         entry.text = text -- 上屏英文本身
