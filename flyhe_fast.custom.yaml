@@ -13,6 +13,15 @@ patch:
   "style/candidate_list_layout": linear         # 候选菜单横向(linear)/纵向(stacked)
   "style/text_orientation": horizontal          # 候选文字横向(horizontal)/纵向(vertical)
 
+  switches/+:
+    - name: prediction
+      states: [休想, 联想]
+      reset: 0
+
+  # 输入引擎
+  'engine/processors/@before 0': predictor
+  'engine/translators/@before 0': predict_translator
+
   speller/+:
     algebra/+:
       ## 模糊音:
@@ -32,10 +41,10 @@ patch:
     symbol_menu_fallback: "Control+p"           # 符号二级菜单返回主菜单键
 
   cand_selector:                                # 候选选择器
-    word_lookup_limit: 666                      # 检索最多迭代数
+    word_lookup_limit: 300                      # 检索最多迭代数
     auto_select_char: true                      # 单字优先时全码唯一则自动顶屏(小鹤音形效果)
     auto_select_phrase: false                   # 词组加间接辅码唯一则自动上屏(默认关闭)
-    if_unmatched_show_mark: "⭕️"                # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
+    if_unmatched_show_mark: "-"                 # 当未匹配到候选项时, 首选 yield 一个标记以提示(留空则不显示)
     tone_convert_format:                        # 声调过滤(依次对应: 一[轻]二三四声), 修改则不适配同文键盘
       - xlit/IUNM/1234/
 
@@ -65,3 +74,10 @@ patch:
       - "{hour}时{min}分{sec}秒"  # 18时37分06秒
     # 时间前缀: 凌晨, 早上, 上午, 中午, 下午, 夜晚, 午夜
     enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
+
+  predictor:                          # 候选字词联想预测
+    # trigger: 'oi'
+    db: predict.db                    # librime-predict 数据库
+    max_candidates: 7                 # 联想的候选项个数
+    max_iterations: 2                 # 联想预测的次数
+    # db: predict.userdb                # librime-predict-leveldb 数据库

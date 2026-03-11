@@ -10,10 +10,11 @@
 patch:
   # 候选菜单
   menu/+:
+    page_size: 7                        # 自定义候选项个数
+    # candidate_cycle: true
     # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
     # alternative_select_keys: 1234567  # 候选项选中快捷键
-    page_size: 7                        # 自定义候选项个数
 
   # 候选菜单布局样式
   style/+:
@@ -48,6 +49,7 @@ patch:
         - 注解类型 ➜ 空白
       reset: 1
 
+  # 输入引擎
   engine/+:
     processors/+:
     segmentors/+:
@@ -309,7 +311,8 @@ patch:
     enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
 
   predictor:                          # 候选字词联想预测
+    # trigger: 'oi'
     db: predict.db                    # librime-predict 数据库
     max_candidates: 7                 # 联想的候选项个数
-    max_iterations: 1                 # 联想预测的次数
+    max_iterations: 2                 # 联想预测的次数
     # db: predict.userdb                # librime-predict-leveldb 数据库
