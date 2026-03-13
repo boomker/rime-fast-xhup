@@ -70,12 +70,14 @@ navigator:
     # 其他键 KP_Left KP_Right Home KP_Home End KP_End
 
 # 选字处理器
-# selector:
-#   bindings:
-#     Up: previous_candidate # 上一个
-#     Down: next_candidate   # 下一个
-#     Prior: previous_page   # 上一页
-#     Next: next_page        # 下一页
+selector:
+  bindings:
+    # Up: previous_candidate    # 上一个
+    # Down: next_candidate      # 下一个
+    Up: previous_candidate_loop # 上一个, 循环
+    Down: next_candidate_loop   # 下一个, 循环
+    Prior: previous_page        # 上一页
+    Next: next_page             # 下一页
 #     # 其他键 KP_Up KP_Down KP_Prior KP_Next Home KP_Home End KP_End
 
 # 下面的 punctuator recognizer key_binder 写了一些所有方案通用的配置项。
