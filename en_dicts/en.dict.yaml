@@ -17,7 +17,7 @@
 # 转化应当大写的单词
 ---
 name: en
-version: "2026-01-26"
+version: "2026-03-08"
 sort: by_weight
 ...
 # +_+
@@ -339,6 +339,7 @@ adore	adore
 adrenaline	adrenaline
 Adrian	Adrian
 adrift	adrift
+adrifts	adrifts
 # ads	ads
 adsense	adsense
 ADSL	ADSL
@@ -544,12 +545,14 @@ Albion	Albion
 album	album
 albums	albums
 Albuquerque	Albuquerque
-Alcatel	Alcatel
+# Alcatel	Alcatel
+alchemical	alchemical
 alchemist	alchemist
 alchemy	alchemy
 alcohol	alcohol
 alcoholic	alcoholic
 alcoholism	alcoholism
+alderman	alderman
 ale	ale
 Alec	Alec
 alembic	alembic
@@ -910,6 +913,7 @@ anticipated	anticipated
 anticipation	anticipation
 antigen	antigen
 antigens	antigens
+antigravity	antigravity
 Antigua	Antigua
 Antilles	Antilles
 antimony	antimony
@@ -1852,7 +1856,7 @@ Bedfordshire	Bedfordshire
 bedroom	bedroom
 bedrooms	bedrooms
 beds	beds
-bedspread	 bedspread
+bedspread	bedspread
 bee	bee
 beech	beech
 beef	beef
@@ -2290,6 +2294,7 @@ bonding	bonding
 bonds	bonds
 bone	bone
 bones	bones
+bonfire	bonfire
 Bonn	Bonn
 bonnie	bonnie
 Bono	Bono
@@ -2646,7 +2651,6 @@ bug	bug
 buggy	buggy
 bugle	bugle
 bugs	bugs
-bugzilla	bugzilla
 Buick	Buick
 build	build
 builder	builder
@@ -3086,6 +3090,7 @@ categories	categories
 categorized	categorized
 category	category
 cater	cater
+caterer	caterer
 catering	catering
 caterpillar	caterpillar
 cathedral	cathedral
@@ -3362,6 +3367,7 @@ cheerleader	cheerleader
 cheerleaders	cheerleaders
 cheers	cheers
 cheese	cheese
+cheesecloth	cheesecloth
 cheetah	cheetah
 chef	chef
 chefs	chefs
@@ -3428,6 +3434,7 @@ Chilean	Chilean
 chili	chili
 chill	chill
 # ChillSeph	ChillSeph
+chime	chime
 chimera	chimera
 chimney	chimney
 chimpanzee	chimpanzee
@@ -4063,6 +4070,8 @@ complied	complied
 complies	complies
 compliment	compliment
 complimentary	complimentary
+complimented	complimented
+complimenting	complimenting
 compliments	compliments
 comply	comply
 complying	complying
@@ -4084,6 +4093,8 @@ comprehension	comprehension
 comprehensive	comprehensive
 compress	compress
 compressed	compressed
+compresses	compresses
+compressing	compressing
 compression	compression
 compressor	compressor
 comprise	comprise
@@ -4150,6 +4161,8 @@ condemn	condemn
 condemned	condemned
 condense	condense
 condensed	condensed
+condenses	condenses
+condensing	condensing
 condiment	condiment
 condition	condition
 conditional	conditional
@@ -5197,6 +5210,7 @@ decriers	decriers
 decries	decries
 decry	decry
 decrying	decrying
+decrypt	decrypt
 dedicate	dedicate
 dedicated	dedicated
 dedication	dedication
@@ -5682,6 +5696,8 @@ dimensional	dimensional
 dimensions	dimensions
 diminish	diminish
 diminished	diminished
+diminishes	diminishes
+diminishing	diminishing
 # dimm	dimm
 din	din
 dinar	dinar
@@ -6069,6 +6085,7 @@ downloading	downloading
 downloads	downloads
 downpour	downpour
 downs	downs
+downside	downside
 downstairs	downstairs
 downstream	downstream
 downtime	downtime
@@ -6271,6 +6288,7 @@ dwelling	dwelling
 dwellings	dwellings
 # dwi	dwi
 Dwight	Dwight
+dwindle	dwindle
 # dx	dx
 # dy	dy
 dye	dye
@@ -6941,6 +6959,7 @@ ethnic	ethnic
 ethnicity	ethnicity
 etiology	etiology
 etiquette	etiquette
+etymology	etymology
 # eu	eu
 Eugene	Eugene
 Euler	Euler
@@ -7292,6 +7311,7 @@ faculties	faculties
 faculty	faculty
 fade	fade
 faded	faded
+fades	fades
 fading	fading
 Fahrenheit	Fahrenheit
 fail	fail
@@ -7520,6 +7540,7 @@ fewer	fewer
 # fh	fh
 # fha	fha
 # fi	fi
+fiance	fiance
 FIAT	FIAT
 fiber	fiber
 fiberglass	fiberglass
@@ -7868,6 +7889,7 @@ footprint	footprint
 footstep	footstep
 footwear	footwear
 for	for
+fora	fora
 Forbes	Forbes
 forbid	forbid
 forbidden	forbidden
@@ -7908,6 +7930,7 @@ forgiveness	forgiveness
 forgot	forgot
 forgotten	forgotten
 fork	fork
+forked	forked
 forks	forks
 form	form
 forma	forma
@@ -8306,6 +8329,7 @@ gauge	gauge
 gauges	gauges
 gaussian	gaussian
 Gauteng	Gauteng
+gauze	gauze
 gave	gave
 Gavin	Gavin
 gay	gay
@@ -8463,6 +8487,7 @@ gimp	gimp
 gin	gin
 Gina	Gina
 ginger	ginger
+ginseng	ginseng
 Giorgio	Giorgio
 Giovanni	Giovanni
 giraffe	giraffe
@@ -8758,6 +8783,7 @@ grille	grille
 grilled	grilled
 grills	grills
 grim	grim
+grime	grime
 grin	grin
 grind	grind
 grinder	grinder
@@ -8899,6 +8925,7 @@ Hague	Hague
 haha	haha
 Hahn	Hahn
 # hai	hai
+haiku	haiku
 hail	hail
 hair	hair
 haired	haired
@@ -9278,6 +9305,7 @@ high	high
 # highbeam	highbeam
 higher	higher
 highest	highest
+highfalutin	highfalutin
 highland	highland
 highlands	highlands
 highlight	highlight
@@ -10576,6 +10604,7 @@ ivy	ivy
 jabber	jabber
 jack	jack
 Jack	Jack
+jackal	jackal
 jacket	jacket
 jackets	jackets
 Jackie	Jackie
@@ -10968,6 +10997,7 @@ kilowatt-hours	kilowatt-hours
 kilowatts	kilowatts
 Kim	Kim
 Kimberly	Kimberly
+Kimi	Kimi
 kin	kin
 kinase	kinase
 kind	kind
@@ -12097,6 +12127,7 @@ manufacturers	manufacturers
 manufactures	manufactures
 manufacturing	manufacturing
 manure	manure
+manus	manus
 manuscript	manuscript
 manuscripts	manuscripts
 many	many
@@ -12206,7 +12237,7 @@ masculine	masculine
 Maserati	Maserati
 mask	mask
 masks	masks
-masochism	 masochism
+masochism	masochism
 Mason	Mason
 mason	mason
 masonry	masonry
@@ -12226,6 +12257,7 @@ mastering	mastering
 masterpiece	masterpiece
 masters	masters
 mastery	mastery
+mastodon	mastodon
 masturbate	masturbate
 masturbated	masturbated
 masturbates	masturbates
@@ -12382,7 +12414,8 @@ medicinal	medicinal
 medicine	medicine
 medicines	medicines
 medieval	medieval
-medina	medina
+Medina	Medina
+mediocrity	mediocrity
 meditate	meditate
 meditation	meditation
 mediterranean	mediterranean
@@ -12680,6 +12713,7 @@ mini	mini
 miniature	miniature
 miniatures	miniatures
 minimal	minimal
+minimax	minimax
 minimize	minimize
 minimized	minimized
 minimizing	minimizing
@@ -12842,6 +12876,7 @@ moist	moist
 moisture	moisture
 mojo	mojo
 # mol	mol
+molar	molar
 mold	mold
 molded	molded
 molding	molding
@@ -12852,6 +12887,7 @@ molecular	molecular
 molecule	molecule
 molecules	molecules
 Molly	Molly
+molt	molt
 molybdenum	molybdenum
 mom	mom
 moment	moment
@@ -13060,6 +13096,7 @@ MSN	MSN
 MTV	MTV
 mu	mu
 much	much
+muck	muck
 mud	mud
 muddle	muddle
 muddy	muddy
@@ -13208,11 +13245,12 @@ narration	narration
 narrative	narrative
 narrator	narrator
 narrow	narrow
+nary	nary
 NAS	NAS
 NASA	NASA
 nasal	nasal
 NASCAR	NASCAR
-Nasdaq	Nasdaq
+NASDAQ	NASDAQ
 Nash	Nash
 Nashville	Nashville
 Nassau	Nassau
@@ -14036,6 +14074,7 @@ oriental	oriental
 orientation	orientation
 oriented	oriented
 orig	orig
+origami	origami
 origin	origin
 original	original
 originality	originality
@@ -14925,6 +14964,7 @@ pistols	pistols
 piston	piston
 pistons	pistons
 pit	pit
+pitaya	pitaya
 # pitbull	pitbull
 Pitcairn	Pitcairn
 pitch	pitch
@@ -15151,6 +15191,7 @@ polyphony	polyphony
 polytechnic	polytechnic
 pomegranate	pomegranate
 pomelo	pomelo
+pompous	pompous
 pond	pond
 ponder	ponder
 ponds	ponds
@@ -15215,6 +15256,7 @@ POS	POS
 pose	pose
 posed	posed
 poses	poses
+posh	posh
 posing	posing
 position	position
 positioned	positioned
@@ -15462,6 +15504,7 @@ presume	presume
 presumed	presumed
 preteen	preteen
 pretend	pretend
+pretentious	pretentious
 pretext	pretext
 Pretoria	Pretoria
 pretty	pretty
@@ -15789,6 +15832,7 @@ PSP	PSP
 # psu	psu
 # psy	psy
 psychiatric	psychiatric
+psychiatrist	psychiatrist
 psychiatry	psychiatry
 psychic	psychic
 psycho	psycho
@@ -16359,6 +16403,7 @@ reef	reef
 reel	reel
 reels	reels
 Reese	Reese
+reeve	reeve
 reeves	reeves
 # ref	ref
 refer	refer
@@ -16394,6 +16439,9 @@ reform	reform
 reformed	reformed
 reforms	reforms
 refrain	refrain
+refrained	refrained
+refraining	refraining
+refrains	refrains
 refresh	refresh
 refreshing	refreshing
 refreshment	refreshment
@@ -16423,6 +16471,7 @@ regardless	regardless
 regards	regards
 RegEd	RegEd
 regency	regency
+regenerate	regenerate
 regeneration	regeneration
 regenerative	regenerative
 regent	regent
@@ -16483,6 +16532,7 @@ rejected	rejected
 rejection	rejection
 rejects	rejects
 rejoice	rejoice
+rejuvenation	rejuvenation
 # rel	rel
 relate	relate
 related	related
@@ -16598,6 +16648,7 @@ rentals	rentals
 rented	rented
 renting	renting
 rents	rents
+reorder	reorder
 reorganization	reorganization
 rep	rep
 repair	repair
@@ -16869,6 +16920,7 @@ reward	reward
 rewarded	rewarded
 rewarding	rewarding
 rewards	rewards
+rewind	rewind
 rewrite	rewrite
 rewritten	rewritten
 Rex	Rex
@@ -17355,6 +17407,7 @@ sanitation	sanitation
 sanity	sanity
 sans	sans
 sans-serif	sans-serif
+Sanskrit	Sanskrit
 Santa	Santa
 Santa Claus	SantaClaus
 Santana	Santana
@@ -17569,6 +17622,7 @@ scrape	scrape
 scraps	scraps
 scratch	scratch
 scratches	scratches
+scrawny	scrawny
 scream	scream
 screaming	screaming
 screen	screen
@@ -18092,6 +18146,7 @@ shown	shown
 showroom	showroom
 shows	shows
 showtimes	showtimes
+shrank	shrank
 shred	shred
 Shrek	Shrek
 Shreveport	Shreveport
@@ -18099,9 +18154,14 @@ shrewd	shrewd
 shrimp	shrimp
 shrine	shrine
 shrink	shrink
+shrinkage	shrinkage
+shrinking	shrinking
+shrinks	shrinks
 Shropshire	Shropshire
 shrubs	shrubs
 shrug	shrug
+shrunk	shrunk
+shrunken	shrunken
 shuffle	shuffle
 # shui	shui
 shut	shut
@@ -18418,6 +18478,7 @@ SMS	SMS
 SMTP	SMTP
 smuggle	smuggle
 # smugmug	smugmug
+smut	smut
 # sn	sn
 snack	snack
 snacks	snacks
@@ -18547,6 +18608,7 @@ songs	songs
 songwriter	songwriter
 Sonia	Sonia
 sonic	sonic
+sonnet	sonnet
 Sonny	Sonny
 Sonoma	Sonoma
 sons	sons
@@ -18557,6 +18619,7 @@ Sony	Sony
 soon	soon
 sooner	sooner
 soonest	soonest
+soot	soot
 soothing	soothing
 soothsay	soothsay
 soothsayer	soothsayer
@@ -18827,6 +18890,9 @@ squared	squared
 squares	squares
 squash	squash
 squeeze	squeeze
+squeezed	squeezed
+squeezes	squeezes
+squeezing	squeezing
 squid	squid
 squirrel	squirrel
 squirt	squirt
@@ -18923,6 +18989,7 @@ stargazers	stargazers
 staring	staring
 stark	stark
 # starr	starr
+starred	starred
 starring	starring
 stars	stars
 start	start
@@ -19253,9 +19320,14 @@ subsections	subsections
 subsequent	subsequent
 subsequently	subsequently
 subset	subset
+subside	subside
+subsided	subsided
+subsidence	subsidence
+subsides	subsides
 subsidiaries	subsidiaries
 subsidiary	subsidiary
 subsidies	subsidies
+subsiding	subsiding
 subsidy	subsidy
 substance	substance
 substances	substances
@@ -19284,6 +19356,7 @@ suburbs	suburbs
 subversion	subversion
 subway	subway
 subwoofer	subwoofer
+subzero	subzero
 succeed	succeed
 succeeded	succeeded
 succeeding	succeeding
@@ -20174,6 +20247,7 @@ tier	tier
 ties	ties
 tiff	tiff
 tiffany	tiffany
+Tiffany	Tiffany
 tiger	tiger
 tigers	tigers
 tight	tight
@@ -20513,6 +20587,8 @@ translation	translation
 translations	translations
 translator	translator
 translators	translators
+transliterate	transliterate
+transliteration	transliteration
 translucent	translucent
 translucently	translucently
 transmission	transmission
@@ -20620,6 +20696,7 @@ trillion	trillion
 trilogy	trilogy
 trim	trim
 trimmed	trimmed
+trimming	trimming
 Trina	Trina
 Trinidad	Trinidad
 trinity	trinity
@@ -21213,6 +21290,9 @@ Vanessa	Vanessa
 vanguard	vanguard
 vanilla	vanilla
 vanish	vanish
+vanished	vanished
+vanishes	vanishes
+vanishing	vanishing
 vanity	vanity
 vans	vans
 vantage	vantage
@@ -21302,6 +21382,7 @@ verbatim	verbatim
 verbs	verbs
 Verde	Verde
 verdict	verdict
+verdigris	verdigris
 verge	verge
 verification	verification
 verified	verified
