@@ -54,14 +54,14 @@ function set_committed_cand_is_symbol(env)
 end
 
 function insert_space_to_candText(env, cand_text)
-    local ccand_text = cand_text
+    local cand_txt = cand_text
     local context = env.engine.context
     local prev_cand_is_word = context:get_property("prev_cand_is_word")
     local prev_cand_is_preedit = context:get_property("prev_cand_is_preedit")
     if (prev_cand_is_preedit == "1") or (prev_cand_is_word == "1") then
-        ccand_text = " " .. cand_text
+        cand_txt = " " .. cand_text
     end
-    return ccand_text
+    return cand_txt
 end
 
 function get_selected_candidate_index(key_value, selected_index, select_keys, page_size)
@@ -75,7 +75,7 @@ function get_selected_candidate_index(key_value, selected_index, select_keys, pa
         ["apostrophe"] = "'",
     }
     local kv = key_map[key_value:lower()] or key_value
-    local key_name = select_keys:find("[" .. kv .. "]") or tonumber(kv)
+    local key_name = tonumber(kv) or select_keys:find("[" .. kv .. "]")
     if not key_name then
         return -1
     elseif key_name == -1 then
