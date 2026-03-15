@@ -316,8 +316,9 @@ patch:
     enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
 
   predictor:                          # 候选字词联想预测
-    trigger: 'jj'
+    trigger: 'jj'                     # 手动触发弹出预测候选菜单
     # db: predict.db                  # librime-predict 数据库
-    max_candidates: 7                 # 联想的候选项个数
     max_iterations: 2                 # 联想预测的次数
+    max_candidates: 7                 # 联想的候选项个数
     db: predict.userdb                # librime-predict-leveldb 数据库
+    cancel_predict: "/"

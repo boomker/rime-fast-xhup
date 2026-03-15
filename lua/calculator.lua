@@ -396,7 +396,7 @@ function T.func(input, seg, env)
             yield(Candidate("calc", seg.start, seg._end, express .. ":" .. methods_desc[code], ""))
         elseif loaded_func then
             local success, result = pcall(loaded_func)
-            if success then
+            if success and type(result) == "number" then
                 local round_val = string.format("%.2f", round(result, 0.01))
                 yield(Candidate("calc", seg.start, seg._end, tostring(result), "答案"))
                 yield(Candidate("calc", seg.start, seg._end, round_val, "近似值"))
