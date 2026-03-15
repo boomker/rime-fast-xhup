@@ -203,6 +203,16 @@ local function get_month_delta(time_oriented)
     return offset_days
 end
 
+local function get_tz_datetime_suffix()
+    local datetime_with_tz = os.date("T%H:%M:%S%z")
+    -- 将时区字符串中的 "+0800" 格式化为 "+08:00"，零时区输出 "Z"
+    local tz_str = tostring(datetime_with_tz)
+    -- 先处理零时区
+    tz_str = tz_str:gsub("([%+%-]0000)$", "Z")
+    -- 再处理其他时区
+    return tz_str:gsub("([%+%-]%d%d)(%d%d)$", "%1:%2")
+end
+
 local function get_current_time(datetime_fmt_string)
     local raw_datetime_str = datetime_fmt_string
     while true do
@@ -238,6 +248,8 @@ local function get_current_time(datetime_fmt_string)
                 replace_index = os.date("%M")     -- 分
             elseif string.find(pattern, "^{sec") then
                 replace_index = os.date("%S")     -- 秒
+            elseif string.find(pattern, "^{TZ") then
+                replace_index = "TZ"
             elseif string.find(pattern, "^{TS") then
                 replace_index = "TS"
             end
@@ -275,6 +287,7 @@ local function get_current_time(datetime_fmt_string)
 
             -- 默认值
             if not flag then replace_value = tostring(replace_index) end
+            if replace_index == "TZ" then replace_value = get_tz_datetime_suffix() end
             local new_pattern = pattern:gsub("+", "%%+"):gsub("-", "%%-")
             datetime_fmt_string = replace_value and string.gsub(datetime_fmt_string, new_pattern, replace_value)
         else
