@@ -265,14 +265,14 @@ zh_hk:                                # 简体转香港繁体
   tips: char                          # 转换提示: all | char 仅单字显示 | none 不显示
   tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做繁转简
   option_name: zh_hk
-  opencc_config: s2hk.json             # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  opencc_config: s2hk.json            # s2t.json | s2hk.json | s2tw.json | s2twp.json
 
 # 简体转台湾繁体
 zh_tw:                                # 简体转台湾繁体
   tips: char                          # 转换提示: all | char 仅单字显示 | none 不显示
   tags: [abc]                         # 限制在对应 tag, 不对其他如反查的内容做繁转简
   option_name: zh_tw
-  opencc_config: s2tw.json             # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  opencc_config: s2tw.json            # s2t.json | s2hk.json | s2tw.json | s2twp.json
 
 # 部件拆字反查
 flypy_radical:                        # 部件拆字反查
