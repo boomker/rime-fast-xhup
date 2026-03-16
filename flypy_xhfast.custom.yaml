@@ -323,4 +323,4 @@ patch:
     max_iterations: 2                 # 联想预测的次数
     max_candidates: 7                 # 联想的候选项个数
     db: predict.userdb                # librime-predict-leveldb 数据库
-    cancel_predict: "/"
+    cancel_predict: "/"               # 额外的用于关闭预测菜单按键
