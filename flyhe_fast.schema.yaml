@@ -5,7 +5,7 @@
 schema:
   schema_id: flyhe_fast
   name: 飞鹤快码
-  version: 2026.03.11
+  version: 2026.03.16
   author:
     - boomker
   description: |
@@ -71,11 +71,11 @@ translator:
   max_word_length: 7                # >0 启用, 过长短语不记整词, 只加元素权重
   core_word_length: 4               # >0 启用, 按段学词 + 相邻段拼接
   initial_quality: 1.1
-  enable_sentence: false
   enable_user_dict: true            # 开启用户词库
+  enable_sentence: false            # 关闭自动造句
   enable_completion: true           # 启用输入补全
+  enable_word_completion: false     # 4 音节以上的词条补全
   encode_commit_history: false      # 历史上屏自动编码成词
-  enable_word_completion: false     # 4 音节以上的词条才补全
   contextual_suggestions: false     # 开启语言模型优化候选
   sentence_over_completion: false
   # max_homophones: 7
