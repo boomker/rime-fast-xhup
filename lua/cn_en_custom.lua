@@ -4,6 +4,9 @@ local T = {}
 
 local function user_dict_exist(word_record, path)
     local file = assert(io.open(path, "r")) --打开
+    if not file then
+        return false
+    end
     for line in file:lines() do
         if line == word_record then
             file:close()
@@ -16,7 +19,9 @@ end
 
 local function save_entry(env, cand_or_text)
     local text = (type(cand_or_text) == string) and cand_or_text or cand_or_text.text
-    if not text or text == "" then return end
+    if not text or text == "" then
+        return
+    end
     if text:match("^[a-zA-Z%p ]+$") then
         local entry = DictEntry()
         entry.text = text -- 上屏英文本身
@@ -64,7 +69,9 @@ function T.init(env)
         local segment = ctx.composition:back()
         local cand = ctx:get_selected_candidate()
         local commit_text = ctx:get_commit_text()
-        if not cand then return end
+        if not cand then
+            return
+        end
 
         cand.text = commit_text or cand.text
         if segment:has_tag(env.cn_tag) then
@@ -72,15 +79,18 @@ function T.init(env)
                 save_entry(env, cand)
             end
         elseif
-            segment:has_tag(env.en_tag) or
-            (cand.text:match("^%a[%a%p]+$") and env.enable_en_make_word)
+            segment:has_tag(env.en_tag)
+            or (cand.text:match("^%a[%a%p]+$") and env.enable_en_make_word)
         then
             env.enable_en_make_word = false
             local cand_text = cand.text
-            local file = assert(io.open(env.dict_path, "a"))
+            local file, err = io.open(env.dict_path, "a")
             local record = cand_text .. "\t" .. cand_text .. "\t100000"
 
             save_entry(env, cand)
+            if (not file) or err then
+                return
+            end
             file:write(record .. "\n"):close()
         end
     end
@@ -107,7 +117,7 @@ function T.fini(env)
     if env.en_memory then
         env.en_memory:disconnect()
         env.en_memory = nil
-        collectgarbage('collect')
+        collectgarbage("collect")
     end
 
     if env.cn_make_word_commit_notifier then
@@ -129,7 +139,9 @@ end
 function T.func(input, seg, env)
     local context = env.engine.context
     local composition = context.composition
-    if composition:empty() then return end
+    if composition:empty() then
+        return
+    end
 
     local segmentation = composition:toSegmentation()
     local seg_start = segmentation:get_confirmed_position() + 1
@@ -138,7 +150,9 @@ function T.func(input, seg, env)
         local query_encode = raw_input_code:match("^" .. "(.*)%`=")
         local cand_comment = raw_input_code:match("=(.+)$") or " ~造词中..."
         local word_cands = env.free_make_word_tran:query(query_encode, seg)
-        if not word_cands then return end
+        if not word_cands then
+            return
+        end
 
         for cand in word_cands:iter() do
             local free_cand = Candidate("cn_custom", seg.start, seg._end, cand.text, cand_comment)

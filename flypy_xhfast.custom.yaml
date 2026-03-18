@@ -31,7 +31,7 @@ patch:
       reset: 1
     - name: prediction  # 仅用于移动端
       states: [休想, 联想]
-      reset: 1
+      reset: 0
     - name: char_mode
       states: [词组优先, 单字优先]
     - name: charset
@@ -59,7 +59,7 @@ patch:
   'engine/translators/@before 0': predict_translator
   'engine/processors/@after 0': lua_processor@*keybinder
   # 注释下行, 以取消中英混合候选词自动添加的空格
-  'engine/filters/@before last': lua_filter@*word_append_space*filter
+  # 'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
   # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
@@ -323,4 +323,4 @@ patch:
     max_iterations: 2                 # 联想预测的次数
     max_candidates: 7                 # 联想的候选项个数
     db: predict.userdb                # librime-predict-leveldb 数据库
-    cancel_predict: "/"               # 额外的用于关闭预测菜单按键
+    cancel_predict: "'"               # 额外的用于关闭预测菜单按键
