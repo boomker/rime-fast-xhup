@@ -36,6 +36,9 @@ local function write_word_to_file(env, record_type)
         return false
     end
     local fd = assert(io.open(filename, "w")) -- 打开
+    if not fd then
+        return false
+    end
     fd:setvbuf("line")
     fd:write(record_header) -- 写入文件头部
     -- fd:flush() --刷新
@@ -109,7 +112,9 @@ function processor.func(key, env)
 
     if context:has_menu() and action_map[key:repr()] then
         local cand = context:get_selected_candidate()
-        if not cand then return 2 end
+        if not cand then
+            return 2
+        end
 
         local action_type = action_map[key:repr()]
         local ctx_map = {
@@ -119,7 +124,9 @@ function processor.func(key, env)
         local res = append_word_to_droplist(env, ctx_map, action_type)
 
         context:refresh_non_confirmed_composition() -- 刷新当前输入法候选菜单, 实现看到实时效果
-        if not res then return 2 end
+        if not res then
+            return 2
+        end
 
         if res then
             -- 期望被删的词和隐藏的词条写入文件(drop_words.lua, hide_words.lua)
@@ -153,8 +160,8 @@ function filter.func(input, env)
                 table.insert(cands, cand)
             elseif
                 not (
-                    table.find_index(drop_words, cand_text) or
-                    (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+                    table.find_index(drop_words, cand_text)
+                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
                 )
             then
                 yield(cand)
@@ -163,15 +170,17 @@ function filter.func(input, env)
         else
             if
                 not (
-                    table.find_index(drop_words, cand_text) or
-                    (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
+                    table.find_index(drop_words, cand_text)
+                    or (hide_words[cand_text] and table.find_index(hide_words[cand_text], preedit_code))
                 )
             then
                 table.insert(cands, cand)
             end
         end
 
-        if #cands >= 666 then break end
+        if #cands >= 666 then
+            break
+        end
     end
 
     for _, cand in ipairs(cands) do

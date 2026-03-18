@@ -7,12 +7,16 @@ local M = {}
 
 local function get_filter_limit(env)
     local limit = env.candidate_cache_limit or 100
-    if limit < 1 then return 1 end
+    if limit < 1 then
+        return 1
+    end
     return limit
 end
 
 local function ensure_translator_resources(env)
-    if env.custom_phrase_tran and env.reversedb then return end
+    if env.custom_phrase_tran and env.reversedb then
+        return
+    end
 
     local config = env.engine.schema.config
     local schema_id = config:get_string("schema/schema_id")
@@ -30,7 +34,7 @@ local function get_record_filename()
         return string.format("%s\\lua\\pin_word_record.lua", user_data_dir)
     elseif system_name:lower():match("ios") then
         user_data_dir =
-        "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+            "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
     else
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
@@ -41,16 +45,21 @@ local function write_word_to_file(env)
     local filename = get_record_filename()
     local record_header = string.format("local pin_word_records =\n")
     local record_tailer = string.format("\nreturn pin_word_records")
-    if not filename then return false end
+    if not filename then
+        return false
+    end
 
-    local fd = assert(io.open(filename, "w"))            --打开
+    local fd = assert(io.open(filename, "w")) --打开
+    if not fd then
+        return false
+    end
     fd:setvbuf("line")
-    fd:write(record_header)                              --写入文件头部
+    fd:write(record_header) --写入文件头部
     -- fd:flush() --刷新
     local record = table.serialize(env.pin_word_records) -- lua 的 table 对象 序列化为字符串
-    fd:write(record)                                     --写入 序列化的字符串
-    fd:write(record_tailer)                              --写入文件尾部, 结束记录
-    fd:close()                                           --关闭
+    fd:write(record) --写入 序列化的字符串
+    fd:write(record_tailer) --写入文件尾部, 结束记录
+    fd:close() --关闭
 end
 
 function M.init(env)
@@ -152,7 +161,8 @@ function T.func(input, seg, env)
         for _, w in ipairs(pin_word_tab) do
             local reverse_code = (env.reversedb:lookup(w) or ""):gsub("~%l%l", "")
             if
-                (utf8.len(input_code) / utf8.len(w) ~= 2) or w:match("[%a%d%p]+")
+                (utf8.len(input_code) / utf8.len(w) ~= 2)
+                or w:match("[%a%d%p]+")
                 or ((#reverse_code == 2) and (not reverse_code:match(input_code)))
             then
                 -- 只对非完整编码的字词或不在码表里的字进行置顶, 否则会导致造词失效
@@ -165,7 +175,9 @@ function T.func(input, seg, env)
 
     -- 自定义短语的置顶字词加类型标记
     local custom_tran = env.custom_phrase_tran and env.custom_phrase_tran:query(input, seg) or nil
-    if not custom_tran then return end
+    if not custom_tran then
+        return
+    end
 
     local yielded = 0
     local limit = get_filter_limit(env)
@@ -173,20 +185,22 @@ function T.func(input, seg, env)
         cand.type = "custom_phrase_" .. cand.type
         yield(cand)
         yielded = yielded + 1
-        if yielded >= limit then break end
+        if yielded >= limit then
+            break
+        end
     end
 end
 
 function F.func(input, env)
-    local pin_cands           = {}
-    local other_cands         = {}
-    local single_char_cands   = {}
+    local pin_cands = {}
+    local other_cands = {}
+    local single_char_cands = {}
     local custom_phrase_cands = {}
-    local pin_mark            = env.pin_mark
-    local custom_mark         = env.custom_phrase_mark
-    local raw_input           = env.engine.context.input
-    local pin_word_tab        = env.pin_word_records[raw_input] or nil
-    local other_limit         = get_filter_limit(env)
+    local pin_mark = env.pin_mark
+    local custom_mark = env.custom_phrase_mark
+    local raw_input = env.engine.context.input
+    local pin_word_tab = env.pin_word_records[raw_input] or nil
+    local other_limit = get_filter_limit(env)
 
     for cand in input:iter() do
         local cand_text = cand.text
@@ -240,7 +254,7 @@ function F.func(input, env)
 end
 
 return {
-    processor  = { init = P.init, func = P.func, fini = M.fini },
+    processor = { init = P.init, func = P.func, fini = M.fini },
     translator = { init = T.init, func = T.func, fini = M.fini },
-    filter     = { init = F.init, func = F.func, fini = M.fini },
+    filter = { init = F.init, func = F.func, fini = M.fini },
 }

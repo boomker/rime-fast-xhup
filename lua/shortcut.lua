@@ -124,7 +124,9 @@ function processor.func(key, env)
     local all_command_items = env.all_command_items
 
     -- check trigger conditions
-    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return 2 end
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then
+        return 2
+    end
     if
         not (
             input_code:match("^/j%l+")
@@ -199,13 +201,17 @@ function processor.func(key, env)
     local selected_index = segment.selected_index or -1
     local select_keys = env.select_keys
     local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, select_keys, page_size)
-    if selected_cand_idx < 0 then return 2 end
+    if selected_cand_idx < 0 then
+        return 2
+    end
 
     if input_code:match("^" .. favorcmd_prefix) then
         if (input_code == favorcmd_prefix) and segment.prompt:match("快捷指令") then
             local cand = segment:get_candidate_at(selected_cand_idx)
             local cand_text = cand and cand.text or nil
-            if not cand_text then return 2 end
+            if not cand_text then
+                return 2
+            end
 
             local prompt = cand_text:gsub(" ", ""):gsub("[%a%p]", "")
             launcher["main_menu_selected_text"] = cand_text:gsub(" ", "")
@@ -215,7 +221,8 @@ function processor.func(key, env)
         end
 
         if (not segment.prompt:match("快捷指令")) and launcher["main_menu_selected"] then
-            local candidate_text = segment:get_candidate_at(selected_cand_idx).text:gsub(" ", "")
+            local selected_cand_text = segment:get_candidate_at(selected_cand_idx).text
+            local candidate_text = selected_cand_text and selected_cand_text:gsub(" ", "")
             local idx = launcher["second_menu_keys"][candidate_text]
             local main_menu_obj = launcher["main_menu_selected"]
             local action = main_menu_obj and main_menu_obj["action"]
@@ -270,8 +277,12 @@ function translator.func(input, seg, env)
     local app_launch_prefix = env.app_launch_prefix
     local all_command_items = env.all_command_items
     local composition = context.composition
-    if composition:empty() then return end
-    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return end
+    if composition:empty() then
+        return
+    end
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then
+        return
+    end
 
     local segment = composition:back()
     local input_code = context.input
@@ -281,11 +292,13 @@ function translator.func(input, seg, env)
         local app_trigger_key = "/j" .. input_code:gsub(app_launch_prefix, "", 1)
         app_items = all_app_items and all_app_items[app_trigger_key]
     end
-    if (not app_items) and (input_code == app_launch_prefix) then app_items = all_app_items end
+    if (not app_items) and (input_code == app_launch_prefix) then
+        app_items = all_app_items
+    end
 
     -- 应用闪切
     if app_items then
-        segment.tags = segment.tags - Set({"abc"})
+        segment.tags = segment.tags - Set({ "abc" })
         segment.prompt = "〔应用闪切〕"
         local res_tbl = get_app_obj(app_items, "name")
         for _, value in ipairs(res_tbl) do
@@ -303,7 +316,7 @@ function translator.func(input, seg, env)
         and not segment.prompt:match("快捷指令")
     then
         reset_state()
-        segment.tags = segment.tags - Set({"abc"})
+        segment.tags = segment.tags - Set({ "abc" })
         segment.prompt = "〔快捷指令〕"
 
         launcher["main_menu_keys"] = {}
