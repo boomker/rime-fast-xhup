@@ -4,6 +4,7 @@
 require("lib/string")
 require("lib/rime_helper")
 local Env = require("lib/env_api")
+local T = {}
 local n2c = {
     ["0"] = "〇",
     ["1"] = "一",
@@ -357,66 +358,43 @@ local function number_translator(num)
     return result
 end
 
-local T = {}
-local M = {}
-
 function T.init(env)
     Env(env)
-    local schema = env.engine.schema
-    local context = env.engine.context
     local config = env.engine.schema.config
-    local default_labels = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨" }
     env.prompt = config:get_string("chinese_number/tips") or "中文数字"
     env.tag = config:get_string("chinese_number/tag") or "chinese_number"
     env.trigger_prefix = config:get_string("chinese_number/prefix") or "nN"
-    env.current_labels = env:Config_get("menu/alternative_select_labels")
-    env.current_select_keys = env:Config_get("menu/alternative_select_keys")
-    env.alter_select_keys = env:Config_get("chinese_number/select_keys") or "sdfjum"
-    env.alter_select_labels = string.to_table(env.alter_select_keys)
-    M.original_labels = M.original_labels or env.current_labels or default_labels
-    M.original_select_keys = M.original_select_keys or env.current_select_keys or "1234567"
-    env.notifier_commit_number = context.commit_notifier:connect(function(ctx)
-        local segment = ctx.composition:back()
-        if segment and segment.prompt:match(env.prompt) then
-            env:Config_set("menu/alternative_select_labels", M.original_labels)
-            env:Config_set("menu/alternative_select_keys", M.original_select_keys)
-            env.engine:apply_schema(Schema(schema.schema_id))
-        end
-    end)
+    env.select_keys = config:get_string("chinese_number/select_keys") or "sdfjum"
 end
 
 function T.fini(env)
-    if env.notifier_commit_number then
-        env.notifier_commit_number:disconnect()
-        env.notifier_commit_number = nil
-    end
 end
 
 function T.func(input, seg, env)
     local engine = env.engine
-    local schema = engine.schema
     local context = engine.context
     local input_code = context.input
     local composition = context.composition
+    if composition:empty() then return end
     local segment = composition:back()
+    if not segment then return end
     local payload_str, numberPart
 
     if seg:has_tag(env.tag) or input_code:match("^" .. env.trigger_prefix .. "$") then
         segment.tags = segment.tags - Set({ "abc" })
         segment.tags = segment.tags + Set({ "chinese_number" })
         segment.prompt = "〔" .. env.prompt .. "〕"
-        if (env.current_select_keys ~= env.alter_select_keys) and (input_code:match("%d")) then
-            env:Config_set("menu/alternative_select_keys", env.alter_select_keys)
-            env:Config_set("menu/alternative_select_labels", env.alter_select_labels)
-            engine:apply_schema(Schema(schema.schema_id))
-            context:push_input(input_code)
-        end
 
         payload_str = input:gsub("[%a/]+", "")
         numberPart = (payload_str:len() > 0) and number_translator(payload_str) or nil
         if numberPart and #numberPart > 0 then
             for i = 1, #numberPart do
-                yield(Candidate(input, seg.start, seg._end, numberPart[i][1], numberPart[i][2]))
+                local hint = env.select_keys:sub(i, i)
+                local comment = numberPart[i][2]
+                if hint and hint ~= "" then
+                    comment = "〔" .. hint .. "〕" .. comment
+                end
+                yield(Candidate(input, seg.start, seg._end, numberPart[i][1], comment))
             end
         end
     end
