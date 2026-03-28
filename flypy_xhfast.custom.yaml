@@ -59,7 +59,7 @@ patch:
   'engine/translators/@before 0': predict_translator
   'engine/processors/@after 0': lua_processor@*keybinder
   # 注释下行, 以取消中英混合候选词自动添加的空格
-  # 'engine/filters/@before last': lua_filter@*word_append_space*filter
+  'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
   # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
@@ -318,9 +318,12 @@ patch:
     enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
 
   predictor:                          # 候选字词联想预测
-    trigger: 'jj'                     # 手动触发弹出预测候选菜单
-    # db: predict.db                  # librime-predict 数据库
-    max_iterations: 2                 # 联想预测的次数
-    max_candidates: 7                 # 联想的候选项个数
+    trigger: 'ee'                     # 手动触发弹出预测候选菜单
+    cancel_key: "'"                   # 额外的用于关闭预测菜单按键
+    max_iterations: 1                 # 联想预测的次数
+    min_candidates: 2                 # 联想预测的候选项最少个数(不足时,尝试读fallback_db)
+    max_candidates: 4                 # 联想预测的候选项最多个数
     db: predict.userdb                # librime-predict-leveldb 数据库
-    cancel_predict: "'"               # 额外的用于关闭预测菜单按键
+    fallback_db: predict.db           # librime-predict 数据库
+    continuous_prediction: true       # 是否开启连续预测 false: 受 max_iterations 限制; true: 尽可能持续预测，直到没有候选
+    deleted_record_expire_days: 90    # 默认0永不清理

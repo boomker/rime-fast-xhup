@@ -153,7 +153,7 @@ patch:
       ascii_mode: true
       ascii_punct: true
       punct_unpair_flag: true
-    com.cmuxterm.app:
+    dev.mori.app:
       ascii_mode: true
       ascii_punct: true
       punct_unpair_flag: true
