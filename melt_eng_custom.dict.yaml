@@ -1,0 +1,13 @@
+# Rime dictionary
+# encoding: utf-8
+#
+# 挂载英文输入方案的词库
+#
+
+---
+name: melt_eng_custom
+version: 2026.04.01
+import_tables:
+  - en_dicts/en                       # 英文base词库
+  - en_dicts/en_custom                # 自定义自造词
+...

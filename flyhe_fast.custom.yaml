@@ -16,7 +16,6 @@ patch:
   switches/+:
     - name: prediction
       states: [休想, 联想]
-      reset: 0
 
   # 输入引擎
   'engine/processors/@before 0': predictor
@@ -39,6 +38,9 @@ patch:
     select_first_character: "9"                 # `9/minus` 以词定字(首字)
     select_last_character: "0"                  # `0/equal` 以词定字(尾字)
     symbol_menu_fallback: "Control+p"           # 符号二级菜单返回主菜单键
+
+  # 次翻译器
+  melt_eng/dictionary: melt_eng_custom          # 挂载词库 melt_eng_custom.dict.yaml
 
   cand_selector:                                # 候选选择器
     word_lookup_limit: 300                      # 检索最多迭代数

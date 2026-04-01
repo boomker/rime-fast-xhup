@@ -129,8 +129,9 @@ function processor.func(key, env)
     local input_code = context.input
     local page_size  = schema.page_size
 
-    if key:release() or key:alt() or key:caps() then return 2 end
     if not env.pair_toggle then return 2 end
+    if key:release() or key:alt() or key:caps() then return 2 end
+    if (not key_code) or (key_code == "") or (key_value == "") then return 2 end
 
     local composition = context.composition
     local ascii_mode  = context:get_option("ascii_mode")
