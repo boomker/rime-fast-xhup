@@ -95,7 +95,7 @@ function P.func(key, env)
     -- 触发单字优先
     if
         context:has_menu()
-        and (preedit_code:match("^%l%l%l%l?$"))
+        and (raw_input_code:match("^%l%l%l%l?$"))
         and (key:repr() == env.char_mode_switch_key)
     then
         local switch_to_val = not char_mode_state
