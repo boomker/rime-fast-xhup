@@ -10,11 +10,11 @@
 patch:
   # 候选菜单
   menu/+:
-    page_size: 7                        # 自定义候选项个数
-    # candidate_cycle: true
+    page_size: 5                      # 候选项个数
+    candidate_cycle: true
+    # alternative_select_keys: 1234567  # 候选键
     # 注释掉下行以恢复常规候选标签序号
     alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⓪ ]
-    # alternative_select_keys: 1234567  # 候选项选中快捷键
 
   # 候选菜单布局样式
   style/+:
@@ -31,7 +31,6 @@ patch:
       reset: 1
     - name: prediction  # 仅用于移动端
       states: [休想, 联想]
-      reset: 0
     - name: char_mode
       states: [词组优先, 单字优先]
     - name: charset
@@ -80,21 +79,21 @@ patch:
     select_first_character: "9"               # `9/minus` 以词定字(首字)
     select_last_character: "0"                # `0/equal` 以词定字(尾字)
     bindings/+:
-      - {when: has_menu,  accept: ";", send: Control+2}         # 分号; 用于第2候选
-      - {when: has_menu,  accept: ".", send: Control+3}         # 句号. 用于第3候选
-      - {when: paging,    accept: comma, send: Page_Up}         # 逗号, 返回上一页
-      - {when: has_menu,  accept: ']', send: Page_Down}         # 括号] 下一页
-      # - {when: has_menu,  accept: "'", send: Control+3}       # 引号' 用于第3候选
-      # - {when: paging,    accept: minus,  send: Page_Up}      # 减号- 返回上一页
-      # - {when: paging,    accept: equal,  send: Page_Down}    # 等号= 下一页
-      # - {when: has_menu,  accept: period, send: Page_Down}    # 句号. 下一页
-      - {when: always,    accept: Control+Shift+0, select: .next}
-      - {when: always,    accept: Control+Shift+E, select: easy_en}
+      - {when: has_menu,  accept: ";", send: Control+2}             # 分号; 用于第2候选
+      # - {when: has_menu,  accept: ".", send: Control+3}           # 句号. 用于第3候选
+      # - {when: has_menu,  accept: "'", send: Control+3}           # 引号' 用于第3候选
+      # - {when: paging,    accept: minus,  send: Page_Up}          # 减号- 返回上一页
+      # - {when: paging,    accept: equal,  send: Page_Down}        # 等号= 下一页
+      # - {when: has_menu,  accept: period, send: Page_Down}        # 句号. 下一页
+      - {when: has_menu,  accept: ']', send: Page_Down}             # 括号] 下一页
+      - {when: paging,    accept: comma, send: Page_Up}             # 逗号, 返回上一页
       - {when: composing, accept: Shift+Tab,    send: Shift+Left}
       - {when: composing, accept: Control+i,    send: Shift+Left}
       - {when: composing, accept: Tab,          send: Shift+Right}
       - {when: composing, accept: Control+o,    send: Shift+Right}
-      - {when: composing, accept: Control+w,    send: Control+BackSpace}
+      - {when: always,    accept: Control+Shift+0, select: ".next"}
+      - {when: always,    accept: Control+Shift+E, select: easy_en}
+      - {when: composing, accept: Control+w, send: Control+BackSpace}
 
       # 以下按键绑定规则(含`tag` / `match`)需 keybinder(lua) 支持
       - {match: "^/$",    accept: "/", send: '{Down}'}
@@ -316,8 +315,11 @@ patch:
     # trigger: 'ee'                     # 手动触发弹出预测候选菜单
     # cancel_key: "'"                   # 额外的用于关闭预测菜单按键
     # max_iterations: 1                 # 联想预测的次数
-    # min_candidates: 2                 # 联想的候选项个数
-    # max_candidates: 4                 # 联想的候选项个数
+    # min_candidates: 2                 # 联想预测的候选项最少个数(不足时,尝试读fallback_db)
+    # max_candidates: 4                 # 联想预测的候选项最多个数
+    # max_context_commits: 2
     # db: predict.userdb                # librime-predict-leveldb 数据库
     # fallback_db: predict.db           # librime-predict 数据库
+    # rules_db: predict_rules.db
+    # continuous_prediction: true       # 是否开启连续预测 false: 受 max_iterations 限制; true: 尽可能持续预测，直到没有候选
     # deleted_record_expire_days: 90    # 默认0永不清理

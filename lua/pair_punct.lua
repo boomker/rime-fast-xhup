@@ -6,6 +6,7 @@
 -- 配置說明
 -- 在你的schema文件裏引入這個segmentor，需要放在abc_segmentor的前面
 
+require("lib/string")
 require("lib/rime_helper")
 local processor = {}
 local segmentor = {}
@@ -20,7 +21,7 @@ local pairTable = {
     ["j"] = { "{", "}" },
     ["k"] = { "<", ">" },
     -- 闭合符号是全角的
-    ["d"] = { '“', '”' },
+    ["d"] = { "“", "”" },
     ["e"] = { "‘", "’" },
     ["s"] = { "｛", "｝" },
     ["l"] = { "（", "）" },
@@ -34,10 +35,10 @@ local pairTable = {
     ["v"] = { "〖", "〗" },
     ["w"] = { "《", "》" },
     ["x"] = { "〈", "〉" },
-    ['Y'] = {
-        [34] = { '“', '”' },
+    ["Y"] = {
+        [34] = { "“", "”" },
         [39] = { "‘", "’" },
-    }
+    },
 }
 
 local function get_key_char(segment)
@@ -115,40 +116,28 @@ local function get_pair_punct_idx(op)
 end
 
 function processor.init(env)
-    local config    = env.engine.schema.config
+    local config = env.engine.schema.config
     env.system_name = detect_os()
     env.pair_toggle = config:get_bool("pair_punct/enable") or false
-    env.select_keys = config:get_string("menu/alternative_select_keys") or '123456789'
+    env.select_keys = config:get_string("menu/alternative_select_keys") or "123456789"
 end
 
 function processor.func(key, env)
-    local key_code   = key.keycode
-    local key_value  = key:repr()
-    local schema     = env.engine.schema
-    local context    = env.engine.context
-    local input_code = context.input
-    local page_size  = schema.page_size
+    local key_value = key:repr()
+    local schema = env.engine.schema
+    local context = env.engine.context
+    local raw_input = context.input
 
-    if key:release() or key:alt() or key:caps() then return 2 end
     if not env.pair_toggle then return 2 end
+    if key:release() or key:alt() or key:caps() then return 2 end
 
     local composition = context.composition
-    local ascii_mode  = context:get_option("ascii_mode")
-    local unpair_flag = context:get_option("punct_unpair_flag")
-    if (pairTable['Y'][key_code]) and composition:empty()
-        and (not env.system_name:lower():match("android"))
-        and (not ascii_mode) and (not unpair_flag)
-    then
-        context:pop_input(1)
-        context:push_input(pairTable['Y'][key_code][1])
-        return 1 -- kAccept
-    end
-
-    if not input_code:match('[<%(%[{]') then return 2 end
     local segment = composition and composition:back()
+    if not raw_input:match("[<%(%[{]") then return 2 end
     if (not segment) or (not segment:has_tag("punct")) then return 2 end
 
     local idx = segment.selected_index
+    local page_size = schema.page_size
     local select_keys = env.select_keys or "123456789"
 
     local selected_cand_index = get_selected_candidate_index(key_value, idx, select_keys, page_size)
@@ -171,13 +160,13 @@ function processor.func(key, env)
 end
 
 function segmentor.init(env)
-    local config        = env.engine.schema.config
-    local schema_id     = config:get_string("schema/schema_id")
-    local schema        = Schema(schema_id)
-    env.closing_punct   = nil
-    env.defer           = false
-    env.system_name     = detect_os()
-    env.pair_toggle     = config:get_bool("pair_punct/enable") or false
+    local config = env.engine.schema.config
+    local schema_id = config:get_string("schema/schema_id")
+    local schema = Schema(schema_id)
+    env.closing_punct = nil
+    env.defer = false
+    env.system_name = detect_os()
+    env.pair_toggle = config:get_bool("pair_punct/enable") or false
     env.echo_translator = Component.Translator(env.engine, schema, "", "echo_translator")
     env.update_notifier = env.engine.context.update_notifier:connect(on_update_or_select(env))
     env.select_notifier = env.engine.context.select_notifier:connect(on_update_or_select(env))
@@ -185,16 +174,18 @@ function segmentor.init(env)
 end
 
 function segmentor.fini(env)
-    if env.echo_translator then env.echo_translator = nil end
+    if env.echo_translator then
+        env.echo_translator = nil
+    end
     if env.update_notifier then
         env.update_notifier:disconnect()
         env.update_notifier = nil
-     end
+    end
     if env.select_notifier then
         env.select_notifier:disconnect()
         env.select_notifier = nil
-     end
-     if env.commit_notifier then
+    end
+    if env.commit_notifier then
         env.commit_notifier:disconnect()
         env.commit_notifier = nil
     end
@@ -207,6 +198,7 @@ function segmentor.func(segmentation, env)
 
     if not env.pair_toggle then return true end
     if segmentation:empty() then return true end
+    local mobile_platform = env.system_name:lower():match("android")
 
     local csp = segmentation:get_current_start_position() + 1
     local match_start = segmentation:get_current_start_position()
@@ -214,11 +206,11 @@ function segmentor.func(segmentation, env)
     local input_code = segmentation.input:sub(0, csp)
     opening_punct = string.utf8_sub(input_code, -1, -1) or nil
 
-    if (input_code:match("^%a[%a/]+%p$")) then
+    if input_code:match("^%a[%a/]+%p$") then
         opening_punct = nil
     elseif not (opening_punct and opening_punct:match("[%a%d%p]")) then
         opening_punct = input_code:gsub("[%a%d%p]+", "")
-    elseif (input_code:match('^%a+[<%(%[{]%a$')) then
+    elseif input_code:match("^%a+[<%(%[{]%a$") then
         opening_punct = input_code:gsub("%a", "")
         punct_index_key = get_pair_punct_idx(opening_punct)
         local punct_pair = pairTable[punct_index_key]
@@ -227,7 +219,7 @@ function segmentor.func(segmentation, env)
         env.defer = true
         return true
     end
-    if context:has_menu() and env.system_name:lower():match("android") then
+    if context:has_menu() and mobile_platform then
         local cand = context:get_selected_candidate()
         local cand_text = cand and cand.text
         if cand_text then

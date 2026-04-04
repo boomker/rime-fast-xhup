@@ -3,8 +3,8 @@
 # 覆盖 flyhe_fast.schema.yaml 的部分参数。
 # 在此方案下，这里的配置具有最高优先级
 patch:
-  "menu/alternative_select_keys": 1234567       # 候选项选中快捷键
-  "menu/page_size": 5                           # 自定义候选项个数
+  "menu/alternative_select_keys": 1234567       # 候选键
+  "menu/page_size": 5                           # 候选项个数
   "style/font_point": 18                        # 候选字大小
   "style/line_spacing": 5                       # 行间距大小
   "style/show_paging": false                    # 是否显示分页符号
@@ -16,7 +16,6 @@ patch:
   switches/+:
     - name: prediction
       states: [休想, 联想]
-      reset: 0
 
   # 输入引擎
   'engine/processors/@before 0': predictor
@@ -39,6 +38,12 @@ patch:
     select_first_character: "9"                 # `9/minus` 以词定字(首字)
     select_last_character: "0"                  # `0/equal` 以词定字(尾字)
     symbol_menu_fallback: "Control+p"           # 符号二级菜单返回主菜单键
+
+  # 次翻译器
+  # melt_eng/dictionary: melt_eng_custom          # 挂载词库 melt_eng_custom.dict.yaml
+
+  pair_punct:                                   # 符号配对开关
+    enable: true
 
   cand_selector:                                # 候选选择器
     word_lookup_limit: 300                      # 检索最多迭代数
@@ -77,10 +82,15 @@ patch:
     # 时间前缀: 凌晨, 早上, 上午, 中午, 下午, 夜晚, 午夜
     enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
 
-  predictor:                                    # 候选字词联想预测
-    # trigger: 'jj'                               # 手动触发弹出预测候选菜单
-    db: predict.db                              # librime-predict 数据库
-    max_iterations: 2                           # 联想预测的次数
-    max_candidates: 7                           # 联想的候选项个数
-    # db: predict.userdb                          # librime-predict-leveldb 数据库
-    # cancel_predict: "/"                         # 额外的用于关闭预测菜单按键
+  predictor:                          # 候选字词联想预测
+    # trigger: 'ee'                     # 手动触发弹出预测候选菜单
+    # cancel_key: "'"                   # 额外的用于关闭预测菜单按键
+    # max_iterations: 1                 # 联想预测的次数
+    # min_candidates: 2                 # 联想预测的候选项最少个数(不足时,尝试读fallback_db)
+    # max_candidates: 4                 # 联想预测的候选项最多个数
+    # max_context_commits: 2
+    # db: predict.userdb                # librime-predict-leveldb 数据库
+    # fallback_db: predict.db           # librime-predict 数据库
+    # rules_db: predict_rules.db
+    # continuous_prediction: true       # 是否开启连续预测 false: 受 max_iterations 限制; true: 尽可能持续预测，直到没有候选
+    # deleted_record_expire_days: 90    # 默认0永不清理
