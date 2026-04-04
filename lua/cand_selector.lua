@@ -95,7 +95,7 @@ function P.func(key, env)
     -- 触发单字优先
     if
         context:has_menu()
-        and (raw_input_code:match("^%l%l%l%l?$"))
+        and (preedit_code:match("^%l%l%l%l?$"))
         and (key:repr() == env.char_mode_switch_key)
     then
         local switch_to_val = not char_mode_state
@@ -124,6 +124,8 @@ function P.func(key, env)
     end
 
     -- 单字全码唯一自动顶屏(ab/xy?)
+    local segmentation = composition:toSegmentation()
+    if segmentation:get_confirmed_position() > 0 then return 2 end
     if
         env.char_auto_commit
         and raw_input_code:match("^%l%l/%l?%l?$")
@@ -266,6 +268,7 @@ function T.func(input, seg, env)
             end
         end
 
+        if segmentation:get_confirmed_position() > 0 then return end
         -- 单字全码唯一自动顶屏(ab/xy?)
         if env.char_auto_commit and (#yx_code > 0) and (matched_char_cand_count == 1) then
             env.engine:commit_text(prev_cand_text)

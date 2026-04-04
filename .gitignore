@@ -10,8 +10,8 @@ __pycache__/
 **/debug.log
 **/.ropeproject
 user.yaml
-wanxiang*.gram
 zh-*huayu*.gram
+predict_rules.db
 installation.yaml
 # lua/cold_word_records/*
 # lua/pin_word_record.lua

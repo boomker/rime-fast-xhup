@@ -35,6 +35,7 @@ engine:
   processors:
     - lua_processor@*select_char
     - lua_processor@*symbol_menu
+    - lua_processor@*pair_punct*processor
     - lua_processor@*cand_selector*processor
     - ascii_composer
     - recognizer
@@ -48,6 +49,7 @@ engine:
     - ascii_segmentor
     - matcher
     - matcher@date_time_seg
+    - lua_segmentor@*pair_punct*segmentor
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
@@ -186,8 +188,8 @@ key_binder:
     # - {when: paging,    accept: minus,  send: Page_Up}              # 减号- 上一页
     # - {when: has_menu,  accept: equal, send: Page_Down}             # 等号= 下一页
     - {when: has_menu,  accept: ";", send_sequence: '{Control+2}'}    # 引号; 用于第2候选
-    - {when: has_menu,  accept: "'", send_sequence: '{Control+3}'}    # 引号' 用于第3候选
-    # - {when: has_menu,  accept: ".", send_sequence: '{Control+3}'}  # 句号. 用于第3候选
+    # - {when: has_menu,  accept: "'", send_sequence: '{Control+3}'}    # 引号' 用于第3候选
+    # - {when: has_menu,  accept: ".", send_sequence: '{Control+3}'}    # 句号. 用于第3候选
     - {when: composing, accept: Tab, send: Control+Right}
     - {when: composing, accept: Shift+Tab, send: Control+Left}
     - {when: composing, accept: Control+k, send: Shift+Delete}
