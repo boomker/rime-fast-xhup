@@ -1,0 +1,4 @@
+patch:
+  rules/+:
+    - trigger: 我没
+      candidates: [token了, 精力]
