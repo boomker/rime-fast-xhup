@@ -1,0 +1,347 @@
+# user_custom_rule.yaml
+# 自定义触发预测规则配置 —— 覆盖所有规则能力的完整示例
+#
+# 使用方法：在方案的 predictor/predict_trigger_rules/rules 列表中引用本文件：
+#
+#   predictor:
+#     predict_trigger_rules:
+#       rules:
+#         - user_custom_rule.yaml
+#
+# 规则字段说明：
+#   trigger          必填，触发词/模式
+#   candidates       必填，候选列表 (或用 candidate 指定单个候选)
+#   match_type       可选，匹配方式：exact(默认) | prefix | suffix | contains
+#   hour_min         可选，生效起始小时 (含)，-1=不限 (默认 -1)
+#   hour_max         可选，生效结束小时 (不含)，-1=不限 (默认 -1)
+#   weekday          可选，星期几生效：0=周日 1=周一 ... 6=周六，-1=不限 (默认 -1)
+#   tag              可选，上下文标签筛选 (如 holiday, chinese_solar, scene_office 等)
+#   priority         可选，优先级 (越大越靠前，默认 100)
+#   scenes           可选，场景白名单列表 (空=所有场景均生效)
+#   month_day_start  可选，日期范围起始 "MM-DD"
+#   month_day_end    可选，日期范围结束 "MM-DD" (支持跨年，如 12-25 到 01-05)
+
+patch:
+  rules/+:
+
+    # ================================================================
+    #  1. 精确匹配 (match_type: exact，默认)
+    # ================================================================
+
+    # 基础精确匹配：输入"你好"时触发
+    - trigger: 你好
+      candidates: [您好, 你好呀, 你好啊]
+      priority: 200
+
+    # 单候选写法 (candidate 而非 candidates)
+    - trigger: 谢谢
+      candidate: 不客气
+      priority: 180
+
+    # ================================================================
+    #  2. 前缀匹配 (match_type: prefix)
+    #     查询以 trigger 开头即可命中
+    # ================================================================
+
+    # 输入"我想吃…"的任意内容都会触发
+    - trigger: 我想吃
+      match_type: prefix
+      candidates: [火锅, 烤肉, 麻辣烫, 寿司]
+      priority: 150
+
+    # 输入"请问…"前缀匹配 → 提示礼貌用语
+    - trigger: 请问
+      match_type: prefix
+      candidates: [请问一下, 想请教一下, 请问您]
+      priority: 140
+
+    # ================================================================
+    #  3. 后缀匹配 (match_type: suffix)
+    #     查询以 trigger 结尾即可命中
+    # ================================================================
+
+    # 任何以"怎么办"结尾的输入都触发
+    - trigger: 怎么办
+      match_type: suffix
+      candidates: [别急, 我来帮你, 没关系]
+      priority: 130
+
+    # 以"多少钱"结尾 → 价格相关回复
+    - trigger: 多少钱
+      match_type: suffix
+      candidates: [免费的, 价格面议, 请查看价目表]
+      priority: 120
+
+    # ================================================================
+    #  4. 包含匹配 (match_type: contains)
+    #     查询中任意位置包含 trigger 即可命中
+    # ================================================================
+
+    # 输入中包含"加班"二字即触发
+    - trigger: 加班
+      match_type: contains
+      candidates: [辛苦了, 注意休息, 加油]
+      priority: 160
+
+    # 包含"bug"时触发（编程场景）
+    - trigger: bug
+      match_type: contains
+      candidates: [已修复, 正在排查, 能复现吗]
+      scenes: [programming]
+      priority: 155
+
+    # ================================================================
+    #  5. 时间范围限制 (hour_min / hour_max)
+    # ================================================================
+
+    # 早间问候 (6:00–12:00)
+    - trigger: 早
+      candidates: [早上好, 早安, 上午好]
+      hour_min: 6
+      hour_max: 12
+      priority: 300
+
+    # 午间问候 (12:00–14:00)
+    - trigger: 午
+      candidates: [中午好, 午安, 吃了吗]
+      hour_min: 12
+      hour_max: 14
+      priority: 290
+
+    # 晚间问候 (18:00–23:00)
+    - trigger: 晚
+      candidates: [晚上好, 晚安]
+      hour_min: 18
+      hour_max: 23
+      priority: 280
+
+    # 深夜提醒 (23:00–次日 6:00 拆为两条规则，不支持跨午夜)
+    - trigger: 夜
+      candidates: [早点休息, 别熬夜了]
+      hour_min: 23
+      hour_max: 24
+      priority: 270
+
+    - trigger: 夜
+      candidates: [早点休息, 别熬夜了]
+      hour_min: 0
+      hour_max: 6
+      priority: 269
+
+    # ================================================================
+    #  6. 星期限制 (weekday)
+    # ================================================================
+
+    # 周一提醒
+    - trigger: 周报
+      candidates: [记得写周报, 周报模板已更新]
+      weekday: 1
+      priority: 250
+
+    # 周五提醒
+    - trigger: 下班
+      candidates: [周末愉快, 好好休息]
+      weekday: 5
+      priority: 240
+
+    # 周末放松 (需写两条，weekday 仅支持单值)
+    - trigger: 今天
+      candidates: [好好放松, 出去走走吧]
+      weekday: 6
+      priority: 230
+
+    - trigger: 今天
+      candidates: [好好放松, 出去走走吧]
+      weekday: 0
+      priority: 229
+
+    # ================================================================
+    #  7. 日期范围限制 (month_day_start / month_day_end)
+    # ================================================================
+
+    # 春节期间 (约 01-25 到 02-10)
+    - trigger: 新年
+      candidates: [新年快乐, 恭喜发财, 万事如意]
+      month_day_start: "01-25"
+      month_day_end: "02-10"
+      priority: 350
+
+    # 国庆期间 (10-01 到 10-07)
+    - trigger: 国庆
+      candidates: [国庆快乐, 祖国万岁]
+      month_day_start: "10-01"
+      month_day_end: "10-07"
+      priority: 340
+
+    # 跨年期间 (12-25 到 01-05，支持跨年范围)
+    - trigger: 跨年
+      candidates: [新年快乐, 辞旧迎新, 跨年快乐]
+      month_day_start: "12-25"
+      month_day_end: "01-05"
+      priority: 360
+
+    # ================================================================
+    #  8. 标签过滤 (tag)
+    # ================================================================
+
+    # 仅在节假日生效（tag: holiday 是系统元标签）
+    - trigger: 放假
+      candidates: [终于放假了, 假期愉快]
+      tag: holiday
+      priority: 260
+
+    # 仅在节气日生效
+    - trigger: 节气
+      candidates: [今日节气, 注意养生]
+      tag: chinese_solar
+      priority: 255
+
+    # 仅在清明节气当天
+    - trigger: 清明
+      candidates: [清明时节雨纷纷, 缅怀先人]
+      tag: 清明
+      priority: 310
+
+    # 仅在特定假日标签生效
+    - trigger: 中秋
+      candidates: [中秋快乐, 月圆人团圆, 阖家欢乐]
+      tag: 中秋节
+      priority: 320
+
+    # 工作日办公场景 (周一标签 + office 场景)
+    - trigger: 开会
+      candidates: [会议纪要已整理, 请查看日程]
+      tag: weekday_1
+      scenes: [office]
+      priority: 220
+
+    # ================================================================
+    #  9. 场景白名单 (scenes)
+    #     可选值: general, programming, office, chat
+    # ================================================================
+
+    # 仅在编程场景下
+    - trigger: 提交
+      candidates: [git commit, git push, 代码已提交]
+      scenes: [programming]
+      priority: 170
+
+    # 仅在办公场景下
+    - trigger: 审批
+      candidates: [已审批, 请查收, 审批通过]
+      scenes: [office]
+      priority: 165
+
+    # 仅在聊天场景下
+    - trigger: 哈哈
+      candidates: [笑死, 太好笑了, 哈哈哈哈]
+      scenes: [chat]
+      priority: 160
+
+    # 多场景联合（办公 + 聊天均生效）
+    - trigger: 收到
+      candidates: [收到，谢谢, 好的收到, 了解]
+      scenes: [office, chat]
+      priority: 175
+
+    # ================================================================
+    #  10. 组合条件 —— 所有维度叠加
+    # ================================================================
+
+    # 工作日上午 + 办公场景 + 前缀匹配
+    - trigger: 会议
+      match_type: prefix
+      candidates: [会议开始了, 请准时参会]
+      hour_min: 9
+      hour_max: 12
+      weekday: 1
+      scenes: [office]
+      priority: 400
+
+    # 节假日 + 日期范围 + 包含匹配
+    - trigger: 快乐
+      match_type: contains
+      candidates: [节日快乐, 开心每一天]
+      tag: holiday
+      month_day_start: "01-01"
+      month_day_end: "01-03"
+      priority: 380
+
+    # 周五下午 + 聊天场景 + 后缀匹配
+    - trigger: 下班了
+      match_type: suffix
+      candidates: [周末见, 早点回家, 辛苦一周了]
+      hour_min: 17
+      hour_max: 20
+      weekday: 5
+      scenes: [chat]
+      priority: 370
+
+    # ================================================================
+    #  11. 模板规则 —— time_greeting
+    #      按时段批量生成问候规则
+    # ================================================================
+
+    - template: time_greeting
+      base_priority: 500
+      items:
+        - trigger: 早上
+          hour_min: 6
+          hour_max: 9
+          candidates: [早上好, 早安, 美好的一天开始了]
+        - trigger: 上午
+          hour_min: 9
+          hour_max: 12
+          candidates: [上午好, 工作顺利]
+        - trigger: 下午
+          hour_min: 13
+          hour_max: 18
+          candidates: [下午好, 下午茶时间]
+        - trigger: 傍晚
+          hour_min: 18
+          hour_max: 20
+          candidates: [傍晚好, 下班了吧]
+
+    # ================================================================
+    #  12. 模板规则 —— holiday_greeting
+    #      为每个节日自动生成"XX快乐"候选
+    # ================================================================
+
+    - template: holiday_greeting
+      base_priority: 450
+      holidays: [春节, 元宵, 端午, 中秋, 国庆, 元旦, 劳动节, 教师节, 儿童节]
+      candidate_template: "{holiday}快乐"
+
+    # 自定义候选模板
+    - template: holiday_greeting
+      base_priority: 440
+      holidays: [春节, 中秋]
+      candidate_template: "祝您{holiday}阖家幸福"
+
+    # 固定触发词 + 节日候选
+    - template: holiday_greeting
+      base_priority: 430
+      holidays: [春节, 国庆, 中秋]
+      trigger: 节日
+      candidate_template: "{holiday}快乐"
+
+    # ================================================================
+    #  13. 模板规则 —— weekday_reminder
+    #      按星期几批量生成提醒规则
+    # ================================================================
+
+    - template: weekday_reminder
+      base_priority: 480
+      items:
+        - trigger: 计划
+          weekday: 1
+          candidates: [本周计划, 制定周计划]
+        - trigger: 总结
+          weekday: 5
+          candidates: [本周总结, 整理周报]
+        - trigger: 打卡
+          weekday: -1
+          candidates: [今日已打卡, 别忘打卡]
+        - trigger: 例会
+          weekday: 3
+          candidates: [周三例会, 准备例会材料]
