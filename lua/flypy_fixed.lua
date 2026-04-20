@@ -38,7 +38,9 @@ function F.func(input, env)
                 (cand_type ~= "fuzzy_word") and (cand_dtype == "Sentence") and
                 cand_text:find("[%d%p]") and raw_input_code:match("^[%l%p]+$")
             ) or ( -- 'qphr' --> '000', 'uw' --> '15'
-                cand_text:match("^[0-9]+$") and raw_input_code:match("^[a-z]+$")
+                cand_text:match("^[0-9]+") and
+                (cand_type ~= "fuzzy_word") and
+                raw_input_code:match("^%a[a-z`]+$")
             ) or ( -- 间接辅码筛字时, 过滤掉 emoji
                 (cand_dtype == "Shadow") and raw_input_code:match("%l+[`/][%l`/]+$")
             ) or ( -- 单个英文候选词长度少于 4 个字母的候选
@@ -64,7 +66,7 @@ function F.func(input, env)
 end
 
 function F.tags_match(seg, env)
-    if seg.tags["abc"] then return true end
+    if seg.tags["abc"] or seg.tags["make_sentence"] then return true end
     return false
 end
 
