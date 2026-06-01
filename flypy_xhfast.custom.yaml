@@ -10,7 +10,7 @@
 patch:
   # 候选菜单
   menu/+:
-    page_size: 5                      # 候选项个数
+    page_size: 6                      # 候选项个数
     candidate_cycle: true
     # alternative_select_keys: 1234567  # 候选键
     # 注释掉下行以恢复常规候选标签序号

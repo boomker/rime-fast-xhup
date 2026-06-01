@@ -51,12 +51,12 @@ local function get_app_obj(obj, obj_type)
 end
 
 local function reset_state()
-    launcher["main_menu_keys"] = nil -- {}
-    launcher["second_menu_keys"] = nil -- {}
-    launcher["main_menu_orders"] = nil -- {}
-    launcher["second_menu_orders"] = nil -- {}
-    launcher["main_menu_selected"] = nil -- {}
-    launcher["main_menu_selected_text"] = nil -- ""
+    launcher["main_menu_keys"] = nil            -- {}
+    launcher["second_menu_keys"] = nil          -- {}
+    launcher["main_menu_orders"] = nil          -- {}
+    launcher["second_menu_orders"] = nil        -- {}
+    launcher["main_menu_selected"] = nil        -- {}
+    launcher["main_menu_selected_text"] = nil   -- ""
     launcher["second_menu_selected_text"] = nil -- ""
 end
 
@@ -123,10 +123,10 @@ function processor.func(key, env)
     local app_launch_prefix = env.app_launch_prefix
     local all_command_items = env.all_command_items
 
+    if key:release() or key:alt() or key:caps() then return 2 end
+
     -- check trigger conditions
-    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then
-        return 2
-    end
+    if not (favorcmd_prefix or app_launch_prefix or all_command_items) then return 2 end
     if
         not (
             input_code:match("^/j%l+")
@@ -201,17 +201,13 @@ function processor.func(key, env)
     local selected_index = segment.selected_index or -1
     local select_keys = env.select_keys
     local selected_cand_idx = get_selected_candidate_index(key_value, selected_index, select_keys, page_size)
-    if selected_cand_idx < 0 then
-        return 2
-    end
+    if selected_cand_idx < 0 then return 2 end
 
     if input_code:match("^" .. favorcmd_prefix) then
         if (input_code == favorcmd_prefix) and segment.prompt:match("快捷指令") then
             local cand = segment:get_candidate_at(selected_cand_idx)
             local cand_text = cand and cand.text or nil
-            if not cand_text then
-                return 2
-            end
+            if not cand_text then return 2 end
 
             local prompt = cand_text:gsub(" ", ""):gsub("[%a%p]", "")
             launcher["main_menu_selected_text"] = cand_text:gsub(" ", "")
@@ -221,6 +217,7 @@ function processor.func(key, env)
         end
 
         if (not segment.prompt:match("快捷指令")) and launcher["main_menu_selected"] then
+            if not segment:get_candidate_at(selected_cand_idx) then return 2 end
             local selected_cand_text = segment:get_candidate_at(selected_cand_idx).text
             local candidate_text = selected_cand_text and selected_cand_text:gsub(" ", "")
             local idx = launcher["second_menu_keys"][candidate_text]
