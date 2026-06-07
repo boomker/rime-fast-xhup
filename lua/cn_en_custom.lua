@@ -24,7 +24,7 @@ local function save_entry(env, cand_or_text)
     end
     if text:match("^[a-zA-Z%p ]+$") then
         local entry = DictEntry()
-        entry.text = text -- 上屏英文本身
+        entry.text = text               -- 上屏英文本身
         entry.weight = 1
         entry.custom_code = text .. " " -- 编码 + 空格
         env.en_memory:update_userdict(entry, 1, "")
@@ -33,7 +33,7 @@ local function save_entry(env, cand_or_text)
         end
     else
         local entry = DictEntry()
-        entry.text = text -- 上屏文
+        entry.text = text                               -- 上屏文
         entry.weight = 1
         entry.custom_code = cand_or_text.comment .. " " -- 编码 + 空格
         env.cn_memory:update_userdict(entry, 1, "")
@@ -51,7 +51,7 @@ function T.init(env)
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name):gsub("/", "\\")
     elseif detect_os():lower() == "ios" then
         user_data_dir =
-            "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+        "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
     else
         env.dict_path = string.format("%s/%s", user_data_dir, dict_name)
@@ -69,9 +69,7 @@ function T.init(env)
         local segment = ctx.composition:back()
         local cand = ctx:get_selected_candidate()
         local commit_text = ctx:get_commit_text()
-        if not cand then
-            return
-        end
+        if not cand then return end
 
         cand.text = commit_text or cand.text
         if segment:has_tag(env.cn_tag) then
@@ -88,10 +86,9 @@ function T.init(env)
             local record = cand_text .. "\t" .. cand_text .. "\t100000"
 
             save_entry(env, cand)
-            if (not file) or err then
-                return
-            end
-            file:write(record .. "\n"):close()
+            if (not file) or err then return end
+            file:write(record .. "\n")
+            file:close()
         end
     end
 
