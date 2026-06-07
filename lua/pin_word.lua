@@ -50,9 +50,6 @@ local function write_word_to_file(env)
     end
 
     local fd = assert(io.open(filename, "w")) --打开
-    if not fd then
-        return false
-    end
     fd:setvbuf("line")
     fd:write(record_header) --写入文件头部
     -- fd:flush() --刷新

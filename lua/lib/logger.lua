@@ -42,6 +42,8 @@ M.write = function(logStr)
     if not dbgFlg then return end
 
     local f = io.open(M.logDoc, 'a')
+    if not f then return end
+
     local filename, line = get_caller_info(3)
 
     if not _initialized then
@@ -55,16 +57,14 @@ M.write = function(logStr)
         logStr = tostring(logStr)
     end
 
-    if f then
-        if '' == logStr then
-            f:write('\n')
-        else
-            local timeStamp = os.date("%Y/%m/%d %H:%M:%S")
-            local logMsg = string.format("[%s] [F:%s | L:%s]\t%s\n", timeStamp, filename, line, logStr)
-            f:write(logMsg)
-        end
-        f:close()
+    if '' == logStr then
+        f:write('\n')
+    else
+        local timeStamp = os.date("%Y/%m/%d %H:%M:%S")
+        local logMsg = string.format("[%s] [F:%s | L:%s]\t%s\n", timeStamp, filename, line, logStr)
+        f:write(logMsg)
     end
+    f:close()
 end
 
 return M
