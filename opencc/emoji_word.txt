@@ -1,48 +1,53 @@
 A	A 🅰️
+B	B 🅱️
+O	O 🅾️
 AB	AB 🆎
-ABCD	ABCD 🔠
-AB型	AB型 🆎
-AB型血	AB型血 🆎
-AB血型	AB血型 🆎
-ATM	ATM 🏧
 A型	A型 🅰️
+B型	B型 🅱️
+SOS	SOS 🆘
+AB型	AB型 🆎
 A型血	A型血 🅰️
 A血型	A血型 🅰️
-B	B 🅱️
-B型	B型 🅱️
 B型血	B型血 🅱️
 B血型	B血型 🅱️
+AB型血	AB型血 🆎
+AB血型	AB血型 🆎
+O型血	O型血 🅾️
+O血型	O血型 🅾️
+ABCD	ABCD 🔠
+ATM	ATM 🏧
 CD	CD 💿
-Copyright	Copyright ©
 DNA	DNA 🧬
 DVD	DVD 📀
-Doge	Doge 🐶
 ID	ID 🆔
 K歌	K歌 🪩
 NG	NG 🆖
-NMSL	NMSL 🤬
-O	O 🅾️
 OK	OK 🆗️ 👌🏻 [OK]
-O型血	O型血 🅾️
-O血型	O血型 🅾️
-Python	Python 🐍
-Registered	Registered ®
-SOS	SOS 🆘
-SUV	SUV 🚙
 TM	TM ™
 TV	TV 📺
+SUV	SUV 🚙
 T恤	T恤 👕
-T恤衫	T恤衫 👕
 UFO	UFO 🛸
 VS	VS 🆚
 WC	WC 🚾
-Wi-Fi	Wi-Fi 🛜
-WiFi	wifi 🛜
 X光	X光 🩻
+Doge	Doge 🐶
+NMSL	NMSL 🤬
+WiFi	wifi 🛜
+Wi-Fi	Wi-Fi 🛜
+T恤衫	T恤衫 👕
 X光片	X光片 🩻
 X射线	X射线 🩻
 ZZZ	ZZZ 💤
+on	on 🔛
+up	up 🆙
 abc	abc 🔤
+new	new 🆕
+bug	bug 🐛
+dna	dna 🧬
+end	end 🔚
+top	top 🔝
+soon	soon 🔜
 abcd	abcd 🔡
 action	action 🎬
 angry	angry 😡
@@ -50,34 +55,29 @@ atom	atom ⚛️
 baby	baby 👶
 back	back 🔙
 boom	boom 💣
-bug	bug 🐛
 clear	clear 🆑
 cookie	cookie 🍪
 cookies	cookies 🍪
 cool	cool 🆒
-dna	dna 🧬
 email	email 📧
-end	end 🔚
 fight	fight ⚔️
 free	free 🆓
 joker	joker 🃏
 kiss	kiss 💋
 link	link 🔗
-love	love 💓
+love	love ❤️ 💕
 metro	metro Ⓜ️
 money	money 💰
-new	new 🆕
-on	on 🔛
 panda	panda 🐼
-parking	parking 🅿️
 party	party 🥳
 peace	peace ☮️
+Python	Python 🐍
 python	python 🐍
 rocket	rocket 🚀
-soon	soon 🔜
-top	top 🔝
-up	up 🆙
+parking	parking 🅿️
 wireless	wireless 🛜
+Copyright	Copyright ©
+Registered	Registered ®
 〇	〇 0️⃣
 零	零 0️⃣
 一	一 1️⃣
@@ -392,6 +392,9 @@ wireless	wireless 🛜
 哼	哼 😤 [左哼哼]
 上	上 ⬆️
 下	下 ⬇️
+前	前 ⬆️
+右	右 ➡️
+后	后 ⬇️
 不	不 🙅🏻
 乘	乘 ✖️
 云	云 ☁️
@@ -399,11 +402,8 @@ wireless	wireless 🛜
 信	信 ✉️
 停	停 ⛔️
 儿	儿 👦🏻
-前	前 ⬆️
 剑	剑 ⚔️
 剪	剪 ✂️
-右	右 ➡️
-后	后 ⬇️
 吹	吹 🌬️
 唱	唱 🎤️
 唵	唵 🕉️
@@ -420,7 +420,7 @@ wireless	wireless 🛜
 左	左 ⬅️
 差	差 👎🏻
 帆	帆 ⛵️
-心	心 ♥️
+心	心 ❤️
 拳	拳 👊🏻
 捏	捏 🤏🏻
 捧	捧 🤲🏻
@@ -506,6 +506,7 @@ wireless	wireless 🛜
 新加坡元	新加坡元 S$
 新加坡币	新加坡币 S$
 美元	美元 $ 💵 💲
+美分	美分 ¢
 欧元	欧元 € 💶
 英镑	英镑 £ 💷
 日元	日元 ￥ 💴
@@ -520,6 +521,18 @@ wireless	wireless 🛜
 敲打	敲打 [敲打]
 机智	机智 [机智]
 阴险	阴险 [阴险]
+扭曲	扭曲 🫪
+变形	变形 🫪
+鱼眼	鱼眼 🫪
+打斗	打斗 🫯
+混战	混战 🫯
+扭打	扭打 🫯
+塌方	塌方 🛘
+宝箱	宝箱 🪎
+宝藏	宝藏 🪎
+类人	类人 🫈
+舞者	舞者 🧑‍🩰
+虎鲸	虎鲸 🫍
 一人	一人 👤
 一壶	一壶 🫖
 一杯	一杯 🥃
@@ -1244,21 +1257,21 @@ wireless	wireless 🛜
 微醺	微醺 🥴
 微风	微风 🍃
 心动	心动 💓
-心形	心形 💟
-心烦	心烦 😫
+心形	心形 ❤️ 💟
 心田	心田 💟
+心间	心间 💟
+心烦	心烦 😫
 心脏	心脏 🫀
 心跳	心跳 💓
-心间	心间 💟
 忍术	忍术 🥷
 忍者	忍者 🥷
 忍耐	忍耐 😣
 忧伤	忧伤 😔
 忧虑	忧虑 😔
-快上	快上 ⏫
-快下	快下 ⏬
 快件	快件 📦
 快艇	快艇 🚤
+快上	快上 ⏫
+快下	快下 ⏬
 快进	快进 ⏩
 快退	快退 ⏪
 快递	快递 📦
@@ -2256,7 +2269,6 @@ wireless	wireless 🛜
 舌头	舌头 👅
 舞厅	舞厅 🪩
 舞女	舞女 💃
-舞者	舞者 🕺
 船锚	船锚 ⚓
 色子	色子 🎲
 色拉	色拉 🥗
@@ -2879,7 +2891,7 @@ wireless	wireless 🛜
 旺柴	旺柴 🐶 [旺柴]
 月亮	月亮 🌙 [月亮]
 炸弹	炸弹 💣 [炸弹]
-爱心	爱心 💖 [爱心]
+爱心	爱心 ❤️ 💖 [爱心]
 狗头	狗头 🐶 [旺柴]
 狗脸	狗脸 🐶 [旺柴]
 猪头	猪头 🐷 [猪头]
@@ -3660,6 +3672,12 @@ wireless	wireless 🛜
 牵手	牵手 🧑‍🤝‍🧑
 携手	携手 🧑🏻‍🤝‍🧑🏻
 并肩	并肩 🧑🏻‍🤝‍🧑🏻
+大脚怪	大脚怪 🫈
+直立猿	直立猿 🫈
+跳芭蕾	跳芭蕾 🧑‍🩰
+藏宝箱	藏宝箱 🪎
+逆戟鲸	逆戟鲸 🫍
+杀人鲸	杀人鲸 🫍
 井号键	井号键 #️⃣
 星号键	星号键 *️⃣
 一个人	一个人 👤
@@ -5575,6 +5593,9 @@ wireless	wireless 🛜
 威尔士	威尔士 🏴󠁧󠁢󠁷󠁬󠁳󠁿
 苏格兰	苏格兰 🏴󠁧󠁢󠁳󠁣󠁴󠁿
 英格兰	英格兰 🏴󠁧󠁢󠁥󠁮󠁧󠁿
+山体滑坡	山体滑坡 🛘
+尘土飞扬	尘土飞扬 🫯
+铜管乐器	铜管乐器 🪊
 版权符号	版权符号 ©
 注册商标	注册商标 ®
 注册标记	注册标记 ®
