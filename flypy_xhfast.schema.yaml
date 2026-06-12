@@ -136,6 +136,7 @@ grammar:
 # 主翻译器, 小鹤双拼
 translator:
   dictionary: flypy_xhfast
+  max_sentences: 2                    # 最多长句候选数
   spelling_hints: 1                   # >0 启用, `0`: 关闭单字编码提示
   max_homophones: 7                   # 最大同音簇长度〔需配合 grammar 使用〕
   max_word_length: 7                  # >0 启用, 过长短语不记整词, 只加元素权重
