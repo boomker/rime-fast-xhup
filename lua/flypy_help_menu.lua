@@ -46,7 +46,7 @@ function T.func(input, seg, env)
             { "自由造词", "→ `=键(abcd`=xyz)" },
             { "方案选单", "→ Alt+grave(`) | F4" },
             { "单词大写", "→ AZ 开头大写字母触发" },
-            { "上屏预编码", "→ Shift+Return" },
+            { "上屏编码", "→ Shift+Return" },
             { "上屏注解", "→ Control+Shift+Return" },
             { "时间戳值", "→ " .. "timestamp | /wts | /uts" },
             { "日期时间", "→ " .. "date | time | /wd | /wt" },

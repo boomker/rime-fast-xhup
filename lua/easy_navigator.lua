@@ -29,7 +29,7 @@ function P.func(key, env)
     local raw_input = context.input
     local preedit_text = context:get_preedit().text
 
-    if (preedit_text and rime_api.regex_match(raw_input, "^[a-z/]{4, 66}'$")) then
+    if (preedit_text and rime_api.regex_match(raw_input, "^[a-z/]{4, 99}'$")) then
         local editing_preedit = preedit_text:match("[a-z/' ]+")
 
         local parts = {}
@@ -52,7 +52,7 @@ function P.func(key, env)
 
     local segment = composition:toSegmentation()
     local current_start_pos = segment:get_current_start_position()
-    if rime_api.regex_match(input_syllable_code, "^[a-z/ ]{5, 66}'$") then
+    if rime_api.regex_match(input_syllable_code, "^[a-z/ ]{5, 99}'$") then
         if key_value:match("^[a-z]$") then
             local idx_s, idx_e = (" " .. input_syllable_code):find(" " .. key_value .. "[a-z]")
             if (not idx_s) or (not idx_e) then return 2 end
