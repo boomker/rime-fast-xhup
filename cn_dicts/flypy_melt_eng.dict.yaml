@@ -232,20 +232,18 @@ WiFi-6	wifil
 HTTP1.1
 HDMI2.0	hdmie
 HDMI2.1
-Qwen3
-Grok4
-Grok4.2
-Grok4.3
-Opus4.6
-Opus4.7
-Opus4.8
+Qwen3.8
+Grok4.5
 Fable5
-GLM-5
-GLM-4.7
+Opus4.8
+Opus4.7
+Opus4.6
+GLM-5.2
 GLM-5.0
-GLM-5.1
-GPT-5.4
+GLM-4.7
+GPT-5.6
 GPT-5.5
+Kimi-k3
 Kimi-k2
 
 00后
@@ -751,7 +749,7 @@ HEVC格式
 PCB板
 LED灯
 LED屏
-骁龙8 
+骁龙8
 DP接口
 HDMI线
 PWM调光
@@ -816,6 +814,8 @@ OIS光学防抖
 非常6+1
 小米SU7
 小米YU7
+昇腾910
+昇腾950
 哆啦A梦
 头文字D
 阿Q精神

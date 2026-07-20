@@ -5,15 +5,20 @@ function detect_os()
     local rime_distribute_name = rime_api:get_distribution_code_name()
     if rime_distribute_name:lower():match("weasel") then
         return "Windows"
+    elseif rime_distribute_name:lower():match("cobra") then
+        return "Windows"
     elseif rime_distribute_name:lower():match("squirrel") then
         return "MacOS"
-    elseif
-        rime_distribute_name:lower():match("fcitx%-rime")
+    elseif rime_distribute_name:lower():match("fcitx%-rime")
         and user_data_dir:match("local/share/fcitx5/rime") then
         return "MacOS"
-    elseif rime_distribute_name:lower():match("^fcitx%-rime$") then
+    elseif rime_distribute_name:lower():match("xime") then
         return "Android"
     elseif rime_distribute_name:lower():match("trime") then
+        return "Android"
+    elseif rime_distribute_name:lower():match("lyraime") then
+        return "Android"
+    elseif rime_distribute_name:lower():match("^fcitx%-rime$") then
         return "Android"
     elseif rime_distribute_name:lower():match("^fcitx$") then
         return "Linux"
