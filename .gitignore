@@ -11,6 +11,7 @@ __pycache__/
 **/.ropeproject
 user.yaml
 zh-*huayu*.gram
+zh-han*-bg*.gram
 predict_rule*.db
 installation.yaml
 # lua/cold_word_records/*
