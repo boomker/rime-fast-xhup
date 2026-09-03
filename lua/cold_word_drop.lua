@@ -14,7 +14,7 @@ local function get_record_filename(record_type)
     end
     if user_distribute_name:lower():match("hamster") then
         user_data_dir =
-            "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+        "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
     end
     if user_distribute_name:lower():match("ibus") then
         return string.format(
@@ -37,13 +37,13 @@ local function write_word_to_file(env, record_type)
     end
     local fd = assert(io.open(filename, "w")) -- 打开
     fd:setvbuf("line")
-    fd:write(record_header) -- 写入文件头部
+    fd:write(record_header)                   -- 写入文件头部
     -- fd:flush() --刷新
     local words_obj = string.format("%s_list", record_type)
     local records = table.serialize(env.words_tbl[words_obj]) -- lua 的 table 对象 序列化为字符串
-    fd:write(records) -- 写入 序列化的字符串
-    fd:write(record_tailer) -- 写入文件尾部, 结束记录
-    fd:close() -- 关闭
+    fd:write(records)                                         -- 写入 序列化的字符串
+    fd:write(record_tailer)                                   -- 写入文件尾部, 结束记录
+    fd:close()                                                -- 关闭
 end
 
 local function append_word_to_droplist(env, ctx, action_type)
@@ -175,9 +175,7 @@ function filter.func(input, env)
             end
         end
 
-        if #cands >= 666 then
-            break
-        end
+        if #cands >= 666 then break end
     end
 
     for _, cand in ipairs(cands) do

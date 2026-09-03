@@ -17,7 +17,7 @@
 # 转化应当大写的单词
 ---
 name: en
-version: "2026-07-01"
+version: "2026-08-05"
 sort: by_weight
 ...
 # +_+
@@ -3100,6 +3100,7 @@ cars	cars
 Carson	Carson
 cart	cart
 Carte	Carte
+cartel	cartel
 carter	carter
 Cartier	Cartier
 cartilage	cartilage
@@ -3745,6 +3746,7 @@ cleavage	cleavage
 cleave	cleave
 clef	clef
 clement	clement
+clementine	clementine
 Clemson	Clemson
 clergy	clergy
 clerical	clerical
@@ -4327,9 +4329,11 @@ conformity	conformity
 confront	confront
 confrontation	confrontation
 confronted	confronted
-Conftest	Conftest
+# Conftest	Conftest
+Confucius	Confucius
 confuse	confuse
 confused	confused
+confuses	confuses
 confusing	confusing
 confusion	confusion
 congenital	congenital
@@ -5081,6 +5085,7 @@ cycle	cycle
 cycles	cycles
 cyclic	cyclic
 cycling	cycling
+cyclist	cyclist
 cyclone	cyclone
 Cygwin	Cygwin
 cylinder	cylinder
@@ -7596,6 +7601,7 @@ faster	faster
 fastest	fastest
 fat	fat
 fatal	fatal
+fatality	fatality
 fate	fate
 father	father
 fathers	fathers
@@ -9186,6 +9192,7 @@ hall	hall
 hallmark	hallmark
 Halloween	Halloween
 halls	halls
+hallucination	hallucination
 halo	halo
 halogen	halogen
 halt	halt
@@ -10865,6 +10872,7 @@ italicized	italicized
 # Italilian	Italilian
 Italy	Italy
 # itc	itc
+itchy	itchy
 item	item
 items	items
 iteration	iteration
@@ -12079,6 +12087,10 @@ Lohan	Lohan
 loin	loin
 loins	loins
 Lois	Lois
+loiter	loiter
+loitered	loitered
+loitering	loitering
+loiters	loiters
 LOL	LOL
 Lola	Lola
 Lolita	Lolita
@@ -13094,6 +13106,7 @@ misfortune	misfortune
 mishief	mishief
 mislead	mislead
 misleading	misleading
+misnomer	misnomer
 misplace	misplace
 Miss	Miss
 miss	miss
@@ -18279,6 +18292,8 @@ selects	selects
 selenium	selenium
 self	self
 self-attention	Self-attention
+selfie	selfie
+selfies	selfies
 selfish	selfish
 sell	sell
 seller	seller
@@ -19395,6 +19410,7 @@ sprinkle	sprinkle
 sprint	sprint
 sprout	sprout
 spruce	spruce
+spud	spud
 spun	spun
 spur	spur
 spurious	spurious
@@ -19420,6 +19436,7 @@ squeezed	squeezed
 squeezes	squeezes
 squeezing	squeezing
 squid	squid
+squiggle	squiggle
 squirrel	squirrel
 squirt	squirt
 squirting	squirting
@@ -20382,6 +20399,7 @@ tapping	tapping
 taps	taps
 tar	tar
 # tara	tara
+tardy	tardy
 target	target
 targeted	targeted
 targeting	targeting

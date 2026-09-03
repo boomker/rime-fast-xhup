@@ -60,12 +60,28 @@ local function get_pp_seg(segmentation)
     return nil
 end
 
+local function get_pair_punct_idx(op)
+    if not op then return nil end
+    for k, v in pairs(pairTable) do
+        if (#v >= 1) and (v[1] == op) then
+            return k
+        end
+    end
+    return nil
+end
+
 local function on_update_or_select(env)
     return function(ctx)
         local segmentation = ctx.composition:toSegmentation()
         local pp_seg = get_pp_seg(segmentation)
         if pp_seg then
             local key_char = get_key_char(pp_seg)
+            local selected_cand = pp_seg:get_candidate_at(pp_seg.selected_index)
+            local selected_key_char = selected_cand
+                and get_pair_punct_idx(selected_cand.text)
+            if selected_key_char then
+                key_char = selected_key_char
+            end
             local punct_pair = pairTable[key_char]
             if not punct_pair or (#punct_pair < 1) then return end
             env.closing_punct = (#punct_pair == 1) and punct_pair[1] or punct_pair[2]
@@ -103,16 +119,6 @@ local function on_commit(env)
             env.closing_punct = nil
         end
     end
-end
-
-local function get_pair_punct_idx(op)
-    if not op then return nil end
-    for k, v in pairs(pairTable) do
-        if (#v >= 1) and (v[1] == op) then
-            return k
-        end
-    end
-    return nil
 end
 
 function processor.init(env)

@@ -10,7 +10,7 @@
 patch:
   # 候选菜单
   menu/+:
-    page_size: 6                      # 候选项个数
+    page_size: 6                        # 候选项个数
     candidate_cycle: true
     # alternative_select_keys: 1234567  # 候选键
     # 注释掉下行以恢复常规候选标签序号
@@ -79,14 +79,13 @@ patch:
     select_first_character: "9"               # `9/minus` 以词定字(首字)
     select_last_character: "0"                # `0/equal` 以词定字(尾字)
     bindings/+:
-      - {when: has_menu,  accept: ";", send: Control+2}             # 分号; 用于第2候选
-      # - {when: has_menu,  accept: ".", send: Control+3}           # 句号. 用于第3候选
-      # - {when: has_menu,  accept: "'", send: Control+3}           # 引号' 用于第3候选
-      # - {when: paging,    accept: minus,  send: Page_Up}          # 减号- 返回上一页
-      # - {when: paging,    accept: equal,  send: Page_Down}        # 等号= 下一页
-      # - {when: has_menu,  accept: period, send: Page_Down}        # 句号. 下一页
-      - {when: has_menu,  accept: ']', send: Page_Down}             # 括号] 下一页
-      - {when: paging,    accept: comma, send: Page_Up}             # 逗号, 返回上一页
+      - {when: has_menu,  accept: ";", send: Control+2}          # 分号; 用于第2候选
+      - {when: has_menu,  accept: ']', send: Page_Down}          # 括号] 下一页
+      - {when: paging,    accept: comma, send: Page_Up}          # 逗号, 返回上一页
+      # - {when: has_menu,  accept: "'", send: Control+3}        # 引号' 用于第3候选
+      # - {when: paging,    accept: minus,  send: Page_Up}       # 减号- 返回上一页
+      # - {when: paging,    accept: equal,  send: Page_Down}     # 等号= 下一页
+      # - {when: has_menu,  accept: period, send: Page_Down}     # 句号. 下一页
       - {when: composing, accept: Shift+Tab,    send: Shift+Left}
       - {when: composing, accept: Control+i,    send: Shift+Left}
       - {when: composing, accept: Tab,          send: Shift+Right}
@@ -100,11 +99,10 @@ patch:
       - {match: "^=$",    accept: "=", send: '{Down}'}
       - {match: "^[a-z/]+'$", accept: ",", send: '{Shift+Left}'}
       - {match: "^[a-z/]+'$", accept: ".", send: '{Shift+Right}'}
-      - {tag: calculator, accept: "'",     send: '{Page_Down}'}
-      - {tag: calculator, accept: "Control+d", send: '{Delete}'}
-      - {tag: calculator, accept: "(", send_sequence: '(){Left}'}
-      - {match: "^.*\\)$", accept: ")", send_sequence: '{Right}'}
       - {tag: calculator, accept: "%", send_sequence: '/100'}
+      - {match: "^.*\\)$", accept: ")", send_sequence: '{Right}'}
+      - {tag: calculator, accept: "(", send_sequence: '(){Left}'}
+      - {tag: calculator, accept: "Control+d",  send: '{Delete}'}
       - {tag: calculator, accept: "Shift+U", send_sequence: '10'}
       - {tag: calculator, accept: "Shift+B", send_sequence: '00'}
       - {tag: calculator, accept: "Shift+H", send_sequence: '100'}
@@ -119,15 +117,14 @@ patch:
       - {tag: chinese_number, accept: "k", send_sequence: '1000'}
       - {tag: chinese_number, accept: "w", send_sequence: '0000'}
       - {tag: chinese_number, accept: "period", send_sequence: '.'}
-      - {tag: chinese_number, accept: "s",   send_sequence: '{End}{Control+1}'}
-      - {tag: chinese_number, accept: "d",   send_sequence: '{End}{Control+2}'}
-      - {tag: chinese_number, accept: "f",   send_sequence: '{End}{Control+3}'}
-      - {tag: chinese_number, accept: "j",   send_sequence: '{End}{Control+4}'}
-      - {tag: chinese_number, accept: "u",   send_sequence: '{End}{Control+5}'}
-      - {tag: chinese_number, accept: "m",   send_sequence: '{End}{Control+6}'}
-      - {tag: date_time,      accept: "s",   send_sequence: '{End}{Control+3}'}
-      - {tag: date_time,      accept: "d",   send_sequence: '{End}{Control+4}'}
-      - {tag: date_time,      accept: "f",   send_sequence: '{End}{Control+5}'}
+      - {tag: chinese_number, accept: "s", send_sequence: '{End}{Control+1}'}
+      - {tag: chinese_number, accept: "d", send_sequence: '{End}{Control+2}'}
+      - {tag: chinese_number, accept: "f", send_sequence: '{End}{Control+3}'}
+      - {tag: chinese_number, accept: "j", send_sequence: '{End}{Control+4}'}
+      - {tag: chinese_number, accept: "m", send_sequence: '{End}{Control+5}'}
+      - {tag: date_time,      accept: "s", send_sequence: '{End}{Control+3}'}
+      - {tag: date_time,      accept: "d", send_sequence: '{End}{Control+4}'}
+      - {tag: date_time,      accept: "f", send_sequence: '{End}{Control+5}'}
       - {tag: calculator, accept: "Shift+J", send_sequence: '{End}{Control+3}'}
       - {tag: calculator, accept: "Shift+I", send_sequence: '{End}{Control+4}'}
       - {tag: calculator, accept: "Shift+O", send_sequence: '{End}{Control+5}'}
@@ -188,10 +185,9 @@ patch:
       # - derive|/||                  # 取消注释,直接辅码(新手不推荐)
 
       ## 模糊音:
-      - derive/^([qx])v/$1u/
       - derive/^([jy])u/$1v/
+      - derive/^([qx])v/$1u/
       - derive/^([ny])b/$1k/          # in => ing
-      - derive/^(i)g/$1f/             # eng => en
       - derive/^z([ry])/v$1/          # z => zh
       - derive/^c([az])/i$1/          # c => ch
       - derive/^u([hk])/s$1/          # sh => s
@@ -278,7 +274,7 @@ patch:
     prefix: "nN"
     suffix: "'"
     tips: "中文数字"
-    select_keys: "sdfjum"
+    select_keys: "sdfjio"
 
   chinese_lunar:                      # 中国农历(可反查)
     tag: chinese_lunar
@@ -287,7 +283,7 @@ patch:
     suffix: "'"
     tips: "农历"
 
-  date_time:
+  date_time:                          # 时间日期格式配置
     date_format:
       # 时区格式: TZ: +08:00/Z
       # 年份格式: year_cn: 二〇二六年; year: 2026
@@ -314,7 +310,7 @@ patch:
       - "{hour}点{min}分{sec}秒"    # 18点37分06秒
       - "{hour}时{min}分{sec}秒"    # 18时37分06秒
     # 时间前缀: 凌晨, 早上, 上午, 中午, 下午, 夜晚, 午夜
-    enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
+    enable_time_prefix: true          # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
 
   predictor:                          # 候选字词联想预测
     trigger: 'ee'                     # 手动触发弹出预测候选菜单
