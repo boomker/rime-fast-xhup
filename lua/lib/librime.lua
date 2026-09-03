@@ -31,43 +31,43 @@ function yield(cand) end
 
 ---@enum ConfigType
 local config_types = {
-  kNull = "kNull",
-  kScalar = "kScalar",
-  kList = "kList",
-  kMap = "kMap",
+    kNull = "kNull",
+    kScalar = "kScalar",
+    kList = "kList",
+    kMap = "kMap",
 }
 
 ---@enum SegmentType
 local segment_types = {
-  kVoid = "kVoid",
-  kGuess = "kGuess",
-  kSelected = "kSelected",
-  kConfirmed = "kConfirmed",
+    kVoid = "kVoid",
+    kGuess = "kGuess",
+    kSelected = "kSelected",
+    kConfirmed = "kConfirmed",
 }
 
 ---@enum CandidateDynamicType
 local candidate_dynamic_types = {
-  kSentence = "Sentence",
-  kPhrase = "Phrase",
-  kSimple = "Simple",
-  kShadow = "Shadow",
-  kUniquified = "Uniquified",
-  kOther = "Other",
+    kSentence = "Sentence",
+    kPhrase = "Phrase",
+    kSimple = "Simple",
+    kShadow = "Shadow",
+    kUniquified = "Uniquified",
+    kOther = "Other",
 }
 
 ---@enum ProcessResult
 local process_results = {
-  kRejected = 0,
-  kAccepted = 1,
-  kNoop = 2,
+    kRejected = 0,
+    kAccepted = 1,
+    kNoop = 2,
 }
 
 ---@enum ModifierMask
 local modifier_masks = {
-  kShift = 0x1,
-  kLock = 0x2,
-  kControl = 0x4,
-  kAlt = 0x8,
+    kShift = 0x1,
+    kLock = 0x2,
+    kControl = 0x4,
+    kAlt = 0x8,
 }
 
 --- 工具
@@ -382,7 +382,7 @@ function UniquifiedCandidate(candidate, type, text, comment) end
 function ShadowCandidate(candidate, type, text, comment, inherit_comment) end
 
 ---@class Phrase
------@field language Language 暂时不支持
+--@field language Language 暂时不支持
 ---@field lang_name string
 ---@field type string
 ---@field start integer

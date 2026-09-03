@@ -34,7 +34,7 @@ local function get_record_filename()
         return string.format("%s\\lua\\pin_word_record.lua", user_data_dir)
     elseif system_name:lower():match("ios") then
         user_data_dir =
-            "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
+        "/private/var/mobile/Library/Mobile Documents/iCloud~dev~fuxiao~app~hamsterapp/Documents/RIME/Rime"
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
     else
         return string.format("%s/lua/pin_word_record.lua", user_data_dir)
@@ -49,14 +49,14 @@ local function write_word_to_file(env)
         return false
     end
 
-    local fd = assert(io.open(filename, "w")) --打开
+    local fd = assert(io.open(filename, "w"))            --打开
     fd:setvbuf("line")
-    fd:write(record_header) --写入文件头部
+    fd:write(record_header)                              --写入文件头部
     -- fd:flush() --刷新
     local record = table.serialize(env.pin_word_records) -- lua 的 table 对象 序列化为字符串
-    fd:write(record) --写入 序列化的字符串
-    fd:write(record_tailer) --写入文件尾部, 结束记录
-    fd:close() --关闭
+    fd:write(record)                                     --写入 序列化的字符串
+    fd:write(record_tailer)                              --写入文件尾部, 结束记录
+    fd:close()                                           --关闭
 end
 
 function M.init(env)
@@ -182,9 +182,7 @@ function T.func(input, seg, env)
         cand.type = "custom_phrase_" .. cand.type
         yield(cand)
         yielded = yielded + 1
-        if yielded >= limit then
-            break
-        end
+        if yielded >= limit then break end
     end
 end
 

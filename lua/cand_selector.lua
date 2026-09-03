@@ -30,7 +30,7 @@ local function ensure_translator_resources(env)
     if not env.script_tran then
         env.script_tran = Component.ScriptTranslator(env.engine, schema, "translator", "")
     end
-    env.preedit_fmt_rules = env.preedit_fmt_rules or config:get_list("preedit_convert_rules")
+    env.preedit_fmt_rules = env.preedit_fmt_rules or config:get_list("preedit_pinyin_rules")
     env.tone_format_rule = env.tone_format_rule or config:get_list("cand_selector/tone_convert_format")
 end
 
@@ -192,7 +192,7 @@ function T.func(input, seg, env)
             for per_encode in reverse_char_encode:gmatch("%S+") do
                 if
                     (
-                        (utf8.len(per_encode) == #full_pinyin_code)
+                        (utf8.len(per_encode) == (full_pinyin_code and #full_pinyin_code))
                         and (full_pinyin_code and per_encode:match("^" .. full_pinyin_code:sub(1, 1)))
                     )
                     or full_pinyin_code and rime_api.regex_match(full_pinyin_code, "^" .. zero_shengmu_pattern .. "$")
@@ -220,7 +220,6 @@ function T.func(input, seg, env)
         for _, entry in ipairs(entry_matched_tbl) do
             local ph = Phrase(env.mem, "tone_match", seg.start, seg._end, entry)
             local cand = ph:toCandidate()
-            cand.type = "tone_match_" .. cand.type
             yield(cand)
         end
     end
@@ -247,9 +246,8 @@ function T.func(input, seg, env)
                         table.insert(entry_matched_tbl, dictentry)
                     end
                 end
-                if table.len(entry_matched_tbl) >= env.word_lookup_limit then
-                    break
-                end
+
+                if table.len(entry_matched_tbl) >= env.word_lookup_limit then break end
             end
         end
 
@@ -260,7 +258,6 @@ function T.func(input, seg, env)
         for _, entry in ipairs(entry_matched_tbl) do
             local ph = Phrase(env.mem, "single_char", seg.start, seg._end, entry)
             local cand = ph:toCandidate()
-            cand.type = "single_char_" .. cand.type
             yield(cand)
             if prev_cand_text ~= cand.text then
                 prev_cand_text = cand.text
@@ -269,6 +266,7 @@ function T.func(input, seg, env)
         end
 
         if segmentation:get_confirmed_position() > 0 then return end
+
         -- 单字全码唯一自动顶屏(ab/xy?)
         if env.char_auto_commit and (#yx_code > 0) and (matched_char_cand_count == 1) then
             env.engine:commit_text(prev_cand_text)
@@ -372,7 +370,6 @@ function F.func(input, env)
         and fm_project:load(env.tone_format_rule)
         and fm_project:apply(fm_code, true) or ""
     local new_preedit_code = tone_filter_mode and raw_input:match("^(.-)/") .. "/" .. fm_replaced_code or raw_input
-    local normal_limit = math.min(env.word_lookup_limit or 100, 200)
 
     for cand in input:iter() do
         -- 符号自动上屏(;[a-z])
@@ -392,7 +389,6 @@ function F.func(input, env)
             table.insert(preselected_cands, cand)
         end
 
-        if #normal_cands >= normal_limit then break end
         table.insert(normal_cands, cand)
     end
 
