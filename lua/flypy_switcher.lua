@@ -21,7 +21,7 @@ function M.init(env)
     env.line_spacing = config:get_int("style/line_spacing") or 5
     env.comment_hints = config:get_int("translator/spelling_hints") or 1
     env.easy_en_prompt = config:get_string("easy_en/tips") or "英文"
-    env.preedit_fmt_rules = config:get_list("preedit_convert_rules")
+    env.preedit_fmt_rules = config:get_list("preedit_pinyin_rules")
     env.preedit_format = config:get_list("translator/preedit_format")
     env.text_orientation = config:get_string("style/text_orientation") or "horizontal"
     env.candidate_layout = config:get_string("style/candidate_list_layout") or "stacked"
@@ -79,7 +79,7 @@ function T.init(env)
             elseif name == "preedit_format" then
                 if ctx:get_option(name) then
                     if (not env.preedit_format) or (env.preedit_format.size <= 1) and (ctx:get_property("preedit_format_state") ~= "0") then
-                        env:Config_set("translator/preedit_format", env:Config_get("preedit_convert_rules"))
+                        env:Config_set("translator/preedit_format", env:Config_get("preedit_pinyin_rules"))
                         env:Config_set("switches/@9/reset", 1)
                         ctx:set_property("preedit_format_state", "1")
                     end
@@ -193,7 +193,7 @@ function P.func(key, env)
             if (not preedit_format_state) or (not env.preedit_format) then
                 context:set_option("preedit_format", true)
                 env:Config_set("switches/@9/reset", 1)
-                env:Config_set("translator/preedit_format", env:Config_get("preedit_convert_rules"))
+                env:Config_set("translator/preedit_format", env:Config_get("preedit_pinyin_rules"))
             else
                 context:set_option("preedit_format", false)
                 env:Config_set("switches/@9/reset", 0)
