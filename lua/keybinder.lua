@@ -24,8 +24,8 @@ local Shift_Key_Map = {
 ---@field match string
 ---@field accept KeyEvent
 ---@field send KeySequence
----@field send_sequence KeySequence
 ---@field sequence_text string
+---@field send_sequence KeySequence
 
 ---解析配置文件中的按键绑定配置
 ---@param value ConfigMap
