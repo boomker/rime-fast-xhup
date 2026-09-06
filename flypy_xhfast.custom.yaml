@@ -41,11 +41,11 @@ patch:
     - name: preedit_format
       states: [双拼显示, 全拼显示]
       reset: 0  # 切换后重置为默认状态
-    - options: [mask_hint, tone_hint, comment_off]
+    - options: [comment_off, mask_hint, tone_hint]
       states:
+        - 注解类型 ➜ 空白
         - 注解类型 ➜ 辅码
         - 注解类型 ➜ 声调
-        - 注解类型 ➜ 空白
       reset: 2
 
   # 输入引擎

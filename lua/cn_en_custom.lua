@@ -18,7 +18,7 @@ local function user_dict_exist(word_record, path)
 end
 
 local function save_entry(env, cand_or_text)
-    local text = (type(cand_or_text) == string) and cand_or_text or cand_or_text.text
+    local text = (type(cand_or_text) == "string") and cand_or_text or cand_or_text.text
     if not text or text == "" then
         return
     end
