@@ -5,9 +5,12 @@ local F = {}
 local M = {}
 
 local function ensure_processor_resources(env)
-    if env.mem_flyhe and env.reversedb_flyhe then return end
+    if env.mem_flyhe and env.reversedb and env.reversedb_flyhe then return end
 
+    local config = env.engine.schema.config
     local flyhe_schema = Schema("flyhe_fast")
+    local schema_id = config:get_string("schema/schema_id")
+    env.reversedb = env.reversedb or ReverseLookup(schema_id)
     env.reversedb_flyhe = env.reversedb_flyhe or ReverseLookup("flyhe_fast")
     env.mem_flyhe = env.mem_flyhe or Memory(env.engine, flyhe_schema, "translator")
 end
@@ -23,29 +26,66 @@ local function ensure_translator_resources(env)
         Component.ScriptTranslator(env.engine, flyhe_schema, "translator", "")
 end
 
-local function check_fuzzy_cand(env, cand, input)
+local function reverse_code_matches(env, text, code)
+    local reverse_code = env.reversedb:lookup(text)
+    for syllable in reverse_code:gmatch("%S+") do
+        if syllable:match("^" .. code:gsub("([^%w])", "%%%1") .. "~") then
+            return true
+        end
+    end
+    return false
+end
+
+local function select_full_encode_by_code(env, text, full_encodes, code)
+    local matched_index = nil
+    local index = 0
+    for syllable in env.reversedb:lookup(text):gmatch("%S+") do
+        index = index + 1
+        if syllable:match("^" .. code:gsub("([^%w])", "%%%1") .. "~") then
+            matched_index = index
+            break
+        end
+    end
+    if not matched_index then return nil end
+
+    index = 0
+    for syllable in full_encodes:gmatch("%S+") do
+        index = index + 1
+        if index == matched_index then return syllable end
+    end
+    return nil
+end
+
+local function check_fuzzy_cand(env, cand, input, expected_length, tail_code)
     if not cand then return false end
     if cand.quality < 0.1 then return false end
 
     local cand_text = cand.text
+    local cand_length = utf8.len(cand_text)
     if utf8.len(cand_text) <= 1 then return false end
-    if #input - utf8.len(cand_text) > 1 then return false end
-    if (not cand_text:match("[%a%d%p]")) and (utf8.len(cand_text) ~= #input) then return false end
+    if #input - cand_length > 1 then return false end
+    if expected_length and cand_text:match("[%a%d%p%s]") then return false end
+    if expected_length and cand_length ~= expected_length then return false end
+    if (not expected_length) and (cand_length ~= #input) then return false end
 
     local tail_text = string.utf8_sub(cand_text, -1, -1)
     if not tail_text then return false end
 
     if not tail_text:match("[%a%d%p]") then
-        local _tail_code = env.reversedb:lookup(tail_text)
-        local tail_code = _tail_code:gsub("%l~%l%l ?", "")
-        if tail_code:match(input:sub(-1, -1)) then return true end
+        if tail_code then
+            return reverse_code_matches(env, tail_text, tail_code)
+        end
+
+        local reverse_code = env.reversedb:lookup(tail_text)
+        local fuzzy_tail_code = reverse_code:gsub("%l~%l%l ?", "")
+        if fuzzy_tail_code:match(input:sub(-1, -1)) then return true end
         return false
     end
     return true
 end
 
-local function update_flyhe_userdb(env, input_code, cand_text)
-    local function get_full_encode(input, text)
+local function update_flyhe_userdb(env, input_code, cand_text, input_codes)
+    local function get_full_encode(input, text, codes)
         local loop_count = 0
         local full_encode = ""
         local zero_text_exist = false
@@ -58,7 +98,8 @@ local function update_flyhe_userdb(env, input_code, cand_text)
             loop_count = (not zero_text_exist) and (loop_count + 1) or loop_count
             local match_slab_encode = nil
             local per_text = utf8.char(code)
-            local per_encode = input:sub(loop_count, loop_count)
+            local per_encode = codes and codes[loop_count] or input:sub(loop_count, loop_count)
+            local is_full_code = #per_encode > 1
             local text_encode = env.reversedb_flyhe:lookup(per_text)
             if tostring(per_text):match("0") then
                 if per_encode == "" then
@@ -78,10 +119,14 @@ local function update_flyhe_userdb(env, input_code, cand_text)
             else
                 -- 多音字
                 if text_encode:match(" ") and text_encode:match("[a-z]") then
-                    local slabs = string.split(text_encode, " ")
-                    for _, value in ipairs(slabs) do
-                        if value:match("^" .. per_encode) then
-                            match_slab_encode = value
+                    if is_full_code then
+                        match_slab_encode = select_full_encode_by_code(env, per_text, text_encode, per_encode)
+                    else
+                        local slabs = string.split(text_encode, " ")
+                        for _, value in ipairs(slabs) do
+                            if value:match("^" .. per_encode) then
+                                match_slab_encode = value
+                            end
                         end
                     end
                 else -- 单音字
@@ -103,7 +148,7 @@ local function update_flyhe_userdb(env, input_code, cand_text)
         return full_encode
     end
     local text = cand_text:gsub(" ", "")
-    local full_encode = get_full_encode(input_code, text)
+    local full_encode = get_full_encode(input_code, text, input_codes)
     local de = DictEntry()
     de.text = cand_text
     de.weight = 1
@@ -113,12 +158,12 @@ end
 
 function M.init(env)
     local config = env.engine.schema.config
-    env.expand_idiom_key = config:get_string("key_binder/fuzz_algebra_first") or "Control+q"
-    env.fuzz_start_length = config:get_int("flypy_fuzzy/fuzz_start_length") or 2
     env.fuzz_max_length = config:get_int("flypy_fuzzy/fuzz_max_length") or 7
-    env.word_lookup_limit = config:get_int("flypy_fuzzy/word_lookup_limit") or 100
-    env.fuzz_scan_limit = config:get_int("flypy_fuzzy/fuzz_scan_limit") or 100
+    env.fuzz_start_length = config:get_int("flypy_fuzzy/fuzz_start_length") or 2
+    -- env.fuzz_scan_limit = config:get_int("flypy_fuzzy/fuzz_scan_limit") or 100
+    env.word_lookup_limit = config:get_int("flypy_fuzzy/word_lookup_limit") or 300
     env.enable_fuzz_func = config:get_bool("flypy_fuzzy/enable_fuzz_func") or false
+    env.expand_idiom_key = config:get_string("key_binder/fuzz_algebra_first") or "Control+q"
 end
 
 function P.init(env)
@@ -140,7 +185,16 @@ function P.init(env)
             return
         end
 
-        update_flyhe_userdb(env, raw_input, cand.text)
+        local cand_length = utf8.len(cand.text)
+        local input_codes = nil
+        if #raw_input == 4 and cand_length == 3 and not cand.text:match("[%a%d%p%s]") then
+            input_codes = {
+                raw_input:sub(1, 1),
+                raw_input:sub(2, 2),
+                raw_input:sub(3, 4),
+            }
+        end
+        update_flyhe_userdb(env, raw_input, cand.text, input_codes)
     end)
 end
 
@@ -206,27 +260,49 @@ function T.func(input, seg, env)
     local phrase_first_state = context:get_property("idiom_phrase_first")
     local match_pattern = string.format("^[a-z]{%d,%d}$", env.fuzz_start_length, env.fuzz_max_length)
     if env.enable_fuzz_func and rime_api.regex_match(raw_input, match_pattern) then
-        local word_cands = env.flyhe_fuzz_tran:query(raw_input, seg) or nil
-        if not word_cands then return end
+        local yielded_text = {}
+        local query_specs = {
+            {
+                query = raw_input,
+                expected_length = nil,
+            },
+        }
+        if #raw_input == 4 then
+            table.insert(query_specs, {
+                query = raw_input:sub(1, 1) .. "'" .. raw_input:sub(2, 2) .. "'" .. raw_input:sub(3, 4),
+                expected_length = 3,
+                tail_code = raw_input:sub(3, 4),
+            })
+        end
 
-        local yielded_count = 0
-        local scanned_count = 0
-        local fuzz_cand = nil
-        for cand in word_cands:iter() do
-            scanned_count = scanned_count + 1
-            if scanned_count > env.fuzz_scan_limit then break end
+        for _, query_spec in ipairs(query_specs) do
+            local word_cands = env.flyhe_fuzz_tran:query(query_spec.query, seg) or nil
+            if word_cands then
+                local yielded_count = 0
+                for cand in word_cands:iter() do
 
-            if not check_fuzzy_cand(env, cand, raw_input) then goto Continue end
-            if phrase_first_state == "1" then
-                fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
-            else
-                fuzz_cand = Candidate("fuzzy_word", seg.start, seg._end, cand.text, "")
+                    if not yielded_text[cand.text]
+                        and check_fuzzy_cand(
+                            env,
+                            cand,
+                            raw_input,
+                            query_spec.expected_length,
+                            query_spec.tail_code
+                        )
+                    then
+                        local fuzz_cand = nil
+                        if phrase_first_state == "1" then
+                            fuzz_cand = Candidate("idiom_phrase", seg.start, seg._end, cand.text, "")
+                        else
+                            fuzz_cand = Candidate("fuzzy_word", seg.start, seg._end, cand.text, "")
+                        end
+                        yield(fuzz_cand)
+                        yielded_text[cand.text] = true
+                        yielded_count = yielded_count + 1
+                        if yielded_count >= env.word_lookup_limit then break end
+                    end
+                end
             end
-            yield(fuzz_cand)
-
-            yielded_count = yielded_count + 1
-            if yielded_count >= env.word_lookup_limit then break end
-            ::Continue::
         end
     end
 end
