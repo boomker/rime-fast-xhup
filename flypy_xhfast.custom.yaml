@@ -37,7 +37,7 @@ patch:
       states: [通用字集, 增廣字集]
       reset: 1
     - name: charset_hint
-      states: [码区隐藏, 码区显示]
+      states: [隐藏码区, 显示码区]
     - name: preedit_format
       states: [双拼显示, 全拼显示]
       reset: 0  # 切换后重置为默认状态
