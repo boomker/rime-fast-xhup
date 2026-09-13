@@ -63,10 +63,11 @@ local function check_fuzzy_cand(env, cand, input, expected_length, tail_code)
     local cand_text = cand.text
     local cand_length = utf8.len(cand_text)
     if utf8.len(cand_text) <= 1 then return false end
-    if #input - cand_length > 1 then return false end
+    local mixed_cand = cand_text:match("[%a%d%p%s]") and true or false
+    if (#input - cand_length > 1) and (not mixed_cand) then return false end
     if expected_length and cand_text:match("[%a%d%p%s]") then return false end
     if expected_length and cand_length ~= expected_length then return false end
-    if (not expected_length) and (cand_length ~= #input) then return false end
+    if (not expected_length) and (cand_length ~= #input) and (not mixed_cand) then return false end
 
     local tail_text = string.utf8_sub(cand_text, -1, -1)
     if not tail_text then return false end
