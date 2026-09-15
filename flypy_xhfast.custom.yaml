@@ -58,7 +58,7 @@ patch:
   'engine/translators/@before 0': predict_translator
   'engine/processors/@after 0': lua_processor@*keybinder
   # 注释下行, 以取消中英混合候选词自动添加的空格
-  # 'engine/filters/@before last': lua_filter@*word_append_space*filter
+  'engine/filters/@before last': lua_filter@*word_append_space*filter
   # 注释下行, 以取消中英混合输出上屏时自动添加的前导空格
   # 'engine/processors/@after 1': lua_processor@*word_append_space*processor
 
@@ -274,7 +274,7 @@ patch:
     prefix: "nN"
     suffix: "'"
     tips: "中文数字"
-    select_keys: "sdfjio"
+    select_keys: "sdfjnm"
 
   chinese_lunar:                      # 中国农历(可反查)
     tag: chinese_lunar

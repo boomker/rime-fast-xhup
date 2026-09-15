@@ -65,6 +65,7 @@ local function check_fuzzy_cand(env, cand, input, expected_length, tail_code)
     if utf8.len(cand_text) <= 1 then return false end
     if expected_length and cand_text:match("[%a%d%p%s]") then return false end
     if expected_length and cand_length ~= expected_length then return false end
+    if (#input - cand_length > 1) and (cand_text:match("^[%a%d%p%s]+$")) then return false end
     if (#input - cand_length > 1) and (not cand_text:match("[%a%d%p%s]")) then return false end
     if (not expected_length) and (cand_length ~= #input) and (not cand_text:match("[%a%d%p%s]")) then return false end
 

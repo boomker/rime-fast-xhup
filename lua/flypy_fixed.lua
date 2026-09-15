@@ -35,15 +35,16 @@ function F.func(input, env)
             (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
                 cand_text:match("^[a-zA-Z]$") and raw_input_code:match("^%a%a+")
             ) or (                                       -- 'github' --> 'xx18'
-                (cand_type ~= "fuzzy_word") and (cand_dtype == "Sentence") and
-                cand_text:find("[%d%p]") and raw_input_code:match("^[%l%p]+$")
+                (cand_type ~= "fuzzy_word") and
+                cand_text:match("[0-9%a]+$") and
+                cand_text:find("([\228-\233][\128-\191]-)")
             ) or ( -- 'qphr' --> '000', 'uw' --> '15'
                 cand_text:match("^[0-9][%a%d]+$")
-                and raw_input_code:match("^[a-z%`]+$")
+                and raw_input_code:match("^[%a%`]+$")
             ) or ( -- 间接辅码筛字时, 过滤掉 emoji
                 (cand_dtype == "Shadow") and raw_input_code:match("%l+[`/][%l`/]+$")
             ) or ( -- 单个英文候选词长度少于 4 个字母的候选
-                cand_text:match("^%l?%l?%l?$") and raw_input_code:match("^%l+$")
+                cand_text:match("^%a?%a?%a?$") and raw_input_code:match("^%a+$")
             ) or ( -- 单个中文候选词长度超出音节长度 1 个以上的候选
                 (cand_type == "completion") and (cand_text_len - syllable_len > 1) and
                 (not cand_text:find("[a-zA-Z]")) and cand_text:find("([\228-\233][\128-\191]-)")
