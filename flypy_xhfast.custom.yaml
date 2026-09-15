@@ -37,16 +37,16 @@ patch:
       states: [通用字集, 增廣字集]
       reset: 1
     - name: charset_hint
-      states: [码区隐藏, 码区显示]
+      states: [隐藏码区, 显示码区]
     - name: preedit_format
       states: [双拼显示, 全拼显示]
       reset: 0  # 切换后重置为默认状态
-    - options: [mask_hint, tone_hint, comment_off]
+    - options: [comment_off, mask_hint, tone_hint]
       states:
+        - 注解类型 ➜ 空白
         - 注解类型 ➜ 辅码
         - 注解类型 ➜ 声调
-        - 注解类型 ➜ 空白
-      reset: 1
+      reset: 2
 
   # 输入引擎
   engine/+:
@@ -79,14 +79,13 @@ patch:
     select_first_character: "9"               # `9/minus` 以词定字(首字)
     select_last_character: "0"                # `0/equal` 以词定字(尾字)
     bindings/+:
-      - {when: has_menu,  accept: ";", send: Control+2}             # 分号; 用于第2候选
-      # - {when: has_menu,  accept: ".", send: Control+3}           # 句号. 用于第3候选
-      # - {when: has_menu,  accept: "'", send: Control+3}           # 引号' 用于第3候选
-      # - {when: paging,    accept: minus,  send: Page_Up}          # 减号- 返回上一页
-      # - {when: paging,    accept: equal,  send: Page_Down}        # 等号= 下一页
-      # - {when: has_menu,  accept: period, send: Page_Down}        # 句号. 下一页
-      - {when: has_menu,  accept: ']', send: Page_Down}             # 括号] 下一页
-      - {when: paging,    accept: comma, send: Page_Up}             # 逗号, 返回上一页
+      - {when: has_menu,  accept: ";", send: Control+2}          # 分号; 用于第2候选
+      - {when: has_menu,  accept: ']', send: Page_Down}          # 括号] 下一页
+      - {when: paging,    accept: comma, send: Page_Up}          # 逗号, 返回上一页
+      # - {when: has_menu,  accept: "'", send: Control+3}        # 引号' 用于第3候选
+      # - {when: paging,    accept: minus,  send: Page_Up}       # 减号- 返回上一页
+      # - {when: paging,    accept: equal,  send: Page_Down}     # 等号= 下一页
+      # - {when: has_menu,  accept: period, send: Page_Down}     # 句号. 下一页
       - {when: composing, accept: Shift+Tab,    send: Shift+Left}
       - {when: composing, accept: Control+i,    send: Shift+Left}
       - {when: composing, accept: Tab,          send: Shift+Right}
@@ -100,11 +99,10 @@ patch:
       - {match: "^=$",    accept: "=", send: '{Down}'}
       - {match: "^[a-z/]+'$", accept: ",", send: '{Shift+Left}'}
       - {match: "^[a-z/]+'$", accept: ".", send: '{Shift+Right}'}
-      - {tag: calculator, accept: "'",     send: '{Page_Down}'}
-      - {tag: calculator, accept: "Control+d", send: '{Delete}'}
-      - {tag: calculator, accept: "(", send_sequence: '(){Left}'}
-      - {match: "^.*\\)$", accept: ")", send_sequence: '{Right}'}
       - {tag: calculator, accept: "%", send_sequence: '/100'}
+      - {match: "^.*\\)$", accept: ")", send_sequence: '{Right}'}
+      - {tag: calculator, accept: "(", send_sequence: '(){Left}'}
+      - {tag: calculator, accept: "Control+d",  send: '{Delete}'}
       - {tag: calculator, accept: "Shift+U", send_sequence: '10'}
       - {tag: calculator, accept: "Shift+B", send_sequence: '00'}
       - {tag: calculator, accept: "Shift+H", send_sequence: '100'}
@@ -119,15 +117,14 @@ patch:
       - {tag: chinese_number, accept: "k", send_sequence: '1000'}
       - {tag: chinese_number, accept: "w", send_sequence: '0000'}
       - {tag: chinese_number, accept: "period", send_sequence: '.'}
-      - {tag: chinese_number, accept: "s",   send_sequence: '{End}{Control+1}'}
-      - {tag: chinese_number, accept: "d",   send_sequence: '{End}{Control+2}'}
-      - {tag: chinese_number, accept: "f",   send_sequence: '{End}{Control+3}'}
-      - {tag: chinese_number, accept: "j",   send_sequence: '{End}{Control+4}'}
-      - {tag: chinese_number, accept: "u",   send_sequence: '{End}{Control+5}'}
-      - {tag: chinese_number, accept: "m",   send_sequence: '{End}{Control+6}'}
-      - {tag: date_time,      accept: "s",   send_sequence: '{End}{Control+3}'}
-      - {tag: date_time,      accept: "d",   send_sequence: '{End}{Control+4}'}
-      - {tag: date_time,      accept: "f",   send_sequence: '{End}{Control+5}'}
+      - {tag: chinese_number, accept: "s", send_sequence: '{End}{Control+1}'}
+      - {tag: chinese_number, accept: "d", send_sequence: '{End}{Control+2}'}
+      - {tag: chinese_number, accept: "f", send_sequence: '{End}{Control+3}'}
+      - {tag: chinese_number, accept: "j", send_sequence: '{End}{Control+4}'}
+      - {tag: chinese_number, accept: "m", send_sequence: '{End}{Control+5}'}
+      - {tag: date_time,      accept: "s", send_sequence: '{End}{Control+3}'}
+      - {tag: date_time,      accept: "d", send_sequence: '{End}{Control+4}'}
+      - {tag: date_time,      accept: "f", send_sequence: '{End}{Control+5}'}
       - {tag: calculator, accept: "Shift+J", send_sequence: '{End}{Control+3}'}
       - {tag: calculator, accept: "Shift+I", send_sequence: '{End}{Control+4}'}
       - {tag: calculator, accept: "Shift+O", send_sequence: '{End}{Control+5}'}
@@ -265,7 +262,7 @@ patch:
     enable_fuzz_func: true            # 是否开启简拼功能(支持中英数混合)
     fuzz_start_length: 2              # 简拼开始长度
     fuzz_max_length: 7                # 简拼最大长度
-    word_lookup_limit: 300            # 检索最多迭代数
+    word_lookup_limit: 666            # 检索最多迭代数
 
   chinese_number:                     # 中文大写数字(金额)
     tag: chinese_number
@@ -282,7 +279,7 @@ patch:
     suffix: "'"
     tips: "农历"
 
-  date_time:
+  date_time:                          # 时间日期格式配置
     date_format:
       # 时区格式: TZ: +08:00/Z
       # 年份格式: year_cn: 二〇二六年; year: 2026
@@ -301,15 +298,15 @@ patch:
       - "{year}年{month}月{day}日 {hour}点{min}分{sec}秒"   # 2026年02月22日 18点37分06秒
     time_format:
       # 时间格式: hour: 18; min: 30; sec: 45; TS: AM/PM
-      - "{hour}:{min}"              # 18:30
-      - "{hour}:{min} {TS}"         # 6:30 PM
-      - "{hour}:{min}:{sec} {TS}"   # 6:30:45 PM
-      - "{hour}:{min}:{sec}"        # 18:30:45
-      - "{hour}点{min}分"           # 18点37分
-      - "{hour}点{min}分{sec}秒"    # 18点37分06秒
-      - "{hour}时{min}分{sec}秒"    # 18时37分06秒
+      - "{hour}:{min}"                # 18:30
+      - "{hour}:{min} {TS}"           # 6:30 PM
+      - "{hour}:{min}:{sec} {TS}"     # 6:30:45 PM
+      - "{hour}:{min}:{sec}"          # 18:30:45
+      - "{hour}点{min}分"             # 18点37分
+      - "{hour}点{min}分{sec}秒"      # 18点37分06秒
+      - "{hour}时{min}分{sec}秒"      # 18时37分06秒
     # 时间前缀: 凌晨, 早上, 上午, 中午, 下午, 夜晚, 午夜
-    enable_time_prefix: true      # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
+    enable_time_prefix: true          # 是否开启时间前缀(默认开启, 可在触发词末尾添加单引号'临时关闭)
 
   predictor:                          # 候选字词联想预测
     # trigger: 'ee'                     # 手动触发弹出预测候选菜单
