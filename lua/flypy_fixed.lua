@@ -41,10 +41,10 @@ function F.func(input, env)
             ) or ( -- 'qphr' --> '000', 'uw' --> '15'
                 cand_text:match("^[0-9][%a%d]+$")
                 and raw_input_code:match("^[%a%`]+$")
-            ) or ( -- 间接辅码筛字时, 过滤掉 emoji
-                (cand_dtype == "Shadow") and raw_input_code:match("%l+[`/][%l`/]+$")
             ) or ( -- 单个英文候选词长度少于 4 个字母的候选
-                cand_text:match("^%a?%a?%a?$") and raw_input_code:match("^%a+$")
+                cand_text:match("^%l%l%l?$") and raw_input_code:match("^%a+$")
+            ) or ( -- 间接辅码筛字时, 过滤掉 emoji
+                (cand_dtype == "Shadow") and raw_input_code:match("^%l[`/][a-z]+$")
             ) or ( -- 单个中文候选词长度超出音节长度 1 个以上的候选
                 (cand_type == "completion") and (cand_text_len - syllable_len > 1) and
                 (not cand_text:find("[a-zA-Z]")) and cand_text:find("([\228-\233][\128-\191]-)")
