@@ -29,12 +29,12 @@ function P.func(key, env)
     local raw_input = context.input
     local preedit_text = context:get_preedit().text
 
-    if (preedit_text and rime_api.regex_match(raw_input, "^[a-z/]{4, 99}'$")) then
-        local editing_preedit = preedit_text:match("[a-z/' ]+")
+    if (preedit_text and rime_api.regex_match(raw_input, "^[a-z][a-z%/]{4, 99}'$")) then
+        local editing_preedit = preedit_text:match("^[a-z][a-z%/%'%s]+"):gsub("/[%a]+'$", "")
 
         local parts = {}
         for encode_segment in editing_preedit:gmatch("[^ ]+") do
-            -- 每段：取开头两字符 + 斜杠后的字母（含斜杠），末尾分号除外
+            -- 每段：取开头两字符 + 斜杠后的字母（含斜杠），末尾引号除外
             local core = encode_segment:match("^[^']+") or "" -- 先去掉末尾可能的 '
 
             local head = core:sub(1, 2)                       -- 开头两个字符
@@ -45,7 +45,7 @@ function P.func(key, env)
 
         input_syllable_code = table.concat(parts, " ")
 
-        -- 末尾分号拼接
+        -- 末尾引号拼接
         local tail = editing_preedit:match("'$") or ""
         input_syllable_code = input_syllable_code .. tail
     end
@@ -77,8 +77,7 @@ function P.func(key, env)
         else
             return 2 -- kNoop
         end
-        -- env.engine:process_key(KeyEvent("space"))
-        return 1 -- kAccept
+        return 1     -- kAccept
     end
 
     return 2 -- kNoop

@@ -46,7 +46,6 @@ patch:
         - 注解类型 ➜ 空白
         - 注解类型 ➜ 辅码
         - 注解类型 ➜ 声调
-      reset: 2
 
   # 输入引擎
   engine/+:
@@ -313,8 +312,8 @@ patch:
     # cancel_key: "'"                   # 额外用于关闭预测菜单按键
     db: predict.db                    # librime-predict 数据库
     max_iterations: 1                 # 联想预测的最多次数, 默认值为 0, 表示不限制
-    min_candidates: 2                 # 联想预测的候选项最少个数(不足时, 读fallback_db)
     max_candidates: 5                 # 联想预测的候选项最多个数
+    # min_candidates: 2                 # 联想预测的候选项最少个数(不足时, 读fallback_db)
     # max_context_commits: 2            # 联想预测的最多上下文个数
     # garbage_expire_days: 90           # 默认0, 永不清理
     # db: predict.userdb                # librime-predict-leveldb 数据库
