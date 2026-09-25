@@ -10,12 +10,10 @@ schema:
   author:
     - Boomker <gmboomker@gmail.com>
   description: Easy English
-  dependencies:
-    - ecdict
+  dependencies:   # - en-cn_dict
 
 menu:
-  alternative_select_keys: "1;.4567"      # 候选项选中快捷键
-  # alternative_select_keys: 1234567890   # 候选项选中快捷键
+  alternative_select_keys: 1234567890   # 候选项选中快捷键
 
 engine:
   processors:
@@ -43,7 +41,7 @@ engine:
     - lua_translator@*word_autocaps*translator
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
   filters:
-    - reverse_lookup_filter@easy_en-ecdict            # 反查英文单词/词组的中文释义
+    - reverse_lookup_filter@easy_en-cn_dict           # 反查英文单词/词组的中文释义
     - lua_filter@*easy_en*filter
     - lua_filter@*word_autocaps*filter
     - uniquifier
@@ -66,20 +64,17 @@ translator:
   comment_format:
     - erase/^.$/
 
-# 英文反查释意
-easy_en-ecdict:
-  overwrite_comment: true     # 是否开启中文释意注解
-  dictionary: ecdict
-  comment_format:
-    - xform|\\r\\n| ; |
-    - xform|\\n| ; |
-    - erase|^.$|
-
 easy_en:
   tag: easy_en
   tips: "英文"
   wildcard: '*'
   word_search_limit: 666
+
+# 英文反查释意
+easy_en-cn_dict:
+  dictionary: en-cn_dict
+  overwrite_comment: true     # 是否开启中文释意注解
+  comment_format:             # - erase|^.$|
 
 key_binder:
   import_preset: default

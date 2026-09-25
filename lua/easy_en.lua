@@ -6,7 +6,7 @@ require("lib/string")
 local easy_en = {}
 
 local function truncate_comment(comment)
-    local MAX_LENGTH = 20
+    local MAX_LENGTH = 30
     if utf8.len(comment) > MAX_LENGTH then
         local comment_text = string.utf8_sub(comment, 1, MAX_LENGTH)
         comment_text = comment_text and comment_text:gsub("[;,.=(%a ]+$", "")

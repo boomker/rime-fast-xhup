@@ -96,8 +96,8 @@ function T.init(env)
             elseif (name == "tone_hint") and ctx:get_option("tone_hint") and (env:Config_get("switches/@last/reset") ~= 1) then
                 env:Config_set("switches/@last/reset", 1)
                 env:Config_set("radical_lookup/overwrite_comment", true)
-            elseif (name == "comment_off") and ctx:get_option("comment_off") and (env:Config_get("switches/@last/reset") ~= 2) then
-                env:Config_set("switches/@last/reset", 2)
+            elseif (name == "comment_off") and ctx:get_option("comment_off") and (env:Config_get("switches/@last/reset") ~= 0) then
+                env:Config_set("switches/@last/reset", 0)
                 env:Config_set("radical_lookup/overwrite_comment", false)
             end
         end

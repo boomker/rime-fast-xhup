@@ -32,22 +32,24 @@ function F.func(input, env)
             local br_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
             yield(cand:to_shadow_candidate(cand_type, br_text, env.custom_mark))
         elseif                                           -- 丢弃一些候选结果
-            (                                            -- 多个大小写的输入编码, 去掉只有单字母的候选
-                cand_text:match("^[a-zA-Z]$") and raw_input_code:match("^%a%a+")
-            ) or (                                       -- 'github' --> 'xx18'
+            (                                            -- 'github' --> 'xx18'
                 (cand_type ~= "fuzzy_word") and
                 cand_text:match("[0-9%a]+$") and
                 cand_text:find("([\228-\233][\128-\191]-)")
             ) or ( -- 'qphr' --> '000', 'uw' --> '15'
-                cand_text:match("^[0-9][%a%d]+$")
+                cand_text:match("^[0-9]+$")
                 and raw_input_code:match("^[%a%`]+$")
-            ) or ( -- 单个英文候选词长度少于 4 个字母的候选
+            ) or ( -- 'uss/uqs/ubs'  '13/17/18'
+                cand_text:match("^1[378]")
+                and raw_input_code:match("^[%a%`]+$")
+            ) or ( -- 中文候选词长度超出音节长度 1 个以上的候选
+                (cand_type == "completion") and
+                (not cand_text:find("[%a%d%p%s]"))
+                and (cand_text_len - syllable_len > 1)
+            ) or ( -- 英文候选词长度少于 4 个字母的候选
                 cand_text:match("^%l%l%l?$") and raw_input_code:match("^%a+$")
             ) or ( -- 间接辅码筛字时, 过滤掉 emoji
                 (cand_dtype == "Shadow") and raw_input_code:match("^%l[`/][a-z]+$")
-            ) or ( -- 单个中文候选词长度超出音节长度 1 个以上的候选
-                (cand_type == "completion") and (cand_text_len - syllable_len > 1) and
-                (not cand_text:find("[a-zA-Z]")) and cand_text:find("([\228-\233][\128-\191]-)")
             )
         then
             drop_cand = true
