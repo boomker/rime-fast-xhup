@@ -60,6 +60,7 @@ patch:
   - derive/^vx/ux/correction      # vx --> ux
   - derive/^vd/ud/correction      # vd --> ud
   - derive/^vg/vk/correction      # vg --> vk
+  - derive/^dr/df/correction      # dr --> df
   - derive/^te/df/correction      # te --> df
   - derive/^tw/dw/correction      # tw --> dw
   - derive/^gy/gk/correction      # gy --> gk

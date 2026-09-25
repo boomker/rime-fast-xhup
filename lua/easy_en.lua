@@ -1,6 +1,3 @@
---[[
-ecdict: 把ECDICT.dict.yaml里的text作为comment，code作为text输出
---]]
 
 require("lib/string")
 local easy_en = {}
@@ -57,9 +54,7 @@ function easy_en.translator(input, seg, env)
     local engine = env.engine
     local schema = engine.schema
     local composition = engine.context.composition
-    if composition:empty() then
-        return
-    end
+    if composition:empty() then return end
     local segment = composition:back()
     if segment:has_tag(env.tag) or (schema.schema_id == "easy_en") or input:match("^%l+%*%l+$") then
         if not (schema.schema_id == "easy_en") then
