@@ -6,7 +6,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: 2026.01.23
+  version: 2026.09.28
   author:
     - Boomker <gmboomker@gmail.com>
   description: Easy English
@@ -37,11 +37,12 @@ engine:
   translators:
     - table_translator
     - punct_translator
-    # - lua_translator@*easy_en*translator
+    - lua_translator@*easy_en*translator
     - lua_translator@*word_autocaps*translator
     - lua_translator@*flypy_switcher*translator       # /so 触发进入选项切换菜单
   filters:
     - reverse_lookup_filter@easy_en-cn_dict           # 反查英文单词/词组的中文释义
+    - lua_filter@*easy_en*filter
     - lua_filter@*word_autocaps*filter
     - uniquifier
 
@@ -73,7 +74,8 @@ easy_en:
 easy_en-cn_dict:
   dictionary: en-cn_dict
   overwrite_comment: true     # 是否开启中文释意注解
-  comment_format:             # - erase|^.$|
+  comment_format:
+    - erase|^.$|
 
 key_binder:
   import_preset: default
