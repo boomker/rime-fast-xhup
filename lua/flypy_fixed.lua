@@ -32,17 +32,7 @@ function F.func(input, env)
             local br_text = cand_text:gsub("<br>", "\n") -- 词条有<br>标签, 将其转为换行符
             yield(cand:to_shadow_candidate(cand_type, br_text, env.custom_mark))
         elseif                                           -- 丢弃一些候选结果
-            (                                            -- 'github' --> 'xx18'
-                (cand_type ~= "fuzzy_word") and
-                cand_text:match("[0-9%a]+$") and
-                cand_text:find("([\228-\233][\128-\191]-)")
-            ) or ( -- 'qphr' --> '000', 'uw' --> '15'
-                cand_text:match("^[0-9]+$")
-                and raw_input_code:match("^[%a%`]+$")
-            ) or ( -- 'uss/uqs/ubs'  '13/17/18'
-                cand_text:match("^1[378]")
-                and raw_input_code:match("^[%a%`]+$")
-            ) or ( -- 中文候选词长度超出音节长度 1 个以上的候选
+            ( -- 中文候选词长度超出音节长度 1 个以上的候选
                 (cand_type == "completion") and
                 (not cand_text:find("[%a%d%p%s]"))
                 and (cand_text_len - syllable_len > 1)

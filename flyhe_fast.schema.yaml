@@ -11,7 +11,6 @@ schema:
   description: |
     小鹤双拼+直接辅码
     github.com:boomker/rime-fast-xhup
-  # dependencies:  melt_eng         # 中英Mix输入方案
 
 # 选项开关
 switches:
@@ -26,7 +25,7 @@ switches:
   - name: extended_charset
     states: [通用, 增廣]
     reset: 1
-  - name: char_mode
+  - name: cand_priority
     states: [词组优先, 单字优先]
 
 # 输入引擎
@@ -55,7 +54,7 @@ engine:
   translators:
     - punct_translator
     - script_translator
-    # - table_translator@melt_eng                     # 英文输入
+    - table_translator@custom_phrase                  # 自定义短语(固顶)
     - lua_translator@*date_time                       # date/orq,week/oxq,time/osj 触发
     - lua_translator@*cand_selector*translator        # /,; 单字或二字词和表情自动上屏
   filters:
@@ -89,16 +88,7 @@ translator:
   preedit_format:
     __include: preedit_pinyin_rules   # 输入码显示为全拼
   comment_format:
-    - xform/^(.*)/~$1/
-
-# 次翻译器
-melt_eng:
-  dictionary: melt_eng              # 挂载词库 melt_eng.dict.yaml
-  enable_sentence: false            # 禁止造句
-  enable_user_dict: false           # 禁用用户词典
-  initial_quality: 0.8              # 初始权重
-  comment_format:                   # 自定义提示码
-    - xform/.*//                    # 清空提示码
+    - xform/^(.*)/$1/
 
 # 自定义短语
 custom_phrase:                      # 自定义固顶字
@@ -210,9 +200,9 @@ speller:
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"
   algebra:
-    __include: algebra_common
+    __include: algebra_flyhe
 
-algebra_common:
+algebra_flyhe:
   ## 字表编码到输入码的转换规则
   - xform/^ḿ$/om/
   - xform/^m̀$/om/
@@ -279,9 +269,68 @@ algebra_common:
   - xform/(.)ui$/$1Ⓥ/
   - xform/(.)in$/$1Ⓑ/
   - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
+  # ------------------------------------
+  - derive/(?<!\d)([2-9])([1-9])(?!\d)/$1ui$2/
+  - derive/(?<!\d)1([1-9])(?!\d)/ui$1/
+  - derive/([1-9])0000(?!0)/$1wj/
+  - derive/([1-9])000(?!0)/$1qm/
+  - derive/([1-9])00(?!0)/$1bd/
+  - derive/([2-9])0(?!0)/$1ui/
+  - derive/([1-9])0000(?!0)/wj/
+  - derive/([1-9])000(?!0)/qm/
+  - derive/([1-9])00(?!0)/bd/
+  - derive/([2-9])0(?!0)/ui/
+  - derive/10/ui/
+  - derive/0/oo/
+  - derive/0/lk/
+  - derive/1/yi/
+  - derive/2/er/
+  - derive/2/ll/
+  - derive/3/sj/
+  - derive/4/si/
+  - derive/5/wu/
+  - derive/6/lq/
+  - derive/7/qi/
+  - derive/8/ba/
+  - derive/9/jq/
+  - derive/@/at/
+  - derive/#/jk/
+  - derive/&/he/
+  - derive/-/gh/
+  - derive/-/jm/
+  - derive / xg
+  - derive/\./dm/
+  - derive/\+/jx/
+  # -------------
+  - derive/A/aA/
+  - derive/B/bB/
+  - derive/C/cC/
+  - derive/D/dD/
+  - derive/E/eE/
+  - derive/F/fF/
+  - derive/G/gG/
+  - derive/H/hH/
+  - derive/I/iI/
+  - derive/J/jJ/
+  - derive/K/kK/
+  - derive/L/lL/
+  - derive/M/mM/
+  - derive/N/nN/
+  - derive/O/oO/
+  - derive/P/pP/
+  - derive/Q/qQ/
+  - derive/R/rR/
+  - derive/S/sS/
+  - derive/T/tT/
+  - derive/U/uU/
+  - derive/V/vV/
+  - derive/W/wW/
+  - derive/X/xX/
+  - derive/Y/yY/
+  - derive/Z/zZ/
+  # -------------
   - xform/^(..)$/$1/
   - fuzz/^([a-z]).$/$1/
-  # - abbrev/^([a-z]).$/$1/
 
 preedit_pinyin_rules:
   - xform/(\w)g/$1eng/

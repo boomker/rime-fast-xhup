@@ -25353,7 +25353,7 @@ sort: by_weight
 纷坠	ff vv	320
 分粥	ff vz	3940
 分外	ff wd	41565
-纷缊	ff wf	100
+纷缊	ff yy	100
 分文	ff wf	10925
 分网	ff wh	3280
 愤惋	ff wj	100
@@ -63021,7 +63021,7 @@ sort: by_weight
 𫘝𫘨	jt ti	1
 抉剔	jt ti	105
 掘土	jt tu	1145
-鳜豚	jt ty	100
+鳜豚	gv ty	100
 嚼头	jt tz	369
 倔头	jt tz	85
 镢头	jt tz	905
@@ -138513,7 +138513,7 @@ sort: by_weight
 危墙	ww ql	4
 围墙	ww ql	59300
 危浅	ww qm	1
-㧑谦	ww qm	100
+㧑谦	hv qm	100
 尾欠	ww qm	1290
 为钱	ww qm	14140
 魏乔	ww qn	1
@@ -138594,7 +138594,7 @@ sort: by_weight
 委随	ww sv	100
 尾随	ww sv	20435
 未遂	ww sv	56179
-㧑损	ww sy	100
+㧑损	hv sy	100
 喂它	ww ta	111
 为她	ww ta	143845
 喂她	ww ta	222
@@ -138943,7 +138943,7 @@ sort: by_weight
 喂养	ww yh	49300
 韦衣	ww yi	100
 为一	ww yi	100
-㧑挹	ww yi	100
+㧑挹	hv yi	100
 为宜	ww yi	107880
 逶迤	ww yi	1107
 威仪	ww yi	12
@@ -164450,7 +164450,7 @@ sort: by_weight
 资深	zi uf	228905
 自身	zi uf	500422
 自审	zi uf	5555
-齐盛	zi ug	100
+齐盛	qi ug	100
 自生	zi ug	1264
 滋生	zi ug	52075
 吱声	zi ug	6420
@@ -286266,7 +286266,7 @@ sort: by_weight
 苜蓿园	mu xu yr	277
 穆夏拉	mu xx la	170
 沐霞路	mu xx lu	2
-呒虾米	mu xx mi	100
+呒虾米	wu xx mi	100
 木匣子	mu xx zi	100
 慕亚平	mu ya pk	94
 木桠镇	mu ya vf	2
@@ -362122,7 +362122,7 @@ sort: by_weight
 伍世豪	wu ui hc	135
 无尸骸	wu ui hd	100
 乌饰蝗	wu ui hl	1
-武士彟	wu ui ho	100
+武士彟	wu ui yt	100
 武士黑	wu ui hw	180
 午时茶	wu ui ia	100
 无是处	wu ui iu	100
@@ -424049,7 +424049,7 @@ sort: by_weight
 不可替代	bu ke ti dd	37065
 不可调和	bu ke tn he	4605
 不可调节	bu ke tn jp	100
-不可说也	bu ke to ye	100
+不可说也	bu ke uo ye	100
 不可同日	bu ke ts ri	100
 不可通行	bu ke ts xk	90
 不可通约	bu ke ts yt	100
@@ -461476,7 +461476,7 @@ sort: by_weight
 防范得宜	fh fj de yi	100
 防范传销	fh fj ir xn	100
 防范控制	fh fj ks vi	700
-放饭流歠	fh fj lq iu	1111
+放饭流歠	fh fj lq io	1111
 防范体系	fh fj ti xi	2360
 防范设施	fh fj ue ui	1250
 防范重点	fh fj vs dm	100
@@ -518026,7 +518026,7 @@ sort: by_weight
 近卫统率	jb ww ts uk	100
 近卫声明	jb ww ug mk	65
 祲威盛容	jb ww ug rs	1
-近卫文麿	jb ww wf mo	100
+近卫文麿	jb ww wf mi	100
 近危物种	jb ww wu vs	414
 近卫秀麿	jb ww xq mo	100
 金尾鹦哥	jb ww yk ge	1
@@ -533759,7 +533759,6 @@ sort: by_weight
 酒水饮料	jq uv yb ln	100
 就找不到	jq vc bu dc	289
 就着急啊	jq vc ji aa	100
-就这么着	jq vc me vc	906
 九寨沟县	jq vd gz xm	1615
 旧宅基地	jq vd ji di	100
 旧债未还	jq vd ww hr	100
@@ -536136,7 +536135,7 @@ sort: by_weight
 聚山梨酯	ju uj li vi	4
 巨山农场	ju uj ns ih	8
 举善任能	ju uj rf ng	100
-举扇一㧑	ju uj yi ww	100
+举扇一㧑	ju uj yi hv	100
 据水断桥	ju uv dr qn	13
 俱收并蓄	ju uz bk xu	193
 举手表决	ju uz bn jt	4470
@@ -656649,8 +656648,8 @@ sort: by_weight
 指着鼻子	vi ve bi zi	100
 支着额头	vi ve ee tz	100
 智者见智	vi ve jm vi	10450
-知者乐水	vi ve yc uv	100
-智者乐水	vi ve yc uv	2560
+知者乐水	vi ve le uv	100
+智者乐水	vi ve le uv	2560
 只这两日	vi ve ll ri	100
 智者千虑	vi ve qm lv	1615
 智者善谋	vi ve uj mz	100
@@ -704466,7 +704465,7 @@ sort: by_weight
 钥匙在哪	yc ui zd na	100
 窑山花园	yc uj hx yr	1
 摇山振岳	yc uj vf yt	100
-乐山乐水	yc uj yc uv	425
+乐山乐水	le uj le uv	425
 要说什么	yc uo uf me	100
 妖术惑众	yc uu ho vs	100
 妖术邪法	yc uu xp fa	100
@@ -728448,7 +728447,7 @@ sort: by_weight
 有可能的	yz ke ng de	100
 有可能会	yz ke ng hv	19015
 游客如织	yz ke ru vi	100
-犹可说也	yz ke to ye	100
+犹可说也	yz ke uo ye	100
 游客止步	yz ke vi bu	295
 由恪志远	yz ke vi yr	100
 游客住宿	yz ke vu su	100
@@ -863677,7 +863676,7 @@ sort: by_weight
 木欣欣以向荣	mu xb xb yi xl rs	12
 母系氏族社会	mu xi ui zu ue hv	100
 墓形棍手水母	mu xk gy uz uv mu	1
-呒虾米输入法	mu xx mi uu ru fa	100
+呒虾米输入法	wu xx mi uu ru fa	100
 木业有限公司	mu ye yz xm gs si	16875
 母婴行业观察	mu yk hh ye gr ia	100
 母婴垂直传播	mu yk iv vi ir bo	100

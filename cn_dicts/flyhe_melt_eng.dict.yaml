@@ -1,0 +1,742 @@
+# Rime dictionary
+# encoding: utf-8
+# 中英混合的词库
+
+---
+name: flyhe_melt_eng
+version: "2026.10.15"
+...
+
+00后	0 0 hòu
+10后	1 0 hòu
+20后	2 0 hòu
+30后	3 0 hòu
+40后	4 0 hòu
+50后	5 0 hòu
+60后	6 0 hòu
+70后	7 0 hòu
+80后	8 0 hòu
+85后	8 5 hòu
+90后	9 0 hòu
+95后	9 5 hòu
+1L水	1 L shuǐ
+4S店	4 S diàn
+4A级	4 A jí
+5A级	5 A jí
+2025年	2 0 2 5 nián
+2026年	2 0 2 6 nián
+2B铅笔	2 B qiān bǐ
+2K电视	2 K diàn shì
+3A大作	3 A dà zuò
+3A游戏	3 A yóu xì
+3C认证	3 C rèn zhèng
+3D打印	3 D dǎ yìn
+3D电影	3 D diàn yǐng
+3G流量	3 G liú liàng
+3G网络	3 G wǎng luò
+4G网络	4 G wǎng luò
+4G通信	4 G tōng xìn
+4G流量	4 G liú liàng
+4K电视	4 K diàn shì
+5G网络	5 G wǎng luò
+5G流量	5 G liú liàng
+5G通信	5 G tōng xìn
+5G手机	5 G shǒu jī
+5G基站	5 G jī zhàn
+6G通信	6 G tōng xìn
+403报错	4 0 3 bào cuò
+404报错	4 0 4 bào cuò
+500报错	5 0 0 bào cuò
+502报错	5 0 2 bào cuò
+503报错	5 0 3 bào cuò
+504报错	5 0 4 bào cuò
+500ml水	5 100 m l shuǐ
+502胶水	5 0 2 jiāo shuǐ
+0DAY漏洞	0 D A Y lòu dòng
+2K分辨率	2 K fēn biàn lǜ
+2K显示器	2 K xiǎn shì qì
+4K分辨率	4 K fēn biàn lǜ
+4K显示器	4 K xiǎn shì qì
+8K分辨率	8 K fēn biàn lǜ
+8K显示器	8 K xiǎn shì qì
+100%确认	1 100 p què rèn
+1000ml水	1 1000 m l shuǐ
+120Hz高刷	1 2 0 H z gāo shuā
+144Hz高刷	1 4 4 H z gāo shuā
+240Hz高刷	2 100 4 10 H z gāo shuā
+304不锈钢	3 0 4 bù xiù gāng
+316不锈钢	3 1 6 bù xiù gāng
+1.6T光模块	1 . 6 T guāng mó kuài
+800G光模块	8 100 G guāng mó kuài
+
+G109国道	G 1 0 9 guó dào
+G213国道	G 2 1 3 guó dào
+G214国道	G 2 1 4 guó dào
+G217国道	G 2 1 7 guó dào
+G219国道	G 2 1 9 guó dào
+G227国道	G 2 2 7 guó dào
+G228国道	G 2 2 8 guó dào
+G315国道	G 3 1 5 guó dào
+G317国道	G 3 1 7 guó dào
+G318国道	G 3 1 8 guó dào
+G320国道	G 3 2 0 guó dào
+G321国道	G 3 2 1 guó dào
+G331国道	G 3 3 1 guó dào
+G348国道	G 3 4 8 guó dào
+
+嗑CP	kè C P
+炒CP	chǎo C P
+v我50	v wǒ 5 10
+O不OK	O bù O K
+hold住	h o l d zhù
+打call	dǎ c a l l
+立Flag	lì F l a g
+OK了吗	O K le ma
+我OK啊	wǒ O K a
+你OK吗	nǐ O K ma
+这TM的	zhè T M de
+免root	miǎn r o o t
+我TM服了	wǒ T M fú le
+非常nice	fēi cháng n i c e
+B站大会员	B zhàn dà huì yuán
+我@你一下	wǒ @ nǐ yī xià
+
+a4纸	a 4 zhǐ
+A4腰	A 4 yāo
+AA吧	A A ba
+AA制	A A zhì
+AB型	A B xíng
+AC号	A C hào
+AD钙	A D gài
+AV号	A V hào
+BB机	B B jī
+BB啥	B B shá
+B+树	B + shù
+IC卡	I C kǎ
+IT界	I T jiè
+IT业	I T yè
+pH值	p H zhí
+QR码	Q R mǎ
+TF卡	T F kǎ
+TG群	T G qún
+拍CT	pāi C T
+做B超	zuò B chāo
+充Q币	chōng Q bì
+e招贷	e zhāo dài
+AVL树	A V L shù
+A出口	A chū kǒu
+B出口	B chū kǒu
+C出口	C chū kǒu
+D出口	D chū kǒu
+E出口	E chū kǒu
+F出口	F chū kǒu
+A罩杯	A zhào bēi
+B罩杯	B zhào bēi
+C罩杯	C zhào bēi
+D罩杯	D zhào bēi
+E罩杯	E zhào bēi
+F罩杯	F zhào bēi
+G罩杯	G zhào bēi
+H罩杯	H zhào bēi
+K线图	K xiàn tú
+日K线	rì K xiàn
+周K线	zhōu K xiàn
+月K线	yuè K xiàn
+M系列	M xì liè
+n次方	n cì fāng
+n次幂	n cì mì
+LAN口	L A N kǒu
+WAN口	W A N kǒu
+PIN码	P I N mǎ
+POS机	P O S jī
+PVC管	P V C guǎn
+SDK包	S D K bāo
+SIM卡	S I M kǎ
+T细胞	T xì bāo
+T恤衫	T xù shān
+TCP包	T C P bāo
+UDP包	U D P bāo
+UIM卡	U I M kǎ
+U形管	U xíng guǎn
+U型锁	U xíng suǒ
+X教授	X jiào shòu
+X射线	X shè xiàn
+X战警	X zhàn jǐng
+Fn键	F n jiàn
+ALT键	A L T jiàn
+Alt键	A l t jiàn
+CMD键	C M D jiàn
+Cmd键	C m d jiàn
+END键	E N D jiàn
+End键	E n d jiàn
+ESC键	E S C jiàn
+Esc键	E s c jiàn
+TAB键	T A B jiàn
+Tab键	T a b jiàn
+HOME键	H O M E jiàn
+Home键	H o m e jiàn
+CTRL键	C T R L jiàn
+Ctrl键	C t r l jiàn
+Eject键	E j e c t jiàn
+Enter键	E n t e r jiàn
+Shift键	S h i f t jiàn
+Option键	O p t i o n jiàn
+AD钙奶	A D gài nǎi
+AV女优	A V nǚ yōu
+AI语料	A I yǔ liào
+AI模型	A I mó xíng
+AI绘画	A I huì huà
+AI总结	A I zǒng jié
+AI手机	A I shǒu jī
+AI眼镜	A I yǎn jìng
+BC电池	B C diàn chí
+HJT电池	H J T diàn chí
+QQ号码	Q Q hào mǎ
+QQ空间	Q Q kōng jiān
+QQ邮箱	Q Q yóu xiāng
+QQ音乐	Q Q yīn yuè
+QQ拼音	Q Q pīn yīn
+QQ会员	Q Q huì yuán
+QQ好友	Q Q hǎo yǒu
+QQ飞车	Q Q fēi chē
+QQ三国	Q Q sān guó
+腾讯QQ	téng xùn Q Q
+
+C编程	C biān chéng
+C语言	C yǔ yán
+C#编程	C j# biān chéng
+C#语言	C j# yǔ yán
+F#语言	F j# yǔ yán
+Go程序	G o chéng xù
+Go语言	G o yǔ yán
+Vue框架	V u e kuàng jià
+C++编程	C + + biān chéng
+C++语言	C + + yǔ yán
+C++代码	C + + dài mǎ
+AHK脚本	A H K jiǎo běn
+AWK脚本	A W K jiǎo běn
+Lua脚本	L u a jiǎo běn
+Lua语言	L u a yǔ yán
+Php语言	P h p yǔ yán
+Bash脚本	B a s h jiǎo běn
+Java编程	J a v a biān chéng
+Java语言	J a v a yǔ yán
+Java代码	J a v a dài mǎ
+Rust编程	R u s t biān chéng
+Rust语言	R u s t yǔ yán
+Rust代码	R u s t dài mǎ
+飞牛OS	fēi niú O S
+iOS系统	i O S xì tǒng
+统信UOS	tǒng xìn U O S
+UOM平台	U O M píng tái
+浏览器UA	liú lǎn qì U A
+IE浏览器	I E liú lǎn qì
+UC浏览器	U C liú lǎn qì
+QQ浏览器	Q Q liú lǎn qì
+QQ输入法	Q Q shū rù fǎ
+Win7系统	W i n 7 xì tǒng
+Win11系统	W i n 1 1 xì tǒng
+macOS系统	m a c O S xì tǒng
+Linux系统	L i n u x xì tǒng
+Edge浏览器	E d g e liú lǎn qì
+
+AB型血	A B xíng xuè
+AB血型	A B xuè xíng
+HB铅笔	H B qiān bǐ
+eSIM卡	e S I M kǎ
+USIM卡	U S I M kǎ
+IT行业	I T háng yè
+CT检查	C T jiǎn chá
+CT扫描	C T sǎo miáo
+DJ舞曲	D J wǔ qǔ
+HD高清	H D gāo qīng
+JK制服	J K zhì fú
+ST板块	S T bǎn kuài
+PC版本	P C bǎn běn
+TV版本	T V bǎn běn
+UI设计	U I shè jì
+UI界面	U I jiè miàn
+UX设计	U X shè jì
+V8引擎	V 8 yǐn qíng
+YY语音	Y Y yǔ yīn
+IP经济	I P jīng jì
+IP电话	I P diàn huà
+IP协议	I P xié yì
+IP地址	I P dì zhǐ
+内网IP	nèi wǎng I P
+公网IP	gōng wǎng I P
+我叫MT	wǒ jiào M T
+卡拉OK	kǎ lā O K
+芒果TV	máng guǒ T V
+
+运-20	yùn - 2 10
+轰-20	hōng - 2 10
+轰-6J	hōng - 6 J
+轰-6K	hōng - 6 K
+轰-6N	hōng - 6 N
+歼-10C	jiān - 10 C
+歼-11B	jiān - 1 1 B
+歼-15B	jiān - 1 5 B
+歼-16D	jiān - 1 6 D
+歼-20A	jiān - 2 10 A
+歼-20S	jiān - 2 10 S
+歼-35A	jiān - 3 5 A
+惊雷-1	jīng léi - 1
+巨浪-1	jù làng - 1
+巨浪-2	jù làng - 2
+巨浪-3	jù làng - 3
+霹雳-15	pī lì - 1 5
+鹰击-18	yīng jī - 1 8
+鹰击-21	yīng jī - 2 1
+鹰击-83	yīng jī - 8 3
+红箭-10	hóng jiàn - 1 0
+红箭-12	hóng jiàn - 1 2
+歼轰-7A	jiān hōng - 7 A
+红旗-9C	hóng qí - 9 C
+红旗-16	hóng qí - 1 6
+红旗-19	hóng qí - 1 9
+红旗-20	hóng qí - 2 0
+红旗-22	hóng qí - 2 2
+红旗-29	hóng qí - 2 9
+东风-31	dōng fēng - 3 1
+东风-41	dōng fēng - 4 1
+东风-5C	dōng fēng - 5 C
+东风-61	dōng fēng - 6 1
+长剑-10	cháng jiàn - 1 0
+长剑-20	cháng jiàn - 2 0
+红旗-16C	hóng qí - 1 6 C
+长剑-100	cháng jiàn - 1 0 0
+东风-21D	dōng fēng - 2 1 D
+东风-26D	dōng fēng - 2 6 D
+东风-31A	dōng fēng - 3 1 A
+空警-200	kōng jǐng - 2 100
+空警-500	kōng jǐng - 5 100
+空警-2000	kōng jǐng - 2 1000
+
+C919飞机	C 9 1 9 fēi jī
+FPV无人机	F P V wú rén jī
+DJI无人机	D J I wú rén jī
+iPad平板	i P a d píng bǎn
+vivo手机	v i v o shǒu jī
+OPPO手机	O P P O shǒu jī
+meizu手机	m e i z u shǒu jī
+Pixel手机	P i x e l shǒu jī
+Redmi手机	R e d m i shǒu jī
+M4 Air	M 4 A i r
+M4 Pro	M 4 P r o
+
+L3级	L 3 jí
+L4级	L 4 jí
+L5级	L 5 jí
+挂D档	guà D dàng
+挂P档	guà P dàng
+挂R档	guà R dàng
+ABS刹车	A B S shā chē
+L3级智驾	L 3 jí zhì jià
+L4级智驾	L 4 jí zhì jià
+L5级智驾	L 5 jí zhì jià
+Tesla汽车	T e s l a qì chē
+L2辅助驾驶	L 2 fǔ zhù jià shǐ
+L3辅助驾驶	L 3 fǔ zhù jià shǐ
+L3自动驾驶	L 3 zì dòng jià shǐ
+L4自动驾驶	L 4 zì dòng jià shǐ
+L4自动驾驶	L 4 zì dòng jià shǐ
+小鹏G3	xiǎo péng G 3
+小鹏G6	xiǎo péng G 6
+小鹏G9	xiǎo péng G 9
+小鹏P5	xiǎo péng P 5
+小鹏P7	xiǎo péng P 7
+仰望U7	yǎng wàng U 7
+仰望U8	yǎng wàng U 8
+仰望U9	yǎng wàng U 9
+尊界S800	zūn jiè S 8 100
+享界S9	xiǎng jiè S 9
+尚界H5	shàng jiè H 5
+问界M5	wèn jiè M 5
+问界M7	wèn jiè M 7
+问界M9	wèn jiè M 9
+智界R7	zhì jiè R 7
+智界S7	zhì jiè S 7
+智己L6	zhì jǐ L 6
+智己L7	zhì jǐ L 7
+腾势D9	téng shì D 9
+腾势N7	téng shì N 7
+腾势N9	téng shì N 9
+理想L6	lǐ xiǎng L 6
+理想L7	lǐ xiǎng L 7
+理想L8	lǐ xiǎng L 8
+理想L9	lǐ xiǎng L 9
+理想i6	lǐ xiǎng i 6
+理想i7	lǐ xiǎng i 7
+理想i8	lǐ xiǎng i 8
+理想i9	lǐ xiǎng i 9
+理想MEGA	lǐ xiǎng M E G A
+奥迪A3	ào dí A 3
+奥迪A4	ào dí A 4
+奥迪A5	ào dí A 5
+奥迪A6	ào dí A 6
+奥迪A7	ào dí A 7
+奥迪A8	ào dí A 8
+奥迪Q2	ào dí Q 2
+奥迪Q3	ào dí Q 3
+奥迪Q5	ào dí Q 5
+奥迪Q7	ào dí Q 7
+奥迪Q8	ào dí Q 8
+宝马X1	bǎo mǎ X 1
+宝马X2	bǎo mǎ X 2
+宝马X3	bǎo mǎ X 3
+宝马X4	bǎo mǎ X 4
+宝马X5	bǎo mǎ X 5
+宝马X6	bǎo mǎ X 6
+宝马X7	bǎo mǎ X 7
+宝马i3	bǎo mǎ i 3
+宝马i4	bǎo mǎ i 4
+宝马i7	bǎo mǎ i 7
+宝马iX	bǎo mǎ i X
+宝马1系	bǎo mǎ 1 xì
+宝马2系	bǎo mǎ 2 xì
+宝马3系	bǎo mǎ 3 xì
+宝马4系	bǎo mǎ 4 xì
+宝马5系	bǎo mǎ 5 xì
+宝马6系	bǎo mǎ 6 xì
+宝马7系	bǎo mǎ 7 xì
+宝马8系	bǎo mǎ 8 xì
+奔驰A级	bēn chí A jí
+奔驰B级	bēn chí B jí
+奔驰C级	bēn chí C jí
+奔驰E级	bēn chí E jí
+奔驰S级	bēn chí S jí
+奔驰V级	bēn chí V jí
+奔驰EQB	bēn chí E Q B
+奔驰EQC	bēn chí E Q C
+奔驰EQE	bēn chí E Q E
+奔驰EQS	bēn chí E Q S
+奔驰GLA	bēn chí G L A
+奔驰GLB	bēn chí G L B
+奔驰GLC	bēn chí G L C
+奔驰GLE	bēn chí G L E
+奔驰GLS	bēn chí G L S
+别克GL8	bié kè G L 8
+蔚来EC6	wèi lái E C 6
+蔚来EC7	wèi lái E C 7
+蔚来EC8	wèi lái E C 8
+蔚来EP9	wèi lái E P 9
+蔚来ES6	wèi lái E S 6
+蔚来ES7	wèi lái E S 7
+蔚来ES8	wèi lái E S 8
+蔚来ET5	wèi lái E T 5
+蔚来ET7	wèi lái E T 7
+蔚来ET9	wèi lái E T 9
+蔚来ET5T	wèi lái E T 5 T
+丰田AE86	fēng tián A E 8 6
+保时捷718	bǎo shí jié 7 1 8
+保时捷911	bǎo shí jié 9 1 1
+沃尔沃S60	wò ěr wò S 6 0
+沃尔沃S90	wò ěr wò S 9 0
+沃尔沃V60	wò ěr wò V 6 0
+沃尔沃V90	wò ěr wò V 9 0
+沃尔沃XC40	wò ěr wò X C 4 0
+沃尔沃XC60	wò ěr wò X C 6 0
+沃尔沃XC90	wò ěr wò X C 9 0
+雷克萨斯ES	léi kè sà sī E S
+雷克萨斯LC	léi kè sà sī L C
+雷克萨斯LM	léi kè sà sī L M
+雷克萨斯LS	léi kè sà sī L S
+雷克萨斯LX	léi kè sà sī L X
+雷克萨斯NX	léi kè sà sī N X
+雷克萨斯RX	léi kè sà sī R X
+凯迪拉克CT4	kǎi dí lā kè C T 4
+凯迪拉克CT5	kǎi dí lā kè C T 5
+凯迪拉克CT6	kǎi dí lā kè C T 6
+凯迪拉克XT4	kǎi dí lā kè X T 4
+凯迪拉克XT5	kǎi dí lā kè X T 5
+凯迪拉克XT6	kǎi dí lā kè X T 6
+
+A股板块	A gǔ bǎn kuài
+A股指数	A gǔ zhǐ shù
+ETF基金	E T F jī jīn
+LOF基金	L O F jī jīn
+北证50	běi zhèng 5 10
+上证50	shàng zhèng 5 10
+科创50	kē chuàng 5 10
+深证100	shēn zhèng 1 100
+沪深300	hù shēn 3 100
+中证500	zhōng zhèng 5 100
+中证1000	zhōng zhèng 1 1000
+创业板50	chuàng yè bǎn 5 10
+5日均线	5 rì jūn xiàn
+10日均线	1 10 rì jūn xiàn
+20日均线	2 10 rì jūn xiàn
+60日均线	6 10 rì jūn xiàn
+10CM涨停	1 10 C M zhǎng tíng
+20CM涨停	2 10 C M zhǎng tíng
+30CM涨停	3 10 C M zhǎng tíng
+
+6G概念	6 G gài niàn
+C2M概念	C 2 M gài niàn
+CRO概念	C R O gài niàn
+EDR概念	E D R gài niàn
+ERP概念	E R P gài niàn
+NFT概念	N F T gài niàn
+NMN概念	N M N gài niàn
+PPP概念	P P P gài niàn
+F5G概念	F 5 G gài niàn
+PCB概念	P C B gài niàn
+PVDF概念	P V D F gài niàn
+AIGC概念	A I G C gài niàn
+Sora概念	S o r a gài niàn
+
+异维A酸	yì wéi A suān
+维生素A	wéi shēng sù A
+维生素B	wéi shēng sù B
+维生素C	wéi shēng sù C
+维生素D	wéi shēng sù D
+维生素E	wéi shēng sù E
+维生素K	wéi shēng sù K
+维生素E乳	wéi shēng sù E rǔ
+
+7Z压缩	7 Z yā suō
+Zip压缩	Z i p yā suō
+ZIP炸弹	Z I P zhà dàn
+RAR压缩	R A R yā suō
+AVC编码	A V C biān mǎ
+AVC格式	A V C gé shì
+AV1编码	A V 1 biān mǎ
+AV1格式	A V 1 gé shì
+HEVC编码	H E V C biān mǎ
+HEVC格式	H E V C gé shì
+7-Zip压缩	7 - Z i p yā suō
+
+PCB板	P C B bǎn
+LED灯	L E D dēng
+LED屏	L E D píng
+骁龙8	xiāo lóng 8
+DP接口	D P jiē kǒu
+HDMI线	H D M I xiàn
+PWM调光	P W M tiáo guāng
+UPS电源	U P S diàn yuán
+HBM内存	H B M nèi cún
+MCU芯片	M C U xīn piàn
+VGA接口	V G A jiē kǒu
+USB接口	U S B jiē kǒu
+I/O设备	I / O shè bèi
+LCD屏幕	L C D píng mù
+LED屏幕	L E D píng mù
+LED电视	L E D diàn shì
+SSD硬盘	S S D yìng pán
+UTM投影	U T M tóu yǐng
+U盘存储	U pán cún chǔ
+x86架构	x 8 6 jià gòu
+国产CPU	guó chǎn C P U
+国产GPU	guó chǎn G P U
+麒麟9030	qí lín 9 0 3 0
+DDR3内存	D D R 3 nèi cún
+DDR4内存	D D R 4 nèi cún
+DDR5内存	D D R 5 nèi cún
+ASIC芯片	A S I C xīn piàn
+CMOS芯片	C M O S xīn piàn
+BIOS设置	B I O S shè zhì
+OLED屏幕	O L E D píng mù
+OLED电视	O L E D diàn shì
+OLED面板	O L E D miàn bǎn
+HDMI接口	H D M I jiē kǒu
+RJ11接口	R J 1 1 jiē kǒu
+RJ45接口	R J 4 5 jiē kǒu
+H200芯片	H 2 100 xīn piàn
+F2.0光圈	F 2 . 0 guāng quān
+F2.1光圈	F 2 . 1 guāng quān
+F2.2光圈	F 2 . 2 guāng quān
+FPGA芯片	F P G A xīn piàn
+P3广色域	P 3 guǎng sè yù
+M8覆铜板	M 8 fù tóng bǎn
+M9覆铜板	M 9 fù tóng bǎn
+UEFI启动	U E F I qǐ dòng
+随身Wi-Fi	suí shēn W i - F i
+AMD处理器	A M D chǔ lǐ qì
+CPU散热器	C P U sàn rè qì
+DUV光刻机	D U V guāng kè jī
+EUV光刻机	E U V guāng kè jī
+PCB电路板	P C B diàn lù bǎn
+TypeC接口	T y p e C jiē kǒu
+T568A标准	T 5 6 8 A biāo zhǔn
+T568B标准	T 5 6 8 B biāo zhǔn
+LPDDR内存	L P D D R nèi cún
+RJ11水晶头	R J 1 1 shuǐ jīng tóu
+RJ45水晶头	R J 4 5 shuǐ jīng tóu
+RYYB传感器	R Y Y B chuán gǎn qì
+WeChat支付	W e C h a t zhī fù
+OIS光学防抖	O I S guāng xué fáng dǒu
+
+双buff	shuāng b u f f
+叠buff	dié b u f f
+115网盘	1 1 5 wǎng pán
+永硕E盘	yǒng shuò E pán
+工业4.0	gōng yè 4 . 0
+非常6+1	fēi cháng 6 + 1
+小米SU7	xiǎo mǐ S U 7
+小米YU7	xiǎo mǐ Y U 7
+昇腾910	shēng téng 9 1 0
+昇腾950	shēng téng 9 5 0
+哆啦A梦	duō lā A mèng
+头文字D	tóu wén zì D
+阿Q精神	ā Q jīng shén
+阿Q正传	ā Q zhèng zhuàn
+芭比Q了	bā bǐ Q le
+逆Z变换	nì Z biàn huàn
+Z逆变换	Z nì biàn huàn
+ASCII码	A S C I I mǎ
+ARP协议	A R P xié yì
+TCP传输	T C P chuán shū
+TCP报文	T C P bào wén
+TCP协议	T C P xié yì
+UDP传输	U D P chuán shū
+UDP协议	U D P xié yì
+BGP协议	B G P xié yì
+SSH端口	S S H duān kǒu
+API调用	A P I diào yòng
+API接口	A P I jiē kǒu
+CLI接口	C L I jiē kǒu
+APP更新	A P P gēng xīn
+APP内购	A P P nèi gòu
+APP通知	A P P tōng zhī
+APP下载	A P P xià zài
+APP应用	A P P yìng yòng
+ATM取款	A T M qǔ kuǎn
+B话真多	B huà zhēn duō
+B树索引	B shù suǒ yǐn
+CNC加工	C N C jiā gōng
+CNY账户	C N Y zhàng hù
+CPU核数	C P U hé shù
+CPU温度	C P U wēn dù
+GPU加速	G P U jiā sù
+GPU性能	G P U xìng néng
+CRM软件	C R M ruǎn jiàn
+CRM系统	C R M xì tǒng
+CSS样式	C S S yàng shì
+DNA比对	D N A bǐ duì
+DNA测序	D N A cè xù
+DNA分子	D N A fēn zǐ
+DNA检测	D N A jiǎn cè
+DNA鉴定	D N A jiàn dìng
+DNA序列	D N A xù liè
+DNS配置	D N S pèi zhì
+DNS解析	D N S jiě xī
+DNS查询	D N S chá xún
+DNS请求	D N S qǐng qiú
+DNS劫持	D N S jié chí
+DNS污染	D N S wū rǎn
+私人DNS	sī rén D N S
+DoS攻击	D o S gōng jī
+ECC内存	E C C nèi cún
+ERP系统	E R P xì tǒng
+ESP系统	E S P xì tǒng
+人均GDP	rén jūn G D P
+GDP增速	G D P zēng sù
+GDP增长	G D P zēng zhǎng
+GPS导航	G P S dǎo háng
+GPS定位	G P S dìng wèi
+GRE考试	G R E kǎo shì
+Git提交	G i t tí jiāo
+ICP备案	I C P bèi àn
+IDE环境	I D E huán jìng
+IPO上市	I P O shàng shì
+IPO敲钟	I P O qiāo zhōng
+KTV包间	K T V bāo jiān
+KTV包厢	K T V bāo xiāng
+K歌之王	K gē zhī wáng
+PET铜箔	P E T tóng bó
+MAC地址	M A C dì zhǐ
+MP4视频	M P 4 shì pín
+MCN机构	M C N jī gòu
+NFC功能	N F C gōng néng
+NFC支付	N F C zhī fù
+OTA升级	O T A shēng jí
+PDF文档	P D F wén dàng
+PDF文件	P D F wén jiàn
+RAM容量	R A M róng liàng
+RNA分析	R N A fēn xī
+RNA提取	R N A tí qǔ
+ROM空间	R O M kōng jiān
+CBA直播	C B A zhí bō
+CBA赛程	C B A sài chéng
+NBA篮球	N B A lán qiú
+NBA直播	N B A zhí bō
+NBA赛程	N B A sài chéng
+SEM图像	S E M tú xiàng
+SMT贴片	S M T tiē piàn
+SQL语句	S Q L yǔ jù
+SSH公钥	S S H gōng yào
+SSH私钥	S S H sī yào
+SUV车身	S U V chē shēn
+SUV车型	S U V chē xíng
+SVN仓库	S V N cāng kù
+URL链接	U R L liàn jiē
+USD汇率	U S D huì lǜ
+VIP会员	V I P huì yuán
+VIP用户	V I P yòng hù
+VPN连接	V P N lián jiē
+XML格式	X M L gé shì
+XRD测试	X R D cè shì
+X染色体	X rǎn sè tǐ
+Y染色体	Y rǎn sè tǐ
+SSL加密	S S L jiā mì
+TLS加密	T L S jiā mì
+IoT设备	I o T shè bèi
+FTP传输	F T P chuán shū
+GET请求	G E T qǐng qiú
+PUT请求	P U T qǐng qiú
+Web应用	W e b yìng yòng
+Web开发	W e b kāi fā
+WPS连接	W P S lián jiē
+WPS联网	W P S lián wǎng
+MESH组网	M E S H zǔ wǎng
+Rime方案	R i m e fāng àn
+Rime引擎	R i m e yǐn qíng
+BOSS直聘	B O S S zhí pìn
+H5小程序	H 5 xiǎo chéng xù
+QR码支付	Q R mǎ zhī fù
+UU加速器	U U jiā sù qì
+PEEK材料	P E E K cái liào
+HTML代码	H T M L dài mǎ
+ICMP协议	I C M P xié yì
+SNMP协议	S N M P xié yì
+SMTP协议	S M T P xié yì
+POP3协议	P O P 3 xié yì
+SFTP传输	S F T P chuán shū
+POST请求	P O S T qǐng qiú
+HTTP请求	H T T P qǐng qiú
+HTTP协议	H T T P xié yì
+多模态AI	duō mó tài A I
+AI智能体	A I zhì néng tǐ
+JPEG图片	J P E G tú piàn
+JSON数据	J S O N shù jù
+JSON格式	J S O N gé shì
+JSON配置	J S O N pèi zhì
+YAML格式	Y A M L gé shì
+YAML配置	Y A M L pèi zhì
+TOML格式	T O M L gé shì
+TOML配置	T O M L pèi zhì
+Word文档	W o r d wén dàng
+WiFi密码	W i F i mì mǎ
+WiFi信号	W i F i xìn hào
+IPv4地址	I P v 4 dì zhǐ
+IPv6地址	I P v 6 dì zhǐ
+HTTPS协议	H T T P S xié yì
+URL重定向	U R L chóng dìng xiàng
+CBA常规赛	C B A cháng guī sài
+NBA常规赛	N B A cháng guī sài
+ABS防抱死	A B S fáng bào sǐ
+B型超声波	B xíng chāo shēng bō
+B淋巴细胞	B lín bā xì bāo
+T淋巴细胞	T lín bā xì bāo
+PDF阅读器	P D F yuè dú qì
+PDF转换器	P D F zhuǎn huàn qì
+SDK工具包	S D K gōng jù bāo
+SQL数据库	S Q L shù jù kù
+单边Z变换	dān biān Z biàn huàn
+双边Z变换	shuāng biān Z biàn huàn
+IoT物联网	I o T wù lián wǎng
+江南Style	jiāng nán S t y l e
+Rime输入法	R i m e shū rù fǎ
+OSI七层模型	O S I qī céng mó xíng
+台北101大厦	tái běi 1 0 1 dà shà
