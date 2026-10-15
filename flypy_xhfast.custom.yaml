@@ -31,7 +31,7 @@ patch:
       reset: 1
     - name: prediction  # 仅用于移动端
       states: [休想, 联想]
-    - name: char_mode
+    - name: cand_priority
       states: [词组优先, 单字优先]
     - name: charset
       states: [通用字集, 增廣字集]
@@ -65,11 +65,11 @@ patch:
   key_binder/+:
     import_preset: default                    # 从 default.yaml 继承通用的
     fuzz_algebra_first: "8"                   # `8/Control+q` 简拼优先
-    char_mode: "Control+s"                    # 单字/词组优先模式切换
     pin_cand: "Control+t"                     # 候选词置顶
     unpin_cand: "Control+t"                   # 候选词取消置顶
     drop_cand: "Control+d"                    # 强制删词, 无视输入的编码
     hide_cand: "Control+x"                    # 匹配当前输入码后隐藏指定的候选字词
+    cand_priority: "Control+s"                # 单字/词组优先模式切换
     reduce_fq_cand: "Control+j"               # 匹配当前输入码后降频指定的候选字词
     switch_comment: "Control+n"               # 切换注释(小鹤形码 / 带调拼音 / 无)
     remove_user_word: "Control+r"             # 历史上屏字词调频为负(用户词典)
@@ -270,7 +270,7 @@ patch:
     prefix: "nN"
     suffix: "'"
     tips: "中文数字"
-    select_keys: "sdfjum"
+    select_keys: "sdfjnm"
 
   chinese_lunar:                      # 中国农历(可反查)
     tag: chinese_lunar

@@ -279,14 +279,14 @@ function P.func(key, env)
             local switch_to_val = not env.enable_fuzz_func
             config:set_bool("speller/enable_fuzz_algebra", switch_to_val)
         elseif cand_text == "开关单字优先功能" then
-            local char_mode_state = context:get_option("char_mode")
-            local switch_to_val = not char_mode_state
-            local char_mode_val = env:Config_get("switches/@6/reset")
-            if char_mode_val then
-                local char_mode_setval = (char_mode_val > 0) and 0 or 1
-                env:Config_set("switches/@6/reset", char_mode_setval)
+            local cand_priority_state = context:get_option("cand_priority")
+            local switch_to_val = not cand_priority_state
+            local cand_priority_val = env:Config_get("switches/@6/reset")
+            if cand_priority_val then
+                local cand_priority_setval = (cand_priority_val > 0) and 0 or 1
+                env:Config_set("switches/@6/reset", cand_priority_setval)
             end
-            context:set_option("char_mode", switch_to_val)
+            context:set_option("cand_priority", switch_to_val)
         elseif cand_text == "切换大小字集启用" then
             local charset_state = context:get_option("charset")
             local switch_to_val = not charset_state

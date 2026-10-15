@@ -36,7 +36,7 @@ end
 
 function M.init(env)
     local config = env.engine.schema.config
-    env.char_mode_switch_key = config:get_string("key_binder/char_mode") or "Control+s"
+    env.cand_priority_switch_key = config:get_string("key_binder/cand_priority") or "Control+s"
     env.word_lookup_limit = config:get_int("cand_selector/word_lookup_limit") or 50
     env.word_shape_cache_limit = config:get_int("cand_selector/word_shape_cache_limit") or 50
     env.char_auto_commit = config:get_bool("cand_selector/auto_select_char") or false
@@ -88,7 +88,7 @@ function P.func(key, env)
     local caret_pos = context.caret_pos
     local raw_input_code = context.input
     -- local preedit_text = context:get_preedit().text
-    local char_mode_state = context:get_option("char_mode")
+    local cand_priority_state = context:get_option("cand_priority")
 
     if key:release() or key:alt() or key:caps() then return 2 end
 
@@ -96,10 +96,10 @@ function P.func(key, env)
     if
         context:has_menu()
         and (raw_input_code:match("^%l%l%l%l?$"))
-        and (key:repr() == env.char_mode_switch_key)
+        and (key:repr() == env.cand_priority_switch_key)
     then
-        local switch_to_val = not char_mode_state
-        context:set_option("char_mode", switch_to_val)
+        local switch_to_val = not cand_priority_state
+        context:set_option("cand_priority", switch_to_val)
         context:refresh_non_confirmed_composition()
         return 1 -- kAccept
     end
@@ -225,8 +225,8 @@ function T.func(input, seg, env)
     end
 
     -- 四码时, 按下`Control+s`, 单字优先; `ab/xy?`, 单字过滤
-    local char_mode_state = context:get_option("char_mode")
-    if (input_code:match("^%l%l%l%l?$") and char_mode_state) or (input_code:match("^%l%l/%l%l?$")) then
+    local cand_priority_state = context:get_option("cand_priority")
+    if (input_code:match("^%l%l%l%l?$") and cand_priority_state) or (input_code:match("^%l%l/%l%l?$")) then
         local entry_matched_tbl = {}
         local yin_code = input:sub(1, 2)
         local yx_code = input:match("/") and input:gsub("/", "") or ""
@@ -240,7 +240,7 @@ function T.func(input, seg, env)
             if (utf8.len(entry_text) == 1) and (not entry_text:match("[a-zA-Z%p]")) then
                 local reverse_char_code = (env.reversedb:lookup(entry_text) or ""):gsub("~", "")
                 if reverse_char_code ~= "" then
-                    if reverse_char_code:match(input) and char_mode_state then
+                    if reverse_char_code:match(input) and cand_priority_state then
                         table.insert(entry_matched_tbl, dictentry)
                     elseif reverse_char_code:match(pattern) then
                         table.insert(entry_matched_tbl, dictentry)

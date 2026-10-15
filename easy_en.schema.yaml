@@ -6,7 +6,7 @@
 schema:
   schema_id: easy_en
   name: Easy English
-  version: 2026.01.23
+  version: 2026.09.28
   author:
     - Boomker <gmboomker@gmail.com>
   description: Easy English
@@ -74,7 +74,8 @@ easy_en:
 easy_en-cn_dict:
   dictionary: en-cn_dict
   overwrite_comment: true     # 是否开启中文释意注解
-  comment_format:             # - erase|^.$|
+  comment_format:
+    - erase|^.$|
 
 key_binder:
   import_preset: default

@@ -102,11 +102,11 @@
                                     "gbk",
                                     "emoji",
                                     "charset",
-                                    "char_mode",
                                     "ascii_mode",
                                     "full_shape",
                                     "ascii_punct",
                                     "charset_hint",
+                                    "cand_priority",
                                     "simplification",
                                     "traditionalize",
                                     "extended_charset"

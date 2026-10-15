@@ -3,13 +3,12 @@
 
 ---
 name: flypy_xhfast
-version: 2026.01.23
+version: 2026.10.15
 
 import_tables:
   - cn_dicts/flypy_chars        # 字表
   # - cn_dicts/flypy_chars_ext  # 扩展字表
   - cn_dicts/flypy_base         # 基础词库
-  - cn_dicts/flypy_melt_eng     # 中英数字派生
   # - cn_dicts/ext/flypy_ext1     # 扩展词库(大词库, 部署时间较长)
   # - cn_dicts/ext/flypy_ext2     # 扩展词库(大词库, 部署时间较长)
   # - cn_dicts/ext/flypy_ext3     # 扩展词库(大词库, 部署时间较长)

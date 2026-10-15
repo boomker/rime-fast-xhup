@@ -2598,7 +2598,7 @@ sort: by_weight
 薄片	bc pm	19385
 包片	bc pm	2
 苞片	bc pm	5
-抱朴	bc pn	100
+抱朴	bc pu	100
 保票	bc pn	835
 包票	bc pn	9999
 爆破	bc po	56110
@@ -2798,7 +2798,7 @@ sort: by_weight
 宝庄	bc vl	100
 饱壮	bc vl	100
 报状	bc vl	100
-宝幢	bc vl	16
+宝幢	bc il	16
 保状	bc vl	2
 报装	bc vl	4
 包装	bc vl	500554
@@ -19876,7 +19876,7 @@ sort: by_weight
 调涨	dn vh	100
 调值	dn vi	1
 吊纸	dn vi	100
-调质	dn vi	100
+调质	tn vi	100
 调至	dn vi	20525
 调职	dn vi	3425
 雕庄	dn vl	27
@@ -22597,7 +22597,7 @@ sort: by_weight
 得要	dw yc	17850
 得用	dw ys	20140
 得与	dw yu	30220
-得于	dw yu	5205
+得于	de yu	5205
 得由	dw yz	14030
 得有	dw yz	50685
 得在	dw zd	73045
@@ -24915,7 +24915,7 @@ sort: by_weight
 分爨	ff cr	1
 分葱	ff cs	2
 分寸	ff cy	26185
-纷沓	ff da	1
+纷沓	ff ta	1
 芬达	ff da	7410
 粪道	ff dc	100
 分到	ff dc	36490
@@ -25353,7 +25353,7 @@ sort: by_weight
 纷坠	ff vv	320
 分粥	ff vz	3940
 分外	ff wd	41565
-纷缊	ff wf	100
+纷缊	ff yy	100
 分文	ff wf	10925
 分网	ff wh	3280
 愤惋	ff wj	100
@@ -30902,7 +30902,7 @@ sort: by_weight
 各进	ge jb	3485
 葛巾	ge jb	570
 格机	ge ji	1
-割给	ge ji	100
+割给	ge gw	100
 割鸡	ge ji	100
 各辑	ge ji	100
 各挤	ge ji	100
@@ -43281,7 +43281,7 @@ sort: by_weight
 互道	hu dc	3170
 忽道	hu dc	3475
 扈带	hu dd	100
-忽地	hu de	3111
+忽地	hu di	3111
 糊的	hu de	5455
 护得	hu de	755
 护裆	hu dh	100
@@ -46299,7 +46299,7 @@ sort: by_weight
 后采	hz cd	3485
 后侧	hz ce	12465
 后曾	hz cg	6787
-后藏	hz ch	100
+后藏	hz zh	100
 后舱	hz ch	1965
 后此	hz ci	3325
 厚赐	hz ci	925
@@ -49363,7 +49363,7 @@ sort: by_weight
 尝尽	ih jb	5775
 昌吉	ih ji	1
 畅寄	ih ji	100
-长机	ih ji	100
+长机	vh ji	100
 长几	ih ji	100
 长计	ih ji	100
 长技	ih ji	100
@@ -50899,7 +50899,7 @@ sort: by_weight
 闯将	il jl	1205
 创建	il jm	500522
 创见	il jm	9160
-创校	il jn	100
+创校	il xn	100
 床脚	il jn	1755
 疮疖	il jp	100
 创巨	il ju	100
@@ -60964,7 +60964,7 @@ sort: by_weight
 接活	jp ho	4275
 结欢	jp hr	135
 借还	jp hr	2725
-桔红	jp hs	100
+桔红	ju hs	100
 嗟乎	jp hu	1111
 戒护	jp hu	333
 羯胡	jp hu	4
@@ -61313,7 +61313,7 @@ sort: by_weight
 借钱	jp qm	47190
 结欠	jp qm	585
 界桥	jp qn	670
-介壳	jp qn	680
+介壳	jp ke	680
 劫囚	jp qq	1111
 接球	jp qq	13235
 借球	jp qq	4444
@@ -62825,7 +62825,7 @@ sort: by_weight
 窘败	js bd	100
 迥别	js bp	375
 冂部	js bu	1
-亠部	js bu	1
+亠部	tz bu	1
 窘促	js cu	95
 窘得	js de	1230
 窘乏	js fa	25
@@ -62913,7 +62913,7 @@ sort: by_weight
 爵号	jt hc	510
 觉海	jt hd	100
 绝壑	jt he	100
-潏河	jt he	111
+潏河	yu he	111
 绝活	jt ho	18465
 绝户	jt hu	930
 厥后	jt hz	100
@@ -63021,7 +63021,7 @@ sort: by_weight
 𫘝𫘨	jt ti	1
 抉剔	jt ti	105
 掘土	jt tu	1145
-鳜豚	jt ty	100
+鳜豚	gv ty	100
 嚼头	jt tz	369
 倔头	jt tz	85
 镢头	jt tz	905
@@ -63451,7 +63451,7 @@ sort: by_weight
 句脉	ju md	100
 拒买	ju md	5760
 巨忙	ju mh	131
-句芒	ju mh	312
+句芒	gz mh	312
 巨蟒	ju mh	9250
 剧迷	ju mi	9999
 巨满	ju mj	11
@@ -70806,7 +70806,7 @@ sort: by_weight
 乐调	le dn	100
 乐东	le ds	100
 了毒	le du	111
-乐都	le dz	100
+乐都	le du	100
 了儿	le er	100
 乐儿	le er	10105
 乐风	le fg	100
@@ -78857,7 +78857,7 @@ sort: by_weight
 麻姑	ma gu	43
 马褂	ma gx	4685
 麻瓜	ma gx	935
-膜蛤	ma ha	1926
+膜蛤	mo ha	1926
 码好	ma hc	5060
 马号	ma hc	515
 马赫	ma he	9415
@@ -80595,7 +80595,7 @@ sort: by_weight
 孟节	mg jp	4
 孟洁	mg jp	625
 猛纠	mg jq	100
-艋舺	mg jx	2
+艋舺	mg xx	2
 盟军	mg jy	32500
 鹲科	mg ke	1
 獴科	mg ke	1
@@ -83308,7 +83308,7 @@ sort: by_weight
 魔仙	mo xm	1225
 墨线	mo xm	2635
 莫嫌	mo xm	895
-磨削	mo xn	2152
+磨削	mo xt	2152
 摹效	mo xn	2222
 莫笑	mo xn	3055
 模写	mo xp	100
@@ -83699,7 +83699,7 @@ sort: by_weight
 目明	mu mk	835
 木棉	mu mm	12795
 木杪	mu mn	140
-木模	mu mo	2375
+木模	mu mu	2375
 母模	mu mo	910
 穆穆	mu mu	1
 幕幕	mu mu	22
@@ -85801,7 +85801,7 @@ sort: by_weight
 呢个	ne ge	100
 讷河	ne he	4060
 讷口	ne kz	100
-呢料	ne ln	9999
+呢料	ni ln	9999
 讷讷	ne ne	3035
 讷涩	ne se	100
 哪吒	ne va	14235
@@ -95379,7 +95379,7 @@ sort: by_weight
 清浅	qk qm	3030
 清欠	qk qm	35755
 情牵	qk qm	3640
-亲签	qk qm	648
+亲签	qb qm	648
 轻悄	qk qn	100
 轻俏	qk qn	100
 青桥	qk qn	38
@@ -95911,7 +95911,7 @@ sort: by_weight
 腔骨	ql gu	380
 墙柜	ql gv	715
 抢购	ql gz	35245
-呛咳	ql hd	100
+呛咳	ql ke	100
 戕害	ql hd	2915
 强横	ql hg	7785
 跄捍	ql hj	100
@@ -108542,7 +108542,7 @@ sort: by_weight
 汤头	th tz	224
 烫头	th tz	5800
 汤勺	th uc	3920
-糖色	th ue	1
+糖色	th ud	1
 堂上	th uh	15535
 烫伤	th uh	25495
 躺上	th uh	2695
@@ -109242,7 +109242,7 @@ sort: by_weight
 弹好	tj hc	1370
 叹号	tj hc	8999
 谈好	tj hc	9795
-摊还	tj hd	100
+摊还	tj hr	100
 弹劾	tj he	11115
 谈和	tj he	1315
 谈何	tj he	4755
@@ -110845,7 +110845,7 @@ sort: by_weight
 跳回	tn hv	3840
 挑花	tn hx	5070
 调喉	tn hz	100
-调车	tn ie	16625
+调车	dn ie	16625
 跳车	tn ie	3850
 龆龀	tn if	100
 条陈	tn if	1445
@@ -112722,7 +112722,7 @@ sort: by_weight
 涂到	tu dc	3215
 屠刀	tu dc	5915
 秃的	tu de	100
-突地	tu de	10295
+突地	tu di	10295
 凸的	tu de	2310
 吐得	tu de	4015
 土的	tu de	43535
@@ -114534,7 +114534,7 @@ sort: by_weight
 杀生	ua ug	17175
 杀伤	ua uh	33780
 沙市	ua ui	1
-刹时	ua ui	100
+刹时	ia ui	100
 霎时	ua ui	10360
 傻事	ua ui	10660
 啥是	ua ui	11111
@@ -115222,7 +115222,7 @@ sort: by_weight
 蛇瓜	ue gx	1
 射钩	ue gz	100
 赊购	ue gz	1615
-折好	ue hc	100
+折好	ve hc	100
 折耗	ue hc	545
 设好	ue hc	6150
 涉黄	ue hl	3085
@@ -126398,7 +126398,7 @@ sort: by_weight
 狰狞	vg nk	24540
 整年	vg nm	10395
 正念	vg nm	9855
-争拗	vg nq	1
+争拗	vg ao	1
 正浓	vg ns	6530
 征聘	vg pb	1160
 正品	vg pb	88940
@@ -130927,7 +130927,7 @@ sort: by_weight
 中辉	vs hv	18800
 钟会	vs hv	341
 中汇	vs hv	8160
-重华	vs hx	100
+重华	is hx	100
 种花	vs hx	14015
 重话	vs hx	1620
 中化	vs hx	2
@@ -138513,7 +138513,7 @@ sort: by_weight
 危墙	ww ql	4
 围墙	ww ql	59300
 危浅	ww qm	1
-㧑谦	ww qm	100
+㧑谦	hv qm	100
 尾欠	ww qm	1290
 为钱	ww qm	14140
 魏乔	ww qn	1
@@ -138594,7 +138594,7 @@ sort: by_weight
 委随	ww sv	100
 尾随	ww sv	20435
 未遂	ww sv	56179
-㧑损	ww sy	100
+㧑损	hv sy	100
 喂它	ww ta	111
 为她	ww ta	143845
 喂她	ww ta	222
@@ -138943,7 +138943,7 @@ sort: by_weight
 喂养	ww yh	49300
 韦衣	ww yi	100
 为一	ww yi	100
-㧑挹	ww yi	100
+㧑挹	hv yi	100
 为宜	ww yi	107880
 逶迤	ww yi	1107
 威仪	ww yi	12
@@ -145536,7 +145536,7 @@ sort: by_weight
 血点	xp dm	16
 鞋垫	xp dm	17410
 鞋店	xp dm	6835
-谐调	xp dn	100
+谐调	xp tn	100
 卸掉	xp dn	8070
 懈惰	xp do	275
 躞蹀	xp dp	135
@@ -148577,7 +148577,7 @@ sort: by_weight
 下车	xx ie	195165
 瞎扯	xx ie	4575
 下尘	xx if	100
-下称	xx if	100
+下称	xx ig	100
 下衬	xx if	210
 下陈	xx if	2695
 下沉	xx if	41500
@@ -153039,7 +153039,7 @@ sort: by_weight
 杨闸	yh va	75
 氧债	yh vd	100
 阳宅	yh vd	1121
-阳翟	yh vd	2
+阳翟	yh di	2
 洋宅	yh vd	3
 阳着	yh ve	111
 仰着	yh ve	11165
@@ -158929,7 +158929,7 @@ sort: by_weight
 粤军	yt jy	2755
 月卡	yt ka	10650
 月考	yt kc	12770
-乐凯	yt kd	100
+乐凯	le kd	100
 约克	yt ke	16860
 悦刻	yt ke	99999
 越看	yt kj	54255
@@ -160298,7 +160298,7 @@ sort: by_weight
 于山	yu uj	2
 虞山	yu uj	2
 玉山	yu uj	2
-蔚山	yu uj	2
+蔚山	ww uj	2
 御膳	yu uj	2060
 玉扇	yu uj	870
 于帅	yu uk	100
@@ -161004,7 +161004,7 @@ sort: by_weight
 云天	yy tm	31810
 耘田	yy tm	655
 匀调	yy tn	95
-熨贴	yy tp	100
+熨贴	yu tp	100
 陨铁	yy tp	1080
 云团	yy tr	4535
 运通	yy ts	27980
@@ -164450,7 +164450,7 @@ sort: by_weight
 资深	zi uf	228905
 自身	zi uf	500422
 自审	zi uf	5555
-齐盛	zi ug	100
+齐盛	qi ug	100
 自生	zi ug	1264
 滋生	zi ug	52075
 吱声	zi ug	6420
@@ -171596,7 +171596,7 @@ sort: by_weight
 掰不动	bd bu ds	100
 摆不出	bd bu iu	240
 摆不开	bd bu kd	100
-拜不了	bd bu le	100
+拜不了	bd bu ln	100
 摆不了	bd bu ln	70
 柏布马	bd bu ma	101
 白不买	bd bu md	100
@@ -175431,7 +175431,7 @@ sort: by_weight
 冰碴儿	bk ia er	230
 并查集	bk ia ji	12269
 并差集	bk ia ji	55
-兵车行	bk ie hh	100
+兵车行	bk ie xk	100
 病程长	bk ig ih	100
 并承诺	bk ig no	16985
 秉承着	bk ig ve	4690
@@ -186810,7 +186810,7 @@ sort: by_weight
 窜得比	cr de bi	20
 攒电脑	cr dm nc	100
 篡夺者	cr do ve	60
-蹿得快	cr dw kk	100
+蹿得快	cr de kk	100
 蹿个儿	cr ge er	9999
 撺鼓儿	cr gu er	100
 蹿出来	cr iu ld	100
@@ -187382,7 +187382,7 @@ sort: by_weight
 崔智友	cv vi yz	174
 崔庄村	cv vl cy	37
 崔庄子	cv vl zi	1
-催着要	cv vo yc	89
+催着要	cv ve yc	89
 翠竹路	cv vu lu	2255
 翠竹园	cv vu yr	1215
 翠竹苑	cv vu yr	42
@@ -192331,7 +192331,7 @@ sort: by_weight
 到手就	dc uz jq	100
 到手了	dc uz le	6235
 到手没	dc uz mw	100
-倒着数	dc vc uu	100
+倒着数	dc ve uu	100
 倒宅计	dc vd ji	100
 倒寨计	dc vd ji	100
 倒着读	dc ve du	153
@@ -193952,8 +193952,8 @@ sort: by_weight
 的优点	de yz dm	100
 得有个	de yz ge	12
 的优劣	de yz lp	100
-得有钱	de yz qm	100
-得有人	de yz rf	12
+得有钱	dw yz qm	100
+得有人	dw yz rf	12
 的优势	de yz ui	100
 得早的	de zc de	12
 的责任	de ze rf	100
@@ -212455,7 +212455,7 @@ sort: by_weight
 非得比	fw dw bi	20
 非得到	fw dw dc	575
 非得点	fw dw dm	1111
-飞得快	fw dw kk	100
+飞得快	fw de kk	100
 非得像	fw dw xl	150
 非得要	fw dw yc	100
 肥墩墩	fw dy dy	100
@@ -216545,7 +216545,7 @@ sort: by_weight
 刚冲完	gh is wj	100
 刚出道	gh iu dc	6365
 刚出分	gh iu ff	100
-刚出差	gh iu ia	74
+刚出差	gh iu id	74
 刚出场	gh iu ih	154
 刚出来	gh iu ld	3225
 刚出炉	gh iu lu	2885
@@ -221088,7 +221088,7 @@ sort: by_weight
 工艺盾	gs yi dy	1
 工艺馆	gs yi gr	100
 拱一拱	gs yi gs	66
-公益行	gs yi hh	100
+公益行	gs yi xk	100
 公议会	gs yi hv	100
 工艺画	gs yi hx	4245
 公益场	gs yi ih	154
@@ -221592,7 +221592,7 @@ sort: by_weight
 顾雏军	gu iu jy	100
 鼓出来	gu iu ld	100
 孤雏泪	gu iu lw	100
-鼓吹乐	gu iv le	100
+鼓吹乐	gu iv yt	100
 骨锤龙	gu iv ls	100
 鼓槌体	gu iv ti	1
 鼓吹者	gu iv ve	2075
@@ -224234,7 +224234,7 @@ sort: by_weight
 好了的	hc le de	100
 好乐迪	hc le di	1915
 好了点	hc le dm	100
-好了歌	hc le ge	100
+好了歌	hc ln ge	100
 皓乐齿	hc le ii	100
 好了快	hc le kk	100
 好了啦	hc le la	100
@@ -228316,7 +228316,7 @@ sort: by_weight
 横路村	hg lu cy	22
 恒明珠	hg mk vu	65
 横庙乡	hg mn xl	1
-珩磨机	hg mo ji	570
+珩磨机	hh mo ji	570
 恒美村	hg mw cy	6
 横楣子	hg mw zi	100
 亨尼西	hg ni xi	100
@@ -229761,7 +229761,7 @@ sort: by_weight
 黄金村	hl jb cy	149
 黄金刀	hl jb dc	15
 黄金岛	hl jb dc	655
-黄金地	hl jb de	99
+黄金地	hl jb di	99
 黄金档	hl jb dh	3735
 黄金洞	hl jb ds	45
 黄金遁	hl jb dy	100
@@ -231679,7 +231679,7 @@ sort: by_weight
 还珠三	hr vu sj	100
 换主题	hr vu ti	115
 环诸乡	hr vu xl	1
-还准备	hr vy bw	9
+还准备	hd vy bw	9
 环州乡	hr vz xl	2
 还网贷	hr wh dd	100
 还完了	hr wj le	100
@@ -231901,7 +231901,7 @@ sort: by_weight
 鸿都客	hs du ke	100
 红杜仲	hs du vs	3
 鸿都学	hs du xt	100
-红得快	hs dw kk	100
+红得快	hs de kk	100
 红豆饼	hs dz bk	145
 红豆冰	hs dz bk	660
 红豆词	hs dz ci	240
@@ -236878,7 +236878,7 @@ sort: by_weight
 后让我	hz rh wo	100
 后入式	hz ru ui	100
 侯赛尼	hz sd ni	187
-喉塞音	hz sd yb	100
+喉塞音	hz se yb	100
 侯赛因	hz sd yb	7185
 齁嗓子	hz sh zi	1180
 后四个	hz si ge	100
@@ -237286,7 +237286,7 @@ sort: by_weight
 插件机	ia jm ji	100
 插件库	ia jm ku	555
 插件栏	ia jm lj	15
-查觉到	ia jn dc	100
+查觉到	ia jt dc	100
 查教资	ia jn zi	100
 查结率	ia jp lv	100
 插接站	ia jp vj	2
@@ -239842,7 +239842,7 @@ sort: by_weight
 成堆儿	ig dv er	2222
 承兑人	ig dv rf	2585
 成对照	ig dv vc	270
-承兑行	ig dv xk	547
+承兑行	ig dv hh	547
 成吨的	ig dy de	9999
 成吨叔	ig dy uu	9999
 承恩门	ig en mf	100
@@ -239973,7 +239973,7 @@ sort: by_weight
 乘车难	ig ie nj	590
 澄城县	ig ig xm	1350
 程长庚	ig ih gg	30
-成长裤	ig ih ku	100
+成长裤	ig vh ku	100
 撑场面	ig ih mm	920
 程厂长	ig ih vh	100
 撑场子	ig ih zi	100
@@ -241011,7 +241011,7 @@ sort: by_weight
 尝尝吧	ih ih ba	1000
 常常把	ih ih ba	1180
 长长的	ih ih de	100
-长长地	ih ih di	100
+长长地	ih ih de	100
 常常喝	ih ih he	205
 常常会	ih ih hv	50610
 长长长	ih ih ih	100
@@ -242955,7 +242955,7 @@ sort: by_weight
 产油国	ij yz go	5015
 产油量	ij yz ll	100
 颤悠悠	ij yz yz	830
-搀杂着	ij za vc	100
+搀杂着	ij za ve	100
 掺杂着	ij za ve	3330
 掺杂物	ij za wu	180
 掺杂在	ij za zd	100
@@ -244067,7 +244067,7 @@ sort: by_weight
 重估价	is gu jx	300
 冲古寺	is gu si	4320
 充古乡	is gu xl	1
-冲规模	is gv mu	100
+冲规模	is gv mo	100
 重构性	is gz xk	100
 充好了	is hc le	1180
 重合点	is he dm	100
@@ -244639,7 +244639,7 @@ sort: by_weight
 出动了	iu ds le	6875
 出动率	iu ds lv	100
 处对象	iu dv xl	605
-出得去	iu dw qu	100
+出得去	iu de qu	100
 褚墩镇	iu dy vf	161
 初二回	iu er hv	100
 初二级	iu er ji	100
@@ -246397,7 +246397,7 @@ sort: by_weight
 近得很	jb de hf	100
 进的货	jb de ho	1800
 进得来	jb de ld	100
-进得了	jb de le	100
+进得了	jb de ln	100
 金得利	jb de li	100
 禁得起	jb de qi	1770
 进得去	jb de qu	100
@@ -246489,7 +246489,7 @@ sort: by_weight
 金丰村	jb fg cy	19
 进丰村	jb fg cy	4
 金凤蝶	jb fg dp	80
-劲风盾	jb fg dy	1
+劲风盾	jk fg dy	1
 金凤凰	jb fg hl	6560
 金凤花	jb fg hx	100
 金丰城	jb fg ig	2
@@ -254515,7 +254515,7 @@ sort: by_weight
 交给我	jn gw wo	18625
 叫号的	jn hc de	170
 较好的	jn hc de	251195
-较好地	jn hc di	100
+较好地	jn hc de	100
 叫号机	jn hc ji	100
 脚好冷	jn hc lg	100
 叫好声	jn hc ug	3660
@@ -255688,7 +255688,7 @@ sort: by_weight
 结核药	jp he yc	116
 结合韵	jp he yy	100
 姐喊我	jp hj wo	222
-桔黄色	jp hl se	100
+桔黄色	ju hl se	100
 借还书	jp hr uu	100
 截和了	jp hu le	8888
 界湖镇	jp hu vf	1
@@ -255934,8 +255934,8 @@ sort: by_weight
 接力赛	jp li sd	5430
 杰里森	jp li sf	100
 堺利彦	jp li yj	3
-芥蓝菜	jp lj cd	225
-芥蓝苗	jp lj mn	100
+芥蓝菜	gd lj cd	225
+芥蓝苗	gd lj mn	100
 解铃人	jp lk rf	100
 借两天	jp ll tm	100
 结良缘	jp ll yr	1510
@@ -257829,7 +257829,7 @@ sort: by_weight
 九仙山	jq xm uj	83
 就现在	jq xm zd	5410
 就先走	jq xm zz	67
-就晓得	jq xn dw	92
+就晓得	jq xn de	92
 久效磷	jq xn lb	1865
 就小了	jq xn le	1385
 旧校区	jq xn qu	100
@@ -261365,7 +261365,7 @@ sort: by_weight
 开单子	kd dj zi	345
 开电扇	kd dm uj	100
 开多久	kd do jq	100
-开得快	kd dw kk	100
+开得快	kd de kk	100
 开都河	kd dz he	163
 凯恩斯	kd en si	10585
 凯尔玛	kd er ma	100
@@ -262763,7 +262763,7 @@ sort: by_weight
 克伦奇	ke ly qi	100
 克伦族	ke ly zu	6210
 刻镂刀	ke lz dc	100
-可抹掉	ke ma dn	10
+可抹掉	ke mo dn	10
 克玛乡	ke ma xl	1
 可满足	ke mj zu	30290
 可明明	ke mk mk	100
@@ -263151,7 +263151,7 @@ sort: by_weight
 可转债	ke vr vd	12460
 可转移	ke vr yi	1365
 可终究	ke vs jq	100
-可重入	ke vs ru	3128
+可重入	ke is ru	3128
 可种植	ke vs vi	1000
 可终止	ke vs vi	1440
 可中止	ke vs vi	645
@@ -265338,7 +265338,7 @@ sort: by_weight
 恐龙族	ks ls zu	137
 孔明灯	ks mk dg	1490
 空名额	ks mk ee	100
-孔明传	ks mk ir	54
+孔明传	ks mk vr	54
 空明杖	ks mk vh	100
 孔嬷嬷	ks mo mo	100
 空目录	ks mu lu	780
@@ -267727,7 +267727,7 @@ sort: by_weight
 老队长	lc dv vh	100
 老队员	lc dv yr	4670
 老得帮	lc dw bh	1111
-老得快	lc dw kk	100
+老得快	lc de kk	100
 老豆腐	lc dz fu	2532
 老二本	lc er bf	100
 老儿童	lc er ts	110
@@ -269219,7 +269219,7 @@ sort: by_weight
 愣乎乎	lg hu hu	2
 冷茶肠	lg ia ih	1
 冷茶棕	lg ia zs	100
-冷冲模	lg is mo	2195
+冷冲模	lg is mu	2195
 冷处理	lg iu li	3775
 冷春慧	lg iy hv	187
 愣劲儿	lg jb er	100
@@ -270810,7 +270810,7 @@ sort: by_weight
 李苏迎	li su yk	100
 傈僳语	li su yu	415
 傈僳族	li su zu	8205
-力拓案	li ta an	64
+力拓案	li to an	64
 利他的	li ta de	2210
 利他林	li ta lb	34
 理他们	li ta mf	739
@@ -274664,7 +274664,7 @@ sort: by_weight
 罗布泊	lo bu po	14950
 罗布人	lo bu rf	132
 罗布森	lo bu sf	118
-萝卜缨	lo bu yk	5
+萝卜缨	lo bo yk	5
 罗贝尔	lo bw er	200
 洛贝林	lo bw lb	10
 裸背䲢	lo bw tg	1
@@ -279302,7 +279302,7 @@ sort: by_weight
 铝型材	lv xk cd	100
 旅行带	lv xk dd	100
 旅行袋	lv xk dd	4880
-履行地	lv xk de	5334
+履行地	lv xk di	5334
 旅行地	lv xk di	100
 旅行队	lv xk dv	200
 旅行过	lv xk go	100
@@ -280169,7 +280169,7 @@ sort: by_weight
 麻背鸽	ma bw ge	1
 玛贝拉	ma bw la	46
 马背上	ma bw uh	6605
-摩擦角	ma ca jn	62
+摩擦角	mo ca jn	62
 马草夼	ma cc kl	100
 麻仓叶	ma ch ye	116
 麻仓优	ma ch yz	6666
@@ -282479,7 +282479,7 @@ sort: by_weight
 麦信风	md xb fg	100
 买新衣	md xb yi	100
 买吸管	md xi gr	100
-脉细数	md xi uu	2450
+脉细数	md xi uo	2450
 麦溪乡	md xi xl	10
 麦香堡	md xl bc	100
 麦香鸡	md xl ji	471
@@ -283791,7 +283791,7 @@ sort: by_weight
 慢慢逛	mj mj gl	169
 慢慢还	mj mj hr	100
 慢慢抄	mj mj ic	100
-慢慢长	mj mj ih	100
+慢慢长	mj mj vh	100
 慢慢吃	mj mj ii	100
 慢慢降	mj mj jl	100
 慢慢看	mj mj kj	100
@@ -286266,7 +286266,7 @@ sort: by_weight
 苜蓿园	mu xu yr	277
 穆夏拉	mu xx la	170
 沐霞路	mu xx lu	2
-呒虾米	mu xx mi	100
+呒虾米	wu xx mi	100
 木匣子	mu xx zi	100
 慕亚平	mu ya pk	94
 木桠镇	mu ya vf	2
@@ -286325,7 +286325,7 @@ sort: by_weight
 母子间	mu zi jm	755
 模子里	mu zi li	100
 木子李	mu zi li	330
-母子俩	mu zi ll	5525
+母子俩	mu zi lx	5525
 木子美	mu zi mw	11605
 木字旁	mu zi ph	1111
 慕子期	mu zi qi	100
@@ -289353,7 +289353,7 @@ sort: by_weight
 美誉度	mw yu du	38120
 美与丑	mw yu iz	3285
 梅雨季	mw yu ji	410
-没羽箭	mw yu jm	100
+没羽箭	mo yu jm	100
 眉宇间	mw yu jm	100
 没遇见	mw yu jm	895
 美育课	mw yu ke	165
@@ -297537,7 +297537,7 @@ sort: by_weight
 彭门山	pg mf uj	100
 彭妙计	pg mn ji	100
 澎湃声	pg pd ug	55
-碰碰和	pg pg he	100
+碰碰和	pg pg hu	100
 碰碰胡	pg pg hu	100
 碰碰车	pg pg ie	3400
 捧捧场	pg pg ih	100
@@ -299261,7 +299261,7 @@ sort: by_weight
 便宜点	pm yi dm	1000
 偏一点	pm yi dm	99
 便宜爹	pm yi dp	100
-便宜坊	pm yi fh	5219
+便宜坊	bm yi fh	5219
 便宜货	pm yi ho	5705
 便宜话	pm yi hx	100
 便宜车	pm yi ie	100
@@ -301679,7 +301679,7 @@ sort: by_weight
 棋灵王	qi lk wh	100
 骑岭乡	qi lk xl	105
 企岭下	qi lk xx	6
-凄凉地	qi ll di	100
+凄凉地	qi ll de	100
 其亮度	qi ll du	100
 七辆车	qi ll ie	135
 七两秤	qi ll ig	707
@@ -307538,7 +307538,7 @@ sort: by_weight
 去兑奖	qu dv jl	166
 区队长	qu dv vh	100
 取对象	qu dv xl	815
-去得快	qu dw kk	100
+去得快	qu de kk	100
 屈斗宫	qu dz gs	2
 去痘痕	qu dz hf	1
 曲峨镇	qu ee vf	3
@@ -316767,7 +316767,7 @@ sort: by_weight
 塔斗山	ta dz uj	100
 塔尔德	ta er de	184
 塔尔坡	ta er po	19
-拓尔思	ta er si	88
+拓尔思	to er si	88
 塔尔寺	ta er si	8835
 塔尔图	ta er tu	100
 她儿子	ta er zi	18600
@@ -319479,7 +319479,7 @@ sort: by_weight
 腾达路	tg da lu	5
 藤岛昭	tg dc vc	191
 滕代远	tg dd yr	140
-腾地儿	tg de er	100
+腾地儿	tg di er	100
 疼得像	tg de xl	85
 腾地方	tg di fh	100
 滕芳兰	tg fh lj	100
@@ -322185,7 +322185,7 @@ sort: by_weight
 田家庄	tm jx vl	29
 田家湾	tm jx wj	62
 添加物	tm jx wu	4045
-添加行	tm jx xk	1099
+添加行	tm jx hh	1099
 天价药	tm jx yc	100
 田家营	tm jx yk	1
 田家园	tm jx yr	8
@@ -322606,7 +322606,7 @@ sort: by_weight
 天镇县	tm vf xm	6
 田征国	tm vg go	162
 天睁眼	tm vg yj	100
-天长节	tm vh jp	100
+天长节	tm ih jp	100
 天知道	tm vi dc	14065
 天之痕	tm vi hf	100
 天之内	tm vi nw	100
@@ -322949,7 +322949,7 @@ sort: by_weight
 跳火堆	tn ho dv	100
 跳火坑	tn ho kg	419
 调环酸	tn hr sr	2
-调户口	tn hu kz	100
+调户口	dn hu kz	100
 跳回来	tn hv ld	220
 调回来	tn hv ld	975
 跳回去	tn hv qu	100
@@ -322958,7 +322958,7 @@ sort: by_weight
 挑花眼	tn hx yj	100
 苕华玉	tn hx yu	100
 调喉嗓	tn hz sh	100
-调车员	tn ie yr	100
+调车员	dn ie yr	100
 调成了	tn ig le	100
 跳城楼	tn ig lz	179
 跳长绳	tn ih ug	100
@@ -324491,7 +324491,7 @@ sort: by_weight
 铜行业	ts hh ye	100
 同行业	ts hh ye	93775
 同行语	ts hh yu	100
-通行字	ts hh zi	120
+通行字	ts xk zi	120
 统汉字	ts hj zi	100
 童怀道	ts hk dc	37
 铜活字	ts ho zi	100
@@ -336438,7 +336438,7 @@ sort: by_weight
 甩甩头	uk uk tz	2825
 帅帅帅	uk uk uk	365
 帅炸了	uk va le	100
-摔着了	uk ve le	1111
+摔着了	uk vc le	1111
 帅着呢	uk ve ne	10
 帅歪歪	uk wd wd	100
 衰亡史	uk wh ui	110
@@ -337411,7 +337411,7 @@ sort: by_weight
 输得惨	uu de cj	100
 数得到	uu de dc	155
 输得多	uu de do	240
-倏地飞	uu de fw	5
+倏地飞	uu di fw	5
 鼠得克	uu de ke	100
 熟得快	uu de kk	100
 树德里	uu de li	33
@@ -338337,7 +338337,7 @@ sort: by_weight
 水果渣	uv go va	30
 水果汁	uv go vi	2370
 水果味	uv go ww	2635
-水果行	uv go xk	61
+水果行	uv go hh	61
 水果馅	uv go xm	124
 水果业	uv go ye	100
 水管工	uv gr gs	1025
@@ -338684,7 +338684,7 @@ sort: by_weight
 水木行	uv mu xk	58
 水霉病	uv mw bk	1035
 谁没点	uv mw dm	100
-水没过	uv mw go	100
+水没过	uv mo go	100
 水媒花	uv mw hx	5
 水煤浆	uv mw jl	6815
 水煤气	uv mw qi	1275
@@ -346577,7 +346577,7 @@ sort: by_weight
 章泽天	vh ze tm	100
 张泽毅	vh ze yi	100
 张泽禹	vh ze yu	133
-长泽梓	vh ze zi	6666
+长泽梓	ih ze zi	6666
 张自德	vh zi de	3
 张紫豪	vh zi hc	180
 张子和	vh zi he	2
@@ -347629,7 +347629,7 @@ sort: by_weight
 指令舱	vi lk ch	265
 只领到	vi lk dc	250
 指令单	vi lk dj	19
-指令长	vi lk ih	100
+指令长	vi lk vh	100
 指令集	vi lk ji	15970
 指令卡	vi lk ka	178
 纸灵灵	vi lk lk	100
@@ -349856,7 +349856,7 @@ sort: by_weight
 转动器	vr ds qi	64
 转动着	vr ds ve	4645
 转动轴	vr ds vz	960
-转得快	vr dw kk	100
+转得快	vr de kk	100
 转豆脉	vr dz md	1
 转斗乡	vr dz xl	12
 转儿的	vr er de	9
@@ -350372,7 +350372,7 @@ sort: by_weight
 肿柄菊	vs bk ju	1
 重兵器	vs bk qi	100
 重病人	vs bk rf	100
-重编程	vs bm ig	100
+重编程	is bm ig	100
 中编辑	vs bm ji	531
 中标村	vs bn cy	3
 钟表的	vs bn de	100
@@ -350803,7 +350803,7 @@ sort: by_weight
 种获乡	vs ho xl	7
 中环杯	vs hr bw	100
 中环路	vs hr lu	807
-重环纹	vs hr wf	100
+重环纹	is hr wf	100
 中环线	vs hr xm	1135
 中鸿网	vs hs wh	21
 中护军	vs hu jy	655
@@ -351274,7 +351274,7 @@ sort: by_weight
 中日韩	vs ri hj	12505
 中融通	vs rs ts	6
 钟乳洞	vs ru ds	7
-重入锁	vs ru so	503
+重入锁	is ru so	503
 钟乳石	vs ru ui	8900
 重如山	vs ru uj	100
 钟嗣成	vs si ig	100
@@ -353426,7 +353426,7 @@ sort: by_weight
 注油管	vu yz gr	49
 朱友珪	vu yz gv	1
 猪油盒	vu yz he	97
-朱祐樘	vu yz ig	18
+朱祐樘	vu yz th	18
 朱由检	vu yz jm	25
 朱由校	vu yz jn	680
 朱由榔	vu yz lh	21
@@ -358157,7 +358157,7 @@ sort: by_weight
 玩赏着	wj uh ve	100
 晚上我	wj uh wo	100
 万事达	wj ui da	11090
-万事得	wj ui dw	100
+万事得	wj ui de	100
 万事好	wj ui hc	41
 完事后	wj ui hz	100
 完事啦	wj ui la	100
@@ -360744,7 +360744,7 @@ sort: by_weight
 蜈蚣草	wu gs cc	180
 五公祠	wu gs ci	1610
 武工大	wu gs da	9
-务工地	wu gs de	100
+务工地	wu gs di	100
 蜈蚣等	wu gs dg	43
 蜈蚣洞	wu gs ds	415
 武工队	wu gs dv	2645
@@ -362122,7 +362122,7 @@ sort: by_weight
 伍世豪	wu ui hc	135
 无尸骸	wu ui hd	100
 乌饰蝗	wu ui hl	1
-武士彟	wu ui ho	100
+武士彟	wu ui yt	100
 武士黑	wu ui hw	180
 午时茶	wu ui ia	100
 无是处	wu ui iu	100
@@ -367316,7 +367316,7 @@ sort: by_weight
 细长形	xi ih xk	100
 细长型	xi ih xk	100
 西昌县	xi ih xm	13
-细长眼	xi vh yj	100
+细长眼	xi ih yj	100
 洗池台	xi ii td	100
 西禅寺	xi ij si	45
 洗窗帘	xi il lm	116
@@ -378510,7 +378510,7 @@ sort: by_weight
 下附突	xx fu tu	1
 下飞机	xx fw ji	5120
 霞飞路	xx fw lu	845
-黠戛斯	xx ga si	100
+黠戛斯	xx jx si	100
 下高度	xx gc du	100
 瞎改些	xx gd xp	100
 下格村	xx ge cy	1
@@ -379066,7 +379066,7 @@ sort: by_weight
 下宅村	xx vd cy	18
 狭窄的	xx vd de	34075
 下着了	xx ve le	100
-吓着了	xx ve le	100
+吓着了	xx vc le	100
 下着呢	xx ve ne	10
 瞎折腾	xx ve tg	2525
 下着雪	xx ve xt	1290
@@ -380505,7 +380505,7 @@ sort: by_weight
 寅虎年	yb hu nm	100
 银狐犬	yb hu qr	100
 淫秽的	yb hv de	10180
-隐晦地	yb hv di	100
+隐晦地	yb hv de	100
 银灰色	yb hv se	18800
 尹会一	yb hv yi	3
 银黑狐	yb hw hu	275
@@ -382168,7 +382168,7 @@ sort: by_weight
 药引子	yc yb zi	830
 摇摇冰	yc yc bk	100
 遥遥的	yc yc de	100
-遥遥地	yc yc di	100
+遥遥地	yc yc de	100
 幺幺二	yc yc er	100
 幺幺九	yc yc jq	100
 摇摇乐	yc yc le	100
@@ -390190,7 +390190,7 @@ sort: by_weight
 应付款	yk fu kr	25785
 应付税	yk fu uv	50
 英飞凌	yk fw lk	7890
-英飞拓	yk fw ta	2
+英飞拓	yk fw to	2
 硬肥皂	yk fw zc	100
 应该把	yk gd ba	38055
 应该吧	yk gd ba	485
@@ -394481,7 +394481,7 @@ sort: by_weight
 虞山桥	yu uj qn	2
 雨山区	yu uj qu	183
 玉山颓	yu uj tv	100
-蔚山市	yu uj ui	100
+蔚山市	ww uj ui	100
 御膳粥	yu uj vz	46
 玉山县	yu uj xm	259
 于双戈	yu ul ge	100
@@ -396051,7 +396051,7 @@ sort: by_weight
 又对其	yz dv qi	3080
 有队伍	yz dv wu	31
 有对象	yz dv xl	100
-游得快	yz dw kk	100
+游得快	yz de kk	100
 又得像	yz dw xl	20
 油墩子	yz dy zi	146
 油豆腐	yz dz fu	2010
@@ -397124,7 +397124,7 @@ sort: by_weight
 有木有	yz mu yz	100
 优美的	yz mw de	118545
 有没得	yz mw de	16068
-优美地	yz mw di	100
+优美地	yz mw de	100
 又没封	yz mw fg	100
 有美感	yz mw gj	1220
 由美国	yz mw go	39720
@@ -398732,7 +398732,7 @@ sort: by_weight
 砸过去	za go qu	1340
 杂菇煲	za gu bc	24
 杂谷脑	za gu nc	100
-扎好根	za hc gf	100
+扎好根	va hc gf	100
 咋还不	za hd bu	3333
 咋还没	za hd mw	3333
 咋还有	za hd yz	154
@@ -406254,7 +406254,7 @@ sort: by_weight
 走味儿	zz ww er	100
 走为上	zz ww uh	100
 走为先	zz ww xm	100
-走心地	zz xb di	100
+走心地	zz xb de	100
 走心经	zz xb jk	100
 走心了	zz xb le	100
 走西口	zz xi kz	2205
@@ -406639,7 +406639,7 @@ sort: by_weight
 阿嗪米特	aa qb mi te	6
 阿奇里斯	aa qi li si	100
 阿奇霉素	aa qi mw su	100
-阿其所好	aa qi so hc	100
+阿其所好	ee qi so hc	100
 阿浅来了	aa qm ld le	100
 阿曲库铵	aa qu ku an	2
 阿热勒镇	aa re le vf	12
@@ -406678,7 +406678,7 @@ sort: by_weight
 阿速吉八	aa su ji ba	1
 阿塔兰塔	aa ta lj ta	100
 阿塔兰忒	aa ta lj te	100
-阿拓莫兰	aa ta mo lj	1
+阿拓莫兰	aa to mo lj	1
 阿泰包子	aa td bc zi	100
 阿泰斯特	aa td si te	100
 阿特金森	aa te jb sf	108
@@ -408573,7 +408573,7 @@ sort: by_weight
 暗室亏心	an ui kv xb	100
 安室利处	an ui li iu	5
 暗示疗法	an ui ln fa	143
-安世默识	an ui mo ui	1
+安世默识	an ui mo vi	1
 暗室难欺	an ui nj qi	1
 按时起床	an ui qi il	1790
 暗室欺心	an ui qi xb	3
@@ -414909,7 +414909,7 @@ sort: by_weight
 败絮其中	bd xu qi vs	2475
 白须蛙面	bd xu wa mm	100
 百下百全	bd xx bd qr	1
-百下百着	bd xx bd ve	3
+百下百着	bd xx bd vc	3
 败下阵来	bd xx vf ld	9425
 摆下宴席	bd xx yj xi	100
 百亚股份	bd ya gu ff	194
@@ -414929,7 +414929,7 @@ sort: by_weight
 白银有色	bd yb yz se	128
 白腰草鹬	bd yc cc yu	100
 百妖之巅	bd yc vi dm	126
-百药之长	bd yc vi ih	100
+百药之长	bd yc vi vh	100
 白腰文鸟	bd yc wf nn	1
 白腰雨燕	bd yc yu yj	100
 百业待举	bd ye dd ju	200
@@ -416953,7 +416953,7 @@ sort: by_weight
 鼻无梁柱	bi wu ll vu	100
 比物连类	bi wu lm lw	100
 比屋连甍	bi wu lm mg	1
-比物属事	bi wu uu ui	2
+比物属事	bi wu vu ui	2
 比舞招亲	bi wu vc qb	10
 比武招亲	bi wu vc qb	2250
 敝帷不弃	bi ww bu qi	8
@@ -417009,7 +417009,7 @@ sort: by_weight
 必须的嘛	bi xu de ma	100
 必须提防	bi xu di fh	425
 必须懂得	bi xu ds de	3475
-必须得到	bi xu dw dc	100
+必须得到	bi xu de dc	100
 必须得买	bi xu dw md	100
 必须得死	bi xu dw si	100
 必须得想	bi xu dw xl	100
@@ -419797,7 +419797,7 @@ sort: by_weight
 便僻侧媚	bm pi ce mw	1
 鞭辟近里	bm pi jb li	100
 鞭辟入里	bm pi ru li	1695
-鞭辟着里	bm pi ve li	1
+鞭辟着里	bm pi vo li	1
 鞭辟向里	bm pi xl li	1
 边评边改	bm pk bm gd	45
 扁平电缆	bm pk dm lj	770
@@ -421409,7 +421409,7 @@ sort: by_weight
 别掉链子	bp dn lm zi	100
 别冻感冒	bp ds gj mc	100
 别动弹了	bp ds tj le	100
-别冻着了	bp ds ve le	100
+别冻着了	bp ds vc le	100
 别读书了	bp du uu le	100
 别逗我了	bp dz wo le	100
 别饿坏了	bp ee hk le	100
@@ -421661,7 +421661,7 @@ sort: by_weight
 别上瘾呀	bp uh yb ya	100
 别识别见	bp ui bp jm	100
 别时容易	bp ui rs yi	100
-别摔着了	bp uk ve le	100
+别摔着了	bp uk vc le	100
 别说不会	bp uo bu hv	100
 别说短话	bp uo dr hx	100
 别说话了	bp uo hx le	100
@@ -424049,7 +424049,7 @@ sort: by_weight
 不可替代	bu ke ti dd	37065
 不可调和	bu ke tn he	4605
 不可调节	bu ke tn jp	100
-不可说也	bu ke to ye	100
+不可说也	bu ke uo ye	100
 不可同日	bu ke ts ri	100
 不可通行	bu ke ts xk	90
 不可通约	bu ke ts yt	100
@@ -425933,7 +425933,7 @@ sort: by_weight
 不舍得用	bu ue de ys	100
 不舍得走	bu ue de zz	100
 不涉党争	bu ue dh vg	100
-不舍得买	bu ue dw md	100
+不舍得买	bu ue de md	100
 不设城府	bu ue ig fu	1
 不涉及到	bu ue ji dc	72
 捕蛇去齿	bu ue qu ii	100
@@ -429694,7 +429694,7 @@ sort: by_weight
 才不出凡	cd bu iu fj	100
 猜不出来	cd bu iu ld	1645
 猜不出是	cd bu iu ui	130
-财不露白	cd bu lz bd	57
+财不露白	cd bu lu bd	57
 才不能让	cd bu ng rh	100
 才不去呢	cd bu qu ne	603
 猜不透了	cd bu tz le	125
@@ -430982,7 +430982,7 @@ sort: by_weight
 曾经最美	cg jk zv mw	1740
 曾经走过	cg jk zz go	100
 层见迭出	cg jm dp iu	100
-层见叠出	cg jm dp iu	100
+层见叠出	cg xm dp iu	100
 层间剪切	cg jm jm qp	2
 曾看到过	cg kj dc go	100
 层林尽染	cg lb jb rj	4110
@@ -432543,7 +432543,7 @@ sort: by_weight
 残璋断玦	cj vh dr jt	1
 残枝败叶	cj vi bd ye	360
 残肢断臂	cj vi dr bi	128
-参志胶囊	cj vi jn nh	1
+参志胶囊	uf vi jn nh	1
 残枝落叶	cj vi lo ye	100
 参知政事	cj vi vg ui	2930
 参展报名	cj vj bc mk	100
@@ -433144,7 +433144,7 @@ sort: by_weight
 撮盐入火	co yj ru ho	100
 撮盐入水	co yj ru uv	100
 措颜无地	co yj wu di	1
-错有错着	co yz co ve	100
+错有错着	co yz co vc	100
 错在聪明	co zd cs mk	1
 错字错词	co zi co ci	100
 错字错音	co zi co yb	100
@@ -433649,7 +433649,7 @@ sort: by_weight
 蹙蹙靡骋	cu cu mi ig	1
 粗粗细细	cu cu xi xi	100
 卒卒鲜暇	cu cu xm xx	1
-粗大事了	cu da ui ln	100
+粗大事了	cu da ui le	100
 粗蛋白质	cu dj bd vi	2925
 醋氮酰胺	cu dj xm an	1
 粗雕裂螺	cu dn lp lo	1
@@ -438845,7 +438845,7 @@ sort: by_weight
 倒载干戈	dc zd gj ge	100
 道在人为	dc zd rf ww	1
 道在屎溺	dc zd ui nn	258
-叨在知己	dc zd vi ji	1
+叨在知己	tc zd vi ji	1
 倒栽下来	dc zd xx ld	385
 盗憎主人	dc zg vu rf	100
 刀子嘴巴	dc zi zv ba	100
@@ -445235,7 +445235,7 @@ sort: by_weight
 淡写轻描	dj xp qk mn	3
 单休双休	dj xq ul xq	100
 单选按钮	dj xr an nq	4561
-担雪塞井	dj xt se jk	100
+担雪塞井	dj xt sd jk	100
 担雪填河	dj xt tm he	100
 担雪填井	dj xt tm jk	100
 但需注意	dj xu vu yi	1940
@@ -447534,7 +447534,7 @@ sort: by_weight
 调出单位	dn iu dj ww	2620
 调出调入	dn iu dn ru	100
 掉出来了	dn iu ld le	100
-调唇弄舌	dn iy ns ue	100
+调唇弄舌	tn iy ns ue	100
 掉进河里	dn jb he li	100
 掉进去了	dn jb qu le	100
 调集力量	dn ji li ll	100
@@ -448716,7 +448716,7 @@ sort: by_weight
 多言繁称	do yj fj ig	1
 多言或中	do yj ho vs	1
 朵颜三卫	do yj sj ww	115
-多言数穷	do yj uu qs	33
+多言数穷	do yj uo qs	33
 多元层析	do yr cg xi	1
 多元发展	do yr fa vj	186
 多元分析	do yr ff xi	6
@@ -451470,7 +451470,7 @@ sort: by_weight
 都会国际	du hv go ji	100
 都会城市	du hv ig ui	100
 都会传奇	du hv ir qi	100
-都会举办	du hv ju bj	100
+都会举办	dz hv ju bj	100
 都会中心	du hv vs xb	100
 度化众生	du hx vs ug	100
 读后心得	du hz xb de	135
@@ -453451,7 +453451,7 @@ sort: by_weight
 都成功了	dz ig gs le	100
 都成这样	dz ig ve yh	100
 都尝试过	dz ih ui go	100
-都长一样	dz ih yi yh	100
+都长一样	dz vh yi yh	100
 都吃不起	dz ii bu qi	100
 都吃不上	dz ii bu uh	100
 都吃得下	dz ii de xx	100
@@ -461476,7 +461476,7 @@ sort: by_weight
 防范得宜	fh fj de yi	100
 防范传销	fh fj ir xn	100
 防范控制	fh fj ks vi	700
-放饭流歠	fh fj lq iu	1111
+放饭流歠	fh fj lq io	1111
 防范体系	fh fj ti xi	2360
 防范设施	fh fj ue ui	1250
 防范重点	fh fj vs dm	100
@@ -465470,7 +465470,7 @@ sort: by_weight
 浮山校区	fu uj xn qu	23
 福山雅治	fu uj ya vi	68
 扶衰起废	fu uk qi fw	1
-傅说版筑	fu uo bj vu	100
+傅说版筑	fu yt bj vu	100
 复数的模	fu uu de mo	155
 富庶地区	fu uu di qu	100
 附属第一	fu uu di yi	8465
@@ -466912,10 +466912,10 @@ sort: by_weight
 非常地像	fw ih de xl	100
 非常得意	fw ih de yi	100
 非常低啊	fw ih di aa	100
-非常地大	fw ih di da	100
+非常地大	fw ih de da	100
 非常地道	fw ih di dc	100
 非常低调	fw ih di dn	100
-非常地老	fw ih di lc	100
+非常地老	fw ih de lc	100
 非常点距	fw ih dm ju	1
 非常多的	fw ih do de	100
 非常独立	fw ih du li	100
@@ -483436,7 +483436,7 @@ sort: by_weight
 给个皮肤	gw ge pi fu	100
 给个说法	gw ge uo fa	100
 给个准信	gw ge vy xb	26
-给孤独园	gw gu du yr	153
+给孤独园	ji gu du yr	153
 给孩子喝	gw hd zi he	995
 给孩子们	gw hd zi mf	10665
 给忽悠了	gw hu yz le	100
@@ -486326,7 +486326,7 @@ sort: by_weight
 海宁观潮	hd nk gr ic	100
 海宁皮城	hd nk pi ig	17
 海宁查氏	hd nk va ui	2
-还年却老	hd nm qt lc	1
+还年却老	hr nm qt lc	1
 还年驻色	hd nm vu se	1
 海鸟电子	hd nn dm zi	12500
 海鸟发展	hd nn fa vj	51
@@ -489792,7 +489792,7 @@ sort: by_weight
 杭富路口	hh fu lu kz	2
 杭盖乐队	hh gd yt dv	100
 行规行约	hh gv hh yt	100
-行号巷哭	hh hc xl ku	100
+行号巷哭	xk hc xl ku	100
 航海技术	hh hd ji uu	2605
 航海历史	hh hd li ui	100
 航海冒险	hh hd mc xm	100
@@ -490828,7 +490828,7 @@ sort: by_weight
 韩国艺人	hj go yi rf	113
 韩国影视	hj go yk ui	1765
 韩国娱乐	hj go yu le	100
-韩国蔚山	hj go yu uj	100
+韩国蔚山	hj go ww uj	100
 韩国总统	hj go zs ts	3475
 韩国综艺	hj go zs yi	1740
 汉官威仪	hj gr ww yi	100
@@ -495033,7 +495033,7 @@ sort: by_weight
 环游世界	hr yz ui jp	6635
 患有重病	hr yz vs bk	100
 圜凿方枘	hr zc fh rv	100
-还则罢了	hr ze ba ln	100
+还则罢了	hr ze ba le	100
 缓则治本	hr ze vi bf	17
 换子疑云	hr zi yi yy	100
 换座位吗	hr zo ww ma	100
@@ -496079,8 +496079,8 @@ sort: by_weight
 虎大将军	hu da jl jy	128
 互道珍重	hu dc vf vs	725
 糊得不行	hu de bu xk	100
-忽地掠过	hu de lt go	100
-忽地掠至	hu de lt vi	100
+忽地掠过	hu di lt go	100
+忽地掠至	hu di lt vi	100
 呼的一声	hu de yi ug	100
 虎党狐侪	hu dh hu id	1
 虎荡羊群	hu dh yh qy	100
@@ -499203,7 +499203,7 @@ sort: by_weight
 华灯初放	hx dg iu fh	23
 华灯初上	hx dg iu uh	6820
 画地而趋	hx di er qu	5
-画荻和丸	hx di he wj	1
+画荻和丸	hx di ho wj	1
 画地成牢	hx di ig lc	1
 画地成图	hx di ig tu	2
 画荻教子	hx di jn zi	100
@@ -499741,7 +499741,7 @@ sort: by_weight
 花木扶疏	hx mu fu uu	1290
 花木基地	hx mu ji di	100
 花木街道	hx mu jp dc	106
-滑模控制	hx mu ks vi	100
+滑模控制	hx mo ks vi	100
 滑模施工	hx mu ui gs	100
 花木星球	hx mu xk qq	133
 华美公司	hx mw gs si	23
@@ -502965,7 +502965,7 @@ sort: by_weight
 车牌号码	ie pd hc ma	10555
 车牌识别	ie pd ui bp	546
 车牌摇号	ie pd yc hc	120
-扯篷拉纤	ie pg la xm	100
+扯篷拉纤	ie pg la qm	100
 车朋满座	ie pg mj zo	33
 扯皮拉筋	ie pi la jb	66
 扯皮弄筋	ie pi ns jb	1
@@ -511939,7 +511939,7 @@ sort: by_weight
 虫媒植物	is mw vi wu	25
 充能完毕	is ng wj bi	100
 宠你到底	is ni dc di	124
-重泥挽马	is ni wj ma	100
+重泥挽马	vs ni wj ma	100
 崇宁重宝	is nk vs bc	100
 虫鸟叫声	is nn jn ug	100
 冲糯米粉	is no mi ff	9
@@ -514718,7 +514718,7 @@ sort: by_weight
 出云入泥	iu yy ru ni	1
 楚云湘雨	iu yy xl yu	1
 储油构造	iu yz gz zc	100
-锄耰棘矜	iu yz ji jb	1
+锄耰棘矜	iu yz ji qb	1
 除莠菌素	iu yz jy su	1
 出油率高	iu yz lv gc	100
 出游旅行	iu yz lv xk	100
@@ -518026,7 +518026,7 @@ sort: by_weight
 近卫统率	jb ww ts uk	100
 近卫声明	jb ww ug mk	65
 祲威盛容	jb ww ug rs	1
-近卫文麿	jb ww wf mo	100
+近卫文麿	jb ww wf mi	100
 近危物种	jb ww wu vs	414
 近卫秀麿	jb ww xq mo	100
 金尾鹦哥	jb ww yk ge	1
@@ -519548,7 +519548,7 @@ sort: by_weight
 几个子儿	ji ge zi er	235
 纪纲人论	ji gh rf ly	1
 纪纲人伦	ji gh rf ly	100
-系杆拱桥	ji gj gs qn	100
+系杆拱桥	xi gj gs qn	100
 基干民兵	ji gj mb bk	1605
 肌苷酸钠	ji gj sr na	3
 激光波长	ji gl bo ih	100
@@ -524291,7 +524291,7 @@ sort: by_weight
 精密控制	jk mi ks vi	665
 静谧蓝的	jk mi lj de	100
 京密路口	jk mi lu kz	13
-精密磨削	jk mi mo xn	100
+精密磨削	jk mi mo xt	100
 精密模锻	jk mi mu dr	100
 精密模具	jk mi mu ju	100
 精密弹簧	jk mi tj hl	100
@@ -525526,7 +525526,7 @@ sort: by_weight
 奖颁奖礼	jl bj jl li	1010
 将兵长史	jl bk vh ui	100
 江边码头	jl bm ma tz	85
-将伯之助	jl bo vi vu	100
+将伯之助	ql bo vi vu	100
 讲不出的	jl bu iu de	230
 讲不出话	jl bu iu hx	215
 讲不出口	jl bu iu kz	95
@@ -531086,8 +531086,8 @@ sort: by_weight
 竭力支持	jp li vi ii	200
 竭力挽留	jp li wj lq	100
 孑立无依	jp li wu yi	100
-芥蓝干贝	jp lj gj bw	1
-芥蓝牛肉	jp lj nq rz	16
+芥蓝干贝	gd lj gj bw	1
+芥蓝牛肉	gd lj nq rz	16
 解铃系铃	jp lk xi lk	100
 接连不断	jp lm bu dr	9755
 接连发生	jp lm fa ug	3755
@@ -533759,7 +533759,6 @@ sort: by_weight
 酒水饮料	jq uv yb ln	100
 就找不到	jq vc bu dc	289
 就着急啊	jq vc ji aa	100
-就这么着	jq vc me vc	906
 九寨沟县	jq vd gz xm	1615
 旧宅基地	jq vd ji di	100
 旧债未还	jq vd ww hr	100
@@ -536136,7 +536135,7 @@ sort: by_weight
 聚山梨酯	ju uj li vi	4
 巨山农场	ju uj ns ih	8
 举善任能	ju uj rf ng	100
-举扇一㧑	ju uj yi ww	100
+举扇一㧑	ju uj yi hv	100
 据水断桥	ju uv dr qn	13
 俱收并蓄	ju uz bk xu	193
 举手表决	ju uz bn jt	4470
@@ -546637,7 +546636,7 @@ sort: by_weight
 拉取失败	la qu ui bd	100
 拉取下来	la qu xx ld	100
 拉仁关乡	la rf gr xl	6
-落人口实	la rf kz ui	380
+落人口实	lo rf kz ui	380
 腊肉火锅	la rz ho go	48
 拉萨啤酒	la sa pi jq	1066
 拉萨条约	la sa tn yt	100
@@ -548524,7 +548523,7 @@ sort: by_weight
 乐乐课堂	le le ke th	100
 乐乐妈妈	le le ma ma	100
 乐乐陶陶	le le tc tc	1
-嘞嘞什么	le le uf me	1111
+嘞嘞什么	lw lw uf me	1111
 乐乐影视	le le yk ui	100
 乐乐影院	le le yk yr	100
 乐乐游戏	le le yz xi	100
@@ -556259,7 +556258,7 @@ sort: by_weight
 六度分离	lq du ff li	190
 留犊淮南	lq du hk nj	1
 六度空间	lq du ks jm	100
-六度万行	lq du wj hh	100
+六度万行	lq du wj xk	100
 六度影院	lq du yk yr	100
 流恶难尽	lq ee nj jb	100
 六二八八	lq er ba ba	100
@@ -561115,7 +561114,7 @@ sort: by_weight
 楼的高度	lz de gc du	100
 娄底地区	lz di di qu	100
 娄底中院	lz di vs yr	87
-露地栽培	lz di zd pw	2310
+露地栽培	lu di zd pw	2310
 漏电保护	lz dm bc hu	109
 漏掉了啊	lz dn le aa	100
 漏洞百出	lz ds bd iu	7870
@@ -564324,7 +564323,7 @@ sort: by_weight
 芒果影视	mh go yk ui	100
 芒果娱乐	mh go yu le	100
 盲瞽之言	mh gu vi yj	1
-莽牯朱蛤	mh gu vu ge	641
+莽牯朱蛤	mh gu vu ha	641
 盲盒统计	mh he ts ji	100
 芒寒色正	mh hj se vg	100
 忙活一天	mh ho yi tm	100
@@ -564551,7 +564550,7 @@ sort: by_weight
 秘而不发	mi er bu fa	100
 迷而不反	mi er bu fj	1
 迷而不返	mi er bu fj	100
-秘而不露	mi er bu lz	10
+秘而不露	mi er bu lu	10
 密而不漏	mi er bu lz	32
 迷而不悟	mi er bu wu	100
 秘而不泄	mi er bu xp	1
@@ -568938,7 +568937,7 @@ sort: by_weight
 莫显乎微	mo xm hu ww	185
 魔弦传说	mo xm ir uo	100
 魔仙女王	mo xm nv wh	180
-磨削加工	mo xn jx gs	100
+磨削加工	mo xt jx gs	100
 抹胸背心	mo xs bw xb	100
 抹胸搭配	mo xs da pw	100
 抹胸吊带	mo xs dn dd	100
@@ -569646,7 +569645,7 @@ sort: by_weight
 幕墙行业	mu ql hh ye	100
 慕强心理	mu ql xb li	1111
 幕墙系统	mu ql xi ts	100
-木强则折	mu ql ze ue	100
+木强则折	mu ql ze ve	100
 目前百度	mu qm bd du	100
 目前国内	mu qm go nw	100
 目前好像	mu qm hc xl	100
@@ -572909,7 +572908,7 @@ sort: by_weight
 没有示警	mw yz ui jk	100
 没有时间	mw yz ui jm	56565
 没优势了	mw yz ui le	100
-没有事了	mw yz ui ln	100
+没有事了	mw yz ui le	100
 没有视频	mw yz ui pb	1540
 没有实行	mw yz ui xk	2760
 没有实现	mw yz ui xm	101
@@ -574735,7 +574734,7 @@ sort: by_weight
 能辨是非	ng bm ui fw	100
 能不担心	ng bu dj xb	100
 能不顶吗	ng bu dk ma	27
-能不称官	ng bu ig gr	2
+能不称官	ng bu if gr	2
 能不来吗	ng bu ld ma	100
 能不两工	ng bu ll gs	1
 能不能把	ng bu ng ba	72
@@ -584648,7 +584647,7 @@ sort: by_weight
 评审制度	pk uf vi du	100
 评审委员	pk uf ww yr	14390
 平生大事	pk ug da ui	100
-屏声静气	pk ug jk qi	38
+屏声静气	bk ug jk qi	38
 平生之好	pk ug vi hc	1
 平生之志	pk ug vi vi	14
 平生之愿	pk ug vi yr	18
@@ -589978,7 +589977,7 @@ sort: by_weight
 岐山社区	qi uj ue qu	2
 旗山校区	qi uj xn qu	100
 奇山秀水	qi uj xq uv	100
-岐山一校	qi uj yi jn	100
+岐山一校	qi uj yi xn	100
 奇山异水	qi uj yi uv	1170
 奇山医院	qi uj yi yr	187
 欺霜傲雪	qi ul ao xt	100
@@ -593293,7 +593292,7 @@ sort: by_weight
 强得过分	ql de go ff	100
 强得可怕	ql de ke pa	100
 强得离谱	ql de li pu	100
-强的松龙	ql de ss ls	118
+强的松龙	ql di ss ls	118
 抢得真快	ql de vf kk	100
 墙的问题	ql de wf ti	100
 抢得先机	ql de xm ji	100
@@ -599803,7 +599802,7 @@ sort: by_weight
 热搜第一	re sz di yi	123
 热搜预定	re sz yu dk	123
 热腾腾的	re tg tg de	9340
-若陀龙王	re to ls wh	1
+若陀龙王	ro to ls wh	1
 热土难离	re tu nj li	100
 热身活动	re uf ho ds	1710
 热深厥深	re uf jt uf	4
@@ -602602,7 +602601,7 @@ sort: by_weight
 日臻完善	ri vf wj uj	9360
 日正当中	ri vg dh vs	100
 日征月迈	ri vg yt md	100
-日长似岁	ri vh si sv	4
+日长似岁	ri ih si sv	4
 日志采集	ri vi cd ji	504
 日志打印	ri vi da yb	2264
 日志队列	ri vi dv lp	1
@@ -603515,7 +603514,7 @@ sort: by_weight
 融融洽洽	rs rs qx qx	155
 熔融指数	rs rs vi uu	595
 熔融温度	rs rs wf du	100
-融融泄泄	rs rs xp xp	10
+融融泄泄	rs rs yi yi	10
 溶溶泄泄	rs rs xp xp	33
 融融冶冶	rs rs ye ye	5
 融融曳曳	rs rs ye ye	6
@@ -603747,7 +603746,7 @@ sort: by_weight
 如此地美	ru ci de mw	100
 如此等等	ru ci dg dg	8145
 如此地步	ru ci di bu	100
-如此地大	ru ci di da	100
+如此地大	ru ci de da	100
 如此低调	ru ci di dn	100
 如此多娇	ru ci do jn	1105
 如此恶劣	ru ci ee lp	100
@@ -608028,7 +608027,7 @@ sort: by_weight
 丝质长袍	si vi ih pc	15
 四肢健全	si vi jm qr	117
 似栉壳虫	si vi ke is	5
-死之呢喃	si vi ne nj	3
+死之呢喃	si vi ni nj	3
 四指捏合	si vi np he	100
 四肢爬行	si vi pa xk	100
 四肢酸痛	si vi sr ts	177
@@ -609488,8 +609487,8 @@ sort: by_weight
 三重认证	sj is rf vg	100
 三重身份	sj is uf ff	100
 三重威胁	sj is ww xp	100
-三重一大	sj is yi da	100
-三重一创	sj is yi il	100
+三重一大	sj vs yi da	100
+三重一创	sj vs yi il	100
 三出祁山	sj iu qi uj	100
 三春盛景	sj iy ug jk	100
 三晋大地	sj jb da di	100
@@ -613527,7 +613526,7 @@ sort: by_weight
 碎玉零珠	sv yu lk vu	100
 随遇平衡	sv yu pk hg	9999
 碎玉破冰	sv yu po bk	1
-岁聿其莫	sv yu qi mo	5
+岁聿其莫	sv yu qi mu	5
 岁聿其暮	sv yu qi mu	100
 随寓随安	sv yu sv an	1
 遂渝铁路	sv yu tp lu	445
@@ -618644,7 +618643,7 @@ sort: by_weight
 贪生畏死	tj ug ww si	100
 坦尚尼亚	tj uh ni ya	100
 忐上忑下	tj uh te xx	1
-摊上事了	tj uh ui ln	100
+摊上事了	tj uh ui le	100
 探视病人	tj ui bk rf	515
 痰湿阻肺	tj ui zu fw	8
 檀扇鸭掌	tj uj ya vh	1
@@ -618807,7 +618806,7 @@ sort: by_weight
 袒胸裸臂	tj xs lo bi	1
 袒胸露臂	tj xs lz bi	400
 袒胸露背	tj xs lz bw	730
-袒胸露腹	tj xs lz fu	210
+袒胸露腹	tj xs lu fu	210
 袒胸露乳	tj xs lz ru	435
 探寻胜迹	tj xy ug ji	100
 贪叶夜蛾	tj ye ye ee	5
@@ -620549,7 +620548,7 @@ sort: by_weight
 填土造田	tm tu zc tm	100
 田头地脑	tm tz di nc	100
 天煞孤星	tm ua gu xk	100
-舔舌抹嘴	tm ue ma zv	85
+舔舌抹嘴	tm ue mo zv	85
 天神降临	tm uf jl lb	100
 天神碎片	tm uf sv pm	1
 天神召唤	tm uf vc hr	2
@@ -621203,7 +621202,7 @@ sort: by_weight
 挑花了眼	tn hx le yj	100
 条华蜗牛	tn hx wo nq	100
 挑茶斡刺	tn ia wo ci	1
-调车作业	tn ie zo ye	100
+调车作业	dn ie zo ye	100
 调成糊状	tn ig hu vl	100
 调畅气机	tn ih qi ji	100
 调畅情志	tn ih qk vi	100
@@ -626406,7 +626405,7 @@ sort: by_weight
 投缳自缢	tz hr zi yi	100
 投壶电笑	tz hu dm xn	1
 头会箕赋	tz hv ji fu	1
-头会箕敛	tz hv ji lm	100
+头会箕敛	tz kk ji lm	100
 头昏目眩	tz hy mu xr	1385
 头昏目晕	tz hy mu yy	100
 头昏脑闷	tz hy nc mf	100
@@ -631251,7 +631250,7 @@ sort: by_weight
 审问审问	uf wf uf wf	100
 神文圣武	uf wf ug wu	100
 深文周纳	uf wf vz na	100
-深文周内	uf wf vz nw	1
+深文周内	uf wf vz na	1
 砷𬭩离子	uf wg li zi	100
 身亡命殒	uf wh mk yy	2
 神往神来	uf wh uf ld	1
@@ -636254,7 +636253,7 @@ sort: by_weight
 十分地难	ui ff de nj	100
 十分地小	ui ff de xn	100
 十分得意	ui ff de yi	100
-十分地大	ui ff di da	100
+十分地大	ui ff de da	100
 十分低调	ui ff di dn	100
 十分恶毒	ui ff ee du	100
 十分恶劣	ui ff ee lp	3510
@@ -636942,7 +636941,7 @@ sort: by_weight
 十行七列	ui hh qi lp	100
 十行四列	ui hh si lp	100
 十行三列	ui hh sj lp	100
-食行生鲜	ui hh ug xm	100
+食行生鲜	ui xk ug xm	100
 十行十列	ui hh ui lp	100
 适航指令	ui hh vi lk	100
 十行五列	ui hh wu lp	100
@@ -638164,7 +638163,7 @@ sort: by_weight
 世局多变	ui ju do bm	100
 时局动荡	ui ju ds dh	625
 市局局长	ui ju ju vh	100
-尸居龙见	ui ju ls jm	100
+尸居龙见	ui ju ls xm	100
 适居其反	ui ju qi fj	1
 使具体化	ui ju ti hx	100
 时聚时分	ui ju ui ff	25
@@ -643764,7 +643763,7 @@ sort: by_weight
 疏财重义	uu cd vs yi	100
 输财助边	uu cd vu bm	4
 蔬菜栽培	uu cd zd pw	1970
-属词比事	uu ci bi ui	5
+属词比事	vu ci bi ui	5
 书此奇谭	uu ci qi tj	100
 鼠窜蜂逝	uu cr fg ui	1
 鼠窜狗盗	uu cr gz dc	1
@@ -644424,7 +644423,7 @@ sort: by_weight
 数码影像	uu ma yk xl	31065
 数码娱乐	uu ma yu le	100
 庶民文化	uu mb wf hx	100
-属毛离里	uu mc li li	100
+属毛离里	vu mc li li	100
 菽麦不辨	uu md bu bm	3
 疏密不一	uu mi bu yi	90
 疏密得当	uu mi de dh	100
@@ -645335,7 +645334,7 @@ sort: by_weight
 睡得舒服	uv de uu fu	100
 睡得着觉	uv de vc jn	100
 睡得着吗	uv de vc ma	100
-睡得着呢	uv de ve ne	100
+睡得着呢	uv de vc ne	100
 睡得真沉	uv de vf if	100
 睡得真死	uv de vf si	100
 睡得正甜	uv de vg tm	75
@@ -647364,7 +647363,7 @@ sort: by_weight
 守口如瓶	uz kz ru pk	6110
 受拉构件	uz la gz jm	165
 手拉葫芦	uz la hu lu	4260
-手拉着手	uz la vo uz	124
+手拉着手	uz la ve uz	124
 手辣心硬	uz la xb yk	100
 收来收去	uz ld uz qu	100
 瘦了八斤	uz le ba jb	100
@@ -659799,7 +659798,7 @@ sort: by_weight
 专业态度	vr ye td du	100
 专业特长	vr ye te ih	100
 专业体系	vr ye ti xi	100
-专业调车	vr ye tn ie	100
+专业调车	vr ye dn ie	100
 专业调剂	vr ye tn ji	142
 专业调解	vr ye tn jp	100
 专业调整	vr ye tn vg	100
@@ -671180,7 +671179,7 @@ sort: by_weight
 晚间留人	wj jm lq rf	68
 万箭齐发	wj jm qi fa	710
 晚间新闻	wj jm xb wf	3770
-万箭攒心	wj jm zj xb	100
+万箭攒心	wj jm cr xb	100
 万箭钻心	wj jm zr xb	100
 绾角兄弟	wj jn xs di	12
 晚节不保	wj jp bu bc	1775
@@ -672699,7 +672698,7 @@ sort: by_weight
 我对她说	wo dv ta uo	3415
 我对他说	wo dv ta uo	6830
 我对这些	wo dv ve xp	100
-我得病了	wo dw bk le	100
+我得病了	wo de bk le	100
 我得下了	wo dw xx le	85
 我得走了	wo dw zz le	1825
 我都爱你	wo dz ai ni	100
@@ -674561,7 +674560,7 @@ sort: by_weight
 握有胜券	wo yz ug qr	100
 我有事啊	wo yz ui aa	100
 我有事儿	wo yz ui er	100
-我有事了	wo yz ui ln	100
+我有事了	wo yz ui le	100
 我有这么	wo yz ve me	100
 我有我的	wo yz wo de	100
 我有信心	wo yz xb xb	3270
@@ -678633,7 +678632,7 @@ sort: by_weight
 无锡疫情	wu xi yi qk	141
 五行八卦	wu xk ba gx	910
 五行八字	wu xk ba zi	100
-五行八作	wu xk ba zo	200
+五行八作	wu hh ba zo	200
 五行本源	wu xk bf yr	100
 五行并下	wu xk bk xx	100
 五行不缺	wu xk bu qt	100
@@ -686954,7 +686953,7 @@ sort: by_weight
 吸引了我	xi yb le wo	6095
 吸引人才	xi yb rf cd	13450
 喜阴植物	xi yb vi wu	24
-吸引着人	xi yb vo rf	100
+吸引着人	xi yb ve rf	100
 吸引外资	xi yb wd zi	17655
 玺印文字	xi yb wf zi	100
 吸引眼球	xi yb yj qq	100
@@ -689977,7 +689976,7 @@ sort: by_weight
 响成一片	xl ig yi pm	1180
 香肠炒蛋	xl ih ic dj	2
 香肠煎蛋	xl ih jm dj	1
-香肠芥蓝	xl ih jp lj	2
+香肠芥蓝	xl ih gd lj	2
 想唱就唱	xl ih jq ih	5035
 香肠肉卷	xl ih rz jr	1
 像场弯曲	xl ih wj qu	100
@@ -691548,7 +691547,7 @@ sort: by_weight
 先更新吧	xm gg xb ba	100
 腺苷钴胺	xm gj gu an	22
 先干什么	xm gj uf me	100
-先干着了	xm gj vc le	100
+先干着了	xm gj ve le	100
 先干着吧	xm gj ve ba	100
 先干为敬	xm gj ww jk	710
 鲜果布丁	xm go bu dk	21
@@ -694476,7 +694475,7 @@ sort: by_weight
 销声避影	xn ug bi yk	1
 小声地说	xn ug de uo	100
 笑声荡漾	xn ug dh yh	100
-小声地道	xn ug di dc	100
+小声地道	xn ug de dc	100
 小声点儿	xn ug dm er	3333
 小生产者	xn ug ij ve	1225
 笑声传奇	xn ug ir qi	100
@@ -697556,7 +697555,7 @@ sort: by_weight
 兄弟之情	xs di vi qk	1830
 兄弟辛苦	xs di xb ku	100
 兄弟阋墙	xs di xi ql	550
-兄弟相称	xs di xl if	100
+兄弟相称	xs di xl ig	100
 兄弟兄弟	xs di xs di	100
 兄弟学校	xs di xt xn	100
 兄弟怡怡	xs di yi yi	100
@@ -698990,7 +698989,7 @@ sort: by_weight
 需才孔亟	xu cd ks ji	100
 徐策跑城	xu ce pc ig	100
 虚词诡说	xu ci gv uo	1
-许错了愿	xu co ln yr	100
+许错了愿	xu co le yr	100
 许厝社区	xu co ue qu	1
 虚存机制	xu cy ji vi	11
 虚存系统	xu cy xi ts	29
@@ -704466,7 +704465,7 @@ sort: by_weight
 钥匙在哪	yc ui zd na	100
 窑山花园	yc uj hx yr	1
 摇山振岳	yc uj vf yt	100
-乐山乐水	yc uj yc uv	425
+乐山乐水	le uj le uv	425
 要说什么	yc uo uf me	100
 妖术惑众	yc uu ho vs	100
 妖术邪法	yc uu xp fa	100
@@ -704958,7 +704957,7 @@ sort: by_weight
 野火欻起	ye ho xu qi	2
 耶环蛱蝶	ye hr jx dp	1
 野胡拐乡	ye hu gk xl	1
-野胡萝卜	ye hu lo bu	100
+野胡萝卜	ye hu lo bo	100
 野狐外道	ye hu wd dc	3
 也会感冒	ye hv gj mc	100
 也会过去	ye hv go qu	100
@@ -706901,7 +706900,7 @@ sort: by_weight
 伊比利亚	yi bi li ya	100
 衣敝履穿	yi bi lv ir	100
 衣敝履空	yi bi lv ks	100
-一笔抹倒	yi bi ma dc	100
+一笔抹倒	yi bi mo dc	100
 一笔抹煞	yi bi mo ua	100
 一笔抹杀	yi bi mo ua	430
 易比汽车	yi bi qi ie	1
@@ -710342,7 +710341,7 @@ sort: by_weight
 一脚劲射	yi jn jk ue	100
 异教精神	yi jn jk uf	1
 一觉起来	yi jn qi ld	100
-一校三区	yi jn sj qu	100
+一校三区	yi xn sj qu	100
 一脚踢开	yi jn ti kd	3445
 以胶投漆	yi jn tz qi	100
 一脚射门	yi jn ue mf	150
@@ -710354,13 +710353,13 @@ sort: by_weight
 异教信仰	yi jn xb yh	60
 一觉醒来	yi jn xk ld	100
 一角银币	yi jn yb bi	100
-一校一案	yi jn yi an	100
-一校一策	yi jn yi ce	100
+一校一案	yi xn yi an	100
+一校一策	yi xn yi ce	100
 一角一分	yi jn yi ff	50
 一教一辅	yi jn yi fu	100
 一脚一个	yi jn yi ge	170
 移交一个	yi jn yi ge	30
-一校一品	yi jn yi pb	100
+一校一品	yi xn yi pb	100
 一角硬币	yi jn yk bi	340
 衣角樱蛤	yi jn yk ge	1
 一介白衣	yi jp bd yi	100
@@ -712100,7 +712099,7 @@ sort: by_weight
 一抔之土	yi pz vi tu	100
 以勤补拙	yi qb bu vo	475
 一亲芳泽	yi qb fh ze	1590
-欹嵚历落	yi qb li lo	100
+欹嵚历落	qi qb li lo	100
 一琴一鹤	yi qb yi he	24
 一琴一剑	yi qb yi jm	65
 一琴一箫	yi qb yi xn	1
@@ -712450,7 +712449,7 @@ sort: by_weight
 疫情宣传	yi qk xr ir	100
 怡情养性	yi qk yh xk	880
 一青一黑	yi qk yi hw	1
-一轻一重	yi qk yi is	100
+一轻一重	yi qk yi vs	100
 一情一景	yi qk yi jk	55
 一清一浊	yi qk yi vo	110
 一青一紫	yi qk yi zi	3
@@ -715652,7 +715651,7 @@ sort: by_weight
 一熏一莸	yi xy yi yz	1
 一薰一莸	yi xy yi yz	100
 遗训余风	yi xy yu fg	1
-艺压当行	yi ya dh xk	100
+艺压当行	yi ya dh hh	100
 以牙还牙	yi ya hr ya	1251
 咿哑学语	yi ya xt yu	100
 咿呀学语	yi ya xt yu	1725
@@ -716447,7 +716446,7 @@ sort: by_weight
 异族头目	yi zu tz mu	5
 衣租食税	yi zu ui uv	1
 蚁族之歌	yi zu vi ge	33
-一族之长	yi zu vi ih	100
+一族之长	yi zu vi vh	100
 一卒之田	yi zu vi tm	1
 一组文件	yi zu wf jm	685
 一族一姓	yi zu yi xk	2
@@ -717748,7 +717747,7 @@ sort: by_weight
 言深交浅	yj uf jn qm	1
 延伸率大	yj uf lv da	100
 演什么戏	yj uf me xi	100
-研深覃精	yj uf qb jk	20
+研深覃精	yj uf tj jk	20
 延伸拓展	yj uf to vj	100
 言甚详明	yj uf xl mk	1
 衍声复词	yj ug fu ci	100
@@ -720783,7 +720782,7 @@ sort: by_weight
 远期交易	yr qi jn yi	1980
 怨气连天	yr qi lm tm	50
 怨气满腹	yr qi mj fu	100
-元气囝仔	yr qi nj zd	2
+元气囝仔	yr qi jm zd	2
 元气森林	yr qi sf lb	200
 元气桃桃	yr qi tc tc	100
 怨气太浓	yr qi td ns	100
@@ -722502,13 +722501,13 @@ sort: by_weight
 越改越炫	yt gd yt xr	10
 约个地点	yt ge di dm	100
 约个地儿	yt ge di er	100
-乐歌股份	yt ge gu ff	100
+乐歌股份	le ge gu ff	100
 约个会吧	yt ge hv ba	100
 约个酒吧	yt ge jq ba	100
 约个酒局	yt ge jq ju	100
 约个时间	yt ge ui jm	9999
 岳各庄桥	yt ge vl qn	525
-乐歌转债	yt ge vr vd	100
+乐歌转债	le ge vr vd	100
 越干越好	yt gj yt hc	190
 越干越快	yt gj yt kk	155
 越干越有	yt gj yt yz	70
@@ -725273,7 +725272,7 @@ sort: by_weight
 御扇豆黄	yu uj dz hl	11
 御膳豆黄	yu uj dz hl	5
 羽扇纶巾	yu uj gr jb	2015
-蔚山工厂	yu uj gs ih	138
+蔚山工厂	ww uj gs ih	138
 虞山公园	yu uj gs yr	925
 羽扇挥兵	yu uj hv bk	100
 玉山将崩	yu uj jl bg	5
@@ -725281,7 +725280,7 @@ sort: by_weight
 欲善其事	yu uj qi ui	100
 玉山倾倒	yu uj qk dc	100
 玉山倾颓	yu uj qk tv	100
-蔚山现代	yu uj xm dd	148
+蔚山现代	ww uj xm dd	148
 逾山越海	yu uj yt hd	1
 玉山自倒	yu uj zi dc	100
 余霜开门	yu ul kd mf	100
@@ -728017,7 +728016,7 @@ sort: by_weight
 有花有草	yz hx yz cc	920
 有花有果	yz hx yz go	380
 又滑又溜	yz hx yz lq	100
-有话则长	yz hx ze vh	375
+有话则长	yz hx ze ih	375
 油画作品	yz hx zo pb	5520
 优化组合	yz hx zu he	11035
 幽魂不散	yz hy bu sj	100
@@ -728448,7 +728447,7 @@ sort: by_weight
 有可能的	yz ke ng de	100
 有可能会	yz ke ng hv	19015
 游客如织	yz ke ru vi	100
-犹可说也	yz ke to ye	100
+犹可说也	yz ke uo ye	100
 游客止步	yz ke vi bu	295
 由恪志远	yz ke vi yr	100
 游客住宿	yz ke vu su	100
@@ -736260,7 +736259,7 @@ sort: by_weight
 暂且不说	zj qp bu uo	2395
 暂且搁下	zj qp ge xx	100
 暂且息怒	zj qp xi nu	100
-攒三聚五	zj sj ju wu	100
+攒三聚五	cr sj ju wu	100
 赞颂苦难	zj ss ku nj	100
 暂态稳定	zj td wf dk	100
 赞叹不止	zj tj bu vi	22
@@ -738496,7 +738495,7 @@ sort: by_weight
 租用合同	zu ys he ts	1420
 租用环境	zu ys hr jk	75
 租用场地	zu ys ih di	100
-租庸调制	zu ys tn vi	100
+租庸调制	zu ys dn vi	100
 租用土地	zu ys tu di	100
 租用线路	zu ys xm lu	925
 祖约好财	zu yt hc cd	100
@@ -863677,7 +863676,7 @@ sort: by_weight
 木欣欣以向荣	mu xb xb yi xl rs	12
 母系氏族社会	mu xi ui zu ue hv	100
 墓形棍手水母	mu xk gy uz uv mu	1
-呒虾米输入法	mu xx mi uu ru fa	100
+呒虾米输入法	wu xx mi uu ru fa	100
 木业有限公司	mu ye yz xm gs si	16875
 母婴行业观察	mu yk hh ye gr ia	100
 母婴垂直传播	mu yk iv vi ir bo	100

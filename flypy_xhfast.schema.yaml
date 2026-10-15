@@ -342,10 +342,10 @@ key_binder:
     # - {when: always,  accept: Shift+space,  toggle: ascii_mode}
     - {when: has_menu,  accept: Control+Shift+4,    toggle: emoji}
     - {when: has_menu,  accept: Control+Shift+5,    toggle: zh_simp}
-    - {when: always,    accept: Control+semicolon,  toggle: char_mode}
     - {when: always,    accept: Control+period,     toggle: full_shape}
     - {when: always,    accept: Control+comma,      toggle: ascii_punct}
     - {when: has_menu,  accept: Control+Shift+6,    toggle: charset_hint}
+    - {when: always,    accept: Control+semicolon,  toggle: cand_priority}
 
 # 拼写设定
 speller:
