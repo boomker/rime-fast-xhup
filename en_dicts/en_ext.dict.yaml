@@ -1904,6 +1904,11 @@ GPT-5.1	GPT-5.1
 GPT-5.2	GPT-5.2
 GPT-5.5	GPT-5.5
 GPT-5.4	GPT-5.4
+GPT‑5.6 Sol	GPT‑5.6Sol
+GPT-5.6 Terra	GPT-5.6Terra
+GPT-5.6 Luna	GPT-5.6Luna
+GPT-6 Astra	GPT-6Astra
+GPT-6.1 Sol	GPT-6.1Sol
 LaMDA	LaMDA
 Language Model for Dialogue Applications	LaMDA
 Coinbase Wallet	CoinbaseWallet
@@ -2632,8 +2637,5 @@ Microchip	Microchip
 Marvell	Marvell
 Realtek	Realtek
 GigaDevice	GigaDevice
-GPT‑5.6 Sol	GPT‑5.6Sol
-GPT-5.6 Terra	GPT-5.6Terra
-GPT-5.6 Luna	GPT-5.6Luna
 Nust	Nust
 MacPorts	MacPorts
