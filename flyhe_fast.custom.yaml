@@ -18,8 +18,12 @@ patch:
     - name: prediction
       states: [休想, 联想]
 
-  'engine/processors/@before 0': predictor
-  'engine/translators/@before 0': predict_translator
+  'engine/processors/@before 0':
+    name: predictor
+    when: prediction                  # 仅开启“联想”时运行
+  'engine/translators/@before 0':
+    name: predict_translator
+    when: prediction
 
   speller/+:
     algebra/+:

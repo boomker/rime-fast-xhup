@@ -1,13 +1,16 @@
 .omx/
 sync/
+logs/
 build/
 .venv/
+.claude/
 **/tmp/
 *.userdb/
 .stfolder/
 __pycache__/
 .DS_Store
 .stignore
+.gitnexusignore
 **/debug.log
 **/.ropeproject
 user.yaml

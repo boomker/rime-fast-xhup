@@ -102,19 +102,32 @@ engine:
     - lua_translator@*chinese_number*translator       # /nn,nN 触发大写金额数字
     - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
+  # 组件可写成 {name, when} 按运行时 option 启用（librime 1.17+，PR #1249）
+  # when: option        → option 为 true 时启用
+  # when: "!option"     → option 为 false 时启用
+  # 复合条件：when: {all_of: [...]} / {any_of: [...]} / {none_of: [...]}，可嵌套
+  # 注意：旧版 librime 不认识 map 形式的组件，会直接跳过该组件。
   filters:
     - reverse_lookup_filter@radical_lookup
-    - simplifier@zh_simp                              # 繁体转换简体
-    - simplifier@zh_trad                              # 简体转换繁体
-    - simplifier@zh_hk                                # 简体转换港繁
-    - simplifier@zh_tw                                # 简体转换台繁
-    - simplifier@emoji
+    - name: simplifier@zh_simp                        # 繁体转换简体，仅在启用时执行
+      when: zh_simp
+    - name: simplifier@zh_trad                        # 简体转换繁体，仅在启用时执行
+      when: zh_trad
+    - name: simplifier@zh_hk                          # 简体转换港繁，仅在启用时执行
+      when: zh_hk
+    - name: simplifier@zh_tw                          # 简体转换台繁，仅在启用时执行
+      when: zh_tw
+    - name: simplifier@emoji                          # Emoji 转换，仅在启用时执行
+      when: emoji
     - lua_filter@*flypy_switcher*filter
     - lua_filter@*flypy_fixed
-    - lua_filter@*reduce_emoji
-    - lua_filter@*charset*filter
+    - name: lua_filter@*reduce_emoji                  # Emoji 降频，关闭 emoji 后无需再遍历候选
+      when: emoji
+    - name: lua_filter@*charset*filter                # 仅在关闭增广字集时过滤扩展汉字
+      when: "!charset"
     - lua_filter@*flypy_fuzzy*filter
-    - lua_filter@*charset*charset_hint
+    - name: lua_filter@*charset*charset_hint          # 仅在显示字符集注解时遍历候选
+      when: charset_hint
     - lua_filter@*cand_selector*filter
     - lua_filter@*word_autocaps*filter
     - lua_filter@*cold_word_drop*filter
@@ -340,11 +353,11 @@ key_binder:
     - {when: composing, accept: Control+m, send: Return}
     - {when: composing, accept: Control+k, send: Shift+Delete}
     # - {when: always,  accept: Shift+space,  toggle: ascii_mode}
-    - {when: has_menu,  accept: Control+Shift+4,    toggle: emoji}
-    - {when: has_menu,  accept: Control+Shift+5,    toggle: zh_simp}
+    - {when: has_menu,  accept: Control+Shift+5,    toggle: emoji}
+    - {when: has_menu,  accept: Control+Shift+6,    toggle: zh_simp}
     - {when: always,    accept: Control+period,     toggle: full_shape}
     - {when: always,    accept: Control+comma,      toggle: ascii_punct}
-    - {when: has_menu,  accept: Control+Shift+6,    toggle: charset_hint}
+    - {when: has_menu,  accept: Control+Shift+7,    toggle: charset_hint}
     - {when: always,    accept: Control+semicolon,  toggle: cand_priority}
 
 # 拼写设定

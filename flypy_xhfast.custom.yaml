@@ -54,8 +54,12 @@ patch:
     segmentors/+:
     translators/+:
     filters/+:
-  'engine/processors/@before 0': predictor
-  'engine/translators/@before 0': predict_translator
+  'engine/processors/@before 0':
+    name: predictor
+    when: prediction                  # 仅开启“联想”时运行
+  'engine/translators/@before 0':
+    name: predict_translator
+    when: prediction
   'engine/processors/@after 0': lua_processor@*keybinder
   # 注释下行, 以取消中英混合候选词自动添加的空格
   # 'engine/filters/@before last': lua_filter@*word_append_space*filter

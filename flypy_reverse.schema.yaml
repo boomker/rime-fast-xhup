@@ -6,7 +6,7 @@
 # 方案说明
 schema:
   schema_id: flypy_reverse
-  name: 飞鹤反查(勿用)
+  name: "飞鹤反查"
   version: 2026.03.15
   author:
     - boomker

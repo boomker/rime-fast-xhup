@@ -58,7 +58,8 @@ engine:
     - lua_translator@*date_time                       # date/orq,week/oxq,time/osj 触发
     - lua_translator@*cand_selector*translator        # /,; 单字或二字词和表情自动上屏
   filters:
-    - simplifier@zh_trad                              # 简繁切换
+    - name: simplifier@zh_trad                        # 简繁切换，仅在启用时执行
+      when: zh_trad
     - lua_filter@*cand_selector*filter
     - uniquifier                                      # 只能放到最后!
 

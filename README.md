@@ -123,6 +123,7 @@ Rime 输入法配置方案，小鹤双拼+小鹤形码辅助方案。使用后�
 
 ### 关于各 Rime 发行版支持
 
+- 本方案使用了 librime 的条件组件（engine 组件 `name` + `when`，[PR #1249](https://github.com/rime/librime/pull/1249)），需要 librime 1.17.0 及以上；旧版内核会跳过带条件的组件
 - [librime 项目](https://github.com/rime/librime/releases) 建议手动安装或自行编译
 - 小狼毫(Windows)和鼠须管(macOS)的最新版本
 - 小企鹅(Fcitx5-macos) 在 [GitHub 页面](https://github.com/fcitx-contrib/fcitx5-macos) 下载最新版, 支持卷轴模式
