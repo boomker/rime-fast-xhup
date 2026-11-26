@@ -102,7 +102,7 @@ engine:
     - lua_translator@*chinese_number*translator       # /nn,nN 触发大写金额数字
     - lua_translator@*flypy_switcher*translator       # /so,sO 触发进入选项切换菜单
     - lua_translator@*commit_history*translator       # /hs,hH 触发显示已上屏候选历史
-  # 组件可写成 {name, when} 按运行时 option 启用（librime 1.17+，PR #1249）
+  # 组件可写成 {name, when} 按运行时 option 启用（librime 1.17+）
   # when: option        → option 为 true 时启用
   # when: "!option"     → option 为 false 时启用
   # 复合条件：when: {all_of: [...]} / {any_of: [...]} / {none_of: [...]}，可嵌套
